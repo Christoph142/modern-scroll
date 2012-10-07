@@ -128,6 +128,8 @@ function resize_hbar(){
 
 function drag_v(){
 	document.getElementById("MS_vbar").style.opacity = 0.7;
+	document.getElementById("MS_vbar").style.width = widget.preferences.hover_size+"px";
+	document.getElementById("MS_vbar_bg").style.width = widget.preferences.hover_size+"px";
 	window.event.preventDefault(); // prevent focus-loss in site
 	var bar = document.getElementById("MS_vbar");
 	var dragy = window.event.clientY - parseInt(bar.style.top);
@@ -142,6 +144,8 @@ function drag_v(){
 	document.onmouseup = function(){
 		document.getElementById("MS_page_cover").style.display = "none";
 		document.getElementById("MS_vbar").style.opacity = null;
+		document.getElementById("MS_vbar").style.width = null;
+		document.getElementById("MS_vbar_bg").style.width = null;
 		hide_bars();
 		document.onmousemove = null;
 	};
@@ -149,6 +153,8 @@ function drag_v(){
 
 function drag_h(){
 	document.getElementById("MS_hbar").style.opacity = 0.7;
+	document.getElementById("MS_hbar").style.height = widget.preferences.hover_size+"px";
+	document.getElementById("MS_hbar_bg").style.height = widget.preferences.hover_size+"px";
 	window.event.preventDefault(); // prevent focus-loss in site
 	var bar = document.getElementById("MS_hbar");
 	var dragx = window.event.clientX - parseInt(bar.style.left);
@@ -163,6 +169,8 @@ function drag_h(){
 	document.onmouseup = function(){
 		document.getElementById("MS_page_cover").style.display = "none";
 		document.getElementById("MS_hbar").style.opacity = null;
+		document.getElementById("MS_hbar").style.height = null;
+		document.getElementById("MS_hbar_bg").style.height = null;
 		hide_bars();
 		document.onmousemove = null;
 	};
