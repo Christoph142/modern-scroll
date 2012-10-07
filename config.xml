@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" id="https://github.com/Christoph142/ModernScroll" version="1.0">
+
+	<name>Modern Scroll</name>
+	<author href="http://my.opera.com/christoph142/blog">Christoph D.</author>
+	<icon src="images/icon.png" />
+	
+	<description xml:lang="de">Eine moderne Alternative zu Operas Standard-Bildlaufleisten</description>
+	<description xml:lang="en">An up-to-date alternative to Opera's standard scrollbars</description>
+	<description xml:lang="fr">Une alternative moderne à barres de défilement standards d'Opera</description>
+	<description xml:lang="it">Una moderna alternativa per le barra di scorrimento standard di Opera</description>
+	<!--description xml:lang="nb">Rullefelt</description>
+	<description xml:lang="pl">Samoukrywający</description-->
+		
+	<preference name="size" value="10" />
+	<preference name="hover_size" value="14" />
+	<preference name="color" value="#000" />
+	<preference name="show_when" value="2" /><!-- 1 = only_over, 2 = normal, 3 = always -->
+	<preference name="no_bar_bg" value="0" />
+
+</widget>

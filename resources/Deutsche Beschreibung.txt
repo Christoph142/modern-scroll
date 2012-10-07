@@ -1,0 +1,9 @@
+Eine moderne Alternative zu Operas Standard-Bildlaufleisten
+
+
+Changelog:
+----------
+
+V 1.0
+---------
+Erstes Release

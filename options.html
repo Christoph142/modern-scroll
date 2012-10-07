@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=utf-8">
+<html>
+<head>
+	<title>Modern Scroll</title>
+    <link rel="stylesheet" type="text/css" href="options/options.css">
+    <script type="text/javascript" src="options/prefs.js"></script>
+    <script type="text/javascript" src="includes/scrollbar.js"></script>
+    <script type="text/javascript" src="strings.js"></script>
+    <script type="text/javascript"> function _(to_translate){ document.write( strings[to_translate] ); } </script>
+</head>
+
+<body onLoad="getprefs();">
+
+<header><br>
+	<img src="images/icon.png">
+    <h1 id="widget-name">Modern Scroll</h1>
+    <h3><script>_("by");</script> <a href="http://my.opera.com/christoph142/blog/" target="_blank" style="background-color:transparent;">Christoph D.</a></h3>
+</header>
+
+<section>
+    <h3><script>_("Options");</script></h3>
+    
+    <!--table><tr><td width="100%"-->
+    
+    <fieldset>
+    <h4><script>_("look");</script>:</h4>
+    
+    <script>_("color");</script>: <input type="color" id="color" name="color"><br>
+    <label for="size"><script>_("size");</script>: </label>
+    <input type="number" max="20" min="1" id="size" name="size" value="10"><br>
+    <label for="hover_size"><script>_("hover_size");</script>: </label>
+    <input type="number" max="30" min="1" id="hover_size" name="hover_size" value="14"><br>
+    <br>
+    <input type="checkbox" id="no_bar_bg" name="no_bar_bg"> <label for="no_bar_bg"><script>_("no_bar_bg");</script></label><br>
+    <br>
+    </fieldset><br>
+    
+    <fieldset>
+    <h4><script>_("behavior");</script>:</h4>
+    <script>_("show_when");</script>?<br>
+    <input type="range" name="show_when" id="show_when" min="1" max="3" value="2" step="1" style="width:100%;" />
+    <table>
+    	<tr>
+        	<td width="30%" style="text-align:left; padding-left:10px; vertical-align:top;"><script>_("only_over");</script></td>
+            <td width="40%" style="text-align:center; vertical-align:top;"><script>_("normal");</script></td>
+            <td width="30%" style="text-align:right; padding-right:10px; vertical-align:top;"><script>_("always");</script></td>
+        </tr>
+    </table>
+    </div>
+    <br>
+    </fieldset>
+    <!--/td><td>
+    	<div id="sample_bar_bg"><div id="sample_bar"></div></div>
+    </td></tr></table-->
+    <br>
+    <fieldset>
+    <p>
+    <h4><div style="height:22px; width:22px; background-color:#FFF; display:inline-block; border-radius:11px; text-align:center; vertical-align:central;">i</div>&nbsp;&nbsp;<script>_("How to");</script>?</h4>
+    <script>_("disable standard bars");</script>:<br>
+    </p>
+    </fieldset>
+</section>
+
+<footer>
+    <p><script>_("footer");</script> :)<br><br></p>
+</footer>
+  
+</body>
+</html>
