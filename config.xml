@@ -15,6 +15,7 @@
 	<preference name="size" value="10" />
 	<preference name="hover_size" value="14" />
 	<preference name="color" value="#000" />
+	<preference name="border_radius" value="7" />
 	<preference name="show_when" value="2" /><!-- 1 = only_over, 2 = normal, 3 = always -->
 	<preference name="no_bar_bg" value="0" />
 
