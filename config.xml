@@ -11,7 +11,9 @@
 	<description xml:lang="it">Una moderna alternativa per le barra di scorrimento standard di Opera</description>
 	<!--description xml:lang="nb">Rullefelt</description>
 	<description xml:lang="pl">Samoukrywający</description-->
-		
+	
+	<feature name="opera:screenshot" required="false"/>
+	
 	<preference name="size" value="10" />
 	<preference name="hover_size" value="14" />
 	<preference name="color" value="#000" />
