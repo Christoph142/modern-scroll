@@ -13,6 +13,6 @@ var strings = {
 	"normal" : "sur le vol stationnaire, tandis que le défilement et les changements de position ou la taille",
 	"always" : "toujours",
 	"How to" : "Comment puis-je utiliser cette extension",
-	"disable standard bars" : "Les barres de défilement standards d'Opera doivent être désactivé avant pouvoir voir celles-ci.<br>Pour ce faire, ouvre Opera → Réglages → Préférences ... → Avancé → Navigation et désactive \"Afficher les barres de défilement\"",
+	"disable standard bars" : "Les barres de défilement standards d'Opera doivent être désactivés pour éviter doubles barres.<br>Donc ouvre Opera → Réglages → Préférences... → Avancé → Navigation et désactive \"Afficher les barres de défilement\"",
 	"footer" : "Merci d'avoir installé cette extension. Pour des commentaires et des questions, n'hésite pas à me contacter"
 };

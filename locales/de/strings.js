@@ -13,6 +13,6 @@ var strings = {
 	"normal" : "beim Überfahren mit der Maus, beim Scrollen und bei Änderungen von Position oder Größe",
 	"always" : "immer",
 	"How to" : "Wie verwende ich diese Erweiterung",
-	"disable standard bars" : "Damit die Bildlaufleisten sichtbar werden, müssen zunächst Operas Standard-Leisten ausgeschaltet werden.<br>Um die Standard-Bildlaufleisten zu deaktivieren, gehe zu Opera → Einstellungen → Erweitert → Browser und deaktiviere dort \"Bildlaufleisten zeigen\"",
+	"disable standard bars" : "Operas Standard-Leisten sollten ausgeschaltet werden um doppelte Leisten zu verhindern.<br>Gehe dafür zu Opera → Einstellungen → Erweitert → Browser und deaktiviere dort \"Bildlaufleisten zeigen\"",
 	"footer" : "Danke für das Installieren dieser Erweiterung. Für Feedback und Fragen stehe ich gerne jederzeit zur Verfügung"
 };

@@ -9,8 +9,9 @@
 	<description xml:lang="en">An up-to-date alternative to Opera's standard scrollbars</description>
 	<description xml:lang="fr">Une alternative moderne à barres de défilement standards d'Opera</description>
 	<description xml:lang="it">Una moderna alternativa per le barra di scorrimento standard di Opera</description>
-	<!--description xml:lang="nb">Rullefelt</description>
-	<description xml:lang="pl">Samoukrywający</description-->
+	<description xml:lang="nb">An up-to-date alternative to Opera's standard scrollbars</description>
+	<description xml:lang="pl">An up-to-date alternative to Opera's standard scrollbars</description>
+	<description xml:lang="tr">An up-to-date alternative to Opera's standard scrollbars</description>
 	
 	<feature name="opera:screenshot" required="false"/>
 	

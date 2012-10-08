@@ -13,6 +13,6 @@ var strings = {
 	"normal" : "upon hovering, while scrolling and at changes of position or size",
 	"always" : "sempre",
 	"How to" : "How do I use this extension",
-	"disable standard bars" : "Opera's standard scrollbars have to be disabled in order to be able to see these ones.<br>Per disattivare la barre di scorrimento predefinite andare in Opera → Preferenze → Avanzate → Navigazione e disattivare \"Barre di scorrimento\"",
+	"disable standard bars" : "Opera's standard scrollbars should be disabled to avoid double bars.<br>Per disattivare la barre di scorrimento predefinite andare in Opera → Preferenze → Avanzate → Navigazione e disattivare \"Barre di scorrimento\"",
 	"footer" : "Thanks for installing this extension. For feedback and questions don't hesitate to contact me"
 };
