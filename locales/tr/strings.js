@@ -12,7 +12,7 @@ var strings = {
 	"only_over" : "fare ile üzerine gelince",
 	"normal" : "üzerine gelince, kaydırırken ve konum veya boyutunu değiştirirken",
 	"always" : "her zaman",
-	"How to" : "Bu eklentiyi nasıl kullanabilirim",
-	"disable standard bars" : "Bu eklentiyi kullanabilmek için Opera'nın standart kaydırma çubukları kapatılmalı.<br>Bunu yapmak için, Opera → Ayarlar → Tercihler... → Gelişmiş → Tarama ve \"kaydırma çubuklarını göster\" deki işareti kaldırın",
+	"note" : "Note",
+	"disable standard bars" : "If you don't want Opera's standard scrollbars to pop up for a moment during page loading, you may disable them completely.<br>Bunu yapmak için, Opera → Ayarlar → Tercihler... → Gelişmiş → Tarama ve \"kaydırma çubuklarını göster\" deki işareti kaldırın.<br>Be aware though, that it's not recommended since they can be neither used as a fallback method nor will they show up on Opera's internal pages, which don't allow any extensions to be executed for security reasons, anymore in this case.",
 	"footer" : "Bu eklentiyi kurduğunuz için teşekkürler. Geribildirim ve yorumlar için benimle iletişime geçmekten çekinmeyin"
 };
