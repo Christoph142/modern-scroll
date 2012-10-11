@@ -12,8 +12,8 @@ window.addEventListener("DOMContentLoaded", function(){
 	if(window.self != window.top) return; // only treat main page not iframes, ads, etc.
 	
 	inject_css();	
-	initialize_bars();
 	add_buttons();
+	initialize_bars();
 	
 	//document.getElementById("MS_v_container").addEventListener("mouseover", take_screenshot, false);
 	
@@ -23,12 +23,10 @@ window.addEventListener("DOMContentLoaded", function(){
 	document.getElementById("MS_vbar").addEventListener("mousedown", drag_v, true);
 	document.getElementById("MS_hbar").addEventListener("mousedown", drag_h, true);
 	
-	document.getElementById("MS_upbutton").addEventListener("mousedown", function(){
-		window.event.preventDefault();
-		window.scroll(window.scrollX,0);
-	}, true);
-	document.getElementById("MS_downbutton").addEventListener("mousedown", function(){
-		window.event.preventDefault();
+	document.getElementById("MS_upbutton").addEventListener("mousedown", function(){	window.event.preventDefault(); }, false);
+	document.getElementById("MS_upbutton").addEventListener("click", function(){		window.scroll(window.scrollX,0); }, true);
+	document.getElementById("MS_downbutton").addEventListener("mousedown", function(){	window.event.preventDefault(); }, false);
+	document.getElementById("MS_downbutton").addEventListener("click", function(){
 		window.scroll(window.scrollX,Math.max(document.body.scrollHeight,document.documentElement.scrollHeight));
 	}, true);
 	
@@ -98,6 +96,9 @@ function resize_vbar(){
 			document.getElementById("MS_v_container").style.display = "none";
 			document.getElementById("MS_vbar_bg").style.display = "none";
 			document.getElementById("MS_vbar").style.display = "none";
+			
+			document.getElementById("MS_upbutton").style.display = "none";
+			document.getElementById("MS_downbutton").style.display = "none";
 		}
 		return;
 	}
@@ -108,6 +109,9 @@ function resize_vbar(){
 		document.getElementById("MS_v_container").style.display = "inline";
 		document.getElementById("MS_vbar_bg").style.display = "inline";
 		document.getElementById("MS_vbar").style.display = "inline";
+		
+		document.getElementById("MS_upbutton").style.display = "inline";
+		document.getElementById("MS_downbutton").style.display = "inline";
 	}
 }
 
@@ -132,6 +136,8 @@ function resize_hbar(){
 }
 
 function drag_v(){
+	if(window.event.which != 1) return; //if it's not the left mouse button
+	
 	document.getElementById("MS_vbar").style.opacity = 0.7;
 	document.getElementById("MS_vbar").style.width = widget.preferences.hover_size+"px";
 	document.getElementById("MS_vbar_bg").style.width = widget.preferences.hover_size+"px";
@@ -157,6 +163,8 @@ function drag_v(){
 }
 
 function drag_h(){
+	if(window.event.which != 1) return; //if it's not the left mouse button
+	
 	document.getElementById("MS_hbar").style.opacity = 0.7;
 	document.getElementById("MS_hbar").style.height = widget.preferences.hover_size+"px";
 	document.getElementById("MS_hbar_bg").style.height = widget.preferences.hover_size+"px";
