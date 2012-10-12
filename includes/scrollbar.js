@@ -23,12 +23,8 @@ window.addEventListener("DOMContentLoaded", function(){
 	document.getElementById("MS_vbar").addEventListener("mousedown", drag_v, true);
 	document.getElementById("MS_hbar").addEventListener("mousedown", drag_h, true);
 	
-	document.getElementById("MS_upbutton").addEventListener("mousedown", function(){	window.event.preventDefault(); }, false);
-	document.getElementById("MS_upbutton").addEventListener("click", function(){		window.scroll(window.scrollX,0); }, true);
-	document.getElementById("MS_downbutton").addEventListener("mousedown", function(){	window.event.preventDefault(); }, false);
-	document.getElementById("MS_downbutton").addEventListener("click", function(){
-		window.scroll(window.scrollX,Math.max(document.body.scrollHeight,document.documentElement.scrollHeight));
-	}, true);
+	document.getElementById("MS_upbutton").addEventListener("mousedown", function(){ handle_button("up"); }, true);
+	document.getElementById("MS_downbutton").addEventListener("mousedown", function(){ handle_button("down"); }, true);
 	
 	window.addEventListener("DOMNodeInserted", adjust_bars_if_necessary, false);
 	window.addEventListener("resize", adjust_bars, false);
@@ -39,7 +35,7 @@ window.addEventListener("DOMContentLoaded", function(){
 },false);
 
 function inject_css(){
-	var MS_style = "#MS_v_container, #MS_h_container{ position:fixed; z-index:99997; background-color:rgba(0,0,0,0); } #MS_v_container{ height:100%; width:30px; right:0px; top:0px; } #MS_h_container{ height:30px; width:100%; left:0px; bottom:0px; } #MS_v_container:hover #MS_vbar, #MS_v_container:hover #MS_vbar_bg{ width:"+widget.preferences.hover_size+"px; } #MS_h_container:hover #MS_hbar, #MS_h_container:hover #MS_hbar_bg{ height:"+widget.preferences.hover_size+"px; } #MS_v_container:hover #MS_vbar, #MS_v_container:hover #MS_minipage, #MS_h_container:hover #MS_hbar{ opacity:0.5; transition:opacity 0.1s 0s; -o-transition:opacity 0.1s 0s; } #MS_v_container:hover #MS_vbar_bg, #MS_h_container:hover #MS_hbar_bg{ opacity:"+((widget.preferences.no_bar_bg == "1")?"0":"0.5")+"; transition:opacity 0.1s 0s; -o-transition:opacity 0.1s 0s; } #MS_vbar_bg, #MS_hbar_bg{ background-color:#999; opacity:"+((widget.preferences.show_when=="3" && widget.preferences.no_bar_bg != "1")?"0.5":"0")+"; position:fixed; z-index:99998; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5); border-radius:"+widget.preferences.border_radius+"px; display:none; transition:opacity 0.5s 1s, width 0.25s, height 0.25s; -o-transition:opacity 0.5s 1s, width 0.25s, height 0.25s; } #MS_vbar_bg{ right:0px; top:0px; height:100%; width:"+widget.preferences.size+"px; } #MS_hbar_bg{ left:0px; bottom:0px; height:"+widget.preferences.size+"px; width:100%; } #MS_vbar, #MS_hbar{ background-color:"+widget.preferences.color+"; opacity:"+((widget.preferences.show_when=="3")?"0.5":"0")+"; position:fixed; z-index:99999; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5); border-radius:"+widget.preferences.border_radius+"px; display:none; transition:opacity 0.5s 1s, width 0.25s, height 0.25s; -o-transition:opacity 0.5s 1s, width 0.25s, height 0.25s; } #MS_vbar{ right:0px; top:0px; height:30px; min-height:30px; width:"+widget.preferences.size+"px; } #MS_vbar:hover, #MS_hbar:hover{ opacity:0.7; } #MS_hbar{ left:0px; bottom:0px; width:30px; min-width:30px; height:"+widget.preferences.size+"px; } #MS_page_cover{ display:none; position:fixed; left:0px; top:0px; width:100%; height:100%; z-index:99996; background-color:rgba(0,0,0,0); } #MS_minipage{ position:fixed; top:0px; right:0px; } #MS_upbutton, #MS_downbutton{ position:fixed; height:100px; width:100px; right:50px; opacity:0.5; background-color:"+widget.preferences.color+"; z-index:99999; border-radius:50px; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5); } #MS_upbutton{ top:-50px; } #MS_downbutton{ bottom:-50px; }";
+	var MS_style = "#MS_v_container, #MS_h_container{ position:fixed; z-index:99997; background-color:rgba(0,0,0,0); } #MS_v_container{ height:100%; width:30px; right:0px; top:0px; } #MS_h_container{ height:30px; width:100%; left:0px; bottom:0px; } #MS_v_container:hover #MS_vbar, #MS_v_container:hover #MS_vbar_bg{ width:"+widget.preferences.hover_size+"px; } #MS_h_container:hover #MS_hbar, #MS_h_container:hover #MS_hbar_bg{ height:"+widget.preferences.hover_size+"px; } #MS_v_container:hover #MS_vbar, #MS_v_container:hover #MS_minipage, #MS_h_container:hover #MS_hbar{ opacity:0.5; transition:opacity 0.1s 0s; -o-transition:opacity 0.1s 0s; } #MS_v_container:hover #MS_vbar_bg, #MS_h_container:hover #MS_hbar_bg{ opacity:"+((widget.preferences.no_bar_bg == "1")?"0":"0.5")+"; transition:opacity 0.1s 0s; -o-transition:opacity 0.1s 0s; } #MS_vbar_bg, #MS_hbar_bg{ background-color:#999; opacity:"+((widget.preferences.show_when=="3" && widget.preferences.no_bar_bg != "1")?"0.5":"0")+"; position:fixed; z-index:99998; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5); border-radius:"+widget.preferences.border_radius+"px; display:none; transition:opacity 0.5s 1s, width 0.25s, height 0.25s; -o-transition:opacity 0.5s 1s, width 0.25s, height 0.25s; } #MS_vbar_bg{ right:0px; top:0px; height:100%; width:"+widget.preferences.size+"px; } #MS_hbar_bg{ left:0px; bottom:0px; height:"+widget.preferences.size+"px; width:100%; } #MS_vbar, #MS_hbar{ background-color:"+widget.preferences.color+"; opacity:"+((widget.preferences.show_when=="3")?"0.5":"0")+"; position:fixed; z-index:99999; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5); border-radius:"+widget.preferences.border_radius+"px; display:none; transition:opacity 0.5s 1s, width 0.25s, height 0.25s; -o-transition:opacity 0.5s 1s, width 0.25s, height 0.25s; } #MS_vbar{ right:0px; top:0px; height:30px; min-height:30px; width:"+widget.preferences.size+"px; } #MS_vbar:hover, #MS_hbar:hover{ opacity:0.7; } #MS_hbar{ left:0px; bottom:0px; width:30px; min-width:30px; height:"+widget.preferences.size+"px; } #MS_page_cover{ display:none; position:fixed; left:0px; top:0px; width:100%; height:100%; z-index:99996; background-color:rgba(0,0,0,0); } #MS_minipage{ position:fixed; top:0px; right:0px; } #MS_upbutton, #MS_downbutton{ position:fixed; height:100px; width:100px; left:550px; opacity:0.1; background-color:"+widget.preferences.color+"; z-index:99999; border-radius:50px; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5); transition:opacity 0.5s; -o-transition:opacity 0.5s; } #MS_upbutton{ top:-50px; } #MS_downbutton{ bottom:-50px; } #MS_upbutton:hover, #MS_downbutton:hover{ opacity:0.5; transition:opacity 0.1s; -o-transition:opacity 0.1s; }";
 	
 	if(document.getElementById("MS_style")) document.getElementById("MS_style").innerHTML = MS_style; // when options changed
 	else{ // when website is initially loaded
@@ -159,6 +155,7 @@ function drag_v(){
 		document.getElementById("MS_vbar_bg").style.width = null;
 		hide_bars();
 		document.onmousemove = null;
+		document.onmouseup = null;
 	};
 }
 
@@ -186,6 +183,7 @@ function drag_h(){
 		document.getElementById("MS_hbar_bg").style.height = null;
 		hide_bars();
 		document.onmousemove = null;
+		document.onmouseup = null;
 	};
 }
 
@@ -248,6 +246,25 @@ function add_buttons(){
 	
 	document.body.appendChild(upbutton);
 	document.body.appendChild(downbutton);
+}
+
+function handle_button(whichone){
+	window.event.preventDefault();
+	var button = document.getElementById("MS_"+whichone+"button");
+	var x_start = window.event.clientX - button.offsetLeft;
+	document.onmousemove = function(){
+		var posx = window.event.clientX;
+		button.style.left = ((posx - x_start)<=-50? -50 : ((posx - x_start)>=window.innerWidth+50-button.offsetWidth?window.innerWidth+50-button.offsetWidth : (posx - x_start))) + "px";
+		document.onmouseup = function(){
+			document.onmousemove = null;
+			document.onmouseup = null;
+		};
+	}
+	document.onmouseup = function(){
+		window.scroll(window.scrollX,whichone=="up"?0:Math.max(document.body.scrollHeight,document.documentElement.scrollHeight));
+		document.onmousemove = null;
+		document.onmouseup = null;
+	};
 }
 
 /*function take_screenshot(){
