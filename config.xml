@@ -21,5 +21,7 @@
 	<preference name="border_radius" value="7" />
 	<preference name="show_when" value="2" /><!-- 1 = only_over, 2 = normal, 3 = always -->
 	<preference name="no_bar_bg" value="0" />
+	<preference name="show_buttons" value="1" />
+	<preference name="buttonposition" value="48" />
 
 </widget>

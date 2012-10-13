@@ -16,6 +16,16 @@ window.addEventListener("change",function(event){
 	
 },false);
 
+window.addEventListener("mousedown",function(){
+	if(event.target.id == "MS_upbutton" || event.target.id == "MS_downbutton"){
+		window.onmouseup = function(){
+			widget.preferences.buttonposition = 100*document.getElementById("MS_upbutton").offsetLeft/window.innerWidth;
+			opera.extension.postMessage("update");
+			window.onmouseup = null;
+		}
+	}
+},false);
+
 // restore preferences:
 function getprefs(){
 	var inputs = document.getElementsByTagName("input");

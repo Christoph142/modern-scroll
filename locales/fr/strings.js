@@ -12,6 +12,9 @@ var strings = {
 	"only_over" : "seulement lorsque planait avec la souris",
 	"normal" : "sur le vol stationnaire, tandis que le défilement et les changements de position ou la taille",
 	"always" : "toujours",
+	"buttons" : "Boutons de défilement",
+	"show buttons" : "Afficher des boutons de défilement vers le haut/bas de la page",
+	"drag buttons" : "Tu peux tirer les boutons à chaque position ici dans les options. Cette position deviendra le défaut pour tous les sites. Si ils couvrent un élément sur ​​certaines pages, tu les peux déplacer là",
 	"how to" : "Comment puis-je utiliser cette extension",
 	"disable standard bars" : "Les barres de défilement standards d'Opera doivent être désactivés pour éviter doubles barres.<br>Donc ouvre Opera → Réglages → Préférences... → Avancé → Navigation et désactive \"Afficher les barres de défilement\"",
 	"footer" : "Merci d'avoir installé cette extension. Pour des commentaires et des questions, n'hésite pas à me contacter"
