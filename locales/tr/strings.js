@@ -12,9 +12,9 @@ var strings = {
 	"only_over" : "fare ile üzerine gelince",
 	"normal" : "üzerine gelince, kaydırırken ve konum veya boyutunu değiştirirken",
 	"always" : "her zaman",
-	"buttons" : "Scroll buttons",
-	"show buttons" : "Show buttons for scrolling to the top/bottom of the page",
-	"drag buttons" : "You can drag the buttons to any position here in the options. This position will become the default for all websites. If they should cover an element on certain pages, you can drag them out of the way there",
+	"buttons" : "Kaydırma çubukları",
+	"show buttons" : "Sayfada en başa/en sona gitmek için düğmeleri göster",
+	"drag buttons" : "Buradaki düğmeleri istediğiniz konuma sürükleyebilirsiniz. Bu konum tüm web siteleri için varsayılan olacaktır. Eğer bir sayfada bir öğenin üstünü kapatıyorsa, orada yerini değiştirebilirsiniz.",
 	"how to" : "Bu eklentiyi nasıl kullanabilirim",
 	"disable standard bars" : "Bu eklentiyi kullanabilmek için Opera'nın standart kaydırma çubukları kapatılmalı.<br>Bunu yapmak için, Opera → Ayarlar → Tercihler... → Gelişmiş → Tarama ve \"kaydırma çubuklarını göster\" deki işareti kaldırın",
 	"footer" : "Bu eklentiyi kurduğunuz için teşekkürler. Geribildirim ve yorumlar için benimle iletişime geçmekten çekinmeyin"
