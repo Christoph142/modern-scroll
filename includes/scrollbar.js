@@ -35,7 +35,7 @@ window.addEventListener("DOMContentLoaded", function(){
 },false);
 
 function inject_css(){
-	var MS_style = "#MS_v_container, #MS_h_container{ position:fixed; z-index:99997; background-color:rgba(0,0,0,0); } #MS_v_container{ height:100%; width:30px; right:0px; top:0px; } #MS_h_container{ height:30px; width:100%; left:0px; bottom:0px; } #MS_v_container:hover #MS_vbar, #MS_v_container:hover #MS_vbar_bg{ width:"+widget.preferences.hover_size+"px; } #MS_h_container:hover #MS_hbar, #MS_h_container:hover #MS_hbar_bg{ height:"+widget.preferences.hover_size+"px; } #MS_v_container:hover #MS_vbar, #MS_v_container:hover #MS_minipage, #MS_h_container:hover #MS_hbar{ opacity:0.5; transition:opacity 0.1s 0s; -o-transition:opacity 0.1s 0s; } #MS_v_container:hover #MS_vbar_bg, #MS_h_container:hover #MS_hbar_bg{ opacity:"+((widget.preferences.no_bar_bg == "1")?"0":"0.5")+"; transition:opacity 0.1s 0s; -o-transition:opacity 0.1s 0s; } #MS_vbar_bg, #MS_hbar_bg{ background-color:#999; opacity:"+((widget.preferences.show_when=="3" && widget.preferences.no_bar_bg != "1")?"0.5":"0")+"; position:fixed; z-index:99998; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5); border-radius:"+widget.preferences.border_radius+"px; display:none; transition:opacity 0.5s 1s, width 0.25s, height 0.25s; -o-transition:opacity 0.5s 1s, width 0.25s, height 0.25s; } #MS_vbar_bg{ right:0px; top:0px; height:100%; width:"+widget.preferences.size+"px; } #MS_hbar_bg{ left:0px; bottom:0px; height:"+widget.preferences.size+"px; width:100%; } #MS_vbar, #MS_hbar{ background-color:"+widget.preferences.color+"; opacity:"+((widget.preferences.show_when=="3")?"0.5":"0")+"; position:fixed; z-index:99999; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5); border-radius:"+widget.preferences.border_radius+"px; display:none; transition:opacity 0.5s 1s, width 0.25s, height 0.25s; -o-transition:opacity 0.5s 1s, width 0.25s, height 0.25s; } #MS_vbar{ right:0px; top:0px; height:30px; min-height:30px; width:"+widget.preferences.size+"px; } #MS_vbar:hover, #MS_hbar:hover{ opacity:0.7; } #MS_hbar{ left:0px; bottom:0px; width:30px; min-width:30px; height:"+widget.preferences.size+"px; } #MS_page_cover{ display:none; position:fixed; left:0px; top:0px; width:100%; height:100%; z-index:99996; background-color:rgba(0,0,0,0); } #MS_minipage{ position:fixed; top:0px; right:0px; } #MS_upbutton, #MS_downbutton{ position:fixed; height:100px; width:100px; left:"+widget.preferences.buttonposition+"%; opacity:0.1; background-color:"+widget.preferences.color+"; z-index:99999; border-radius:50px; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5); transition:opacity 0.5s; -o-transition:opacity 0.5s; } #MS_upbutton{ top:-50px; } #MS_downbutton{ bottom:-50px; } #MS_upbutton:hover, #MS_downbutton:hover{ opacity:0.5; transition:opacity 0.1s; -o-transition:opacity 0.1s; }";
+	var MS_style = "#MS_v_container, #MS_h_container{ position:fixed; z-index:99997; background:rgba(0,0,0,0); } #MS_v_container{ height:100%; width:30px; right:0px; top:0px; } #MS_h_container{ height:30px; width:100%; left:0px; bottom:0px; } #MS_v_container:hover #MS_vbar, #MS_v_container:hover #MS_vbar_bg{ width:"+widget.preferences.hover_size+"px; } #MS_h_container:hover #MS_hbar, #MS_h_container:hover #MS_hbar_bg{ height:"+widget.preferences.hover_size+"px; } #MS_v_container:hover #MS_vbar, #MS_v_container:hover #MS_minipage, #MS_h_container:hover #MS_hbar{ opacity:0.5; transition:opacity 0.1s 0s; -o-transition:opacity 0.1s 0s; } #MS_v_container:hover #MS_vbar_bg, #MS_h_container:hover #MS_hbar_bg{ opacity:"+((widget.preferences.no_bar_bg == "1")?"0":"0.5")+"; transition:opacity 0.1s 0s; -o-transition:opacity 0.1s 0s; } #MS_vbar_bg, #MS_hbar_bg{ background:#999; opacity:"+((widget.preferences.show_when=="3" && widget.preferences.no_bar_bg != "1")?"0.5":"0")+"; position:fixed; z-index:99998; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5); border-radius:"+widget.preferences.border_radius+"px; display:none; transition:opacity 0.5s 1s, width 0.25s, height 0.25s; -o-transition:opacity 0.5s 1s, width 0.25s, height 0.25s; } #MS_vbar_bg{ right:0px; top:0px; height:100%; width:"+widget.preferences.size+"px; } #MS_hbar_bg{ left:0px; bottom:0px; height:"+widget.preferences.size+"px; width:100%; } #MS_vbar, #MS_hbar{ background:"+widget.preferences.color+"; opacity:"+((widget.preferences.show_when=="3")?"0.5":"0")+"; position:fixed; z-index:99999; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5); border-radius:"+widget.preferences.border_radius+"px; display:none; transition:opacity 0.5s 1s, width 0.25s, height 0.25s; -o-transition:opacity 0.5s 1s, width 0.25s, height 0.25s; } #MS_vbar{ right:0px; top:0px; height:30px; min-height:30px; width:"+widget.preferences.size+"px; } #MS_vbar:hover, #MS_hbar:hover{ opacity:0.7; } #MS_hbar{ left:0px; bottom:0px; width:30px; min-width:30px; height:"+widget.preferences.size+"px; } #MS_page_cover{ display:none; position:fixed; left:0px; top:0px; width:100%; height:100%; z-index:99996; background:rgba(0,0,0,0); } #MS_minipage{ position:fixed; top:0px; right:0px; } #MS_superbar{ position:fixed; width:100px; opacity:0.5; z-index:99999; background:"+widget.preferences.color+"; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5); border-radius:"+widget.preferences.border_radius+"px; transition:opacity 0.5s 1s; -o-transition:opacity 0.5s 1s; display:none; } #MS_upbutton, #MS_downbutton{ position:fixed; height:100px; width:100px; left:"+widget.preferences.buttonposition+"%; opacity:0.1; background:"+widget.preferences.color+"; z-index:99999; border-radius:50px; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5); transition:opacity 0.5s; -o-transition:opacity 0.5s; } #MS_upbutton{ top:-50px; } #MS_downbutton{ bottom:-50px; } #MS_upbutton:hover, #MS_downbutton:hover{ opacity:0.5; transition:opacity 0.1s; -o-transition:opacity 0.1s; } @media print, screen and (view-mode: minimized){ #MS_upbutton, #MS_downbutton, #MS_vbar, #MS_hbar, #MS_vbar_bg, #MS_hbar_bg, #MS_superbar{ background:rgba(0,0,0,0); box-shadow:none; }}";
 	
 	if(document.getElementById("MS_style")) document.getElementById("MS_style").innerHTML = MS_style; // when options changed
 	else{ // when website is initially loaded
@@ -59,11 +59,15 @@ function initialize_bars(){
 	h_container.id = "MS_h_container";
 	h_container.innerHTML = "<div id='MS_hbar_bg'></div><div id='MS_hbar'></div>";
 	
+	var superbar = document.createElement("div");
+	superbar.id = "MS_superbar";
+	
 	var page_cover = document.createElement("div"); // covers the page and thus prevents cursor changes when dragging
 	page_cover.id = "MS_page_cover";
 	
 	document.body.appendChild(v_container);
 	document.body.appendChild(h_container);
+	document.body.appendChild(superbar);
 	document.body.appendChild(page_cover);
 	
 	adjust_bars();
@@ -140,7 +144,7 @@ function drag_v(){
 		show_bars();
 		var posy = window.event.clientY;
 		bar.style.top = ((posy - dragy)<=0? 0 : ((posy - dragy)>=window.innerHeight-bar.offsetHeight?window.innerHeight-bar.offsetHeight : (posy - dragy))) + "px";
-		
+
 		window.scrollTo(window.pageXOffset, parseInt(bar.style.top)/(window.innerHeight-bar.offsetHeight)*(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight));
 	}
 	document.onmouseup = function(){
@@ -195,6 +199,14 @@ function reposition_bars(){
 	if(window.pageYOffset+window.innerHeight < Math.max(document.body.scrollHeight,document.documentElement.scrollHeight) && widget.preferences.show_buttons=="1")
 		document.getElementById("MS_downbutton").style.display = "inline";
 	else document.getElementById("MS_downbutton").style.display = "none";
+	
+	if(document.getElementById("MS_vbar").style.display == "inline" && document.getElementById("MS_hbar").style.display == "inline")
+		document.getElementById("MS_superbar").style.display = "inline";
+	else window.setTimeout(function(){ document.getElementById("MS_superbar").style.display = "none" }, 2000);
+	document.getElementById("MS_superbar").style.top = document.getElementById("MS_vbar").style.top;
+	document.getElementById("MS_superbar").style.height = document.getElementById("MS_vbar").style.height;
+	document.getElementById("MS_superbar").style.left = document.getElementById("MS_hbar").style.left;
+	document.getElementById("MS_superbar").style.width = document.getElementById("MS_hbar").style.width;
 	
 	window.setTimeout(hide_bars, 1000);
 }
@@ -253,7 +265,7 @@ function handle_button(whichone){
 	window.event.preventDefault();
 	var button = document.getElementById("MS_"+whichone+"button");
 	var otherbutton = document.getElementById("MS_"+(whichone=="up"?"down":"up")+"button");
-	var x_start = window.event.clientX - button.offsetLeft;
+	var x_start = window.event.clientX - Math.floor(button.style.left?parseInt(button.style.left):widget.preferences.buttonposition/100*window.innerWidth);
 	document.onmousemove = function(){
 		button.style.opacity = "0.5";
 		otherbutton.style.opacity = "0.5";
