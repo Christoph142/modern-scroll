@@ -1,6 +1,6 @@
-Modern Scroll is an up-to-date alternative to Opera's standard scrollbars.
+modern scroll is an up-to-date alternative to Opera's standard scrollbars.
 
-What's awesome about Modern Scroll?
+What's awesome about modern scroll?
 
 + its scroll bars don't take up any space so the whole screen width can be used to display what a browser is made for: websites
 + elements or whole pages don't shift by some pixels when content changes and bars become (un)necessary
