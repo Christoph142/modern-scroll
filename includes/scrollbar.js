@@ -19,10 +19,12 @@ window.addEventListener("DOMContentLoaded", function(){
 	
 	document.getElementById("MS_vbar_bg").addEventListener("mousedown", scroll_bg_v, true);
 	document.getElementById("MS_hbar_bg").addEventListener("mousedown", scroll_bg_h, true);
+	document.getElementById("MS_hbar_bg").addEventListener("mousewheel", mouse_scroll_x, true);
 	
+	document.getElementById("MS_superbar").addEventListener("mousedown", drag_super, true);
 	document.getElementById("MS_vbar").addEventListener("mousedown", drag_v, true);
 	document.getElementById("MS_hbar").addEventListener("mousedown", drag_h, true);
-	document.getElementById("MS_superbar").addEventListener("mousedown", drag_super, true);
+	document.getElementById("MS_hbar").addEventListener("mousewheel", mouse_scroll_x, true);
 	
 	document.getElementById("MS_upbutton").addEventListener("mousedown", function(){ handle_button("up"); }, true);
 	document.getElementById("MS_downbutton").addEventListener("mousedown", function(){ handle_button("down"); }, true);
@@ -276,6 +278,11 @@ function hide_bar(whichone){
 	document.getElementById("MS_"+whichone+"bar_bg").style.opacity = null;
 	document.getElementById("MS_"+whichone+"bar").style.transition = null;
 	document.getElementById("MS_"+whichone+"bar").style.opacity = null;
+}
+
+function mouse_scroll_x(){
+	window.event.preventDefault();
+	window.scrollBy(-window.event.wheelDelta*2,0);
 }
 
 function add_buttons(){
