@@ -1,5 +1,14 @@
 Eine moderne Alternative zu Operas Standard-Bildlaufleisten
 
+Was ist das Geniale an modern scroll?
+
++ die Bildlaufleisten nehmen keinen eigenen Platz ein; so kann die gesamte Breite des Bildschirms das anzeigen, wofür ein Browser gemacht wurde: Webseiten
++ Elemente oder ganze Webseiten springen nicht ein paar Pixel, wenn der Inhalt sich ändert und Bildlaufleisten (un)nötig werden
++ Bildlaufleisten sind auch im Vollbild-Modus verfügbar
++ Bildlaufleisten werden automatisch ausgeblendet, wenn sie nicht benötigt werden
++ einzigartige "Superbar", die es ermöglicht, gleichzeitig horizontal und vertikal zu scrollen
++ optionale Buttons um zum Seitenanfang oder -Ende zu scrollen
++ Verhalten und Aussehen ist vollständig anpassbar
 
 Changelog:
 ----------
