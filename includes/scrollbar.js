@@ -19,11 +19,13 @@ window.addEventListener("DOMContentLoaded", function(){
 	
 	document.getElementById("MS_vbar_bg").addEventListener("mousedown", scroll_bg_v, true);
 	document.getElementById("MS_hbar_bg").addEventListener("mousedown", scroll_bg_h, true);
-	document.getElementById("MS_hbar_bg").addEventListener("mousewheel", mouse_scroll_x, true);
 	
 	document.getElementById("MS_superbar").addEventListener("mousedown", drag_super, true);
 	document.getElementById("MS_vbar").addEventListener("mousedown", drag_v, true);
 	document.getElementById("MS_hbar").addEventListener("mousedown", drag_h, true);
+	
+	document.getElementById("MS_h_container").addEventListener("mousewheel", mouse_scroll_x, true);
+	document.getElementById("MS_hbar_bg").addEventListener("mousewheel", mouse_scroll_x, true);
 	document.getElementById("MS_hbar").addEventListener("mousewheel", mouse_scroll_x, true);
 	
 	document.getElementById("MS_upbutton").addEventListener("mousedown", function(){ handle_button("up"); }, true);
