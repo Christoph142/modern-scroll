@@ -12,6 +12,8 @@ var strings = {
 	"only_over" : "nur wenn die Maus darüber ist",
 	"normal" : "beim Überfahren mit der Maus, beim Scrollen und bei Änderungen von Position oder Größe",
 	"always" : "immer",
+	"show_superbar" : "zeige die \"Superbar\" (kombinierte horizontale und vertikale Bildlaufleiste)",
+	"show_superbar_minipage" : "zeige eine Mini-Version der Seite beim Ziehen der Superbar im Hintergrund",
 	"buttons" : "Scroll-Buttons",
 	"show buttons" : "Scroll-Buttons zum Seiten-Anfang und -Ende zeigen",
 	"drag buttons" : "Du kannst die Buttons hier in den Einstellungen an eine beliebige Position ziehen. Diese wird dann zum Standard für alle Seiten. Falls sie auf einzelnen Seiten etwas verdecken sollten, kannst du sie dann dort aus dem Weg schieben",

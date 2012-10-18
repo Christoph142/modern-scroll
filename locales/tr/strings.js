@@ -12,6 +12,8 @@ var strings = {
 	"only_over" : "fare ile üzerine gelince",
 	"normal" : "üzerine gelince, kaydırırken ve konum veya boyutunu değiştirirken",
 	"always" : "her zaman",
+	"show_superbar" : "show the \"superbar\" (combined horizontal and vertical scroll bar)",
+	"show_superbar_minipage" : "show a mini-version of the website in the background when dragging the superbar",
 	"buttons" : "Kaydırma çubukları",
 	"show buttons" : "Sayfada en başa/en sona gitmek için düğmeleri göster",
 	"drag buttons" : "Buradaki düğmeleri istediğiniz konuma sürükleyebilirsiniz. Bu konum tüm web siteleri için varsayılan olacaktır. Eğer bir sayfada bir öğenin üstünü kapatıyorsa, orada yerini değiştirebilirsiniz.",

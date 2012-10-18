@@ -12,6 +12,8 @@ var strings = {
 	"only_over" : "only when hovered with the mouse",
 	"normal" : "upon hovering, while scrolling and at changes of position or size",
 	"always" : "always",
+	"show_superbar" : "show the \"superbar\" (combined horizontal and vertical scroll bar)",
+	"show_superbar_minipage" : "show a mini-version of the website in the background when dragging the superbar",
 	"buttons" : "Scroll buttons",
 	"show buttons" : "Show buttons for scrolling to the top/bottom of the page",
 	"drag buttons" : "You can drag the buttons to any position here in the options. This position will become the default for all websites. If they should cover an element on certain pages, you can drag them out of the way there",

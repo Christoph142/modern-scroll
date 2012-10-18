@@ -14,9 +14,7 @@ window.addEventListener("DOMContentLoaded", function(){
 	inject_css();	
 	add_buttons();
 	initialize_bars();
-	
-	//document.getElementById("MS_v_container").addEventListener("mouseover", take_screenshot, false);
-	
+		
 	document.getElementById("MS_vbar_bg").addEventListener("mousedown", scroll_bg_v, true);
 	document.getElementById("MS_hbar_bg").addEventListener("mousedown", scroll_bg_h, true);
 	
@@ -40,7 +38,7 @@ window.addEventListener("DOMContentLoaded", function(){
 },false);
 
 function inject_css(){
-	var MS_style = "#MS_v_container, #MS_h_container{ position:fixed; z-index:99997; background:rgba(0,0,0,0); } #MS_v_container{ height:100%; width:30px; right:0px; top:0px; } #MS_h_container{ height:30px; width:100%; left:0px; bottom:0px; } #MS_v_container:hover #MS_vbar, #MS_v_container:hover #MS_vbar_bg{ width:"+widget.preferences.hover_size+"px; } #MS_h_container:hover #MS_hbar, #MS_h_container:hover #MS_hbar_bg{ height:"+widget.preferences.hover_size+"px; } #MS_v_container:hover #MS_vbar, #MS_v_container:hover #MS_minipage, #MS_h_container:hover #MS_hbar, #MS_v_container:hover #MS_superbar, #MS_h_container:hover #MS_superbar{ opacity:0.5; transition:opacity 0.1s 0s; } #MS_v_container:hover #MS_vbar_bg, #MS_h_container:hover #MS_hbar_bg{ opacity:"+((widget.preferences.no_bar_bg == "1")?"0":"0.5")+"; transition:opacity 0.1s 0s; } #MS_vbar_bg, #MS_hbar_bg{ background:#999; opacity:"+((widget.preferences.show_when=="3" && widget.preferences.no_bar_bg != "1")?"0.5":"0")+"; position:fixed; z-index:99998; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5); border-radius:"+widget.preferences.border_radius+"px; display:none; transition:opacity 0.5s 1s, width 0.25s, height 0.25s; } #MS_vbar_bg{ right:0px; top:0px; height:100%; width:"+widget.preferences.size+"px; } #MS_hbar_bg{ left:0px; bottom:0px; height:"+widget.preferences.size+"px; width:100%; } #MS_vbar, #MS_hbar, #MS_superbar{ background:"+widget.preferences.color+"; opacity:"+((widget.preferences.show_when=="3")?"0.5":"0")+"; position:fixed; z-index:99999; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5); border-radius:"+widget.preferences.border_radius+"px; display:none; transition:opacity 0.5s 1s, width 0.25s, height 0.25s; } #MS_vbar{ right:0px; top:0px; height:30px; min-height:30px; width:"+widget.preferences.size+"px; } #MS_vbar:hover, #MS_hbar:hover, #MS_superbar:hover{ opacity:0.7; } #MS_hbar{ left:0px; bottom:0px; width:30px; min-width:30px; height:"+widget.preferences.size+"px; } #MS_page_cover{ display:none; position:fixed; left:0px; top:0px; width:100%; height:100%; z-index:99996; background:rgba(0,0,0,0); } #MS_minipage{ position:fixed; top:0px; right:0px; } #MS_superbar{ position:fixed; width:100px; z-index:99998; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5); border-radius:"+widget.preferences.border_radius+"px; transition:opacity 0.5s 1s; display:none; } #MS_superbar:hover{ transition:opacity 0.25s 0s; } #MS_upbutton, #MS_downbutton{ position:fixed; height:100px; width:100px; left:"+widget.preferences.buttonposition+"%; opacity:0.1; background:"+widget.preferences.color+"; z-index:99995; border-radius:50px; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5); transition:opacity 0.5s; display:none; } #MS_upbutton{ top:-50px; } #MS_downbutton{ bottom:-50px; } #MS_upbutton:hover, #MS_downbutton:hover{ opacity:0.5; transition:opacity 0.1s; } @media print, screen and (view-mode: minimized){ #MS_upbutton, #MS_downbutton, #MS_vbar, #MS_hbar, #MS_vbar_bg, #MS_hbar_bg, #MS_superbar{ background:rgba(0,0,0,0); box-shadow:none; }}";
+	var MS_style = "#MS_v_container, #MS_h_container{ position:fixed; z-index:99997; background:rgba(0,0,0,0); } #MS_v_container{ height:100%; width:30px; right:0px; top:0px; } #MS_h_container{ height:30px; width:100%; left:0px; bottom:0px; } #MS_v_container:hover #MS_vbar, #MS_v_container:hover #MS_vbar_bg{ width:"+widget.preferences.hover_size+"px; } #MS_h_container:hover #MS_hbar, #MS_h_container:hover #MS_hbar_bg{ height:"+widget.preferences.hover_size+"px; } #MS_v_container:hover #MS_vbar, #MS_v_container:hover #MS_minipage, #MS_h_container:hover #MS_hbar, #MS_v_container:hover #MS_superbar, #MS_h_container:hover #MS_superbar{ opacity:0.5; transition:opacity 0.1s 0s; } #MS_v_container:hover #MS_vbar_bg, #MS_h_container:hover #MS_hbar_bg{ opacity:"+((widget.preferences.no_bar_bg == "1")?"0":"0.5")+"; transition:opacity 0.1s 0s; } #MS_vbar_bg, #MS_hbar_bg{ background:#999; opacity:"+((widget.preferences.show_when=="3" && widget.preferences.no_bar_bg != "1")?"0.5":"0")+"; position:fixed; z-index:99998; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5); border-radius:"+widget.preferences.border_radius+"px; display:none; transition:opacity 0.5s 1s, width 0.25s, height 0.25s; } #MS_vbar_bg{ right:0px; top:0px; height:100%; width:"+widget.preferences.size+"px; } #MS_hbar_bg{ left:0px; bottom:0px; height:"+widget.preferences.size+"px; width:100%; } #MS_vbar, #MS_hbar{ background:"+widget.preferences.color+"; opacity:"+((widget.preferences.show_when=="3")?"0.5":"0")+"; position:fixed; z-index:99999; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5); border-radius:"+widget.preferences.border_radius+"px; display:none; transition:opacity 0.5s 1s, width 0.25s, height 0.25s; } #MS_vbar{ right:0px; top:0px; height:30px; min-height:30px; width:"+widget.preferences.size+"px; } #MS_vbar:hover, #MS_hbar:hover{ opacity:0.7; } #MS_hbar{ left:0px; bottom:0px; width:30px; min-width:30px; height:"+widget.preferences.size+"px; } #MS_superbar{ position:fixed; width:100px; background:"+(widget.preferences.show_superbar_minipage==0?widget.preferences.color:"rgba(0,0,0,0)")+"; opacity:"+((widget.preferences.show_when=="3")?"0.5":"0")+"; position:fixed; z-index:99997; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5)"+(widget.preferences.show_superbar_minipage==1?", 0 0 200px 10px #999":"")+"; border-radius:"+widget.preferences.border_radius+"px; transition:opacity 0.5s 1s; display:none; } #MS_page_cover{ display:none; position:fixed; left:0px; top:0px; width:100%; height:100%; z-index:99996; background:rgba(0,0,0,0); padding:0px; margin:0px; } #MS_minipage{ position:fixed; top:0px; right:0px; } #MS_superbar:hover{ opacity:0.7; transition:opacity 0.25s 0s; } #MS_upbutton, #MS_downbutton{ position:fixed; height:100px; width:100px; left:"+widget.preferences.buttonposition+"%; opacity:0.1; background:"+widget.preferences.color+"; z-index:99995; border-radius:50px; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5); transition:opacity 0.5s; display:none; } #MS_upbutton{ top:-50px; } #MS_downbutton{ bottom:-50px; } #MS_upbutton:hover, #MS_downbutton:hover{ opacity:0.5; transition:opacity 0.1s; } @media print, screen and (view-mode: minimized){ #MS_upbutton, #MS_downbutton, #MS_vbar, #MS_hbar, #MS_vbar_bg, #MS_hbar_bg, #MS_superbar{ background:rgba(0,0,0,0); box-shadow:none; }}";
 	
 	if(document.getElementById("MS_style")) document.getElementById("MS_style").innerHTML = MS_style; // when options changed
 	else{ // when website is initially loaded
@@ -151,7 +149,7 @@ function drag_v(){
 		var posy = window.event.clientY;
 		bar.style.top = ((posy - dragy)<=0? 0 : ((posy - dragy)>=window.innerHeight-bar.offsetHeight?window.innerHeight-bar.offsetHeight : (posy - dragy))) + "px";
 
-		window.scrollTo(window.pageXOffset, parseInt(bar.style.top)/(window.innerHeight-bar.offsetHeight)*(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight));
+		window.scroll(window.pageXOffset, parseInt(bar.style.top)/(window.innerHeight-bar.offsetHeight)*(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight));
 	}
 	document.onmouseup = function(){
 		document.getElementById("MS_page_cover").style.display = "none";
@@ -180,7 +178,7 @@ function drag_h(){
 		var posx = window.event.clientX;
 		bar.style.left = ((posx - dragx)<=0? 0 : ((posx - dragx)>=window.innerWidth-bar.offsetWidth?window.innerWidth-bar.offsetWidth : (posx - dragx))) + "px";
 		
-		window.scrollTo(parseInt(bar.style.left)/(window.innerWidth-bar.offsetWidth)*(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)-window.innerWidth), window.pageYOffset);
+		window.scroll(parseInt(bar.style.left)/(window.innerWidth-bar.offsetWidth)*(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)-window.innerWidth), window.pageYOffset);
 	};
 	document.onmouseup = function(){
 		document.getElementById("MS_page_cover").style.display = "none";
@@ -197,6 +195,8 @@ function drag_super(){
 	window.event.preventDefault(); // prevent focus-loss in site
 	if(window.event.which != 1) return; //if it's not the left mouse button
 	
+	if(widget.preferences.show_superbar_minipage=="1") take_screenshot();
+	
 	document.getElementById("MS_superbar").style.opacity = 0.7;
 	document.getElementById("MS_page_cover").style.display = "inline";
 	show_bars();
@@ -211,11 +211,12 @@ function drag_super(){
 		vbar.style.top = ((posy - dragy)<=0? 0 : ((posy - dragy)>=window.innerHeight-vbar.offsetHeight?window.innerHeight-vbar.offsetHeight : (posy - dragy))) + "px";
 		hbar.style.left = ((posx - dragx)<=0? 0 : ((posx - dragx)>=window.innerWidth-hbar.offsetWidth?window.innerWidth-hbar.offsetWidth : (posx - dragx))) + "px";
 		
-		window.scrollTo(parseInt(hbar.style.left)/(window.innerWidth-hbar.offsetWidth)*(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)-window.innerWidth), parseInt(vbar.style.top)/(window.innerHeight-vbar.offsetHeight)*(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight));
+		window.scroll(parseInt(hbar.style.left)/(window.innerWidth-hbar.offsetWidth)*(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)-window.innerWidth), parseInt(vbar.style.top)/(window.innerHeight-vbar.offsetHeight)*(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight));
 	};
 	document.onmouseup = function(){
-		document.getElementById("MS_page_cover").style.display = "none";
 		document.getElementById("MS_superbar").style.opacity = null;
+		document.getElementById("MS_page_cover").style.display = "none";
+		if(widget.preferences.show_superbar_minipage=="1") document.getElementById("MS_minipage_canvas").style.display = "none";
 		hide_bars();
 		document.onmousemove = null;
 		document.onmouseup = null;
@@ -236,13 +237,14 @@ function reposition_bars(){
 		document.getElementById("MS_downbutton").style.display = "inline";
 	else document.getElementById("MS_downbutton").style.display = "none";
 	
-	if(document.getElementById("MS_vbar").style.display == "inline" && document.getElementById("MS_hbar").style.display == "inline")
+	if(document.getElementById("MS_vbar").style.display == "inline" && document.getElementById("MS_hbar").style.display == "inline" && widget.preferences.show_superbar=="1"){
+		document.getElementById("MS_superbar").style.top = document.getElementById("MS_vbar").style.top;
+		document.getElementById("MS_superbar").style.height = document.getElementById("MS_vbar").style.height;
+		document.getElementById("MS_superbar").style.left = document.getElementById("MS_hbar").style.left;
+		document.getElementById("MS_superbar").style.width = document.getElementById("MS_hbar").style.width;
 		document.getElementById("MS_superbar").style.display = "inline";
+	}
 	else window.setTimeout(function(){ document.getElementById("MS_superbar").style.display = "none" }, 2000);
-	document.getElementById("MS_superbar").style.top = document.getElementById("MS_vbar").style.top;
-	document.getElementById("MS_superbar").style.height = document.getElementById("MS_vbar").style.height;
-	document.getElementById("MS_superbar").style.left = document.getElementById("MS_hbar").style.left;
-	document.getElementById("MS_superbar").style.width = document.getElementById("MS_hbar").style.width;
 	
 	window.setTimeout(hide_bars, 1000);
 }
@@ -323,33 +325,39 @@ function handle_button(whichone){
 	};
 }
 
-/*function take_screenshot(){
-
-	document.getElementById("MS_v_container").removeEventListener("mouseover", take_screenshot, false);
-	
+function take_screenshot(){
 	document.body.style.transformOrigin = "0% "+100*window.pageYOffset/(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight,window.innerHeight)-window.innerHeight)+"%";
-	document.body.style.transform = "scale("+(window.innerHeight/Math.max(document.body.scrollHeight,document.documentElement.scrollHeight,window.innerHeight))+")";
+	//document.body.style.transform = "scale("+(window.innerHeight/Math.max(document.body.scrollHeight,document.documentElement.scrollHeight,window.innerHeight))+")";
+	document.body.style.transform = "scale("+(window.innerWidth/Math.max(document.body.scrollWidth,document.documentElement.scrollWidth,window.innerWidth))+","+(window.innerHeight/Math.max(document.body.scrollHeight,document.documentElement.scrollHeight,window.innerHeight))+")";
+	
+	document.getElementById("MS_vbar").style.display = "none";
+	document.getElementById("MS_hbar").style.display = "none";
+	document.getElementById("MS_superbar").style.display = "none";
 	opera.extension.getScreenshot(applyScreenshot);
 }
 
 function applyScreenshot(imageData) {
-	document.body.style.transformOrigin = null;
 	document.body.style.transform = null;
+	document.body.style.transformOrigin = null;
+	document.getElementById("MS_vbar").style.display = "inline";
+	document.getElementById("MS_hbar").style.display = "inline";
+	document.getElementById("MS_superbar").style.display = "inline";
 	
-	if(document.getElementById("MS_minipage_canvas"))
-		document.getElementById("MS_minipage_canvas").getContext('2d').putImageData(imageData, 0, 0)
+	if(document.getElementById("MS_minipage_canvas")){
+		document.getElementById("MS_minipage_canvas").getContext('2d').putImageData(imageData, 0, 0);
+		document.getElementById("MS_minipage_canvas").style.display = "inline";
+	}
 	else{
-		var canvas_div = document.createElement("div");
-		canvas_div.id = "MS_minipage";
+		/*var canvas_div = document.createElement("div");
+		canvas_div.id = "MS_minipage";*/
 		var canvas = document.createElement('canvas');
-		canvas.width = window.innerHeight/Math.max(document.body.scrollHeight,document.documentElement.scrollHeight,window.innerHeight)*imageData.width;
-		canvas.height = imageData.height;
+		//canvas.width = window.innerHeight/Math.max(document.body.scrollHeight,document.documentElement.scrollHeight,window.innerHeight)*imageData.width;
+		canvas.width = window.innerWidth;
+		canvas.height = window.innerHeight;
+		//canvas.height = imageData.height;
 		canvas.id = "MS_minipage_canvas";
 		
-		var ctx = canvas.getContext('2d');
-		ctx.putImageData(imageData, 0, 0);
-		
-		canvas_div.appendChild(canvas);
-		document.body.appendChild(canvas_div);
+		canvas.getContext('2d').putImageData(imageData, 0, 0);
+		document.getElementById("MS_page_cover").appendChild(canvas);
 	}
-}*/
+}

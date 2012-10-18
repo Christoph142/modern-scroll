@@ -23,5 +23,7 @@
 	<preference name="no_bar_bg" value="0" />
 	<preference name="show_buttons" value="0" />
 	<preference name="buttonposition" value="48" />
+	<preference name="show_superbar" value="1" />
+	<preference name="show_superbar_minipage" value="0" />
 
 </widget>
