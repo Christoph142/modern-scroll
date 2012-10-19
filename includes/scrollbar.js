@@ -5,7 +5,6 @@
 // @exclude http://acid3.acidtests.org/
 // ==/UserScript==
 
-var last_docsize;
 var timeout;
 
 window.addEventListener("DOMContentLoaded", function(){
@@ -32,7 +31,7 @@ window.addEventListener("DOMContentLoaded", function(){
 	
 	window.addEventListener("DOMNodeInserted", function(){
 		window.clearTimeout(timeout);
-		timeout = window.setTimeout(adjust_bars_if_necessary,200);
+		timeout = window.setTimeout(adjust_bars, 200);
 	}, false);
 	window.addEventListener("resize", adjust_bars, false);
 	window.addEventListener("scroll", reposition_bars, false);
@@ -78,14 +77,6 @@ function initialize_bars(){
 	document.body.appendChild(page_cover);
 	
 	adjust_bars();
-}
-
-function adjust_bars_if_necessary(){
-	if(last_docsize != Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)){
-		last_docsize = Math.max(document.body.scrollHeight,document.documentElement.scrollHeight);
-		resize_bars();
-		reposition_bars();
-	}
 }
 
 function adjust_bars(){
