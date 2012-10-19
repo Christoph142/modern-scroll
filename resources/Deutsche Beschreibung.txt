@@ -2,6 +2,7 @@ Eine moderne Alternative zu Operas Standard-Bildlaufleisten
 
 Was ist das Geniale an modern scroll?
 
++ das Scrollen ist manchmal schneller als mit Operas Standard-Leisten
 + die Bildlaufleisten nehmen keinen eigenen Platz ein; so kann die gesamte Breite des Bildschirms das anzeigen, wofür ein Browser gemacht wurde: Webseiten
 + Elemente oder ganze Webseiten springen nicht ein paar Pixel, wenn der Inhalt sich ändert und Bildlaufleisten (un)nötig werden
 + Bildlaufleisten sind auch im Vollbild-Modus verfügbar

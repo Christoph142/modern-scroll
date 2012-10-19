@@ -31,10 +31,13 @@ window.addEventListener("DOMContentLoaded", function(){
 	
 	window.addEventListener("DOMNodeInserted", function(){
 		window.clearTimeout(timeout);
-		timeout = window.setTimeout(adjust_bars, 200);
+		timeout = window.setTimeout(adjust_bars, 100);
 	}, false);
 	window.addEventListener("resize", adjust_bars, false);
-	window.addEventListener("scroll", reposition_bars, false);
+	window.addEventListener("scroll", function(){
+		window.clearTimeout(timeout);
+		timeout = window.setTimeout(reposition_bars, 50);
+	}, false);
 	
 	opera.extension.onmessage = inject_css;
 	
