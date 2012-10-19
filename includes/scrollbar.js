@@ -195,19 +195,22 @@ function drag_super(){
 	
 	if(widget.preferences.show_superbar_minipage=="1") take_screenshot();
 	
-	document.getElementById("MS_superbar").style.opacity = 0.7;
+	document.getElementById("MS_superbar").style.opacity = 1;
 	document.getElementById("MS_page_cover").style.display = "inline";
 	show_bars();
 	
 	var vbar = document.getElementById("MS_vbar");
 	var hbar = document.getElementById("MS_hbar");
+	var superbar = document.getElementById("MS_superbar");
 	var dragy = window.event.clientY - parseInt(vbar.style.top);
 	var dragx = window.event.clientX - parseInt(hbar.style.left);
 	document.onmousemove = function(){
 		var posx = window.event.clientX;
 		var posy = window.event.clientY;
-		vbar.style.top = ((posy - dragy)<=0? 0 : ((posy - dragy)>=window.innerHeight-vbar.offsetHeight?window.innerHeight-vbar.offsetHeight : (posy - dragy))) + "px";
-		hbar.style.left = ((posx - dragx)<=0? 0 : ((posx - dragx)>=window.innerWidth-hbar.offsetWidth?window.innerWidth-hbar.offsetWidth : (posx - dragx))) + "px";
+		superbar.style.top = ((posy - dragy)<=0? 0 : ((posy - dragy)>=window.innerHeight-vbar.offsetHeight?window.innerHeight-vbar.offsetHeight : (posy - dragy))) + "px";
+		superbar.style.left = ((posx - dragx)<=0? 0 : ((posx - dragx)>=window.innerWidth-hbar.offsetWidth?window.innerWidth-hbar.offsetWidth : (posx - dragx))) + "px";
+		vbar.style.top = superbar.style.top;
+		hbar.style.left = superbar.style.left;
 		
 		window.scroll(parseInt(hbar.style.left)/(window.innerWidth-hbar.offsetWidth)*(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)-window.innerWidth), parseInt(vbar.style.top)/(window.innerHeight-vbar.offsetHeight)*(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight));
 	};
