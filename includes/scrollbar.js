@@ -6,6 +6,7 @@
 // ==/UserScript==
 
 var last_docsize;
+var timeout;
 
 window.addEventListener("DOMContentLoaded", function(){
 	
@@ -29,7 +30,10 @@ window.addEventListener("DOMContentLoaded", function(){
 	document.getElementById("MS_upbutton").addEventListener("mousedown", function(){ handle_button("up"); }, true);
 	document.getElementById("MS_downbutton").addEventListener("mousedown", function(){ handle_button("down"); }, true);
 	
-	window.addEventListener("DOMNodeInserted", adjust_bars_if_necessary, false);
+	window.addEventListener("DOMNodeInserted", function(){
+		window.clearTimeout(timeout);
+		timeout = window.setTimeout(adjust_bars_if_necessary,200);
+	}, false);
 	window.addEventListener("resize", adjust_bars, false);
 	window.addEventListener("scroll", reposition_bars, false);
 	
