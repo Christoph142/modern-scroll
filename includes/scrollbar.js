@@ -63,13 +63,13 @@ function inject_css(){
 		
 		"#MS_v_container:hover #MS_vbar, #MS_v_container:hover #MS_vbar_bg{ width:"+widget.preferences.hover_size+"px; }"+
 		"#MS_h_container:hover #MS_hbar, #MS_h_container:hover #MS_hbar_bg{ height:"+widget.preferences.hover_size+"px; }"+
-		"#MS_v_container:hover #MS_vbar, #MS_h_container:hover #MS_hbar, #MS_v_container:hover #MS_superbar, #MS_h_container:hover #MS_superbar{ opacity:0.5; transition:opacity 0.1s 0s; }"+
-		"#MS_v_container:hover #MS_vbar_bg, #MS_h_container:hover #MS_hbar_bg{ opacity:"+((widget.preferences.no_bar_bg == "1")?"0":"0.5")+"; transition:opacity 0.1s 0s; }"+
-		"#MS_vbar:hover, #MS_hbar:hover{ opacity:1; }"+
+		"#MS_v_container:hover #MS_vbar:not(:hover), #MS_h_container:hover #MS_hbar:not(:hover), #MS_v_container:hover #MS_superbar, #MS_h_container:hover #MS_superbar{ opacity:0.5; transition:opacity 0.1s 0s; }"+
+		"#MS_v_container:hover #MS_vbar_bg:not(:hover), #MS_h_container:hover #MS_hbar_bg:not(:hover){ opacity:"+((widget.preferences.no_bar_bg == "1")?"0":"0.5")+"; transition:opacity 0.1s 0s; }"+
+		"#MS_vbar:hover, #MS_hbar:hover, #MS_upbutton:hover, #MS_downbutton:hover{ opacity:0.7; transition:opacity 0.1s 0s; }"+
+		"#MS_vbar_bg:hover, #MS_hbar_bg:hover{ opacity:0.51; transition:opacity 0.1s 0s; }"+
 		"#MS_superbar:hover{ opacity:0.7; transition:opacity 0.25s 0s; }"+
-		"#MS_upbutton:hover, #MS_downbutton:hover{ opacity:0.5; transition:opacity 0.1s; }"+
 		
-		"#MS_v_container, #MS_h_container, #MS_vbar_bg, #MS_hbar_bg, #MS_vbar, #MS_hbar, #MS_superbar, #MS_page_cover, #MS_upbutton, #MS_downbutton{ position:fixed; z-index:2147483647; border:none; }"+
+		"#MS_v_container, #MS_h_container, #MS_vbar_bg, #MS_hbar_bg, #MS_vbar, #MS_hbar, #MS_superbar, #MS_page_cover, #MS_upbutton, #MS_downbutton{ position:fixed; z-index:2147483647; border:none; padding:0; margin:0; }"+
 		"@media print, screen and (view-mode: minimized){ #MS_vbar_bg, #MS_hbar_bg, #MS_vbar, #MS_hbar, #MS_superbar, #MS_page_cover, #MS_upbutton, #MS_downbutton{ background:rgba(0,0,0,0); box-shadow:none; }}";
 	
 	if(document.getElementById("MS_style")) document.getElementById("MS_style").innerHTML = MS_style; // when options changed
