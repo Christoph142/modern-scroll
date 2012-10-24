@@ -2,6 +2,12 @@
 <html>
 <head>
 <title>modern scroll</title>
-<script> opera.extension.onmessage = function(event){ if(event.data == "update") opera.extension.broadcastMessage("update"); } </script>
+<script>
+	opera.extension.onmessage = function(event){ if(event.data == "update") opera.extension.broadcastMessage("update"); }
+	
+	window.addEventListener("DOMContentLoaded", function(){
+		if (opera.contexts.menu) opera.contexts.menu.addItem(opera.contexts.menu.createItem({title:"Hide this button"}));
+	}, false);    
+</script>
 </head>
 </html>
