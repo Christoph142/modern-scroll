@@ -2,7 +2,7 @@ An up-to-date alternative to Opera's standard scrollbars.
 
 What's awesome about modern scroll?
 
-+ scrolling is sometimes faster then with Opera's standard bars!
++ scrolling is sometimes faster than with Opera's standard bars!
 + its scroll bars don't take up any space so the whole screen width can be used to display what a browser is made for: websites
 + elements or whole pages don't shift by some pixels when content changes and bars become (un)necessary
 + scroll bars are usable in fullscreen mode as well
