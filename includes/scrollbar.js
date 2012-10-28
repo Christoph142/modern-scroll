@@ -1,8 +1,9 @@
 // ==UserScript==
-// @name          Modern Scroll
+// @name          modern scroll
 // @description	  An up-to-date alternative to Opera's standard scrollbars
 // @author        Christoph D.
 // @exclude http://acid3.acidtests.org/
+// @exclude http://www.megalab.it/*
 // ==/UserScript==
 
 var timeout;
