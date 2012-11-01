@@ -9,7 +9,7 @@
 var timeout;
 
 window.addEventListener("DOMContentLoaded", function(){
-	
+	if(window.matchMedia("all and (view-mode: minimized)").matches) return; // don't do anything if it's a speed dial
 	if(window.self != window.top) return; // only treat main page not iframes, ads, etc.
 	
 	inject_css();	
