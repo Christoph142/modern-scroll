@@ -8,7 +8,7 @@
 
 var timeout;
 
-window.addEventListener("DOMContentLoaded", function(){
+window.opera.addEventListener("BeforeEvent.DOMContentLoaded", function(){
 	if(window.matchMedia("all and (view-mode: minimized)").matches) return; // don't do anything if it's a speed dial
 	if(window.self != window.top) return; // only treat main page not iframes, ads, etc.
 	
@@ -23,7 +23,6 @@ window.addEventListener("DOMContentLoaded", function(){
 	opera.extension.onmessage = inject_css;
 	opera.extension.postMessage("reset_contextmenu");
 	opera.contexts.menu.onclick = contextmenu_click;
-	
 },false);
 
 function inject_css(){
