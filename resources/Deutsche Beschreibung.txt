@@ -11,6 +11,8 @@ Was ist das Geniale an modern scroll?
 + optionale Buttons um zum Seitenanfang oder -Ende zu scrollen
 + Verhalten und Aussehen ist vollständig anpassbar
 
+Diese Erweiterung war ursprünglich als Update für slim scrollbar von damage92 geplant. Da sie aber keine einzige Code-Zeile mit der originalen Erweiterung gemeinsam hat, haben wir uns dazu entschieden, sie eigenständig zu veröffentlichen. Slim scrollbar wird natürlich weiterhin verfügbar sein, wenn du die andere Implementierung bevorzugst oder eine ältere Version von Opera als 12.10 benutzt, für die modern scroll nicht zur Verfügung steht. Auf Grund von damage92s mangelnder Freizeit wird diese aber im Moment nicht aktiv weiterentwickelt.
+
 Changelog:
 ----------
 
