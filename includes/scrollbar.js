@@ -51,8 +51,7 @@ function inject_css(){
 		"#MS_v_container #MS_vbar_bg:hover, #MS_h_container #MS_hbar_bg:hover{ opacity:0.51; transition:opacity 0.1s 0s; }"+
 		"#MS_superbar:hover{ opacity:0.7; transition:opacity 0.25s 0s; }"+
 		
-		"#MS_v_container, #MS_h_container, #MS_vbar_bg, #MS_hbar_bg, #MS_vbar, #MS_hbar, #MS_superbar, #MS_page_cover, #MS_upbutton, #MS_downbutton, #MS_minipage_canvas{ position:fixed; z-index:2147483647; border:none; padding:0; margin:0; display:none; }"+
-		"@media print, screen and (view-mode: minimized){ #MS_vbar_bg, #MS_hbar_bg, #MS_vbar, #MS_hbar, #MS_superbar, #MS_page_cover, #MS_upbutton, #MS_downbutton{ background:rgba(0,0,0,0); box-shadow:none; }}";
+		"#MS_v_container, #MS_h_container, #MS_vbar_bg, #MS_hbar_bg, #MS_vbar, #MS_hbar, #MS_superbar, #MS_page_cover, #MS_upbutton, #MS_downbutton, #MS_minipage_canvas{ position:fixed; z-index:2147483647; border:none; padding:0; margin:0; display:none; }";
 	
 	if(document.getElementById("MS_style")) document.getElementById("MS_style").innerHTML = MS_style; // when options changed
 	else{ // when website is initially loaded
