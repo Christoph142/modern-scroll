@@ -1,4 +1,5 @@
 var strings = {
+	"lang" : "tr",
 	"by" : "by",
 	"Options" : "Ayarlar",
 	"look" : "Görünüm",
@@ -19,5 +20,7 @@ var strings = {
 	"drag buttons" : "Buradaki düğmeleri istediğiniz konuma sürükleyebilirsiniz. Bu konum tüm web siteleri için varsayılan olacaktır. Eğer bir sayfada bir öğenin üstünü kapatıyorsa, orada yerini değiştirebilirsiniz.",
 	"how to" : "Bu eklentiyi nasıl kullanabilirim",
 	"disable standard bars" : "Bu eklentiyi kullanabilmek için Opera'nın standart kaydırma çubukları kapatılmalı.<br>Bunu yapmak için, Opera → Ayarlar → Tercihler... → Gelişmiş → Tarama ve \"kaydırma çubuklarını göster\" deki işareti kaldırın",
-	"footer" : "Bu eklentiyi kurduğunuz için teşekkürler. Geribildirim ve yorumlar için benimle iletişime geçmekten çekinmeyin"
+	"footer" : "Bu eklentiyi kurduğunuz için teşekkürler. Geribildirim ve yorumlar için benimle iletişime geçmekten çekinmeyin",
+	"contextmenu_show" : "show modern scroll",
+	"contextmenu_hide" : "hide modern scroll"
 };

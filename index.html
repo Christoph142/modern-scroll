@@ -2,12 +2,18 @@
 <html>
 <head>
 <title>modern scroll</title>
+<script type="text/javascript" src="strings.js">/* localization */</script>
 <script>
-	opera.extension.onmessage = function(event){ if(event.data == "update") opera.extension.broadcastMessage("update"); }
+	opera.extension.onmessage = function(event){
+		if(event.data == "update") opera.extension.broadcastMessage("update");
+		else if(event.data == "reset_contextmenu") opera.contexts.menu.item(0).title = strings["contextmenu_hide"];
+	}
 	
-	window.addEventListener("DOMContentLoaded", function(){
-		if (opera.contexts.menu) opera.contexts.menu.addItem(opera.contexts.menu.createItem({title:"Hide this button"}));
-	}, false);    
+	opera.contexts.menu.addItem(opera.contexts.menu.createItem({title:strings["contextmenu_hide"],icon:"images/contextmenu.png"}));
+	opera.contexts.menu.onclick = function(){
+		opera.contexts.menu.item(0).title =
+			opera.contexts.menu.item(0).title == strings["contextmenu_show"]?strings["contextmenu_hide"]:strings["contextmenu_show"];
+	}
 </script>
 </head>
 </html>

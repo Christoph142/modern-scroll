@@ -1,4 +1,5 @@
 var strings = {
+	"lang" : "de",
 	"by" : "von",
 	"Options" : "Optionen",
 	"look" : "Aussehen",
@@ -19,5 +20,7 @@ var strings = {
 	"drag buttons" : "Du kannst die Buttons hier in den Einstellungen an eine beliebige Position ziehen. Diese wird dann zum Standard für alle Seiten. Falls sie auf einzelnen Seiten etwas verdecken sollten, kannst du sie dann dort aus dem Weg schieben",
 	"how to" : "Wie verwende ich diese Erweiterung",
 	"disable standard bars" : "Operas Standard-Leisten sollten ausgeschaltet werden um doppelte Leisten zu verhindern.<br>Gehe dazu in Opera → Einstellungen → Einstellungen... → Erweitert → Browser und deaktiviere dort \"Bildlaufleisten zeigen\"",
-	"footer" : "Danke für das Installieren dieser Erweiterung. Für Feedback und Fragen stehe ich gerne jederzeit zur Verfügung"
+	"footer" : "Danke für das Installieren dieser Erweiterung. Für Feedback und Fragen stehe ich gerne jederzeit zur Verfügung",
+	"contextmenu_show" : "modern scroll einblenden",
+	"contextmenu_hide" : "modern scroll ausblenden"
 };

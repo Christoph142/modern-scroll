@@ -13,42 +13,16 @@ window.addEventListener("DOMContentLoaded", function(){
 	if(window.self != window.top) return; // only treat main page not iframes, ads, etc.
 	
 	inject_css();	
+	
 	add_bars();
 	add_buttons();
+	
 	adjust_bars();
-	
-	document.getElementById("MS_vbar_bg").addEventListener("mousedown", scroll_bg_v, true);
-	document.getElementById("MS_hbar_bg").addEventListener("mousedown", scroll_bg_h, true);
-	
-	document.getElementById("MS_superbar").addEventListener("mousedown", drag_super, true);
-	document.getElementById("MS_vbar").addEventListener("mousedown", drag_v, true);
-	document.getElementById("MS_hbar").addEventListener("mousedown", drag_h, true);
-	
-	document.getElementById("MS_h_container").addEventListener("mousewheel", mouse_scroll_x, true);
-	document.getElementById("MS_hbar_bg").addEventListener("mousewheel", mouse_scroll_x, true);
-	document.getElementById("MS_hbar").addEventListener("mousewheel", mouse_scroll_x, true);
-	
-	document.getElementById("MS_upbutton").addEventListener("mousedown", function(){ handle_button("up"); }, true);
-	document.getElementById("MS_downbutton").addEventListener("mousedown", function(){ handle_button("down"); }, true);
-	
-	window.addEventListener("DOMNodeInserted", function(){
-		window.clearTimeout(timeout);
-		timeout = window.setTimeout(adjust_bars, 100);
-	}, false);
-	window.addEventListener("DOMNodeRemoved", function(){
-		window.clearTimeout(timeout);
-		timeout = window.setTimeout(adjust_bars, 100);
-	}, false);
-	window.addEventListener("resize", adjust_bars, false);
-	window.addEventListener("scroll", function(){
-		window.clearTimeout(timeout);
-		timeout = window.setTimeout(reposition_bars, 50);
-	}, false);
+	add_functionality();
 	
 	opera.extension.onmessage = inject_css;
-	opera.contexts.menu.onclick = function(menuEvent){
-		if(menuEvent.srcElement.id=="MS_upbutton" || menuEvent.srcElement.id=="MS_downbutton") menuEvent.srcElement.style.display = "none";
-	};
+	opera.extension.postMessage("reset_contextmenu");
+	opera.contexts.menu.onclick = contextmenu_click;
 	
 },false);
 
@@ -162,6 +136,27 @@ function resize_hbar(){
 		document.getElementById("MS_hbar_bg").style.display = "inline";
 		document.getElementById("MS_hbar").style.display = "inline";
 	}
+}
+
+function add_functionality(){
+	document.getElementById("MS_vbar_bg").addEventListener("mousedown", scroll_bg_v, true);
+	document.getElementById("MS_hbar_bg").addEventListener("mousedown", scroll_bg_h, true);
+	
+	document.getElementById("MS_superbar").addEventListener("mousedown", drag_super, true);
+	document.getElementById("MS_vbar").addEventListener("mousedown", drag_v, true);
+	document.getElementById("MS_hbar").addEventListener("mousedown", drag_h, true);
+	
+	document.getElementById("MS_h_container").addEventListener("mousewheel", mouse_scroll_x, true);
+	document.getElementById("MS_hbar_bg").addEventListener("mousewheel", mouse_scroll_x, true);
+	document.getElementById("MS_hbar").addEventListener("mousewheel", mouse_scroll_x, true);
+	
+	document.getElementById("MS_upbutton").addEventListener("mousedown", function(){ handle_button("up"); }, true);
+	document.getElementById("MS_downbutton").addEventListener("mousedown", function(){ handle_button("down"); }, true);
+	
+	window.addEventListener("DOMNodeInserted", onDOMNode, false);
+	window.addEventListener("DOMNodeRemoved", onDOMNode, false);
+	window.addEventListener("resize", adjust_bars, false);
+	window.addEventListener("scroll", onScroll, false);
 }
 
 function drag_v(){
@@ -393,4 +388,35 @@ function show_minipage(){
 		document.getElementById("MS_minipage_canvas").getContext('2d').putImageData(imageData, 0, 0);
 		document.getElementById("MS_minipage_canvas").style.display = "inline";
 	});
+}
+
+function onDOMNode(){
+	window.clearTimeout(timeout);
+	timeout = window.setTimeout(adjust_bars, 100);
+}
+function onScroll(){
+	window.clearTimeout(timeout);
+	timeout = window.setTimeout(reposition_bars, 50);
+}
+
+function contextmenu_click(){
+	if(document.getElementById("MS_v_container")){
+		window.removeEventListener("DOMNodeInserted", onDOMNode, false);
+		window.removeEventListener("DOMNodeRemoved", onDOMNode, false);
+		window.removeEventListener("resize", adjust_bars, false);
+		window.removeEventListener("scroll", onScroll, false);
+		
+		document.body.removeChild(document.getElementById("MS_v_container"));
+		document.body.removeChild(document.getElementById("MS_h_container"));
+		document.body.removeChild(document.getElementById("MS_page_cover"));
+		document.body.removeChild(document.getElementById("MS_superbar"));
+		document.body.removeChild(document.getElementById("MS_upbutton"));
+		document.body.removeChild(document.getElementById("MS_downbutton"));
+	}
+	else{
+		add_bars();
+		add_buttons();
+		adjust_bars();
+		add_functionality();
+	}
 }

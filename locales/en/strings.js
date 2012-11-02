@@ -1,4 +1,5 @@
 var strings = {
+	"lang" : "en",
 	"by" : "by",
 	"Options" : "Options",
 	"look" : "Look",
@@ -19,5 +20,7 @@ var strings = {
 	"drag buttons" : "You can drag the buttons to any position here in the options. This position will become the default for all websites. If they should cover an element on certain pages, you can drag them out of the way there",
 	"how to" : "How do I use this extension",
 	"disable standard bars" : "Opera's standard scrollbars should be disabled to avoid double bars.<br>To do so, go to Opera → Settings → Preferences... → Advanced → Browsing and deactivate \"show scroll bars\" there",
-	"footer" : "Thanks for installing this extension. For feedback and questions don't hesitate to contact me"
+	"footer" : "Thanks for installing this extension. For feedback and questions don't hesitate to contact me",
+	"contextmenu_show" : "show modern scroll",
+	"contextmenu_hide" : "hide modern scroll"
 };

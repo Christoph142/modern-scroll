@@ -1,4 +1,5 @@
 var strings = {
+	"lang" : "fr",
 	"by" : "de",
 	"Options" : "Options",
 	"look" : "Apparence",
@@ -19,5 +20,7 @@ var strings = {
 	"drag buttons" : "Tu peux tirer les boutons à chaque position ici dans les options. Cette position deviendra le défaut pour tous les sites. Si ils couvrent un élément sur ​​certaines pages, tu les peux déplacer là",
 	"how to" : "Comment puis-je utiliser cette extension",
 	"disable standard bars" : "Les barres de défilement standards d'Opera doivent être désactivés pour éviter doubles barres.<br>Donc ouvre Opera → Réglages → Préférences... → Avancé → Navigation et désactive \"Afficher les barres de défilement\"",
-	"footer" : "Merci d'avoir installé cette extension. Pour des commentaires et des questions, n'hésite pas à me contacter"
+	"footer" : "Merci d'avoir installé cette extension. Pour des commentaires et des questions, n'hésite pas à me contacter",
+	"contextmenu_show" : "Affiche modern scroll",
+	"contextmenu_hide" : "Cache modern scroll"
 };
