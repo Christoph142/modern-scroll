@@ -23,6 +23,8 @@ window.opera.addEventListener("BeforeEvent.DOMContentLoaded", function(){
 	opera.extension.onmessage = inject_css;
 	opera.extension.postMessage("reset_contextmenu");
 	opera.contexts.menu.onclick = contextmenu_click;
+	
+	window.opera.addEventListener("AfterEvent.DOMContentLoaded", adjust_bars, false);
 },false);
 
 function inject_css(){
