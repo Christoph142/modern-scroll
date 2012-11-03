@@ -1,0 +1,21 @@
+Odnowione alternatywne paski przewijania w Operze.
+
+Dlaczego te paski są wyśmienite?
+
++ czasem przewijają szybciej niż zwykłe paski Opery!
++ nie potrzebują wydzielonego miejsca, więc cała szerokość ekranu przeznaczona jest temu, co najważniejsze: stronom
++ zapobiegają kilkupikselowym przesunięciom zawartości stron, kiedy paski z nagła stają się (nie)potrzebne
++ paski przewijania są widoczne w trybie pełnoekranowym
++ paski przewijania samoczynnie chowają się, kiedy przestają być potrzebne
++ wyjątkowy „arkusz przewijania” pozwalający przewijać w pionie i poziomie jednocześnie
++ dodatkowe guziki przeskoku na górę i spód strony
++ można dowolnie ustawić wygląd i zachowanie
+
+Niniejsze rozszerzenie pierwotnie miało poprawiać slim scrollbar autorstwa damage92. Kiedy jednak okazało się, że nie ma żadnej wspólnej linii kodu między tymi rozszerzeniami, zdecydowałem wydać je oddzielnie. Oczywiście slim scrollbar  nie zniknie, możesz wciąż go używać np. w Operach starszych od 12.10 (modern scroll nie zadziała w nich), albo jeśli po prostu uważasz je za lepsze. Niemniej z powodu braku czasu, damage92 niezbyt intensywnie rozwija swoje rozszerzenie.
+
+Lista zmian:
+----------
+
+v 1.0
+---------
+Pierwsze wydanie
