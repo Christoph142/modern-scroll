@@ -10,4 +10,4 @@ footer		{ display:block; text-align:center; padding:0 50px; margin:30px 50px 0 5
 h1			{ margin:0px; margin-bottom:-10px; font-size:24px; }
 h3			{ margin-bottom:5px; }
 fieldset	{ border:none; background:rgba(150,160,200,0.25); border-radius:2px; padding:10px 20px; }
-#info		{ height:22px; width:22px; background-color:#FFF; display:inline-block; border-radius:11px; text-align:center; vertical-align:central; }
+#info		{ height:22px; width:22px; background-color:#FFF; display:inline-block; border-radius:11px; text-align:center; vertical-align:top; }
