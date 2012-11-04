@@ -1,4 +1,4 @@
-Odnowione alternatywne paski przewijania w Operze.
+﻿Odnowione alternatywne paski przewijania w Operze. (Lepiej, żeby typowe paski Opery były wyłączone, nie potrzeba nam aż dwóch. <br>W tym celu należy odznaczyć opcję „Pokaż paski przewijania” z grupy Opera → Ustawienia → Preferencje… (Ctrl+F12) → Zaawansowane → Przeglądanie.)
 
 Dlaczego te paski są wyśmienite?
 
