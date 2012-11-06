@@ -14,7 +14,7 @@
 	<description xml:lang="tr">Opera'nın standart kaydırma çubuklarına güncel bir alternatif</description>
 	
 	<feature name="opera:screenshot" required="false"/>
-	<feature name="opera:contextmenus" required="false"/>
+	<feature name="opera:contextmenus" required="true"/>
 	
 	<preference name="size" value="10" />
 	<preference name="hover_size" value="14" />
