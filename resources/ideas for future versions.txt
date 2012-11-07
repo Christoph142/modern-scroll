@@ -1,5 +1,0 @@
-fullscreen only
-top- and bottommost parts of scrollbar's bg scroll to top/bottom instead of one page up/down
-custom scroll function
-animate scroll to top/bottom
-read and use scrollbar CSS in webpages (e.g. scrollbar-face-color)

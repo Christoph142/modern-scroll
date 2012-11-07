@@ -248,6 +248,10 @@ function drag_super(){
 	document.onmouseup = function(){
 		if(widget.preferences.show_superbar_minipage=="1"){
 			window.scroll(parseInt(superbar.style.left)/(window.innerWidth-superbar.offsetWidth)*(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)-window.innerWidth), parseInt(superbar.style.top)/(window.innerHeight-superbar.offsetHeight)*(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight));
+			if(window.scrollX == 0 && window.scrollY == 0){ // doesn't update position automatically cause of scrolling to 0,0 before screenshot
+				document.getElementById("MS_vbar").style.top = "0px";
+				document.getElementById("MS_hbar").style.left = "0px";
+			}
 			document.getElementById("MS_vbar_bg").style.display = "inline";
 			document.getElementById("MS_hbar_bg").style.display = "inline";
 			document.getElementById("MS_vbar").style.display = "inline";
