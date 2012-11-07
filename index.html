@@ -7,7 +7,9 @@
 	opera.extension.onmessage = function(event){
 		if(event.data == "update") opera.extension.broadcastMessage("update");
 		else if(event.data == "show_contextmenu") show_contextmenu();
-		else if(event.data == "reset_contextmenu") opera.contexts.menu.item(0).title = strings["contextmenu_hide"];
+		else if(event.data == "reset_contextmenu"){
+			if(opera.contexts.menu.item(0)) opera.contexts.menu.item(0).title = strings["contextmenu_hide"];
+		}
 	}
 	
 	show_contextmenu();
