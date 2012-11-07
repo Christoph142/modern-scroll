@@ -23,6 +23,7 @@
 	<preference name="show_when" value="2" /><!-- 1 = only_over, 2 = normal, 3 = always -->
 	<preference name="no_bar_bg" value="0" />
 	<preference name="bg_special_ends" value="1" />
+	<preference name="animate_mousescroll" value="0" />
 	<preference name="show_buttons" value="0" />
 	<preference name="buttonposition" value="48" />
 	<preference name="button_height" value="50" />

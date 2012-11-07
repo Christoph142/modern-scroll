@@ -15,6 +15,7 @@ var strings = {
 	"only_over" : "nur wenn die Maus darüber ist",
 	"normal" : "beim Überfahren mit der Maus, beim Scrollen und bei Änderungen von Position oder Größe",
 	"always" : "immer",
+	"animate_mousescroll" : "Bildlaufleiste während dem Scrollen mit dem Maus-Rad/Keyboard animieren (nicht empfohlen; langsam)",
 	"bg_special_ends" : "Ein Klick auf die Enden der Hintergrund-Leisten scrollt ganz nach oben/unten (bzw. links/rechts) statt um 1 Seite",
 	"show_superbar" : "zeige die \"Superbar\" (kombinierte horizontale und vertikale Bildlaufleiste)",
 	"show_superbar_minipage" : "zeige eine Mini-Version der Seite beim Ziehen der Superbar im Hintergrund",

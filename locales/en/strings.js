@@ -15,6 +15,7 @@ var strings = {
 	"only_over" : "only when hovered with the mouse",
 	"normal" : "upon hovering, while scrolling and at changes of position or size",
 	"always" : "always",
+	"animate_mousescroll" : "Animate the scroll bars during scrolling with the mouse wheel/keyboard (not recommended; slow)",
 	"bg_special_ends" : "Clicking at the ends of the background bars scrolls completely to the top/bottom respectively left/right) instead of by one page",
 	"show_superbar" : "show the \"superbar\" (combined horizontal and vertical scroll bar)",
 	"show_superbar_minipage" : "show a mini-version of the website in the background when dragging the superbar",

@@ -407,8 +407,11 @@ function onDOMNode(){
 	timeout = window.setTimeout(adjust_bars, 100);
 }
 function onScroll(){
-	window.clearTimeout(timeout);
-	timeout = window.setTimeout(reposition_bars, 50);
+	if(widget.preferences.animate_mousescroll == "1") reposition_bars();
+	else{
+		window.clearTimeout(timeout);
+		timeout = window.setTimeout(reposition_bars, 50);
+	}
 }
 
 function contextmenu_click(){

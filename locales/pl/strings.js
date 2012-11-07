@@ -15,6 +15,7 @@ var strings = {
 	"only_over" : "tylko po najechaniu kursorem",
 	"normal" : "pod kursorem i podczas przewijania lub zmiany rozmiaru",
 	"always" : "zawsze",
+	"animate_mousescroll" : "Animate the scroll bars during scrolling with the mouse wheel/keyboard (not recommended; slow)",
 	"bg_special_ends" : "Clicking at the ends of the background bars scrolls completely to the top/bottom respectively left/right) instead of by one page",
 	"show_superbar" : "wyświetlaj „arkusz przewijania” — jeden uchwyt do przewijania we wszystkie strony",
 	"show_superbar_minipage" : "oddal stronę na czas przewijania arkuszem",
