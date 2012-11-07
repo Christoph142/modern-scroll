@@ -28,26 +28,27 @@ window.opera.addEventListener("BeforeEvent.DOMContentLoaded", function(){
 },false);
 
 function inject_css(){
+	var w = widget.preferences;
 	var MS_style =
-		"#MS_v_container{ height:100%; width:30px; right:0px; top:0px; background:rgba(0,0,0,0); }"+
-		"#MS_h_container{ height:30px; width:100%; left:0px; bottom:0px; background:rgba(0,0,0,0); }"+
-		"#MS_vbar_bg, #MS_hbar_bg{ background:#999; opacity:"+((widget.preferences.show_when=="3" && widget.preferences.no_bar_bg != "1")?"0.5":"0")+"; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5); border-radius:"+widget.preferences.border_radius+"px; transition:opacity 0.5s 1s, width 0.25s, height 0.25s; }"+
-		"#MS_vbar_bg{ right:0px; top:0px; height:100%; width:"+widget.preferences.size+"px; }"+
-		"#MS_hbar_bg{ left:0px; bottom:0px; height:"+widget.preferences.size+"px; width:100%; }"+
-		"#MS_vbar, #MS_hbar{ background:"+widget.preferences.color+"; opacity:"+((widget.preferences.show_when=="3")?"0.5":"0")+"; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5); border-radius:"+widget.preferences.border_radius+"px; transition:opacity 0.5s 1s, width 0.25s, height 0.25s; }"+
-		"#MS_vbar{ right:0px; top:0px; height:30px; min-height:30px; width:"+widget.preferences.size+"px; }"+
-		"#MS_hbar{ left:0px; bottom:0px; width:30px; min-width:30px; height:"+widget.preferences.size+"px; }"+
-		"#MS_superbar{ width:100px; background:"+(widget.preferences.show_superbar_minipage==0?widget.preferences.color:"rgba(0,0,0,0)")+"; opacity:"+((widget.preferences.show_when=="3")?"0.5":"0")+"; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5)"+(widget.preferences.show_superbar_minipage==1?", 0 0 200px 10px #999":"")+"; border-radius:"+widget.preferences.border_radius+"px; transition:opacity 0.5s 1s; }"+
+		"#MS_v_container{ height:100%; width:30px; "+(w.vbar_at_left=="1"?"left:0px;":"right:0px;")+" top:0px; background:rgba(0,0,0,0); }"+
+		"#MS_h_container{ height:30px; width:100%; left:0px; "+(w.hbar_at_top=="1"?"top:0px;":"bottom:0px;")+" background:rgba(0,0,0,0); }"+
+		"#MS_vbar_bg, #MS_hbar_bg{ background:#999; opacity:"+((w.show_when=="3" && w.no_bar_bg != "1")?"0.5":"0")+"; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5); border-radius:"+w.border_radius+"px; transition:opacity 0.5s 1s, width 0.25s, height 0.25s; }"+
+		"#MS_vbar_bg{ "+(w.vbar_at_left=="1"?"left:0px;":"right:0px;")+" top:0px; height:100%; width:"+w.size+"px; }"+
+		"#MS_hbar_bg{ left:0px; "+(w.hbar_at_top=="1"?"top:0px;":"bottom:0px;")+" height:"+w.size+"px; width:100%; }"+
+		"#MS_vbar, #MS_hbar{ background:"+w.color+"; opacity:"+((w.show_when=="3")?"0.5":"0")+"; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5); border-radius:"+w.border_radius+"px; transition:opacity 0.5s 1s, width 0.25s, height 0.25s; }"+
+		"#MS_vbar{ "+(w.vbar_at_left=="1"?"left:0px;":"right:0px;")+" top:0px; height:30px; min-height:30px; width:"+w.size+"px; }"+
+		"#MS_hbar{ left:0px; "+(w.hbar_at_top=="1"?"top:0px;":"bottom:0px;")+" width:30px; min-width:30px; height:"+w.size+"px; }"+
+		"#MS_superbar{ width:100px; background:"+(w.show_superbar_minipage==0?w.color:"rgba(0,0,0,0)")+"; opacity:"+((w.show_when=="3")?"0.5":"0")+"; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5)"+(w.show_superbar_minipage==1?", 0 0 200px 10px #999":"")+"; border-radius:"+w.border_radius+"px; transition:opacity 0.5s 1s; }"+
 		"#MS_page_cover{ left:0px; top:0px; width:100%; height:100%; background:rgba(0,0,0,0); padding:0px; margin:0px; }"+
-		"#MS_upbutton, #MS_downbutton{ height:"+widget.preferences.button_height*2+"px; width:"+widget.preferences.button_width+"px; left:"+widget.preferences.buttonposition+"%; opacity:0.1; background:"+widget.preferences.color+"; border-radius:50px; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5); transition:opacity 0.5s; }"+
-		"#MS_upbutton{ top:-"+widget.preferences.button_height+"px; }"+
-		"#MS_downbutton{ bottom:-"+widget.preferences.button_height+"px; }"+
+		"#MS_upbutton, #MS_downbutton{ height:"+w.button_height*2+"px; width:"+w.button_width+"px; left:"+w.buttonposition+"%; opacity:0.1; background:"+w.color+"; border-radius:50px; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5); transition:opacity 0.5s; }"+
+		"#MS_upbutton{ top:-"+w.button_height+"px; }"+
+		"#MS_downbutton{ bottom:-"+w.button_height+"px; }"+
 		"#MS_minipage_canvas{ top:0px; left:0px; background:#000; }"+
 		
-		"#MS_v_container:hover #MS_vbar, #MS_v_container:hover #MS_vbar_bg{ width:"+widget.preferences.hover_size+"px; }"+
-		"#MS_h_container:hover #MS_hbar, #MS_h_container:hover #MS_hbar_bg{ height:"+widget.preferences.hover_size+"px; }"+
+		"#MS_v_container:hover #MS_vbar, #MS_v_container:hover #MS_vbar_bg{ width:"+w.hover_size+"px; }"+
+		"#MS_h_container:hover #MS_hbar, #MS_h_container:hover #MS_hbar_bg{ height:"+w.hover_size+"px; }"+
 		"#MS_v_container:hover #MS_vbar, #MS_h_container:hover #MS_hbar, #MS_v_container:hover #MS_superbar, #MS_h_container:hover #MS_superbar{ opacity:0.5; transition:opacity 0.1s 0s; }"+
-		"#MS_v_container:hover #MS_vbar_bg, #MS_h_container:hover #MS_hbar_bg{ opacity:"+((widget.preferences.no_bar_bg == "1")?"0":"0.5")+"; transition:opacity 0.1s 0s; }"+
+		"#MS_v_container:hover #MS_vbar_bg, #MS_h_container:hover #MS_hbar_bg{ opacity:"+((w.no_bar_bg == "1")?"0":"0.5")+"; transition:opacity 0.1s 0s; }"+
 		"#MS_v_container #MS_vbar:hover, #MS_h_container #MS_hbar:hover, #MS_upbutton:hover, #MS_downbutton:hover{ opacity:0.7; transition:opacity 0.1s 0s; }"+
 		"#MS_v_container #MS_vbar_bg:hover, #MS_h_container #MS_hbar_bg:hover{ opacity:0.51; transition:opacity 0.1s 0s; }"+
 		"#MS_superbar:hover{ opacity:0.7; transition:opacity 0.25s 0s; }"+
@@ -291,14 +292,21 @@ function reposition_bars(){
 function scroll_bg_v(){
 	window.event.preventDefault(); // prevent focus-loss in site
 	if(window.event.which != 1) return; //if it's not the left mouse button
-	if(window.event.clientY>parseInt(document.getElementById("MS_vbar").style.top)) window.scrollBy(0, window.innerHeight);
+	
+	if(window.event.clientY < 50 && widget.preferences.bg_special_ends == "1") window.scrollTo(window.event.clientX, 0);
+	else if((window.innerHeight-window.event.clientY) < 50 && widget.preferences.bg_special_ends == "1")
+		window.scrollTo(window.event.clientX, Math.max(document.body.scrollHeight,document.documentElement.scrollHeight));
+	else if(window.event.clientY > parseInt(document.getElementById("MS_vbar").style.top)) window.scrollBy(0, window.innerHeight);
 	else window.scrollBy(0, -window.innerHeight);
 }
 
 function scroll_bg_h(){
 	window.event.preventDefault(); // prevent focus-loss in site
 	if(window.event.which != 1) return; //if it's not the left mouse button
-	if(window.event.clientX>parseInt(document.getElementById("MS_hbar").style.left)) window.scrollBy(window.innerWidth, 0);
+	if(window.event.clientX < 50 && widget.preferences.bg_special_ends == "1") window.scrollTo(0, window.event.clientY);
+	else if((window.innerWidth-window.event.clientX) < 50 && widget.preferences.bg_special_ends == "1")
+		window.scrollTo(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth), window.event.clientY);
+	if(window.event.clientX > parseInt(document.getElementById("MS_hbar").style.left)) window.scrollBy(window.innerWidth, 0);
 	else window.scrollBy(-window.innerWidth, 0);
 }
 
