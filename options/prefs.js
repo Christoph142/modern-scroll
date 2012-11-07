@@ -12,7 +12,8 @@ window.addEventListener("change",function(event){
 		}
 	}
 	
-	opera.extension.postMessage("update");
+	if(event.target.id == "show_contextmenu") opera.extension.postMessage("show_contextmenu");
+	else opera.extension.postMessage("update");
 	
 },false);
 

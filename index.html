@@ -6,13 +6,21 @@
 <script>
 	opera.extension.onmessage = function(event){
 		if(event.data == "update") opera.extension.broadcastMessage("update");
+		else if(event.data == "show_contextmenu") show_contextmenu();
 		else if(event.data == "reset_contextmenu") opera.contexts.menu.item(0).title = strings["contextmenu_hide"];
 	}
 	
-	opera.contexts.menu.addItem(opera.contexts.menu.createItem({title:strings["contextmenu_hide"],icon:"images/contextmenu.png"}));
-	opera.contexts.menu.onclick = function(){
-		opera.contexts.menu.item(0).title =
-			opera.contexts.menu.item(0).title == strings["contextmenu_show"]?strings["contextmenu_hide"]:strings["contextmenu_show"];
+	show_contextmenu();
+	
+	function show_contextmenu(){
+		if(widget.preferences.show_contextmenu == "1"){
+			opera.contexts.menu.addItem(opera.contexts.menu.createItem({title:strings["contextmenu_hide"],icon:"images/contextmenu.png"}));
+			opera.contexts.menu.onclick = function(){
+				opera.contexts.menu.item(0).title =
+					opera.contexts.menu.item(0).title == strings["contextmenu_show"]?strings["contextmenu_hide"]:strings["contextmenu_show"];
+			}
+		}
+		else try{ opera.contexts.menu.removeItem(0); }catch(e){ /* no entry */ }
 	}
 </script>
 </head>
