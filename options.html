@@ -44,8 +44,9 @@
     <label for="border_radius"><script>_("border_radius");</script>: </label>
     <input type="number" max="15" min="0" id="border_radius" name="border_radius" value="7"><br>
     <br>
+    <input type="checkbox" id="vbar_at_left" name="vbar_at_left"> <label for="vbar_at_left"><script>_("vbar_at_left");</script></label><br>
+    <input type="checkbox" id="hbar_at_top" name="hbar_at_top"> <label for="hbar_at_top"><script>_("hbar_at_top");</script></label><br>
     <input type="checkbox" id="no_bar_bg" name="no_bar_bg"> <label for="no_bar_bg"><script>_("no_bar_bg");</script></label><br>
-    <br>
     </fieldset><br>
     
     <fieldset>
@@ -61,6 +62,8 @@
     </table>
     </div>
     <br>
+    <input type="checkbox" id="bg_special_ends" name="bg_special_ends" checked="checked"> <label for="bg_special_ends"><script>_("bg_special_ends");</script></label><br>
+    <br>
     <input type="checkbox" id="show_superbar" name="show_superbar" checked="checked"> <label for="show_superbar"><script>_("show_superbar");</script></label><br>
     <input type="checkbox" id="show_superbar_minipage" name="show_superbar_minipage"> <label for="show_superbar_minipage"><script>_("show_superbar_minipage");</script></label><br>
     </fieldset><br>
@@ -68,8 +71,17 @@
     <fieldset>
     <h4><script>_("buttons");</script>:</h4>
     <input type="checkbox" id="show_buttons" name="show_buttons"> <label for="show_buttons"><script>_("show buttons");</script></label><br>
+    <label for="button_width"><script>_("button_width");</script>: </label>
+    <input type="number" max="500" min="2" id="button_width" name="button_width" value="100"><br>
+    <label for="button_height"><script>_("button_height");</script>: </label>
+    <input type="number" max="500" min="2" id="button_height" name="button_height" value="50"><br>
     <br>
     <script>_("drag buttons");</script>
+    </fieldset><br>
+    
+    <fieldset>
+    <h4><script>_("contextmenu");</script>:</h4>
+    <input type="checkbox" id="show_contextmenu" name="show_contextmenu" checked="checked"> <label for="show_contextmenu"><script>_("show contextmenu");</script></label><br>
     </fieldset><br>
     
     <fieldset>
