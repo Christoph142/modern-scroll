@@ -12,7 +12,7 @@ window.addEventListener("change",function(event){
 		}
 	}
 	
-	if(event.target.id == "show_contextmenu") opera.extension.postMessage("show_contextmenu");
+	if(event.target.id == "contextmenu_show_when") opera.extension.postMessage("contextmenu_show_when_update");
 	else opera.extension.postMessage("update");
 	
 },false);

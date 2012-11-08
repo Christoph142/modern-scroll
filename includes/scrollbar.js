@@ -21,7 +21,9 @@ window.opera.addEventListener("BeforeEvent.DOMContentLoaded", function(){
 	add_functionality();
 	
 	opera.extension.onmessage = inject_css;
+	
 	opera.extension.postMessage("reset_contextmenu");
+	window.addEventListener("mousedown", adjust_contextmenu ,false);
 	opera.contexts.menu.onclick = contextmenu_click;
 	
 	window.opera.addEventListener("AfterEvent.DOMContentLoaded", adjust_bars, false);
@@ -220,7 +222,7 @@ function drag_h(){
 
 function drag_super(){
 	window.event.preventDefault(); // prevent focus-loss in site
-	if(window.event.which != 1) return; //if it's not the left mouse button
+	if(window.event.which != 1) return; // if it's not the left mouse button
 	
 	if(widget.preferences.show_superbar_minipage=="1") show_minipage();
 	
@@ -355,8 +357,8 @@ function add_buttons(){
 
 function handle_button(whichone){
 	window.event.preventDefault();
-	if(window.event.which != 1) return; //if it's not the left mouse button
-	
+	if(window.event.which != 1) return; // if it's not the left mouse button
+		
 	var button = document.getElementById("MS_"+whichone+"button");
 	var otherbutton = document.getElementById("MS_"+(whichone=="up"?"down":"up")+"button");
 	var x_start = window.event.clientX - Math.floor(button.style.left?parseInt(button.style.left):widget.preferences.buttonposition/100*window.innerWidth);
@@ -414,6 +416,12 @@ function onScroll(){
 	}
 }
 
+function(){
+	if(window.event.which != 3 || widget.preferences.contextmenu_show_when != "2") return; // only right mouse button:
+	if(window.event.target.id.substr(0,3) == "MS_") opera.extension.postMessage("show_contextmenu");
+	else opera.extension.postMessage("hide_contextmenu");
+}
+	
 function contextmenu_click(){
 	if(document.getElementById("MS_v_container")){
 		window.removeEventListener("DOMNodeInserted", onDOMNode, false);
