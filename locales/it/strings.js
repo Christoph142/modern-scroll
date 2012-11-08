@@ -25,7 +25,7 @@ var strings = {
 	"button_height" : "Height",
 	"drag buttons" : "You can drag the buttons to any position here in the options. This position will become the default for all websites. If they should cover an element on certain pages, you can drag them out of the way there",
 	"contextmenu" : "Context menu",
-	"show contextmenu when" : "When do you want an option in the context menu to hide modern scroll?",
+	"show contextmenu when" : "When do you want an option in the context menu for hiding modern scroll?",
 	"never" : "never",
 	"contextmenu over only" : "when I rightclick at the modern scroll interface",
 	"how to" : "How do I use this extension",

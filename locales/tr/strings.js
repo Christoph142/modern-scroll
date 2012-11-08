@@ -25,7 +25,7 @@ var strings = {
 	"button_height" : "Height",
 	"drag buttons" : "Buradaki düğmeleri istediğiniz konuma sürükleyebilirsiniz. Bu konum tüm web siteleri için varsayılan olacaktır. Eğer bir sayfada bir öğenin üstünü kapatıyorsa, orada yerini değiştirebilirsiniz.",
 	"contextmenu" : "Context menu",
-	"show contextmenu when" : "When do you want an option in the context menu to hide modern scroll?",
+	"show contextmenu when" : "When do you want an option in the context menu for hiding modern scroll?",
 	"never" : "never",
 	"contextmenu over only" : "when I rightclick at the modern scroll interface",
 	"how to" : "Bu eklentiyi nasıl kullanabilirim",

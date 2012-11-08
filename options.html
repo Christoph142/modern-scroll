@@ -60,7 +60,6 @@
             <td width="30%" style="text-align:right; padding-right:10px; vertical-align:top;"><script>_("always");</script></td>
         </tr>
     </table>
-    </div>
     <br>
     <input type="checkbox" id="animate_mousescroll" name="animate_mousescroll"> <label for="animate_mousescroll"><script>_("animate_mousescroll");</script></label><br>
     <input type="checkbox" id="bg_special_ends" name="bg_special_ends" checked="checked"> <label for="bg_special_ends"><script>_("bg_special_ends");</script></label><br>
@@ -82,7 +81,15 @@
     
     <fieldset>
     <h4><script>_("contextmenu");</script>:</h4>
-    <input type="checkbox" id="show_contextmenu" name="show_contextmenu" checked="checked"> <label for="show_contextmenu"><script>_("show contextmenu");</script></label><br>
+    <script>_("show contextmenu when");</script><br>
+    <input type="range" name="contextmenu_show_when" id="contextmenu_show_when" min="1" max="3" value="2" step="1" style="width:100%;" />
+    <table>
+    	<tr>
+        	<td width="30%" style="text-align:left; padding-left:10px; vertical-align:top;"><script>_("never");</script></td>
+            <td width="40%" style="text-align:center; vertical-align:top;"><script>_("contextmenu over only");</script></td>
+            <td width="30%" style="text-align:right; padding-right:10px; vertical-align:top;"><script>_("always");</script></td>
+        </tr>
+    </table>
     </fieldset><br>
     
     <fieldset>

@@ -32,6 +32,6 @@
 	<preference name="show_superbar_minipage" value="0" />
 	<preference name="vbar_at_left" value="0" />
 	<preference name="hbar_at_top" value="0" />
-	<preference name="show_contextmenu" value="1" />
+	<preference name="contextmenu_show_when" value="2" /><!-- 1 = never, 2 = only over interface, 3 = always -->
 
 </widget>
