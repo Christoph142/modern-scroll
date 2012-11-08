@@ -416,7 +416,7 @@ function onScroll(){
 	}
 }
 
-function(){
+function adjust_contextmenu(){
 	if(window.event.which != 3 || widget.preferences.contextmenu_show_when != "2") return; // only right mouse button:
 	if(window.event.target.id.substr(0,3) == "MS_") opera.extension.postMessage("show_contextmenu");
 	else opera.extension.postMessage("hide_contextmenu");
