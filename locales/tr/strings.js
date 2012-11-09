@@ -16,7 +16,7 @@ var strings = {
 	"normal" : "üzerine gelince, kaydırırken ve konum veya boyutunu değiştirirken",
 	"always" : "her zaman",
 	"animate_mousescroll" : "fare tekerleği veya klavye ile kaydırırken kaydırma çubuklarını animasyonla (tavsiye edilmez; yavaş)",
-	"bg_special_ends" : "Clicking at the ends of the background bars scrolls completely to the top/bottom respectively left/right) instead of by one page",
+	"bg_special_ends" : "Arkaplan çubuklarının sonlarına tıklamak bir sayfa atlamak yerine sayfanın sonuna/başına gider.",
 	"show_superbar" : "\"superbar\"ı göster (yatay ve dikey kaydırma çubuklarıyla birleştirilmiş)",
 	"show_superbar_minipage" : "superbarı kaydırırken web sitesinin mini-versiyonunu arkaplanda göster",
 	"buttons" : "Kaydırma çubukları",
