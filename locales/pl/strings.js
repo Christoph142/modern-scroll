@@ -15,8 +15,13 @@ var strings = {
 	"only_over" : "tylko po najechaniu kursorem",
 	"normal" : "po najechaniu kursorem i podczas przewijania lub zmiany rozmiaru",
 	"always" : "zawsze",
+<<<<<<< HEAD
 	"animate_mousescroll" : "Animuj paski przewijania podczas przewijania myszą i klawiaturą (opcja odradzana; spowalnia działanie)",
 	"bg_special_ends" : "Kliknięcie na samym końcu szyny przenosi na kraniec strony (górny, dolny, prawy albo lewy), a nie przewija o jedną stronę",
+=======
+	"animate_mousescroll" : "Animate the scroll bars during scrolling with the mouse wheel/keyboard (not recommended; slow)",
+	"bg_special_ends" : "Clicking at the ends of the background bars scrolls completely to the top/bottom (respectively left/right) instead of by one page",
+>>>>>>> upstream/master
 	"show_superbar" : "wyświetlaj „arkusz przewijania” — jeden uchwyt do przewijania we wszystkie strony",
 	"show_superbar_minipage" : "oddal stronę na czas przewijania arkuszem",
 	"buttons" : "Przyciski skoku",
