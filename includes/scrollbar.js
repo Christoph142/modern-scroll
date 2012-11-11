@@ -34,10 +34,10 @@ function inject_css(){
 	var MS_style =
 		"#MS_v_container{ height:100%; width:30px; "+(w.vbar_at_left=="1"?"left":"right")+":0px; top:0px; background:rgba(0,0,0,0); }"+
 		"#MS_h_container{ height:30px; width:100%; left:0px; "+(w.hbar_at_top=="1"?"top":"bottom")+":0px; background:rgba(0,0,0,0); }"+
-		"#MS_vbar_bg, #MS_hbar_bg{ background:#999; opacity:"+((w.show_when=="3" && w.no_bar_bg != "1")?"0.5":"0")+"; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5); border-radius:"+w.border_radius+"px; transition:opacity 0.5s 1s, width 0.25s, height 0.25s; }"+
+		"#MS_vbar_bg, #MS_hbar_bg{ background:#999; opacity:"+((w.show_when=="3" && w.no_bar_bg != "1")?"0.5":"0")+"; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5) !important; border-radius:"+w.border_radius+"px; transition:opacity 0.5s 1s, width 0.25s, height 0.25s; }"+
 		"#MS_vbar_bg{ "+(w.vbar_at_left=="1"?"left":"right")+":0px; top:0px; height:100%; width:"+w.size+"px; }"+
 		"#MS_hbar_bg{ left:0px; "+(w.hbar_at_top=="1"?"top":"bottom")+":0px; height:"+w.size+"px; width:100%; }"+
-		"#MS_vbar, #MS_hbar{ background:"+w.color+"; opacity:"+((w.show_when=="3")?"0.5":"0")+"; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5); border-radius:"+w.border_radius+"px; transition:opacity 0.5s 1s, width 0.25s, height 0.25s; }"+
+		"#MS_vbar, #MS_hbar{ background:"+w.color+"; opacity:"+((w.show_when=="3")?"0.5":"0")+"; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5) !important; border-radius:"+w.border_radius+"px; transition:opacity 0.5s 1s, width 0.25s, height 0.25s; }"+
 		"#MS_vbar{ "+(w.vbar_at_left=="1"?"left":"right")+":0px; top:0px; height:30px; min-height:30px; width:"+w.size+"px; }"+
 		"#MS_hbar{ left:0px; "+(w.hbar_at_top=="1"?"top":"bottom")+":0px; width:30px; min-width:30px; height:"+w.size+"px; }"+
 		"#MS_superbar{ width:100px; background:"+(w.show_superbar_minipage==0?w.color:"rgba(0,0,0,0)")+"; opacity:"+((w.show_when=="3")?"0.5":"0")+"; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5)"+(w.show_superbar_minipage==1?", 0 0 200px 10px #999":"")+"; border-radius:"+w.border_radius+"px; transition:opacity 0.5s 1s; }"+
