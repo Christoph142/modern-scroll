@@ -68,6 +68,8 @@
     <input type="checkbox" id="bg_special_ends" name="bg_special_ends" checked="checked"> <label for="bg_special_ends"><script>_("bg_special_ends");</script></label><br>
     <br>
     <input type="checkbox" id="show_superbar" name="show_superbar" checked="checked"> <label for="show_superbar"><script>_("show_superbar");</script></label><br>
+    <label for="superbar_opacity"><script>_("superbar_opacity");</script>: </label>
+    <input type="range" name="superbar_opacity" id="superbar_opacity" min="0" max="100" value="70" step="1" onChange="document.getElementById('superbar_opacity_display').innerHTML = this.value+'%';" /><label id="superbar_opacity_display"><script>document.write(widget.preferences.superbar_opacity+"%");</script></label><br>
     <input type="checkbox" id="show_superbar_minipage" name="show_superbar_minipage"> <label for="show_superbar_minipage"><script>_("show_superbar_minipage");</script></label><br>
     </fieldset><br>
     
@@ -79,7 +81,7 @@
     <label for="button_height"><script>_("button_height");</script>: </label>
     <input type="number" max="500" min="2" id="button_height" name="button_height" value="50"><br>
     <label for="button_opacity"><script>_("button_opacity");</script>: </label>
-    <input type="range" name="button_opacity" id="button_opacity" min="0" max="100" value="10" step="1" onChange="document.getElementById('opacity_display').innerHTML = this.value+'%';" /><label id="opacity_display"><script>document.write(widget.preferences.button_opacity+"%");</script></label>
+    <input type="range" name="button_opacity" id="button_opacity" min="0" max="100" value="10" step="1" onChange="document.getElementById('opacity_display').innerHTML = this.value+'%';" /><label id="opacity_display"><script>document.write(widget.preferences.button_opacity+"%");</script></label><br>
     <br>
     <script>_("drag buttons");</script>
     </fieldset><br>
