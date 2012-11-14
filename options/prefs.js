@@ -4,6 +4,8 @@ window.addEventListener("change",function(event){
 	if(event.target.type == "checkbox") widget.preferences[event.target.id] = event.target.checked?1:0;
 	else 								widget.preferences[event.target.id] = event.target.value;
 	
+	if(event.target.id == "border_color") widget.preferences.border_color_rgba = "rgba("+parseInt(event.target.value.substring(1,3),16)+","+parseInt(event.target.value.substring(3,5),16)+","+parseInt(event.target.value.substring(5,7),16)+",0.7)";
+	
 	if(event.target.id == "size" || event.target.id == "hover_size"){
 		document.getElementById("border_radius").max = Math.round(Math.max(document.getElementById("size").value, document.getElementById("hover_size").value)/2);
 		if(document.getElementById("border_radius").value > document.getElementById("border_radius").max){
