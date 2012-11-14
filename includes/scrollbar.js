@@ -12,37 +12,39 @@ window.opera.addEventListener("BeforeEvent.DOMContentLoaded", function(){
 	if(window.matchMedia("all and (view-mode: minimized)").matches) return; // don't do anything if it's a speed dial
 	if(window.self != window.top) return; // only treat main page not iframes, ads, etc.
 	
-	inject_css();	
+	inject_css();
 	
-	add_bars();
-	add_buttons();
+	if(widget.preferences.fullscreen_only == 0 || window.screen.height === window.outerHeight){
+		add_ui();
+		window.opera.addEventListener("AfterEvent.DOMContentLoaded", adjust_bars, false);
+	}
 	
-	adjust_bars();
-	add_functionality();
+	window.addEventListener("resize", add_or_remove_ui, false);
 	
-	opera.extension.onmessage = inject_css;
+	opera.extension.onmessage = function(){
+		add_or_remove_ui();
+		inject_css();
+	}
 	
 	opera.extension.postMessage("reset_contextmenu");
 	window.addEventListener("mousedown", adjust_contextmenu ,false);
 	opera.contexts.menu.onclick = contextmenu_click;
-	
-	window.opera.addEventListener("AfterEvent.DOMContentLoaded", adjust_bars, false);
 },false);
 
 function inject_css(){
 	var w = widget.preferences;
 	var MS_style =
-		"#MS_v_container{ height:100%; width:30px; "+(w.vbar_at_left=="1"?"left":"right")+":0px; top:0px; background:rgba(0,0,0,0); }"+
-		"#MS_h_container{ height:30px; width:100%; left:0px; "+(w.hbar_at_top=="1"?"top":"bottom")+":0px; background:rgba(0,0,0,0); }"+
-		"#MS_vbar_bg, #MS_hbar_bg{ background:#999; opacity:"+((w.show_when=="3" && w.no_bar_bg != "1")?"0.5":"0")+"; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5) !important; border-radius:"+w.border_radius+"px; transition:opacity 0.5s 1s, width 0.25s, height 0.25s; }"+
+		"#MS_v_container{ height:100%; width:1px; "+(w.vbar_at_left=="1"?"left":"right")+":0px; top:0px; background:rgba(0,0,0,0); }"+
+		"#MS_h_container{ height:1px; width:100%; left:0px; "+(w.hbar_at_top=="1"?"top":"bottom")+":0px; background:rgba(0,0,0,0); }"+
+		"#MS_vbar_bg, #MS_hbar_bg{ background:"+w.color_bg+"; opacity:"+((w.show_when=="3" && w.no_bar_bg != "1")?"0.5":"0")+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" !important; border-radius:"+w.border_radius+"px; transition:opacity 0.5s 1s, width 0.25s, height 0.25s; }"+
 		"#MS_vbar_bg{ "+(w.vbar_at_left=="1"?"left":"right")+":0px; top:0px; height:100%; width:"+w.size+"px; }"+
 		"#MS_hbar_bg{ left:0px; "+(w.hbar_at_top=="1"?"top":"bottom")+":0px; height:"+w.size+"px; width:100%; }"+
-		"#MS_vbar, #MS_hbar{ background:"+w.color+"; opacity:"+((w.show_when=="3")?"0.5":"0")+"; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5) !important; border-radius:"+w.border_radius+"px; transition:opacity 0.5s 1s, width 0.25s, height 0.25s; }"+
+		"#MS_vbar, #MS_hbar{ background:"+w.color+"; opacity:"+((w.show_when=="3")?"0.5":"0")+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" !important; border-radius:"+w.border_radius+"px; transition:opacity 0.5s 1s, width 0.25s, height 0.25s; }"+
 		"#MS_vbar{ "+(w.vbar_at_left=="1"?"left":"right")+":0px; top:0px; height:30px; min-height:30px; width:"+w.size+"px; }"+
 		"#MS_hbar{ left:0px; "+(w.hbar_at_top=="1"?"top":"bottom")+":0px; width:30px; min-width:30px; height:"+w.size+"px; }"+
 		"#MS_superbar{ width:100px; background:"+(w.show_superbar_minipage==0?w.color:"rgba(0,0,0,0)")+"; opacity:"+((w.show_when=="3")?"0.5":"0")+"; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5)"+(w.show_superbar_minipage==1?", 0 0 200px 10px #999":"")+"; border-radius:"+w.border_radius+"px; transition:opacity 0.5s 1s; }"+
 		"#MS_page_cover{ left:0px; top:0px; width:100%; height:100%; background:rgba(0,0,0,0); padding:0px; margin:0px; }"+
-		"#MS_upbutton, #MS_downbutton{ height:"+w.button_height*2+"px; width:"+w.button_width+"px; left:"+w.buttonposition+"%; opacity:0.1; background:"+w.color+"; border-radius:50px; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5); transition:opacity 0.5s; }"+
+		"#MS_upbutton, #MS_downbutton{ height:"+w.button_height*2+"px; width:"+w.button_width+"px; left:"+w.buttonposition+"%; opacity:"+w.button_opacity/100+"; background:"+w.color+"; border-radius:50px; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5); transition:opacity 0.5s; }"+
 		"#MS_upbutton{ top:-"+w.button_height+"px; }"+
 		"#MS_downbutton{ bottom:-"+w.button_height+"px; }"+
 		"#MS_minipage_canvas{ top:0px; left:0px; background:#000; }"+
@@ -52,8 +54,8 @@ function inject_css(){
 		"#MS_v_container:hover #MS_vbar, #MS_h_container:hover #MS_hbar, #MS_v_container:hover #MS_superbar, #MS_h_container:hover #MS_superbar{ opacity:0.5; transition:opacity 0.1s 0s; }"+
 		"#MS_v_container:hover #MS_vbar_bg, #MS_h_container:hover #MS_hbar_bg{ opacity:"+((w.no_bar_bg == "1")?"0":"0.5")+"; transition:opacity 0.1s 0s; }"+
 		"#MS_v_container #MS_vbar:hover, #MS_h_container #MS_hbar:hover, #MS_upbutton:hover, #MS_downbutton:hover{ opacity:0.7; transition:opacity 0.1s 0s; }"+
-		"#MS_v_container #MS_vbar_bg:hover, #MS_h_container #MS_hbar_bg:hover{ opacity:0.51; transition:opacity 0.1s 0s; }"+
-		"#MS_superbar:hover{ opacity:0.7; transition:opacity 0.25s 0s; }"+
+		"#MS_v_container #MS_vbar_bg:hover, #MS_h_container #MS_hbar_bg:hover{ opacity:"+((w.no_bar_bg == "1")?"0":"0.51")+"; transition:opacity 0.1s 0s; }"+
+		"#MS_superbar:hover{ opacity:"+w.superbar_opacity/100+"; transition:opacity 0.25s 0s; }"+
 		
 		"#MS_v_container, #MS_h_container, #MS_vbar_bg, #MS_hbar_bg, #MS_vbar, #MS_hbar, #MS_superbar, #MS_page_cover, #MS_upbutton, #MS_downbutton, #MS_minipage_canvas{ position:fixed; z-index:2147483647; border:none; padding:0; margin:0; display:none; }";
 	
@@ -289,7 +291,7 @@ function reposition_bars(){
 		document.getElementById("MS_superbar").style.width = document.getElementById("MS_hbar").style.width;
 		document.getElementById("MS_superbar").style.display = "inline";
 	}
-	else if(document.getElementById("MS_superbar").style.opacity!="1") //if superbar doesn't get dragged
+	else if(document.getElementById("MS_superbar").style.opacity!="1") //if superbar doesn't get dragged (minipage only -> no bars)
 		window.setTimeout(function(){ document.getElementById("MS_superbar").style.display = null }, 1500);
 	
 	window.setTimeout(hide_bars, 1000);
@@ -423,23 +425,34 @@ function adjust_contextmenu(){
 }
 	
 function contextmenu_click(){
-	if(document.getElementById("MS_v_container")){
-		window.removeEventListener("DOMNodeInserted", onDOMNode, false);
-		window.removeEventListener("DOMNodeRemoved", onDOMNode, false);
-		window.removeEventListener("resize", adjust_bars, false);
-		window.removeEventListener("scroll", onScroll, false);
-		
-		document.body.removeChild(document.getElementById("MS_v_container"));
-		document.body.removeChild(document.getElementById("MS_h_container"));
-		document.body.removeChild(document.getElementById("MS_page_cover"));
-		document.body.removeChild(document.getElementById("MS_superbar"));
-		document.body.removeChild(document.getElementById("MS_upbutton"));
-		document.body.removeChild(document.getElementById("MS_downbutton"));
-	}
-	else{
-		add_bars();
-		add_buttons();
-		adjust_bars();
-		add_functionality();
-	}
+	if(document.getElementById("MS_v_container")) remove_ui();
+	else add_ui();
+}
+
+function add_or_remove_ui(){
+	if((widget.preferences.fullscreen_only == 0 || window.screen.height === window.outerHeight) && !document.getElementById("MS_v_container"))
+		add_ui();
+	else if(widget.preferences.fullscreen_only == 1 && window.screen.height !== window.outerHeight && document.getElementById("MS_v_container"))
+		remove_ui();
+}
+
+function add_ui(){
+	add_bars();
+	add_buttons();
+	adjust_bars();
+	add_functionality();
+}
+
+function remove_ui(){
+	window.removeEventListener("DOMNodeInserted", onDOMNode, false);
+	window.removeEventListener("DOMNodeRemoved", onDOMNode, false);
+	window.removeEventListener("resize", adjust_bars, false);
+	window.removeEventListener("scroll", onScroll, false);
+	
+	document.body.removeChild(document.getElementById("MS_v_container"));
+	document.body.removeChild(document.getElementById("MS_h_container"));
+	document.body.removeChild(document.getElementById("MS_page_cover"));
+	document.body.removeChild(document.getElementById("MS_superbar"));
+	document.body.removeChild(document.getElementById("MS_upbutton"));
+	document.body.removeChild(document.getElementById("MS_downbutton"));
 }

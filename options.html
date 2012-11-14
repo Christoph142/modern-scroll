@@ -11,10 +11,7 @@
     <script type="text/javascript">/* window.opera.addEventListener("BeforeEvent.X",f,0) doesn't fire in options page */
 	window.addEventListener("DOMContentLoaded",function(){
 		inject_css();
-		add_bars();
-		add_buttons();
-		adjust_bars();
-		add_functionality();
+		add_ui();
 		opera.extension.onmessage = inject_css;
 	},false);
 	</script>
@@ -37,12 +34,18 @@
     <h4><script>_("look");</script>:</h4>
     
     <script>_("color");</script>: <input type="color" id="color" name="color"><br>
+    <script>_("color_bg");</script>: <input type="color" id="color_bg" name="color_bg" value="#999999"><br>
     <label for="size"><script>_("size");</script>: </label>
     <input type="number" max="20" min="1" id="size" name="size" value="10"><br>
     <label for="hover_size"><script>_("hover_size");</script>: </label>
     <input type="number" max="30" min="1" id="hover_size" name="hover_size" value="14"><br>
     <label for="border_radius"><script>_("border_radius");</script>: </label>
     <input type="number" max="15" min="0" id="border_radius" name="border_radius" value="7"><br>
+    <label for="border_width"><script>_("border_width");</script>: </label>
+    <input type="number" max="10" min="0" id="border_width" name="border_width" value="2"><br>
+    <label for="border_blur"><script>_("border_blur");</script>: </label>
+    <input type="number" max="10" min="0" id="border_blur" name="border_blur" value="0"><br>
+    <script>_("border_color");</script>: <input type="color" id="border_color" name="border_color" value="#FFFFFF"><br>
     <br>
     <input type="checkbox" id="vbar_at_left" name="vbar_at_left"> <label for="vbar_at_left"><script>_("vbar_at_left");</script></label><br>
     <input type="checkbox" id="hbar_at_top" name="hbar_at_top"> <label for="hbar_at_top"><script>_("hbar_at_top");</script></label><br>
@@ -60,7 +63,7 @@
             <td width="30%" style="text-align:right; padding-right:10px; vertical-align:top;"><script>_("always");</script></td>
         </tr>
     </table>
-    <br>
+    <input type="checkbox" id="fullscreen_only" name="fullscreen_only"> <label for="fullscreen_only"><script>_("fullscreen_only");</script></label><br><br>
     <input type="checkbox" id="animate_mousescroll" name="animate_mousescroll"> <label for="animate_mousescroll"><script>_("animate_mousescroll");</script></label><br>
     <input type="checkbox" id="bg_special_ends" name="bg_special_ends" checked="checked"> <label for="bg_special_ends"><script>_("bg_special_ends");</script></label><br>
     <br>
@@ -75,6 +78,8 @@
     <input type="number" max="500" min="2" id="button_width" name="button_width" value="100"><br>
     <label for="button_height"><script>_("button_height");</script>: </label>
     <input type="number" max="500" min="2" id="button_height" name="button_height" value="50"><br>
+    <label for="button_opacity"><script>_("button_opacity");</script>: </label>
+    <input type="range" name="button_opacity" id="button_opacity" min="0" max="100" value="10" step="1" onChange="document.getElementById('opacity_display').innerHTML = this.value+'%';" /><label id="opacity_display"><script>document.write(widget.preferences.button_opacity+"%");</script></label>
     <br>
     <script>_("drag buttons");</script>
     </fieldset><br>

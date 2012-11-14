@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<widget xmlns="http://www.w3.org/ns/widgets" id="https://github.com/Christoph142/modern-scroll" defaultlocale="en" version="1.1">
+<widget xmlns="http://www.w3.org/ns/widgets" id="https://github.com/Christoph142/modern-scroll" defaultlocale="en" version="1.2">
 
 	<name>modern scroll</name>
 	<author href="http://my.opera.com/christoph142/blog">Christoph D.</author>
@@ -18,9 +18,15 @@
 	
 	<preference name="size" value="10" />
 	<preference name="hover_size" value="14" />
-	<preference name="color" value="#000" />
+	<preference name="color" value="#000000" />
+	<preference name="color_bg" value="#999999" />
 	<preference name="border_radius" value="7" />
+	<preference name="border_width" value="2" />
+	<preference name="border_color" value="#FFFFFF" />
+	<preference name="border_color_rgba" value="rgba(255,255,255,0.5)" />
+	<preference name="border_blur" value="0" />
 	<preference name="show_when" value="2" /><!-- 1 = only_over, 2 = normal, 3 = always -->
+	<preference name="fullscreen_only" value="0" />
 	<preference name="no_bar_bg" value="0" />
 	<preference name="bg_special_ends" value="1" />
 	<preference name="animate_mousescroll" value="0" />
@@ -28,10 +34,12 @@
 	<preference name="buttonposition" value="48" />
 	<preference name="button_height" value="50" />
 	<preference name="button_width" value="100" />
+	<preference name="button_opacity" value="10" />
 	<preference name="show_superbar" value="1" />
 	<preference name="show_superbar_minipage" value="0" />
+	<preference name="superbar_opacity" value="70" />
 	<preference name="vbar_at_left" value="0" />
 	<preference name="hbar_at_top" value="0" />
 	<preference name="contextmenu_show_when" value="2" /><!-- 1 = never, 2 = only over interface, 3 = always -->
-
+	
 </widget>
