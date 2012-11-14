@@ -24,7 +24,7 @@ var strings = {
 	"bg_special_ends" : "Ein Klick auf die Enden der Hintergrund-Leisten scrollt ganz nach oben/unten (bzw. links/rechts) statt um 1 Seite",
 	"show_superbar" : "zeige die \"Superbar\" (kombinierte horizontale und vertikale Bildlaufleiste)",
 	"show_superbar_minipage" : "zeige eine Mini-Version der Seite beim Ziehen der Superbar im Hintergrund",
-	"superbar_opacity" : "Sichtbarkeit der Superbar",
+	"superbar_opacity" : "Sichtbarkeit der Superbar beim Überfahren mit der Maus",
 	"buttons" : "Scroll-Buttons",
 	"show buttons" : "Scroll-Buttons zum Seiten-Anfang und -Ende zeigen",
 	"button_width" : "Breite",
