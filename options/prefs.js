@@ -40,5 +40,7 @@ function getprefs(){
 	}
 	for(i=0; i<selects.length; i++){ document.getElementsByTagName("select")[i].value = widget.preferences[selects[i].id]; }
 	
+	if(document.getElementById("show_buttons").checked) document.getElementById("button_container").style.height = "auto";
+	if(!document.getElementById("show_superbar").checked) document.getElementById("superbar_container").style.height = "0px";
 	document.getElementById("border_radius").max = Math.round(Math.max(document.getElementById("size").value, document.getElementById("hover_size").value)/2);
 }

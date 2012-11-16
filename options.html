@@ -24,28 +24,37 @@
     <h1 id="widget-name"><font size="+3">m</font>odern <font size="+3">s</font>croll</h1>
     <h3><script>_("by");</script> <a href="http://my.opera.com/christoph142/blog/" target="_blank">Christoph D.</a></h3>
 </header>
-
+<br>
 <section>
-    <h3><script>_("Options");</script></h3>
-    
-    <!--table><tr><td width="100%"-->
-    
     <fieldset>
     <h4><script>_("look");</script>:</h4>
-    
-    <script>_("color");</script>: <input type="color" id="color" name="color"><br>
-    <script>_("color_bg");</script>: <input type="color" id="color_bg" name="color_bg" value="#999999"><br>
-    <label for="size"><script>_("size");</script>: </label>
-    <input type="number" max="20" min="1" id="size" name="size" value="10"><br>
-    <label for="hover_size"><script>_("hover_size");</script>: </label>
-    <input type="number" max="30" min="1" id="hover_size" name="hover_size" value="14"><br>
-    <label for="border_radius"><script>_("border_radius");</script>: </label>
-    <input type="number" max="15" min="0" id="border_radius" name="border_radius" value="7"><br>
-    <label for="border_width"><script>_("border_width");</script>: </label>
-    <input type="number" max="10" min="0" id="border_width" name="border_width" value="2"><br>
-    <label for="border_blur"><script>_("border_blur");</script>: </label>
-    <input type="number" max="10" min="0" id="border_blur" name="border_blur" value="0"><br>
-    <script>_("border_color");</script>: <input type="color" id="border_color" name="border_color" value="#FFFFFF"><br>
+    <table><tr>
+    	<td style="text-align:left;"><script>_("color");</script>:</td>
+        <td style="text-align:right;"><input type="color" id="color" name="color"><br></td>
+    </tr><tr>
+    	<td style="text-align:left;"><script>_("color_bg");</script>:</td>
+        <td style="text-align:right;"><input type="color" id="color_bg" name="color_bg" value="#999999"></td>
+    </tr><tr>
+    	<td style="text-align:left;"><label for="size"><script>_("size");</script>:</label></td>
+        <td style="text-align:right;"><input type="number" max="20" min="1" id="size" name="size" value="10"></td>
+    </tr><tr>
+    	<td style="text-align:left;"><label for="hover_size"><script>_("hover_size");</script>:</label></td>
+        <td style="text-align:right;"><input type="number" max="30" min="1" id="hover_size" name="hover_size" value="14"></td>
+    </tr><tr>
+    	<td style="text-align:left;"><label for="border_radius"><script>_("border_radius");</script>:</label></td>
+        <td style="text-align:right;"><input type="number" max="15" min="0" id="border_radius" name="border_radius" value="7"></td>
+    </tr></table>
+    <br>
+    <h4><script>_("border");</script>:</h4>
+    <table><tr><td style="text-align:left; width:33%;">
+        <label for="border_width"><script>_("border_width");</script>: </label>
+        <input type="number" max="10" min="0" id="border_width" name="border_width" value="2">
+    </td><td style="text-align:center; width:34%;">
+        <label for="border_blur"><script>_("border_blur");</script>: </label>
+        <input type="number" max="10" min="0" id="border_blur" name="border_blur" value="0">
+    </td><td style="text-align:right; width:33%;">
+    	<script>_("border_color");</script>: <input type="color" id="border_color" name="border_color" value="#FFFFFF">
+    </td></tr></table>
     <br>
     <input type="checkbox" id="vbar_at_left" name="vbar_at_left"> <label for="vbar_at_left"><script>_("vbar_at_left");</script></label><br>
     <input type="checkbox" id="hbar_at_top" name="hbar_at_top"> <label for="hbar_at_top"><script>_("hbar_at_top");</script></label><br>
@@ -62,28 +71,40 @@
             <td width="40%" style="text-align:center; vertical-align:top;"><script>_("normal");</script></td>
             <td width="30%" style="text-align:right; padding-right:10px; vertical-align:top;"><script>_("always");</script></td>
         </tr>
-    </table>
-    <input type="checkbox" id="fullscreen_only" name="fullscreen_only"> <label for="fullscreen_only"><script>_("fullscreen_only");</script></label><br><br>
+    </table><br>
+    <input type="checkbox" id="fullscreen_only" name="fullscreen_only"> <label for="fullscreen_only"><script>_("fullscreen_only");</script></label><br>
     <input type="checkbox" id="animate_mousescroll" name="animate_mousescroll"> <label for="animate_mousescroll"><script>_("animate_mousescroll");</script></label><br>
     <input type="checkbox" id="bg_special_ends" name="bg_special_ends" checked="checked"> <label for="bg_special_ends"><script>_("bg_special_ends");</script></label><br>
-    <br>
-    <input type="checkbox" id="show_superbar" name="show_superbar" checked="checked"> <label for="show_superbar"><script>_("show_superbar");</script></label><br>
+    </fieldset><br>
+    
+    <fieldset>
+    <h4>Superbar:</h4>
+    <input type="checkbox" id="show_superbar" name="show_superbar" checked="checked" onChange="document.getElementById('superbar_container').style.height=(this.checked?'auto':'0px');"> <label for="show_superbar"><script>_("show_superbar");</script></label>
+    <div id="superbar_container" style="overflow:hidden; height:auto;">
+    <input type="checkbox" id="show_superbar_minipage" name="show_superbar_minipage"> <label for="show_superbar_minipage"><script>_("show_superbar_minipage");</script></label><br><br>
     <label for="superbar_opacity"><script>_("superbar_opacity");</script>: </label>
-    <input type="range" name="superbar_opacity" id="superbar_opacity" min="0" max="100" value="70" step="1" onChange="document.getElementById('superbar_opacity_display').innerHTML = this.value+'%';" /><label id="superbar_opacity_display"><script>document.write(widget.preferences.superbar_opacity+"%");</script></label><br>
-    <input type="checkbox" id="show_superbar_minipage" name="show_superbar_minipage"> <label for="show_superbar_minipage"><script>_("show_superbar_minipage");</script></label><br>
+    <input type="range" name="superbar_opacity" id="superbar_opacity" min="0" max="100" value="70" step="1" onChange="document.getElementById('superbar_opacity_display').innerHTML = this.value+'%';" /><label id="superbar_opacity_display"><script>document.write(widget.preferences.superbar_opacity+"%");</script></label>
+        </td></tr></table><br>
+    </div>
     </fieldset><br>
     
     <fieldset>
     <h4><script>_("buttons");</script>:</h4>
-    <input type="checkbox" id="show_buttons" name="show_buttons"> <label for="show_buttons"><script>_("show buttons");</script></label><br>
-    <label for="button_width"><script>_("button_width");</script>: </label>
-    <input type="number" max="500" min="2" id="button_width" name="button_width" value="100"><br>
-    <label for="button_height"><script>_("button_height");</script>: </label>
-    <input type="number" max="500" min="2" id="button_height" name="button_height" value="50"><br>
-    <label for="button_opacity"><script>_("button_opacity");</script>: </label>
-    <input type="range" name="button_opacity" id="button_opacity" min="0" max="100" value="10" step="1" onChange="document.getElementById('opacity_display').innerHTML = this.value+'%';" /><label id="opacity_display"><script>document.write(widget.preferences.button_opacity+"%");</script></label><br>
-    <br>
-    <script>_("drag buttons");</script>
+    <input type="checkbox" id="show_buttons" name="show_buttons" onChange="document.getElementById('button_container').style.height=(this.checked?'auto':'0px');"> <label for="show_buttons"><script>_("show buttons");</script></label><br>
+    <div id="button_container" style="overflow:hidden; height:0px;"><br>
+    	<table><tr><td style="text-align:left;">
+    	<label for="button_width"><script>_("button_width");</script>: </label>
+        <input type="number" max="500" min="2" id="button_width" name="button_width" value="100">
+        </td><td style="text-align:center;">
+        <label for="button_height"><script>_("button_height");</script>: </label>
+        <input type="number" max="500" min="2" id="button_height" name="button_height" value="50">
+        </td><td style="text-align:right;">
+        <label for="button_opacity"><script>_("button_opacity");</script>: </label>
+        <input type="range" name="button_opacity" id="button_opacity" min="0" max="100" value="10" step="1" onChange="document.getElementById('opacity_display').innerHTML = this.value+'%';" /><label id="opacity_display"><script>document.write(widget.preferences.button_opacity+"%");</script></label>
+        </td></tr></table>
+        <br>
+        <script>_("drag buttons");</script>
+    </div>
     </fieldset><br>
     
     <fieldset>
@@ -100,10 +121,8 @@
     </fieldset><br>
     
     <fieldset>
-    <p>
-    <h4><div id="info">i</div>&nbsp;&nbsp;<script>_("how to");</script>?</h4>
-    <script>_("disable standard bars");</script><br>
-    </p>
+        <h4><div id="info">i</div>&nbsp;&nbsp;<script>_("how to");</script>?</h4>
+        <script>_("disable standard bars");</script>
     </fieldset>
 </section>
 
