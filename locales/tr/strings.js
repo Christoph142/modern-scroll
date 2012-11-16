@@ -19,7 +19,7 @@ var strings = {
 	"only_over" : "fare ile üzerine gelince",
 	"normal" : "üzerine gelince, kaydırırken ve konum veya boyutunu değiştirirken",
 	"always" : "her zaman",
-	"fullscreen_only" : "display modern scroll only in fullscreen mode (does not affect the options to ease adjustment)",
+	"fullscreen_only" : "use modern scroll only in fullscreen mode",
 	"animate_mousescroll" : "fare tekerleği veya klavye ile kaydırırken kaydırma çubuklarını animasyonla (tavsiye edilmez; yavaş)",
 	"bg_special_ends" : "Arkaplan çubuklarının sonlarına tıklamak bir sayfa atlamak yerine sayfanın sonuna/başına gider.",
 	"show_superbar" : "\"superbar\"ı göster (yatay ve dikey kaydırma çubuklarıyla birleştirilmiş)",

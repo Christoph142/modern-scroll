@@ -19,7 +19,7 @@ var strings = {
 	"only_over" : "seulement lorsque planait avec la souris",
 	"normal" : "sur le vol stationnaire, tandis que le défilement et les changements de position ou la taille",
 	"always" : "toujours",
-	"fullscreen_only" : "affiche modern scroll seulement en mode plein écran (n'affecte pas les options pour faciliter l'ajustement)",
+	"fullscreen_only" : "affiche modern scroll seulement en mode plein écran",
 	"animate_mousescroll" : "Anime les barres de défilement pendant le défilement avec la mouse wheel/keyboard (pas recommandé; lent)",
 	"bg_special_ends" : "En cliquant sur ​​les extrémités de barres de fond défile complètement vers le haut/bas (respectivement gauche/droite) au lieu de par une page",
 	"show_superbar" : "Affiche le \"superbar\" (barre de défilement horizontale et verticale combinée)",

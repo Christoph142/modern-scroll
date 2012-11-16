@@ -19,7 +19,7 @@ var strings = {
 	"only_over" : "tylko po najechaniu kursorem",
 	"normal" : "po najechaniu kursorem i podczas przewijania lub zmiany rozmiaru",
 	"always" : "zawsze",
-	"fullscreen_only" : "display modern scroll only in fullscreen mode (does not affect the options to ease adjustment)",
+	"fullscreen_only" : "use modern scroll only in fullscreen mode",
 	"animate_mousescroll" : "Animuj paski przewijania podczas przewijania myszą i klawiaturą (opcja odradzana; spowalnia działanie)",
 	"bg_special_ends" : "Kliknięcie na samym końcu szyny przenosi na kraniec strony (górny, dolny, prawy albo lewy), a nie przewija o jedną stronę",
 	"show_superbar" : "wyświetlaj „arkusz przewijania” — jeden uchwyt do przewijania we wszystkie strony",
