@@ -8,7 +8,10 @@
 
 var timeout;
 
-window.opera.addEventListener("BeforeEvent.DOMContentLoaded", function(){
+window.opera.addEventListener("BeforeEvent.DOMContentLoaded", call_on_load, false);
+window.addEventListener("DOMContentLoaded", function(){	if(!document.getElementById("vbar")) call_on_load(); }, false);
+
+function call_on_load(){
 	if(window.matchMedia("all and (view-mode: minimized)").matches) return; // don't do anything if it's a speed dial
 	if(window.self != window.top) return; // only treat main page not iframes, ads, etc.
 	
@@ -27,11 +30,12 @@ window.opera.addEventListener("BeforeEvent.DOMContentLoaded", function(){
 	}
 	
 	opera.extension.postMessage("reset_contextmenu");
-	window.addEventListener("mousedown", adjust_contextmenu ,false);
+	window.addEventListener("mousedown", adjust_contextmenu, false);
 	opera.contexts.menu.onclick = contextmenu_click;
-}, false);
+}
 
 function inject_css(){
+	//console.log(document.body.scrollbarFaceColor);
 	var w = widget.preferences;
 	var MS_style =
 		"#MS_v_container{ height:100%; width:1px; "+(w.vbar_at_left=="1"?"left":"right")+":0px; top:0px; background:rgba(0,0,0,0); }"+
