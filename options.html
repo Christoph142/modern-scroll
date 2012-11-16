@@ -12,7 +12,11 @@
 	window.addEventListener("DOMContentLoaded",function(){ // include only partially (e.g. !contextmenu) in options:
 		inject_css();
 		add_ui();
-		opera.extension.onmessage = inject_css;
+		opera.extension.onmessage = function(){
+			if(document.getElementById("MS_v_container")) remove_ui();
+			inject_css();
+			add_ui();
+		}
 	},false);
 	</script>
 </head>

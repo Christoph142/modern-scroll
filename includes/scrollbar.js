@@ -27,8 +27,9 @@ function call_on_load(){
 	window.addEventListener("resize", add_or_remove_ui, false);
 	
 	opera.extension.onmessage = function(){
-		add_or_remove_ui();
+		if(document.getElementById("MS_v_container")) remove_ui();
 		inject_css();
+		add_or_remove_ui(); // re-adds it if appropriate
 	}
 	
 	opera.extension.postMessage("reset_contextmenu");
@@ -73,8 +74,6 @@ function inject_css(){
 		style.innerHTML = MS_style;
 		document.getElementsByTagName("head")[0].appendChild(style);
 	}
-	window.scrollBy(1,1);	// makes certain prefs show effect
-	window.scrollBy(-1,-1);	// e.g. button (dis)appearing
 }
 
 function add_bars(){
@@ -167,7 +166,8 @@ function add_functionality(){
 	window.addEventListener("DOMNodeInserted", onDOMNode, false);
 	window.addEventListener("DOMNodeRemoved", onDOMNode, false);
 	window.addEventListener("resize", adjust_bars, false);
-	window.addEventListener("scroll", onScroll, false);
+	if(widget.preferences.animate_mousescroll == "1") window.addEventListener("scroll", reposition_bars, false);
+	else window.addEventListener("scroll", onScroll, false);
 }
 
 function drag_v(){
@@ -417,11 +417,8 @@ function onDOMNode(){
 	timeout = window.setTimeout(adjust_bars, 100);
 }
 function onScroll(){
-	if(widget.preferences.animate_mousescroll == "1") reposition_bars();
-	else{
-		window.clearTimeout(timeout);
-		timeout = window.setTimeout(reposition_bars, 50);
-	}
+	window.clearTimeout(timeout);
+	timeout = window.setTimeout(reposition_bars, 50);
 }
 
 function adjust_contextmenu(){
@@ -454,6 +451,7 @@ function remove_ui(){
 	window.removeEventListener("DOMNodeRemoved", onDOMNode, false);
 	window.removeEventListener("resize", adjust_bars, false);
 	window.removeEventListener("scroll", onScroll, false);
+	window.removeEventListener("scroll", reposition_bars, false);
 	
 	document.body.removeChild(document.getElementById("MS_v_container"));
 	document.body.removeChild(document.getElementById("MS_h_container"));
