@@ -9,7 +9,9 @@
 var timeout;
 
 window.opera.addEventListener("BeforeEvent.DOMContentLoaded", call_on_load, false);
-window.addEventListener("DOMContentLoaded", function(){	if(!document.getElementById("vbar")) call_on_load(); }, false);
+window.addEventListener("DOMContentLoaded", function(){ // local files except options page:
+	if(!document.getElementById("vbar") && !document.URL.match("widget://")){ call_on_load(); }
+}, false);
 
 function call_on_load(){
 	if(window.matchMedia("all and (view-mode: minimized)").matches) return; // don't do anything if it's a speed dial
