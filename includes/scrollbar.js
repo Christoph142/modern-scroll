@@ -6,7 +6,8 @@
 // @exclude http://www.megalab.it/*
 // ==/UserScript==
 
-var timeout;
+var timeout;		// scrolling animation
+var hide_timeout;	// hide bars
 
 window.opera.addEventListener("BeforeEvent.DOMContentLoaded", call_on_load, false);
 window.addEventListener("DOMContentLoaded", function(){ // local files except options page:
@@ -305,7 +306,9 @@ function reposition_bars(){
 	
 	if(vbar_top_before != document.getElementById("MS_vbar").style.top) show_bar("v");
 	if(hbar_left_before != document.getElementById("MS_hbar").style.left) show_bar("h");
-	window.setTimeout(hide_bars, 1000);
+	
+	window.clearTimeout(hide_timeout);
+	hide_timeout = window.setTimeout(hide_bars, 500);
 }
 
 function scroll_bg_v(){
@@ -329,16 +332,14 @@ function scroll_bg_h(){
 	else window.scrollBy(-window.innerWidth, 0);
 }
 
-function show_bars(){
-	if(widget.preferences.show_when == "1") return; // 1 = only onmouseover
-	show_bar("v"); show_bar("h");
-}
+function show_bars(){ show_bar("v"); show_bar("h"); }
 function hide_bars(){
 	if(document.getElementById("MS_vbar").style.opacity == 0.7 || document.getElementById("MS_hbar").style.opacity == 0.7) return; // don't hide if bar is dragged
 	hide_bar("v"); hide_bar("h");
 }
 
 function show_bar(whichone){
+	if(widget.preferences.show_when == "1") return; // 1 = only onmouseover
 	document.getElementById("MS_"+whichone+"bar_bg").style.transition = "opacity 0.25s 0s";
 	if(widget.preferences.no_bar_bg != "1") document.getElementById("MS_"+whichone+"bar_bg").style.opacity = "0.5";
 	if(document.getElementById("MS_"+whichone+"bar").style.opacity == 0.7) return; // don't alter if bar is dragged
