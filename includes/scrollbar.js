@@ -21,7 +21,7 @@ function call_on_load(){
 	
 	if(widget.preferences.fullscreen_only == 0 || window.screen.height === window.outerHeight){
 		add_ui();
-		window.opera.addEventListener("AfterEvent.DOMContentLoaded", adjust_bars, false);
+		window.opera.addEventListener("AfterEvent.DOMContentLoaded", resize_bars, false);
 	}
 	
 	window.addEventListener("resize", add_or_remove_ui, false);
@@ -99,14 +99,11 @@ function add_bars(){
 	document.body.appendChild(v_container); // last in DOM gets displayed top
 }
 
-function adjust_bars(){
-	resize_bars();
-	reposition_bars();
-}
-
+function check_resize(){ window.setTimeout(resize_bars, 200); }
 function resize_bars(){
 	resize_vbar();
 	resize_hbar();
+	reposition_bars();
 }
 
 function resize_vbar(){
@@ -119,6 +116,7 @@ function resize_vbar(){
 		}
 		return;
 	}
+	var vbar_height_before = document.getElementById("MS_vbar").style.height;
 	document.getElementById("MS_vbar").style.height = Math.round(window.innerHeight/(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)/window.innerHeight))+"px"; // resize it
 	
 	if(document.getElementById("MS_vbar").style.display = "none"){
@@ -126,6 +124,7 @@ function resize_vbar(){
 		document.getElementById("MS_vbar_bg").style.display = "inline";
 		document.getElementById("MS_vbar").style.display = "inline";
 	}
+	if(vbar_height_before != document.getElementById("MS_vbar").style.height) show_bar("v");
 }
 
 function resize_hbar(){
@@ -139,6 +138,7 @@ function resize_hbar(){
 		return 0;
 	}
 	
+	var hbar_width_before = document.getElementById("MS_hbar").style.width;
 	document.getElementById("MS_hbar").style.width = Math.round(window.innerWidth/(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)/window.innerWidth))+"px"; // resize it
 	
 	if(document.getElementById("MS_hbar").style.display = "none"){
@@ -146,6 +146,7 @@ function resize_hbar(){
 		document.getElementById("MS_hbar_bg").style.display = "inline";
 		document.getElementById("MS_hbar").style.display = "inline";
 	}
+	if(hbar_width_before != document.getElementById("MS_hbar").style.width) show_bar("h");
 }
 
 function add_functionality(){
@@ -165,7 +166,8 @@ function add_functionality(){
 	
 	window.addEventListener("DOMNodeInserted", onDOMNode, false);
 	window.addEventListener("DOMNodeRemoved", onDOMNode, false);
-	window.addEventListener("resize", adjust_bars, false);
+	window.addEventListener("resize", resize_bars, false);
+	window.opera.addEventListener("AfterEvent.mouseup", check_resize, false);
 	if(widget.preferences.animate_mousescroll == "1") window.addEventListener("scroll", reposition_bars, false);
 	else window.addEventListener("scroll", onScroll, false);
 }
@@ -277,8 +279,9 @@ function drag_super(){
 }
 
 function reposition_bars(){
-	show_bars();
-		
+	var vbar_top_before = document.getElementById("MS_vbar").style.top;
+	var hbar_left_before = document.getElementById("MS_hbar").style.left;
+	
 	if(document.getElementById("MS_vbar").style.display=="inline")
 		document.getElementById("MS_vbar").style.top = Math.round(window.pageYOffset/(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight)*(window.innerHeight-document.getElementById("MS_vbar").offsetHeight))+"px";
 	if(document.getElementById("MS_hbar").style.display=="inline")
@@ -300,6 +303,8 @@ function reposition_bars(){
 	else if(document.getElementById("MS_superbar").style.opacity!="1") //if superbar doesn't get dragged (minipage only -> no bars)
 		window.setTimeout(function(){ document.getElementById("MS_superbar").style.display = null }, 1500);
 	
+	if(vbar_top_before != document.getElementById("MS_vbar").style.top) show_bar("v");
+	if(hbar_left_before != document.getElementById("MS_hbar").style.left) show_bar("h");
 	window.setTimeout(hide_bars, 1000);
 }
 
@@ -414,7 +419,7 @@ function show_minipage(){
 
 function onDOMNode(){
 	window.clearTimeout(timeout);
-	timeout = window.setTimeout(adjust_bars, 100);
+	timeout = window.setTimeout(resize_bars, 100);
 }
 function onScroll(){
 	window.clearTimeout(timeout);
@@ -442,14 +447,15 @@ function add_or_remove_ui(){
 function add_ui(){
 	add_bars();
 	add_buttons();
-	adjust_bars();
+	resize_bars();
 	add_functionality();
 }
 
 function remove_ui(){
 	window.removeEventListener("DOMNodeInserted", onDOMNode, false);
 	window.removeEventListener("DOMNodeRemoved", onDOMNode, false);
-	window.removeEventListener("resize", adjust_bars, false);
+	window.removeEventListener("resize", resize_bars, false);
+	window.opera.removeEventListener("AfterEvent.mouseup", check_resize, false);
 	window.removeEventListener("scroll", onScroll, false);
 	window.removeEventListener("scroll", reposition_bars, false);
 	
