@@ -100,7 +100,7 @@ function add_bars(){
 	document.body.appendChild(v_container); // last in DOM gets displayed top
 }
 
-function check_resize(){ window.setTimeout(resize_bars, 200); }
+function check_resize(){ window.setTimeout(resize_bars, 200); } // needs some time to affect page height if click expands element
 function resize_bars(){
 	resize_vbar();
 	resize_hbar();
@@ -124,8 +124,9 @@ function resize_vbar(){
 		document.getElementById("MS_v_container").style.display = "inline";
 		document.getElementById("MS_vbar_bg").style.display = "inline";
 		document.getElementById("MS_vbar").style.display = "inline";
+		show_bar("v");
 	}
-	if(vbar_height_before != document.getElementById("MS_vbar").style.height) show_bar("v");
+	else if(vbar_height_before != document.getElementById("MS_vbar").style.height) show_bar("v");
 }
 
 function resize_hbar(){
@@ -146,8 +147,9 @@ function resize_hbar(){
 		document.getElementById("MS_h_container").style.display = "inline";
 		document.getElementById("MS_hbar_bg").style.display = "inline";
 		document.getElementById("MS_hbar").style.display = "inline";
+		show_bar("h");
 	}
-	if(hbar_width_before != document.getElementById("MS_hbar").style.width) show_bar("h");
+	else if(hbar_width_before != document.getElementById("MS_hbar").style.width) show_bar("h");
 }
 
 function add_functionality(){
@@ -174,8 +176,9 @@ function add_functionality(){
 }
 
 function drag_v(){
-	window.event.preventDefault(); // prevent focus-loss in site
-	if(window.event.which != 1) return; //if it's not the left mouse button
+	window.event.preventDefault();		// prevent focus-loss in site
+	window.event.stopPropagation();		// prevent bubbling (e.g. prevent drag being triggered on separately opened images)
+	if(window.event.which != 1) return;	// if it's not the left mouse button
 	
 	document.getElementById("MS_vbar").style.opacity = 0.7;
 	document.getElementById("MS_vbar").style.width = widget.preferences.hover_size+"px";
@@ -188,7 +191,7 @@ function drag_v(){
 	document.onmousemove = function(){
 		var posy = window.event.clientY;
 		bar.style.top = ((posy - dragy)<=0? 0 : ((posy - dragy)>=window.innerHeight-bar.offsetHeight?window.innerHeight-bar.offsetHeight : (posy - dragy))) + "px";
-
+		
 		window.scroll(window.pageXOffset, parseInt(bar.style.top)/(window.innerHeight-bar.offsetHeight)*(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight));
 	}
 	document.onmouseup = function(){
@@ -203,8 +206,9 @@ function drag_v(){
 }
 
 function drag_h(){
-	window.event.preventDefault(); // prevent focus-loss in site
-	if(window.event.which != 1) return; //if it's not the left mouse button
+	window.event.preventDefault();		// prevent focus-loss in site
+	window.event.stopPropagation();		// prevent bubbling (e.g. prevent drag being triggered on separately opened images)
+	if(window.event.which != 1) return;	//if it's not the left mouse button
 	
 	document.getElementById("MS_hbar").style.opacity = 0.7;
 	document.getElementById("MS_hbar").style.height = widget.preferences.hover_size+"px";
@@ -232,8 +236,9 @@ function drag_h(){
 }
 
 function drag_super(){
-	window.event.preventDefault(); // prevent focus-loss in site
-	if(window.event.which != 1) return; // if it's not the left mouse button
+	window.event.preventDefault();		// prevent focus-loss in site
+	window.event.stopPropagation();		// prevent bubbling (e.g. prevent drag being triggered on separately opened images)
+	if(window.event.which != 1) return;	// if it's not the left mouse button
 	
 	if(widget.preferences.show_superbar_minipage=="1") show_minipage();
 	
@@ -312,8 +317,9 @@ function reposition_bars(){
 }
 
 function scroll_bg_v(){
-	window.event.preventDefault(); // prevent focus-loss in site
-	if(window.event.which != 1) return; //if it's not the left mouse button
+	window.event.preventDefault();		// prevent focus-loss in site
+	window.event.stopPropagation();		// prevent bubbling (e.g. prevent drag being triggered on separately opened images)
+	if(window.event.which != 1) return;	//if it's not the left mouse button
 	
 	if(window.event.clientY < 50 && widget.preferences.bg_special_ends == "1") window.scrollTo(window.event.clientX, 0);
 	else if((window.innerHeight-window.event.clientY) < 50 && widget.preferences.bg_special_ends == "1")
@@ -323,8 +329,10 @@ function scroll_bg_v(){
 }
 
 function scroll_bg_h(){
-	window.event.preventDefault(); // prevent focus-loss in site
-	if(window.event.which != 1) return; //if it's not the left mouse button
+	window.event.preventDefault();		// prevent focus-loss in site
+	window.event.stopPropagation();		// prevent bubbling (e.g. prevent drag being triggered on separately opened images)
+	if(window.event.which != 1) return;	//if it's not the left mouse button
+	
 	if(window.event.clientX < 50 && widget.preferences.bg_special_ends == "1") window.scrollTo(0, window.event.clientY);
 	else if((window.innerWidth-window.event.clientX) < 50 && widget.preferences.bg_special_ends == "1")
 		window.scrollTo(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth), window.event.clientY);
@@ -371,6 +379,7 @@ function add_buttons(){
 
 function handle_button(whichone){
 	window.event.preventDefault();
+	window.event.stopPropagation();		// prevent bubbling (e.g. prevent drag being triggered on separately opened images)
 	if(window.event.which != 1) return; // if it's not the left mouse button
 		
 	var button = document.getElementById("MS_"+whichone+"button");
