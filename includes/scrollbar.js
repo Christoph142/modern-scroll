@@ -120,7 +120,7 @@ function resize_vbar(){
 	var vbar_height_before = document.getElementById("MS_vbar").style.height;
 	document.getElementById("MS_vbar").style.height = Math.round(window.innerHeight/(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)/window.innerHeight))+"px"; // resize it
 	
-	if(document.getElementById("MS_vbar").style.display = "none"){
+	if(document.getElementById("MS_vbar").style.display != "inline"){
 		document.getElementById("MS_v_container").style.display = "inline";
 		document.getElementById("MS_vbar_bg").style.display = "inline";
 		document.getElementById("MS_vbar").style.display = "inline";
@@ -143,7 +143,7 @@ function resize_hbar(){
 	var hbar_width_before = document.getElementById("MS_hbar").style.width;
 	document.getElementById("MS_hbar").style.width = Math.round(window.innerWidth/(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)/window.innerWidth))+"px"; // resize it
 	
-	if(document.getElementById("MS_hbar").style.display = "none"){
+	if(document.getElementById("MS_hbar").style.display != "inline"){
 		document.getElementById("MS_h_container").style.display = "inline";
 		document.getElementById("MS_hbar_bg").style.display = "inline";
 		document.getElementById("MS_hbar").style.display = "inline";
