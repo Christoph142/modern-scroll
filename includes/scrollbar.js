@@ -25,8 +25,6 @@ function call_on_load(){
 		window.opera.addEventListener("AfterEvent.DOMContentLoaded", resize_bars, false);
 	}
 	
-	window.addEventListener("resize", add_or_remove_ui, false);
-	
 	opera.extension.onmessage = function(){
 		if(document.getElementById("MS_v_container")) remove_ui();
 		inject_css();
@@ -77,8 +75,7 @@ function inject_css(){
 	}
 }
 
-function add_bars(){
-	
+function add_bars(){	
 	var v_container = document.createElement("div");
 	v_container.id = "MS_v_container";
 	v_container.innerHTML = "<div id='MS_vbar_bg'></div><div id='MS_vbar'></div>";
@@ -100,58 +97,6 @@ function add_bars(){
 	document.body.appendChild(v_container); // last in DOM gets displayed top
 }
 
-function check_resize(){ window.setTimeout(resize_bars, 200); } // needs some time to affect page height if click expands element
-function resize_bars(){
-	resize_vbar();
-	resize_hbar();
-	reposition_bars();
-}
-
-function resize_vbar(){
-	//don't display if content fits into window:
-	if(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)<=window.innerHeight){
-		if(document.getElementById("MS_vbar").style.display = "inline"){
-			document.getElementById("MS_v_container").style.display = null;
-			document.getElementById("MS_vbar_bg").style.display = null;
-			document.getElementById("MS_vbar").style.display = null;
-		}
-		return;
-	}
-	var vbar_height_before = document.getElementById("MS_vbar").style.height;
-	document.getElementById("MS_vbar").style.height = Math.round(window.innerHeight/(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)/window.innerHeight))+"px"; // resize it
-	
-	if(document.getElementById("MS_vbar").style.display != "inline"){
-		document.getElementById("MS_v_container").style.display = "inline";
-		document.getElementById("MS_vbar_bg").style.display = "inline";
-		document.getElementById("MS_vbar").style.display = "inline";
-		show_bar("v");
-	}
-	else if(vbar_height_before != document.getElementById("MS_vbar").style.height) show_bar("v");
-}
-
-function resize_hbar(){
-	//don't display if content fits into window:
-	if(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)<=window.innerWidth){
-		if(document.getElementById("MS_hbar").style.display = "inline"){
-			document.getElementById("MS_h_container").style.display = null;
-			document.getElementById("MS_hbar_bg").style.display = null;
-			document.getElementById("MS_hbar").style.display = null;
-		}
-		return 0;
-	}
-	
-	var hbar_width_before = document.getElementById("MS_hbar").style.width;
-	document.getElementById("MS_hbar").style.width = Math.round(window.innerWidth/(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)/window.innerWidth))+"px"; // resize it
-	
-	if(document.getElementById("MS_hbar").style.display != "inline"){
-		document.getElementById("MS_h_container").style.display = "inline";
-		document.getElementById("MS_hbar_bg").style.display = "inline";
-		document.getElementById("MS_hbar").style.display = "inline";
-		show_bar("h");
-	}
-	else if(hbar_width_before != document.getElementById("MS_hbar").style.width) show_bar("h");
-}
-
 function add_functionality(){
 	document.getElementById("MS_vbar_bg").addEventListener("mousedown", scroll_bg_v, true);
 	document.getElementById("MS_hbar_bg").addEventListener("mousedown", scroll_bg_h, true);
@@ -170,15 +115,70 @@ function add_functionality(){
 	window.addEventListener("DOMNodeInserted", onDOMNode, false);
 	window.addEventListener("DOMNodeRemoved", onDOMNode, false);
 	window.addEventListener("resize", resize_bars, false);
-	window.opera.addEventListener("AfterEvent.mouseup", check_resize, false);
+	window.addEventListener("resize", add_or_remove_ui, false);
+	window.addEventListener("mouseup", check_resize, false);
 	if(widget.preferences.animate_mousescroll == "1") window.addEventListener("scroll", reposition_bars, false);
 	else window.addEventListener("scroll", onScroll, false);
 }
 
+function check_resize(){ window.setTimeout(resize_bars, 200); } // needs some time to affect page height if click expands element
+function resize_bars(){
+	resize_vbar();
+	resize_hbar();
+	reposition_bars();
+}
+
+function resize_vbar(){
+	//don't display if content fits into window:
+	if(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight) <= window.innerHeight){
+		if(document.getElementById("MS_vbar").style.display == "inline"){
+			document.getElementById("MS_v_container").style.display = null;
+			document.getElementById("MS_vbar_bg").style.display = null;
+			document.getElementById("MS_vbar").style.display = null;
+		}
+		return;
+	}
+	var vbar_height_before = document.getElementById("MS_vbar").style.height;
+	document.getElementById("MS_vbar").style.height = Math.round(window.innerHeight/(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)/window.innerHeight))+"px"; // resize it
+	
+	if(document.getElementById("MS_vbar").style.display != "inline"){
+		document.getElementById("MS_v_container").style.display = "inline";
+		document.getElementById("MS_vbar_bg").style.display = "inline";
+		document.getElementById("MS_vbar").style.display = "inline";
+		show_bar("v");
+		opera.extension.postMessage("reset_contextmenu");
+	}
+	else if(vbar_height_before != document.getElementById("MS_vbar").style.height) show_bar("v");
+}
+
+function resize_hbar(){
+	//don't display if content fits into window:
+	if(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)<=window.innerWidth){
+		if(document.getElementById("MS_hbar").style.display == "inline"){
+			document.getElementById("MS_h_container").style.display = null;
+			document.getElementById("MS_hbar_bg").style.display = null;
+			document.getElementById("MS_hbar").style.display = null;
+		}
+		return 0;
+	}
+	
+	var hbar_width_before = document.getElementById("MS_hbar").style.width;
+	document.getElementById("MS_hbar").style.width = Math.round(window.innerWidth/(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)/window.innerWidth))+"px"; // resize it
+	
+	if(document.getElementById("MS_hbar").style.display != "inline"){
+		document.getElementById("MS_h_container").style.display = "inline";
+		document.getElementById("MS_hbar_bg").style.display = "inline";
+		document.getElementById("MS_hbar").style.display = "inline";
+		show_bar("h");
+		opera.extension.postMessage("reset_contextmenu");
+	}
+	else if(hbar_width_before != document.getElementById("MS_hbar").style.width) show_bar("h");
+}
+
 function drag_v(){
 	window.event.preventDefault();		// prevent focus-loss in site
-	window.event.stopPropagation();		// prevent bubbling (e.g. prevent drag being triggered on separately opened images)
 	if(window.event.which != 1) return;	// if it's not the left mouse button
+	window.event.stopPropagation();		// prevent bubbling (e.g. prevent drag being triggered on separately opened images)
 	
 	document.getElementById("MS_vbar").style.opacity = 0.7;
 	document.getElementById("MS_vbar").style.width = widget.preferences.hover_size+"px";
@@ -207,8 +207,8 @@ function drag_v(){
 
 function drag_h(){
 	window.event.preventDefault();		// prevent focus-loss in site
+	if(window.event.which != 1) return;	// if it's not the left mouse button
 	window.event.stopPropagation();		// prevent bubbling (e.g. prevent drag being triggered on separately opened images)
-	if(window.event.which != 1) return;	//if it's not the left mouse button
 	
 	document.getElementById("MS_hbar").style.opacity = 0.7;
 	document.getElementById("MS_hbar").style.height = widget.preferences.hover_size+"px";
@@ -237,8 +237,8 @@ function drag_h(){
 
 function drag_super(){
 	window.event.preventDefault();		// prevent focus-loss in site
-	window.event.stopPropagation();		// prevent bubbling (e.g. prevent drag being triggered on separately opened images)
 	if(window.event.which != 1) return;	// if it's not the left mouse button
+	window.event.stopPropagation();		// prevent bubbling (e.g. prevent drag being triggered on separately opened images)
 	
 	if(widget.preferences.show_superbar_minipage=="1") show_minipage();
 	
@@ -306,8 +306,8 @@ function reposition_bars(){
 		document.getElementById("MS_superbar").style.width = document.getElementById("MS_hbar").style.width;
 		document.getElementById("MS_superbar").style.display = "inline";
 	}
-	else if(document.getElementById("MS_superbar").style.opacity!="1") //if superbar doesn't get dragged (minipage only -> no bars)
-		window.setTimeout(function(){ document.getElementById("MS_superbar").style.display = null }, 1500);
+	else if(widget.preferences.show_superbar=="1" && document.getElementById("MS_superbar").style.opacity!="1") //if superbar doesn't get dragged (minipage only -> no bars)
+		window.setTimeout(function(){ document.getElementById("MS_superbar").style.display = null; }, 1500);
 	
 	if(vbar_top_before != document.getElementById("MS_vbar").style.top) show_bar("v");
 	if(hbar_left_before != document.getElementById("MS_hbar").style.left) show_bar("h");
@@ -318,8 +318,8 @@ function reposition_bars(){
 
 function scroll_bg_v(){
 	window.event.preventDefault();		// prevent focus-loss in site
+	if(window.event.which != 1) return;	// if it's not the left mouse button
 	window.event.stopPropagation();		// prevent bubbling (e.g. prevent drag being triggered on separately opened images)
-	if(window.event.which != 1) return;	//if it's not the left mouse button
 	
 	if(window.event.clientY < 50 && widget.preferences.bg_special_ends == "1") window.scrollTo(window.event.clientX, 0);
 	else if((window.innerHeight-window.event.clientY) < 50 && widget.preferences.bg_special_ends == "1")
@@ -330,8 +330,8 @@ function scroll_bg_v(){
 
 function scroll_bg_h(){
 	window.event.preventDefault();		// prevent focus-loss in site
+	if(window.event.which != 1) return;	// if it's not the left mouse button
 	window.event.stopPropagation();		// prevent bubbling (e.g. prevent drag being triggered on separately opened images)
-	if(window.event.which != 1) return;	//if it's not the left mouse button
 	
 	if(window.event.clientX < 50 && widget.preferences.bg_special_ends == "1") window.scrollTo(0, window.event.clientY);
 	else if((window.innerWidth-window.event.clientX) < 50 && widget.preferences.bg_special_ends == "1")
@@ -378,9 +378,9 @@ function add_buttons(){
 }
 
 function handle_button(whichone){
-	window.event.preventDefault();
+	window.event.preventDefault();		// prevent focus-loss in site
+	if(window.event.which != 1) return;	// if it's not the left mouse button
 	window.event.stopPropagation();		// prevent bubbling (e.g. prevent drag being triggered on separately opened images)
-	if(window.event.which != 1) return; // if it's not the left mouse button
 		
 	var button = document.getElementById("MS_"+whichone+"button");
 	var otherbutton = document.getElementById("MS_"+(whichone=="up"?"down":"up")+"button");
@@ -437,6 +437,7 @@ function onScroll(){
 }
 
 function adjust_contextmenu(){
+	window.event.stopPropagation();	// prevent bubbling (e.g. prevent drag being triggered on separately opened images)
 	if(window.event.which != 3 || widget.preferences.contextmenu_show_when != "2") return; // only right mouse button:
 	if(window.event.target.id.substr(0,3) == "MS_") opera.extension.postMessage("show_contextmenu");
 	else opera.extension.postMessage("hide_contextmenu");
@@ -455,6 +456,7 @@ function add_or_remove_ui(){
 }
 
 function add_ui(){
+	if(document.getElementById("MS_v_container")) return; // stop if ui is already available
 	add_bars();
 	add_buttons();
 	resize_bars();
@@ -465,9 +467,13 @@ function remove_ui(){
 	window.removeEventListener("DOMNodeInserted", onDOMNode, false);
 	window.removeEventListener("DOMNodeRemoved", onDOMNode, false);
 	window.removeEventListener("resize", resize_bars, false);
-	window.opera.removeEventListener("AfterEvent.mouseup", check_resize, false);
+	window.removeEventListener("resize", add_or_remove_ui, false);
+	window.removeEventListener("mouseup", check_resize, false);
 	window.removeEventListener("scroll", onScroll, false);
 	window.removeEventListener("scroll", reposition_bars, false);
+	
+	window.clearTimeout(timeout);
+	window.clearTimeout(hide_timeout);
 	
 	document.body.removeChild(document.getElementById("MS_v_container"));
 	document.body.removeChild(document.getElementById("MS_h_container"));
