@@ -83,9 +83,9 @@
     
     <fieldset>
     <h4>Superbar:</h4>
-    <input type="checkbox" id="show_superbar" name="show_superbar" checked="checked" onChange="document.getElementById('superbar_container').style.height=(this.checked?'auto':'0px');"> <label for="show_superbar"><script>_("show_superbar");</script></label>
+    <input type="checkbox" id="show_superbar" name="show_superbar" onChange="document.getElementById('superbar_container').style.height=(this.checked?'auto':'0px');"> <label for="show_superbar"><script>_("show_superbar");</script></label>
     <div id="superbar_container" style="overflow:hidden; height:auto;">
-    <input type="checkbox" id="show_superbar_minipage" name="show_superbar_minipage"> <label for="show_superbar_minipage"><script>_("show_superbar_minipage");</script></label><br><br>
+    <input type="checkbox" id="show_superbar_minipage" name="show_superbar_minipage" checked="checked"> <label for="show_superbar_minipage"><script>_("show_superbar_minipage");</script></label><br><br>
     <label for="superbar_opacity"><script>_("superbar_opacity");</script>: </label>
     <input type="range" name="superbar_opacity" id="superbar_opacity" min="0" max="100" value="70" step="1" onChange="document.getElementById('superbar_opacity_display').innerHTML = this.value+'%';" /><label id="superbar_opacity_display"><script>document.write(widget.preferences.superbar_opacity+"%");</script></label>
         </td></tr></table><br>
