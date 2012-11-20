@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<widget xmlns="http://www.w3.org/ns/widgets" id="https://github.com/Christoph142/modern-scroll" defaultlocale="en" version="1.2.1">
+<widget xmlns="http://www.w3.org/ns/widgets" id="https://github.com/Christoph142/modern-scroll" defaultlocale="en" version="1.3">
 
 	<name>modern scroll</name>
 	<author href="http://my.opera.com/christoph142/blog">Christoph D.</author>
@@ -29,7 +29,7 @@
 	<preference name="fullscreen_only" value="0" />
 	<preference name="no_bar_bg" value="0" />
 	<preference name="bg_special_ends" value="1" />
-	<preference name="animate_mousescroll" value="0" />
+	<preference name="animate_mousescroll" value="1" />
 	<preference name="show_buttons" value="0" />
 	<preference name="buttonposition" value="48" />
 	<preference name="button_height" value="50" />
