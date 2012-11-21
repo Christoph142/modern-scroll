@@ -12,11 +12,7 @@
 	window.addEventListener("DOMContentLoaded",function(){ // include only partially (e.g. !contextmenu) in options:
 		inject_css();
 		add_ui();
-		opera.extension.onmessage = function(){
-			if(document.getElementById("MS_v_container")) remove_ui();
-			inject_css();
-			add_ui();
-		}
+		opera.extension.onmessage = function(){ remove_ui(); inject_css(); add_ui(); }
 	},false);
 	</script>
 </head>
@@ -47,22 +43,32 @@
     </tr><tr>
     	<td style="text-align:left;"><label for="border_radius"><script>_("border_radius");</script>:</label></td>
         <td style="text-align:right;"><input type="number" max="15" min="0" id="border_radius" name="border_radius" value="7"></td>
+    </tr><tr>
+    	<td style="text-align:left;"><label for="gap"><script>_("gap");</script>:</label></td>
+        <td style="text-align:right;"><input type="number" max="5" min="0" id="gap" name="gap" value="2"></td>
     </tr></table>
     <br>
     <h4><script>_("border");</script>:</h4>
-    <table><tr><td style="text-align:left; width:33%;">
+    <table><tr><td style="text-align:left;">
         <label for="border_width"><script>_("border_width");</script>: </label>
         <input type="number" max="10" min="0" id="border_width" name="border_width" value="2">
-    </td><td style="text-align:center; width:34%;">
+    </td><td style="text-align:center;">
         <label for="border_blur"><script>_("border_blur");</script>: </label>
         <input type="number" max="10" min="0" id="border_blur" name="border_blur" value="0">
-    </td><td style="text-align:right; width:33%;">
+    </td><td style="text-align:right;">
     	<script>_("border_color");</script>: <input type="color" id="border_color" name="border_color" value="#FFFFFF">
     </td></tr></table>
     <br>
-    <input type="checkbox" id="vbar_at_left" name="vbar_at_left"> <label for="vbar_at_left"><script>_("vbar_at_left");</script></label><br>
-    <input type="checkbox" id="hbar_at_top" name="hbar_at_top"> <label for="hbar_at_top"><script>_("hbar_at_top");</script></label><br>
-    <input type="checkbox" id="no_bar_bg" name="no_bar_bg"> <label for="no_bar_bg"><script>_("no_bar_bg");</script></label><br>
+    <table class="c"><tr>
+        <td><input type="checkbox" id="vbar_at_left" name="vbar_at_left"></td>
+        <td><label for="vbar_at_left"><script>_("vbar_at_left");</script></label></td>
+    </tr><tr>
+    	<td><input type="checkbox" id="hbar_at_top" name="hbar_at_top"></td>
+        <td><label for="hbar_at_top"><script>_("hbar_at_top");</script></label></td>
+    </tr><tr>
+    	<td><input type="checkbox" id="no_bar_bg" name="no_bar_bg"></td>
+        <td><label for="no_bar_bg"><script>_("no_bar_bg");</script></label></td>
+    </tr></table>
     </fieldset><br>
     
     <fieldset>
@@ -76,9 +82,19 @@
             <td width="30%" style="text-align:right; padding-right:10px; vertical-align:top;"><script>_("always");</script></td>
         </tr>
     </table><br>
-    <input type="checkbox" id="fullscreen_only" name="fullscreen_only"> <label for="fullscreen_only"><script>_("fullscreen_only");</script></label><br>
-    <input type="checkbox" id="animate_mousescroll" name="animate_mousescroll"> <label for="animate_mousescroll"><script>_("animate_mousescroll");</script></label><br>
-    <input type="checkbox" id="bg_special_ends" name="bg_special_ends" checked="checked"> <label for="bg_special_ends"><script>_("bg_special_ends");</script></label><br>
+    <table class="c"><tr>
+        <td><input type="checkbox" id="fullscreen_only" name="fullscreen_only"></td>
+        <td><label for="fullscreen_only"><script>_("fullscreen_only");</script></label></td>
+    </tr><tr>
+    	<td><input type="checkbox" id="animate_mousescroll" name="animate_mousescroll" checked="checked"></td>
+        <td><label for="animate_mousescroll"><script>_("animate_mousescroll");</script></label></td>
+    </tr><tr>
+    	<td><input type="checkbox" id="bg_special_ends" name="bg_special_ends" checked="checked"></td>
+        <td><label for="bg_special_ends"><script>_("bg_special_ends");</script></label></td>
+    </tr><tr>
+    	<td><input type="checkbox" id="container" name="container"></td>
+        <td><label for="container"><script>_("container1");</script></label> <input type="number" max="100" min="1" id="container_size" value="30"> <label for="container"><script>_("container2");</script></label></td>
+    </tr></table>
     </fieldset><br>
     
     <fieldset>

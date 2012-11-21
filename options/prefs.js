@@ -20,9 +20,9 @@ window.addEventListener("change",function(event){
 },false);
 
 window.addEventListener("mousedown",function(){
-	if(event.target.id == "MS_upbutton" || event.target.id == "MS_downbutton"){
+	if(event.target.id == "ms_upbutton" || event.target.id == "ms_downbutton"){
 		window.onmouseup = function(){
-			widget.preferences.buttonposition = 100*document.getElementById("MS_downbutton").offsetLeft/window.innerWidth;
+			widget.preferences.buttonposition = 100*document.getElementById("ms_downbutton").offsetLeft/window.innerWidth;
 			opera.extension.postMessage("update");
 			window.onmouseup = null;
 		}

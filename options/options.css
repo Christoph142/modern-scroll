@@ -10,5 +10,8 @@ footer		{ display:block; text-align:center; padding:0 50px; margin:30px 50px 0 5
 h1			{ margin:0px; margin-bottom:-10px; font-size:24px; }
 h3			{ margin-bottom:5px; }
 table		{ width:100%; }
+table.c td	{ vertical-align:top; }
+table.c td:first-child	{ width:20px; }
+input[type=number]{ width:40px; }
 fieldset	{ border:none; background:rgba(150,160,200,0.25); border-radius:2px; padding:0px 20px 15px 20px; }
 #info		{ height:22px; width:22px; background-color:#FFF; display:inline-block; border-radius:11px; text-align:center; vertical-align:top; }
