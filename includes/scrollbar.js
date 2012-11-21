@@ -26,7 +26,7 @@ function call_on_load(){
 	}
 	
 	opera.extension.onmessage = function(){
-		if(document.getElementById("ms_v_container")) remove_ui();
+		remove_ui();
 		inject_css();
 		add_or_remove_ui(); // re-adds it if appropriate
 	}
@@ -40,14 +40,20 @@ function inject_css(){
 	//console.log(document.body.scrollbarFaceColor);
 	var w = widget.preferences;
 	var ms_style =
-		"#ms_v_container{ height:100%; width:1px; "+(w.vbar_at_left=="1"?"left":"right")+":0px; top:0px; background:rgba(0,0,0,0); }"+
-		"#ms_h_container{ height:1px; width:100%; left:0px; "+(w.hbar_at_top=="1"?"top":"bottom")+":0px; background:rgba(0,0,0,0); }"+
-		"#ms_vbar_bg, #ms_hbar_bg{ background:"+w.color_bg+"; opacity:"+((w.show_when=="3" && w.no_bar_bg != "1")?"0.5":"0")+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" !important; border-radius:"+w.border_radius+"px; transition:opacity 0.5s 1s, width 0.25s, height 0.25s; }"+
-		"#ms_vbar_bg{ "+(w.vbar_at_left=="1"?"left":"right")+":0px; top:0px; height:100%; width:"+w.size+"px; }"+
-		"#ms_hbar_bg{ left:0px; "+(w.hbar_at_top=="1"?"top":"bottom")+":0px; height:"+w.size+"px; width:100%; }"+
-		"#ms_vbar, #ms_hbar{ background:"+w.color+"; opacity:"+((w.show_when=="3")?"0.5":"0")+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" !important; border-radius:"+w.border_radius+"px; transition:opacity 0.5s 1s, width 0.25s, height 0.25s; }"+
-		"#ms_vbar{ "+(w.vbar_at_left=="1"?"left":"right")+":0px; top:0px; height:30px; min-height:30px; width:"+w.size+"px; }"+
-		"#ms_hbar{ left:0px; "+(w.hbar_at_top=="1"?"top":"bottom")+":0px; width:30px; min-width:30px; height:"+w.size+"px; }"+
+		"#ms_v_container{ height:100%; width:"+(w.container=="1"?w.container_size:"1")+"px; "+(w.vbar_at_left=="1"?"left":"right")+":0px; top:0px; background:rgba(0,0,0,0); }"+
+		"#ms_h_container{ height:"+(w.container=="1"?w.container_size:"1")+"px; width:100%; left:0px; "+(w.hbar_at_top=="1"?"top":"bottom")+":0px; background:rgba(0,0,0,0); }"+
+		"#ms_vbar_bg, #ms_hbar_bg{ opacity:"+((w.show_when=="3" && w.no_bar_bg != "1")?"0.5":"0")+"; transition:opacity 0.5s 1s; }"+
+		"#ms_vbar_bg{ top:0px; height:100%; "+(w.vbar_at_left=="1"?"left":"right")+":0px; }"+
+		"#ms_hbar_bg{ left:0px; width:100%; "+(w.hbar_at_top=="1"?"top":"bottom")+":0px; }"+
+		"#ms_vbar_bg_ui, #ms_hbar_bg_ui{ background:"+w.color_bg+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" !important; border-radius:"+w.border_radius+"px; }"+
+		"#ms_vbar_bg_ui{ margin-"+(w.vbar_at_left=="1"?"left":"right")+":"+(w.gap)+"px; height:100%; width:"+w.size+"px; transition:width 0.25s; }"+
+		"#ms_hbar_bg_ui{ margin-"+(w.hbar_at_top=="1"?"top":"bottom")+":"+(w.gap)+"px; width:100%; height:"+w.size+"px; transition:height 0.25s; }"+
+		"#ms_vbar, #ms_hbar{ opacity:"+((w.show_when=="3")?"0.5":"0")+"; transition:opacity 0.5s 1s; }"+
+		"#ms_vbar{ top:0px; height:30px; min-height:30px; "+(w.vbar_at_left=="1"?"left":"right")+":0px; }"+
+		"#ms_hbar{ left:0px; width:30px; min-width:30px; "+(w.hbar_at_top=="1"?"top":"bottom")+":0px; }"+
+		"#ms_vbar_ui, #ms_hbar_ui{ background:"+w.color+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" !important; border-radius:"+w.border_radius+"px; }"+
+		"#ms_vbar_ui{ height:100%; width:"+w.size+"px; margin-"+(w.vbar_at_left=="1"?"left":"right")+":"+(w.gap)+"px; transition:width 0.25s; }"+
+		"#ms_hbar_ui{ width:100%; height:"+w.size+"px; margin-"+(w.hbar_at_top=="1"?"top":"bottom")+":"+(w.gap)+"px; transition:height 0.25s; }"+
 		"#ms_superbar{ width:100px; background:"+(w.show_superbar_minipage==0?w.color:"rgba(0,0,0,0)")+"; opacity:"+((w.show_when=="3")?"0.5":"0")+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" "+(w.show_superbar_minipage==1?", 0 0 200px 10px #999":"")+" !important; border-radius:"+w.border_radius+"px; transition:opacity 0.5s 1s; min-width:30px; min-height:30px; }"+
 		"#ms_page_cover{ left:0px; top:0px; width:100%; height:100%; background:rgba(0,0,0,0); padding:0px; margin:0px; }"+
 		"#ms_upbutton, #ms_downbutton{ height:"+w.button_height*2+"px; width:"+w.button_width+"px; left:"+w.buttonposition+"%; opacity:"+w.button_opacity/100+"; background:"+w.color+"; border-radius:50px; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5); transition:opacity 0.5s; }"+
@@ -55,8 +61,8 @@ function inject_css(){
 		"#ms_downbutton{ bottom:-"+w.button_height+"px; }"+
 		"#ms_minipage_canvas{ top:0px; left:0px; background:#000; }"+
 		
-		"#ms_v_container:hover #ms_vbar, #ms_v_container:hover #ms_vbar_bg{ width:"+w.hover_size+"px; }"+
-		"#ms_h_container:hover #ms_hbar, #ms_h_container:hover #ms_hbar_bg{ height:"+w.hover_size+"px; }"+
+		"#ms_v_container:hover #ms_vbar_ui, #ms_v_container:hover #ms_vbar_bg_ui{ width:"+w.hover_size+"px; transition:width 0.1s; }"+
+		"#ms_h_container:hover #ms_hbar_ui, #ms_h_container:hover #ms_hbar_bg_ui{ height:"+w.hover_size+"px; transition:height 0.1s; }"+
 		"#ms_v_container:hover #ms_vbar, #ms_h_container:hover #ms_hbar, #ms_v_container:hover #ms_superbar, #ms_h_container:hover #ms_superbar{ opacity:0.5; transition:opacity 0.1s 0s; }"+
 		"#ms_v_container:hover #ms_vbar_bg, #ms_h_container:hover #ms_hbar_bg{ opacity:"+((w.no_bar_bg == "1")?"0":"0.5")+"; transition:opacity 0.1s 0s; }"+
 		"#ms_v_container #ms_vbar:hover, #ms_h_container #ms_hbar:hover, #ms_upbutton:hover, #ms_downbutton:hover{ opacity:0.7; transition:opacity 0.1s 0s; }"+
@@ -78,11 +84,11 @@ function inject_css(){
 function add_bars(){	
 	var v_container = document.createElement("div");
 	v_container.id = "ms_v_container";
-	v_container.innerHTML = "<div id='ms_vbar_bg'></div><div id='ms_vbar'></div>";
+	v_container.innerHTML = "<div id='ms_vbar_bg'><div id='ms_vbar_bg_ui'></div></div><div id='ms_vbar'><div id='ms_vbar_ui'></div></div>";
 	
 	var h_container = document.createElement("div");
 	h_container.id = "ms_h_container";
-	h_container.innerHTML = "<div id='ms_hbar_bg'></div><div id='ms_hbar'></div>";
+	h_container.innerHTML = "<div id='ms_hbar_bg'><div id='ms_hbar_bg_ui'></div></div><div id='ms_hbar'><div id='ms_hbar_ui'></div></div>";
 	
 	var superbar = document.createElement("div");
 	superbar.id = "ms_superbar";
@@ -183,8 +189,8 @@ function drag_v(){
 	window.event.stopPropagation();		// prevent bubbling (e.g. prevent drag being triggered on separately opened images)
 	
 	document.getElementById("ms_vbar").style.opacity = 0.7;
-	document.getElementById("ms_vbar").style.width = widget.preferences.hover_size+"px";
-	document.getElementById("ms_vbar_bg").style.width = widget.preferences.hover_size+"px";
+	document.getElementById("ms_vbar_ui").style.width = widget.preferences.hover_size+"px";
+	document.getElementById("ms_vbar_bg_ui").style.width = widget.preferences.hover_size+"px";
 	document.getElementById("ms_page_cover").style.display = "inline";
 	show_bars();
 		
@@ -199,8 +205,8 @@ function drag_v(){
 	document.onmouseup = function(){
 		document.getElementById("ms_page_cover").style.display = null;
 		document.getElementById("ms_vbar").style.opacity = null;
-		document.getElementById("ms_vbar").style.width = null;
-		document.getElementById("ms_vbar_bg").style.width = null;
+		document.getElementById("ms_vbar_ui").style.width = null;
+		document.getElementById("ms_vbar_bg_ui").style.width = null;
 		hide_bars();
 		document.onmousemove = null;
 		document.onmouseup = null;
@@ -213,8 +219,8 @@ function drag_h(){
 	window.event.stopPropagation();		// prevent bubbling (e.g. prevent drag being triggered on separately opened images)
 	
 	document.getElementById("ms_hbar").style.opacity = 0.7;
-	document.getElementById("ms_hbar").style.height = widget.preferences.hover_size+"px";
-	document.getElementById("ms_hbar_bg").style.height = widget.preferences.hover_size+"px";
+	document.getElementById("ms_hbar_ui").style.height = widget.preferences.hover_size+"px";
+	document.getElementById("ms_hbar_bg_ui").style.height = widget.preferences.hover_size+"px";
 	document.getElementById("ms_page_cover").style.display = "inline";
 	show_bars();
 		
@@ -229,8 +235,8 @@ function drag_h(){
 	document.onmouseup = function(){
 		document.getElementById("ms_page_cover").style.display = null;
 		document.getElementById("ms_hbar").style.opacity = null;
-		document.getElementById("ms_hbar").style.height = null;
-		document.getElementById("ms_hbar_bg").style.height = null;
+		document.getElementById("ms_hbar_ui").style.height = null;
+		document.getElementById("ms_hbar_bg_ui").style.height = null;
 		hide_bars();
 		document.onmousemove = null;
 		document.onmouseup = null;
@@ -412,15 +418,27 @@ function show_minipage(){
 	document.getElementById("ms_hbar_bg").style.display = null;
 	document.getElementById("ms_vbar").style.display = null;
 	document.getElementById("ms_hbar").style.display = null;
-	document.getElementById("ms_upbutton").style.display = null;
-	document.getElementById("ms_downbutton").style.display = null;
+	if(document.getElementById("ms_upbutton")){
+		document.getElementById("ms_upbutton").style.display = null;
+		document.getElementById("ms_downbutton").style.display = null;
+	}
 	
 	document.body.style.transformOrigin = "0% 0%";
 	document.body.style.transform = "scale("+(window.innerWidth/Math.max(document.body.scrollWidth,document.documentElement.scrollWidth,window.innerWidth))+","+(window.innerHeight/Math.max(document.body.scrollHeight,document.documentElement.scrollHeight,window.innerHeight))+")";
 	window.scroll(0,0);
+	if(document.body.className=="zoom"){
+		var img = document.body.firstChild;
+		img.style.transformOrigin = "0% 0%";
+		img.style.transform = "scale("+(window.innerWidth/img.scrollWidth)+","+(window.innerHeight/img.scrollHeight)+")";
+		window.scroll(img.offsetLeft,img.offsetTop);
+	}	
 	document.getElementById("ms_superbar").style.display = null;
 	
 	opera.extension.getScreenshot(function(imageData){
+		if(document.body.className=="zoom"){
+			document.body.firstChild.style.transformOrigin = null;
+			document.body.firstChild.style.transform = null;
+		}
 		document.body.style.transform = null;
 		document.body.style.transformOrigin = null;
 		document.getElementById("ms_superbar").style.display = "inline";
@@ -460,12 +478,13 @@ function add_or_remove_ui(){
 function add_ui(){
 	if(document.getElementById("ms_v_container")) return; // stop if ui is already available
 	add_bars();
-	if(widget.preferences.show_buttons == "1") add_buttons();
-	resize_bars();
+	if(widget.preferences.show_buttons == "1") add_buttons(); // have to be inserted before resize_bars()
+	resize_bars();	
 	add_functionality();
 }
 
 function remove_ui(){
+	if(!document.getElementById("ms_v_container")) return;
 	window.removeEventListener("DOMNodeInserted", onDOMNode, false);
 	window.removeEventListener("DOMNodeRemoved", onDOMNode, false);
 	window.removeEventListener("resize", resize_bars, false);
@@ -481,7 +500,7 @@ function remove_ui(){
 	document.body.removeChild(document.getElementById("ms_h_container"));
 	document.body.removeChild(document.getElementById("ms_page_cover"));
 	document.body.removeChild(document.getElementById("ms_superbar"));
-	if(widget.preferences.show_buttons == "1"){
+	if(document.getElementById("ms_upbutton")){
 		document.body.removeChild(document.getElementById("ms_upbutton"));
 		document.body.removeChild(document.getElementById("ms_downbutton"));
 	}
