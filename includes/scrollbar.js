@@ -115,7 +115,7 @@ function add_functionality(){
 	document.getElementById("ms_hbar_bg").addEventListener("mousewheel", mouse_scroll_x, true);
 	document.getElementById("ms_hbar").addEventListener("mousewheel", mouse_scroll_x, true);
 	
-	if(widget.preferences.show_buttons == "1"){
+	if(document.getElementById("ms_upbutton")){
 		document.getElementById("ms_upbutton").addEventListener("mousedown", function(){ handle_button("up"); }, true);
 		document.getElementById("ms_downbutton").addEventListener("mousedown", function(){ handle_button("down"); }, true);
 	}
@@ -301,11 +301,11 @@ function reposition_bars(){
 	if(document.getElementById("ms_hbar").style.display=="inline")
 		document.getElementById("ms_hbar").style.left = Math.round(window.pageXOffset/(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)-window.innerWidth)*(window.innerWidth-document.getElementById("ms_hbar").offsetWidth))+"px";
 	
-	if(window.pageYOffset > 0 && widget.preferences.show_buttons=="1") document.getElementById("ms_upbutton").style.display = "inline";
-	else if(widget.preferences.show_buttons == "1") document.getElementById("ms_upbutton").style.display = null;
-	if(window.pageYOffset+window.innerHeight < Math.max(document.body.scrollHeight,document.documentElement.scrollHeight) && widget.preferences.show_buttons=="1")
+	if(window.pageYOffset > 0 && document.getElementById("ms_upbutton")) document.getElementById("ms_upbutton").style.display = "inline";
+	else if(document.getElementById("ms_upbutton")) document.getElementById("ms_upbutton").style.display = null;
+	if(window.pageYOffset+window.innerHeight < Math.max(document.body.scrollHeight,document.documentElement.scrollHeight) && document.getElementById("ms_downbutton"))
 		document.getElementById("ms_downbutton").style.display = "inline";
-	else if(widget.preferences.show_buttons == "1") document.getElementById("ms_downbutton").style.display = null;
+	else if(document.getElementById("ms_downbutton")) document.getElementById("ms_downbutton").style.display = null;
 	
 	if(document.getElementById("ms_vbar").style.display == "inline" && document.getElementById("ms_hbar").style.display == "inline" && widget.preferences.show_superbar=="1"){
 		document.getElementById("ms_superbar").style.top = document.getElementById("ms_vbar").style.top;
@@ -386,9 +386,9 @@ function add_buttons(){
 }
 
 function handle_button(whichone){
-	window.event.preventDefault();		// prevent focus-loss in site
+	window.event.preventDefault();	// prevent focus-loss in site
 	if(window.event.which != 1) return;	// if it's not the left mouse button
-	window.event.stopPropagation();		// prevent bubbling (e.g. prevent drag being triggered on separately opened images)
+	if(!document.URL.match("widget://")) window.event.stopPropagation(); // prevent bubbling (e.g. prevent drag being triggered on separately opened images); provide event in options page (to save dragged button position)
 		
 	var button = document.getElementById("ms_"+whichone+"button");
 	var otherbutton = document.getElementById("ms_"+(whichone=="up"?"down":"up")+"button");
