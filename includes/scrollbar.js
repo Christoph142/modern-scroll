@@ -14,7 +14,7 @@ window.addEventListener("DOMContentLoaded", function(){ // local files except op
 	if(!document.getElementById("vbar") && !document.URL.match("widget://")){ call_on_load(); }
 }, false);
 
-function call_on_load(){	
+function call_on_load(){
 	if(window.matchMedia("all and (view-mode: minimized)").matches) return; // don't do anything if it's a speed dial
 	if(window.self != window.top) return; // only treat main page not iframes, ads, etc.
 	
@@ -68,6 +68,11 @@ function inject_css(){
 		"#ms_v_container #ms_vbar:hover, #ms_h_container #ms_hbar:hover, #ms_upbutton:hover, #ms_downbutton:hover{ opacity:0.7; transition:opacity 0.1s 0s; }"+
 		"#ms_v_container #ms_vbar_bg:hover, #ms_h_container #ms_hbar_bg:hover{ opacity:"+((w.no_bar_bg == "1")?"0":"0.51")+"; transition:opacity 0.1s 0s; }"+
 		"#ms_superbar:hover{ opacity:"+w.superbar_opacity/100+"; transition:opacity 0.25s 0s; }"+
+		
+		".dragged #ms_vbar, .dragged #ms_hbar, .dragged #ms_vbar_bg, .dragged #ms_hbar_bg{ opacity:0.7; }"+
+		".dragged #ms_vbar_ui, .dragged #ms_vbar_bg_ui{ width:"+w.hover_size+"px; }"+
+		".dragged #ms_hbar_ui, .dragged #ms_hbar_bg_ui{ height:"+w.hover_size+"px; }"+
+		"#ms_superbar.dragged{ opacity:"+(w.show_superbar_minipage=="1"?1:(w.superbar_opacity/100))+"; }"+
 		
 		"#ms_v_container, #ms_h_container, #ms_vbar_bg, #ms_hbar_bg, #ms_vbar, #ms_hbar, #ms_superbar, #ms_page_cover, #ms_upbutton, #ms_downbutton, #ms_minipage_canvas{ position:fixed; z-index:2147483647; border:none; padding:0; margin:0; display:none; }";
 	
@@ -188,11 +193,8 @@ function drag_v(){
 	if(window.event.which != 1) return;	// if it's not the left mouse button
 	window.event.stopPropagation();		// prevent bubbling (e.g. prevent drag being triggered on separately opened images)
 	
-	document.getElementById("ms_vbar").style.opacity = 0.7;
-	document.getElementById("ms_vbar_ui").style.width = widget.preferences.hover_size+"px";
-	document.getElementById("ms_vbar_bg_ui").style.width = widget.preferences.hover_size+"px";
 	document.getElementById("ms_page_cover").style.display = "inline";
-	show_bars();
+	document.getElementById("ms_v_container").className = "dragged";
 		
 	var bar = document.getElementById("ms_vbar");
 	var dragy = window.event.clientY - parseInt(bar.style.top);
@@ -204,10 +206,8 @@ function drag_v(){
 	}
 	document.onmouseup = function(){
 		document.getElementById("ms_page_cover").style.display = null;
-		document.getElementById("ms_vbar").style.opacity = null;
-		document.getElementById("ms_vbar_ui").style.width = null;
-		document.getElementById("ms_vbar_bg_ui").style.width = null;
-		hide_bars();
+		document.getElementById("ms_v_container").className = null;
+		
 		document.onmousemove = null;
 		document.onmouseup = null;
 	};
@@ -218,11 +218,8 @@ function drag_h(){
 	if(window.event.which != 1) return;	// if it's not the left mouse button
 	window.event.stopPropagation();		// prevent bubbling (e.g. prevent drag being triggered on separately opened images)
 	
-	document.getElementById("ms_hbar").style.opacity = 0.7;
-	document.getElementById("ms_hbar_ui").style.height = widget.preferences.hover_size+"px";
-	document.getElementById("ms_hbar_bg_ui").style.height = widget.preferences.hover_size+"px";
 	document.getElementById("ms_page_cover").style.display = "inline";
-	show_bars();
+	document.getElementById("ms_h_container").className = "dragged";
 		
 	var bar = document.getElementById("ms_hbar");
 	var dragx = window.event.clientX - parseInt(bar.style.left);
@@ -234,10 +231,8 @@ function drag_h(){
 	};
 	document.onmouseup = function(){
 		document.getElementById("ms_page_cover").style.display = null;
-		document.getElementById("ms_hbar").style.opacity = null;
-		document.getElementById("ms_hbar_ui").style.height = null;
-		document.getElementById("ms_hbar_bg_ui").style.height = null;
-		hide_bars();
+		document.getElementById("ms_h_container").className = null;
+		
 		document.onmousemove = null;
 		document.onmouseup = null;
 	};
@@ -250,7 +245,7 @@ function drag_super(){
 	
 	if(widget.preferences.show_superbar_minipage=="1") show_minipage();
 	
-	document.getElementById("ms_superbar").style.opacity = widget.preferences.show_superbar_minipage=="1"?1:0.7;
+	document.getElementById("ms_superbar").className = "dragged";
 	document.getElementById("ms_page_cover").style.display = "inline";
 	
 	var vbar = document.getElementById("ms_vbar");
@@ -284,7 +279,7 @@ function drag_super(){
 			document.getElementById("ms_hbar").style.display = "inline";
 			document.getElementById("ms_minipage_canvas").style.display = null;
 		}
-		document.getElementById("ms_superbar").style.opacity = null;
+		document.getElementById("ms_superbar").className = null;
 		document.getElementById("ms_page_cover").style.display = null;
 		
 		document.onmousemove = null;
@@ -350,7 +345,8 @@ function scroll_bg_h(){
 
 function show_bars(){ show_bar("v"); show_bar("h"); }
 function hide_bars(){
-	if(document.getElementById("ms_vbar").style.opacity == 0.7 || document.getElementById("ms_hbar").style.opacity == 0.7) return; // don't hide if bar is dragged
+	if(document.getElementById("ms_v_container").className == "dragged" || document.getElementById("ms_h_container").className == "dragged")
+		return;
 	hide_bar("v"); hide_bar("h");
 }
 
@@ -358,7 +354,7 @@ function show_bar(whichone){
 	if(widget.preferences.show_when == "1") return; // 1 = only onmouseover
 	document.getElementById("ms_"+whichone+"bar_bg").style.transition = "opacity 0.25s 0s";
 	if(widget.preferences.no_bar_bg != "1") document.getElementById("ms_"+whichone+"bar_bg").style.opacity = "0.5";
-	if(document.getElementById("ms_"+whichone+"bar").style.opacity == 0.7) return; // don't alter if bar is dragged
+	if(document.getElementById("ms_"+whichone+"_container").className == "dragged") return;
 	document.getElementById("ms_"+whichone+"bar").style.transition = "opacity 0.25s 0s";
 	document.getElementById("ms_"+whichone+"bar").style.opacity = "0.5";
 }
@@ -468,7 +464,8 @@ function contextmenu_click(){
 	else add_ui();
 }
 
-function add_or_remove_ui(){
+function add_or_remove_ui(){ 
+	//alert(window.outerHeight+"\n"+window.innerHeight);
 	if((widget.preferences.fullscreen_only == 0 || window.screen.height === window.outerHeight) && !document.getElementById("ms_v_container"))
 		add_ui();
 	else if(widget.preferences.fullscreen_only == 1 && window.screen.height !== window.outerHeight && document.getElementById("ms_v_container"))
