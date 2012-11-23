@@ -8,6 +8,7 @@ var strings = {
 	"hover_size" : "Genişlik (ayrıca yatay çubukların yüksekliği) fare ile üzerine gelindiğinde",
 	"border_radius" : "kenarın kıvrılma durumu",
 	"gap" : "Distance to the border of the window",
+	"opacity" : "Opacity of the scroll bars",
 	"border" : "Border",
 	"border_width" : "Width",
 	"border_color" : "Color",

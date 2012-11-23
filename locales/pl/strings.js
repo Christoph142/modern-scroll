@@ -8,6 +8,7 @@ var strings = {
 	"hover_size" : "Szerokość (względnie wysokość poziomego paska) pod kursorem",
 	"border_radius" : "Promień zaokrąglenia rogów paska",
 	"gap" : "Distance to the border of the window",
+	"opacity" : "Opacity of the scroll bars",
 	"border" : "Border",
 	"border_width" : "Width",
 	"border_color" : "Color",

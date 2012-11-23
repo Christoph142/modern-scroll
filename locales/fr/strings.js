@@ -8,6 +8,7 @@ var strings = {
 	"hover_size" : "Largeur (respectivement hauteur de barres horizontales) lorsque planait avec la souris",
 	"border_radius" : "Rayon de courbure de la bordure",
 	"gap" : "Distance jusqu'à la frontière de la fenêtre",
+	"opacity" : "Opacité des barres de défilement",
 	"border" : "Bordure",
 	"border_width" : "Largeur",
 	"border_color" : "Couleur",

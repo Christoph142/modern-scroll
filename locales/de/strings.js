@@ -8,6 +8,7 @@ var strings = {
 	"hover_size" : "Breite (bzw. Höhe bei horizontaler Leiste) wenn die Maus darüber ist",
 	"border_radius" : "Radius der Rundung an den Ecken",
 	"gap" : "Abstand zum Fensterrahmen",
+	"opacity" : "Sichtbarkeit der Bildlaufleisten",
 	"border" : "Rahmen",
 	"border_width" : "Breite",
 	"border_color" : "Farbe",

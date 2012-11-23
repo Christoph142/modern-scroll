@@ -8,6 +8,7 @@ var strings = {
 	"hover_size" : "Width (respectively height for horizontal bars) when hovered with the mouse",
 	"border_radius" : "Radius of the border's curvature",
 	"gap" : "Distance to the border of the window",
+	"opacity" : "Opacity of the scroll bars",
 	"border" : "Border",
 	"border_width" : "Width",
 	"border_color" : "Color",

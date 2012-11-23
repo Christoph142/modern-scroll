@@ -18,6 +18,7 @@
 	
 	<preference name="size" value="8" />
 	<preference name="hover_size" value="12" />
+	<preference name="opacity" value="50" />
 	<preference name="color" value="#000000" />
 	<preference name="color_bg" value="#999999" />
 	<preference name="border_radius" value="7" />
@@ -43,6 +44,6 @@
 	<preference name="contextmenu_show_when" value="2" /><!-- 1 = never, 2 = only over interface, 3 = always -->
 	<preference name="container" value="0" />
 	<preference name="container_size" value="30" />
-	<preference name="gap" value="2" />
+	<preference name="gap" value="1" />
 	
 </widget>

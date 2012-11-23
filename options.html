@@ -46,8 +46,11 @@
     </tr><tr>
     	<td style="text-align:left;"><label for="gap"><script>_("gap");</script>:</label></td>
         <td style="text-align:right;"><input type="number" max="5" min="0" id="gap" name="gap" value="2"></td>
+    </tr><tr>
+    	<td style="text-align:left; vertical-align:top;"><label for="opacity"><script>_("opacity");</script>:</label></td>
+        <td style="text-align:right;"><input type="range" name="opacity" id="opacity" min="0" max="100" value="50" step="1" onChange="document.getElementById('opacity_display').innerHTML = this.value+'%';" /><br><label id="opacity_display"><script>document.write(widget.preferences.opacity+"%");</script></label></td>
     </tr></table>
-    <br>
+        
     <h4><script>_("border");</script>:</h4>
     <table><tr><td style="text-align:left;">
         <label for="border_width"><script>_("border_width");</script>: </label>
@@ -103,8 +106,7 @@
     <div id="superbar_container" style="overflow:hidden; height:auto;">
     <input type="checkbox" id="show_superbar_minipage" name="show_superbar_minipage" checked="checked"> <label for="show_superbar_minipage"><script>_("show_superbar_minipage");</script></label><br><br>
     <label for="superbar_opacity"><script>_("superbar_opacity");</script>: </label>
-    <input type="range" name="superbar_opacity" id="superbar_opacity" min="0" max="100" value="70" step="1" onChange="document.getElementById('superbar_opacity_display').innerHTML = this.value+'%';" /><label id="superbar_opacity_display"><script>document.write(widget.preferences.superbar_opacity+"%");</script></label>
-        </td></tr></table><br>
+    <input type="range" name="superbar_opacity" id="superbar_opacity" min="0" max="100" value="70" step="1" onChange="document.getElementById('superbar_opacity_display').innerHTML = this.value+'%';" /><label id="superbar_opacity_display"><script>document.write(widget.preferences.superbar_opacity+"%");</script></label><br>
     </div>
     </fieldset><br>
     
