@@ -69,10 +69,21 @@ function inject_css(){
 		"#ms_v_container #ms_vbar_bg:hover, #ms_h_container #ms_hbar_bg:hover{ opacity:"+((w.no_bar_bg == "1")?"0":"0.51")+"; transition:opacity 0.1s 0s; }"+
 		"#ms_superbar:hover{ opacity:"+w.superbar_opacity/100+"; transition:opacity 0.25s 0s; }"+
 		
+<<<<<<< HEAD
 		".dragged #ms_vbar, .dragged #ms_hbar, .dragged #ms_vbar_bg, .dragged #ms_hbar_bg{ opacity:0.7; }"+
 		".dragged #ms_vbar_ui, .dragged #ms_vbar_bg_ui{ width:"+w.hover_size+"px; }"+
 		".dragged #ms_hbar_ui, .dragged #ms_hbar_bg_ui{ height:"+w.hover_size+"px; }"+
 		"#ms_superbar.dragged{ opacity:"+(w.show_superbar_minipage=="1"?1:(w.superbar_opacity/100))+"; }"+
+=======
+		".show #ms_vbar_bg, .show #ms_hbar_bg{ opacity:"+(w.no_bar_bg=="1"?"0":"0.5")+"; transition:opacity 0.25s 0s; }"+
+		".show #ms_vbar, .show #ms_hbar{ opacity:0.5; transition:opacity 0.25s 0s; }"+
+		
+		".dragged #ms_vbar_bg, .dragged #ms_hbar_bg{ opacity:"+(w.no_bar_bg=="1"?"0":"0.7")+"; }"+
+		".dragged #ms_vbar, .dragged #ms_hbar{ opacity:0.7; }"+
+		".dragged #ms_vbar_ui, .dragged #ms_vbar_bg_ui{ width:"+w.hover_size+"px; }"+
+		".dragged #ms_hbar_ui, .dragged #ms_hbar_bg_ui{ height:"+w.hover_size+"px; }"+
+		"#ms_superbar.dragged{ opacity:"+(w.show_superbar_minipage=="1"?"1":(w.superbar_opacity/100))+"; }"+
+>>>>>>> more JS to CSS
 		
 		"#ms_v_container, #ms_h_container, #ms_vbar_bg, #ms_hbar_bg, #ms_vbar, #ms_hbar, #ms_superbar, #ms_page_cover, #ms_upbutton, #ms_downbutton, #ms_minipage_canvas{ position:fixed; z-index:2147483647; border:none; padding:0; margin:0; display:none; }";
 	
@@ -195,10 +206,16 @@ function drag_v(){
 	
 	document.getElementById("ms_page_cover").style.display = "inline";
 	document.getElementById("ms_v_container").className = "dragged";
+<<<<<<< HEAD
 		
+=======
+	
+>>>>>>> more JS to CSS
 	var bar = document.getElementById("ms_vbar");
 	var dragy = window.event.clientY - parseInt(bar.style.top);
 	document.onmousemove = function(){
+		window.event.preventDefault(); window.event.stopPropagation();
+		
 		var posy = window.event.clientY;
 		bar.style.top = ((posy - dragy)<=0? 0 : ((posy - dragy)>=window.innerHeight-bar.offsetHeight?window.innerHeight-bar.offsetHeight : (posy - dragy))) + "px";
 		
@@ -344,6 +361,7 @@ function scroll_bg_h(){
 }
 
 function show_bars(){ show_bar("v"); show_bar("h"); }
+<<<<<<< HEAD
 function hide_bars(){
 	if(document.getElementById("ms_v_container").className == "dragged" || document.getElementById("ms_h_container").className == "dragged")
 		return;
@@ -357,12 +375,17 @@ function show_bar(whichone){
 	if(document.getElementById("ms_"+whichone+"_container").className == "dragged") return;
 	document.getElementById("ms_"+whichone+"bar").style.transition = "opacity 0.25s 0s";
 	document.getElementById("ms_"+whichone+"bar").style.opacity = "0.5";
+=======
+function hide_bars(){ hide_bar("v"); hide_bar("h"); }
+
+function show_bar(whichone){ // 1 = only onmouseover
+	if(widget.preferences.show_when != "1" && document.getElementById("ms_"+whichone+"_container").className != "dragged")
+		document.getElementById("ms_"+whichone+"_container").className = "show";
+>>>>>>> more JS to CSS
 }
 function hide_bar(whichone){
-	document.getElementById("ms_"+whichone+"bar_bg").style.transition = null;
-	document.getElementById("ms_"+whichone+"bar_bg").style.opacity = null;
-	document.getElementById("ms_"+whichone+"bar").style.transition = null;
-	document.getElementById("ms_"+whichone+"bar").style.opacity = null;
+	if(document.getElementById("ms_"+whichone+"_container").className == "show")
+		document.getElementById("ms_"+whichone+"_container").className = null;
 }
 
 function mouse_scroll_x(){
@@ -464,12 +487,19 @@ function contextmenu_click(){
 	else add_ui();
 }
 
+<<<<<<< HEAD
 function add_or_remove_ui(){ 
 	//alert(window.outerHeight+"\n"+window.innerHeight);
 	if((widget.preferences.fullscreen_only == 0 || window.screen.height === window.outerHeight) && !document.getElementById("ms_v_container"))
 		add_ui();
 	else if(widget.preferences.fullscreen_only == 1 && window.screen.height !== window.outerHeight && document.getElementById("ms_v_container"))
 		remove_ui();
+=======
+function add_or_remove_ui(){
+	//alert(window.outerHeight+"\n"+window.innerHeight);
+	if(widget.preferences.fullscreen_only == 0 || window.screen.height === window.outerHeight) add_ui();
+	else if(widget.preferences.fullscreen_only == 1 && window.screen.height !== window.outerHeight)	remove_ui();
+>>>>>>> more JS to CSS
 }
 
 function add_ui(){
