@@ -8,6 +8,7 @@ var strings = {
 	"hover_size" : "Largura (altura, respectivamente para a barra horizontal) com o mouse sobre a barra",
 	"border_radius" : "Raio de curvatura da borda",
 	"gap" : "Distância da borda da janela",
+	"opacity" : "Opacidade das barras de rolagem",
 	"border" : "Borda",
 	"border_width" : "Largura",
 	"border_color" : "Cor",
