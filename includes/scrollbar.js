@@ -64,12 +64,13 @@ function inject_css(){
 		"#ms_v_container:hover #ms_vbar_ui, #ms_v_container:hover #ms_vbar_bg_ui{ width:"+w.hover_size+"px; transition:width 0.1s; }"+
 		"#ms_h_container:hover #ms_hbar_ui, #ms_h_container:hover #ms_hbar_bg_ui{ height:"+w.hover_size+"px; transition:height 0.1s; }"+
 		"#ms_v_container:hover #ms_vbar, #ms_h_container:hover #ms_hbar, #ms_v_container:hover #ms_superbar, #ms_h_container:hover #ms_superbar{ opacity:0.5; transition:opacity 0.1s 0s; }"+
-		"#ms_v_container:hover #ms_vbar_bg, #ms_h_container:hover #ms_hbar_bg{ opacity:"+((w.no_bar_bg == "1")?"0":"0.5")+"; transition:opacity 0.1s 0s; }"+
+		"#ms_v_container:hover #ms_vbar_bg, #ms_h_container:hover #ms_hbar_bg{ opacity:"+(w.no_bar_bg=="1"?"0":"0.5")+"; transition:opacity 0.1s 0s; }"+
 		"#ms_v_container #ms_vbar:hover, #ms_h_container #ms_hbar:hover, #ms_upbutton:hover, #ms_downbutton:hover{ opacity:0.7; transition:opacity 0.1s 0s; }"+
-		"#ms_v_container #ms_vbar_bg:hover, #ms_h_container #ms_hbar_bg:hover{ opacity:"+((w.no_bar_bg == "1")?"0":"0.51")+"; transition:opacity 0.1s 0s; }"+
+		"#ms_v_container #ms_vbar_bg:hover, #ms_h_container #ms_hbar_bg:hover{ opacity:"+(w.no_bar_bg=="1"?"0":"0.51")+"; transition:opacity 0.1s 0s; }"+
 		"#ms_superbar:hover{ opacity:"+w.superbar_opacity/100+"; transition:opacity 0.25s 0s; }"+
 		
-		".dragged #ms_vbar, .dragged #ms_hbar, .dragged #ms_vbar_bg, .dragged #ms_hbar_bg{ opacity:0.7; }"+
+		".dragged #ms_vbar_bg, .dragged #ms_hbar_bg{ opacity:"+(w.no_bar_bg=="1"?"0":"0.7")+"; }"+
+		".dragged #ms_vbar, .dragged #ms_hbar{ opacity:0.7; }"+
 		".dragged #ms_vbar_ui, .dragged #ms_vbar_bg_ui{ width:"+w.hover_size+"px; }"+
 		".dragged #ms_hbar_ui, .dragged #ms_hbar_bg_ui{ height:"+w.hover_size+"px; }"+
 		"#ms_superbar.dragged{ opacity:"+(w.show_superbar_minipage=="1"?1:(w.superbar_opacity/100))+"; }"+
@@ -466,10 +467,8 @@ function contextmenu_click(){
 
 function add_or_remove_ui(){ 
 	//alert(window.outerHeight+"\n"+window.innerHeight);
-	if((widget.preferences.fullscreen_only == 0 || window.screen.height === window.outerHeight) && !document.getElementById("ms_v_container"))
-		add_ui();
-	else if(widget.preferences.fullscreen_only == 1 && window.screen.height !== window.outerHeight && document.getElementById("ms_v_container"))
-		remove_ui();
+	if(widget.preferences.fullscreen_only == 0 || window.screen.height === window.outerHeight) add_ui();
+	else if(widget.preferences.fullscreen_only == 1 && window.screen.height !== window.outerHeight)	remove_ui();
 }
 
 function add_ui(){
