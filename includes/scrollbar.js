@@ -6,7 +6,7 @@
 // @exclude http://www.megalab.it/*
 // ==/UserScript==
 
-var scroll_interval;
+//var scroll_interval;
 var timeout;		// scrolling animation
 var hide_timeout;	// hide bars
 
@@ -129,7 +129,7 @@ function add_functionality(){
 	
 	window.addEventListener("DOMNodeInserted", onDOMNode, false);
 	window.addEventListener("DOMNodeRemoved", onDOMNode, false);
-	window.addEventListener("keydown", ms_keyscroll, false);
+	//window.addEventListener("keydown", ms_keyscroll, false);
 	window.addEventListener("resize", resize_bars, false);
 	window.addEventListener("resize", add_or_remove_ui, false);
 	window.addEventListener("mouseup", check_resize, false);
@@ -408,8 +408,8 @@ function handle_button(whichone){
 		};
 	}
 	document.onmouseup = function(){
-		ms_scrollTo(0,0);
-		//window.scroll(window.pageXOffset,whichone=="up"?0:Math.max(document.body.scrollHeight,document.documentElement.scrollHeight));
+		//ms_scrollTo(0,0);
+		window.scroll(window.pageXOffset,whichone=="up"?0:Math.max(document.body.scrollHeight,document.documentElement.scrollHeight));
 		document.onmousemove = null;
 		document.onmouseup = null;
 	};
@@ -490,7 +490,7 @@ function remove_ui(){
 	window.removeEventListener("DOMNodeRemoved", onDOMNode, false);
 	window.removeEventListener("resize", resize_bars, false);
 	window.removeEventListener("resize", add_or_remove_ui, false);
-	window.removeEventListener("keydown", ms_keyscroll, false);
+	//window.removeEventListener("keydown", ms_keyscroll, false);
 	window.removeEventListener("mouseup", check_resize, false);
 	window.removeEventListener("scroll", onScroll, false);
 	window.removeEventListener("scroll", reposition_bars, false);
@@ -508,7 +508,7 @@ function remove_ui(){
 	}
 }
 
-function ms_keyscroll(){
+/*function ms_keyscroll(){
 	if(window.event.which < 37 || window.event.which > 40 || !window.event.ctrlKey || scroll_interval || window.event.target!="[object HTMLBodyElement]") return; // arrow keys
 	window.event.preventDefault(); window.event.stopPropagation();
 	
@@ -546,4 +546,4 @@ function ms_scrollTo(x,y){
 			ms_scrollTo(x,y);
 		}
 	//},1);
-}
+}*/
