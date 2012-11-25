@@ -6,6 +6,7 @@
 // @exclude http://www.megalab.it/*
 // ==/UserScript==
 
+var scroll_interval;
 var timeout;		// scrolling animation
 var hide_timeout;	// hide bars
 
@@ -43,14 +44,14 @@ function inject_css(){
 		"#ms_v_container{ height:100%; width:"+(w.container=="1"?w.container_size:"1")+"px; "+(w.vbar_at_left=="1"?"left":"right")+":0px; top:0px; background:rgba(0,0,0,0); }"+
 		"#ms_h_container{ height:"+(w.container=="1"?w.container_size:"1")+"px; width:100%; left:0px; "+(w.hbar_at_top=="1"?"top":"bottom")+":0px; background:rgba(0,0,0,0); }"+
 		"#ms_vbar_bg, #ms_hbar_bg{ opacity:"+((w.show_when=="3" && w.no_bar_bg != "1")?(w.opacity/100):"0")+"; transition:opacity 0.5s 1s; }"+
-		"#ms_vbar_bg{ top:0px; height:100%; "+(w.vbar_at_left=="1"?"left":"right")+":0px; }"+
-		"#ms_hbar_bg{ left:0px; width:100%; "+(w.hbar_at_top=="1"?"top":"bottom")+":0px; }"+
+		"#ms_vbar_bg{ top:0px; height:100%; width:auto !important; "+(w.vbar_at_left=="1"?"left":"right")+":0px; }"+
+		"#ms_hbar_bg{ left:0px; width:100%; height:auto !important; "+(w.hbar_at_top=="1"?"top":"bottom")+":0px; }"+
 		"#ms_vbar_bg_ui, #ms_hbar_bg_ui{ background:"+w.color_bg+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" !important; border-radius:"+w.border_radius+"px; }"+
 		"#ms_vbar_bg_ui{ margin-"+(w.vbar_at_left=="1"?"left":"right")+":"+(w.gap)+"px; height:100%; width:"+w.size+"px; transition:width 0.25s; }"+
 		"#ms_hbar_bg_ui{ margin-"+(w.hbar_at_top=="1"?"top":"bottom")+":"+(w.gap)+"px; width:100%; height:"+w.size+"px; transition:height 0.25s; }"+
 		"#ms_vbar, #ms_hbar{ opacity:"+((w.show_when=="3")?(w.opacity/100):"0")+"; transition:opacity 0.5s 1s; }"+
-		"#ms_vbar{ top:0px; height:30px; min-height:30px; "+(w.vbar_at_left=="1"?"left":"right")+":0px; }"+
-		"#ms_hbar{ left:0px; width:30px; min-width:30px; "+(w.hbar_at_top=="1"?"top":"bottom")+":0px; }"+
+		"#ms_vbar{ top:0px; height:30px; min-height:30px; width:auto !important; "+(w.vbar_at_left=="1"?"left":"right")+":0px; }"+
+		"#ms_hbar{ left:0px; width:30px; min-width:30px; height:auto !important; "+(w.hbar_at_top=="1"?"top":"bottom")+":0px; }"+
 		"#ms_vbar_ui, #ms_hbar_ui{ background:"+w.color+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" !important; border-radius:"+w.border_radius+"px; }"+
 		"#ms_vbar_ui{ height:100%; width:"+w.size+"px; margin-"+(w.vbar_at_left=="1"?"left":"right")+":"+(w.gap)+"px; transition:width 0.25s; }"+
 		"#ms_hbar_ui{ width:100%; height:"+w.size+"px; margin-"+(w.hbar_at_top=="1"?"top":"bottom")+":"+(w.gap)+"px; transition:height 0.25s; }"+
@@ -128,6 +129,7 @@ function add_functionality(){
 	
 	window.addEventListener("DOMNodeInserted", onDOMNode, false);
 	window.addEventListener("DOMNodeRemoved", onDOMNode, false);
+	window.addEventListener("keydown", ms_keyscroll, false);
 	window.addEventListener("resize", resize_bars, false);
 	window.addEventListener("resize", add_or_remove_ui, false);
 	window.addEventListener("mouseup", check_resize, false);
@@ -406,7 +408,8 @@ function handle_button(whichone){
 		};
 	}
 	document.onmouseup = function(){
-		window.scroll(window.pageXOffset,whichone=="up"?0:Math.max(document.body.scrollHeight,document.documentElement.scrollHeight));
+		ms_scrollTo(0,0);
+		//window.scroll(window.pageXOffset,whichone=="up"?0:Math.max(document.body.scrollHeight,document.documentElement.scrollHeight));
 		document.onmousemove = null;
 		document.onmouseup = null;
 	};
@@ -487,6 +490,7 @@ function remove_ui(){
 	window.removeEventListener("DOMNodeRemoved", onDOMNode, false);
 	window.removeEventListener("resize", resize_bars, false);
 	window.removeEventListener("resize", add_or_remove_ui, false);
+	window.removeEventListener("keydown", ms_keyscroll, false);
 	window.removeEventListener("mouseup", check_resize, false);
 	window.removeEventListener("scroll", onScroll, false);
 	window.removeEventListener("scroll", reposition_bars, false);
@@ -502,4 +506,44 @@ function remove_ui(){
 		document.body.removeChild(document.getElementById("ms_upbutton"));
 		document.body.removeChild(document.getElementById("ms_downbutton"));
 	}
+}
+
+function ms_keyscroll(){
+	if(window.event.which < 37 || window.event.which > 40 || !window.event.ctrlKey || scroll_interval || window.event.target!="[object HTMLBodyElement]") return; // arrow keys
+	window.event.preventDefault(); window.event.stopPropagation();
+	
+	if(window.event.which == 37){ var x = -15; var y = 0; }
+	if(window.event.which == 38){ var x = 0; var y = -15; }
+	if(window.event.which == 39){ var x = 15; var y = 0; }
+	if(window.event.which == 40){ var x = 0; var y = 15; }
+	
+	scroll_interval = window.setInterval(function(){ window.scrollBy(x,y); },1);
+	window.onkeyup = function(){
+		window.clearInterval(scroll_interval);
+		scroll_interval = null;
+		//ms_stop_scroll(x,y);
+		window.onkeyup = null;
+	}
+}
+function ms_stop_scroll(x,y){
+	if(x==0 && y==0) return;
+	if(x<0) x++; else if(x>0) x--;
+	if(y<0) y++; else if(y>0) y--;
+	window.scrollBy(x,y);
+	window.setTimeout(function(){ms_stop_scroll(x,y);},1);
+}
+function ms_scrollTo(x,y){
+	//scroll_interval = window.setInterval(function(x,y){
+		var this_x = window.pageXOffset<(x-15) ? 15 : (window.pageXOffset<(x+15) ? window.pageXOffset-x : -15);
+		var this_y = window.pageYOffset<(y-15) ? 15 : (window.pageYOffset<(y+15) ? window.pageXOffset-y : -15);
+		console.log(this_x+" & "+this_y);
+		if(this_x == 0 && this_y == 0){
+			//window.clearInterval(scroll_interval);
+			//scroll_interval = null;
+		}
+		else{
+			window.scrollBy(this_x, this_y);
+			ms_scrollTo(x,y);
+		}
+	//},1);
 }
