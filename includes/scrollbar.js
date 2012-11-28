@@ -6,7 +6,6 @@
 // @exclude http://www.megalab.it/*
 // ==/UserScript==
 
-//var scroll_interval;
 var timeout;		// scrolling animation
 var hide_timeout;	// hide bars
 
@@ -408,8 +407,8 @@ function handle_button(whichone){
 		};
 	}
 	document.onmouseup = function(){
-		//ms_scrollTo(0,0);
-		window.scroll(window.pageXOffset,whichone=="up"?0:Math.max(document.body.scrollHeight,document.documentElement.scrollHeight));
+		ms_scrollTo(window.pageXOffset,whichone=="up"?0:Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight);
+		//window.scroll(window.pageXOffset,whichone=="up"?0:Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight);
 		document.onmousemove = null;
 		document.onmouseup = null;
 	};
@@ -490,7 +489,7 @@ function remove_ui(){
 	window.removeEventListener("DOMNodeRemoved", onDOMNode, false);
 	window.removeEventListener("resize", resize_bars, false);
 	window.removeEventListener("resize", add_or_remove_ui, false);
-	//window.removeEventListener("keydown", ms_keyscroll, false);
+	window.removeEventListener("keydown", ms_keyscroll, false);
 	window.removeEventListener("mouseup", check_resize, false);
 	window.removeEventListener("scroll", onScroll, false);
 	window.removeEventListener("scroll", reposition_bars, false);
@@ -508,14 +507,15 @@ function remove_ui(){
 	}
 }
 
-/*function ms_keyscroll(){
-	if(window.event.which < 37 || window.event.which > 40 || !window.event.ctrlKey || scroll_interval || window.event.target!="[object HTMLBodyElement]") return; // arrow keys
+var scroll_interval;
+function ms_keyscroll(){
+	if(window.event.which < 37 || window.event.which > 40 /*|| !window.event.ctrlKey*/ || scroll_interval || window.event.target!="[object HTMLBodyElement]") return; // arrow keys
 	window.event.preventDefault(); window.event.stopPropagation();
 	
-	if(window.event.which == 37){ var x = -15; var y = 0; }
-	if(window.event.which == 38){ var x = 0; var y = -15; }
-	if(window.event.which == 39){ var x = 15; var y = 0; }
-	if(window.event.which == 40){ var x = 0; var y = 15; }
+	if(window.event.which == 37){ var x = -30; var y = 0; }
+	if(window.event.which == 38){ var x = 0; var y = -30; }
+	if(window.event.which == 39){ var x = 30; var y = 0; }
+	if(window.event.which == 40){ var x = 0; var y = 30; }
 	
 	scroll_interval = window.setInterval(function(){ window.scrollBy(x,y); },1);
 	window.onkeyup = function(){
@@ -532,18 +532,35 @@ function ms_stop_scroll(x,y){
 	window.scrollBy(x,y);
 	window.setTimeout(function(){ms_stop_scroll(x,y);},1);
 }
-function ms_scrollTo(x,y){
-	//scroll_interval = window.setInterval(function(x,y){
-		var this_x = window.pageXOffset<(x-15) ? 15 : (window.pageXOffset<(x+15) ? window.pageXOffset-x : -15);
-		var this_y = window.pageYOffset<(y-15) ? 15 : (window.pageYOffset<(y+15) ? window.pageXOffset-y : -15);
-		console.log(this_x+" & "+this_y);
-		if(this_x == 0 && this_y == 0){
-			//window.clearInterval(scroll_interval);
-			//scroll_interval = null;
-		}
-		else{
-			window.scrollBy(this_x, this_y);
-			ms_scrollTo(x,y);
-		}
-	//},1);
-}*/
+function test_scrollTo(x,y){ scroll_interval = window.setInterval("testtest("+x+","+y+")",1); }
+function testtest(x,y){
+	var this_x = window.pageXOffset<(x-15) ? 15 : (window.pageXOffset<(x+15) ? x-window.pageXOffset : -15);
+	var this_y = window.pageYOffset<(y-15) ? 15 : (window.pageYOffset<(y+15) ? y-window.pageYOffset : -15);
+	
+	if(this_x == 0 && this_y == 0){
+		window.clearInterval(scroll_interval);
+		scroll_interval = null;
+	}
+	else{
+		window.scrollBy(this_x, this_y);
+		//ms_scrollTo(x,y);
+	}
+}
+
+var time_to_scroll = 1000;
+var remaining_time_to_scroll = 1000;
+function ms_scrollTo(x,y){ ms_scrollTo_inner(new Date().getTime(), 0, y, window.pageXOffset, window.pageYOffset); }
+function ms_scrollTo_inner(lastTick, to_x, to_y, from_x, from_y)
+{
+	var curTick = new Date().getTime();
+	var elapsedTicks = curTick - lastTick;
+	remaining_time_to_scroll -= elapsedTicks;
+	
+	var new_y = to_y - (to_y - from_y)*remaining_time_to_scroll/time_to_scroll;
+	if((to_y > from_y && new_y > to_y) || (to_y < from_y && new_y < to_y)) new_y = to_y;
+	window.scrollTo(0, new_y);
+	console.log("from: "+from_y+" "+"\nto: "+to_y+" "+"\nnext: "+new_y);
+	//alert(to_y+" "+new_y);
+	if(new_y != to_y) window.setTimeout(function(){ms_scrollTo(curTick, to_x, to_y, from_x, from_y)}, 1);
+		//ms_scrollTo(curTick, to_x, to_y, from_x, from_y);
+}
