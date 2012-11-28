@@ -21,10 +21,12 @@ window.addEventListener("change",function(event){
 
 window.addEventListener("mousedown",function(){
 	if(event.target.id == "ms_upbutton" || event.target.id == "ms_downbutton"){
+		var button = event.target.id;
 		window.onmouseup = function(){
-			widget.preferences.buttonposition = 100*document.getElementById("ms_downbutton").offsetLeft/window.innerWidth;
+			widget.preferences.buttonposition = 100*document.getElementById(button).offsetLeft/window.innerWidth;
 			opera.extension.postMessage("update");
 			window.onmouseup = null;
+			button = null;
 		}
 	}
 },false);
@@ -42,5 +44,6 @@ function getprefs(){
 	
 	if(document.getElementById("show_buttons").checked) document.getElementById("button_container").style.height = "auto";
 	if(!document.getElementById("show_superbar").checked) document.getElementById("superbar_container").style.height = "0px";
+	if(!document.getElementById("use_own_scroll_functions").checked) document.getElementById("functions_container").style.height = "0px";
 	document.getElementById("border_radius").max = Math.round(Math.max(document.getElementById("size").value, document.getElementById("hover_size").value)/2);
 }
