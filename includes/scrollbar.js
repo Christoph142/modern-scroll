@@ -128,7 +128,7 @@ function add_functionality(){
 	
 	window.addEventListener("DOMNodeInserted", onDOMNode, false);
 	window.addEventListener("DOMNodeRemoved", onDOMNode, false);
-	//window.addEventListener("keydown", ms_keyscroll, false);
+	if(widget.preferences.use_own_scroll_functions == "1") window.addEventListener("keydown", ms_keyscroll, false);
 	window.addEventListener("resize", resize_bars, false);
 	window.addEventListener("resize", add_or_remove_ui, false);
 	window.addEventListener("mouseup", check_resize, false);
@@ -204,7 +204,7 @@ function drag_v(){
 		var posy = window.event.clientY;
 		bar.style.top = ((posy - dragy)<=0? 0 : ((posy - dragy)>=window.innerHeight-bar.offsetHeight?window.innerHeight-bar.offsetHeight : (posy - dragy))) + "px";
 		
-		window.scroll(window.pageXOffset, parseInt(bar.style.top)/(window.innerHeight-bar.offsetHeight)*(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight));
+		window.scrollTo(window.pageXOffset, parseInt(bar.style.top)/(window.innerHeight-bar.offsetHeight)*(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight));
 	}
 	document.onmouseup = function(){
 		document.getElementById("ms_page_cover").style.display = null;
@@ -229,7 +229,7 @@ function drag_h(){
 		var posx = window.event.clientX;
 		bar.style.left = ((posx - dragx)<=0? 0 : ((posx - dragx)>=window.innerWidth-bar.offsetWidth?window.innerWidth-bar.offsetWidth : (posx - dragx))) + "px";
 		
-		window.scroll(parseInt(bar.style.left)/(window.innerWidth-bar.offsetWidth)*(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)-window.innerWidth), window.pageYOffset);
+		window.scrollTo(parseInt(bar.style.left)/(window.innerWidth-bar.offsetWidth)*(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)-window.innerWidth), window.pageYOffset);
 	};
 	document.onmouseup = function(){
 		document.getElementById("ms_page_cover").style.display = null;
@@ -264,14 +264,14 @@ function drag_super(){
 		superbar.style.left = ((posx - dragx)<=0? 0 : ((posx - dragx)>=window.innerWidth-superbar.offsetWidth?window.innerWidth-superbar.offsetWidth : (posx - dragx))) + "px";
 		
 		if(widget.preferences.show_superbar_minipage=="0"){
-			window.scroll(parseInt(superbar.style.left)/(window.innerWidth-superbar.offsetWidth)*(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)-window.innerWidth), parseInt(superbar.style.top)/(window.innerHeight-superbar.offsetHeight)*(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight));
+			window.scrollTo(parseInt(superbar.style.left)/(window.innerWidth-superbar.offsetWidth)*(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)-window.innerWidth), parseInt(superbar.style.top)/(window.innerHeight-superbar.offsetHeight)*(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight));
 			vbar.style.top = superbar.style.top;
 			hbar.style.left = superbar.style.left;
 		}
 	};
 	document.onmouseup = function(){
 		if(widget.preferences.show_superbar_minipage=="1"){
-			window.scroll(parseInt(superbar.style.left)/(window.innerWidth-superbar.offsetWidth)*(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)-window.innerWidth), parseInt(superbar.style.top)/(window.innerHeight-superbar.offsetHeight)*(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight));
+			window.scrollTo(parseInt(superbar.style.left)/(window.innerWidth-superbar.offsetWidth)*(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)-window.innerWidth), parseInt(superbar.style.top)/(window.innerHeight-superbar.offsetHeight)*(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight));
 			if(window.scrollX == 0 && window.scrollY == 0){ // doesn't update position automatically cause of scrolling to 0,0 before screenshot
 				document.getElementById("ms_vbar").style.top = "0px";
 				document.getElementById("ms_hbar").style.left = "0px";
@@ -407,8 +407,8 @@ function handle_button(whichone){
 		};
 	}
 	document.onmouseup = function(){
-		ms_scrollTo(window.pageXOffset,whichone=="up"?0:Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight);
-		//window.scroll(window.pageXOffset,whichone=="up"?0:Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight);
+		//ms_scrollTo(window.pageXOffset,whichone=="up"?0:Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight);
+		window.scrollTo(window.pageXOffset,whichone=="up"?0:Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight);
 		document.onmousemove = null;
 		document.onmouseup = null;
 	};
@@ -426,12 +426,12 @@ function show_minipage(){
 	
 	document.body.style.transformOrigin = "0% 0%";
 	document.body.style.transform = "scale("+(window.innerWidth/Math.max(document.body.scrollWidth,document.documentElement.scrollWidth,window.innerWidth))+","+(window.innerHeight/Math.max(document.body.scrollHeight,document.documentElement.scrollHeight,window.innerHeight))+")";
-	window.scroll(0,0);
+	window.scrollTo(0,0);
 	if(document.body.className=="zoom"){
 		var img = document.body.firstChild;
 		img.style.transformOrigin = "0% 0%";
 		img.style.transform = "scale("+(window.innerWidth/img.scrollWidth)+","+(window.innerHeight/img.scrollHeight)+")";
-		window.scroll(img.offsetLeft,img.offsetTop);
+		window.scrollTo(img.offsetLeft,img.offsetTop);
 	}	
 	document.getElementById("ms_superbar").style.display = null;
 	
@@ -508,23 +508,7 @@ function remove_ui(){
 }
 
 var scroll_interval;
-function ms_keyscroll(){
-	if(window.event.which < 37 || window.event.which > 40 /*|| !window.event.ctrlKey*/ || scroll_interval || window.event.target!="[object HTMLBodyElement]") return; // arrow keys
-	window.event.preventDefault(); window.event.stopPropagation();
-	
-	if(window.event.which == 37){ var x = -30; var y = 0; }
-	if(window.event.which == 38){ var x = 0; var y = -30; }
-	if(window.event.which == 39){ var x = 30; var y = 0; }
-	if(window.event.which == 40){ var x = 0; var y = 30; }
-	
-	scroll_interval = window.setInterval(function(){ window.scrollBy(x,y); },1);
-	window.onkeyup = function(){
-		window.clearInterval(scroll_interval);
-		scroll_interval = null;
-		//ms_stop_scroll(x,y);
-		window.onkeyup = null;
-	}
-}
+
 function ms_stop_scroll(x,y){
 	if(x==0 && y==0) return;
 	if(x<0) x++; else if(x>0) x--;
@@ -563,4 +547,31 @@ function ms_scrollTo_inner(lastTick, to_x, to_y, from_x, from_y)
 	//alert(to_y+" "+new_y);
 	if(new_y != to_y) window.setTimeout(function(){ms_scrollTo(curTick, to_x, to_y, from_x, from_y)}, 1);
 		//ms_scrollTo(curTick, to_x, to_y, from_x, from_y);
+}
+
+function ms_keyscroll(){
+	//alert(window.event.target.type);
+	if(window.event.which < 37 || window.event.which > 40 || scroll_interval || window.event.target=="[object HTMLTextAreaElement]" || (window.event.target=="[object HTMLInputElement]" && (window.event.target.type == "text" || window.event.target.type == "number" || (window.event.target.type == "range" && window.event.which != 38 && window.event.which != 40)))) return; // arrow keys
+	window.event.preventDefault(); window.event.stopPropagation();
+	
+	ms_keyscroll_inner(new Date().getTime(), window.event.which);
+	
+	window.onkeyup = function(){
+		window.clearTimeout(scroll_interval);
+		scroll_interval = null;
+		window.onkeyup = null;
+	}
+}
+function ms_keyscroll_inner(lastTick, direction){
+	var curTick = new Date().getTime();
+	var elapsedTicks = curTick - lastTick;
+	var scrollamount = elapsedTicks*widget.preferences.keyscroll_velocity;
+	
+	if(direction == 40){ var x = 0; var y = scrollamount; }			// down (most likely)
+	else if(direction == 38){ var x = 0; var y = -scrollamount; }	// up
+	else if(direction == 39){ var x = scrollamount; var y = 0; }	// right
+	else{ var x = -scrollamount; var y = 0; }						// left (37)
+	
+	window.scrollBy(x,y);
+	scroll_interval = window.setTimeout(function(){ms_keyscroll_inner(curTick, direction);},1);
 }
