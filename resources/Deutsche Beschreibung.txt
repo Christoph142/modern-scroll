@@ -16,6 +16,12 @@ Diese Erweiterung war ursprünglich als Update für slim scrollbar von damage92 
 Changelog:
 ----------
 
+v 1.4
+---------
+neu: eigene Scroll-Funktion
+!neu: optionally animate scroll to top/bottom
+fix: Buttons springen in den Optionen manchmal an den linken Bildschirmrand
+
 v 1.3
 ---------
 neu: optional kann ein Bereich festgelegt werden, der die Oberfläche triggert

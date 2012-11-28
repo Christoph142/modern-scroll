@@ -22,8 +22,9 @@ v 1.X
 
 v 1.4
 ---------
-!new: custom scroll function
+new: custom scroll function
 !new: optionally animate scroll to top/bottom
+fix: buttons sometimes jump to the left border of the screen in options
 
 v 1.3
 ---------
