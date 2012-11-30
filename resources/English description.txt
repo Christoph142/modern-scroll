@@ -23,6 +23,7 @@ v 1.X
 v 1.4
 ---------
 new: custom scroll function
+new: horizontal bar shortened to prevent overlapping
 !new: optionally animate scroll to top/bottom
 
 v 1.3.1
