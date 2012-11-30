@@ -204,7 +204,7 @@ function drag_v(){
 	document.onmousemove = function(){
 		var posy = window.event.clientY;
 		
-		window.scrollTo(window.pageXOffset, ((posy - dragy)<=0? 0 : ((posy - dragy)>=window.innerHeight-bar.offsetHeight?window.innerHeight-bar.offsetHeight : (posy - dragy)))/(window.innerHeight-bar.offsetHeight)*(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight));
+		window.scroll(window.pageXOffset, ((posy - dragy)<=0? 0 : ((posy - dragy)>=window.innerHeight-bar.offsetHeight?window.innerHeight-bar.offsetHeight : (posy - dragy)))/(window.innerHeight-bar.offsetHeight)*(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight));
 	}
 	document.onmouseup = function(){
 		document.getElementById("ms_page_cover").style.display = null;
@@ -228,9 +228,9 @@ function drag_h(){
 	document.onmousemove = function(){
 		var posx = window.event.clientX;
 		if(w.vbar_at_left=="0")
-			window.scrollTo(((posx - dragx)<=0 ? 0 : ((posx - dragx)>=window.innerWidth-bar.offsetWidth-w.hover_size-w.gap ? window.innerWidth-bar.offsetWidth-w.hover_size-w.gap : posx-dragx))/(window.innerWidth-bar.offsetWidth-w.hover_size-w.gap)*(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)-window.innerWidth), window.pageYOffset);
+			window.scroll(((posx - dragx)<=0 ? 0 : ((posx - dragx)>=window.innerWidth-bar.offsetWidth-w.hover_size-w.gap ? window.innerWidth-bar.offsetWidth-w.hover_size-w.gap : posx-dragx))/(window.innerWidth-bar.offsetWidth-w.hover_size-w.gap)*(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)-window.innerWidth), window.pageYOffset);
 		else
-			window.scrollTo(((posx - dragx)<=parseInt(w.hover_size)+parseInt(w.gap) ? 0 : ((posx - dragx)>=window.innerWidth-bar.offsetWidth ? window.innerWidth-bar.offsetWidth-w.hover_size-w.gap : posx-dragx-w.hover_size-w.gap))/(window.innerWidth-bar.offsetWidth-w.hover_size-w.gap)*(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)-window.innerWidth), window.pageYOffset);
+			window.scroll(((posx - dragx)<=parseInt(w.hover_size)+parseInt(w.gap) ? 0 : ((posx - dragx)>=window.innerWidth-bar.offsetWidth ? window.innerWidth-bar.offsetWidth-w.hover_size-w.gap : posx-dragx-w.hover_size-w.gap))/(window.innerWidth-bar.offsetWidth-w.hover_size-w.gap)*(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)-window.innerWidth), window.pageYOffset);
 	};
 	document.onmouseup = function(){
 		document.getElementById("ms_page_cover").style.display = null;
@@ -265,16 +265,16 @@ function drag_super(){
 		
 		if(w.show_superbar_minipage=="0"){
 			if(w.vbar_at_left=="0")
-				window.scrollTo(((posx - dragx)<=0 ? 0 : ((posx - dragx)>=window.innerWidth-superbar.offsetWidth-w.hover_size-w.gap ? window.innerWidth-superbar.offsetWidth-w.hover_size-w.gap : posx-dragx))/(window.innerWidth-superbar.offsetWidth-w.hover_size-w.gap)*(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)-window.innerWidth), parseInt(superbar.style.top)/(window.innerHeight-superbar.offsetHeight)*(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight));
+				window.scroll(((posx - dragx)<=0 ? 0 : ((posx - dragx)>=window.innerWidth-superbar.offsetWidth-w.hover_size-w.gap ? window.innerWidth-superbar.offsetWidth-w.hover_size-w.gap : posx-dragx))/(window.innerWidth-superbar.offsetWidth-w.hover_size-w.gap)*(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)-window.innerWidth), parseInt(superbar.style.top)/(window.innerHeight-superbar.offsetHeight)*(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight));
 			else
-				window.scrollTo(((posx - dragx)<=parseInt(w.hover_size)+parseInt(w.gap) ? 0 : ((posx - dragx)>=window.innerWidth-superbar.offsetWidth ? window.innerWidth-superbar.offsetWidth-w.hover_size-w.gap : posx-dragx-w.hover_size-w.gap))/(window.innerWidth-superbar.offsetWidth-w.hover_size-w.gap)*(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)-window.innerWidth), parseInt(superbar.style.top)/(window.innerHeight-superbar.offsetHeight)*(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight));
+				window.scroll(((posx - dragx)<=parseInt(w.hover_size)+parseInt(w.gap) ? 0 : ((posx - dragx)>=window.innerWidth-superbar.offsetWidth ? window.innerWidth-superbar.offsetWidth-w.hover_size-w.gap : posx-dragx-w.hover_size-w.gap))/(window.innerWidth-superbar.offsetWidth-w.hover_size-w.gap)*(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)-window.innerWidth), parseInt(superbar.style.top)/(window.innerHeight-superbar.offsetHeight)*(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight));
 		}
 		else
 			superbar.style.left = ((posx - dragx)<=0? 0 : ((posx - dragx)>=window.innerWidth-superbar.offsetWidth?window.innerWidth-superbar.offsetWidth : (posx - dragx))) + "px";		
 	};
 	document.onmouseup = function(){
 		if(w.show_superbar_minipage=="1"){
-			window.scrollTo(parseInt(superbar.style.left)/(window.innerWidth-superbar.offsetWidth)*(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)-window.innerWidth), parseInt(superbar.style.top)/(window.innerHeight-superbar.offsetHeight)*(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight));
+			window.scroll(parseInt(superbar.style.left)/(window.innerWidth-superbar.offsetWidth)*(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)-window.innerWidth), parseInt(superbar.style.top)/(window.innerHeight-superbar.offsetHeight)*(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight));
 			if(window.scrollX == 0 && window.scrollY == 0){ // doesn't update position automatically cause of scrolling to 0,0 before screenshot
 				document.getElementById("ms_vbar").style.top = "0px";
 				document.getElementById("ms_hbar").style.left = "0px";
@@ -336,10 +336,19 @@ function scroll_bg_v(){
 	if(window.event.which != 1) return;	// if it's not the left mouse button
 	window.event.stopPropagation();		// prevent bubbling (e.g. prevent drag being triggered on separately opened images)
 	
-	if(window.event.clientY < 50 && w.bg_special_ends == "1") window.scrollTo(window.event.clientX, 0);
-	else if((window.innerHeight-window.event.clientY) < 50 && w.bg_special_ends == "1")
-		window.scrollTo(window.event.clientX, Math.max(document.body.scrollHeight,document.documentElement.scrollHeight));
-	else if(window.event.clientY > parseInt(document.getElementById("ms_vbar").style.top)) window.scrollBy(0, window.innerHeight);
+	if(window.event.clientY < 50 && w.bg_special_ends == "1"){
+		if(w.animate_scroll=="1") ms_scroll(window.event.clientX, 0);
+		else window.scroll(window.event.clientX, 0);
+	}
+	else if((window.innerHeight-window.event.clientY) < 50 && w.bg_special_ends == "1"){
+		if(w.animate_scroll=="1") ms_scroll(window.event.clientX, Math.max(document.body.scrollHeight,document.documentElement.scrollHeight));
+		else window.scroll(window.event.clientX, Math.max(document.body.scrollHeight,document.documentElement.scrollHeight));
+	}
+	else if(window.event.clientY > parseInt(document.getElementById("ms_vbar").style.top)){
+		if(w.animate_scroll=="1") ms_scrollBy(0, window.innerHeight);
+		else window.scrollBy(0, window.innerHeight);
+	}
+	else if(w.animate_scroll=="1") ms_scrollBy(0, -window.innerHeight);
 	else window.scrollBy(0, -window.innerHeight);
 }
 
@@ -348,10 +357,19 @@ function scroll_bg_h(){
 	if(window.event.which != 1) return;	// if it's not the left mouse button
 	window.event.stopPropagation();		// prevent bubbling (e.g. prevent drag being triggered on separately opened images)
 	
-	if(window.event.clientX < 50 && w.bg_special_ends == "1") window.scrollTo(0, window.event.clientY);
-	else if((window.innerWidth-window.event.clientX) < 50 && w.bg_special_ends == "1")
-		window.scrollTo(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth), window.event.clientY);
-	if(window.event.clientX > parseInt(document.getElementById("ms_hbar").style.left)) window.scrollBy(window.innerWidth, 0);
+	if(window.event.clientX < 50 && w.bg_special_ends == "1"){
+		if(w.animate_scroll=="1") ms_scroll(0, window.event.clientY);
+		else window.scroll(0, window.event.clientY);
+	}
+	else if((window.innerWidth-window.event.clientX) < 50 && w.bg_special_ends == "1"){
+		if(w.animate_scroll=="1") ms_scroll(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth), window.event.clientY);
+		else window.scroll(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth), window.event.clientY);
+	}
+	if(window.event.clientX > parseInt(document.getElementById("ms_hbar").style.left)){
+		if(w.animate_scroll=="1") ms_scroll(window.innerWidth, 0);
+		else window.scrollBy(window.innerWidth, 0);
+	}
+	else if(w.animate_scroll=="1") ms_scroll(-window.innerWidth, 0);
 	else window.scrollBy(-window.innerWidth, 0);
 }
 
@@ -411,8 +429,8 @@ function handle_button(whichone){
 		};
 	}
 	document.onmouseup = function(){
-		//ms_scrollTo(window.pageXOffset,whichone=="up"?0:Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight);
-		window.scrollTo(window.pageXOffset,whichone=="up"?0:Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight);
+		if(w.animate_scroll=="1") ms_scroll(window.pageXOffset,whichone=="up"?0:Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight);
+		else window.scroll(window.pageXOffset,whichone=="up"?0:Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight);
 		document.onmousemove = null;
 		document.onmouseup = null;
 	};
@@ -430,12 +448,12 @@ function show_minipage(){
 	
 	document.body.style.transformOrigin = "0% 0%";
 	document.body.style.transform = "scale("+(window.innerWidth/Math.max(document.body.scrollWidth,document.documentElement.scrollWidth,window.innerWidth))+","+(window.innerHeight/Math.max(document.body.scrollHeight,document.documentElement.scrollHeight,window.innerHeight))+")";
-	window.scrollTo(0,0);
+	window.scroll(0,0);
 	if(document.body.className=="zoom"){
 		var img = document.body.firstChild;
 		img.style.transformOrigin = "0% 0%";
 		img.style.transform = "scale("+(window.innerWidth/img.scrollWidth)+","+(window.innerHeight/img.scrollHeight)+")";
-		window.scrollTo(img.offsetLeft,img.offsetTop);
+		window.scroll(img.offsetLeft,img.offsetTop);
 	}	
 	document.getElementById("ms_superbar").style.display = null;
 	
@@ -511,7 +529,7 @@ function remove_ui(){
 	}
 }
 
-var scroll_interval;
+var scroll_timeout;
 
 function ms_stop_scroll(x,y){
 	if(x==0 && y==0) return;
@@ -520,49 +538,58 @@ function ms_stop_scroll(x,y){
 	window.scrollBy(x,y);
 	window.setTimeout(function(){ms_stop_scroll(x,y);},1);
 }
-function test_scrollTo(x,y){ scroll_interval = window.setInterval("testtest("+x+","+y+")",1); }
+function test_scroll(x,y){ scroll_timeout = window.setInterval("testtest("+x+","+y+")",1); }
 function testtest(x,y){
 	var this_x = window.pageXOffset<(x-15) ? 15 : (window.pageXOffset<(x+15) ? x-window.pageXOffset : -15);
 	var this_y = window.pageYOffset<(y-15) ? 15 : (window.pageYOffset<(y+15) ? y-window.pageYOffset : -15);
 	
 	if(this_x == 0 && this_y == 0){
-		window.clearInterval(scroll_interval);
-		scroll_interval = null;
+		window.clearInterval(scroll_timeout);
+		scroll_timeout = null;
 	}
 	else{
 		window.scrollBy(this_x, this_y);
-		//ms_scrollTo(x,y);
+		//ms_scroll(x,y);
 	}
 }
 
-var time_to_scroll = 1000;
-var remaining_time_to_scroll = 1000;
-function ms_scrollTo(x,y){ ms_scrollTo_inner(new Date().getTime(), 0, y, window.pageXOffset, window.pageYOffset); }
-function ms_scrollTo_inner(lastTick, to_x, to_y, from_x, from_y)
+function ms_scrollBy(x,y){ ms_scroll(window.pageXOffset+x,window.pageYOffset+y); }
+function ms_scroll(x,y){
+	scroll_timeout = null;
+	ms_scroll_inner(new Date().getTime(), x, y, window.pageXOffset, window.pageYOffset);
+}
+function ms_scroll_inner(lastTick, to_x, to_y, from_x, from_y)
 {
 	var curTick = new Date().getTime();
 	var elapsedTicks = curTick - lastTick;
-	remaining_time_to_scroll -= elapsedTicks;
+	var scrollamount = elapsedTicks*w.keyscroll_velocity;
 	
-	var new_y = to_y - (to_y - from_y)*remaining_time_to_scroll/time_to_scroll;
-	if((to_y > from_y && new_y > to_y) || (to_y < from_y && new_y < to_y)) new_y = to_y;
-	window.scrollTo(0, new_y);
-	console.log("from: "+from_y+" "+"\nto: "+to_y+" "+"\nnext: "+new_y);
-	//alert(to_y+" "+new_y);
-	if(new_y != to_y) window.setTimeout(function(){ms_scrollTo(curTick, to_x, to_y, from_x, from_y)}, 1);
-		//ms_scrollTo(curTick, to_x, to_y, from_x, from_y);
+	if(to_x != from_x){
+		var new_x = to_x > from_x ? from_x + scrollamount : from_x - scrollamount;
+		if((to_x > from_x && new_x > to_x) || (to_x < from_x && new_x < to_x)) new_x = to_x;
+	}
+	else var new_x = to_x;
+	if(to_y != from_y){
+		var new_y = to_y > from_y ? from_y + scrollamount : from_y - scrollamount;
+		if((to_y > from_y && new_y > to_y) || (to_y < from_y && new_y < to_y)) new_y = to_y;
+	}
+	else var new_y = to_y;
+	
+	window.scroll(new_x, new_y);
+	
+	if(new_x!=to_x || new_y!=to_y) scroll_timeout = window.setTimeout(function(){ms_scroll_inner(curTick, to_x, to_y, new_x, new_y)}, 1);
+	else scroll_timeout = null;
 }
 
 function ms_keyscroll(){
-	//alert(window.event.target.type);
-	if(window.event.which < 37 || window.event.which > 40 || window.event.ctrlKey || window.event.altKey || window.event.shiftKey || scroll_interval || window.event.target=="[object HTMLTextAreaElement]" || (window.event.target=="[object HTMLInputElement]" && (window.event.target.type == "text" || window.event.target.type == "number" || (window.event.target.type == "range" && window.event.which != 38 && window.event.which != 40)))) return; // arrow keys
+	if(window.event.which < 37 || window.event.which > 40 || window.event.ctrlKey || window.event.altKey || window.event.shiftKey || scroll_timeout || window.event.target=="[object HTMLTextAreaElement]" || (window.event.target=="[object HTMLInputElement]" && (window.event.target.type == "text" || window.event.target.type == "number" || (window.event.target.type == "range" && window.event.which != 38 && window.event.which != 40)))) return; // arrow keys
 	window.event.preventDefault(); window.event.stopPropagation();
 	
 	ms_keyscroll_inner(new Date().getTime(), window.event.which);
 	
 	window.onkeyup = function(){
-		window.clearTimeout(scroll_interval);
-		scroll_interval = null;
+		window.clearTimeout(scroll_timeout);
+		scroll_timeout = null;
 		window.onkeyup = null;
 	}
 }
@@ -577,5 +604,5 @@ function ms_keyscroll_inner(lastTick, direction){
 	else{ var x = -scrollamount; var y = 0; }						// left (37)
 	
 	window.scrollBy(x,y);
-	scroll_interval = window.setTimeout(function(){ms_keyscroll_inner(curTick, direction);},1);
+	scroll_timeout = window.setTimeout(function(){ms_keyscroll_inner(curTick, direction);},1);
 }

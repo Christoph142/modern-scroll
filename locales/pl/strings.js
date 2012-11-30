@@ -40,6 +40,7 @@ var strings = {
 	"never" : "nigdy",
 	"contextmenu over only" : "kiedy jest wywołane znad pasków modern scroll",
 	"custom scroll functions" : "Scrolling functions",
+	"animate scroll" : "animate scrolling",
 	"use custom functions" : "use custom scrolling functions",
 	"keyscroll_velocity" : "Velocity of Scrolling via the arrow keys",
 	"how to" : "Jak się tego używa",

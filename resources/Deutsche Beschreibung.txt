@@ -20,7 +20,7 @@ v 1.4
 ---------
 neu: eigene Scroll-Funktion
 neu: horizontale Bildlaufleiste gekürzt um Überlappen zu verhindern
-!neu: optionally animate scroll to top/bottom
+neu: Scrollen wird optional animiert
 
 v 1.3.1
 ---------

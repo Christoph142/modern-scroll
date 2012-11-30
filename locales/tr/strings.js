@@ -40,6 +40,7 @@ var strings = {
 	"never" : "asla",
 	"contextmenu over only" : "modern scroll arayüzünde sağ tıkladığımda",
 	"custom scroll functions" : "Scrolling functions",
+	"animate scroll" : "animate scrolling",
 	"use custom functions" : "use custom scrolling functions",
 	"keyscroll_velocity" : "Velocity of Scrolling via the arrow keys",
 	"how to" : "Bu eklentiyi nasıl kullanabilirim",

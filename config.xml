@@ -46,6 +46,7 @@
 	<preference name="container" value="0" />
 	<preference name="container_size" value="30" />
 	<preference name="gap" value="1" />
+	<preference name="animate_scroll" value="0" />
 	<preference name="use_own_scroll_functions" value="1" />
 	<preference name="keyscroll_velocity" value="2" />
 	

@@ -40,6 +40,7 @@ var strings = {
 	"never" : "jamais",
 	"contextmenu over only" : "quand je fais une clic droite à l'interface de modern scroll",
 	"custom scroll functions" : "Fonctions de défilement",
+	"animate scroll" : "anime le défilement",
 	"use custom functions" : "utilise des fonctions de défilement personnalisées",
 	"keyscroll_velocity" : "Vitesse de défilement avec les touches fléchées",
 	"how to" : "Comment puis-je utiliser cette extension",

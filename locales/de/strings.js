@@ -40,6 +40,7 @@ var strings = {
 	"never" : "nie",
 	"contextmenu over only" : "beim Rechtsklick auf die modern scroll Oberfläche",
 	"custom scroll functions" : "Scroll-Funktionen",
+	"animate scroll" : "animiere das Scrollen",
 	"use custom functions" : "benutze eigene Scroll-Funktionen",
 	"keyscroll_velocity" : "Geschwindigkeit des Scrollens mit den Pfeil-Tasten",
 	"how to" : "Wie verwende ich diese Erweiterung",

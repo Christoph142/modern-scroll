@@ -40,6 +40,7 @@ var strings = {
 	"never" : "Nunca",
 	"contextmenu over only" : "Quando eu clicar com o botão direito sobre a interface do modern scroll",
 	"custom scroll functions" : "Scrolling functions",
+	"animate scroll" : "animate scrolling",
 	"use custom functions" : "use custom scrolling functions",
 	"keyscroll_velocity" : "Velocity of Scrolling via the arrow keys",
 	"how to" : "Como eu uso esta extensão",
