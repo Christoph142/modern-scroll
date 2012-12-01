@@ -18,7 +18,7 @@ Changelog:
 
 v 1.4
 ---------
-neu: eigene Scroll-Funktion
+neu: eigene schnellere Scroll-Funktionen
 neu: horizontale Bildlaufleiste gekürzt um Überlappen zu verhindern
 neu: Scrollen wird optional animiert
 
