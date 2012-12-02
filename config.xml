@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<widget xmlns="http://www.w3.org/ns/widgets" id="https://github.com/Christoph142/modern-scroll" defaultlocale="en" version="1.3">
+<widget xmlns="http://www.w3.org/ns/widgets" id="https://github.com/Christoph142/modern-scroll" defaultlocale="en" version="1.4 beta">
 
 	<name>modern scroll</name>
 	<author href="http://my.opera.com/christoph142/blog">Christoph D.</author>
@@ -11,6 +11,7 @@
 	<description xml:lang="it">Una moderna alternativa per le barra di scorrimento standard di Opera</description>
 	<description xml:lang="nb">An up-to-date alternative to Opera's standard scrollbars</description>
 	<description xml:lang="pl">Odnowione alternatywne paski przewiajania w Operze</description>
+	<description xml:lang="pt">Uma alternativa moderna para as barras de rolagem padrão do Opera</description>
 	<description xml:lang="tr">Opera'nın standart kaydırma çubuklarına güncel bir alternatif</description>
 	
 	<feature name="opera:screenshot" />
@@ -45,5 +46,9 @@
 	<preference name="container" value="0" />
 	<preference name="container_size" value="30" />
 	<preference name="gap" value="1" />
+	<preference name="animate_scroll" value="0" />
+	<preference name="use_own_scroll_functions" value="1" />
+	<preference name="scroll_velocity" value="5" />
+	<preference name="keyscroll_velocity" value="2" />
 	
 </widget>
