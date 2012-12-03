@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<widget xmlns="http://www.w3.org/ns/widgets" id="https://github.com/Christoph142/modern-scroll" defaultlocale="en" version="1.4 beta">
+<widget xmlns="http://www.w3.org/ns/widgets" id="https://github.com/Christoph142/modern-scroll" defaultlocale="en" version="1.4 beta 2">
 
 	<name>modern scroll</name>
 	<author href="http://my.opera.com/christoph142/blog">Christoph D.</author>
@@ -45,7 +45,7 @@
 	<preference name="contextmenu_show_when" value="2" /><!-- 1 = never, 2 = only over interface, 3 = always -->
 	<preference name="container" value="0" />
 	<preference name="container_size" value="30" />
-	<preference name="gap" value="1" />
+	<preference name="gap" value="2" />
 	<preference name="animate_scroll" value="0" />
 	<preference name="use_own_scroll_functions" value="1" />
 	<preference name="scroll_velocity" value="5" />
