@@ -38,23 +38,21 @@ function call_on_load(){
 }
 
 function inject_css(){
-	//console.log(document.body.scrollbarFaceColor);
-	
 	var ms_style =
 		"#ms_v_container{ height:100%; width:"+(w.container=="1"?w.container_size:"1")+"px; "+(w.vbar_at_left=="1"?"left":"right")+":0px; top:0px; background:rgba(0,0,0,0); }"+
 		"#ms_h_container{ height:"+(w.container=="1"?w.container_size:"1")+"px; width:100%; left:0px; "+(w.hbar_at_top=="1"?"top":"bottom")+":0px; background:rgba(0,0,0,0); }"+
 		"#ms_vbar_bg, #ms_hbar_bg{ opacity:"+((w.show_when=="3" && w.no_bar_bg != "1")?(w.opacity/100):"0")+"; transition:opacity 0.5s 1s; }"+
-		"#ms_vbar_bg{ top:0px; height:100%; width:auto; "+(w.vbar_at_left=="1"?"left":"right")+":0px; "+(w.vbar_at_left=="0"?"left":"right")+":auto; }"+
-		"#ms_hbar_bg{ "+(w.vbar_at_left=="0"?"left":"right")+":0px; "+(w.vbar_at_left=="1"?"left":"right")+":"+(parseInt(w.hover_size)+parseInt(w.gap))+"px; width:auto; height:auto; "+(w.hbar_at_top=="1"?"top":"bottom")+":0px; "+(w.hbar_at_top=="0"?"top":"bottom")+":auto; }"+
+		"#ms_vbar_bg{ top:"+w.gap+"px; bottom:"+w.gap+"px; height:auto; width:auto; "+(w.vbar_at_left=="1"?"left":"right")+":0px; "+(w.vbar_at_left=="0"?"left":"right")+":auto; }"+
+		"#ms_hbar_bg{ "+(w.vbar_at_left=="0"?"left":"right")+":0px; "+(w.vbar_at_left=="1"?"left":"right")+":"+(parseInt(w.hover_size)+parseInt(w.gap))+"px; "+(w.vbar_at_left=="0"?"left":"right")+":"+w.gap+"px; width:auto; height:auto; "+(w.hbar_at_top=="1"?"top":"bottom")+":0px; "+(w.hbar_at_top=="0"?"top":"bottom")+":auto; }"+
 		"#ms_vbar_bg_ui, #ms_hbar_bg_ui{ background:"+w.color_bg+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" !important; border-radius:"+w.border_radius+"px; }"+
 		"#ms_vbar_bg_ui{ margin-"+(w.vbar_at_left=="1"?"left":"right")+":"+(w.gap)+"px; height:100%; width:"+w.size+"px; transition:width 0.25s; }"+
 		"#ms_hbar_bg_ui{ margin-"+(w.hbar_at_top=="1"?"top":"bottom")+":"+(w.gap)+"px; width:100%; height:"+w.size+"px; transition:height 0.25s; }"+
 		"#ms_vbar, #ms_hbar{ opacity:"+((w.show_when=="3")?(w.opacity/100):"0")+"; transition:opacity 0.5s 1s; }"+
-		"#ms_vbar{ top:0px; height:30px; min-height:30px; width:auto; "+(w.vbar_at_left=="1"?"left":"right")+":0px; "+(w.vbar_at_left=="0"?"left":"right")+":auto; }"+
-		"#ms_hbar{ left:0px; width:30px; min-width:30px; height:auto; "+(w.hbar_at_top=="1"?"top":"bottom")+":0px; "+(w.hbar_at_top=="0"?"top":"bottom")+":auto; }"+
+		"#ms_vbar{ top:0px; height:"+(30+2*w.gap)+"px; min-height:"+(30+2*w.gap)+"px; width:auto; "+(w.vbar_at_left=="1"?"left":"right")+":0px; "+(w.vbar_at_left=="0"?"left":"right")+":auto; }"+
+		"#ms_hbar{ left:0px; width:"+(30+2*w.gap)+"px; min-width:"+(30+2*w.gap)+"px; height:auto; "+(w.hbar_at_top=="1"?"top":"bottom")+":0px; "+(w.hbar_at_top=="0"?"top":"bottom")+":auto; }"+
 		"#ms_vbar_ui, #ms_hbar_ui{ background:"+w.color+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" !important; border-radius:"+w.border_radius+"px; }"+
-		"#ms_vbar_ui{ height:100%; width:"+w.size+"px; margin-"+(w.vbar_at_left=="1"?"left":"right")+":"+(w.gap)+"px; transition:width 0.25s; }"+
-		"#ms_hbar_ui{ width:100%; height:"+w.size+"px; margin-"+(w.hbar_at_top=="1"?"top":"bottom")+":"+(w.gap)+"px; transition:height 0.25s; }"+
+		"#ms_vbar_ui{ height:30px; min-height:30px; width:"+w.size+"px; margin-top:"+w.gap+"px; margin-bottom:"+w.gap+"px; margin-"+(w.vbar_at_left=="1"?"left":"right")+":"+w.gap+"px; transition:width 0.25s; }"+
+		"#ms_hbar_ui{ width:30px; min-width:30px; height:"+w.size+"px; margin-left:"+w.gap+"px; margin-right:"+w.gap+"px; margin-"+(w.hbar_at_top=="1"?"top":"bottom")+":"+(w.gap)+"px; transition:height 0.25s; }"+
 		"#ms_superbar{ width:100px; background:"+(w.show_superbar_minipage==0?w.color:"rgba(0,0,0,0)")+"; opacity:"+((w.show_when=="3")?"0.5":"0")+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" "+(w.show_superbar_minipage==1?", 0 0 200px 10px #999":"")+" !important; border-radius:"+w.border_radius+"px; transition:opacity 0.5s 1s; min-width:30px; min-height:30px; }"+
 		"#ms_page_cover{ left:0px; top:0px; width:100%; height:100%; background:rgba(0,0,0,0); padding:0px; margin:0px; }"+
 		"#ms_upbutton, #ms_downbutton{ height:"+w.button_height*2+"px; width:"+w.button_width+"px; left:"+w.buttonposition+"%; opacity:"+w.button_opacity/100+"; background:"+w.color+"; border-radius:50px; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5); transition:opacity 0.5s; }"+
@@ -158,16 +156,21 @@ function resize_vbar(){
 		return;
 	}
 	var vbar_height_before = document.getElementById("ms_vbar").style.height;
-	document.getElementById("ms_vbar").style.height = Math.round(window.innerHeight/(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)/window.innerHeight))+"px"; // resize it
+	var vbar_new_height = Math.round(window.innerHeight/(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)/window.innerHeight));
+	document.getElementById("ms_vbar").style.height = vbar_new_height+"px"; // resize it
 	
 	if(document.getElementById("ms_vbar").style.display != "inline"){
+		document.getElementById("ms_vbar_ui").style.height = vbar_new_height-2*w.gap+"px";
 		document.getElementById("ms_v_container").style.display = "inline";
 		document.getElementById("ms_vbar_bg").style.display = "inline";
 		document.getElementById("ms_vbar").style.display = "inline";
 		show_bar("v");
 		opera.extension.postMessage("reset_contextmenu");
 	}
-	else if(vbar_height_before != document.getElementById("ms_vbar").style.height) show_bar("v");
+	else if(vbar_height_before != vbar_new_height+"px"){
+		document.getElementById("ms_vbar_ui").style.height = vbar_new_height-2*w.gap+"px";
+		show_bar("v");
+	}
 }
 
 function resize_hbar(){
@@ -180,18 +183,22 @@ function resize_hbar(){
 		}
 		return 0;
 	}
-	
 	var hbar_width_before = document.getElementById("ms_hbar").style.width;
-	document.getElementById("ms_hbar").style.width = Math.round(window.innerWidth/(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)/window.innerWidth))+"px"; // resize it
+	var hbar_new_width = Math.round(window.innerWidth/(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)/window.innerWidth));
+	document.getElementById("ms_hbar").style.width = hbar_new_width+"px"; // resize it
 	
 	if(document.getElementById("ms_hbar").style.display != "inline"){
+		document.getElementById("ms_hbar_ui").style.width = hbar_new_width-2*w.gap+"px";
 		document.getElementById("ms_h_container").style.display = "inline";
 		document.getElementById("ms_hbar_bg").style.display = "inline";
 		document.getElementById("ms_hbar").style.display = "inline";
 		show_bar("h");
 		opera.extension.postMessage("reset_contextmenu");
 	}
-	else if(hbar_width_before != document.getElementById("ms_hbar").style.width) show_bar("h");
+	else if(hbar_width_before != hbar_new_width+"px"){
+		document.getElementById("ms_hbar_ui").style.width = hbar_new_width-2*w.gap+"px";
+		show_bar("h");
+	}
 }
 
 function drag_v(){
@@ -306,7 +313,7 @@ function reposition_bars(){
 		document.getElementById("ms_vbar").style.top = Math.round(window.pageYOffset/(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight)*(window.innerHeight-document.getElementById("ms_vbar").offsetHeight))+"px";
 	if(document.getElementById("ms_hbar").style.display=="inline"){
 		var left = Math.round(window.pageXOffset/(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)-window.innerWidth)*(window.innerWidth-document.getElementById("ms_hbar").offsetWidth));
-		document.getElementById("ms_hbar").style.left = left-((parseInt(w.hover_size)+parseInt(w.gap))*left/(window.innerWidth-document.getElementById("ms_hbar").offsetWidth))+(w.vbar_at_left=="1"?(parseInt(w.hover_size)+parseInt(w.gap)):0)+"px";
+		document.getElementById("ms_hbar").style.left = left-(parseInt(w.hover_size)*left/(window.innerWidth-document.getElementById("ms_hbar").offsetWidth))+(w.vbar_at_left=="1"?parseInt(w.hover_size):0)+"px";
 	}
 	if(window.pageYOffset > 0 && document.getElementById("ms_upbutton")) document.getElementById("ms_upbutton").style.display = "inline";
 	else if(document.getElementById("ms_upbutton")) document.getElementById("ms_upbutton").style.display = null;
@@ -602,10 +609,13 @@ function ms_keyscroll_inner(lastTick, direction){
 	window.scrollBy(x,y);
 	scroll_timeout_id = window.setTimeout(function(){ms_keyscroll_inner(curTick, direction);},1);
 }
-
+var test;
 function ms_mousescroll_x(){ window.event.preventDefault(); window.event.stopPropagation(); ms_scrollBy(-window.event.wheelDelta,0); }
 function ms_mousescroll_y(){
 	if(window.event.target == "[object HTMLTextAreaElement]") return;
 	window.event.preventDefault();
+	var curTick = new Date().getTime();
+	if(test)console.log(curTick - test);
+	test = curTick;
 	ms_scrollBy(0,-window.event.wheelDelta);
 }
