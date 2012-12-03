@@ -21,6 +21,7 @@ v 1.4
 neu: eigene schnellere Scroll-Funktionen
 neu: horizontale Bildlaufleiste gekürzt um Überlappen zu verhindern
 neu: Scrollen wird optional animiert
+neu: zusätzliche Erklärungen für manche Optionen
 
 v 1.3.1
 ---------
