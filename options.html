@@ -90,19 +90,19 @@
         <td><label for="fullscreen_only"><script>_("fullscreen_only");</script></label></td>
     </tr><tr>
     	<td><input type="checkbox" id="animate_mousescroll" name="animate_mousescroll" checked="checked"></td>
-        <td><label for="animate_mousescroll"><script>_("animate_mousescroll");</script></label></td>
+        <td><label for="animate_mousescroll"><script>_("animate_mousescroll");</script></label><div id="animate_mousescroll_info" class="i">i<div id="animate_mousescroll_info_text" class="i_text"><script>_("explanation: animate mousescroll");</script></div></div></td>
     </tr><tr>
     	<td><input type="checkbox" id="bg_special_ends" name="bg_special_ends" checked="checked"></td>
         <td><label for="bg_special_ends"><script>_("bg_special_ends");</script></label></td>
     </tr><tr>
     	<td><input type="checkbox" id="container" name="container"></td>
-        <td><label for="container"><script>_("container1");</script></label> <input type="number" max="100" min="1" id="container_size" value="30"> <label for="container"><script>_("container2");</script></label></td>
+        <td><label for="container"><script>_("container1");</script></label> <input type="number" max="100" min="1" id="container_size" value="30"> <label for="container"><script>_("container2");</script></label><div id="trigger_area_info" class="i">i<div id="trigger_area_info_text" class="i_text"><script>_("explanation: trigger area");</script></div></div></td>
     </tr></table>
     </fieldset><br>
     
     <fieldset>
     <h4>Superbar:</h4>
-    <input type="checkbox" id="show_superbar" name="show_superbar" onChange="document.getElementById('superbar_container').style.height=(this.checked?'auto':'0px');"> <label for="show_superbar"><script>_("show_superbar");</script></label>
+    <input type="checkbox" id="show_superbar" name="show_superbar" onChange="document.getElementById('superbar_container').style.height=(this.checked?'auto':'0px');"> <label for="show_superbar"><script>_("show_superbar");</script></label><div id="superbar_info" class="i">i<div id="superbar_info_text" class="i_text"><script>_("explanation: superbar");</script></div></div>
     <div id="superbar_container" style="overflow:hidden; height:auto;">
     <input type="checkbox" id="show_superbar_minipage" name="show_superbar_minipage" checked="checked"> <label for="show_superbar_minipage"><script>_("show_superbar_minipage");</script></label><br>
     <table><tr>
@@ -148,16 +148,16 @@
     <h4><script>_("custom scroll functions");</script>:</h4>
     <table class="c"><tr>
         <td><input type="checkbox" id="use_own_scroll_functions" name="use_own_scroll_functions" checked="checked" onChange="document.getElementById('functions_container').style.display=(this.checked?'inline':'none'); if(this.checked || document.getElementById('animate_scroll').checked) document.getElementById('scroll_container').style.display='inline'; if(this.checked && document.getElementById('animate_scroll').checked) document.getElementById('scroll_v_label').innerHTML=strings['scroll_velocity both']; else if(this.checked) document.getElementById('scroll_v_label').innerHTML=strings['scroll_velocity mouse']; else if(document.getElementById('animate_scroll').checked) document.getElementById('scroll_v_label').innerHTML=strings['scroll_velocity auto']; else document.getElementById('scroll_container').style.display='none';"></td>
-        <td><label for="use_own_scroll_functions"><script>_("use custom functions");</script></label></td>
+        <td><label for="use_own_scroll_functions"><script>_("use custom functions");</script></label><div id="own_functions_info" class="i">i<div id="own_functions_info_text" class="i_text"><script>_("explanation: custom functions");</script></div></div></td>
     </tr><tr>
         <td><input type="checkbox" id="animate_scroll" name="animate_scroll" onChange=" if(this.checked || document.getElementById('use_own_scroll_functions').checked) document.getElementById('scroll_container').style.display='inline'; if(this.checked && document.getElementById('use_own_scroll_functions').checked) document.getElementById('scroll_v_label').innerHTML=strings['scroll_velocity both']; else if(this.checked) document.getElementById('scroll_v_label').innerHTML=strings['scroll_velocity auto']; else if(document.getElementById('use_own_scroll_functions').checked) document.getElementById('scroll_v_label').innerHTML=strings['scroll_velocity mouse']; else document.getElementById('scroll_container').style.display='none';"></td>
-        <td><label for="animate_scroll"><script>_("animate scroll");</script></label></td>
+        <td><label for="animate_scroll"><script>_("animate scroll");</script></label><div id="animate_scroll_info" class="i">i<div id="animate_scroll_info_text" class="i_text"><script>_("explanation: animate scroll");</script></div></div></td>
     </tr></table>
     <div id="scroll_container">
         <table><tr>
             <td style="text-align:left; vertical-align:top;"><label id="scroll_v_label" for="scroll_velocity"><script>_("scroll_velocity mouse");</script></label>: <label id="scroll_velocity_display"><script>document.write(Math.round(100*widget.preferences.scroll_velocity/5)+"%");
             </script></label></td>
-            <td style="text-align:right;"><input type="range" name="scroll_velocity" id="scroll_velocity" min="1" max="10" value="5" step="0.1" onChange="document.getElementById('scroll_velocity_display').innerHTML = Math.round(100*this.value/5)+'%';"></td>
+            <td style="text-align:right;"><input type="range" name="scroll_velocity" id="scroll_velocity" min="1" max="15" value="5" step="0.1" onChange="document.getElementById('scroll_velocity_display').innerHTML = Math.round(100*this.value/5)+'%';"></td>
         </tr></table>
         <div id="functions_container" style="overflow:hidden;">
         <table><tr>

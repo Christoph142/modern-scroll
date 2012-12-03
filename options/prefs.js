@@ -36,11 +36,11 @@ function getprefs(){
 	var inputs = document.getElementsByTagName("input");
 	var selects = document.getElementsByTagName("select");
 	
-	for(i=0; i<inputs.length; i++){
+	for(var i=0; i<inputs.length; i++){
 		if(inputs[i].type=="checkbox")	document.getElementsByTagName("input")[i].checked = widget.preferences[inputs[i].id]=="0"?0:1;
 		else							document.getElementsByTagName("input")[i].value = widget.preferences[inputs[i].id];
 	}
-	for(i=0; i<selects.length; i++){ document.getElementsByTagName("select")[i].value = widget.preferences[selects[i].id]; }
+	for(var i=0; i<selects.length; i++){ document.getElementsByTagName("select")[i].value = widget.preferences[selects[i].id]; }
 	
 	if(document.getElementById("show_buttons").checked) document.getElementById("button_container").style.height = "auto";
 	if(!document.getElementById("show_superbar").checked) document.getElementById("superbar_container").style.height = "0px";
@@ -51,4 +51,18 @@ function getprefs(){
 	}
 	else if(document.getElementById('animate_scroll').checked) document.getElementById('scroll_v_label').innerHTML=strings['scroll_velocity both'];
 	document.getElementById("border_radius").max = Math.round(Math.max(document.getElementById("size").value, document.getElementById("hover_size").value)/2);
+	
+	for(var i=0; i<document.getElementsByClassName("i").length; i++){ // information boxes:
+		document.getElementsByClassName("i")[i].addEventListener("mouseover", function(){
+			window.clearTimeout(timeout);
+			document.getElementById(this.id+"_text").style.display = "inline";
+			document.getElementById(this.id+"_text").style.opacity = "1";
+		}, false);
+		document.getElementsByClassName("i")[i].addEventListener("mouseout", function(){
+			document.getElementById(this.id+"_text").style.opacity = "0";
+			timeout = window.setTimeout("document.getElementById('"+this.id+"_text').style.display = 'none';", 200);
+		}, false);
+	}
 }
+
+var timeout;
