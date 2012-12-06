@@ -16,12 +16,13 @@ This extension was originally planned as an update to slim scrollbar by damage92
 Changelog:
 ----------
 
-v 1.4
+v 1.5
 ---------
 new: custom speedier scrolling functions
 new: horizontal bar shortened to prevent overlapping
 new: optionally animate scrolling
 new: additional explanations for some settings
+new: support for iframes
 
 v 1.3.1
 ---------
