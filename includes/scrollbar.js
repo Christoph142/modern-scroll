@@ -44,7 +44,7 @@ function call_on_load(){
 
 function inject_css(){
 	var ms_style = /* stop default scrolling: */
-		((window.self.frameElement || w.use_own_scroll_functions == "1")?"html, body{ overflow:hidden !important; }":"")+
+		((window.self.frameElement || w.use_own_scroll_functions == "1")?"html, body{ height:auto !important; overflow:hidden !important; }":"")+
 		
 		/* set back standard values (CSS values not necessarily used by modern scroll, but maybe altered by the website): */
 		"#ms_v_container, #ms_h_container, #ms_vbar_bg, #ms_hbar_bg, #ms_vbar, #ms_hbar, #ms_superbar, #ms_page_cover, #ms_upbutton, #ms_downbutton, #ms_minipage_canvas{ position:fixed; z-index:2147483647; border:none; padding:0; margin:0; display:none; }"+
