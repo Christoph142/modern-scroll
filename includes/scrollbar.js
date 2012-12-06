@@ -43,8 +43,11 @@ function call_on_load(){
 }
 
 function inject_css(){
+	if(document.body.currentStyle.height == "100%") document.body.dataset.ms_height_correct = 1; // save to body-tag to set it every time
+	
 	var ms_style = /* stop default scrolling: */
-		((window.self.frameElement || w.use_own_scroll_functions == "1")?"html, body{ height:auto !important; overflow:hidden !important; }":"")+
+		(document.body.dataset.ms_height_correct?"html, body{ height:auto !important; min-height:100%; }":"")+
+		((window.self.frameElement || w.use_own_scroll_functions == "1")?"html, body{ overflow:hidden !important; }":"")+
 		
 		/* set back standard values (CSS values not necessarily used by modern scroll, but maybe altered by the website): */
 		"#ms_v_container, #ms_h_container, #ms_vbar_bg, #ms_hbar_bg, #ms_vbar, #ms_hbar, #ms_superbar, #ms_page_cover, #ms_upbutton, #ms_downbutton, #ms_minipage_canvas{ position:fixed; z-index:2147483647; border:none; padding:0; margin:0; display:none; }"+
@@ -247,6 +250,7 @@ function drag_h(){
 	var dragx = window.event.clientX - parseInt(bar.style.left);
 	document.onmousemove = function(){
 		var posx = window.event.clientX;
+		
 		if(w.vbar_at_left=="0")
 			window.scroll(((posx - dragx)<=0 ? 0 : ((posx - dragx)>=window.innerWidth-bar.offsetWidth-w.hover_size-w.gap ? window.innerWidth-bar.offsetWidth-w.hover_size-w.gap : posx-dragx))/(window.innerWidth-bar.offsetWidth-w.hover_size-w.gap)*(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)-window.innerWidth), window.pageYOffset);
 		else
