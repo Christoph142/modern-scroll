@@ -43,11 +43,13 @@ function call_on_load(){
 }
 
 function inject_css(){
-	if(document.body.currentStyle.height == "100%") document.body.dataset.ms_height_correct = 1; // save to body-tag to set it every time
+	//if(document.body.currentStyle.height == "100%") document.body.dataset.msHeightCorrect = 1; // save to body-tag to set it every time
+	//if(document.body.currentStyle.width == "100%") document.body.dataset.msWidthCorrect = 1;
 	
 	var ms_style = /* stop default scrolling: */
-		(document.body.dataset.ms_height_correct?"html, body{ height:auto !important; min-height:100%; }":"")+
-		((window.self.frameElement || w.use_own_scroll_functions == "1")?"html, body{ overflow:hidden !important; }":"")+
+		//(document.body.dataset.msHeightCorrect?"body{ height:auto !important; min-height:100%; }":"")+
+		//(document.body.dataset.msWidthCorrect?"body{ width:auto !important; min-width:100%; }":"")+
+		((!window.self.frameElement && w.use_own_scroll_functions == "1")?"html{ overflow:hidden; }":"")+
 		
 		/* set back standard values (CSS values not necessarily used by modern scroll, but maybe altered by the website): */
 		"#ms_v_container, #ms_h_container, #ms_vbar_bg, #ms_hbar_bg, #ms_vbar, #ms_hbar, #ms_superbar, #ms_page_cover, #ms_upbutton, #ms_downbutton, #ms_minipage_canvas{ position:fixed; z-index:2147483647; border:none; padding:0; margin:0; display:none; }"+
@@ -141,7 +143,8 @@ function add_functionality(){
 	window.addEventListener("DOMNodeInserted", onDOMNode, false);
 	window.addEventListener("DOMNodeRemoved", onDOMNode, false);
 	if(window.self.frameElement || w.use_own_scroll_functions == "1" || w.animate_scroll == "1"){
-		window.addEventListener("keydown", ms_keyscroll, false);
+		window.addEventListener("keydown", ms_arrowkeyscroll, false);
+		window.addEventListener("keydown", ms_otherkeyscroll, false);
 		window.addEventListener("mousewheel", ms_mousescroll_y, false);
 	}
 	window.addEventListener("resize", resize_bars, false);
@@ -188,13 +191,13 @@ function resize_vbar(){
 
 function resize_hbar(){
 	//don't display if content fits into window:
-	if(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)<=window.innerWidth){
+	if(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth) <= window.innerWidth){
 		if(document.getElementById("ms_hbar").style.display == "inline"){
 			document.getElementById("ms_h_container").style.display = null;
 			document.getElementById("ms_hbar_bg").style.display = null;
 			document.getElementById("ms_hbar").style.display = null;
 		}
-		return 0;
+		return;
 	}
 	var hbar_width_before = document.getElementById("ms_hbar").style.width;
 	var hbar_new_width = Math.round(window.innerWidth/(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)/window.innerWidth));
@@ -227,7 +230,7 @@ function drag_v(){
 	document.onmousemove = function(){
 		var posy = window.event.clientY;
 		
-		window.scroll(window.pageXOffset, ((posy - dragy)<=0? 0 : ((posy - dragy)>=window.innerHeight-bar.offsetHeight?window.innerHeight-bar.offsetHeight : (posy - dragy)))/(window.innerHeight-bar.offsetHeight)*(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight));
+		window.scroll(window.pageXOffset, Math.round(((posy - dragy)<=0? 0 : ((posy - dragy)>=window.innerHeight-bar.offsetHeight?window.innerHeight-bar.offsetHeight : (posy - dragy)))/(window.innerHeight-bar.offsetHeight)*(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight)));
 	}
 	document.onmouseup = function(){
 		document.getElementById("ms_page_cover").style.display = null;
@@ -252,9 +255,9 @@ function drag_h(){
 		var posx = window.event.clientX;
 		
 		if(w.vbar_at_left=="0")
-			window.scroll(((posx - dragx)<=0 ? 0 : ((posx - dragx)>=window.innerWidth-bar.offsetWidth-w.hover_size-w.gap ? window.innerWidth-bar.offsetWidth-w.hover_size-w.gap : posx-dragx))/(window.innerWidth-bar.offsetWidth-w.hover_size-w.gap)*(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)-window.innerWidth), window.pageYOffset);
+			window.scroll(Math.round(((posx - dragx)<=0 ? 0 : ((posx - dragx)>=window.innerWidth-bar.offsetWidth-w.hover_size-w.gap ? window.innerWidth-bar.offsetWidth-w.hover_size-w.gap : posx-dragx))/(window.innerWidth-bar.offsetWidth-w.hover_size-w.gap)*(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)-window.innerWidth)), window.pageYOffset);
 		else
-			window.scroll(((posx - dragx)<=parseInt(w.hover_size)+parseInt(w.gap) ? 0 : ((posx - dragx)>=window.innerWidth-bar.offsetWidth ? window.innerWidth-bar.offsetWidth-w.hover_size-w.gap : posx-dragx-w.hover_size-w.gap))/(window.innerWidth-bar.offsetWidth-w.hover_size-w.gap)*(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)-window.innerWidth), window.pageYOffset);
+			window.scroll(Math.round(((posx - dragx)<=parseInt(w.hover_size)+parseInt(w.gap) ? 0 : ((posx - dragx)>=window.innerWidth-bar.offsetWidth ? window.innerWidth-bar.offsetWidth-w.hover_size-w.gap : posx-dragx-w.hover_size-w.gap))/(window.innerWidth-bar.offsetWidth-w.hover_size-w.gap)*(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)-window.innerWidth)), window.pageYOffset);
 	};
 	document.onmouseup = function(){
 		document.getElementById("ms_page_cover").style.display = null;
@@ -535,7 +538,8 @@ function remove_ui(){
 	window.removeEventListener("DOMNodeRemoved", onDOMNode, false);
 	window.removeEventListener("resize", resize_bars, false);
 	window.removeEventListener("resize", add_or_remove_ui, false);
-	window.removeEventListener("keydown", ms_keyscroll, false);
+	window.removeEventListener("keydown", ms_arrowkeyscroll, false);
+	window.removeEventListener("keydown", ms_otherkeyscroll, false);
 	window.removeEventListener("mousewheel", ms_mousescroll_y, false);
 	window.removeEventListener("mouseup", check_resize, false);
 	window.removeEventListener("scroll", onScroll, false);
@@ -603,47 +607,14 @@ function ms_scroll_inner(lastTick, to_x, to_y, from_x, from_y)
 	}
 }
 
-function ms_keyscroll(){
-	if(window.event.which == 36){ //Pos1
-		if(w.animate_scroll == "1"){
-			if(!window.self.frameElement && w.use_own_scroll_functions == "0") window.event.preventDefault();
-			ms_scroll(0,0);
-		}
-		else window.scroll(0,0);
-		return;
-	}
-	else if(window.event.which == 35){ //Ende
-		if(w.animate_scroll == "1"){
-			if(!window.self.frameElement && w.use_own_scroll_functions == "0") window.event.preventDefault();
-			ms_scroll(0,Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight);
-		}
-		else window.scroll(0,Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight);
-		return;
-	}
-	else if(window.event.which == 33){ //PageUp
-		if(w.animate_scroll == "1"){
-			if(!window.self.frameElement && w.use_own_scroll_functions == "0") window.event.preventDefault();
-			ms_scrollBy(0,-window.innerHeight);
-		}
-		else window.scrollBy(0,-window.innerHeight);
-		return;
-	}
-	else if(window.event.which == 34){ //PageDown
-		if(w.animate_scroll == "1"){
-			if(!window.self.frameElement && w.use_own_scroll_functions == "0") window.event.preventDefault();
-			ms_scrollBy(0,window.innerHeight);
-		}
-		else window.scrollBy(0,window.innerHeight);
-		return;
-	}
-	else if(window.event.which < 37 || window.event.which > 40 || window.event.ctrlKey || window.event.altKey || window.event.shiftKey || scroll_timeout_func == "keyscroll" || window.event.target=="[object HTMLTextAreaElement]" || (window.event.target=="[object HTMLInputElement]" && (window.event.target.type == "text" || window.event.target.type == "number" || (window.event.target.type == "range" && window.event.which != 38 && window.event.which != 40))) || (!window.self.frameElement && w.use_own_scroll_functions == "0")) return; // arrow keys
+function ms_arrowkeyscroll(){
+	if(window.event.which < 37 || window.event.which > 40 || window.event.ctrlKey || window.event.altKey || window.event.shiftKey || scroll_timeout_func == "arrowkeyscroll" || window.event.target=="[object HTMLTextAreaElement]" || (window.event.target=="[object HTMLInputElement]" && (window.event.target.type == "text" || window.event.target.type == "number" || (window.event.target.type == "range" && window.event.which != 38 && window.event.which != 40))) || (!window.self.frameElement && w.use_own_scroll_functions == "0")) return; // arrow keys
 	
-	//window.event.preventDefault();
-	//window.event.stopPropagation();
+	//window.event.preventDefault(); window.event.stopPropagation();
 	if(scroll_timeout_id) window.clearTimeout(scroll_timeout_id); // stop scrolling in progress
 	
-	scroll_timeout_func = "keyscroll";
-	ms_keyscroll_inner(new Date().getTime(), window.event.which);
+	scroll_timeout_func = "arrowkeyscroll";
+	ms_arrowkeyscroll_inner(new Date().getTime(), window.event.which);
 	
 	window.onkeyup = function(){
 		window.clearTimeout(scroll_timeout_id);
@@ -652,7 +623,8 @@ function ms_keyscroll(){
 		window.onkeyup = null;
 	}
 }
-function ms_keyscroll_inner(lastTick, direction){
+function ms_arrowkeyscroll_inner(lastTick, direction)
+{
 	var curTick = new Date().getTime();
 	var elapsedTicks = curTick - lastTick;
 	var scrollamount = elapsedTicks*w.keyscroll_velocity;
@@ -663,15 +635,54 @@ function ms_keyscroll_inner(lastTick, direction){
 	else{ var x = -scrollamount; var y = 0; }						// left (37)
 	
 	window.scrollBy(x,y);
-	scroll_timeout_id = window.setTimeout(function(){ms_keyscroll_inner(curTick, direction);},1);
+	scroll_timeout_id = window.setTimeout(function(){ms_arrowkeyscroll_inner(curTick, direction);},1);
 }
-var test;
-function ms_mousescroll_x(){ //window.event.preventDefault(); window.event.stopPropagation();
-	ms_scrollBy(-window.event.wheelDelta,0); }
+
+function ms_otherkeyscroll()
+{
+	if(window.event.target == "[object HTMLTextAreaElement]" || window.event.which < 33 || window.event.which > 36) return;
+	if(window.event.which == 33){ //PageUp
+		if(w.animate_scroll == "1"){
+			if(!window.self.frameElement && w.use_own_scroll_functions == "0") window.event.preventDefault();
+			ms_scrollBy(0,-window.innerHeight);
+		}
+		else if(window.self.frameElement || w.use_own_scroll_functions == "1") window.scrollBy(0,-window.innerHeight);
+		return;
+	}
+	if(window.event.which == 34){ //PageDown
+		if(w.animate_scroll == "1"){
+			if(!window.self.frameElement && w.use_own_scroll_functions == "0") window.event.preventDefault();
+			ms_scrollBy(0,window.innerHeight);
+		}
+		else if(window.self.frameElement || w.use_own_scroll_functions == "1") window.scrollBy(0,window.innerHeight);
+		return;
+	}
+	if(window.event.target == "[object HTMLInputElement]" && window.event.target.type == "text") return;
+	if(window.event.which == 36){ //Pos1
+		if(w.animate_scroll == "1"){
+			if(!window.self.frameElement && w.use_own_scroll_functions == "0") window.event.preventDefault();
+			ms_scroll(0,0);
+		}
+		else if(window.self.frameElement || w.use_own_scroll_functions == "1") window.scroll(0,0);
+	}
+	else{ //Ende (35)
+		if(w.animate_scroll == "1"){
+			if(!window.self.frameElement && w.use_own_scroll_functions == "0") window.event.preventDefault();
+			ms_scroll(0,Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight);
+		}
+		else if(window.self.frameElement || w.use_own_scroll_functions == "1")
+			window.scroll(0,Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight);
+	}
+}
+
+//var test;
+function ms_mousescroll_x(){
+	window.event.preventDefault(); window.event.stopPropagation();
+	ms_scrollBy(-window.event.wheelDelta,0);
+}
 function ms_mousescroll_y(){
 	if(window.event.target == "[object HTMLTextAreaElement]") return;
-	//window.event.preventDefault();
-	//window.event.stopPropagation();
+	//window.event.preventDefault(); window.event.stopPropagation();
 	/*var curTick = new Date().getTime();
 	if(test)console.log(curTick - test);
 	test = curTick;*/
