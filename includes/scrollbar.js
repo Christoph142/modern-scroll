@@ -367,12 +367,12 @@ function scroll_bg_v(){
 	window.event.stopPropagation();		// prevent bubbling (e.g. prevent drag being triggered on separately opened images)
 	
 	if(window.event.clientY < 50 && w.bg_special_ends == "1"){
-		if(w.animate_scroll=="1") ms_scroll(window.event.clientX, 0);
-		else window.scroll(window.event.clientX, 0);
+		if(w.animate_scroll=="1") ms_scroll(window.pageXOffset, 0);
+		else window.scroll(window.pageXOffset, 0);
 	}
 	else if((window.innerHeight-window.event.clientY) < 50 && w.bg_special_ends == "1"){
-		if(w.animate_scroll=="1") ms_scroll(window.event.clientX, Math.max(document.body.scrollHeight,document.documentElement.scrollHeight));
-		else window.scroll(window.event.clientX, Math.max(document.body.scrollHeight,document.documentElement.scrollHeight));
+		if(w.animate_scroll=="1") ms_scroll(window.pageXOffset, Math.max(document.body.scrollHeight,document.documentElement.scrollHeight));
+		else window.scroll(window.pageXOffset, Math.max(document.body.scrollHeight,document.documentElement.scrollHeight));
 	}
 	else if(window.event.clientY > parseInt(document.getElementById("ms_vbar").style.top)){
 		if(w.animate_scroll=="1") ms_scrollBy(0, window.innerHeight);
@@ -388,18 +388,18 @@ function scroll_bg_h(){
 	window.event.stopPropagation();		// prevent bubbling (e.g. prevent drag being triggered on separately opened images)
 	
 	if(window.event.clientX < 50 && w.bg_special_ends == "1"){
-		if(w.animate_scroll=="1") ms_scroll(0, window.event.clientY);
-		else window.scroll(0, window.event.clientY);
+		if(w.animate_scroll=="1") ms_scroll(0, window.pageYOffset);
+		else window.scroll(0, window.pageYOffset);
 	}
 	else if((window.innerWidth-window.event.clientX) < 50 && w.bg_special_ends == "1"){
-		if(w.animate_scroll=="1") ms_scroll(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth), window.event.clientY);
-		else window.scroll(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth), window.event.clientY);
+		if(w.animate_scroll=="1") ms_scroll(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth), window.pageYOffset);
+		else window.scroll(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth), window.pageYOffset);
 	}
-	if(window.event.clientX > parseInt(document.getElementById("ms_hbar").style.left)){
-		if(w.animate_scroll=="1") ms_scroll(window.innerWidth, 0);
+	else if(window.event.clientX > parseInt(document.getElementById("ms_hbar").style.left)){
+		if(w.animate_scroll=="1") ms_scrollBy(window.innerWidth, 0);
 		else window.scrollBy(window.innerWidth, 0);
 	}
-	else if(w.animate_scroll=="1") ms_scroll(-window.innerWidth, 0);
+	else if(w.animate_scroll=="1") ms_scrollBy(-window.innerWidth, 0);
 	else window.scrollBy(-window.innerWidth, 0);
 }
 
@@ -527,7 +527,7 @@ function add_or_remove_ui(){
 function add_ui(){
 	if(document.getElementById("ms_v_container")) return; // stop if ui is already available
 	add_bars();
-	if(w.show_buttons == "1") add_buttons(); // have to be inserted before resize_bars()
+	if(w.show_buttons == "1" && !window.self.frameElement) add_buttons(); // have to be inserted before resize_bars()
 	resize_bars();	
 	add_functionality();
 }
