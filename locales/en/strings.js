@@ -54,6 +54,6 @@ var strings = {
 	"explanation: animate mousescroll" : "Deactivate this option if you encounter performance problems.<br>The scroll bars' positions will only be updated when scrolling has finished.",
 	"explanation: trigger area" : "Enlarges the bars accessing area, but items covered by this area won't be clickable anymore, unless you hide the interface via the context menu.",
 	"explanation: superbar" : "The \"superbar\" is a combination of a horizontal and a vertical scroll bar.<br>Thus, it only gets visible when both bars are necessary.<br>Its position is aligned with the vertical and horizontal scroll bars.",
-	"explanation: custom functions" : "Opera's standard scrolling experience is sometimes a bit jerky and slow. By activating this option extension also takes over scrolling with the mouse wheel and the arrow keys, which should result in a noticeable performance boost.",
+	"explanation: custom functions" : "Opera's standard scrolling experience is sometimes a bit jerky and slow. By activating this option the extension also takes over scrolling with the mouse wheel and the arrow keys, which should result in a noticeable performance boost.",
 	"explanation: animate scroll" : "If you select this option page will not instantly jump to the desired position anymore, but automatically scrolls there with an adjustable rate. This applies to the scroll buttons and clicks at the background bars (as well as scrolling with the mouse if \"Use custom scrolling functions\" is activated)."
 };
