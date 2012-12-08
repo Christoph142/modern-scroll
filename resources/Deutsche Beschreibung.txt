@@ -18,11 +18,13 @@ Changelog:
 
 v 1.5
 ---------
-neu: eigene schnellere Scroll-Funktionen
-neu: horizontale Bildlaufleiste gekürzt um Überlappen zu verhindern
+neu: modern scroll beschleunigt das Scrollen
+neu: horizontale Bildlaufleiste gekürzt um Überschneiden zu verhindern
 neu: Scrollen wird optional animiert
 neu: zusätzliche Erklärungen für manche Optionen
 neu: Unterstützung für iFrames
+fix: ein Klick auf die Hintergrund-Leisten kann gleichzeitig zu vertikalem und horizontalem Scrollen führen
+fix: diverse kleinere Fehler
 
 v 1.3.1
 ---------
