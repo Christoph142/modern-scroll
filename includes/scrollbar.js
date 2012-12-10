@@ -614,7 +614,6 @@ function ms_scroll_inner(lastTick, to_x, to_y, from_x, from_y)
 }
 
 function ms_arrowkeyscroll(){
-	alert(is_scrollable(window.event.target, true));
 	if(window.event.which < 37 || window.event.which > 40 || window.event.ctrlKey || window.event.altKey || window.event.shiftKey || scroll_timeout_func == "arrowkeyscroll" || window.event.target=="[object HTMLTextAreaElement]" || (window.event.target=="[object HTMLInputElement]" && (window.event.target.type == "text" || window.event.target.type == "number" || (window.event.target.type == "range" && window.event.which != 38 && window.event.which != 40)))) return; // arrow keys
 	window.event.preventDefault(); window.event.stopPropagation();
 	if(scroll_timeout_id) window.clearTimeout(scroll_timeout_id); // stop scrolling in progress
