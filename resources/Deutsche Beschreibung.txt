@@ -1,8 +1,9 @@
-﻿Eine moderne Alternative zu Operas Standard-Bildlaufleisten (die ausgeblendet werden sollten um doppelte Leisten zu verhindern. Gehe dazu in Opera → Einstellungen → Einstellungen... (Strg+F12) → Erweitert → Browser und deaktiviere "Bildlaufleisten zeigen")
+﻿----- Diese Erweiterung benötigt Opera 12.10 oder neuer! -----
+Eine moderne Alternative zu Operas Standard-Bildlaufleisten (die ausgeblendet werden sollten um doppelte Leisten zu verhindern. Gehe dazu in Opera → Einstellungen → Einstellungen... (Strg+F12) → Erweitert → Browser und deaktiviere "Bildlaufleisten zeigen")
 
 Was ist das Geniale an modern scroll?
 
-+ das Scrollen ist manchmal schneller als mit Operas Standard-Leisten
++ beschleunigt das Scrollen
 + die Bildlaufleisten nehmen keinen eigenen Platz ein; so kann die gesamte Breite des Bildschirms das anzeigen, wofür ein Browser gemacht wurde: Webseiten
 + Elemente oder ganze Webseiten springen nicht ein paar Pixel, wenn der Inhalt sich ändert und Bildlaufleisten (un)nötig werden
 + Bildlaufleisten sind auch im Vollbild-Modus verfügbar

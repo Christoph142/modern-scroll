@@ -1,8 +1,9 @@
-﻿An up-to-date alternative to Opera's standard scrollbars (which should be disabled to avoid double bars. Therefore go to Opera → Settings → Preferences... (Ctrl+F12) → Advanced → Browsing and uncheck "Show scroll bars" )
+﻿----- This extension requires Opera 12.10 or newer! -----
+An up-to-date alternative to Opera's standard scrollbars (which should be disabled to avoid double bars. Therefore go to Opera → Settings → Preferences... (Ctrl+F12) → Advanced → Browsing and uncheck "Show scroll bars" )
 
 What's awesome about modern scroll?
 
-+ scrolling is sometimes faster than with Opera's standard bars!
++ boosts your scrolling performance
 + its scroll bars don't take up any space so the whole screen width can be used to display what a browser is made for: websites
 + elements or whole pages don't shift by some pixels when content changes and bars become (un)necessary
 + scroll bars are usable in fullscreen mode as well
