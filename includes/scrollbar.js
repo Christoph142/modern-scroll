@@ -225,25 +225,38 @@ function resize_hbar(){
 	}
 }
 
+function drag_mode(which_bar){
+	if(which_bar){
+		window.removeEventListener("scroll", reposition_bars, false);
+		window.removeEventListener("scroll", onScroll, false);
+		document.getElementById("ms_page_cover").style.display = "inline";
+		document.getElementById("ms_"+which_bar).className = "dragged";
+	}
+	else{
+		if(w.animate_mousescroll == "1") window.addEventListener("scroll", reposition_bars, false);
+		else window.addEventListener("scroll", onScroll, false);
+		document.getElementById("ms_page_cover").style.display = null;
+		document.getElementsByClassName("dragged")[0].className = null;
+	}
+}
+
 function drag_v(){
 	window.event.preventDefault();		// prevent focus-loss in site
 	if(window.event.which != 1) return;	// if it's not the left mouse button
 	window.event.stopPropagation();		// prevent bubbling (e.g. prevent drag being triggered on separately opened images)
 	
-	document.getElementById("ms_page_cover").style.display = "inline";
-	document.getElementById("ms_v_container").className = "dragged";
-		
+	drag_mode("v_container");
+	
 	var bar = document.getElementById("ms_vbar");
 	var dragy = window.event.clientY - parseInt(bar.style.top);
 	document.onmousemove = function(){
 		var posy = window.event.clientY;
-		
-		window.scroll(window.pageXOffset, Math.round(((posy - dragy)<=0? 0 : ((posy - dragy)>=window.innerHeight-bar.offsetHeight?window.innerHeight-bar.offsetHeight : (posy - dragy)))/(window.innerHeight-bar.offsetHeight)*(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight)));
+		var new_top = Math.round((posy - dragy)<=0? 0 : ((posy - dragy)>=window.innerHeight-bar.offsetHeight?window.innerHeight-bar.offsetHeight : (posy - dragy)));
+		bar.style.top = new_top+"px";
+		window.scroll(window.pageXOffset, Math.round(new_top/(window.innerHeight-bar.offsetHeight)*(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight)));
 	}
 	document.onmouseup = function(){
-		document.getElementById("ms_page_cover").style.display = null;
-		document.getElementById("ms_v_container").className = null;
-		
+		drag_mode(0);		
 		document.onmousemove = null;
 		document.onmouseup = null;
 	};
@@ -254,23 +267,24 @@ function drag_h(){
 	if(window.event.which != 1) return;	// if it's not the left mouse button
 	window.event.stopPropagation();		// prevent bubbling (e.g. prevent drag being triggered on separately opened images)
 	
-	document.getElementById("ms_page_cover").style.display = "inline";
-	document.getElementById("ms_h_container").className = "dragged";
+	drag_mode("h_container");
 		
 	var bar = document.getElementById("ms_hbar");
 	var dragx = window.event.clientX - parseInt(bar.style.left);
 	document.onmousemove = function(){
 		var posx = window.event.clientX;
 		
-		if(w.vbar_at_left=="0")
-			window.scroll(Math.round(((posx - dragx)<=0 ? 0 : ((posx - dragx)>=window.innerWidth-bar.offsetWidth-w.hover_size-w.gap ? window.innerWidth-bar.offsetWidth-w.hover_size-w.gap : posx-dragx))/(window.innerWidth-bar.offsetWidth-w.hover_size-w.gap)*(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)-window.innerWidth)), window.pageYOffset);
-		else
-			window.scroll(Math.round(((posx - dragx)<=parseInt(w.hover_size)+parseInt(w.gap) ? 0 : ((posx - dragx)>=window.innerWidth-bar.offsetWidth ? window.innerWidth-bar.offsetWidth-w.hover_size-w.gap : posx-dragx-w.hover_size-w.gap))/(window.innerWidth-bar.offsetWidth-w.hover_size-w.gap)*(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)-window.innerWidth)), window.pageYOffset);
-	};
+		if(w.vbar_at_left=="0"){
+			var new_left = Math.round((posx - dragx)<=0 ? 0 : ((posx - dragx)>=window.innerWidth-bar.offsetWidth-w.hover_size ? window.innerWidth-bar.offsetWidth-w.hover_size : posx-dragx));
+			bar.style.left = new_left+"px";
+		}else{
+			var new_left = Math.round((posx - dragx)<=parseInt(w.hover_size) ? 0 : ((posx - dragx)>=window.innerWidth-bar.offsetWidth ? window.innerWidth-bar.offsetWidth-w.hover_size : posx-dragx-w.hover_size));
+			bar.style.left = new_left+parseInt(w.hover_size)+"px";
+		}
+		window.scroll(Math.round((new_left/(window.innerWidth-bar.offsetWidth-w.hover_size)*(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)-window.innerWidth))), window.pageYOffset);
+	}
 	document.onmouseup = function(){
-		document.getElementById("ms_page_cover").style.display = null;
-		document.getElementById("ms_h_container").className = null;
-		
+		drag_mode(0);
 		document.onmousemove = null;
 		document.onmouseup = null;
 	};
@@ -284,8 +298,7 @@ function drag_super(){
 	if(w.show_superbar_minipage=="1") show_minipage();
 	else show_bars();
 	
-	document.getElementById("ms_superbar").className = "dragged";
-	document.getElementById("ms_page_cover").style.display = "inline";
+	drag_mode("superbar");
 	
 	var vbar = document.getElementById("ms_vbar");
 	var hbar = document.getElementById("ms_hbar");
@@ -296,13 +309,22 @@ function drag_super(){
 		superbar.style.display = "inline";
 		var posx = window.event.clientX;
 		var posy = window.event.clientY;
-		superbar.style.top = ((posy - dragy)<=0? 0 : ((posy - dragy)>=window.innerHeight-superbar.offsetHeight?window.innerHeight-superbar.offsetHeight : (posy - dragy))) + "px";
+		
+		var new_top = Math.round((posy - dragy)<=0? 0 : ((posy - dragy)>=window.innerHeight-superbar.offsetHeight?window.innerHeight-superbar.offsetHeight : (posy - dragy)));
+		superbar.style.top =  new_top+"px";
 		
 		if(w.show_superbar_minipage=="0"){
-			if(w.vbar_at_left=="0")
-				window.scroll(((posx - dragx)<=0 ? 0 : ((posx - dragx)>=window.innerWidth-superbar.offsetWidth-w.hover_size-w.gap ? window.innerWidth-superbar.offsetWidth-w.hover_size-w.gap : posx-dragx))/(window.innerWidth-superbar.offsetWidth-w.hover_size-w.gap)*(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)-window.innerWidth), parseInt(superbar.style.top)/(window.innerHeight-superbar.offsetHeight)*(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight));
-			else
-				window.scroll(((posx - dragx)<=parseInt(w.hover_size)+parseInt(w.gap) ? 0 : ((posx - dragx)>=window.innerWidth-superbar.offsetWidth ? window.innerWidth-superbar.offsetWidth-w.hover_size-w.gap : posx-dragx-w.hover_size-w.gap))/(window.innerWidth-superbar.offsetWidth-w.hover_size-w.gap)*(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)-window.innerWidth), parseInt(superbar.style.top)/(window.innerHeight-superbar.offsetHeight)*(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight));
+			if(w.vbar_at_left=="0"){
+				var new_left = Math.round(((posx - dragx)<=0 ? 0 : ((posx - dragx)>=window.innerWidth-superbar.offsetWidth-w.hover_size ? window.innerWidth-superbar.offsetWidth-w.hover_size : posx-dragx)));
+				superbar.style.left = new_left+"px";
+			}else{
+				var new_left = Math.round((posx - dragx)<=parseInt(w.hover_size) ? 0 : ((posx - dragx)>=window.innerWidth-superbar.offsetWidth ? window.innerWidth-superbar.offsetWidth-w.hover_size : posx-dragx-w.hover_size));
+				superbar.style.left = new_left+parseInt(w.hover_size)+"px";
+			}
+			window.scroll(new_left/(window.innerWidth-superbar.offsetWidth-w.hover_size)*(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)-window.innerWidth), parseInt(superbar.style.top)/(window.innerHeight-superbar.offsetHeight)*(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight));
+			
+			vbar.style.top = superbar.style.top;
+			hbar.style.left = superbar.style.left;
 		}
 		else
 			superbar.style.left = ((posx - dragx)<=0? 0 : ((posx - dragx)>=window.innerWidth-superbar.offsetWidth?window.innerWidth-superbar.offsetWidth : (posx - dragx))) + "px";		
@@ -322,15 +344,14 @@ function drag_super(){
 		}
 		else hide_bars();
 		
-		document.getElementById("ms_superbar").className = null;
-		document.getElementById("ms_page_cover").style.display = null;
-		
+		drag_mode(0);
 		document.onmousemove = null;
 		document.onmouseup = null;
 	};
 }
 
-function reposition_bars(){
+function reposition_bars()
+{
 	document.getElementById("ms_vbar_bg").style.width = document.getElementById("ms_vbar").offsetWidth+"px"; //DSK-375403 (?)
 	
 	var vbar_top_before = document.getElementById("ms_vbar").style.top;
