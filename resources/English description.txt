@@ -31,6 +31,7 @@ new: additional explanations for some settings
 new: support for iframes
 fix: clicking a background bar may result in vertical and horizontal scrolling at the same time
 fix: various smaller bugs
+upd: improved overall performance
 
 v 1.3.1
 ---------

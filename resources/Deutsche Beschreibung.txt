@@ -26,6 +26,7 @@ neu: zusätzliche Erklärungen für manche Optionen
 neu: Unterstützung für iFrames
 fix: ein Klick auf die Hintergrund-Leisten kann gleichzeitig zu vertikalem und horizontalem Scrollen führen
 fix: diverse kleinere Fehler
+upd: allgemeine Performance verbessert
 
 v 1.3.1
 ---------
