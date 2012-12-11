@@ -155,7 +155,10 @@ function add_functionality(){
 	else window.addEventListener("scroll", onScroll, false);
 }
 
-function check_resize(){ window.setTimeout(resize_bars, 200); } // needs some time to affect page height if click expands element
+function check_resize(){
+	last_clicked_element_is_scrollable = is_scrollable(window.event.target, 2) ? 1 : 0;
+	window.setTimeout(resize_bars, 200); // needs some time to affect page height if click expands element
+}
 function resize_bars(){
 	resize_vbar();
 	resize_hbar();
@@ -328,7 +331,7 @@ function drag_super(){
 }
 
 function reposition_bars(){
-	document.getElementById("ms_vbar_bg").style.width = document.getElementById("ms_vbar").offsetWidth+"px"; //DSK-375403 ?)
+	document.getElementById("ms_vbar_bg").style.width = document.getElementById("ms_vbar").offsetWidth+"px"; //DSK-375403 (?)
 	
 	var vbar_top_before = document.getElementById("ms_vbar").style.top;
 	var hbar_left_before = document.getElementById("ms_hbar").style.left;
@@ -613,21 +616,30 @@ function ms_scroll_inner(lastTick, to_x, to_y, from_x, from_y)
 	}
 }
 
-function ms_arrowkeyscroll(){
-	if(window.event.which < 37 || window.event.which > 40 || window.event.ctrlKey || window.event.altKey || window.event.shiftKey || scroll_timeout_func == "arrowkeyscroll" || window.event.target=="[object HTMLTextAreaElement]" || (window.event.target=="[object HTMLInputElement]" && (window.event.target.type == "text" || window.event.target.type == "number" || (window.event.target.type == "range" && window.event.which != 38 && window.event.which != 40)))) return; // arrow keys
-	window.event.preventDefault(); window.event.stopPropagation();
+var last_clicked_element_is_scrollable;
+function ms_arrowkeyscroll(){ //document.activeElement != "[object HTMLBodyElement]"
+	var e = window.event;
+	if(e.which < 37 || e.which > 40 || e.ctrlKey || e.altKey || e.shiftKey || e.target=="[object HTMLTextAreaElement]" || (e.target=="[object HTMLInputElement]" && (e.target.type == "text" || e.target.type == "number" || (e.target.type == "range" && e.which != 38 && e.which != 40))))
+		return;
 	if(scroll_timeout_id) window.clearTimeout(scroll_timeout_id); // stop scrolling in progress
 	
-	scroll_timeout_func = "arrowkeyscroll";
-	if(window.event.which == 40) ms_arrowkeyscroll_down(new Date().getTime());
-	else if(window.event.which == 38) ms_arrowkeyscroll_up(new Date().getTime());
-	else if(window.event.which == 39) ms_arrowkeyscroll_right(new Date().getTime());
-	else ms_arrowkeyscroll_left(new Date().getTime());
+	if(last_clicked_element_is_scrollable) window.addEventListener("scroll", element_finished_scrolling, false);
+	else{
+		window.event.preventDefault(); window.event.stopPropagation();
+		if(e.which == 40) ms_arrowkeyscroll_down(new Date().getTime());
+		else if(e.which == 38) ms_arrowkeyscroll_up(new Date().getTime());
+		else if(e.which == 39) ms_arrowkeyscroll_right(new Date().getTime());
+		else ms_arrowkeyscroll_left(new Date().getTime());
+	}
+	
+	window.removeEventListener("keydown", ms_arrowkeyscroll, false);
 	
 	window.onkeyup = function(){
 		window.clearTimeout(scroll_timeout_id);
 		scroll_timeout_id = null;
 		scroll_timeout_func = null;
+		window.addEventListener("keydown", ms_arrowkeyscroll, false);
+		window.removeEventListener("scroll", element_finished_scrolling, false);
 		window.onkeyup = null;
 	}
 }
@@ -694,7 +706,6 @@ function ms_mousescroll_x(){
 	window.event.preventDefault(); window.event.stopPropagation();
 	ms_scrollBy(-window.event.wheelDelta,0);
 }
-var last_target;
 function ms_mousescroll_y(){
 	if(is_scrollable(window.event.target, (window.event.wheelDelta<0))) return;
 	window.event.preventDefault(); window.event.stopPropagation();
@@ -704,12 +715,28 @@ function ms_mousescroll_y(){
 	ms_scrollBy(0,-window.event.wheelDelta);
 	//document.body.scrollTop -= window.event.wheelDelta;
 }
-function is_scrollable(element, direction){ // direction: 0 = up, 1 = down
+function is_scrollable(element, direction) // direction: 0 = up, 1 = down, 2 = all
+{
 	if(element == "[object HTMLBodyElement]" || element == "[object HTMLHtmlElement]" || element == "[object HTMLDocument]") return false;
 	else if((element.currentStyle.overflow == "scroll" || element.currentStyle.overflow == "auto" || element.currentStyle.overflow == "" || element == "[object HTMLTextAreaElement]") && element.offsetHeight < element.scrollHeight){
 		var max_scrollTop = element.scrollHeight+parseInt(element.currentStyle.borderTopWidth)+parseInt(element.currentStyle.borderBottomWidth)-element.offsetHeight; //+(element.offsetWidth < element.scrollWidth?0:0)
-		if((!direction && element.scrollTop > 0) || (direction && parseInt(element.scrollTop) < max_scrollTop)) return true;
+		if((!direction && element.scrollTop > 0) || (direction == 1 && parseInt(element.scrollTop) < max_scrollTop) || direction == 2)
+			return true;
 	}
 	else if(element.parentNode == "[object HTMLBodyElement]") return false;
 	else return is_scrollable(element.parentNode, direction);
+}
+
+function element_finished_scrolling()
+{
+	window.addEventListener("keydown", preventScrolling, false);
+	window.removeEventListener("scroll", element_finished_scrolling, false);
+}
+function preventScrolling(){
+	window.event.preventDefault(); window.event.stopPropagation();
+	/*if(window.event.which == 40) ms_arrowkeyscroll_down(new Date().getTime());
+	else if(window.event.which == 38) ms_arrowkeyscroll_up(new Date().getTime());
+	else if(window.event.which == 39) ms_arrowkeyscroll_right(new Date().getTime());
+	else ms_arrowkeyscroll_left(new Date().getTime());*/
+	window.removeEventListener("keydown", preventScrolling, false);
 }
