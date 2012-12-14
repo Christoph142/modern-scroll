@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<widget xmlns="http://www.w3.org/ns/widgets" id="https://github.com/Christoph142/modern-scroll" defaultlocale="en" version="1.5 beta 7">
+<widget xmlns="http://www.w3.org/ns/widgets" id="https://github.com/Christoph142/modern-scroll" defaultlocale="en" version="2.0 beta 1">
 
 	<name>modern scroll</name>
 	<author href="http://my.opera.com/christoph142/blog">Christoph D.</author>
 	<icon src="images/icon.png" />
 	
 	<description xml:lang="de">Eine moderne Alternative zu Operas Standard-Bildlaufleisten</description>
-	<description xml:lang="en">An up-to-date alternative to Opera's standard scrollbars</description>
-	<description xml:lang="fr">Une alternative moderne à barres de défilement standards d'Opera</description>
+	<description xml:lang="en">An up-to-date alternative to Opera\"s standard scrollbars</description>
+	<description xml:lang="fr">Une alternative moderne à barres de défilement standards d\"Opera</description>
 	<description xml:lang="it">Una moderna alternativa per le barra di scorrimento standard di Opera</description>
-	<description xml:lang="nb">An up-to-date alternative to Opera's standard scrollbars</description>
+	<description xml:lang="nb">An up-to-date alternative to Opera\"s standard scrollbars</description>
 	<description xml:lang="pl">Odnowione alternatywne paski przewiajania w Operze</description>
 	<description xml:lang="pt">Uma alternativa moderna para as barras de rolagem padrão do Opera</description>
-	<description xml:lang="tr">Opera'nın standart kaydırma çubuklarına güncel bir alternatif</description>
+	<description xml:lang="tr">Opera\"nın standart kaydırma çubuklarına güncel bir alternatif</description>
 	
 	<feature name="opera:screenshot" />
 	<feature name="opera:contextmenus" />
@@ -31,7 +31,7 @@
 	<preference name="fullscreen_only" value="0" />
 	<preference name="no_bar_bg" value="0" />
 	<preference name="bg_special_ends" value="1" />
-	<preference name="animate_mousescroll" value="1" />
+	<preference name="move_bars_during_scroll" value="1" />
 	<preference name="show_buttons" value="0" />
 	<preference name="buttonposition" value="48" />
 	<preference name="button_height" value="50" />
