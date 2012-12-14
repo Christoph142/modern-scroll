@@ -9,11 +9,13 @@
 
 var timeout;				// scrolling animation
 var hide_timeout;			// hide bars
-var w = widget.preferences;	// pass by reference!
+var w = widget.preferences;	// \
+var vbar;					//  | pass by reference!
+var hbar;					// /
 
 window.opera.addEventListener("BeforeEvent.DOMContentLoaded", call_on_load, false);
 window.addEventListener("DOMContentLoaded", function(){ // local files except options page:
-	if(!document.getElementById("vbar") && !document.URL.match("widget://")) call_on_load();
+	if(!vbar && !document.URL.match("widget://")) call_on_load();
 }, false);
 
 function call_on_load(){
@@ -123,6 +125,9 @@ function add_bars(){
 	document.body.appendChild(superbar);
 	document.body.appendChild(h_container);
 	document.body.appendChild(v_container); // last in DOM gets displayed top
+	
+	vbar = document.getElementById("ms_vbar");
+	hbar = document.getElementById("ms_hbar");
 }
 
 function add_functionality(){
@@ -130,12 +135,12 @@ function add_functionality(){
 	document.getElementById("ms_hbar_bg").addEventListener("mousedown", scroll_bg_h, true);
 	
 	document.getElementById("ms_superbar").addEventListener("mousedown", drag_super, true);
-	document.getElementById("ms_vbar").addEventListener("mousedown", drag_v, true);
-	document.getElementById("ms_hbar").addEventListener("mousedown", drag_h, true);
+	vbar.addEventListener("mousedown", drag_v, true);
+	hbar.addEventListener("mousedown", drag_h, true);
 	
 	document.getElementById("ms_h_container").addEventListener("mousewheel", ms_mousescroll_x, true);
 	document.getElementById("ms_hbar_bg").addEventListener("mousewheel", ms_mousescroll_x, true);
-	document.getElementById("ms_hbar").addEventListener("mousewheel", ms_mousescroll_x, true);
+	hbar.addEventListener("mousewheel", ms_mousescroll_x, true);
 	
 	if(document.getElementById("ms_upbutton")){
 		document.getElementById("ms_upbutton").addEventListener("mousedown", function(){ handle_button("up"); }, true);
@@ -152,7 +157,7 @@ function add_functionality(){
 	window.addEventListener("resize", resize_bars, false);
 	window.addEventListener("resize", add_or_remove_ui, false);
 	window.addEventListener("mouseup", check_resize, false);
-	if(w.animate_mousescroll == "1") window.addEventListener("scroll", reposition_bars, false);
+	if(w.move_bars_during_scroll == "1") window.addEventListener("scroll", reposition_bars, false);
 	else window.addEventListener("scroll", onScroll, false);
 }
 
@@ -173,23 +178,23 @@ function set_new_scrollMax_values(){
 function resize_vbar(){
 	//don't display if content fits into window:
 	if(window.scrollMaxY <= 0){
-		if(document.getElementById("ms_vbar").style.display == "inline"){
+		if(vbar.style.display == "inline"){
 			document.getElementById("ms_v_container").style.display = null;
 			document.getElementById("ms_vbar_bg").style.display = null;
-			document.getElementById("ms_vbar").style.display = null;
+			vbar.style.display = null;
 			window.removeEventListener("mousewheel", ms_mousescroll_y, false);
 		}
 		return;
 	}
-	var vbar_height_before = document.getElementById("ms_vbar").style.height;
+	var vbar_height_before = vbar.style.height;
 	var vbar_new_height = Math.round(window.innerHeight/(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)/window.innerHeight));
-	document.getElementById("ms_vbar").style.height = vbar_new_height+"px"; // resize it
+	vbar.style.height = vbar_new_height+"px"; // resize it
 	
-	if(document.getElementById("ms_vbar").style.display != "inline"){
+	if(vbar.style.display != "inline"){
 		document.getElementById("ms_vbar_ui").style.height = vbar_new_height-2*w.gap+"px";
 		document.getElementById("ms_v_container").style.display = "inline";
 		document.getElementById("ms_vbar_bg").style.display = "inline";
-		document.getElementById("ms_vbar").style.display = "inline";
+		vbar.style.display = "inline";
 		show_bar("v");
 		opera.extension.postMessage("reset_contextmenu");
 		
@@ -205,22 +210,22 @@ function resize_vbar(){
 function resize_hbar(){
 	//don't display if content fits into window:
 	if(window.scrollMaxX <= 0){
-		if(document.getElementById("ms_hbar").style.display == "inline"){
+		if(hbar.style.display == "inline"){
 			document.getElementById("ms_h_container").style.display = null;
 			document.getElementById("ms_hbar_bg").style.display = null;
-			document.getElementById("ms_hbar").style.display = null;
+			hbar.style.display = null;
 		}
 		return;
 	}
-	var hbar_width_before = document.getElementById("ms_hbar").style.width;
+	var hbar_width_before = hbar.style.width;
 	var hbar_new_width = Math.round(window.innerWidth/(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)/window.innerWidth));
-	document.getElementById("ms_hbar").style.width = hbar_new_width+"px"; // resize it
+	hbar.style.width = hbar_new_width+"px"; // resize it
 	
-	if(document.getElementById("ms_hbar").style.display != "inline"){
+	if(hbar.style.display != "inline"){
 		document.getElementById("ms_hbar_ui").style.width = hbar_new_width-2*w.gap+"px";
 		document.getElementById("ms_h_container").style.display = "inline";
 		document.getElementById("ms_hbar_bg").style.display = "inline";
-		document.getElementById("ms_hbar").style.display = "inline";
+		hbar.style.display = "inline";
 		show_bar("h");
 		opera.extension.postMessage("reset_contextmenu");
 	}
@@ -238,7 +243,7 @@ function drag_mode(which_bar){
 		document.getElementById("ms_"+which_bar).className = "dragged";
 	}
 	else{
-		if(w.animate_mousescroll == "1") window.addEventListener("scroll", reposition_bars, false);
+		if(w.move_bars_during_scroll == "1") window.addEventListener("scroll", reposition_bars, false);
 		else window.addEventListener("scroll", onScroll, false);
 		document.getElementById("ms_page_cover").style.display = null;
 		document.getElementsByClassName("dragged")[0].className = null;
@@ -252,7 +257,7 @@ function drag_v(){
 	
 	drag_mode("v_container");
 	
-	var bar = document.getElementById("ms_vbar");
+	var bar = vbar;
 	var dragy = window.event.clientY - parseInt(bar.style.top);
 	document.onmousemove = function(){
 		var posy = window.event.clientY;
@@ -274,7 +279,7 @@ function drag_h(){
 	
 	drag_mode("h_container");
 		
-	var bar = document.getElementById("ms_hbar");
+	var bar = hbar;
 	var dragx = window.event.clientX - parseInt(bar.style.left);
 	document.onmousemove = function(){
 		var posx = window.event.clientX;
@@ -305,8 +310,6 @@ function drag_super(){
 	
 	drag_mode("superbar");
 	
-	var vbar = document.getElementById("ms_vbar");
-	var hbar = document.getElementById("ms_hbar");
 	var superbar = document.getElementById("ms_superbar");
 	var dragy = window.event.clientY - parseInt(superbar.style.top);
 	var dragx = window.event.clientX - parseInt(superbar.style.left);
@@ -338,13 +341,13 @@ function drag_super(){
 		if(w.show_superbar_minipage=="1"){
 			window.scroll(parseInt(superbar.style.left)/(window.innerWidth-superbar.offsetWidth)*window.scrollMaxX, parseInt(superbar.style.top)/(window.innerHeight-superbar.offsetHeight)*window.scrollMaxY);
 			if(window.scrollX == 0 && window.scrollY == 0){ // doesn't update position automatically cause of scrolling to 0,0 before screenshot
-				document.getElementById("ms_vbar").style.top = "0px";
-				document.getElementById("ms_hbar").style.left = "0px";
+				vbar.style.top = "0px";
+				hbar.style.left = "0px";
 			}
 			document.getElementById("ms_vbar_bg").style.display = "inline";
 			document.getElementById("ms_hbar_bg").style.display = "inline";
-			document.getElementById("ms_vbar").style.display = "inline";
-			document.getElementById("ms_hbar").style.display = "inline";
+			vbar.style.display = "inline";
+			hbar.style.display = "inline";
 			document.getElementById("ms_minipage_canvas").style.display = null;
 		}
 		else hide_bars();
@@ -357,16 +360,16 @@ function drag_super(){
 
 function reposition_bars()
 {
-	document.getElementById("ms_vbar_bg").style.width = document.getElementById("ms_vbar").offsetWidth+"px"; //DSK-375403 (?)
+	document.getElementById("ms_vbar_bg").style.width = vbar.offsetWidth+"px"; //DSK-375403 (?)
 	
-	var vbar_top_before = document.getElementById("ms_vbar").style.top;
-	var hbar_left_before = document.getElementById("ms_hbar").style.left;
+	var vbar_top_before = vbar.style.top;
+	var hbar_left_before = hbar.style.left;
 	
-	if(document.getElementById("ms_vbar").style.display=="inline")
-		document.getElementById("ms_vbar").style.top = Math.round(window.pageYOffset/window.scrollMaxY*(window.innerHeight-document.getElementById("ms_vbar").offsetHeight))+"px";
-	if(document.getElementById("ms_hbar").style.display=="inline"){
-		var left = Math.round(window.pageXOffset/window.scrollMaxX*(window.innerWidth-document.getElementById("ms_hbar").offsetWidth));
-		document.getElementById("ms_hbar").style.left = left-(parseInt(w.hover_size)*left/(window.innerWidth-document.getElementById("ms_hbar").offsetWidth))+(w.vbar_at_left=="1"?parseInt(w.hover_size):0)+"px";
+	if(vbar.style.display=="inline")
+		vbar.style.top = Math.round(window.pageYOffset/window.scrollMaxY*(window.innerHeight-vbar.offsetHeight))+"px";
+	if(hbar.style.display=="inline"){
+		var left = Math.round(window.pageXOffset/window.scrollMaxX*(window.innerWidth-hbar.offsetWidth));
+		hbar.style.left = left-(parseInt(w.hover_size)*left/(window.innerWidth-hbar.offsetWidth))+(w.vbar_at_left=="1"?parseInt(w.hover_size):0)+"px";
 	}
 	if(window.pageYOffset > 0 && document.getElementById("ms_upbutton")) document.getElementById("ms_upbutton").style.display = "inline";
 	else if(document.getElementById("ms_upbutton")) document.getElementById("ms_upbutton").style.display = null;
@@ -374,11 +377,11 @@ function reposition_bars()
 		document.getElementById("ms_downbutton").style.display = "inline";
 	else if(document.getElementById("ms_downbutton")) document.getElementById("ms_downbutton").style.display = null;
 	
-	if(document.getElementById("ms_vbar").style.display == "inline" && document.getElementById("ms_hbar").style.display == "inline" && w.show_superbar=="1"){
-		document.getElementById("ms_superbar").style.top = document.getElementById("ms_vbar").style.top;
-		document.getElementById("ms_superbar").style.height = document.getElementById("ms_vbar").style.height;
-		document.getElementById("ms_superbar").style.left = document.getElementById("ms_hbar").style.left;
-		document.getElementById("ms_superbar").style.width = document.getElementById("ms_hbar").style.width;
+	if(vbar.style.display == "inline" && hbar.style.display == "inline" && w.show_superbar=="1"){
+		document.getElementById("ms_superbar").style.top = vbar.style.top;
+		document.getElementById("ms_superbar").style.height = vbar.style.height;
+		document.getElementById("ms_superbar").style.left = hbar.style.left;
+		document.getElementById("ms_superbar").style.width = hbar.style.width;
 		if(w.show_superbar_minipage=="0"){
 			document.getElementById("ms_superbar").style.transform = "scale("+(window.innerWidth/10)/parseInt(document.getElementById("ms_superbar").style.width)+","+(window.innerHeight/10)/parseInt(document.getElementById("ms_superbar").style.height)+")";
 		}
@@ -387,8 +390,8 @@ function reposition_bars()
 	else if(w.show_superbar=="1" && document.getElementById("ms_superbar").style.opacity!="1") //if superbar doesn't get dragged (minipage only -> no bars)
 		window.setTimeout(function(){ document.getElementById("ms_superbar").style.display = null; }, 1500);
 	
-	if(vbar_top_before != document.getElementById("ms_vbar").style.top) show_bar("v");
-	if(hbar_left_before != document.getElementById("ms_hbar").style.left) show_bar("h");
+	if(vbar_top_before != vbar.style.top) show_bar("v");
+	if(hbar_left_before != hbar.style.left) show_bar("h");
 	
 	document.getElementById("ms_vbar_bg").style.width = null; //DSK-375403 (hover-width not reset) (?)
 	window.clearTimeout(hide_timeout);
@@ -408,7 +411,7 @@ function scroll_bg_v(){
 		if(w.animate_scroll=="1") ms_scroll(window.pageXOffset, Math.max(document.body.scrollHeight,document.documentElement.scrollHeight));
 		else window.scroll(window.pageXOffset, Math.max(document.body.scrollHeight,document.documentElement.scrollHeight));
 	}
-	else if(window.event.clientY > parseInt(document.getElementById("ms_vbar").style.top)){
+	else if(window.event.clientY > parseInt(vbar.style.top)){
 		if(w.animate_scroll=="1") ms_scrollBy(0, window.innerHeight);
 		else window.scrollBy(0, window.innerHeight);
 	}
@@ -429,7 +432,7 @@ function scroll_bg_h(){
 		if(w.animate_scroll=="1") ms_scroll(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth), window.pageYOffset);
 		else window.scroll(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth), window.pageYOffset);
 	}
-	else if(window.event.clientX > parseInt(document.getElementById("ms_hbar").style.left)){
+	else if(window.event.clientX > parseInt(hbar.style.left)){
 		if(w.animate_scroll=="1") ms_scrollBy(window.innerWidth, 0);
 		else window.scrollBy(window.innerWidth, 0);
 	}
@@ -500,8 +503,8 @@ function handle_button(whichone){
 function show_minipage(){
 	document.getElementById("ms_vbar_bg").style.display = null;
 	document.getElementById("ms_hbar_bg").style.display = null;
-	document.getElementById("ms_vbar").style.display = null;
-	document.getElementById("ms_hbar").style.display = null;
+	vbar.style.display = null;
+	hbar.style.display = null;
 	if(document.getElementById("ms_upbutton")){
 		document.getElementById("ms_upbutton").style.display = null;
 		document.getElementById("ms_downbutton").style.display = null;
@@ -661,26 +664,26 @@ function ms_arrowkeyscroll(){ //document.activeElement != "[object HTMLBodyEleme
 		else if(e.which == 39) ms_arrowkeyscroll_right(new Date().getTime());
 		else ms_arrowkeyscroll_left(new Date().getTime());
 		
-		if((window.self.frameElement || w.use_own_scroll_functions == "1") && w.animate_mousescroll == "1"){
+		if((window.self.frameElement || w.use_own_scroll_functions == "1") && w.move_bars_during_scroll == "1"){
 			if(e.which == 40){
 				show_bar("v");
-				document.getElementById("ms_vbar").style.transition = "top "+(window.scrollMaxY-window.pageYOffset)/w.keyscroll_velocity+"ms linear";
-				document.getElementById("ms_vbar").style.top = window.innerHeight-parseInt(document.getElementById("ms_vbar").style.height)+"px";
+				vbar.style.transition = "top "+(window.scrollMaxY-window.pageYOffset)/w.keyscroll_velocity+"ms linear";
+				vbar.style.top = window.innerHeight-parseInt(vbar.style.height)+"px";
 			}
 			else if(e.which == 38){
 				show_bar("v");
-				document.getElementById("ms_vbar").style.transition = "top "+window.pageYOffset/w.keyscroll_velocity+"ms linear";
-				document.getElementById("ms_vbar").style.top = 0+"px";
+				vbar.style.transition = "top "+window.pageYOffset/w.keyscroll_velocity+"ms linear";
+				vbar.style.top = 0+"px";
 			}
 			else if(e.which == 39){
 				show_bar("h");
-				document.getElementById("ms_hbar").style.transition = "left "+(window.scrollMaxX-window.pageXOffset)/w.keyscroll_velocity+"ms linear";
-				document.getElementById("ms_hbar").style.left = window.innerWidth-parseInt(document.getElementById("ms_hbar").style.width)-(w.vbar_at_left=="0"?parseInt(document.getElementById("ms_hbar_bg").currentStyle.right):0)+"px";
+				hbar.style.transition = "left "+(window.scrollMaxX-window.pageXOffset)/w.keyscroll_velocity+"ms linear";
+				hbar.style.left = window.innerWidth-parseInt(hbar.style.width)-(w.vbar_at_left=="0"?parseInt(document.getElementById("ms_hbar_bg").currentStyle.right):0)+"px";
 			}
 			else{
 				show_bar("h");
-				document.getElementById("ms_hbar").style.transition = "left "+window.pageXOffset/w.keyscroll_velocity+"ms linear";
-				document.getElementById("ms_hbar").style.left = (w.vbar_at_left=="1"?parseInt(document.getElementById("ms_hbar_bg").currentStyle.left):0)+"px";
+				hbar.style.transition = "left "+window.pageXOffset/w.keyscroll_velocity+"ms linear";
+				hbar.style.left = (w.vbar_at_left=="1"?parseInt(document.getElementById("ms_hbar_bg").currentStyle.left):0)+"px";
 			}
 		}
 	}
@@ -689,14 +692,14 @@ function ms_arrowkeyscroll(){ //document.activeElement != "[object HTMLBodyEleme
 	
 	window.onkeyup = function(){
 		if(window.self.frameElement || w.use_own_scroll_functions == "1"){
-			document.getElementById("ms_vbar").style.transition = null;
+			vbar.style.transition = null;
 			reposition_bars();
 		}
 		window.clearTimeout(scroll_timeout_id);
 		scroll_timeout_id = null;
 		scroll_timeout_func = null;
 		window.addEventListener("keydown", ms_arrowkeyscroll, false);
-		if(w.animate_mousescroll == "1") window.addEventListener("scroll", reposition_bars, false);
+		if(w.move_bars_during_scroll == "1") window.addEventListener("scroll", reposition_bars, false);
 		else window.addEventListener("scroll", onScroll, false);
 		window.removeEventListener("scroll", element_finished_scrolling, false);
 		window.onkeyup = null;
