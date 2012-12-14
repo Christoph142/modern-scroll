@@ -22,8 +22,9 @@ v 1.X
 mouse wheel scrolling speed / distance dependend on wheel spin speed
 "touch drag"(?)
 
-v 1.5
+v 2.0
 ---------
+new: configurations can be saved and restored
 new: modern scroll speeds up scrolling
 new: horizontal bar shortened to prevent overlapping
 new: optionally animate scrolling

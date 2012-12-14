@@ -26,11 +26,22 @@
 </header>
 <br>
 <section>
+	<fieldset>
+    <h4><script>_("saved sets");</script>:</h4>
+    <table><tr>
+    	<td style="text-align:left;"><script>_("save set");</script> "<b contenteditable="true" id="save_set">huhu</b>":<div id="save_set_info" class="i">i<div id="save_set_info_text" class="i_text"><script>_("explanation: save set");</script></div></div></td>
+        <td style="text-align:right;"><img src="images/save.png" id="save_set_img" title="save"></td>
+    </tr><tr>
+    	<td style="text-align:left;"><script>_("load or delete set");</script> <select id="saved_sets"><option value="Default"><script>_("default");</script></option></select>:</td>
+        <td style="text-align:right;"><img src="images/delete.png" id="delete_set_img" title="delete"> <img src="images/load.png" id="load_set_img" title="load"></td>
+    </tr></table>
+    </fieldset><br>
+    
     <fieldset>
     <h4><script>_("look");</script>:</h4>
     <table><tr>
     	<td style="text-align:left;"><script>_("color");</script>:</td>
-        <td style="text-align:right;"><input type="color" id="color" name="color"><br></td>
+        <td style="text-align:right;"><input type="color" id="color" name="color"></td>
     </tr><tr>
     	<td style="text-align:left;"><script>_("color_bg");</script>:</td>
         <td style="text-align:right;"><input type="color" id="color_bg" name="color_bg" value="#999999"></td>
@@ -89,8 +100,8 @@
         <td><input type="checkbox" id="fullscreen_only" name="fullscreen_only"></td>
         <td><label for="fullscreen_only"><script>_("fullscreen_only");</script></label></td>
     </tr><tr>
-    	<td><input type="checkbox" id="animate_mousescroll" name="animate_mousescroll" checked="checked"></td>
-        <td><label for="animate_mousescroll"><script>_("animate_mousescroll");</script></label><div id="animate_mousescroll_info" class="i">i<div id="animate_mousescroll_info_text" class="i_text"><script>_("explanation: animate mousescroll");</script></div></div></td>
+    	<td><input type="checkbox" id="move_bars_during_scroll" name="move_bars_during_scroll" checked="checked"></td>
+        <td><label for="move_bars_during_scroll"><script>_("move_bars_during_scroll");</script></label><div id="move_bars_during_scroll_info" class="i">i<div id="move_bars_during_scroll_info_text" class="i_text"><script>_("explanation: move_bars_during_scroll");</script></div></div></td>
     </tr><tr>
     	<td><input type="checkbox" id="bg_special_ends" name="bg_special_ends" checked="checked"></td>
         <td><label for="bg_special_ends"><script>_("bg_special_ends");</script></label></td>

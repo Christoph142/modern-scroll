@@ -19,6 +19,7 @@ Changelog:
 
 v 1.5
 ---------
+neu: Konfigurationen können gespeichert und wiederhergestellt werden
 neu: modern scroll beschleunigt das Scrollen
 neu: horizontale Bildlaufleiste gekürzt um Überschneiden zu verhindern
 neu: Scrollen wird optional animiert

@@ -1,6 +1,8 @@
 // save preferences:
 window.addEventListener("change",function(event){
 	
+	if(event.target.id == "save_set" || event.target.id == "saved_sets") return; // handled via onclick funtions
+	
 	if(event.target.type == "checkbox") widget.preferences[event.target.id] = event.target.checked?1:0;
 	else 								widget.preferences[event.target.id] = event.target.value;
 	
@@ -33,6 +35,21 @@ window.addEventListener("mousedown",function(){
 
 // restore preferences:
 function getprefs(){
+	if(!widget.preferences.saved_sets){ // save default configuration if it's missing:
+		var default_set = {"Default":{}};
+		for(var setting in widget.preferences){
+			if(setting != "length") default_set["Default"][setting] = widget.preferences[setting];
+		}
+		widget.preferences.saved_sets = JSON.stringify(default_set);
+	}
+	document.getElementById("save_set").innerHTML = strings["new set name"];
+	document.getElementById("save_set").addEventListener("blur",function(){
+		if(this.innerHTML == "") this.innerHTML = strings['new set name'];
+	},false);
+	document.getElementById("save_set").addEventListener("focus",function(){
+		if(this.innerHTML == strings["new set name"]) this.innerHTML = "";
+	},false);
+	
 	var inputs = document.getElementsByTagName("input");
 	var selects = document.getElementsByTagName("select");
 	
@@ -40,7 +57,17 @@ function getprefs(){
 		if(inputs[i].type=="checkbox")	document.getElementsByTagName("input")[i].checked = widget.preferences[inputs[i].id]=="0"?0:1;
 		else							document.getElementsByTagName("input")[i].value = widget.preferences[inputs[i].id];
 	}
-	for(var i=0; i<selects.length; i++){ document.getElementsByTagName("select")[i].value = widget.preferences[selects[i].id]; }
+	for(var i=0; i<selects.length; i++){
+		if(selects[i].id == "saved_sets"){
+			if(selects[i].options.length < 2){
+				for(var option in JSON.parse(widget.preferences.saved_sets)){
+					if(option != "Default") selects[i].options[selects[i].options.length] = new Option(option, option); // Option(name, value)
+				}
+			}
+			else continue;
+		}
+		else document.getElementsByTagName("select")[i].value = widget.preferences[selects[i].id];
+	}
 	
 	if(document.getElementById("show_buttons").checked) document.getElementById("button_container").style.height = "auto";
 	if(!document.getElementById("show_superbar").checked) document.getElementById("superbar_container").style.height = "0px";
@@ -62,6 +89,61 @@ function getprefs(){
 			document.getElementById(this.id+"_text").style.opacity = "0";
 			timeout = window.setTimeout("document.getElementById('"+this.id+"_text').style.display = 'none';", 200);
 		}, false);
+	}
+	
+	
+	document.getElementById("save_set_img").onclick = function(){
+		if(document.getElementById("save_set").innerHTML == "Default"){
+			alert(strings["default change impossible"]);
+			return;
+		}
+		
+		for(var option = 0; option < document.getElementById("saved_sets").options.length; option++){
+			if(document.getElementById("saved_sets").options[option].value == document.getElementById("save_set").innerHTML){
+				var overwrite_confirmed = window.confirm(strings["confirm overwrite"]);
+				if(!overwrite_confirmed) return;
+				break;
+			}
+		}
+		
+		var sets = JSON.parse(widget.preferences.saved_sets);
+		sets[document.getElementById("save_set").innerHTML] = {};
+		for(var setting in widget.preferences){
+			if(setting == "saved_sets") break;
+			sets[document.getElementById("save_set").innerHTML][setting] = widget.preferences[setting];
+		}
+		widget.preferences.saved_sets = JSON.stringify(sets);
+		
+		if(overwrite_confirmed) return; // don't add a new option if one gets overwritten
+		document.getElementById("saved_sets").options[document.getElementById("saved_sets").options.length] =
+			new Option(document.getElementById("save_set").innerHTML, document.getElementById("save_set").innerHTML);
+	}
+	
+	document.getElementById("delete_set_img").onclick = function(){
+		if(document.getElementById("saved_sets").value == "Default"){
+			alert(strings["default delete impossible"]);
+			return;
+		}
+		var delete_confirmed = window.confirm(strings["confirm delete"]);
+		if (!delete_confirmed) return;
+		
+		var sets = JSON.parse(widget.preferences.saved_sets);
+		delete sets[document.getElementById("saved_sets").value];
+		widget.preferences.saved_sets = JSON.stringify(sets);
+		
+		for(var i in document.getElementById("saved_sets").options){
+			if(document.getElementById("saved_sets").options[i].value == document.getElementById("saved_sets").value)
+				document.getElementById("saved_sets").remove(i);
+		}
+	}
+	
+	document.getElementById("load_set_img").onclick = function(){
+		var sets = JSON.parse(widget.preferences.saved_sets);
+		for(var setting in sets[document.getElementById("saved_sets").value]){
+			widget.preferences[setting] = sets[document.getElementById("saved_sets").value][setting];
+		}
+		opera.extension.postMessage("update");
+		getprefs();
 	}
 }
 
