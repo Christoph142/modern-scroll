@@ -21,17 +21,13 @@ window.addEventListener("change",function(event){
 	
 },false);
 
-window.addEventListener("mousedown",function(){
-	if(event.target.id == "ms_upbutton" || event.target.id == "ms_downbutton"){
-		var button = event.target.id;
-		window.onmouseup = function(){
-			widget.preferences.buttonposition = 100*document.getElementById(button).offsetLeft/window.innerWidth;
-			opera.extension.postMessage("update");
-			window.onmouseup = null;
-			button = null;
-		}
+window.addEventListener("mouseup", save_buttonposition, false);
+function save_buttonposition(){
+	if(document.getElementsByClassName("dragged_button")[0]){
+		widget.preferences.buttonposition = 100 * document.getElementsByClassName("dragged_button")[0].offsetLeft / window.innerWidth;
+		opera.extension.postMessage("update");
 	}
-},false);
+}
 
 // restore preferences:
 function getprefs(){
