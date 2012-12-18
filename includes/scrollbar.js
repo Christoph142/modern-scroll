@@ -5,6 +5,7 @@
 // @exclude http://acid3.acidtests.org/
 // @exclude http://www.megalab.it/*
 // @exclude https://mail.google.com/*
+// @exclude http://docs.sencha.com/*
 // ==/UserScript==
 
 var timeout;				// scrolling animation
@@ -426,11 +427,11 @@ function scroll_bg_h(){
 	window.event.stopPropagation();		// prevent bubbling (e.g. prevent drag being triggered on separately opened images)
 	
 	if(window.event.clientX < 50 && w.bg_special_ends == "1"){
-		if(w.animate_scroll == "1") ms_scroll(0, window.pageYOffset);
+		if(w.animate_scroll == "1") ms_scrollTo(0, window.pageYOffset);
 		else window.scroll(0, window.pageYOffset);
 	}
 	else if((window.innerWidth-window.event.clientX) < 50 && w.bg_special_ends == "1"){
-		if(w.animate_scroll == "1") ms_scroll(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth), window.pageYOffset);
+		if(w.animate_scroll == "1") ms_scrollTo(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth), window.pageYOffset);
 		else window.scroll(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth), window.pageYOffset);
 	}
 	else if(window.event.clientX > parseInt(hbar.style.left)){
@@ -479,6 +480,7 @@ function handle_button(whichone){
 	if(!document.URL.match("widget://")) window.event.stopPropagation(); // prevent bubbling (e.g. prevent drag being triggered on separately opened images); provide event in options page (to save dragged button position)
 		
 	var button = document.getElementById("ms_"+whichone+"button");
+	button.className = "dragged_button";
 	var otherbutton = document.getElementById("ms_"+(whichone=="up"?"down":"up")+"button");
 	var x_start = window.event.clientX - Math.floor(button.style.left?parseInt(button.style.left):w.buttonposition/100*window.innerWidth);
 	document.onmousemove = function(){
@@ -495,8 +497,9 @@ function handle_button(whichone){
 		};
 	}
 	document.onmouseup = function(){
-		if(w.animate_scroll=="1") ms_scroll(window.pageXOffset,whichone=="up"?0:window.scrollMaxY);
-		else window.scroll(window.pageXOffset,whichone=="up"?0:window.scrollMaxY);
+		if(w.animate_scroll=="1") ms_scrollBy(0, whichone == "up" ? -window.pageYOffset : window.scrollMaxY-window.pageYOffset);
+		else window.scrollBy(0, whichone == "up" ? -window.pageYOffset : window.scrollMaxY-window.pageYOffset);
+		button.className = null;
 		document.onmousemove = null;
 		document.onmouseup = null;
 	};
@@ -514,7 +517,7 @@ function show_minipage(){
 	
 	document.body.style.transformOrigin = "0% 0%";
 	document.body.style.transform = "scale("+(window.innerWidth/Math.max(document.body.scrollWidth,document.documentElement.scrollWidth,window.innerWidth))+","+(window.innerHeight/Math.max(document.body.scrollHeight,document.documentElement.scrollHeight,window.innerHeight))+")";
-	window.scroll(0,0);
+	window.scrollBy(-window.pageXOffset, -window.pageYOffset);
 	if(document.body.className=="zoom"){
 		var img = document.body.firstChild;
 		img.style.transformOrigin = "0% 0%";
