@@ -54,7 +54,6 @@ function inject_css(){
 	var ms_style =
 		(document.body.dataset.msHeightCorrect?"body{ height:auto !important; min-height:100%; }":"")+
 		(document.body.dataset.msWidthCorrect?"body{ width:auto !important; min-width:100%; }":"")+
-		//((!window.self.frameElement && w.use_own_scroll_functions == "1")?"html{ overflow:hidden; }":"")+
 		
 		/* set back standard values (CSS values not necessarily used by modern scroll, but maybe altered by the website): */
 		"#ms_v_container, #ms_h_container, #ms_vbar_bg, #ms_hbar_bg, #ms_vbar, #ms_hbar, #ms_superbar, #ms_page_cover, #ms_upbutton, #ms_downbutton, #ms_minipage_canvas{ position:fixed; z-index:2147483647; border:none; padding:0; margin:0; display:none; }"+
@@ -155,6 +154,7 @@ function add_functionality(){
 		window.addEventListener("keydown", ms_otherkeyscroll, false);
 		//window.addEventListener("mousewheel", ms_mousescroll_y, false); // -> set in resize_vbar()
 	}
+	
 	window.addEventListener("resize", resize_bars, false);
 	window.addEventListener("resize", add_or_remove_ui, false);
 	window.addEventListener("mouseup", check_resize, false);
@@ -199,7 +199,7 @@ function resize_vbar(){
 		show_bar("v");
 		opera.extension.postMessage("reset_contextmenu");
 		
-		if(window.self.frameElement || /*(*/w.use_own_scroll_functions == "1" /* && document.body.currentStyle.height != "100%")*/)
+		if(window.self.frameElement || w.use_own_scroll_functions_mouse == "1")
 			window.addEventListener("mousewheel", ms_mousescroll_y, false);
 	}
 	else if(vbar_height_before != vbar_new_height+"px"){
@@ -826,28 +826,28 @@ function ms_mousescroll_x(){
 function ms_mousescroll_y(){
 	if(is_scrollable(window.event.target, (window.event.wheelDelta<0))) return;
 	window.event.preventDefault(); window.event.stopPropagation();
+	
+	window.scrollBy(0,-window.event.wheelDelta);
+	reposition_bars();
+	
 	/*var curTick = new Date().getTime();
 	if(variable_speeds)console.log(curTick - variable_speeds);
 	variable_speeds = curTick;*/
 	//ms_scrollBy(0,-window.event.wheelDelta);
-	window.scrollBy(0,-window.event.wheelDelta);
-	reposition_bars();
-	//document.body.scrollTop -= window.event.wheelDelta;
+	//element.scrollTop -= window.event.wheelDelta;
 }
 function is_scrollable(element, direction) // direction: 0 = up, 1 = down, 2 = all
 {
-	if(element == "[object HTMLBodyElement]" || element == "[object HTMLHtmlElement]" || element == "[object HTMLDocument]") return false;
+	if(element == "[object HTMLBodyElement]" || element == "[object HTMLHtmlElement]" || element == "[object HTMLDocument]" || element.parentNode == "[object HTMLBodyElement]") return false;
 	else if((element.currentStyle.overflow == "scroll" || element.currentStyle.overflow == "auto" || element.currentStyle.overflow == "" || element == "[object HTMLTextAreaElement]") && element.offsetHeight < element.scrollHeight){
-		var max_scrollTop = element.scrollHeight+parseInt(element.currentStyle.borderTopWidth)+parseInt(element.currentStyle.borderBottomWidth)-element.offsetHeight; //+(element.offsetWidth < element.scrollWidth?0:0)
+		var max_scrollTop = element.scrollHeight + parseInt(element.currentStyle.borderTopWidth) + parseInt(element.currentStyle.borderBottomWidth) - element.offsetHeight; //+(element.offsetWidth < element.scrollWidth?0:0)
 		if((!direction && element.scrollTop > 0) || (direction == 1 && parseInt(element.scrollTop) < max_scrollTop) || direction == 2)
 			return true;
 	}
-	else if(element.parentNode == "[object HTMLBodyElement]") return false;
 	else return is_scrollable(element.parentNode, direction);
 }
 
-function element_finished_scrolling()
-{
+function element_finished_scrolling(){
 	window.addEventListener("keydown", preventScrolling, false);
 	window.removeEventListener("scroll", element_finished_scrolling, false);
 }
