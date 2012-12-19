@@ -67,12 +67,15 @@ function getprefs(){
 	
 	if(document.getElementById("show_buttons").checked) document.getElementById("button_container").style.height = "auto";
 	if(!document.getElementById("show_superbar").checked) document.getElementById("superbar_container").style.height = "0px";
-	if(!document.getElementById("use_own_scroll_functions").checked){
+	/*if(!document.getElementById("use_own_scroll_functions").checked){
 		document.getElementById("functions_container").style.display="none";
 		if(!document.getElementById('animate_scroll').checked) document.getElementById('scroll_container').style.display="none";
 		else document.getElementById('scroll_v_label').innerHTML=strings['scroll_velocity auto'];
 	}
-	else if(document.getElementById('animate_scroll').checked) document.getElementById('scroll_v_label').innerHTML=strings['scroll_velocity both'];
+	else if(document.getElementById('animate_scroll').checked) document.getElementById('scroll_v_label').innerHTML=strings['scroll_velocity both'];*/
+	if(!document.getElementById("use_own_scroll_functions").checked) document.getElementById("functions_container").style.display="none";
+	if(document.getElementById('animate_scroll').checked) document.getElementById('scroll_container').style.display = "inline";
+	
 	document.getElementById("border_radius").max = Math.round(Math.max(document.getElementById("size").value, document.getElementById("hover_size").value)/2);
 	
 	for(var i=0; i<document.getElementsByClassName("i").length; i++){ // information boxes:

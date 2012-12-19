@@ -49,8 +49,10 @@ var strings = {
 	"never" : "Nigdy",
 	"contextmenu over only" : "Kiedy jest wywołane znad pasków modern scroll",
 	"custom scroll functions" : "Scrolling functions",
-	"animate scroll" : "Animate scrolling",
 	"use custom functions" : "Use custom scrolling functions",
+	"use custom functions keyboard" : "for the keyboard",
+	"use custom functions mouse" : "for the mouse-wheel",
+	"animate scroll" : "Animate scrolling",
 	"scroll_velocity mouse" : "Velocity of scrolling by mouse wheel",
 	"scroll_velocity auto" : "Velocity of automated scrolling",
 	"scroll_velocity both" : "Velocity of automated scrolling and by mouse wheel",
@@ -61,9 +63,9 @@ var strings = {
 	"contextmenu_show" : "Pokaż modern scroll",
 	"contextmenu_hide" : "Ukryj modern scroll",
 	"explanation: save set" : "You can save your current configuration here. Just enter a name and click the save-button. If you choose a name that already exists this entry gets overwritten.",
-	"explanation: move_bars_during_scroll" : "Deactivate this option, if you encounter performance problems.<br>The scroll bars' positions will then only be updated when scrolling is finished.",
-	"explanation: trigger area" : "This area makes accessing the bars easier, but items covered by this area can't be clicked anymore unless you hide the interface via the context menu.",
-	"explanation: superbar" : "The \"superbar\" is a combination of a horizontal and a vertical scroll bar.<br>Thus, it only gets visible, when both bars are necessary and will then show up vertically centered to the vertical and horizontally centered to the horizontal bar.",
-	"explanation: custom functions" : "Opera's standard scrolling experience is sometimes a bit jerky and slow. By activating this option, the extension also takes over scrolling with the mouse wheel and the arrow keys, which should result in a noticeable performance boost.",
-	"explanation: animate scroll" : "If you select this option, the page will not jump do the desired position anymore, but automatically scrolls there with an adjustable rate. This applies to the scroll buttons and clicks at the background bars (as well as scrolling with the mouse if \"Use custom scrolling functions\" is activated)."
+	"explanation: move_bars_during_scroll" : "Deactivate this option if you encounter performance problems.<br>The scroll bars' positions will only be updated when scrolling has finished.",
+	"explanation: trigger area" : "Enlarges the bars accessing area, but items covered by this area won't be clickable anymore, unless you hide the interface via the context menu.",
+	"explanation: superbar" : "The \"superbar\" is a combination of a horizontal and a vertical scroll bar.<br>Thus, it only gets visible when both bars are necessary.<br>Its position is aligned with the vertical and horizontal scroll bars.",
+	"explanation: custom functions" : "Opera's standard scrolling experience is sometimes a bit jerky and slow. By activating these options the extension also takes over the corresponding scrolling, which should result in a noticeable performance boost.",
+	"explanation: animate scroll" : "If you select this option, the page will not instantly jump to the desired position anymore, but automatically scroll there with an adjustable rate.<br>This applies to the scroll buttons, clicks at the background bars as well as scrolling with the keyboard (if \"Use custom scrolling functions for the keyboard\" is activated)."
 };
