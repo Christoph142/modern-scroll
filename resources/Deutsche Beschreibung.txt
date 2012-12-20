@@ -1,5 +1,6 @@
 ﻿----- Diese Erweiterung benötigt Opera 12.10 oder neuer! -----
-Eine moderne Alternative zu Operas Standard-Bildlaufleisten (die ausgeblendet werden sollten um doppelte Leisten zu verhindern. Gehe dazu in Opera → Einstellungen → Einstellungen... (Strg+F12) → Erweitert → Browser und deaktiviere "Bildlaufleisten zeigen")
+modern scroll bringt das Scrollen in Opera auf ein ganz neues Niveau.
+(Operas Standard-Bildlaufleisten sollten ausgeblendet werden um doppelte Leisten zu verhindern. Gehe dazu in Opera → Einstellungen → Einstellungen... (Strg+F12) → Erweitert → Browser und deaktiviere "Bildlaufleisten zeigen")
 
 Was ist das Geniale an modern scroll?
 
@@ -12,16 +13,16 @@ Was ist das Geniale an modern scroll?
 + optionale Buttons um zum Seitenanfang oder -Ende zu scrollen
 + Verhalten und Aussehen ist vollständig anpassbar
 
-Diese Erweiterung war ursprünglich als Update für slim scrollbar von damage92 geplant. Da sie aber keine einzige Code-Zeile mit der originalen Erweiterung gemeinsam hat, haben wir uns dazu entschieden, sie eigenständig zu veröffentlichen. Slim scrollbar wird natürlich weiterhin verfügbar sein, wenn du die andere Implementierung bevorzugst oder eine ältere Version von Opera als 12.10 benutzt, für die modern scroll nicht zur Verfügung steht. Auf Grund von damage92s mangelnder Freizeit wird diese aber im Moment nicht aktiv weiterentwickelt.
+Diese Erweiterung war ursprünglich als Update für "Slim ScrollBar" von damage92 geplant. Da sie aber keine einzige Code-Zeile mit der originalen Erweiterung gemeinsam hat, haben wir uns dazu entschieden, sie eigenständig zu veröffentlichen. Slim scrollbar wird natürlich weiterhin verfügbar sein, wenn du die andere Implementierung bevorzugst oder eine ältere Version von Opera als 12.10 benutzt, für die modern scroll nicht zur Verfügung steht. Auf Grund von damage92s mangelnder Freizeit wird diese aber im Moment nicht aktiv weiterentwickelt.
 
 Changelog:
 ----------
 
-v 1.5
+v 2.0
 ---------
+neu: modern scroll beschleunigt das Scrollen!
 neu: Konfigurationen können gespeichert und wiederhergestellt werden
-neu: modern scroll beschleunigt das Scrollen
-neu: horizontale Bildlaufleiste gekürzt um Überschneiden zu verhindern
+neu: horizontale Bildlaufleiste gekürzt um ein Überschneiden zu verhindern
 neu: Scrollen wird optional animiert
 neu: zusätzliche Erklärungen für manche Optionen
 neu: Unterstützung für iFrames

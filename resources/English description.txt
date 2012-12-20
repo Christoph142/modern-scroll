@@ -1,5 +1,6 @@
 ﻿----- This extension requires Opera 12.10 or newer! -----
-An up-to-date alternative to Opera's standard scrollbars (which should be disabled to avoid double bars. Therefore go to Opera → Settings → Preferences... (Ctrl+F12) → Advanced → Browsing and uncheck "Show scroll bars" )
+modern scroll takes scrolling in Opera to a whole new level.
+(Opera's standard scrollbars should be disabled to avoid double bars. Therefore go to Opera → Settings → Preferences... (Ctrl+F12) → Advanced → Browsing and uncheck "Show scroll bars")
 
 What's awesome about modern scroll?
 
@@ -12,20 +13,21 @@ What's awesome about modern scroll?
 + optional buttons for scrolling to the top and bottom of the page
 + behavior and appearance is fully customizable
 
-This extension was originally planned as an update to slim scrollbar by damage92. But since it doesn't have a single line of code in common with the original extension we decided to publish it as a new one. Slim scrollbar will of course continue to exist if you prefer the other implementation or if you are using Opera below 12.10 where modern scroll isn't available. Due to damage92's rare spare time it's not being actively developed at the moment, though.
+This extension was originally planned as an update to "Slim ScrollBar" by damage92. But since it doesn't have a single line of code in common with the original extension we decided to publish it as a new one. Slim scrollbar will of course continue to exist if you prefer the other implementation or if you are using Opera below 12.10 where modern scroll isn't available. Due to damage92's rare spare time it's not being actively developed at the moment, though.
 
 Changelog:
 ----------
 
-v 1.X
+v 2.X
 ---------
 mouse wheel scrolling speed / distance dependend on wheel spin speed
 "touch drag"(?)
+trigger area without access prevention
 
 v 2.0
 ---------
+new: modern scroll speeds up scrolling!
 new: configurations can be saved and restored
-new: modern scroll speeds up scrolling
 new: horizontal bar shortened to prevent overlapping
 new: optionally animate scrolling
 new: additional explanations for some settings

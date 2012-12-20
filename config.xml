@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<widget xmlns="http://www.w3.org/ns/widgets" id="https://github.com/Christoph142/modern-scroll" defaultlocale="en" version="2.0 RC 2">
+<widget xmlns="http://www.w3.org/ns/widgets" id="https://github.com/Christoph142/modern-scroll" defaultlocale="en" version="2.0">
 
 	<name>modern scroll</name>
 	<author href="http://my.opera.com/christoph142/blog">Christoph D.</author>
 	<icon src="images/icon.png" />
 	
-	<description xml:lang="de">Eine moderne Alternative zu Operas Standard-Bildlaufleisten</description>
-	<description xml:lang="en">An up-to-date alternative to Opera\"s standard scrollbars</description>
-	<description xml:lang="fr">Une alternative moderne à barres de défilement standards d\"Opera</description>
-	<description xml:lang="it">Una moderna alternativa per le barra di scorrimento standard di Opera</description>
-	<description xml:lang="nb">An up-to-date alternative to Opera\"s standard scrollbars</description>
-	<description xml:lang="pl">Odnowione alternatywne paski przewiajania w Operze</description>
-	<description xml:lang="pt">Uma alternativa moderna para as barras de rolagem padrão do Opera</description>
-	<description xml:lang="tr">Opera\"nın standart kaydırma çubuklarına güncel bir alternatif</description>
+	<description xml:lang="de">Bringt das Scrollen in Opera auf ein ganz neues Niveau</description>
+	<description xml:lang="en">Takes scrolling in Opera to a whole new level</description>
+	<description xml:lang="fr">Prend le défilement d'Opera à un niveau entièrement nouveau</description>
+	<description xml:lang="pl">Takes scrolling in Opera to a whole new level</description>
+	<description xml:lang="pt">Takes scrolling in Opera to a whole new level</description>
+	<description xml:lang="tr">Takes scrolling in Opera to a whole new level</description>
 	
 	<feature name="opera:screenshot" />
 	<feature name="opera:contextmenus" />
