@@ -23,6 +23,7 @@ v 2.X
 mouse wheel scrolling speed / distance dependend on wheel spin speed
 "touch drag"(?)
 trigger area without access prevention
+background bars: never - only over - like bars
 
 v 2.0
 ---------
