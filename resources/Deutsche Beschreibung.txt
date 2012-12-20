@@ -4,7 +4,7 @@ modern scroll bringt das Scrollen in Opera auf ein ganz neues Niveau.
 
 Was ist das Geniale an modern scroll?
 
-+ beschleunigt das Scrollen
++ beschleunigt das Scrollen!
 + die Bildlaufleisten nehmen keinen eigenen Platz ein; so kann die gesamte Breite des Bildschirms das anzeigen, wofür ein Browser gemacht wurde: Webseiten
 + Elemente oder ganze Webseiten springen nicht ein paar Pixel, wenn der Inhalt sich ändert und Bildlaufleisten (un)nötig werden
 + Bildlaufleisten sind auch im Vollbild-Modus verfügbar

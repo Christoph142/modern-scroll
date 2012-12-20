@@ -4,7 +4,7 @@ modern scroll takes scrolling in Opera to a whole new level.
 
 What's awesome about modern scroll?
 
-+ boosts your scrolling performance
++ boosts your scrolling performance!
 + its scroll bars don't take up any space so the whole screen width can be used to display what a browser is made for: websites
 + elements or whole pages don't shift by some pixels when content changes and bars become (un)necessary
 + scroll bars are usable in fullscreen mode as well
