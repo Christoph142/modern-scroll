@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name          modern scroll
-// @description	  An up-to-date alternative to Opera's standard scrollbars
+// @description	  takes scrolling in Opera to a whole new level
 // @author        Christoph D.
 // @exclude http://acid3.acidtests.org/
 // @exclude http://www.megalab.it/*
@@ -159,7 +159,7 @@ function add_functionality(){
 	window.addEventListener("resize", add_or_remove_ui, false);
 	window.addEventListener("mouseup", check_resize, false);
 	if(w.move_bars_during_scroll == "1" && w.use_own_scroll_functions == "0") window.addEventListener("scroll", reposition_bars, false);
-	else if(w.use_own_scroll_functions == "0") window.addEventListener("scroll", onScroll, false);
+	else if(w.use_own_scroll_functions == "0" || w.use_own_scroll_functions_mouse == "0") window.addEventListener("scroll", onScroll, false);
 }
 
 function check_resize(){
@@ -366,9 +366,9 @@ function reposition_bars()
 	var vbar_top_before = vbar.style.top;
 	var hbar_left_before = hbar.style.left;
 	
-	if(vbar.style.display=="inline")
+	if(vbar.style.display == "inline")
 		vbar.style.top = Math.round(window.pageYOffset/window.scrollMaxY*(window.innerHeight-vbar.offsetHeight))+"px";
-	if(hbar.style.display=="inline"){
+	if(hbar.style.display == "inline"){
 		var left = Math.round(window.pageXOffset/window.scrollMaxX*(window.innerWidth-hbar.offsetWidth));
 		hbar.style.left = left-(parseInt(w.hover_size)*left/(window.innerWidth-hbar.offsetWidth))+(w.vbar_at_left=="1"?parseInt(w.hover_size):0)+"px";
 	}
@@ -690,7 +690,7 @@ var last_clicked_element_is_scrollable;
 
 function ms_arrowkeyscroll(){ //document.activeElement != "[object HTMLBodyElement]"
 	var e = window.event;
-	if(e.which < 37 || e.which > 40 || e.ctrlKey || e.altKey || e.shiftKey || e.target=="[object HTMLTextAreaElement]" || (e.target=="[object HTMLInputElement]" && (e.target.type == "text" || e.target.type == "number" || (e.target.type == "range" && e.which != 38 && e.which != 40))))
+	if(e.which < 37 || e.which > 40 || e.ctrlKey || e.altKey || e.shiftKey || e.target=="[object HTMLTextAreaElement]" || (e.target=="[object HTMLInputElement]" && (e.target.type == "text" || e.target.type == "number" || (e.target.type == "range" && e.which !== 38 && e.which !== 40))))
 		return;
 	if(scroll_timeout_id) window.clearTimeout(scroll_timeout_id); // stop arrowkeyscrollings in progress
 	if(scroll_timeout_id_x) window.clearTimeout(scroll_timeout_id_x); scroll_timeout_id_x = 0;
@@ -703,23 +703,23 @@ function ms_arrowkeyscroll(){ //document.activeElement != "[object HTMLBodyEleme
 		/*window.removeEventListener("scroll", reposition_bars, false);
 		window.removeEventListener("scroll", onScroll, false);*/
 		
-		if(e.which == 40) ms_arrowkeyscroll_down(new Date().getTime());
-		else if(e.which == 38) ms_arrowkeyscroll_up(new Date().getTime());
-		else if(e.which == 39) ms_arrowkeyscroll_right(new Date().getTime());
+		if(e.which === 40) ms_arrowkeyscroll_down(new Date().getTime());
+		else if(e.which === 38) ms_arrowkeyscroll_up(new Date().getTime());
+		else if(e.which === 39) ms_arrowkeyscroll_right(new Date().getTime());
 		else ms_arrowkeyscroll_left(new Date().getTime());
 		
 		if((window.self.frameElement || w.use_own_scroll_functions == "1") && w.move_bars_during_scroll == "1"){
-			if(e.which == 40){
+			if(e.which === 40){
 				show_bar("v");
 				vbar.style.transition = "top "+(window.scrollMaxY-window.pageYOffset)/w.keyscroll_velocity+"ms linear";
 				vbar.style.top = window.innerHeight-parseInt(vbar.style.height)+"px";
 			}
-			else if(e.which == 38){
+			else if(e.which === 38){
 				show_bar("v");
 				vbar.style.transition = "top "+window.pageYOffset/w.keyscroll_velocity+"ms linear";
 				vbar.style.top = "0px";
 			}
-			else if(e.which == 39){
+			else if(e.which === 39){
 				show_bar("h");
 				hbar.style.transition = "left "+(window.scrollMaxX-window.pageXOffset)/w.keyscroll_velocity+"ms linear";
 				hbar.style.left = window.innerWidth-parseInt(hbar.style.width)-(w.vbar_at_left=="0"?parseInt(document.getElementById("ms_hbar_bg").currentStyle.right):0)+"px";
@@ -780,7 +780,7 @@ function ms_arrowkeyscroll_left(lastTick)
 function ms_otherkeyscroll()
 {
 	if(window.event.target == "[object HTMLTextAreaElement]" || window.event.which < 33 || window.event.which > 36) return;
-	if(window.event.which == 33){ //PageUp
+	if(window.event.which === 33){ //PageUp
 		if(!window.self.frameElement){ window.event.preventDefault(); window.event.stopPropagation(); }
 		if(w.animate_scroll == "1") ms_scrollBy(0,-window.innerHeight);
 		else{
@@ -789,7 +789,7 @@ function ms_otherkeyscroll()
 		}
 		return;
 	}
-	if(window.event.which == 34){ //PageDown
+	if(window.event.which === 34){ //PageDown
 		if(!window.self.frameElement){ window.event.preventDefault(); window.event.stopPropagation(); }
 		if(w.animate_scroll == "1") ms_scrollBy(0,window.innerHeight);
 		else{
@@ -802,7 +802,7 @@ function ms_otherkeyscroll()
 	if(window.event.target == "[object HTMLInputElement]" && window.event.target.type == "text") return;
 	if(!window.self.frameElement){ window.event.preventDefault(); window.event.stopPropagation(); }
 	
-	if(window.event.which == 36){ //Pos1
+	if(window.event.which === 36){ //Pos1
 		if(w.animate_scroll == "1") ms_scrollBy(0, -window.pageYOffset);
 		else{
 			window.scrollBy(0, -window.pageYOffset);
@@ -822,19 +822,20 @@ function ms_otherkeyscroll()
 function ms_mousescroll_x(){
 	window.event.preventDefault(); window.event.stopPropagation();
 	window.scrollBy(-window.event.wheelDelta,0);
+	reposition_bars();
 }
 function ms_mousescroll_y(){
-	if(is_scrollable(window.event.target, (window.event.wheelDelta<0))) return;
+	if(window.event.wheelDeltaY === 0 || is_scrollable(window.event.target, (window.event.wheelDeltaY<0))) return;
 	window.event.preventDefault(); window.event.stopPropagation();
 	
-	window.scrollBy(0,-window.event.wheelDelta);
+	window.scrollBy(0,-window.event.wheelDeltaY);
 	reposition_bars();
 	
 	/*var curTick = new Date().getTime();
 	if(variable_speeds)console.log(curTick - variable_speeds);
 	variable_speeds = curTick;*/
-	//ms_scrollBy(0,-window.event.wheelDelta);
-	//element.scrollTop -= window.event.wheelDelta;
+	//ms_scrollBy(0,-window.event.wheelDeltaY);
+	//element.scrollTop -= window.event.wheelDeltaY;
 }
 function is_scrollable(element, direction) // direction: 0 = up, 1 = down, 2 = all
 {
