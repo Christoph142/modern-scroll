@@ -16,7 +16,7 @@ var hbar;					// /
 
 window.opera.addEventListener("BeforeEvent.DOMContentLoaded", call_on_load, false);
 window.addEventListener("DOMContentLoaded", function(){ // local files except options page:
-	if(!vbar && !document.URL.match("widget://")) call_on_load();
+	if(!vbar && document.URL.substr(0,9) !== "widget://") call_on_load();
 }, false);
 
 function call_on_load(){
@@ -163,6 +163,7 @@ function add_functionality(){
 }
 
 function check_resize(){
+	if(window.event.target.id.substr(0,3) === "ms_") return;
 	last_clicked_element_is_scrollable = is_scrollable(window.event.target, 2) ? 1 : 0;
 	window.setTimeout(resize_bars, 200); // needs some time to affect page height if click expands element
 }
@@ -178,7 +179,7 @@ function set_new_scrollMax_values(){
 }
 function resize_vbar(){
 	//don't display if content fits into window:
-	if(window.scrollMaxY <= 0){
+	if(window.scrollMaxY === 0){
 		if(vbar.style.display == "inline"){
 			document.getElementById("ms_v_container").style.display = null;
 			document.getElementById("ms_vbar_bg").style.display = null;
@@ -210,7 +211,7 @@ function resize_vbar(){
 
 function resize_hbar(){
 	//don't display if content fits into window:
-	if(window.scrollMaxX <= 0){
+	if(window.scrollMaxX === 0){
 		if(hbar.style.display == "inline"){
 			document.getElementById("ms_h_container").style.display = null;
 			document.getElementById("ms_hbar_bg").style.display = null;
@@ -258,13 +259,12 @@ function drag_v(){
 	
 	drag_mode("v_container");
 	
-	var bar = vbar;
-	var dragy = window.event.clientY - parseInt(bar.style.top);
+	var dragy = window.event.clientY - parseInt(vbar.style.top);
 	document.onmousemove = function(){
 		var posy = window.event.clientY;
-		var new_top = Math.round((posy - dragy)<=0? 0 : ((posy - dragy)>=window.innerHeight-bar.offsetHeight?window.innerHeight-bar.offsetHeight : (posy - dragy)));
-		bar.style.top = new_top+"px";
-		window.scroll(window.pageXOffset, Math.round(new_top/(window.innerHeight-bar.offsetHeight)*window.scrollMaxY));
+		var new_top = Math.round((posy - dragy)<=0? 0 : ((posy - dragy)>=window.innerHeight-vbar.offsetHeight?window.innerHeight-vbar.offsetHeight : (posy - dragy)));
+		vbar.style.top = new_top+"px";
+		window.scroll(window.pageXOffset, Math.round(new_top/(window.innerHeight-vbar.offsetHeight)*window.scrollMaxY));
 	}
 	document.onmouseup = function(){
 		drag_mode(0);		
@@ -280,19 +280,18 @@ function drag_h(){
 	
 	drag_mode("h_container");
 		
-	var bar = hbar;
-	var dragx = window.event.clientX - parseInt(bar.style.left);
+	var dragx = window.event.clientX - parseInt(hbar.style.left);
 	document.onmousemove = function(){
 		var posx = window.event.clientX;
 		
 		if(w.vbar_at_left=="0"){
-			var new_left = Math.round((posx - dragx)<=0 ? 0 : ((posx - dragx)>=window.innerWidth-bar.offsetWidth-w.hover_size ? window.innerWidth-bar.offsetWidth-w.hover_size : posx-dragx));
-			bar.style.left = new_left+"px";
+			var new_left = Math.round((posx - dragx)<=0 ? 0 : ((posx - dragx)>=window.innerWidth-hbar.offsetWidth-w.hover_size ? window.innerWidth-hbar.offsetWidth-w.hover_size : posx-dragx));
+			hbar.style.left = new_left+"px";
 		}else{
-			var new_left = Math.round((posx - dragx)<=parseInt(w.hover_size) ? 0 : ((posx - dragx)>=window.innerWidth-bar.offsetWidth ? window.innerWidth-bar.offsetWidth-w.hover_size : posx-dragx-w.hover_size));
-			bar.style.left = new_left+parseInt(w.hover_size)+"px";
+			var new_left = Math.round((posx - dragx)<=parseInt(w.hover_size) ? 0 : ((posx - dragx)>=window.innerWidth-hbar.offsetWidth ? window.innerWidth-hbar.offsetWidth-w.hover_size : posx-dragx-w.hover_size));
+			hbar.style.left = new_left+parseInt(w.hover_size)+"px";
 		}
-		window.scroll(Math.round((new_left/(window.innerWidth-bar.offsetWidth-w.hover_size)*window.scrollMaxX)), window.pageYOffset);
+		window.scroll(Math.round((new_left/(window.innerWidth-hbar.offsetWidth-w.hover_size)*window.scrollMaxX)), window.pageYOffset);
 	}
 	document.onmouseup = function(){
 		drag_mode(0);
@@ -402,16 +401,16 @@ function reposition_bars()
 
 function scroll_bg_v(){
 	window.event.preventDefault();		// prevent focus-loss in site
-	if(window.event.which !== 1) return;	// if it's not the left mouse button
+	if(window.event.which !== 1) return;// if it's not the left mouse button
 	window.event.stopPropagation();		// prevent bubbling (e.g. prevent drag being triggered on separately opened images)
 	
 	if(window.event.clientY < 50 && w.bg_special_ends === "1"){
-		if(w.animate_scroll === "1") ms_scrollTo(window.pageXOffset, 0);
-		else window.scroll(window.pageXOffset, 0);
+		if(w.animate_scroll === "1") ms_scrollBy(0, -window.pageYOffset);
+		else window.scrollBy(0, -window.pageYOffset);
 	}
 	else if((window.innerHeight-window.event.clientY) < 50 && w.bg_special_ends === "1"){
-		if(w.animate_scroll === "1")ms_scrollTo(window.pageXOffset, Math.max(document.body.scrollHeight,document.documentElement.scrollHeight));
-		else window.scroll(window.pageXOffset, Math.max(document.body.scrollHeight,document.documentElement.scrollHeight));
+		if(w.animate_scroll === "1") ms_scrollBy(0, window.scrollMaxY-window.pageYOffset);
+		else window.scrollBy(0, window.scrollMaxY-window.pageYOffset);
 	}
 	else if(window.event.clientY > parseInt(vbar.style.top)){
 		if(w.animate_scroll === "1") ms_scrollBy(0, window.innerHeight);
@@ -423,16 +422,16 @@ function scroll_bg_v(){
 
 function scroll_bg_h(){
 	window.event.preventDefault();		// prevent focus-loss in site
-	if(window.event.which !== 1) return;	// if it's not the left mouse button
+	if(window.event.which !== 1) return;// if it's not the left mouse button
 	window.event.stopPropagation();		// prevent bubbling (e.g. prevent drag being triggered on separately opened images)
 	
 	if(window.event.clientX < 50 && w.bg_special_ends === "1"){
-		if(w.animate_scroll === "1") ms_scrollTo(0, window.pageYOffset);
-		else window.scroll(0, window.pageYOffset);
+		if(w.animate_scroll === "1") ms_scrollBy(-window.pageXOffset, 0);
+		else window.scrollBy(-window.pageXOffset, 0);
 	}
 	else if((window.innerWidth-window.event.clientX) < 50 && w.bg_special_ends === "1"){
-		if(w.animate_scroll === "1") ms_scrollTo(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth), window.pageYOffset);
-		else window.scroll(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth), window.pageYOffset);
+		if(w.animate_scroll === "1") ms_scrollBy(window.scrollMaxX-window.pageXOffset, 0);
+		else window.scrollBy(window.scrollMaxX-window.pageXOffset, 0);
 	}
 	else if(window.event.clientX > parseInt(hbar.style.left)){
 		if(w.animate_scroll === "1") ms_scrollBy(window.innerWidth, 0);
@@ -476,7 +475,8 @@ function add_buttons(){
 function handle_button(whichone){
 	window.event.preventDefault();	// prevent focus-loss in site
 	if(window.event.which !== 1) return;	// if it's not the left mouse button
-	if(!document.URL.match("widget://")) window.event.stopPropagation(); // prevent bubbling (e.g. prevent drag being triggered on separately opened images); provide event in options page (to save dragged button position)
+	
+	if(document.URL.substr(0,9) !== "widget://") window.event.stopPropagation(); // prevent bubbling (e.g. prevent drag being triggered on separately opened images); provide event in options page (to save dragged button position)
 		
 	var button = document.getElementById("ms_"+whichone+"button");
 	button.className = "dragged_button";
@@ -550,7 +550,7 @@ function onScroll(){
 function adjust_contextmenu(){
 	window.event.stopPropagation();	// prevent bubbling (e.g. prevent drag being triggered on separately opened images)
 	if(window.event.which != 3 || w.contextmenu_show_when !== "2") return; // only right mouse button:
-	if(window.event.target.id.substr(0,3) == "ms_") opera.extension.postMessage("show_contextmenu");
+	if(window.event.target.id.substr(0,3) === "ms_") opera.extension.postMessage("show_contextmenu");
 	else opera.extension.postMessage("hide_contextmenu");
 }
 	
@@ -629,6 +629,7 @@ function ms_scroll(){
 	window.event.preventDefault(); window.event.stopPropagation();
 	window.removeEventListener("scroll", onScroll, false);
 	window.removeEventListener("scroll", reposition_bars, false);
+	window.clearTimeout(hide_timeout); // prevent earlier animations from canceling the current scrolling animations
 	
 	if(by_y !== 0){
 		show_bar("v");
@@ -781,29 +782,27 @@ function ms_arrowkeyscroll_left(lastTick)
 function ms_otherkeyscroll()
 {
 	if(window.event.target == "[object HTMLTextAreaElement]" || window.event.which < 33 || window.event.which > 36) return;
-	if(window.event.which === 33){ //PageUp
-		if(!window.self.frameElement){ window.event.preventDefault(); window.event.stopPropagation(); }
-		if(w.animate_scroll === "1") ms_scrollBy(0,-window.innerHeight);
-		else window.scrollBy(0,-window.innerHeight);
-		return;
-	}
-	if(window.event.which === 34){ //PageDown
-		if(!window.self.frameElement){ window.event.preventDefault(); window.event.stopPropagation(); }
-		if(w.animate_scroll === "1") ms_scrollBy(0,window.innerHeight);
-		else window.scrollBy(0,window.innerHeight);
-		return;
-	}
-	
-	if(window.event.target == "[object HTMLInputElement]" && window.event.target.type == "text") return;
 	if(!window.self.frameElement){ window.event.preventDefault(); window.event.stopPropagation(); }
 	
+	if(window.event.which === 33){ //PageUp
+		if(w.animate_scroll === "1") ms_scrollBy(0, -window.innerHeight);
+		else window.scrollBy(0, -window.innerHeight);
+		return;
+	}
+	else if(window.event.which === 34){ //PageDown
+		if(w.animate_scroll === "1") ms_scrollBy(0, window.innerHeight);
+		else window.scrollBy(0, window.innerHeight);
+		return;
+	}
+	
+	if(window.event.target == "[object HTMLInputElement]" && window.event.target.type == "text") return;	
 	if(window.event.which === 36){ //Pos1
 		if(w.animate_scroll === "1") ms_scrollBy(0, -window.pageYOffset);
 		else window.scrollBy(0, -window.pageYOffset);
 	}
 	else{ //End (35)
-		if(w.animate_scroll === "1") ms_scrollBy(0, (window.scrollMaxY-window.pageYOffset));
-		else window.scrollBy(0, (window.scrollMaxY-window.pageYOffset));
+		if(w.animate_scroll === "1") ms_scrollBy(0, window.scrollMaxY-window.pageYOffset);
+		else window.scrollBy(0, window.scrollMaxY-window.pageYOffset);
 	}
 }
 
