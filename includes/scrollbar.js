@@ -148,7 +148,7 @@ function add_functionality(){
 	}
 	
 	window.addEventListener("DOMNodeInserted", onDOMNode, false);
-	window.addEventListener("DOMNodeRemoved", onDOMNode, false);
+	if(!document.URL.match("://vk.com")) window.addEventListener("DOMNodeRemoved", onDOMNode, false);
 	if(window.self.frameElement || w.use_own_scroll_functions == "1"){
 		window.addEventListener("keydown", ms_arrowkeyscroll, false);
 		window.addEventListener("keydown", ms_otherkeyscroll, false);
