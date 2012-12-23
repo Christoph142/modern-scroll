@@ -16,26 +16,10 @@
 		opera.extension.onmessage = function(){ remove_ui(); inject_css(); add_ui(); }
 	},false);
 	</script>
-    <script type="text/javascript">
-    function gId(from,to){
-        var text=document.getElementById(from).innerHTML;
-        var end=text.indexOf("<\/script>");
-        text=text.substring(end+9);
-        document.getElementById(to).title=text;
-    }window.addEventListener("DOMContentLoaded",function(){
-        gId("save_btn","save_set_img");
-        gId("load_btn","load_set_img");
-        gId("delt_btn","delete_set_img");
-    },false);
-    </script>
 </head>
 
 <body onLoad="getprefs();">
-<div style="display:none">
-    <div id="save_btn"><script>_("tooltip save");</script></div>
-    <div id="load_btn"><script>_("tooltip load");</script></div>
-    <div id="delt_btn"><script>_("tooltip delete");</script></div>
-</div>
+
 <header><br>
 	<img src="images/icon.png">
     <h1 id="widget-name"><font size="+3">m</font>odern <font size="+3">s</font>croll</h1>
@@ -47,10 +31,10 @@
     <h4><script>_("saved sets");</script>:</h4>
     <table><tr>
     	<td style="text-align:left;"><script>_("save set");</script> "<b contenteditable="true" id="save_set">Name</b>":<div id="save_set_info" class="i">i<div id="save_set_info_text" class="i_text"><script>_("explanation: save set");</script></div></div></td>
-        <td style="text-align:right;"><img src="images/save.png" id="save_set_img" title="save"></td>
+        <td style="text-align:right;"><script>document.write('<img src="images/save.png" id="save_set_img" title="'+strings["tooltip save"]+'">');</script></td>
     </tr><tr>
     	<td style="text-align:left;"><script>_("load or delete set");</script> <select id="saved_sets"><option value="Default"><script>_("default");</script></option></select>:</td>
-        <td style="text-align:right;"><img src="images/delete.png" id="delete_set_img" title="delete"> <img src="images/load.png" id="load_set_img" title="load"></td>
+        <td style="text-align:right;"><script>document.write('<img src="images/delete.png" id="delete_set_img" title="'+strings["tooltip delete"]+'"> <img src="images/load.png" id="load_set_img" title="'+strings["tooltip load"]+'">');</script></td>
     </tr></table>
     </fieldset><br>
     
