@@ -404,20 +404,10 @@ function scroll_bg_v(){
 	if(window.event.which !== 1) return;// if it's not the left mouse button
 	window.event.stopPropagation();		// prevent bubbling (e.g. prevent drag being triggered on separately opened images)
 	
-	if(window.event.clientY < 50 && w.bg_special_ends === "1"){
-		if(w.animate_scroll === "1") ms_scrollBy(0, -window.pageYOffset);
-		else window.scrollBy(0, -window.pageYOffset);
-	}
-	else if((window.innerHeight-window.event.clientY) < 50 && w.bg_special_ends === "1"){
-		if(w.animate_scroll === "1") ms_scrollBy(0, window.scrollMaxY-window.pageYOffset);
-		else window.scrollBy(0, window.scrollMaxY-window.pageYOffset);
-	}
-	else if(window.event.clientY > parseInt(vbar.style.top)){
-		if(w.animate_scroll === "1") ms_scrollBy(0, window.innerHeight);
-		else window.scrollBy(0, window.innerHeight);
-	}
-	else if(w.animate_scroll === "1") ms_scrollBy(0, -window.innerHeight);
-	else window.scrollBy(0, -window.innerHeight);
+	if		(window.event.clientY < 50 && w.bg_special_ends === "1")						scroll_Pos1();
+	else if	((window.innerHeight-window.event.clientY) < 50 && w.bg_special_ends === "1")	scroll_End();
+	else if	(window.event.clientY > parseInt(vbar.style.top))								scroll_PageDown();
+	else																					scroll_PageUp();
 }
 
 function scroll_bg_h(){
@@ -480,7 +470,7 @@ function handle_button(whichone){
 		
 	var button = document.getElementById("ms_"+whichone+"button");
 	button.className = "dragged_button";
-	var otherbutton = document.getElementById("ms_"+(whichone=="up"?"down":"up")+"button");
+	var otherbutton = document.getElementById("ms_"+(whichone==="up"?"down":"up")+"button");
 	var x_start = window.event.clientX - Math.floor(button.style.left?parseInt(button.style.left):w.buttonposition/100*window.innerWidth);
 	document.onmousemove = function(){
 		button.style.opacity = "0.5";
@@ -496,8 +486,8 @@ function handle_button(whichone){
 		};
 	}
 	document.onmouseup = function(){
-		if(w.animate_scroll === "1") ms_scrollBy(0, whichone == "up" ? -window.pageYOffset : window.scrollMaxY-window.pageYOffset);
-		else window.scrollBy(0, whichone == "up" ? -window.pageYOffset : window.scrollMaxY-window.pageYOffset);
+		if(whichone === "up") scroll_Pos1();
+		else scroll_End();
 		button.className = null;
 		document.onmousemove = null;
 		document.onmouseup = null;
@@ -784,26 +774,27 @@ function ms_otherkeyscroll()
 	if(window.event.target == "[object HTMLTextAreaElement]" || window.event.which < 33 || window.event.which > 36) return;
 	if(!window.self.frameElement){ window.event.preventDefault(); window.event.stopPropagation(); }
 	
-	if(window.event.which === 33){ //PageUp
-		if(w.animate_scroll === "1") ms_scrollBy(0, -window.innerHeight);
-		else window.scrollBy(0, -window.innerHeight);
-		return;
-	}
-	else if(window.event.which === 34){ //PageDown
-		if(w.animate_scroll === "1") ms_scrollBy(0, window.innerHeight);
-		else window.scrollBy(0, window.innerHeight);
-		return;
-	}
-	
+	if		(window.event.which === 34){ scroll_PageDown();	return; }
+	else if	(window.event.which === 33){ scroll_PageUp();	return; }	
 	if(window.event.target == "[object HTMLInputElement]" && window.event.target.type == "text") return;	
-	if(window.event.which === 36){ //Pos1
-		if(w.animate_scroll === "1") ms_scrollBy(0, -window.pageYOffset);
-		else window.scrollBy(0, -window.pageYOffset);
-	}
-	else{ //End (35)
-		if(w.animate_scroll === "1") ms_scrollBy(0, window.scrollMaxY-window.pageYOffset);
-		else window.scrollBy(0, window.scrollMaxY-window.pageYOffset);
-	}
+	if		(window.event.which === 36)	 scroll_Pos1();
+	else								 scroll_End();
+}
+function scroll_PageDown(){
+	if(w.animate_scroll === "1") ms_scrollBy(0, window.innerHeight);
+	else window.scrollBy(0, window.innerHeight);
+}
+function scroll_PageUp(){
+	if(w.animate_scroll === "1") ms_scrollBy(0, -window.innerHeight);
+	else window.scrollBy(0, -window.innerHeight);
+}
+function scroll_Pos1(){
+	if(w.animate_scroll === "1") ms_scrollBy(0, -window.pageYOffset);
+	else window.scrollBy(0, -window.pageYOffset);
+}
+function scroll_End(){
+	if(w.animate_scroll === "1") ms_scrollBy(0, window.scrollMaxY-window.pageYOffset);
+	else window.scrollBy(0, window.scrollMaxY-window.pageYOffset);
 }
 
 //var variable_speeds;
@@ -812,9 +803,9 @@ function ms_mousescroll_x(){
 	window.scrollBy(-window.event.wheelDelta,0);
 }
 function ms_mousescroll_y(){
-	if(window.event.wheelDeltaY === 0 || is_scrollable(window.event.target, (window.event.wheelDeltaY<0))) return;
+	if(window.event.wheelDeltaY === 0 || is_scrollable(window.event.target, (window.event.wheelDeltaY < 0))) return;
 	window.event.preventDefault(); window.event.stopPropagation();
-	window.scrollBy(0,-window.event.wheelDeltaY);
+	window.scrollBy(0, -window.event.wheelDeltaY);
 	
 	/*var curTick = new Date().getTime();
 	if(variable_speeds)console.log(curTick - variable_speeds);
