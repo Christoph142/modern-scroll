@@ -4,7 +4,8 @@
 // @author        Christoph D.
 // @exclude http://acid3.acidtests.org/
 // @exclude http://www.megalab.it/*
-// @exclude https://mail.google.com/*
+// @exclude *://mail.google.*
+// @exclude *://maps.google.*
 // @exclude http://docs.sencha.com/*
 // ==/UserScript==
 
@@ -24,9 +25,9 @@ function call_on_load(){
 	if(window.self != window.top){ // only treat main & iframes
 		try{
 			if(window.self.frameElement == "[object HTMLIFrameElement]"/* && window.self.frameElement.scrolling != "no"*/)
-				window.self.frameElement.scrolling = "no";
+				if(!document.URL.match("//translate.google.")) window.self.frameElement.scrolling = "no";
 			else return;
-		}catch(e){ return; /* window.self.frameElement = protected variable */ }
+		}catch(e){ return; /* window.self.frameElement == protected variable */ }
 	}
 	
 	inject_css();
@@ -772,7 +773,9 @@ function ms_arrowkeyscroll_left(lastTick)
 function ms_otherkeyscroll()
 {
 	if(window.event.target == "[object HTMLTextAreaElement]" || window.event.which < 33 || window.event.which > 36) return;
-	if(!window.self.frameElement){ window.event.preventDefault(); window.event.stopPropagation(); }
+	if(!window.self.frameElement && !(window.event.target == "[object HTMLInputElement]" && window.event.target.type == "text")){
+		window.event.preventDefault(); window.event.stopPropagation();
+	}
 	
 	if		(window.event.which === 34){ scroll_PageDown();	return; }
 	else if	(window.event.which === 33){ scroll_PageUp();	return; }	
