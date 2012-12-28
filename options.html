@@ -11,9 +11,9 @@
     <script type="text/javascript"> function _(to_translate){ document.write( strings[to_translate] ); } </script>
     <script type="text/javascript">/* BeforeEvent.DOMContentLoaded doesn't fire in options page */
 	window.addEventListener("DOMContentLoaded",function(){ // include only partially (e.g. !contextmenu) in options:
-		modern_scroll.inject_css();
-		modern_scroll.add_ui();
-		opera.extension.onmessage = function(){ modern_scroll.remove_ui(); modern_scroll.inject_css(); modern_scroll.add_ui(); }
+		inject_css();
+		add_ui();
+		opera.extension.onmessage = function(){ remove_ui(); inject_css(); add_ui(); }
 	},false);
 	</script>
 </head>
