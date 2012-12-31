@@ -15,10 +15,18 @@ var w = widget.preferences;	// \
 var vbar;					//  | pass by reference!
 var hbar;					// /
 
+//window.opera.addEventListener("BeforeEvent", initialize_if_ready, false);
 window.opera.addEventListener("BeforeEvent.DOMContentLoaded", call_on_load, false);
 window.addEventListener("DOMContentLoaded", function(){ // local files except options page:
 	if(!vbar && document.URL.substr(0,9) !== "widget://") call_on_load();
 }, false);
+
+function initialize_if_ready(){
+	if(document.body){
+		window.opera.removeEventListener("BeforeEvent", initialize_if_ready, false);
+		call_on_load();
+	}
+}
 
 function call_on_load(){
 	if(window.matchMedia("all and (view-mode: minimized)").matches) return; // don't do anything if it's a speed dial
@@ -49,18 +57,19 @@ function call_on_load(){
 }
 
 function inject_css(){
-	if(document.body.currentStyle.height == "100%") document.body.dataset.msHeightCorrect = 1; // save to body-tag to set it every time
-	if(document.body.currentStyle.width == "100%") document.body.dataset.msWidthCorrect = 1;
+	if(document.body.currentStyle.height === "100%") document.body.dataset.msHeightCorrect = 1; // save to body-tag to set it every time
+	if(document.body.currentStyle.width === "100%") document.body.dataset.msWidthCorrect = 1;
 	
 	var ms_style =
 		(document.body.dataset.msHeightCorrect?"body{ height:auto !important; min-height:100%; }":"")+
 		(document.body.dataset.msWidthCorrect?"body{ width:auto !important; min-width:100%; }":"")+
 		
 		/* set back standard values (CSS values not necessarily used by modern scroll, but maybe altered by the website): */
-		"#ms_v_container, #ms_h_container, #ms_vbar_bg, #ms_hbar_bg, #ms_vbar, #ms_hbar, #ms_superbar, #ms_page_cover, #ms_upbutton, #ms_downbutton, #ms_minipage_canvas{ position:fixed; z-index:2147483647; border:none; padding:0; margin:0; display:none; }"+
+		"#modern_scroll, #ms_v_container, #ms_h_container, #ms_vbar_bg, #ms_hbar_bg, #ms_vbar, #ms_hbar, #ms_superbar, #ms_page_cover, #ms_upbutton, #ms_downbutton, #ms_minipage_canvas{ position:fixed; z-index:2147483647; border:none; padding:0; margin:0; display:none; }"+
 		"#ms_vbar_ui, #ms_hbar_ui, #ms_vbar_bg_ui, #ms_hbar_bg_ui{ border:none; padding:0; margin:0; }"+
 		
 		/* set values (most general first - can be overwritten by following rules): */
+		"#modern_scroll{ display:inline; }"+
 		"#ms_v_container{ height:100%; width:"+(w.container==="1"?w.container_size:"1")+"px; "+(w.vbar_at_left=="1"?"left":"right")+":0px; top:0px; background:rgba(0,0,0,0); }"+
 		"#ms_h_container{ height:"+(w.container==="1"?w.container_size:"1")+"px; width:100%; left:0px; "+(w.hbar_at_top==="1"?"top":"bottom")+":0px; background:rgba(0,0,0,0); }"+
 		"#ms_vbar_bg, #ms_hbar_bg{ opacity:"+((w.show_when==="3" && w.no_bar_bg != "1")?(w.opacity/100):"0")+"; transition:opacity 0.5s 1s; }"+
@@ -106,26 +115,24 @@ function inject_css(){
 	}
 }
 
-function add_bars(){	
-	var v_container = document.createElement("div");
-	v_container.id = "ms_v_container";
-	v_container.innerHTML = "<div id='ms_vbar_bg'><div id='ms_vbar_bg_ui'></div></div><div id='ms_vbar'><div id='ms_vbar_ui'></div></div>";
-	
-	var h_container = document.createElement("div");
-	h_container.id = "ms_h_container";
-	h_container.innerHTML = "<div id='ms_hbar_bg'><div id='ms_hbar_bg_ui'></div></div><div id='ms_hbar'><div id='ms_hbar_ui'></div></div>";
-	
-	var superbar = document.createElement("div");
-	superbar.id = "ms_superbar";
-	
-	var page_cover = document.createElement("div"); // covers the page and thus prevents cursor changes when dragging
-	page_cover.innerHTML = "<canvas id='ms_minipage_canvas' width='"+window.innerWidth+"' height='"+window.innerHeight+"'></canvas>";
-	page_cover.id = "ms_page_cover";
-	
-	document.body.appendChild(page_cover);
-	document.body.appendChild(superbar);
-	document.body.appendChild(h_container);
-	document.body.appendChild(v_container); // last in DOM gets displayed top
+function add_bars()
+{	
+	var modern_scroll_container = document.createElement("div");
+	modern_scroll_container.id = "modern_scroll";
+	modern_scroll_container.innerHTML = // last in DOM gets displayed top
+		"<div id='ms_page_cover'>"+
+			"<canvas id='ms_minipage_canvas' width='"+window.innerWidth+"' height='"+window.innerHeight+"'></canvas>"+
+		"</div>"+
+		"<div id='ms_superbar'></div>"+
+		"<div id='ms_h_container'>"+
+			"<div id='ms_hbar_bg'><div id='ms_hbar_bg_ui'></div></div>"+
+			"<div id='ms_hbar'><div id='ms_hbar_ui'></div></div>"+
+		"</div>"+
+		"<div id='ms_v_container'>"+
+			"<div id='ms_vbar_bg'><div id='ms_vbar_bg_ui'></div></div><div id='ms_vbar'><div id='ms_vbar_ui'></div></div>"+
+		"</div>";
+		
+	document.body.appendChild(modern_scroll_container);
 	
 	vbar = document.getElementById("ms_vbar");
 	hbar = document.getElementById("ms_hbar");
@@ -459,8 +466,8 @@ function add_buttons(){
 	var downbutton = document.createElement("div");
 	downbutton.id = "ms_downbutton";
 	
-	document.body.appendChild(upbutton);
-	document.body.appendChild(downbutton);
+	document.getElementById("modern_scroll").appendChild(upbutton);
+	document.getElementById("modern_scroll").appendChild(downbutton);
 }
 
 function handle_button(whichone){
@@ -546,7 +553,7 @@ function adjust_contextmenu(){
 }
 	
 function contextmenu_click(){
-	if(document.getElementById("ms_v_container")) remove_ui();
+	if(document.getElementById("modern_scroll")) remove_ui();
 	else add_ui();
 }
 
@@ -556,16 +563,20 @@ function add_or_remove_ui(){
 	else if	(w.fullscreen_only === "1" && window.screen.height !== window.outerHeight) remove_ui();
 }
 
-function add_ui(){
-	if(document.getElementById("ms_v_container")) return; // stop if ui is already available
+function add_ui()
+{
+	if(document.getElementById("modern_scroll")) return; // stop if ui is already available
+	
 	add_bars();
 	if(w.show_buttons === "1" && !window.self.frameElement) add_buttons(); // have to be inserted before resize_bars()
-	resize_bars();	
+	resize_bars();
 	add_functionality();
 }
 
-function remove_ui(){
-	if(!document.getElementById("ms_v_container")) return;
+function remove_ui()
+{
+	if(!document.getElementById("modern_scroll")) return;
+	
 	window.removeEventListener("DOMNodeInserted", onDOMNode, false);
 	window.removeEventListener("DOMNodeRemoved", onDOMNode, false);
 	window.removeEventListener("resize", resize_bars, false);
@@ -580,14 +591,7 @@ function remove_ui(){
 	window.clearTimeout(timeout);
 	window.clearTimeout(hide_timeout);
 	
-	document.body.removeChild(document.getElementById("ms_v_container"));
-	document.body.removeChild(document.getElementById("ms_h_container"));
-	document.body.removeChild(document.getElementById("ms_page_cover"));
-	document.body.removeChild(document.getElementById("ms_superbar"));
-	if(document.getElementById("ms_upbutton")){
-		document.body.removeChild(document.getElementById("ms_upbutton"));
-		document.body.removeChild(document.getElementById("ms_downbutton"));
-	}
+	document.body.removeChild(document.getElementById("modern_scroll"));
 }
 
 var scroll_timeout_id;
@@ -729,9 +733,9 @@ function ms_arrowkeyscroll(){ //document.activeElement != "[object HTMLBodyEleme
 	window.removeEventListener("keydown", ms_arrowkeyscroll, false);
 	
 	window.onkeyup = function(){
+		reposition_bars();
 		vbar.style.transition = null;
 		hbar.style.transition = null;
-		reposition_bars();
 		window.clearTimeout(scroll_timeout_id);
 		scroll_timeout_id = null;
 		window.addEventListener("keydown", ms_arrowkeyscroll, false);
@@ -740,34 +744,35 @@ function ms_arrowkeyscroll(){ //document.activeElement != "[object HTMLBodyEleme
 		window.removeEventListener("scroll", element_finished_scrolling, false);
 		window.onkeyup = null;
 	}
-}
-function ms_arrowkeyscroll_down(lastTick)
-{
-	var curTick = new Date().getTime();
-	var scrollamount = (curTick - lastTick) * w.keyscroll_velocity;
-	window.scrollBy(0,scrollamount);
-	scroll_timeout_id = window.setTimeout(function(){ ms_arrowkeyscroll_down(curTick); },1);
-}
-function ms_arrowkeyscroll_up(lastTick)
-{
-	var curTick = new Date().getTime();
-	var scrollamount = (curTick - lastTick) * w.keyscroll_velocity;
-	window.scrollBy(0,-scrollamount);
-	scroll_timeout_id = window.setTimeout(function(){ ms_arrowkeyscroll_up(curTick); },1);
-}
-function ms_arrowkeyscroll_right(lastTick)
-{
-	var curTick = new Date().getTime();
-	var scrollamount = (curTick - lastTick) * w.keyscroll_velocity;
-	window.scrollBy(scrollamount,0);
-	scroll_timeout_id = window.setTimeout(function(){ ms_arrowkeyscroll_right(curTick); },1);
-}
-function ms_arrowkeyscroll_left(lastTick)
-{
-	var curTick = new Date().getTime();
-	var scrollamount = (curTick - lastTick) * w.keyscroll_velocity;
-	window.scrollBy(-scrollamount,0);
-	scroll_timeout_id = window.setTimeout(function(){ ms_arrowkeyscroll_left(curTick); },1);
+	
+	function ms_arrowkeyscroll_down(lastTick)
+	{
+		var curTick = new Date().getTime();
+		var scrollamount = (curTick - lastTick) * w.keyscroll_velocity;
+		window.scrollBy(0,scrollamount);
+		scroll_timeout_id = window.setTimeout(function(){ ms_arrowkeyscroll_down(curTick); },1);
+	}
+	function ms_arrowkeyscroll_up(lastTick)
+	{
+		var curTick = new Date().getTime();
+		var scrollamount = (curTick - lastTick) * w.keyscroll_velocity;
+		window.scrollBy(0,-scrollamount);
+		scroll_timeout_id = window.setTimeout(function(){ ms_arrowkeyscroll_up(curTick); },1);
+	}
+	function ms_arrowkeyscroll_right(lastTick)
+	{
+		var curTick = new Date().getTime();
+		var scrollamount = (curTick - lastTick) * w.keyscroll_velocity;
+		window.scrollBy(scrollamount,0);
+		scroll_timeout_id = window.setTimeout(function(){ ms_arrowkeyscroll_right(curTick); },1);
+	}
+	function ms_arrowkeyscroll_left(lastTick)
+	{
+		var curTick = new Date().getTime();
+		var scrollamount = (curTick - lastTick) * w.keyscroll_velocity;
+		window.scrollBy(-scrollamount,0);
+		scroll_timeout_id = window.setTimeout(function(){ ms_arrowkeyscroll_left(curTick); },1);
+	}
 }
 
 function ms_otherkeyscroll()
