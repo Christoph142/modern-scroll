@@ -11,6 +11,7 @@
     <script type="text/javascript"> function _(to_translate){ document.write( strings[to_translate] ); } </script>
     <script type="text/javascript">/* BeforeEvent.DOMContentLoaded doesn't fire in options page */
 	window.addEventListener("DOMContentLoaded",function(){ // include only partially (e.g. !contextmenu) in options:
+		getprefs();
 		inject_css();
 		add_ui();
 		opera.extension.onmessage = function(){ remove_ui(); inject_css(); add_ui(); }
@@ -18,7 +19,7 @@
 	</script>
 </head>
 
-<body onLoad="getprefs();">
+<body>
 
 <header><br>
 	<img src="images/icon.png">
