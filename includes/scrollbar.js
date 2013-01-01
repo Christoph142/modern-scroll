@@ -42,7 +42,7 @@ function call_on_load(){
 	
 	if(w.fullscreen_only === "0" || window.screen.height === window.outerHeight){
 		add_ui();
-		window.opera.addEventListener("AfterEvent.DOMContentLoaded", resize_bars, false);
+		window.opera.addEventListener("AfterEvent.DOMContentLoaded", call_after_load, false);
 	}
 	
 	opera.extension.onmessage = function(){
@@ -54,6 +54,12 @@ function call_on_load(){
 	opera.extension.postMessage("reset_contextmenu");
 	window.addEventListener("mousedown", adjust_contextmenu, false);
 	opera.contexts.menu.onclick = contextmenu_click;
+}
+
+function call_after_load(){
+	resize_bars();
+	window.addEventListener("DOMNodeInserted", onDOMNode, false);
+	if(!document.URL.match("://vk.com")) window.addEventListener("DOMNodeRemoved", onDOMNode, false);
 }
 
 function inject_css(){
@@ -155,13 +161,38 @@ function add_functionality(){
 		document.getElementById("ms_downbutton").addEventListener("mousedown", function(){ handle_button("down"); }, true);
 	}
 	
-	window.addEventListener("DOMNodeInserted", onDOMNode, false);
-	if(!document.URL.match("://vk.com")) window.addEventListener("DOMNodeRemoved", onDOMNode, false);
 	if(window.self.frameElement || w.use_own_scroll_functions == "1"){
 		window.addEventListener("keydown", ms_arrowkeyscroll, false);
 		window.addEventListener("keydown", ms_otherkeyscroll, false);
 		//window.addEventListener("mousewheel", ms_mousescroll_y, false); // -> set in resize_vbar()
 	}
+	
+	/*if(w.container === "1"){
+		document.getElementById("ms_v_container").addEventListener("mouseenter",function(){
+			document.getElementById("ms_v_container").style.width = "1px";
+			show_bar("v");
+			window.addEventListener("mousemove", restore_v_trigger_area, false);
+			function restore_v_trigger_area(){
+				if(window.innerWidth-window.event.clientX > w.container_size){
+					hide_bar("v");
+					document.getElementById("ms_v_container").style.width = null;
+					window.removeEventListener("mousemove", restore_v_trigger_area, false);
+				}
+			}
+		}, false);
+		document.getElementById("ms_h_container").addEventListener("mouseenter",function(){
+			document.getElementById("ms_h_container").style.height = "1px";
+			show_bar("h");
+			window.addEventListener("mousemove", restore_h_trigger_area, false);
+			function restore_h_trigger_area(){
+				if(window.innerHeight-window.event.clientY > w.container_size){
+					hide_bar("h");
+					document.getElementById("ms_h_container").style.height = null;
+					window.removeEventListener("mousemove", restore_h_trigger_area, false);
+				}
+			}
+		}, false);
+	}*/
 	
 	window.addEventListener("resize", resize_bars, false);
 	window.addEventListener("resize", add_or_remove_ui, false);
@@ -536,11 +567,24 @@ function show_minipage(){
 	});
 }
 
-function onDOMNode(){
+function onDOMNode()
+{
 	window.clearTimeout(timeout);
 	timeout = window.setTimeout(resize_bars, 100);
+	
+	if(document.getElementById("ms_style").innerHTML === "") // cleanPages
+	{
+		remove_ui();
+		inject_css();
+		window.setTimeout(function(){
+			document.getElementById("toggle").style.right = w.vbar_at_left==="0"?(parseInt(w.hover_size)+parseInt(w.gap)+"px"):"0px";
+			add_or_remove_ui();
+		}, 200);
+	}
 }
-function onScroll(){
+
+function onScroll()
+{
 	window.clearTimeout(timeout);
 	timeout = window.setTimeout(reposition_bars, 100);
 }
