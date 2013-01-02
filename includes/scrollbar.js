@@ -657,19 +657,34 @@ function ms_scrollTo(x, y){
 	y = y - window.pageYOffset;
 	ms_scrollBy(x, y);
 }
-function ms_scrollBy(x, y){
-	if((by_y >= 0 && y > 0) || (by_y <= 0 && y < 0)){
-		by_y += y;
-		if(window.pageYOffset + by_y < 0) by_y = -window.pageYOffset;
-		else if(window.pageYOffset + by_y > window.scrollMaxY) by_y = window.scrollMaxY - window.pageYOffset;
-	}
-	else by_y = 0;
+function ms_scrollBy(x, y)
+{
 	if((by_x >= 0 && x > 0) || (by_x <= 0 && x < 0)){
 		by_x += x;
 		if(window.pageXOffset + by_x < 0) by_x = -window.pageXOffset;
 		else if(window.pageXOffset + by_x > window.scrollMaxX) by_x = window.scrollMaxX - window.pageXOffset;
 	}
 	else by_x = 0;
+	if((by_y >= 0 && y > 0) || (by_y <= 0 && y < 0)){
+		by_y += y;
+		if(window.pageYOffset + by_y < 0) by_y = -window.pageYOffset;
+		else if(window.pageYOffset + by_y > window.scrollMaxY) by_y = window.scrollMaxY - window.pageYOffset;
+	}
+	else by_y = 0;
+	
+	if(w.animate_scroll_max !== "0") // 0 = infinite
+	{
+		if(Math.abs(by_x) > w.animate_scroll_max * window.innerWidth){
+			window.scrollBy(by_x, 0);
+			by_x = 0;
+			ms_scroll_end();
+		}
+		if(Math.abs(by_y) > w.animate_scroll_max * window.innerHeight){
+			window.scrollBy(0, by_y);
+			by_y = 0;
+			ms_scroll_end();
+		}
+	}
 	
 	ms_scroll();
 }

@@ -45,6 +45,7 @@
 	<preference name="container_size" value="30" />
 	<preference name="gap" value="2" />
 	<preference name="animate_scroll" value="0" />
+	<preference name="animate_scroll_max" value="2" />
 	<preference name="use_own_scroll_functions" value="1" />
 	<preference name="use_own_scroll_functions_mouse" value="1" />
 	<preference name="scroll_velocity" value="5" />
