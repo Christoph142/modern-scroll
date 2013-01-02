@@ -3,11 +3,14 @@
 // @description	  takes scrolling in Opera to a whole new level
 // @author        Christoph D.
 // @exclude http://acid3.acidtests.org/
-// @exclude http://www.megalab.it/*
 // @exclude *://mail.google.*
 // @exclude *://maps.google.*
 // @exclude http://docs.sencha.com/*
 // ==/UserScript==
+
+
+function main(){
+
 
 var timeout;				// scrolling animation
 var hide_timeout;			// hide bars
@@ -58,8 +61,8 @@ function call_on_load(){
 
 function call_after_load(){
 	resize_bars();
-	window.addEventListener("DOMNodeInserted", onDOMNode, false);
-	if(!document.URL.match("://vk.com")) window.addEventListener("DOMNodeRemoved", onDOMNode, false);
+	if(!document.URL.match("megalab.it/"))	window.addEventListener("DOMNodeInserted", onDOMNode, false);
+	if(!document.URL.match("://vk.com"))	window.addEventListener("DOMNodeRemoved", onDOMNode, false);
 }
 
 function inject_css(){
@@ -884,3 +887,7 @@ function preventScrolling(){
 	window.event.preventDefault(); window.event.stopPropagation();
 	window.removeEventListener("keydown", preventScrolling, false);
 }
+
+
+}
+main();
