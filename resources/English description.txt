@@ -26,7 +26,7 @@ mouse wheel scrolling speed / distance dependend on wheel spin speed
 
 v 2.1
 ---------
-!new: enhanced background bars visibility settings: never - only over - like bars
+new: enhanced background bars visibility setting
 !new: trigger area doesn't prevent covered part of page from being clicked anymore
 !new: option to disable long animation
 new: support for cleanPages extension

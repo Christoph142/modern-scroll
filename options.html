@@ -8,15 +8,10 @@
     <script type="text/javascript" src="options/prefs.js"></script>
     <script type="text/javascript" src="includes/scrollbar.js"></script>
     <script type="text/javascript" src="strings.js"></script>
-    <script type="text/javascript"> function _(to_translate){ document.write( strings[to_translate] ); } </script>
-    <script type="text/javascript">/* BeforeEvent.DOMContentLoaded doesn't fire in options page */
-	window.addEventListener("DOMContentLoaded",function(){ // include only partially (e.g. !contextmenu) in options:
-		getprefs();
-		inject_css();
-		add_ui();
-		opera.extension.onmessage = function(){ remove_ui(); inject_css(); add_ui(); }
-	},false);
-	</script>
+    <script type="text/javascript">
+		window.addEventListener("DOMContentLoaded", getprefs, false);
+		function _(to_translate){ document.write( strings[to_translate] ); }
+    </script>
 </head>
 
 <body>
@@ -81,9 +76,6 @@
     </tr><tr>
     	<td><input type="checkbox" id="hbar_at_top" name="hbar_at_top"></td>
         <td><label for="hbar_at_top"><script>_("hbar_at_top");</script></label></td>
-    </tr><tr>
-    	<td><input type="checkbox" id="no_bar_bg" name="no_bar_bg"></td>
-        <td><label for="no_bar_bg"><script>_("no_bar_bg");</script></label></td>
     </tr></table>
     </fieldset><br>
     
@@ -96,6 +88,15 @@
         	<td width="30%" style="text-align:left; padding-left:10px; vertical-align:top;"><script>_("only_over");</script></td>
             <td width="40%" style="text-align:center; vertical-align:top;"><script>_("normal");</script></td>
             <td width="30%" style="text-align:right; padding-right:10px; vertical-align:top;"><script>_("always");</script></td>
+        </tr>
+    </table><br>
+    <script>_("show_bg_bars_when");</script>?<br>
+    <input type="range" name="show_bg_bars_when" id="show_bg_bars_when" min="1" max="3" value="3" step="1" style="width:100%;" />
+    <table>
+    	<tr>
+        	<td width="30%" style="text-align:left; padding-left:10px; vertical-align:top;"><script>_("never");</script></td>
+            <td width="40%" style="text-align:center; vertical-align:top;"><script>_("only_over");</script></td>
+            <td width="30%" style="text-align:right; padding-right:10px; vertical-align:top;"><script>_("like bars");</script></td>
         </tr>
     </table><br>
     <table class="c"><tr>
