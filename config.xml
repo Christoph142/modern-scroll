@@ -25,9 +25,9 @@
 	<preference name="border_color" value="#FFFFFF" />
 	<preference name="border_color_rgba" value="rgba(255,255,255,0.5)" />
 	<preference name="border_blur" value="0" />
-	<preference name="show_when" value="2" /><!-- 1 = only_over, 2 = normal, 3 = always -->
+	<preference name="show_when" value="2" /><!-- 1 = onmouseover only, 2 = normal, 3 = always -->
+	<preference name="show_bg_bars_when" value="2" /><!-- 1 = never, 2 = onmouseover only, 3 = like bars -->
 	<preference name="fullscreen_only" value="0" />
-	<preference name="no_bar_bg" value="0" />
 	<preference name="bg_special_ends" value="1" />
 	<preference name="move_bars_during_scroll" value="1" />
 	<preference name="show_buttons" value="0" />
