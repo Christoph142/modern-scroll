@@ -21,7 +21,7 @@ Changelog:
 v 2.X
 ---------
 mouse wheel scrolling speed / distance dependend on wheel spin speed
-"touch drag"(?)
+"touch drag"(?) -> Akiro
 
 
 v 2.1
@@ -31,6 +31,8 @@ v 2.1
 !new: option to disable long animation
 new: support for cleanPages extension
 !fix: hiding the interface also disables the scrolling functions
+!fix: number input fields in options page go crazy when clicking the arrows
+fix: megalab.it (not excluded anymore)
 
 v 2.0
 ---------
