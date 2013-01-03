@@ -1,14 +1,14 @@
 // save preferences:
-window.addEventListener("change",function(event){
+window.addEventListener("change", function(e)
+{
+	if(e.target.id === "save_set" || e.target.id === "saved_sets") return; // handled via onclick funtions
 	
-	if(event.target.id == "save_set" || event.target.id == "saved_sets") return; // handled via onclick funtions
+	if(e.target.type === "checkbox") widget.preferences[e.target.id] = e.target.checked?1:0;
+	else 							 widget.preferences[e.target.id] = e.target.value;
 	
-	if(event.target.type == "checkbox") widget.preferences[event.target.id] = event.target.checked?1:0;
-	else 								widget.preferences[event.target.id] = event.target.value;
+	if(e.target.id === "border_color") widget.preferences.border_color_rgba = "rgba("+parseInt(e.target.value.substring(1,3),16)+","+parseInt(e.target.value.substring(3,5),16)+","+parseInt(e.target.value.substring(5,7),16)+",0.7)";
 	
-	if(event.target.id == "border_color") widget.preferences.border_color_rgba = "rgba("+parseInt(event.target.value.substring(1,3),16)+","+parseInt(event.target.value.substring(3,5),16)+","+parseInt(event.target.value.substring(5,7),16)+",0.7)";
-	
-	if(event.target.id == "size" || event.target.id == "hover_size"){
+	if(e.target.id === "size" || e.target.id === "hover_size"){
 		document.getElementById("border_radius").max = Math.round(Math.max(document.getElementById("size").value, document.getElementById("hover_size").value)/2);
 		if(document.getElementById("border_radius").value > document.getElementById("border_radius").max){
 			document.getElementById("border_radius").value = document.getElementById("border_radius").max;
@@ -16,8 +16,8 @@ window.addEventListener("change",function(event){
 		}
 	}
 	
-	if(event.target.id == "contextmenu_show_when") opera.extension.postMessage("contextmenu_show_when_update");
-	else opera.extension.postMessage("update");
+	if(e.target.id === "contextmenu_show_when")	opera.extension.postMessage("contextmenu_show_when_update");
+	else										opera.extension.postMessage("update");
 	
 },false);
 
@@ -34,30 +34,30 @@ function getprefs(){
 	if(!widget.preferences.saved_sets){ // save default configuration if it's missing:
 		var default_set = {"Default":{}};
 		for(var setting in widget.preferences){
-			if(setting != "length") default_set["Default"][setting] = widget.preferences[setting];
+			if(setting !== "length") default_set["Default"][setting] = widget.preferences[setting];
 		}
 		widget.preferences.saved_sets = JSON.stringify(default_set);
 	}
 	document.getElementById("save_set").innerHTML = strings["new set name"];
 	document.getElementById("save_set").addEventListener("blur",function(){
-		if(this.innerHTML == "") this.innerHTML = strings['new set name'];
+		if(this.innerHTML === "") this.innerHTML = strings['new set name'];
 	},false);
 	document.getElementById("save_set").addEventListener("focus",function(){
-		if(this.innerHTML == strings["new set name"]) this.innerHTML = "";
+		if(this.innerHTML === strings["new set name"]) this.innerHTML = "";
 	},false);
 	
 	var inputs = document.getElementsByTagName("input");
 	var selects = document.getElementsByTagName("select");
 	
 	for(var i=0; i<inputs.length; i++){
-		if(inputs[i].type=="checkbox")	document.getElementsByTagName("input")[i].checked = widget.preferences[inputs[i].id]=="0"?0:1;
+		if(inputs[i].type==="checkbox")	document.getElementsByTagName("input")[i].checked = widget.preferences[inputs[i].id]=="0"?0:1;
 		else							document.getElementsByTagName("input")[i].value = widget.preferences[inputs[i].id];
 	}
 	for(var i=0; i<selects.length; i++){
-		if(selects[i].id == "saved_sets"){
+		if(selects[i].id === "saved_sets"){
 			if(selects[i].options.length < 2){
 				for(var option in JSON.parse(widget.preferences.saved_sets)){
-					if(option != "Default") selects[i].options[selects[i].options.length] = new Option(option, option); // Option(name, value)
+					if(option !== "Default") selects[i].options[selects[i].options.length] = new Option(option, option); // Option(name, value)
 				}
 			}
 			else continue;
@@ -92,13 +92,13 @@ function getprefs(){
 	
 	
 	document.getElementById("save_set_img").onclick = function(){
-		if(document.getElementById("save_set").innerHTML == "Default"){
+		if(document.getElementById("save_set").innerHTML === "Default"){
 			alert(strings["default change impossible"]);
 			return;
 		}
 		
 		for(var option = 0; option < document.getElementById("saved_sets").options.length; option++){
-			if(document.getElementById("saved_sets").options[option].value == document.getElementById("save_set").innerHTML){
+			if(document.getElementById("saved_sets").options[option].value === document.getElementById("save_set").innerHTML){
 				var overwrite_confirmed = window.confirm(strings["confirm overwrite"]);
 				if(!overwrite_confirmed) return;
 				break;
@@ -108,7 +108,7 @@ function getprefs(){
 		var sets = JSON.parse(widget.preferences.saved_sets);
 		sets[document.getElementById("save_set").innerHTML] = {};
 		for(var setting in widget.preferences){
-			if(setting == "saved_sets") break;
+			if(setting === "saved_sets") break;
 			sets[document.getElementById("save_set").innerHTML][setting] = widget.preferences[setting];
 		}
 		widget.preferences.saved_sets = JSON.stringify(sets);
@@ -119,7 +119,7 @@ function getprefs(){
 	}
 	
 	document.getElementById("delete_set_img").onclick = function(){
-		if(document.getElementById("saved_sets").value == "Default"){
+		if(document.getElementById("saved_sets").value === "Default"){
 			alert(strings["default delete impossible"]);
 			return;
 		}
@@ -131,7 +131,7 @@ function getprefs(){
 		widget.preferences.saved_sets = JSON.stringify(sets);
 		
 		for(var i in document.getElementById("saved_sets").options){
-			if(document.getElementById("saved_sets").options[i].value == document.getElementById("saved_sets").value)
+			if(document.getElementById("saved_sets").options[i].value === document.getElementById("saved_sets").value)
 				document.getElementById("saved_sets").remove(i);
 		}
 	}
