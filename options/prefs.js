@@ -30,14 +30,8 @@ function save_buttonposition(){
 }
 
 // restore preferences:
-function getprefs(){
-	if(!widget.preferences.saved_sets){ // save default configuration if it's missing:
-		var default_set = {"Default":{}};
-		for(var setting in widget.preferences){
-			if(setting !== "length") default_set["Default"][setting] = widget.preferences[setting];
-		}
-		widget.preferences.saved_sets = JSON.stringify(default_set);
-	}
+function getprefs()
+{	
 	document.getElementById("save_set").innerHTML = strings["new set name"];
 	document.getElementById("save_set").addEventListener("blur",function(){
 		if(this.innerHTML === "") this.innerHTML = strings['new set name'];
@@ -50,7 +44,7 @@ function getprefs(){
 	var selects = document.getElementsByTagName("select");
 	
 	for(var i=0; i<inputs.length; i++){
-		if(inputs[i].type==="checkbox")	document.getElementsByTagName("input")[i].checked = widget.preferences[inputs[i].id]=="0"?0:1;
+		if(inputs[i].type==="checkbox")	document.getElementsByTagName("input")[i].checked = widget.preferences[inputs[i].id]==="0"?0:1;
 		else							document.getElementsByTagName("input")[i].value = widget.preferences[inputs[i].id];
 	}
 	for(var i=0; i<selects.length; i++){
@@ -90,6 +84,23 @@ function getprefs(){
 		}, false);
 	}
 	
+	// save, restore & delete configurations:
+	
+	if(!widget.preferences.saved_sets){ // save default configuration if it's missing:
+		var default_set = {"Default":{}};
+		for(var setting in widget.preferences){
+			if(setting !== "length") default_set["Default"][setting] = widget.preferences[setting];
+		}
+		widget.preferences.saved_sets = JSON.stringify(default_set);
+	}
+	else{ // check if new options were added in an update and add those to the default set:
+		var saved_sets = JSON.parse(widget.preferences.saved_sets);
+		for(var setting in widget.preferences){
+			if(setting !== "saved_sets" && setting !== "length" && !saved_sets["Default"][setting])
+				saved_sets["Default"][setting] = widget.preferences[setting];
+		}
+		widget.preferences.saved_sets = JSON.stringify(saved_sets);
+	}
 	
 	document.getElementById("save_set_img").onclick = function(){
 		if(document.getElementById("save_set").innerHTML === "Default"){
