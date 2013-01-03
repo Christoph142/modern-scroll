@@ -56,11 +56,14 @@ function call_on_load(){
 	}
 	
 	opera.extension.onmessage = function(){
-		remove_ui();
-		inject_css();
-		add_or_remove_ui(); // re-adds it if appropriate
+		window.clearTimeout(timeout);
+		timeout = window.setTimeout(function(){ // delay update to work around DSK-380461
+			remove_ui();
+			inject_css();
+			add_or_remove_ui(); // re-adds it if appropriate
+		}, 500);
 	}
-	//alert(w.gap+": ==2: "+(w.gap==2)+"<-> ===2: "+(w.gap==="2"));
+	
 	opera.extension.postMessage("reset_contextmenu");
 	window.addEventListener("mousedown", adjust_contextmenu, false);
 	opera.contexts.menu.onclick = contextmenu_click;
@@ -73,12 +76,12 @@ function call_after_load(){
 }
 
 function inject_css(){
-	if(document.body.currentStyle.height === "100%") document.body.dataset.msHeightCorrect = 1; // save to body-tag to set it every time
-	if(document.body.currentStyle.width === "100%") document.body.dataset.msWidthCorrect = 1;
+	/*if(document.body.currentStyle.height === "100%") document.body.dataset.msHeightCorrect = 1; // save to body-tag to set it every time
+	if(document.body.currentStyle.width === "100%") document.body.dataset.msWidthCorrect = 1;*/
 	
 	var ms_style =
-		(document.body.dataset.msHeightCorrect?"body{ height:auto !important; min-height:100%; }":"")+
-		(document.body.dataset.msWidthCorrect?"body{ width:auto !important; min-width:100%; }":"")+
+		/*(document.body.dataset.msHeightCorrect?"body{ height:auto !important; min-height:100%; }":"")+
+		(document.body.dataset.msWidthCorrect?"body{ width:auto !important; min-width:100%; }":"")+*/
 		
 		/* set back standard values (CSS values not necessarily used by modern scroll, but maybe altered by the website): */
 		"#modern_scroll, #ms_v_container, #ms_h_container, #ms_vbar_bg, #ms_hbar_bg, #ms_vbar, #ms_hbar, #ms_superbar, #ms_page_cover, #ms_upbutton, #ms_downbutton, #ms_minipage_canvas{ position:fixed; z-index:2147483647; border:none; padding:0; margin:0; display:none; }"+
