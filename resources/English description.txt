@@ -20,6 +20,7 @@ Changelog:
 
 v 2.X
 ---------
+scroll bars for elements
 mouse wheel scrolling speed / distance dependend on wheel spin speed
 "touch drag"(?) -> Akiro
 
@@ -31,7 +32,8 @@ new: enhanced background bars visibility setting
 new: option to disable long animation
 new: support for cleanPages extension
 !fix: hiding the interface also disables the scrolling functions
-!fix: number input fields in options page go crazy when clicking the arrows
+fix: number input fields in options page go crazy when clicking the arrows
+fix: Microsoft Bing (thx André for reporting)
 fix: megalab.it (not excluded anymore)
 
 v 2.0
