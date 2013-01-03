@@ -180,14 +180,18 @@ function add_functionality(){
 		//window.addEventListener("mousewheel", ms_mousescroll_y, false); // -> set in resize_vbar()
 	}
 	
-	/*if(w.container === "1"){
+	if(w.container === "1"){
 		document.getElementById("ms_v_container").addEventListener("mouseenter",function(){
 			document.getElementById("ms_v_container").style.width = "1px";
+			document.getElementById("ms_vbar_ui").style.width = w.hover_size+"px";
+			document.getElementById("ms_vbar_bg_ui").style.width = w.hover_size+"px";
 			show_bar("v");
 			window.addEventListener("mousemove", restore_v_trigger_area, false);
 			function restore_v_trigger_area(){
 				if(window.innerWidth-window.event.clientX > w.container_size){
 					hide_bar("v");
+					document.getElementById("ms_vbar_ui").style.width = null;
+					document.getElementById("ms_vbar_bg_ui").style.width = null;
 					document.getElementById("ms_v_container").style.width = null;
 					window.removeEventListener("mousemove", restore_v_trigger_area, false);
 				}
@@ -195,17 +199,21 @@ function add_functionality(){
 		}, false);
 		document.getElementById("ms_h_container").addEventListener("mouseenter",function(){
 			document.getElementById("ms_h_container").style.height = "1px";
+			document.getElementById("ms_hbar_ui").style.height = w.hover_size+"px";
+			document.getElementById("ms_hbar_bg_ui").style.height = w.hover_size+"px";
 			show_bar("h");
 			window.addEventListener("mousemove", restore_h_trigger_area, false);
 			function restore_h_trigger_area(){
 				if(window.innerHeight-window.event.clientY > w.container_size){
 					hide_bar("h");
+					document.getElementById("ms_hbar_ui").style.height = null;
+					document.getElementById("ms_hbar_bg_ui").style.height = null;
 					document.getElementById("ms_h_container").style.height = null;
 					window.removeEventListener("mousemove", restore_h_trigger_area, false);
 				}
 			}
 		}, false);
-	}*/
+	}
 	
 	window.addEventListener("resize", resize_bars, false);
 	window.addEventListener("resize", add_or_remove_ui, false);
@@ -778,7 +786,7 @@ function ms_arrowkeyscroll(){ //document.activeElement != "[object HTMLBodyEleme
 		else if	(e.which === 39) ms_arrowkeyscroll_right(new Date().getTime());
 		else					 ms_arrowkeyscroll_left(new Date().getTime());
 		
-		if(w.move_bars_during_scroll === "1"){
+		if(w.move_bars_during_scroll === "1" && document.getElementById("modern_scroll")){
 			if(e.which === 40){
 				show_bar("v");
 				vbar.style.transition = "top "+(window.scrollMaxY-window.pageYOffset)/w.keyscroll_velocity+"ms linear";
@@ -805,16 +813,19 @@ function ms_arrowkeyscroll(){ //document.activeElement != "[object HTMLBodyEleme
 	window.removeEventListener("keydown", ms_arrowkeyscroll, false);
 	
 	window.onkeyup = function(){
-		reposition_bars();
-		vbar.style.transition = null;
-		hbar.style.transition = null;
 		window.clearTimeout(scroll_timeout_id);
 		scroll_timeout_id = null;
 		window.addEventListener("keydown", ms_arrowkeyscroll, false);
-		if(w.move_bars_during_scroll == "1") window.addEventListener("scroll", reposition_bars, false);
-		else window.addEventListener("scroll", onScroll, false);
 		window.removeEventListener("scroll", element_finished_scrolling, false);
 		window.onkeyup = null;
+		
+		if(!document.getElementById("modern_scroll")) return;
+		
+		reposition_bars();
+		vbar.style.transition = null;
+		hbar.style.transition = null;
+		if(w.move_bars_during_scroll === "1") window.addEventListener("scroll", reposition_bars, false);
+		else								  window.addEventListener("scroll", onScroll, false);
 	}
 	
 	function ms_arrowkeyscroll_down(lastTick)

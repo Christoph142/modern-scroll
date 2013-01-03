@@ -72,7 +72,7 @@ var strings = {
 	"contextmenu_hide" : "Hide modern scroll",
 	"explanation: save set" : "You can save your current configuration here. Just enter a name and click the save-button. If you choose a name that already exists this entry gets overwritten.",
 	"explanation: move_bars_during_scroll" : "Deactivate this option if you encounter performance problems.<br>The scroll bars' positions will only be updated when scrolling has finished.",
-	"explanation: trigger area" : "Enlarges the bars accessing area, but items covered by this area won't be clickable anymore, unless you hide the interface via the context menu.",
+	"explanation: trigger area" : "Enlarges the bars accessing area."/*, but items covered by this area won't be clickable anymore, unless you hide the interface via the context menu."*/,
 	"explanation: superbar" : "The \"superbar\" is a combination of a horizontal and a vertical scroll bar.<br>Thus, it only gets visible when both bars are necessary.<br>Its position is aligned with the vertical and horizontal scroll bars.",
 	"explanation: custom functions" : "Opera's standard scrolling experience is sometimes a bit jerky and slow. By activating these options the extension also takes over the corresponding scrolling, which should result in a noticeable performance boost.",
 	"explanation: animate scroll" : "If you select this option, the page will not instantly jump to the desired position anymore, but automatically scroll there with an adjustable rate.<br>This applies to the scroll buttons, clicks at the background bars as well as scrolling with the keyboard (if \"Use custom scrolling functions for the keyboard\" is activated)."
