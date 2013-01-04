@@ -18,6 +18,17 @@ Diese Erweiterung war ursprünglich als Update für "Slim ScrollBar" von damage9
 Changelog:
 ----------
 
+v 2.1
+---------
+neu: Oberfläche ist so bald wie möglich während dem Laden der Seite verfügbar
+neu: umfangreichere Einstellungs-Möglichkeit für die Sichtbarkeit der Hintergrund-Leisten
+neu: Einstellung der maximalen Länge von Animationen
+neu: Unterstützung der cleanPages-Erweiterung
+neu: Die Fläche zur einfacheren Nutzung verhindert nicht mehr, dass der verdeckte Teil der Seite angeklickt werden kann
+fix: Die numerischen Eingabefelder in den Optionen können sich beim Klicken der Pfeile verselbstständigen
+fix: Microsoft Bing (Danke André für's Melden)
+fix: megalab.it (nicht mehr ausgeschlossen)
+
 v 2.0
 ---------
 neu: modern scroll beschleunigt das Scrollen!

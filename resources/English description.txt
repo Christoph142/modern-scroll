@@ -28,11 +28,12 @@ mouse wheel scrolling speed / distance dependend on wheel spin speed
 
 v 2.1
 ---------
-new: enhanced background bars visibility setting
-new: option to disable long animation
+new: interface is present as soon as possible during site loading
+new: enhanced visibility setting of the background bars
+new: setting for maximum length of animations
 new: support for cleanPages extension
 new: trigger area doesn't prevent covered part of page from being clicked anymore
-fix: number input fields in options page may go crazy when clicking its arrows
+fix: number input fields in options page may make themselves independent when clicking their arrows
 fix: Microsoft Bing (thx André for reporting)
 fix: megalab.it (not excluded anymore)
 
