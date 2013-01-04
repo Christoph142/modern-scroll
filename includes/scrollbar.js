@@ -5,11 +5,12 @@
 // @exclude http://acid3.acidtests.org/
 // @exclude *://mail.google.*
 // @exclude *://maps.google.*
+// @exclude *mail.live.com/*
 // @exclude http://docs.sencha.com/*
 // ==/UserScript==
 
 
-function main(){
+(function(){
 
 
 var timeout;				// scrolling animation
@@ -18,29 +19,15 @@ var w = widget.preferences;	// \
 var vbar;					//  | pass by reference!
 var hbar;					// /
 
-//window.opera.addEventListener("BeforeEvent", initialize_if_ready, false);
-window.opera.addEventListener("BeforeEvent.DOMContentLoaded", call_on_load, false);
-window.addEventListener("DOMContentLoaded", function(){ // local files (BeforeEvent.DOMContentLoaded doesn't fire):
-	if(vbar) return;
-	
-	if(document.URL.substr(0,9) === "widget://"){ // include only partially in options ( <-> e.g. !contextmenu):
-		inject_css();
-		add_ui();
-		opera.extension.onmessage = function(){ remove_ui(); inject_css(); add_ui(); };
-	}
-	else call_on_load();
-}, false);
+(function check_if_tab_is_ready(){ //declare and execute
+	if(document.body)	initialize();
+	else				window.setTimeout(check_if_tab_is_ready, 50);
+}());
 
-function initialize_if_ready(){
-	if(document.body){
-		window.opera.removeEventListener("BeforeEvent", initialize_if_ready, false);
-		call_on_load();
-	}
-}
-
-function call_on_load(){
-	if(window.matchMedia("all and (view-mode: minimized)").matches) return; // don't do anything if it's a speed dial
-	if(window.self != window.top){ // only treat main & iframes
+function initialize()
+{
+	if(vbar || window.matchMedia("all and (view-mode: minimized)").matches) return; // stop if it's a speed dial or already initialized
+	if(window.self !== window.top){ // only treat main & iframes
 		try{
 			if(window.self.frameElement == "[object HTMLIFrameElement]"/* && window.self.frameElement.scrolling != "no"*/)
 				if(!document.URL.match("//translate.google.")) window.self.frameElement.scrolling = "no";
@@ -48,11 +35,18 @@ function call_on_load(){
 		}catch(e){ return; /* window.self.frameElement == protected variable */ }
 	}
 	
+	if(document.URL.substr(0,9) === "widget://"){ // include only partially in options ( <-> e.g. !contextmenu):
+		inject_css();
+		add_ui();
+		opera.extension.onmessage = function(){ remove_ui(); inject_css(); add_ui(); };
+		return;
+	}
+	
 	inject_css();
 	
 	if(w.fullscreen_only === "0" || window.screen.height === window.outerHeight){
 		add_ui();
-		window.opera.addEventListener("AfterEvent.DOMContentLoaded", call_after_load, false);
+		window.opera.addEventListener("AfterEvent.DOMContentLoaded", resize_bars, false);
 	}
 	
 	opera.extension.onmessage = function(){
@@ -67,12 +61,6 @@ function call_on_load(){
 	opera.extension.postMessage("reset_contextmenu");
 	window.addEventListener("mousedown", adjust_contextmenu, false);
 	opera.contexts.menu.onclick = contextmenu_click;
-}
-
-function call_after_load(){
-	resize_bars();
-	if(!document.URL.match("megalab.it/"))	window.addEventListener("DOMNodeInserted", onDOMNode, false);
-	if(!document.URL.match("://vk.com"))	window.addEventListener("DOMNodeRemoved", onDOMNode, false);
 }
 
 function inject_css(){
@@ -214,6 +202,9 @@ function add_functionality(){
 			}
 		}, false);
 	}
+	
+	if(!document.URL.match("megalab.it/"))	window.addEventListener("DOMNodeInserted", onDOMNode, false);
+	if(!document.URL.match("://vk.com"))	window.addEventListener("DOMNodeRemoved", onDOMNode, false);
 	
 	window.addEventListener("resize", resize_bars, false);
 	window.addEventListener("resize", add_or_remove_ui, false);
@@ -925,5 +916,4 @@ function preventScrolling(){
 }
 
 
-}
-main();
+}());
