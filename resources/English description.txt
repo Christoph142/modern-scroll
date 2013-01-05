@@ -35,6 +35,7 @@ new: support for cleanPages extension
 new: trigger area doesn't prevent covered part of page from being clicked anymore
 fix: number input fields in options page may make themselves independent when clicking their arrows
 fix: Microsoft Bing (thx André for reporting)
+fix: outlook.com (thx netmain for reporting)
 fix: megalab.it (not excluded anymore)
 
 v 2.0

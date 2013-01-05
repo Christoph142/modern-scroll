@@ -27,6 +27,7 @@ neu: Unterstützung der cleanPages-Erweiterung
 neu: Die Fläche zur einfacheren Nutzung verhindert nicht mehr, dass der verdeckte Teil der Seite angeklickt werden kann
 fix: Die numerischen Eingabefelder in den Optionen können sich beim Klicken der Pfeile verselbstständigen
 fix: Microsoft Bing (Danke André für's Melden)
+fix: outlook.com (Danke netmain für's Melden)
 fix: megalab.it (nicht mehr ausgeschlossen)
 
 v 2.0
