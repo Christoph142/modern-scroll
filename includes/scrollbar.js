@@ -933,6 +933,7 @@ function is_scrollable(element, direction) // direction: 0 = up, 1 = down, 2 = a
 		if((!direction && element.scrollTop > 0) || (direction == 1 && parseInt(element.scrollTop) < max_scrollTop) || direction == 2)
 			return true;
 	}
+	else if(element.className === "uiScrollableAreaBody") return true; // Facebook's scrolling implementation
 	else return is_scrollable(element.parentNode, direction);
 }
 
