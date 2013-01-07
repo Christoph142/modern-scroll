@@ -149,9 +149,9 @@ function add_functionality(){
 	vbar.addEventListener("mousedown", drag_v, true);
 	hbar.addEventListener("mousedown", drag_h, true);
 	
-	document.getElementById("ms_h_container").addEventListener("mousewheel", ms_mousescroll_x, true);
-	document.getElementById("ms_hbar_bg").addEventListener("mousewheel", ms_mousescroll_x, true);
-	hbar.addEventListener("mousewheel", ms_mousescroll_x, true);
+	document.getElementById("ms_h_container").addEventListener("mousewheel", mousescroll_x, true);
+	document.getElementById("ms_hbar_bg").addEventListener("mousewheel", mousescroll_x, true);
+	hbar.addEventListener("mousewheel", mousescroll_x, true);
 	
 	if(document.getElementById("ms_upbutton")){
 		document.getElementById("ms_upbutton").addEventListener("mousedown", function(){ handle_button("up"); }, true);
@@ -161,7 +161,7 @@ function add_functionality(){
 	if(window.self.frameElement || w.use_own_scroll_functions === "1"){
 		window.addEventListener("keydown", arrowkeyscroll, false);
 		window.addEventListener("keydown", otherkeyscroll, false);
-		//window.addEventListener("mousewheel", ms_mousescroll_y, false); // -> set in resize_vbar()
+		//window.addEventListener("mousewheel", mousescroll_y, false); // -> set in resize_vbar()
 	}
 	
 	if(w.container === "1"){
@@ -231,7 +231,7 @@ function resize_vbar(){
 			document.getElementById("ms_v_container").style.display = null;
 			document.getElementById("ms_vbar_bg").style.display = null;
 			vbar.style.display = null;
-			window.removeEventListener("mousewheel", ms_mousescroll_y, false);
+			window.removeEventListener("mousewheel", mousescroll_y, false);
 		}
 		return;
 	}
@@ -248,7 +248,7 @@ function resize_vbar(){
 		opera.extension.postMessage("reset_contextmenu");
 		
 		if(window.self.frameElement || w.use_own_scroll_functions_mouse === "1")
-			window.addEventListener("mousewheel", ms_mousescroll_y, false);
+			window.addEventListener("mousewheel", mousescroll_y, false);
 	}
 	else if(vbar_height_before != vbar_new_height+"px"){
 		document.getElementById("ms_vbar_ui").style.height = vbar_new_height-2*w.gap+"px";
@@ -667,7 +667,7 @@ function remove_ui()
 	window.removeEventListener("resize", add_or_remove_ui, false);
 	window.removeEventListener("keydown", arrowkeyscroll, false);
 	window.removeEventListener("keydown", otherkeyscroll, false);
-	window.removeEventListener("mousewheel", ms_mousescroll_y, false);
+	window.removeEventListener("mousewheel", mousescroll_y, false);
 	window.removeEventListener("mouseup", check_resize, false);
 	window.removeEventListener("scroll", onScroll, false);
 	window.removeEventListener("scroll", reposition_bars, false);
@@ -910,22 +910,31 @@ function scroll_End(){
 }
 
 //var variable_speeds;
-function ms_mousescroll_x(){
+function mousescroll_x(){
 	if(modifierkey_pressed(window.event)) return;
 	window.event.preventDefault(); window.event.stopPropagation();
-	window.scrollBy(-window.event.wheelDelta,0);
+	ms_scrollBy(-window.event.wheelDelta, 0);
+	//window.scrollBy(-window.event.wheelDelta, 0);
 }
-function ms_mousescroll_y(){
+function mousescroll_y(){
 	var e = window.event;
+	//alert("Copy and paste this as feedback:\nwheel distance: "+e.wheelDelta+"\nwheel distance (x): "+e.wheelDeltaX+"\nwheel distance (y): "+e.wheelDeltaY);
 	if(e.wheelDeltaY === 0 || is_scrollable(e.target, (e.wheelDeltaY < 0)) || modifierkey_pressed(e)) return;
 	e.preventDefault(); e.stopPropagation();
-	window.scrollBy(0, e.wheelDeltaY < 0 ? 120 : -120);
+	ms_scrollBy(0, -e.wheelDeltaY);
+	//window.scrollBy(0, e.wheelDeltaY < 0 ? 120 : -120);
 	
 	/*var curTick = new Date().getTime();
 	if(variable_speeds)console.log(curTick - variable_speeds);
 	variable_speeds = curTick;*/
 	//ms_scrollBy(0,-window.event.wheelDeltaY);
 	//element.scrollTop -= window.event.wheelDeltaY;
+}
+function mousescroll_y_direct(){
+	var e = window.event;
+	if(e.wheelDeltaY === 0 || is_scrollable(e.target, (e.wheelDeltaY < 0)) || modifierkey_pressed(e)) return;
+	e.preventDefault(); e.stopPropagation();
+	window.scrollBy(0, e.wheelDeltaY < 0 ? 120 : -120);
 }
 
 function modifierkey_pressed(e){ return (e.ctrlKey || e.shiftKey || e.altKey || e.metaKey) ? true : false; }
