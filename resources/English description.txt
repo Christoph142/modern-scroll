@@ -31,6 +31,7 @@ v 2.1.1
 ---------
 fix: insanely fast mouse scrolling on Mac (thx Lauren & ayni for reporting)
 fix: command key keyboard shortcuts (thx ayni for reporting)
+upd: Portuguese translation (thx André)
 
 v 2.1
 ---------

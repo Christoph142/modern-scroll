@@ -18,6 +18,12 @@ Diese Erweiterung war ursprünglich als Update für "Slim ScrollBar" von damage9
 Changelog:
 ----------
 
+v 2.1.1
+---------
+fix: viel zu schnelles Scrollen mit der Maus in MacOS (Danke Lauren & ayni für's Melden)
+fix: Tastatur-Befehle mit der Command-Taste (Danke ayni für's Melden)
+upd: Portugiesische Übersetzung (Danke André)
+
 v 2.1
 ---------
 neu: Oberfläche ist so bald wie möglich während dem Laden der Seite verfügbar
