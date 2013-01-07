@@ -33,7 +33,7 @@ neu: Unterstützung der cleanPages-Erweiterung
 neu: Die Fläche zur einfacheren Nutzung verhindert nicht mehr, dass der verdeckte Teil der Seite angeklickt werden kann
 fix: Tastatur-Befehle mit Strg/Alt/Shift + PgUp/PgDwn/Home/End (Danke zablociak für's Melden)
 fix: Microsoft Bing, outlook.com, Facebook (Danke André, netmain & ahoj1234 für's Melden)
-fix: Die numerischen Eingabefelder in den Optionen können sich beim Klicken der Pfeile verselbstständigen
+fix: Die numerischen Eingabefelder in den Optionen können sich beim Klicken der Pfeile verselbstständigen (Danke Sally für's Melden)
 fix: megalab.it (nicht mehr ausgeschlossen)
 
 v 2.0
