@@ -27,10 +27,13 @@ v 2.2
 !new: mouse wheel scrolling speed / distance dependend on wheel spin speed
 !fix: hiding the interface also disables the scrolling functions
 
+v 2.1.2
+---------
+!fix: insanely fast mouse scrolling on Mac (thx Lauren & ayni for reporting)
+
 v 2.1.1
 ---------
-fix: insanely fast mouse scrolling on Mac (thx Lauren & ayni for reporting)
-fix: command key keyboard shortcuts (thx ayni for reporting)
+fix: keyboard shortcuts with command key ⌘ (thx ayni for reporting)
 upd: Portuguese translation (thx André)
 
 v 2.1
