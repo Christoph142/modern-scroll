@@ -155,6 +155,14 @@ function getprefs()
 		opera.extension.postMessage("update");
 		getprefs();
 	}
+	
+	document.getElementById("save_set").addEventListener("keydown", function(){ // Enter: save configuration
+		if(window.event.which === 13){
+			window.event.preventDefault();
+			window.event.target.blur();
+			document.getElementById("save_set_img").click();
+		}
+	}, false);
 }
 
 var timeout;
