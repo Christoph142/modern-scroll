@@ -29,7 +29,8 @@ v 2.2
 
 v 2.1.2
 ---------
-!fix: insanely fast mouse scrolling on Mac (thx Lauren & ayni for reporting)
+new: pressing Enter in configuration's name field in options page saves it
+fix: insanely fast mouse scrolling on Mac (thx Lauren & ayni for reporting)
 
 v 2.1.1
 ---------
