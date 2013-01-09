@@ -22,6 +22,7 @@ v 2.1.2
 ---------
 neu: Drücken von Enter im Konfigurations-Namen-Feld in den Optionen speichert diese
 fix: viel zu schnelles Scrollen mit der Maus in MacOS (Danke Lauren & ayni für's Melden)
+fix: Einstellungs-Seite in frischen Installationen
 
 v 2.1.1
 ---------
