@@ -31,7 +31,7 @@ v 2.1.2
 ---------
 new: pressing Enter in configuration's name field in options page saves it
 fix: insanely fast mouse scrolling on Mac (thx Lauren & ayni for reporting)
-fix: options page in fresh installations
+fix: options page in installations that were not updated from version 2.0
 
 v 2.1.1
 ---------
