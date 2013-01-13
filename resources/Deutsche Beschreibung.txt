@@ -18,6 +18,11 @@ Diese Erweiterung war ursprünglich als Update für "Slim ScrollBar" von damage9
 Changelog:
 ----------
 
+v 2.1.3
+---------
+fix: horizontales Scrollen mit der Maus
+upd: animiere das Scrollen standardmäßig
+
 v 2.1.2
 ---------
 neu: Drücken von Enter im Konfigurations-Namen-Feld in den Optionen speichert diese
