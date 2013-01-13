@@ -9,6 +9,25 @@
 // @exclude http://docs.sencha.com/*
 // ==/UserScript==
 
+/*
+window.addEventListener("mouseover", function(){ if(window.event.target.ms_init) window.event.target.ms_init(); }, false);
+//for(var i in window.HTMLTextAreaElement.prototype) console.log(i);
+window.HTMLTextAreaElement.prototype.ms_in = function(){ this.modern_scroll.orig_color = this.style.background; this.style.background = "#0FF"; };
+window.HTMLTextAreaElement.prototype.ms_out = function(){ this.style.background = this.modern_scroll.orig_color; this.modern_scroll.orig_color = null; };
+window.HTMLTextAreaElement.prototype.ms_init = function(){
+	this.ms_in();
+	/*var div = document.createElement("div");
+	div.style = "position:absolute; top:0; right:0; z-index:999999; height:100px; width:100px; background:#0FF;";
+	div.innerHTML = "testi";
+	this.appendChild(div);*/
+	/*this.addEventListener("mouseover", this.ms_in, false);
+	this.addEventListener("mouseout", this.ms_out, false);
+	this.ms_init = null;
+};
+window.HTMLTextAreaElement.prototype.modern_scroll = {
+	orig_color : null,
+	xxx : function(){ var x = "empty"; }
+};*/
 
 (function(){
 
@@ -812,7 +831,7 @@ function arrowkeyscroll(){ //document.activeElement != "[object HTMLBodyElement]
 				vbar.style.transition = "top "+time_to_scroll_to_end+"ms linear";
 				vbar.style.top = window.innerHeight-parseInt(vbar.style.height)+"px";
 			}
-			window.setTimeout(function(){ window.clearTimeout(scroll_timeout_id_y); }, time_to_scroll_to_end+100);
+			//window.setTimeout(function(){ window.clearTimeout(scroll_timeout_id_y); }, time_to_scroll_to_end+100);
 		}
 		else if	(e.which === 38) arrowkeyscroll_up(new Date().getTime()-10);
 		else if	(e.which === 39) arrowkeyscroll_right(new Date().getTime()-10);
@@ -922,11 +941,12 @@ function scroll_End(){
 function mousescroll_x(){
 	if(modifierkey_pressed(window.event)) return;
 	window.event.preventDefault(); window.event.stopPropagation();
-	window.scrollBy(-(e.wheelDeltaY > 120 ? 120 : (e.wheelDeltaY < -120 ? -120 : e.wheelDeltaY)), 0);
+	window.scrollBy(-(window.event.wheelDeltaY > 120 ? 120 : (window.event.wheelDeltaY < -120 ? -120 : window.event.wheelDeltaY)), 0);
 	//ms_scrollBy(-window.event.wheelDelta, 0);
 }
 function mousescroll_y(){
 	var e = window.event;
+	//console.log("Distance (x): "+e.wheelDeltaX+"\nDistance (y): "+e.wheelDeltaY+"\nDetail: "+e.detail+"\n");
 	if(e.wheelDeltaY === 0 || is_scrollable(e.target, (e.wheelDeltaY < 0)) || modifierkey_pressed(e)) return;
 	e.preventDefault(); e.stopPropagation();
 	window.scrollBy(0, -(e.wheelDeltaY > 120 ? 120 : (e.wheelDeltaY < -120 ? -120 : e.wheelDeltaY)));
