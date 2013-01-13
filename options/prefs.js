@@ -84,7 +84,7 @@ function getprefs()
 	}
 	else if(document.getElementById('animate_scroll').checked) document.getElementById('scroll_v_label').innerHTML=strings['scroll_velocity both'];*/
 	if(!document.getElementById("use_own_scroll_functions").checked) document.getElementById("functions_container").style.display="none";
-	if(document.getElementById('animate_scroll').checked) document.getElementById('scroll_container').style.display = "inline";
+	if(!document.getElementById('animate_scroll').checked) document.getElementById('scroll_container').style.display = "none";
 	
 	document.getElementById("border_radius").max = Math.round(Math.max(document.getElementById("size").value, document.getElementById("hover_size").value)/2);
 	

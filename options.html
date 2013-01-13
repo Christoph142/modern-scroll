@@ -172,7 +172,7 @@
     </tr><tr>
     <!-- orig. onChange:
    if(this.checked || document.getElementById('use_own_scroll_functions').checked) document.getElementById('scroll_container').style.display='inline'; if(this.checked && document.getElementById('use_own_scroll_functions').checked) document.getElementById('scroll_v_label').innerHTML=strings['scroll_velocity both']; else if(this.checked) document.getElementById('scroll_v_label').innerHTML=strings['scroll_velocity auto']; else if(document.getElementById('use_own_scroll_functions').checked) document.getElementById('scroll_v_label').innerHTML=strings['scroll_velocity mouse']; else document.getElementById('scroll_container').style.display='none'; -->
-        <td><input type="checkbox" id="animate_scroll" name="animate_scroll" onChange="document.getElementById('scroll_container').style.display=(this.checked?'inline':'none');"></td>
+        <td><input type="checkbox" id="animate_scroll" name="animate_scroll" onChange="document.getElementById('scroll_container').style.display=(this.checked?'inline':'none');" checked="checked"></td>
         <td><label for="animate_scroll"><script>_("animate scroll");</script></label><div id="animate_scroll_info" class="i">i<div id="animate_scroll_info_text" class="i_text"><script>_("explanation: animate scroll");</script></div></div> <script>_("animate up to");</script> <select id="animate_scroll_max">
         		<option value="0"><script>_("infinite");</script></option>
                 <option value="1">1 <script>_("page");</script></option>
@@ -190,7 +190,7 @@
             <td style="text-align:right;"><input type="range" name="keyscroll_velocity" id="keyscroll_velocity" min="1" max="5" value="2" step="0.1" onChange="document.getElementById('keyscroll_velocity_display').innerHTML = Math.round(100*this.value/2)+'%';"></td>
         </tr></table>
     </div>
-    <div id="scroll_container" style="display:none;">
+    <div id="scroll_container">
         <table><tr>
             <td style="text-align:left; vertical-align:top;"><label id="scroll_v_label" for="scroll_velocity"><script>_("scroll_velocity auto");</script></label>: <label id="scroll_velocity_display"><script>document.write(Math.round(100*widget.preferences.scroll_velocity/5)+"%");
             </script></label></td>
