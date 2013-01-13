@@ -29,7 +29,8 @@ v 2.2
 
 v 2.1.3
 ---------
-fix: horizontal mouse scrolling
+fix: horizontal mouse scrolling (thx kimmy8624 for reporting)
+fix: mouse scrolling over select elements (thx Vincent for reporting)
 upd: animate scrolling by default
 
 v 2.1.2

@@ -20,7 +20,8 @@ Changelog:
 
 v 2.1.3
 ---------
-fix: horizontales Scrollen mit der Maus
+fix: horizontales Scrollen mit der Maus (Danke kimmy8624 für's Melden)
+fix: Scrollen mit der Maus über Select-Elementen (Danke Vincent für's Melden)
 upd: animiere das Scrollen standardmäßig
 
 v 2.1.2
