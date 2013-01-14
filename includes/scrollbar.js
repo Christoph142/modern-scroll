@@ -969,11 +969,12 @@ function modifierkey_pressed(e){ return (e.ctrlKey || e.shiftKey || e.altKey || 
 function is_scrollable(element, direction) // direction: 0 = up, 1 = down, 2 = all
 {
 	if(element == "[object HTMLBodyElement]" || element == "[object HTMLHtmlElement]" || element == "[object HTMLDocument]" || element.parentNode == "[object HTMLBodyElement]") return false;
-	else if(((element.currentStyle.overflow == "scroll" || element.currentStyle.overflow == "auto" || element.currentStyle.overflow == "" || element == "[object HTMLTextAreaElement]") && element.offsetHeight < element.scrollHeight) || element == "[object HTMLSelectElement]"){
+	else if((element.currentStyle.overflow == "scroll" || element.currentStyle.overflow == "auto" || element.currentStyle.overflow == "" || element == "[object HTMLTextAreaElement]") && element.offsetHeight < element.scrollHeight){
 		var max_scrollTop = element.scrollHeight + parseInt(element.currentStyle.borderTopWidth) + parseInt(element.currentStyle.borderBottomWidth) - element.offsetHeight; //+(element.offsetWidth < element.scrollWidth?0:0)
 		if((!direction && element.scrollTop > 0) || (direction == 1 && parseInt(element.scrollTop) < max_scrollTop) || direction == 2)
 			return true;
 	}
+	else if(element == "[object HTMLSelectElement]") return true;
 	else if(element.className === "uiScrollableAreaBody") return true; // Facebook's scrolling implementation
 	else return is_scrollable(element.parentNode, direction);
 }
