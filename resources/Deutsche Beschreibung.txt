@@ -18,10 +18,16 @@ Diese Erweiterung war ursprünglich als Update für "Slim ScrollBar" von damage9
 Changelog:
 ----------
 
+v 2.1.4
+---------
+fix: Erkennung von Scrollbaren Elementen (Danke Ahoj1234 für's Melden)
+fix: Pfeil-Tasten in Such-Eingabe-Feldern (Danke Acryion für's Melden)
+upd: Türkische Übersetzung (Danke metude)
+
 v 2.1.3
 ---------
 fix: horizontales Scrollen mit der Maus (Danke kimmy8624 für's Melden)
-fix: Scrollen mit der Maus über Select-Elementen (Danke Vincent für's Melden)
+fix: Scrollen mit der Maus über Select-Elementen (Danke Vincent für die Unterstützung)
 upd: animiere das Scrollen standardmäßig
 
 v 2.1.2

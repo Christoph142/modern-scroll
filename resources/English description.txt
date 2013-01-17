@@ -27,10 +27,16 @@ v 2.2
 !new: mouse wheel scrolling speed / distance dependend on wheel spin speed
 !fix: hiding the interface also disables the scrolling functions
 
+v 2.1.4
+---------
+fix: detection of scrollable elements (thx Ahoj1234 for reporting)
+fix: arrow keys in search-input fields (thx Acryion for reporting)
+upd: Turkish localization (thx metude)
+
 v 2.1.3
 ---------
 fix: horizontal mouse scrolling (thx kimmy8624 for reporting)
-fix: mouse scrolling over select elements (thx Vincent for reporting)
+fix: mouse scrolling over select elements (thx Vincent for your support)
 upd: animate scrolling by default
 
 v 2.1.2
