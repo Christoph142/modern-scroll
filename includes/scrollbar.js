@@ -161,6 +161,7 @@ function add_bars()
 }
 
 function add_functionality(){
+	//window.addEventListener("focus",function(){alert("focus");},false);
 	document.getElementById("ms_vbar_bg").addEventListener("mousedown", scroll_bg_v, true);
 	document.getElementById("ms_hbar_bg").addEventListener("mousedown", scroll_bg_h, true);
 	
@@ -805,7 +806,7 @@ var last_clicked_element_is_scrollable;
 
 function arrowkeyscroll(){ //document.activeElement != "[object HTMLBodyElement]"
 	var e = window.event;
-	if(e.which < 37 || e.which > 40 || modifierkey_pressed(e) || e.target=="[object HTMLTextAreaElement]" || e.target=="[object HTMLSelectElement]" || (e.target=="[object HTMLInputElement]" && (e.target.type === "text" || e.target.type === "number" || e.target.type === "email" || (e.target.type === "range" && e.which !== 38 && e.which !== 40))))
+	if(e.which < 37 || e.which > 40 || modifierkey_pressed(e) || e.target=="[object HTMLTextAreaElement]" || e.target=="[object HTMLSelectElement]" || (e.target=="[object HTMLInputElement]" && (e.target.hasAttribute("size") || e.target.type === "number" || (e.target.type === "range" && e.which !== 38 && e.which !== 40))))
 		return;
 		
 	window.removeEventListener("keydown", arrowkeyscroll, false);
@@ -831,7 +832,6 @@ function arrowkeyscroll(){ //document.activeElement != "[object HTMLBodyElement]
 				vbar.style.transition = "top "+time_to_scroll_to_end+"ms linear";
 				vbar.style.top = window.innerHeight-parseInt(vbar.style.height)+"px";
 			}
-			//window.setTimeout(function(){ window.clearTimeout(scroll_timeout_id_y); }, time_to_scroll_to_end+100);
 		}
 		else if	(e.which === 38) arrowkeyscroll_up(new Date().getTime()-10);
 		else if	(e.which === 39) arrowkeyscroll_right(new Date().getTime()-10);
@@ -910,13 +910,13 @@ function otherkeyscroll()
 {
 	var e = window.event;
 	if(e.target == "[object HTMLTextAreaElement]" || e.which < 33 || e.which > 36 || modifierkey_pressed(e)) return;
-	if(!window.self.frameElement && !(e.target == "[object HTMLInputElement]" && e.target.type === "text")){
+	if(!window.self.frameElement && !(e.target == "[object HTMLInputElement]" && e.target.hasAttribute("size"))){
 		e.preventDefault(); e.stopPropagation();
 	}
 	
 	if		(e.which === 34){ scroll_PageDown(); return; }
 	else if	(e.which === 33){ scroll_PageUp();	 return; }	
-	if(e.target == "[object HTMLInputElement]" && e.target.type == "text") return;	
+	if(e.target == "[object HTMLInputElement]" && e.target.hasAttribute("size")) return;	
 	if		(e.which === 36)  scroll_Pos1();
 	else					  scroll_End();
 }
@@ -947,7 +947,7 @@ function mousescroll_x(){
 function mousescroll_y(){
 	var e = window.event;
 	//console.log("Distance (x): "+e.wheelDeltaX+"\nDistance (y): "+e.wheelDeltaY+"\nDetail: "+e.detail+"\n");
-	if(e.wheelDeltaY === 0 || is_scrollable(e.target, (e.wheelDeltaY < 0)) || modifierkey_pressed(e)) return;
+	if(e.wheelDeltaY === 0 || is_scrollable(e.target, (e.wheelDeltaY < 0 ? 1 : 0)) || modifierkey_pressed(e)) return;
 	e.preventDefault(); e.stopPropagation();
 	window.scrollBy(0, -(e.wheelDeltaY > 120 ? 120 : (e.wheelDeltaY < -120 ? -120 : e.wheelDeltaY)));
 	
@@ -959,7 +959,7 @@ function mousescroll_y(){
 }
 function mousescroll_y_smooth(){
 	var e = window.event;
-	if(e.wheelDeltaY === 0 || is_scrollable(e.target, (e.wheelDeltaY < 0)) || modifierkey_pressed(e)) return;
+	if(e.wheelDeltaY === 0 || is_scrollable(e.target, (e.wheelDeltaY < 0 ? 1 : 0)) || modifierkey_pressed(e)) return;
 	e.preventDefault(); e.stopPropagation();
 	ms_scrollBy(0, -(e.wheelDeltaY > 120 ? 120 : (e.wheelDeltaY < -120 ? -120 : e.wheelDeltaY)));
 }
@@ -969,9 +969,9 @@ function modifierkey_pressed(e){ return (e.ctrlKey || e.shiftKey || e.altKey || 
 function is_scrollable(element, direction) // direction: 0 = up, 1 = down, 2 = all
 {
 	if(element == "[object HTMLBodyElement]" || element == "[object HTMLHtmlElement]" || element == "[object HTMLDocument]" || element.parentNode == "[object HTMLBodyElement]") return false;
-	else if((element.currentStyle.overflow == "scroll" || element.currentStyle.overflow == "auto" || element.currentStyle.overflow == "" || element == "[object HTMLTextAreaElement]") && element.offsetHeight < element.scrollHeight){
-		var max_scrollTop = element.scrollHeight + parseInt(element.currentStyle.borderTopWidth) + parseInt(element.currentStyle.borderBottomWidth) - element.offsetHeight; //+(element.offsetWidth < element.scrollWidth?0:0)
-		if((!direction && element.scrollTop > 0) || (direction == 1 && parseInt(element.scrollTop) < max_scrollTop) || direction == 2)
+	else if((element.currentStyle.overflow === "scroll" || element.currentStyle.overflow === "auto" || element.currentStyle.overflow === "" || element == "[object HTMLTextAreaElement]") && element.offsetHeight < element.scrollHeight){
+		var max_scrollTop = element.scrollHeight /*+ parseInt(element.currentStyle.borderTopWidth) + parseInt(element.currentStyle.borderBottomWidth)*/ - element.offsetHeight; //+(element.offsetWidth < element.scrollWidth?0:0)
+		if((direction === 0 && element.scrollTop > 0) || (direction === 1 && element.scrollTop < max_scrollTop) || direction === 2)
 			return true;
 	}
 	else if(element == "[object HTMLSelectElement]") return true;
