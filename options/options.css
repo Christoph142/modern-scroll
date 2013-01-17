@@ -10,5 +10,14 @@ footer		{ display:block; text-align:center; padding:0 50px; margin:30px 50px 0 5
 h1			{ margin:0px; margin-bottom:-10px; font-size:24px; }
 h3			{ margin-bottom:5px; }
 table		{ width:100%; }
-fieldset	{ border:none; background:rgba(150,160,200,0.25); border-radius:2px; padding:10px 20px; }
-#info		{ height:22px; width:22px; background-color:#FFF; display:inline-block; border-radius:11px; text-align:center; vertical-align:top; }
+table.c td	{ vertical-align:top; }
+table.c td:first-child	{ width:20px; }
+input[type=number]{ width:40px; }
+input[type=text]{ color:#999; text-align:center; }
+input[type=text]:focus{ color:#000; background:rgba(0,0,0,0); border:0; }
+fieldset	{ border:none; background:rgba(150,160,200,0.25); border-radius:2px; padding:0px 20px 15px 20px; }
+#save_set_img, #delete_set_img, #load_set_img{ height:17px; cursor:pointer; }
+#info		{ background:#FFF; display:inline; border-radius:12px; padding:4px 11px; margin-right:5px;}
+.i			{ background:#FFF; display:inline; border-radius:10px; font-weight:bold; padding:2px 8px; margin-left:5px; transition:0.5s; }
+.i:hover	{ background:#888; box-shadow:0 0 6px #888; transition:0.2s; text-shadow:0 0 3px #FFF; color:#000; }
+.i_text		{ display:none; background:linear-gradient(-45deg, #CCC, #888); position:absolute; margin:13px 5px 0 3px; padding:10px 15px; max-width:400px; box-shadow:0 0 6px #888; font-weight:normal; transition:0.2s; text-shadow:0 0 2px #FFF; color:#000; }

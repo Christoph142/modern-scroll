@@ -4,49 +4,79 @@
 <head>
 	<title>modern scroll</title>
     <link rel="stylesheet" type="text/css" href="options/options.css">
+    <link rel="icon" type="image/png" href="images/contextmenu.png">
     <script type="text/javascript" src="options/prefs.js"></script>
     <script type="text/javascript" src="includes/scrollbar.js"></script>
     <script type="text/javascript" src="strings.js"></script>
-    <script type="text/javascript"> function _(to_translate){ document.write( strings[to_translate] ); } </script>
-    <script type="text/javascript">/* window.opera.addEventListener("BeforeEvent.X",f,0) doesn't fire in options page */
-	window.addEventListener("DOMContentLoaded",function(){
-		inject_css();
-		add_bars();
-		add_buttons();
-		adjust_bars();
-		add_functionality();
-		opera.extension.onmessage = inject_css;
-	},false);
-	</script>
+    <script type="text/javascript">
+		window.addEventListener("DOMContentLoaded", getprefs, false);
+		function _(to_translate){ document.write( strings[to_translate] ); }
+    </script>
 </head>
 
-<body onLoad="getprefs();">
+<body>
 
 <header><br>
 	<img src="images/icon.png">
     <h1 id="widget-name"><font size="+3">m</font>odern <font size="+3">s</font>croll</h1>
     <h3><script>_("by");</script> <a href="http://my.opera.com/christoph142/blog/" target="_blank">Christoph D.</a></h3>
 </header>
-
+<br>
 <section>
-    <h3><script>_("Options");</script></h3>
-    
-    <!--table><tr><td width="100%"-->
+	<fieldset>
+    <h4><script>_("saved sets");</script>:</h4>
+    <table><tr>
+    	<td style="text-align:left;"><script>_("save set");</script> "<b contenteditable="true" id="save_set">Name</b>":<div id="save_set_info" class="i">i<div id="save_set_info_text" class="i_text"><script>_("explanation: save set");</script></div></div></td>
+        <td style="text-align:right;"><script>document.write('<img src="images/save.png" id="save_set_img" title="'+strings["tooltip save"]+'">');</script></td>
+    </tr><tr>
+    	<td style="text-align:left;"><script>_("load or delete set");</script> <select id="saved_sets"><option value="Default"><script>_("default");</script></option></select>:</td>
+        <td style="text-align:right;"><script>document.write('<img src="images/delete.png" id="delete_set_img" title="'+strings["tooltip delete"]+'"> <img src="images/load.png" id="load_set_img" title="'+strings["tooltip load"]+'">');</script></td>
+    </tr></table>
+    </fieldset><br>
     
     <fieldset>
     <h4><script>_("look");</script>:</h4>
-    
-    <script>_("color");</script>: <input type="color" id="color" name="color"><br>
-    <label for="size"><script>_("size");</script>: </label>
-    <input type="number" max="20" min="1" id="size" name="size" value="10"><br>
-    <label for="hover_size"><script>_("hover_size");</script>: </label>
-    <input type="number" max="30" min="1" id="hover_size" name="hover_size" value="14"><br>
-    <label for="border_radius"><script>_("border_radius");</script>: </label>
-    <input type="number" max="15" min="0" id="border_radius" name="border_radius" value="7"><br>
+    <table><tr>
+    	<td style="text-align:left;"><script>_("color");</script>:</td>
+        <td style="text-align:right;"><input type="color" id="color" name="color"></td>
+    </tr><tr>
+    	<td style="text-align:left;"><script>_("color_bg");</script>:</td>
+        <td style="text-align:right;"><input type="color" id="color_bg" name="color_bg" value="#999999"></td>
+    </tr><tr>
+    	<td style="text-align:left;"><label for="size"><script>_("size");</script>:</label></td>
+        <td style="text-align:right;"><input type="number" max="20" min="1" id="size" name="size" value="10"></td>
+    </tr><tr>
+    	<td style="text-align:left;"><label for="hover_size"><script>_("hover_size");</script>:</label></td>
+        <td style="text-align:right;"><input type="number" max="30" min="1" id="hover_size" name="hover_size" value="14"></td>
+    </tr><tr>
+    	<td style="text-align:left;"><label for="border_radius"><script>_("border_radius");</script>:</label></td>
+        <td style="text-align:right;"><input type="number" max="15" min="0" id="border_radius" name="border_radius" value="7"></td>
+    </tr><tr>
+    	<td style="text-align:left;"><label for="gap"><script>_("gap");</script>:</label></td>
+        <td style="text-align:right;"><input type="number" max="5" min="0" id="gap" name="gap" value="2"></td>
+    </tr><tr>
+    	<td style="text-align:left; vertical-align:top;"><label for="opacity"><script>_("opacity");</script>: </label><label id="opacity_display"><script>document.write(widget.preferences.opacity+"%");</script></label></td>
+        <td style="text-align:right;"><input type="range" name="opacity" id="opacity" min="0" max="100" value="50" step="1" onChange="document.getElementById('opacity_display').innerHTML = this.value+'%';" /></td>
+    </tr></table>
+        
+    <h4><script>_("border");</script>:</h4>
+    <table><tr><td style="text-align:left;">
+        <label for="border_width"><script>_("border_width");</script>: </label>
+        <input type="number" max="10" min="0" id="border_width" name="border_width" value="2">
+    </td><td style="text-align:center;">
+        <label for="border_blur"><script>_("border_blur");</script>: </label>
+        <input type="number" max="10" min="0" id="border_blur" name="border_blur" value="0">
+    </td><td style="text-align:right;">
+    	<script>_("border_color");</script>: <input type="color" id="border_color" name="border_color" value="#FFFFFF">
+    </td></tr></table>
     <br>
-    <input type="checkbox" id="vbar_at_left" name="vbar_at_left"> <label for="vbar_at_left"><script>_("vbar_at_left");</script></label><br>
-    <input type="checkbox" id="hbar_at_top" name="hbar_at_top"> <label for="hbar_at_top"><script>_("hbar_at_top");</script></label><br>
-    <input type="checkbox" id="no_bar_bg" name="no_bar_bg"> <label for="no_bar_bg"><script>_("no_bar_bg");</script></label><br>
+    <table class="c"><tr>
+        <td><input type="checkbox" id="vbar_at_left" name="vbar_at_left"></td>
+        <td><label for="vbar_at_left"><script>_("vbar_at_left");</script></label></td>
+    </tr><tr>
+    	<td><input type="checkbox" id="hbar_at_top" name="hbar_at_top"></td>
+        <td><label for="hbar_at_top"><script>_("hbar_at_top");</script></label></td>
+    </tr></table>
     </fieldset><br>
     
     <fieldset>
@@ -59,24 +89,60 @@
             <td width="40%" style="text-align:center; vertical-align:top;"><script>_("normal");</script></td>
             <td width="30%" style="text-align:right; padding-right:10px; vertical-align:top;"><script>_("always");</script></td>
         </tr>
-    </table>
-    <br>
-    <input type="checkbox" id="animate_mousescroll" name="animate_mousescroll"> <label for="animate_mousescroll"><script>_("animate_mousescroll");</script></label><br>
-    <input type="checkbox" id="bg_special_ends" name="bg_special_ends" checked="checked"> <label for="bg_special_ends"><script>_("bg_special_ends");</script></label><br>
-    <br>
-    <input type="checkbox" id="show_superbar" name="show_superbar" checked="checked"> <label for="show_superbar"><script>_("show_superbar");</script></label><br>
-    <input type="checkbox" id="show_superbar_minipage" name="show_superbar_minipage"> <label for="show_superbar_minipage"><script>_("show_superbar_minipage");</script></label><br>
+    </table><br>
+    <script>_("show_bg_bars_when");</script>?<br>
+    <input type="range" name="show_bg_bars_when" id="show_bg_bars_when" min="1" max="3" value="3" step="1" style="width:100%;" />
+    <table>
+    	<tr>
+        	<td width="30%" style="text-align:left; padding-left:10px; vertical-align:top;"><script>_("never");</script></td>
+            <td width="40%" style="text-align:center; vertical-align:top;"><script>_("only_over");</script></td>
+            <td width="30%" style="text-align:right; padding-right:10px; vertical-align:top;"><script>_("like bars");</script></td>
+        </tr>
+    </table><br>
+    <table class="c"><tr>
+        <td><input type="checkbox" id="fullscreen_only" name="fullscreen_only"></td>
+        <td><label for="fullscreen_only"><script>_("fullscreen_only");</script></label></td>
+    </tr><tr>
+    	<td><input type="checkbox" id="move_bars_during_scroll" name="move_bars_during_scroll" checked="checked"></td>
+        <td><label for="move_bars_during_scroll"><script>_("move_bars_during_scroll");</script></label><div id="move_bars_during_scroll_info" class="i">i<div id="move_bars_during_scroll_info_text" class="i_text"><script>_("explanation: move_bars_during_scroll");</script></div></div></td>
+    </tr><tr>
+    	<td><input type="checkbox" id="bg_special_ends" name="bg_special_ends" checked="checked"></td>
+        <td><label for="bg_special_ends"><script>_("bg_special_ends");</script></label></td>
+    </tr><tr>
+    	<td><input type="checkbox" id="container" name="container"></td>
+        <td><label for="container"><script>_("container1");</script></label> <input type="number" max="100" min="1" id="container_size" value="30"> <label for="container"><script>_("container2");</script></label><div id="trigger_area_info" class="i">i<div id="trigger_area_info_text" class="i_text"><script>_("explanation: trigger area");</script></div></div></td>
+    </tr></table>
+    </fieldset><br>
+    
+    <fieldset>
+    <h4>Superbar:</h4>
+    <input type="checkbox" id="show_superbar" name="show_superbar" onChange="document.getElementById('superbar_container').style.height=(this.checked?'auto':'0px');"> <label for="show_superbar"><script>_("show_superbar");</script></label><div id="superbar_info" class="i">i<div id="superbar_info_text" class="i_text"><script>_("explanation: superbar");</script></div></div>
+    <div id="superbar_container" style="overflow:hidden; height:auto;">
+    <input type="checkbox" id="show_superbar_minipage" name="show_superbar_minipage" checked="checked"> <label for="show_superbar_minipage"><script>_("show_superbar_minipage");</script></label><br>
+    <table><tr>
+    <td style="text-align:left; vertical-align:top;"><label for="superbar_opacity"><script>_("superbar_opacity");</script>: </label><label id="superbar_opacity_display"><script>document.write(widget.preferences.superbar_opacity+"%");</script></label></td>
+        <td style="text-align:right;"><input type="range" name="superbar_opacity" id="superbar_opacity" min="0" max="100" value="70" step="1" onChange="document.getElementById('superbar_opacity_display').innerHTML = this.value+'%';" /></td>
+    </tr></table>
+    </div>
     </fieldset><br>
     
     <fieldset>
     <h4><script>_("buttons");</script>:</h4>
-    <input type="checkbox" id="show_buttons" name="show_buttons"> <label for="show_buttons"><script>_("show buttons");</script></label><br>
-    <label for="button_width"><script>_("button_width");</script>: </label>
-    <input type="number" max="500" min="2" id="button_width" name="button_width" value="100"><br>
-    <label for="button_height"><script>_("button_height");</script>: </label>
-    <input type="number" max="500" min="2" id="button_height" name="button_height" value="50"><br>
-    <br>
-    <script>_("drag buttons");</script>
+    <input type="checkbox" id="show_buttons" name="show_buttons" onChange="document.getElementById('button_container').style.height=(this.checked?'auto':'0px');"> <label for="show_buttons"><script>_("show buttons");</script></label><br>
+    <div id="button_container" style="overflow:hidden; height:0px;"><br>
+    	<table><tr><td style="text-align:left;">
+    	<label for="button_width"><script>_("button_width");</script>: </label>
+        <input type="number" max="500" min="2" id="button_width" name="button_width" value="100">
+        </td><td style="text-align:center;">
+        <label for="button_height"><script>_("button_height");</script>: </label>
+        <input type="number" max="500" min="2" id="button_height" name="button_height" value="50">
+        </td><td style="text-align:right;">
+        <label for="button_opacity"><script>_("button_opacity");</script>: </label>
+        <input type="range" name="button_opacity" id="button_opacity" min="0" max="100" value="10" step="1" onChange="document.getElementById('button_opacity_display').innerHTML = this.value+'%'" /><label id="button_opacity_display"><script>document.write(widget.preferences.button_opacity+"%");</script></label>
+        </td></tr></table>
+        <br>
+        <script>_("drag buttons");</script>
+    </div>
     </fieldset><br>
     
     <fieldset>
@@ -93,15 +159,54 @@
     </fieldset><br>
     
     <fieldset>
-    <p>
-    <h4><div id="info">i</div>&nbsp;&nbsp;<script>_("how to");</script>?</h4>
-    <script>_("disable standard bars");</script><br>
-    </p>
+    <h4><script>_("custom scroll functions");</script>:</h4>
+    <script>_("use custom functions");</script><div id="own_functions_info" class="i">i<div id="own_functions_info_text" class="i_text"><script>_("explanation: custom functions");</script></div></div>
+    <table class="c"><tr>
+    <!-- orig. onChange:
+    document.getElementById('functions_container').style.display=(this.checked?'inline':'none'); if(this.checked || document.getElementById('animate_scroll').checked) document.getElementById('scroll_container').style.display='inline'; if(this.checked && document.getElementById('animate_scroll').checked) document.getElementById('scroll_v_label').innerHTML=strings['scroll_velocity both']; else if(this.checked) document.getElementById('scroll_v_label').innerHTML=strings['scroll_velocity mouse']; else if(document.getElementById('animate_scroll').checked) document.getElementById('scroll_v_label').innerHTML=strings['scroll_velocity auto']; else document.getElementById('scroll_container').style.display='none';-->
+        <td><input type="checkbox" id="use_own_scroll_functions" name="use_own_scroll_functions" checked="checked" onChange="document.getElementById('functions_container').style.display=(this.checked?'inline':'none');"></td>
+        <td><label for="use_own_scroll_functions"><script>_("use custom functions keyboard");</script></label></td>
+    </tr><tr>
+        <td><input type="checkbox" id="use_own_scroll_functions_mouse" name="use_own_scroll_functions_mouse" checked="checked"></td>
+        <td><label for="use_own_scroll_functions_mouse"><script>_("use custom functions mouse");</script></label></td>
+    </tr><tr>
+    <!-- orig. onChange:
+   if(this.checked || document.getElementById('use_own_scroll_functions').checked) document.getElementById('scroll_container').style.display='inline'; if(this.checked && document.getElementById('use_own_scroll_functions').checked) document.getElementById('scroll_v_label').innerHTML=strings['scroll_velocity both']; else if(this.checked) document.getElementById('scroll_v_label').innerHTML=strings['scroll_velocity auto']; else if(document.getElementById('use_own_scroll_functions').checked) document.getElementById('scroll_v_label').innerHTML=strings['scroll_velocity mouse']; else document.getElementById('scroll_container').style.display='none'; -->
+        <td><input type="checkbox" id="animate_scroll" name="animate_scroll" onChange="document.getElementById('scroll_container').style.display=(this.checked?'inline':'none');" checked="checked"></td>
+        <td><label for="animate_scroll"><script>_("animate scroll");</script></label><div id="animate_scroll_info" class="i">i<div id="animate_scroll_info_text" class="i_text"><script>_("explanation: animate scroll");</script></div></div> <script>_("animate up to");</script> <select id="animate_scroll_max">
+        		<option value="0"><script>_("infinite");</script></option>
+                <option value="1">1 <script>_("page");</script></option>
+                <option value="2" selected="selected">2 <script>_("pages");</script></option>
+                <option value="3">3 <script>_("pages");</script></option>
+                <option value="4">4 <script>_("pages");</script></option>
+                <option value="5">5 <script>_("pages");</script></option>
+        	</select></td>
+    </tr></table>
+    <!-- orig. start of scroll_container /div-->
+    <div id="functions_container" style="overflow:hidden;"><br>
+        <table><tr>
+            <td style="text-align:left; vertical-align:top;"><label for="keyscroll_velocity"><script>_("keyscroll_velocity");</script>: </label><label id="keyscroll_velocity_display"><script>document.write(Math.round(100*widget.preferences.keyscroll_velocity/2)+"%");
+            </script></label></td>
+            <td style="text-align:right;"><input type="range" name="keyscroll_velocity" id="keyscroll_velocity" min="1" max="5" value="2" step="0.1" onChange="document.getElementById('keyscroll_velocity_display').innerHTML = Math.round(100*this.value/2)+'%';"></td>
+        </tr></table>
+    </div>
+    <div id="scroll_container">
+        <table><tr>
+            <td style="text-align:left; vertical-align:top;"><label id="scroll_v_label" for="scroll_velocity"><script>_("scroll_velocity auto");</script></label>: <label id="scroll_velocity_display"><script>document.write(Math.round(100*widget.preferences.scroll_velocity/5)+"%");
+            </script></label></td>
+            <td style="text-align:right;"><input type="range" name="scroll_velocity" id="scroll_velocity" min="1" max="15" value="5" step="0.1" onChange="document.getElementById('scroll_velocity_display').innerHTML = Math.round(100*this.value/5)+'%';"></td>
+        </tr></table>
+    </div>
+    </fieldset><br>
+    
+    <fieldset>
+        <h4><div id="info">i</div>&nbsp;&nbsp;<script>_("how to");</script>?</h4>
+        <script>_("disable standard bars");</script>
     </fieldset>
 </section>
 
 <footer>
-    <p><script>_("footer");</script> :)<br><br></p>
+    <p><a href="http://my.opera.com/christoph142/blog/" target="_blank"><script>_("footer");</script> :)</a><br><br></p>
 </footer>
   
 </body>
