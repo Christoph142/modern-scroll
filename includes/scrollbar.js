@@ -804,11 +804,10 @@ function ms_scroll_end(direction){
 
 var last_clicked_element_is_scrollable;
 
-function arrowkeyscroll(){ //document.activeElement != "[object HTMLBodyElement]"
+function arrowkeyscroll(){
 	var e = window.event;
-	if(e.which < 37 || e.which > 40 || modifierkey_pressed(e) || e.target=="[object HTMLTextAreaElement]" || e.target=="[object HTMLSelectElement]" || (e.target=="[object HTMLInputElement]" && (e.target.hasAttribute("size") || e.target.type === "number" || (e.target.type === "range" && e.which !== 38 && e.which !== 40))))
-		return;
-		
+	if(e.which < 37 || e.which > 40 || modifierkey_pressed(e) || target_is_input(e)) return;
+	
 	window.removeEventListener("keydown", arrowkeyscroll, false);
 	
 	if(scroll_timeout_id_x) window.clearTimeout(scroll_timeout_id_x); scroll_timeout_id_x = 0;
@@ -988,5 +987,9 @@ function preventScrolling(){
 	window.removeEventListener("keydown", preventScrolling, false);
 }
 
+function target_is_input(e){
+	if(e.target=="[object HTMLTextAreaElement]" || e.target=="[object HTMLSelectElement]" || (e.target=="[object HTMLInputElement]" && e.target.type !== "submit" && e.target.type !== "reset" && e.target.type !== "button" && e.target.type !== "image" && e.target.type !== "checkbox" && (e.target.type !== "range" || e.which === 37 || e.which === 39))) return true;
+	else return false;
+}
 
 }());
