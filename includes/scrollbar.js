@@ -739,7 +739,7 @@ function ms_scrollBy(x, y)
 }
 
 function ms_scroll(){
-	window.event.preventDefault(); window.event.stopPropagation();
+	stopEvent();
 	window.removeEventListener("scroll", onScroll, false);
 	window.removeEventListener("scroll", reposition_bars, false);
 	window.clearTimeout(hide_timeout); // prevent earlier animations from canceling the current scrolling animations
@@ -809,6 +809,7 @@ function arrowkeyscroll(){
 	if(e.which < 37 || e.which > 40 || modifierkey_pressed(e) || target_is_input(e)) return;
 	
 	window.removeEventListener("keydown", arrowkeyscroll, false);
+	window.addEventListener("keydown", stopEvent, true);
 	
 	if(scroll_timeout_id_x) window.clearTimeout(scroll_timeout_id_x); scroll_timeout_id_x = 0;
 	if(scroll_timeout_id_y) window.clearTimeout(scroll_timeout_id_y); scroll_timeout_id_y = 0;
@@ -816,7 +817,7 @@ function arrowkeyscroll(){
 	
 	if(last_clicked_element_is_scrollable) window.addEventListener("scroll", element_finished_scrolling, false);
 	else{
-		window.event.preventDefault(); window.event.stopPropagation();
+		stopEvent();
 		window.removeEventListener("scroll", reposition_bars, false);
 		window.removeEventListener("scroll", onScroll, false);
 		
@@ -863,6 +864,7 @@ function arrowkeyscroll(){
 		if(scroll_timeout_id_y) window.clearTimeout(scroll_timeout_id_y); scroll_timeout_id_y = 0;
 		
 		window.addEventListener("keydown", arrowkeyscroll, false);
+		window.removeEventListener("keydown", stopEvent, true);
 		window.removeEventListener("scroll", element_finished_scrolling, false);
 		window.removeEventListener("keyup", arrowkeyscroll_end, false);
 		
@@ -939,11 +941,78 @@ function scroll_End(){
 //var variable_speeds;
 function mousescroll_x(){
 	if(modifierkey_pressed(window.event)) return;
-	window.event.preventDefault(); window.event.stopPropagation();
-	window.scrollBy(-(window.event.wheelDeltaY > 120 ? 120 : (window.event.wheelDeltaY < -120 ? -120 : window.event.wheelDeltaY)), 0);
-	//ms_scrollBy(-window.event.wheelDelta, 0);
+	stopEvent();
+	window.scrollBy(-(window.event.wheelDelta > 120 ? 120 : (window.event.wheelDelta < -120 ? -120 : window.event.wheelDelta)), 0);
 }
+var stop_mousescrolling;
 function mousescroll_y(){
+	var e = window.event;
+	if(e.wheelDeltaY === 0 || is_scrollable(e.target, (e.wheelDeltaY < 0 ? 1 : 0)) || modifierkey_pressed(e)) return;
+	e.preventDefault(); e.stopPropagation();
+	
+	if(hide_timeout) window.clearTimeout(hide_timeout);
+	
+	window.removeEventListener("mousewheel", mousescroll_y, false);
+	window.removeEventListener("scroll", reposition_bars, false);
+	window.removeEventListener("scroll", onScroll, false);
+	window.addEventListener("mousewheel", mousescroll_y_in_progress, false);
+	function mousescroll_y_in_progress(){
+		stopEvent();
+		window.clearTimeout(stop_mousescrolling);
+		stop_mousescrolling = window.setTimeout(mousewheelscroll_end, 150);
+	}
+	
+	mousescroll_y_in_progress();
+	if(e.wheelDeltaY < 0){
+		mousewheelscroll_down(new Date().getTime()-10);
+		if(w.move_bars_during_scroll === "1" && document.getElementById("modern_scroll"))
+		{
+			show_bar("v");
+			vbar.style.transition = "top "+(window.scrollMaxY-window.pageYOffset)/w.mousescroll_velocity+"ms linear";
+			vbar.style.top = window.innerHeight-parseInt(vbar.style.height)+"px";
+		}
+	}
+	else{
+		mousewheelscroll_up(new Date().getTime()-10);
+		if(w.move_bars_during_scroll === "1" && document.getElementById("modern_scroll"))
+		{
+			show_bar("v");
+			vbar.style.transition = "top "+window.pageYOffset/w.mousescroll_velocity+"ms linear";
+			vbar.style.top = "0px";
+		}
+	}
+	
+	function mousewheelscroll_end()
+	{
+		if(scroll_timeout_id_y) window.clearTimeout(scroll_timeout_id_y); scroll_timeout_id_y = 0;
+		
+		if(!document.getElementById("modern_scroll")) return;
+		
+		reposition_bars();
+		vbar.style.transition = null;
+		
+		window.removeEventListener("mousewheel", mousescroll_y_in_progress, false);
+		window.addEventListener("mousewheel", mousescroll_y, false);
+		if(w.move_bars_during_scroll === "1") window.addEventListener("scroll", reposition_bars, false);
+		else								  window.addEventListener("scroll", onScroll, false);
+	}
+	
+	function mousewheelscroll_down(lastTick)
+	{
+		var curTick = new Date().getTime();
+		var scrollamount = (curTick - lastTick) * w.mousescroll_velocity;
+		window.scrollBy(0,scrollamount);
+		scroll_timeout_id_y = window.setTimeout(function(){ mousewheelscroll_down(curTick); },1);
+	}
+	function mousewheelscroll_up(lastTick)
+	{
+		var curTick = new Date().getTime();
+		var scrollamount = (curTick - lastTick) * w.mousescroll_velocity;
+		window.scrollBy(0,-scrollamount);
+		scroll_timeout_id_y = window.setTimeout(function(){ mousewheelscroll_up(curTick); },1);
+	}
+}
+function mousescroll_y_ORIG(){
 	var e = window.event;
 	//console.log("Distance (x): "+e.wheelDeltaX+"\nDistance (y): "+e.wheelDeltaY+"\nDetail: "+e.detail+"\n");
 	if(e.wheelDeltaY === 0 || is_scrollable(e.target, (e.wheelDeltaY < 0 ? 1 : 0)) || modifierkey_pressed(e)) return;
@@ -953,14 +1022,7 @@ function mousescroll_y(){
 	/*var curTick = new Date().getTime();
 	if(variable_speeds)console.log(curTick - variable_speeds);
 	variable_speeds = curTick;*/
-	//ms_scrollBy(0,-window.event.wheelDeltaY);
 	//element.scrollTop -= window.event.wheelDeltaY;
-}
-function mousescroll_y_smooth(){
-	var e = window.event;
-	if(e.wheelDeltaY === 0 || is_scrollable(e.target, (e.wheelDeltaY < 0 ? 1 : 0)) || modifierkey_pressed(e)) return;
-	e.preventDefault(); e.stopPropagation();
-	ms_scrollBy(0, -(e.wheelDeltaY > 120 ? 120 : (e.wheelDeltaY < -120 ? -120 : e.wheelDeltaY)));
 }
 
 function modifierkey_pressed(e){ return (e.ctrlKey || e.shiftKey || e.altKey || e.metaKey) ? true : false; }
@@ -983,7 +1045,7 @@ function element_finished_scrolling(){
 	window.removeEventListener("scroll", element_finished_scrolling, false);
 }
 function preventScrolling(){
-	window.event.preventDefault(); window.event.stopPropagation();
+	stopEvent();
 	window.removeEventListener("keydown", preventScrolling, false);
 }
 
@@ -991,5 +1053,7 @@ function target_is_input(e){
 	if(e.target=="[object HTMLTextAreaElement]" || e.target=="[object HTMLSelectElement]" || (e.target=="[object HTMLInputElement]" && e.target.type !== "submit" && e.target.type !== "reset" && e.target.type !== "button" && e.target.type !== "image" && e.target.type !== "checkbox" && (e.target.type !== "range" || e.which === 37 || e.which === 39))) return true;
 	else return false;
 }
+
+function stopEvent(){ window.event.preventDefault(); window.event.stopPropagation(); }
 
 }());
