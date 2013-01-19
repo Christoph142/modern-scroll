@@ -18,8 +18,10 @@ Diese Erweiterung war ursprünglich als Update für "Slim ScrollBar" von damage9
 Changelog:
 ----------
 
-v 2.1.4
+v 2.2
 ---------
+neu: Scrollen mit Maus und Trackpad komplett überarbeitet
+neu: Scrollen mit den Pfeiltasten ist noch flüssiger
 fix: Erkennung von Scrollbaren Elementen (Danke Ahoj1234 für's Melden)
 fix: Pfeil-Tasten in Such-Eingabe-Feldern (Danke Acryion für's Melden)
 upd: Türkische Übersetzung (Danke metude)

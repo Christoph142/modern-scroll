@@ -21,14 +21,13 @@ Changelog:
 v 2.X
 ---------
 !new: scroll bars for elements
-
-v 2.2
----------
 !new: mouse wheel scrolling speed / distance dependend on wheel spin speed
 !fix: hiding the interface also disables the scrolling functions
 
-v 2.1.4
+v 2.2
 ---------
+new: scrolling with mouse and trackpad redesigned from scratch
+new: scrolling with the arrow keys is even smoother
 fix: detection of scrollable elements (thx Ahoj1234 for reporting)
 fix: arrow keys in search-input fields (thx Acryion for reporting)
 upd: Turkish localization (thx metude)
