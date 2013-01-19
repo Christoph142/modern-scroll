@@ -162,17 +162,29 @@
     <h4><script>_("custom scroll functions");</script>:</h4>
     <script>_("use custom functions");</script><div id="own_functions_info" class="i">i<div id="own_functions_info_text" class="i_text"><script>_("explanation: custom functions");</script></div></div>
     <table class="c"><tr>
-    <!-- orig. onChange:
-    document.getElementById('functions_container').style.display=(this.checked?'inline':'none'); if(this.checked || document.getElementById('animate_scroll').checked) document.getElementById('scroll_container').style.display='inline'; if(this.checked && document.getElementById('animate_scroll').checked) document.getElementById('scroll_v_label').innerHTML=strings['scroll_velocity both']; else if(this.checked) document.getElementById('scroll_v_label').innerHTML=strings['scroll_velocity mouse']; else if(document.getElementById('animate_scroll').checked) document.getElementById('scroll_v_label').innerHTML=strings['scroll_velocity auto']; else document.getElementById('scroll_container').style.display='none';-->
-        <td><input type="checkbox" id="use_own_scroll_functions" name="use_own_scroll_functions" checked="checked" onChange="document.getElementById('functions_container').style.display=(this.checked?'inline':'none');"></td>
+        <td><input type="checkbox" id="use_own_scroll_functions" name="use_own_scroll_functions" checked="checked" onChange="document.getElementById('keyscroll_velocity_container').style.display=(this.checked?null:'none');"></td>
         <td><label for="use_own_scroll_functions"><script>_("use custom functions keyboard");</script></label></td>
     </tr><tr>
-        <td><input type="checkbox" id="use_own_scroll_functions_mouse" name="use_own_scroll_functions_mouse" checked="checked"></td>
+    	<td></td><td><div id="keyscroll_velocity_container" style="margin:-5px -4px 5px -4px;">
+            <table><tr>
+                <td style="text-align:left; vertical-align:top; width:auto;"><label for="keyscroll_velocity"><script>_("keyscroll_velocity");</script>: </label><label id="keyscroll_velocity_display"><script>document.write(Math.round(100*widget.preferences.keyscroll_velocity/2)+"%");
+                </script></label></td>
+                <td style="text-align:right;"><input type="range" name="keyscroll_velocity" id="keyscroll_velocity" min="1" max="5" value="2" step="0.1" onChange="document.getElementById('keyscroll_velocity_display').innerHTML = Math.round(100*this.value/2)+'%';"></td>
+            </tr></table>
+        </div></td>
+    </tr><tr>
+        <td><input type="checkbox" id="use_own_scroll_functions_mouse" name="use_own_scroll_functions_mouse" checked="checked" onChange="document.getElementById('mousescroll_velocity_container').style.display=(this.checked?null:'none');"></td>
         <td><label for="use_own_scroll_functions_mouse"><script>_("use custom functions mouse");</script></label></td>
     </tr><tr>
-    <!-- orig. onChange:
-   if(this.checked || document.getElementById('use_own_scroll_functions').checked) document.getElementById('scroll_container').style.display='inline'; if(this.checked && document.getElementById('use_own_scroll_functions').checked) document.getElementById('scroll_v_label').innerHTML=strings['scroll_velocity both']; else if(this.checked) document.getElementById('scroll_v_label').innerHTML=strings['scroll_velocity auto']; else if(document.getElementById('use_own_scroll_functions').checked) document.getElementById('scroll_v_label').innerHTML=strings['scroll_velocity mouse']; else document.getElementById('scroll_container').style.display='none'; -->
-        <td><input type="checkbox" id="animate_scroll" name="animate_scroll" onChange="document.getElementById('scroll_container').style.display=(this.checked?'inline':'none');" checked="checked"></td>
+    	<td></td><td><div id="mousescroll_velocity_container" style="margin:-5px -4px 5px -4px;">
+            <table><tr>
+                <td style="text-align:left; vertical-align:top; width:auto;"><label for="mousescroll_velocity"><script>_("mousescroll_velocity");</script>: </label><label id="mousescroll_velocity_display"><script>document.write(Math.round(100*widget.preferences.mousescroll_velocity/3)+"%");
+                </script></label></td>
+                <td style="text-align:right;"><input type="range" name="mousescroll_velocity" id="mousescroll_velocity" min="1" max="5" value="2" step="0.1" onChange="document.getElementById('mousescroll_velocity_display').innerHTML = Math.round(100*this.value/3)+'%';"></td>
+            </tr></table>
+        </div></td>
+    </tr><tr>
+        <td><input type="checkbox" id="animate_scroll" name="animate_scroll" onChange="document.getElementById('scroll_container').style.display=(this.checked?null:'none');" checked="checked"></td>
         <td><label for="animate_scroll"><script>_("animate scroll");</script></label><div id="animate_scroll_info" class="i">i<div id="animate_scroll_info_text" class="i_text"><script>_("explanation: animate scroll");</script></div></div> <script>_("animate up to");</script> <select id="animate_scroll_max">
         		<option value="0"><script>_("infinite");</script></option>
                 <option value="1">1 <script>_("page");</script></option>
@@ -181,22 +193,16 @@
                 <option value="4">4 <script>_("pages");</script></option>
                 <option value="5">5 <script>_("pages");</script></option>
         	</select></td>
-    </tr></table>
-    <!-- orig. start of scroll_container /div-->
-    <div id="functions_container" style="overflow:hidden;"><br>
+    </tr><tr>
+    	<td></td><td><div id="scroll_container" style="margin:-5px -4px 5px -4px;">
         <table><tr>
-            <td style="text-align:left; vertical-align:top;"><label for="keyscroll_velocity"><script>_("keyscroll_velocity");</script>: </label><label id="keyscroll_velocity_display"><script>document.write(Math.round(100*widget.preferences.keyscroll_velocity/2)+"%");
-            </script></label></td>
-            <td style="text-align:right;"><input type="range" name="keyscroll_velocity" id="keyscroll_velocity" min="1" max="5" value="2" step="0.1" onChange="document.getElementById('keyscroll_velocity_display').innerHTML = Math.round(100*this.value/2)+'%';"></td>
-        </tr></table>
-    </div>
-    <div id="scroll_container">
-        <table><tr>
-            <td style="text-align:left; vertical-align:top;"><label id="scroll_v_label" for="scroll_velocity"><script>_("scroll_velocity auto");</script></label>: <label id="scroll_velocity_display"><script>document.write(Math.round(100*widget.preferences.scroll_velocity/5)+"%");
+            <td style="text-align:left; vertical-align:top; width:auto;"><label id="scroll_v_label" for="scroll_velocity"><script>_("animatedscroll_velocity");</script></label>: <label id="scroll_velocity_display"><script>document.write(Math.round(100*widget.preferences.scroll_velocity/5)+"%");
             </script></label></td>
             <td style="text-align:right;"><input type="range" name="scroll_velocity" id="scroll_velocity" min="1" max="15" value="5" step="0.1" onChange="document.getElementById('scroll_velocity_display').innerHTML = Math.round(100*this.value/5)+'%';"></td>
         </tr></table>
-    </div>
+    </div></td>
+    </tr></table>
+    
     </fieldset><br>
     
     <fieldset>
