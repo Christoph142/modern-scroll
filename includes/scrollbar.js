@@ -7,6 +7,7 @@
 // @exclude *://maps.google.*
 // @exclude *mail.live.com/*
 // @exclude http://docs.sencha.com/*
+// @exclude https://mega.co.nz/*
 // ==/UserScript==
 
 /*
