@@ -26,10 +26,11 @@ v 2.X
 
 v 2.2
 ---------
-new: scrolling with mouse and trackpad redesigned from scratch
+new: configurable speed for scrolling with mouse and trackpad
 new: scrolling with the arrow keys is even smoother
 fix: detection of scrollable elements (thx Ahoj1234 for reporting)
 fix: arrow keys in search-input fields (thx Acryion for reporting)
+fix: PgUp/PgDwn/Home/End keys in select fields (thx André for reporting)
 upd: Turkish localization (thx metude)
 
 v 2.1.3

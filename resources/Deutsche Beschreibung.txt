@@ -20,10 +20,11 @@ Changelog:
 
 v 2.2
 ---------
-neu: Scrollen mit Maus und Trackpad komplett überarbeitet
+neu: anpassbare Geschwindigkeit für das Scrollen mit Maus und Trackpad
 neu: Scrollen mit den Pfeiltasten ist noch flüssiger
 fix: Erkennung von Scrollbaren Elementen (Danke Ahoj1234 für's Melden)
 fix: Pfeil-Tasten in Such-Eingabe-Feldern (Danke Acryion für's Melden)
+fix: BildAuf&-Ab/Pos1/Ende Tasten in Select-Feldern (Danke André für's Melden)
 upd: Türkische Übersetzung (Danke metude)
 
 v 2.1.3
