@@ -944,6 +944,7 @@ function mousescroll_x(){
 	stopEvent();
 	window.scrollBy(-(window.event.wheelDelta > 120 ? 120 : (window.event.wheelDelta < -120 ? -120 : window.event.wheelDelta)), 0);
 }
+
 var stop_mousescrolling;
 function mousescroll_y(){
 	var e = window.event;
@@ -959,12 +960,14 @@ function mousescroll_y(){
 	function mousescroll_y_in_progress(){
 		stopEvent();
 		window.clearTimeout(stop_mousescrolling);
-		stop_mousescrolling = window.setTimeout(mousewheelscroll_end, 150);
+		/* window.event.wheelDeltaY = max 120 = 40*3 -> *3/mousescroll_velocity -> distance independent of scroll speed: */
+		var in_ms = (Math.abs(window.event.wheelDeltaY)>120?120:Math.abs(window.event.wheelDeltaY))/w.mousescroll_velocity;
+		stop_mousescrolling = window.setTimeout(mousewheelscroll_end, in_ms);
 	}
 	
 	mousescroll_y_in_progress();
 	if(e.wheelDeltaY < 0){
-		mousewheelscroll_down(new Date().getTime()-10);
+		mousewheelscroll_down(new Date().getTime());
 		if(w.move_bars_during_scroll === "1" && document.getElementById("modern_scroll"))
 		{
 			show_bar("v");
