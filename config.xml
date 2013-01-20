@@ -50,6 +50,6 @@
 	<preference name="use_own_scroll_functions_mouse" value="1" />
 	<preference name="scroll_velocity" value="5" />
 	<preference name="keyscroll_velocity" value="2" />
-	<preference name="mousescroll_velocity" value="3" />
+	<preference name="mousescroll_velocity" value="5" />
 	
 </widget>

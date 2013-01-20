@@ -965,7 +965,8 @@ function mousescroll_y(){
 		stop_mousescrolling = window.setTimeout(mousewheelscroll_end, in_ms);
 	}
 	
-	mousescroll_y_in_progress();
+	stop_mousescrolling = window.setTimeout(mousewheelscroll_end, (Math.abs(window.event.wheelDeltaY)>120?120:Math.abs(window.event.wheelDeltaY))/w.mousescroll_velocity);
+	
 	if(e.wheelDeltaY < 0){
 		mousewheelscroll_down(new Date().getTime());
 		if(w.move_bars_during_scroll === "1" && document.getElementById("modern_scroll"))
@@ -976,7 +977,7 @@ function mousescroll_y(){
 		}
 	}
 	else{
-		mousewheelscroll_up(new Date().getTime()-10);
+		mousewheelscroll_up(new Date().getTime());
 		if(w.move_bars_during_scroll === "1" && document.getElementById("modern_scroll"))
 		{
 			show_bar("v");
