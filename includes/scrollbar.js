@@ -910,16 +910,13 @@ function arrowkeyscroll(){
 function otherkeyscroll()
 {
 	var e = window.event;
-	if(e.target == "[object HTMLTextAreaElement]" || e.which < 33 || e.which > 36 || modifierkey_pressed(e)) return;
-	if(!window.self.frameElement && !(e.target == "[object HTMLInputElement]" && e.target.hasAttribute("size"))){
-		e.preventDefault(); e.stopPropagation();
-	}
+	if(e.which < 33 || e.which > 36 || modifierkey_pressed(e) || target_is_input(e)) return;
+	stopEvent();
 	
-	if		(e.which === 34){ scroll_PageDown(); return; }
-	else if	(e.which === 33){ scroll_PageUp();	 return; }	
-	if(e.target == "[object HTMLInputElement]" && e.target.hasAttribute("size")) return;	
-	if		(e.which === 36)  scroll_Pos1();
-	else					  scroll_End();
+	if		(e.which === 34) scroll_PageDown();
+	else if	(e.which === 33) scroll_PageUp();
+	else if	(e.which === 36) scroll_Pos1();
+	else					 scroll_End();
 }
 function scroll_PageDown(){
 	if(w.animate_scroll === "1") ms_scrollBy(0, window.innerHeight);
