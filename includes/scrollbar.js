@@ -711,10 +711,24 @@ var scroll_timeout_id_y; var scroll_end_timeout_id_y; var by_y = 0;
 }
 function ms_scrollBy(x, y){ if(x !== 0) ms_scrollBy_x(x);	if(y !== 0) ms_scrollBy_y(y); }*/
 
+function ms_scrollBy_x_mouse(x)
+{
+	if((by_x >= 0 && x > 0) || (by_x <= 0 && x < 0)){
+		by_x += Math.round(parseFloat(w.mousescroll_distance)*(x > 120 ? 120 : (x < -120 ? -120 : x)));
+		if(window.pageXOffset + by_x < 0) by_x = -window.pageXOffset;
+		else if(window.pageXOffset + by_x > window.scrollMaxX) by_x = window.scrollMaxX - window.pageXOffset;
+		
+		if(by_x !== 0 && !scroll_timeout_id_x){
+			scroll_velocity = w.mousescroll_velocity;
+			ms_scroll_start_x();
+		}
+	}
+	else by_x = 0;
+}
 function ms_scrollBy_y_mouse(y)
 {
 	if((by_y >= 0 && y > 0) || (by_y <= 0 && y < 0)){
-		by_y += (y > 120 ? 120 : (y < -120 ? -120 : y));
+		by_y += Math.round(parseFloat(w.mousescroll_distance)*(y > 120 ? 120 : (y < -120 ? -120 : y)));
 		if(window.pageYOffset + by_y < 0) by_y = -window.pageYOffset;
 		else if(window.pageYOffset + by_y > window.scrollMaxY) by_y = window.scrollMaxY - window.pageYOffset;
 		
@@ -723,7 +737,7 @@ function ms_scrollBy_y_mouse(y)
 			ms_scroll_start_y();
 		}
 	}
-	else by_y = 0;	
+	else by_y = 0;
 }
 
 function ms_scrollBy_x(x)
@@ -777,8 +791,14 @@ function ms_scroll_start_x(){
 	window.clearTimeout(hide_timeout); // prevent earlier animations from canceling the current scrolling animations
 	
 	show_bar("h");
-	hbar.style.transition = "top "+Math.abs(by_x)/scroll_velocity+"ms linear";
-	hbar.style.left = (parseInt(hbar.style.left)+Math.round(by_x/window.scrollMaxX*(document.getElementById("ms_hbar_bg").offsetWidth-parseInt(hbar.style.width))))+"px";
+	if(by_x <0){
+		hbar.style.transition = "left "+window.pageXOffset/scroll_velocity+"ms linear";
+		hbar.style.left = "0px";
+	}
+	else{
+		hbar.style.transition = "left "+(window.scrollMaxX-window.pageXOffset)/scroll_velocity+"ms linear";
+		hbar.style.left = window.innerWidth-parseInt(hbar.style.width)-(w.vbar_at_left==="0"?parseInt(w.gap)+parseInt(w.hover_size):0)+"px";
+	}
 	ms_scroll_inner_x(new Date().getTime()-10);
 }
 function ms_scroll_start_y(){
@@ -981,14 +1001,19 @@ function scroll_End(){
 function mousescroll_x(){
 	if(modifierkey_pressed(window.event)) return;
 	stopEvent();
-	window.scrollBy(-(window.event.wheelDelta > 120 ? 120 : (window.event.wheelDelta < -120 ? -120 : window.event.wheelDelta)), 0);
+	ms_scrollBy_x_mouse(-window.event.wheelDelta);
 }
+/*function mousescroll_x_direct(){
+	if(modifierkey_pressed(window.event)) return;
+	stopEvent();
+	window.scrollBy(-(window.event.wheelDelta > 120 ? 120 : (window.event.wheelDelta < -120 ? -120 : window.event.wheelDelta)), 0);
+}*/
 
 function mousescroll_y(){
 	var e = window.event;
 	if(e.wheelDeltaY === 0 || is_scrollable(e.target, (e.wheelDeltaY < 0 ? 1 : 0)) || modifierkey_pressed(e)) return;
 	stopEvent();
-	//window.scrollBy(0,-e.wheelDeltaY);
+	
 	ms_scrollBy_y_mouse(-e.wheelDeltaY);
 	
 	/*var curTick = new Date().getTime();
@@ -996,6 +1021,12 @@ function mousescroll_y(){
 	variable_speeds = curTick;*/
 	//element.scrollTop -= window.event.wheelDeltaY;
 }
+/*function mousescroll_y_direct(){
+	var e = window.event;
+	if(e.wheelDeltaY === 0 || is_scrollable(e.target, (e.wheelDeltaY < 0 ? 1 : 0)) || modifierkey_pressed(e)) return;
+	stopEvent();
+	window.scrollBy(0,-(e.wheelDeltaY > 120 ? 120 : (e.wheelDeltaY < -120 ? -120 : e.wheelDeltaY)));
+}*/
 
 function is_scrollable(element, direction) // direction: 0 = up, 1 = down, 2 = all
 {
