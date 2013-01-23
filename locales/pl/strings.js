@@ -63,6 +63,7 @@ var strings = {
 	"pages" : "pages",
 	"keyscroll_velocity" : "Velocity of scrolling via the arrow keys",
 	"mousescroll_velocity" : "Velocity of scrolling by mouse wheel and trackpad",
+	"mousescroll_distance" : "Distance scrolled per mouse wheel rotation",
 	"animatedscroll_velocity" : "Velocity of animated scrolling",
 	"how to" : "Jak się tego używa",
 	"disable standard bars" : "Lepiej, żeby typowe paski Opery były wyłączone, nie potrzeba nam aż dwóch. <br>W tym celu należy odznaczyć opcję „Pokaż paski przewijania” z grupy Opera → Ustawienia → Preferencje… → Zaawansowane → Przeglądanie.",

@@ -63,6 +63,7 @@ var strings = {
 	"pages" : "pages",
 	"keyscroll_velocity" : "Velocity of scrolling via the arrow keys",
 	"mousescroll_velocity" : "Velocity of scrolling by mouse wheel and trackpad",
+	"mousescroll_distance" : "Distance scrolled per mouse wheel rotation",
 	"animatedscroll_velocity" : "Velocity of animated scrolling",
 	"how to" : "How do I use this extension",
 	"disable standard bars" : "If you don't use modern scroll exclusively in fullscreen mode, Opera's standard scrollbars should be disabled to avoid double bars.<br>To do so, go to <strong>Opera → Settings → Preferences... (Ctrl+F12) → Advanced → Browsing</strong> and deactivate \"show scroll bars\" there.",

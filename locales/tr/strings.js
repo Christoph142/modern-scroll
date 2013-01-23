@@ -63,6 +63,7 @@ var strings = {
 	"pages" : "sayfalar",
 	"keyscroll_velocity" : "Ok tuşlarıyla kaydırmanın sürati",
 	"mousescroll_velocity" : "Fare tekerleğiyle kaydırma sürati and trackpad",
+	"mousescroll_distance" : "Distance scrolled per mouse wheel rotation",
 	"animatedscroll_velocity" : "Otomatik kaydırma sürati",
 	"how to" : "Bu eklentiyi nasıl kullanabilirim?",
 	"disable standard bars" : "Bu eklentiyi kullanabilmek için Opera\'nın standart kaydırma çubukları kapatılmalı.<br>Bunu yapmak için, Opera → Ayarlar → Tercihler... → Gelişmiş → Tarama ve \"kaydırma çubuklarını göster\" deki işareti kaldırın",

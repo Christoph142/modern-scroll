@@ -63,6 +63,7 @@ var strings = {
 	"pages" : "páginas",
 	"keyscroll_velocity" : "Velocidade da rolagem com as teclas de direção",
 	"mousescroll_velocity" : "Velocidade da rolagem com a roda do mouse e trackpad",
+	"mousescroll_distance" : "Distance scrolled per mouse wheel rotation",
 	"animatedscroll_velocity" : "Velocidade da rolagem animada",
 	"how to" : "Como eu uso esta extensão",
 	"disable standard bars" : "Se você não usa o modern scroll exclusivamente em tela cheia as barras de rolagem padrão do Opera podem ser desabilitadas para evitar barras duplas.<br>Para fazer isso, vá para <strong>Opera → Configurações → Preferências... (Ctrl+F12) → Avançado → Navegação</strong> e desabilite \"Exibir barras de rolagem\".",

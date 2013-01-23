@@ -63,6 +63,7 @@ var strings = {
 	"pages" : "pages",
 	"keyscroll_velocity" : "Vitesse de défilement avec les touches fléchées",
 	"mousescroll_velocity" : "Vitesse de défilement par molette de la souris et le trackpad",
+	"mousescroll_distance" : "Distance défilé par rotation de la molette de la souris",
 	"animatedscroll_velocity" : "Vitesse de défilement animé",
 	"how to" : "Comment puis-je utiliser cette extension",
 	"disable standard bars" : "Les barres de défilement standards d'Opera doivent être désactivés pour éviter doubles barres.<br>Donc ouvre Opera → Réglages → Préférences... → Avancé → Navigation et désactive \"Afficher les barres de défilement\"",

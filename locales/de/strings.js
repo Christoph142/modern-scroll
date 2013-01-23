@@ -63,6 +63,7 @@ var strings = {
 	"pages" : "Seiten",
 	"keyscroll_velocity" : "Scroll-Geschwindigkeit mit den Pfeil-Tasten",
 	"mousescroll_velocity" : "Scroll-Geschwindigkeit mit Maus-Rad und Trackpad",
+	"mousescroll_distance" : "Scroll-Distanz pro Umdrehung des Maus-Rades",
 	"animatedscroll_velocity" : "Geschwindigkeit des animierten Scrollens",
 	"how to" : "Wie verwende ich diese Erweiterung",
 	"disable standard bars" : "Wenn du modern scroll nicht ausschließlich im Vollbild-Modus nutzt, sollten Operas Standard-Leisten deaktiviert werden.<br>Gehe dazu in Opera → Einstellungen → Einstellungen... (Strg+F12) → Erweitert → Browser und deaktiviere dort \"Bildlaufleisten zeigen\"",
@@ -74,5 +75,5 @@ var strings = {
 	"explanation: trigger area" : "Diese Fläche erleichtert die Nutzung der Bildlaufleisten."/*, verhindert aber, dass Elemente unter dieser Fläche angeklickt werden können, solange die Oberfläche nicht über das Kontextmenü ausgeblendet wird."*/,
 	"explanation: superbar" : "Die \"Superbar\" ist eine Kombination aus horizontaler und vertikaler Bildlaufleiste.<br>Sie wird deshalb nur sichtbar, wenn beide Leisten benötigt werden und befindet sich dann vertikal zentriert zur vertikalen und horizontal zentriert zur horizontalen Leiste.",
 	"explanation: custom functions" : "Operas Standard-Scroll-Erfahrung ist teilweiße etwas ruckelig und langsam. Durch das Aktivieren dieser Optionen übernimmt die Erweiterung auch das jeweilige Scrollen, was für einen spürbaren Leistungsanstieg sorgen sollte.",
-	"explanation: animate scroll" : "Wenn diese Option aktiviert wird, dann springt die Seite nicht mehr an die gewünschte Position, sondern scrollt automatisiert in einer einstellbaren Geschwindigkeit dort hin.<br>Dies betrifft sowohl die Scroll-Buttons, Klicks auf die Hintergrund-Leisten als auch Tastatur-Eingaben "+ /*als auch das Scrollen mit der Maus*/ "(falls \"Benutze eigene Scroll-Funktionen für die Tastatur\" aktiviert ist)."
+	"explanation: animate scroll" : "Wenn diese Option aktiviert wird, dann springt die Seite nicht mehr an die gewünschte Position, sondern scrollt automatisiert in einer einstellbaren Geschwindigkeit dort hin.<br>Dies betrifft sowohl die Scroll-Buttons, Klicks auf die Hintergrund-Leisten als auch Tastatur-Eingaben (falls \"Benutze eigene Scroll-Funktionen für die Tastatur\" aktiviert ist)."
 };

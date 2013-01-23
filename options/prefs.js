@@ -80,7 +80,7 @@ function getprefs()
 	if(!document.getElementById("use_own_scroll_functions").checked)
 		document.getElementById("keyscroll_velocity_container").style.display="none";
 	if(!document.getElementById("use_own_scroll_functions_mouse").checked)
-		document.getElementById("mousescroll_velocity_container").style.display="none";
+		document.getElementById("mousescroll_container").style.display="none";
 	if(!document.getElementById('animate_scroll').checked) document.getElementById('scroll_container').style.display = "none";
 	
 	document.getElementById("border_radius").max = Math.round(Math.max(document.getElementById("size").value, document.getElementById("hover_size").value)/2);
