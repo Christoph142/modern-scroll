@@ -642,11 +642,7 @@ function onDOMNode()
 	}
 }
 
-function onScroll()
-{
-	window.clearTimeout(timeout);
-	timeout = window.setTimeout(reposition_bars, 100);
-}
+function onScroll(){ window.clearTimeout(timeout); timeout = window.setTimeout(reposition_bars, 100); }
 
 function adjust_contextmenu()
 {
@@ -694,8 +690,8 @@ function remove_ui()
 	window.removeEventListener("scroll", onScroll, false);
 	window.removeEventListener("scroll", reposition_bars, false);
 	
-	window.clearTimeout(timeout);
-	window.clearTimeout(hide_timeout);
+	window.clearTimeout(timeout); timeout = null;
+	window.clearTimeout(hide_timeout); hide_timeout = null;
 	
 	document.body.removeChild(document.getElementById("modern_scroll"));
 }
@@ -788,7 +784,7 @@ function ms_scrollBy_y(y)
 function ms_scroll_start_x(){
 	window.removeEventListener("scroll", onScroll, false);
 	window.removeEventListener("scroll", reposition_bars, false);
-	window.clearTimeout(hide_timeout); // prevent earlier animations from canceling the current scrolling animations
+	window.clearTimeout(hide_timeout); hide_timeout = null; // prevent earlier animations from canceling the current scrolling animations
 	
 	show_bar("h");
 	if(by_x <0){
@@ -804,7 +800,7 @@ function ms_scroll_start_x(){
 function ms_scroll_start_y(){
 	window.removeEventListener("scroll", onScroll, false);
 	window.removeEventListener("scroll", reposition_bars, false);
-	window.clearTimeout(hide_timeout); // prevent earlier animations from canceling the current scrolling animations
+	window.clearTimeout(hide_timeout); hide_timeout = null; // prevent earlier animations from canceling the current scrolling animations
 	
 	show_bar("v");
 	if(by_y < 0){
@@ -823,28 +819,28 @@ function ms_scroll_inner_x(lastTick)
 	var curTick = new Date().getTime();
 	var scrollamount = (curTick - lastTick) * scroll_velocity;
 	
-	if		(by_x > 0){ if(scrollamount > by_x) scrollamount = by_x; }
-	else if	(by_x < 0){ scrollamount = -scrollamount; if(scrollamount < by_x) scrollamount = by_x; }
+	if(by_x < 0){ scrollamount = -scrollamount; if(scrollamount < by_x) scrollamount = by_x; }
+	else		{								if(scrollamount > by_x) scrollamount = by_x; }
 	
 	by_x -= scrollamount;
 	window.scrollBy(scrollamount, 0);
 	
-	if(by_x !== 0) scroll_timeout_id_x = window.setTimeout(function(){ ms_scroll_inner_x(curTick); }, 1);
-	else ms_scroll_end("x");
+	if(by_x !== 0)	scroll_timeout_id_x = window.setTimeout(function(){ ms_scroll_inner_x(curTick); }, 1);
+	else			ms_scroll_end("x");
 }
 function ms_scroll_inner_y(lastTick)
 {
 	var curTick = new Date().getTime();
 	var scrollamount = (curTick - lastTick) * scroll_velocity;
 	
-	if		(by_y > 0){ if(scrollamount > by_y) scrollamount = by_y; }
-	else if	(by_y < 0){ scrollamount = -scrollamount; if(scrollamount < by_y) scrollamount = by_y; }
+	if(by_y < 0){ scrollamount = -scrollamount; if(scrollamount < by_y) scrollamount = by_y; }
+	else		{								if(scrollamount > by_y) scrollamount = by_y; }
 	
 	by_y -= scrollamount;
 	window.scrollBy(0, scrollamount);
 	
-	if(by_y !== 0) scroll_timeout_id_y = window.setTimeout(function(){ ms_scroll_inner_y(curTick); }, 1);
-	else ms_scroll_end("y");
+	if(by_y !== 0)	scroll_timeout_id_y = window.setTimeout(function(){ ms_scroll_inner_y(curTick); }, 1);
+	else			ms_scroll_end("y");
 }
 
 function ms_scroll_end(direction){
@@ -873,9 +869,9 @@ function arrowkeyscroll(){
 	window.removeEventListener("keydown", arrowkeyscroll, false);
 	window.addEventListener("keydown", stopEvent, true);
 	
-	if(scroll_timeout_id_x) window.clearTimeout(scroll_timeout_id_x); scroll_timeout_id_x = 0;
-	if(scroll_timeout_id_y) window.clearTimeout(scroll_timeout_id_y); scroll_timeout_id_y = 0;
-	if(hide_timeout)		window.clearTimeout(hide_timeout); // prevent cancelation of CSS transition (called by previous reposition_bars() on keyup)
+	if(scroll_timeout_id_x){ window.clearTimeout(scroll_timeout_id_x); scroll_timeout_id_x = null; }
+	if(scroll_timeout_id_y){ window.clearTimeout(scroll_timeout_id_y); scroll_timeout_id_y = null; }
+	if(hide_timeout)	   { window.clearTimeout(hide_timeout);		   hide_timeout = null; } // prevent cancelation of CSS transition (called by previous reposition_bars() on keyup)
 	
 	if(last_clicked_element_is_scrollable) window.addEventListener("scroll", element_finished_scrolling, false);
 	else{
@@ -922,8 +918,8 @@ function arrowkeyscroll(){
 	window.addEventListener("keyup", arrowkeyscroll_end, false);
 	function arrowkeyscroll_end()
 	{
-		if(scroll_timeout_id_x) window.clearTimeout(scroll_timeout_id_x); scroll_timeout_id_x = 0;
-		if(scroll_timeout_id_y) window.clearTimeout(scroll_timeout_id_y); scroll_timeout_id_y = 0;
+		if(scroll_timeout_id_x){ window.clearTimeout(scroll_timeout_id_x); scroll_timeout_id_x = null; }
+		if(scroll_timeout_id_y){ window.clearTimeout(scroll_timeout_id_y); scroll_timeout_id_y = null; }
 		
 		window.addEventListener("keydown", arrowkeyscroll, false);
 		window.removeEventListener("keydown", stopEvent, true);
@@ -942,29 +938,25 @@ function arrowkeyscroll(){
 	function arrowkeyscroll_down(lastTick)
 	{
 		var curTick = new Date().getTime();
-		var scrollamount = (curTick - lastTick) * w.keyscroll_velocity;
-		window.scrollBy(0,scrollamount);
+		window.scrollBy(0, (curTick - lastTick)*w.keyscroll_velocity);
 		scroll_timeout_id_y = window.setTimeout(function(){ arrowkeyscroll_down(curTick); },1);
 	}
 	function arrowkeyscroll_up(lastTick)
 	{
 		var curTick = new Date().getTime();
-		var scrollamount = (curTick - lastTick) * w.keyscroll_velocity;
-		window.scrollBy(0,-scrollamount);
+		window.scrollBy(0, (lastTick - curTick)*w.keyscroll_velocity);
 		scroll_timeout_id_y = window.setTimeout(function(){ arrowkeyscroll_up(curTick); },1);
 	}
 	function arrowkeyscroll_right(lastTick)
 	{
 		var curTick = new Date().getTime();
-		var scrollamount = (curTick - lastTick) * w.keyscroll_velocity;
-		window.scrollBy(scrollamount,0);
+		window.scrollBy((curTick - lastTick)*w.keyscroll_velocity, 0);
 		scroll_timeout_id_x = window.setTimeout(function(){ arrowkeyscroll_right(curTick); },1);
 	}
 	function arrowkeyscroll_left(lastTick)
 	{
 		var curTick = new Date().getTime();
-		var scrollamount = (curTick - lastTick) * w.keyscroll_velocity;
-		window.scrollBy(-scrollamount,0);
+		window.scrollBy((lastTick - curTick)*w.keyscroll_velocity, 0);
 		scroll_timeout_id_x = window.setTimeout(function(){ arrowkeyscroll_left(curTick); },1);
 	}
 }
@@ -982,19 +974,19 @@ function otherkeyscroll()
 }
 function scroll_PageDown(){
 	if(w.animate_scroll === "1") ms_scrollBy_y(window.innerHeight);
-	else window.scrollBy(0, window.innerHeight);
+	else						 window.scrollBy(0, window.innerHeight);
 }
 function scroll_PageUp(){
 	if(w.animate_scroll === "1") ms_scrollBy_y(-window.innerHeight);
-	else window.scrollBy(0, -window.innerHeight);
+	else						 window.scrollBy(0, -window.innerHeight);
 }
 function scroll_Pos1(){
 	if(w.animate_scroll === "1") ms_scrollBy_y(-window.pageYOffset);
-	else window.scrollBy(0, -window.pageYOffset);
+	else						 window.scrollBy(0, -window.pageYOffset);
 }
 function scroll_End(){
 	if(w.animate_scroll === "1") ms_scrollBy_y(window.scrollMaxY-window.pageYOffset);
-	else window.scrollBy(0, window.scrollMaxY-window.pageYOffset);
+	else						 window.scrollBy(0, window.scrollMaxY-window.pageYOffset);
 }
 
 //var variable_speeds;
