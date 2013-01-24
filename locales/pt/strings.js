@@ -63,7 +63,7 @@ var strings = {
 	"pages" : "páginas",
 	"keyscroll_velocity" : "Velocidade da rolagem com as teclas de direção",
 	"mousescroll_velocity" : "Velocidade da rolagem com a roda do mouse e trackpad",
-	"mousescroll_distance" : "Distance scrolled per mouse wheel rotation",
+	"mousescroll_distance" : "Distância rolada pela rotação da roda do mouse e pelo trackpad",
 	"animatedscroll_velocity" : "Velocidade da rolagem animada",
 	"how to" : "Como eu uso esta extensão",
 	"disable standard bars" : "Se você não usa o modern scroll exclusivamente em tela cheia as barras de rolagem padrão do Opera podem ser desabilitadas para evitar barras duplas.<br>Para fazer isso, vá para <strong>Opera → Configurações → Preferências... (Ctrl+F12) → Avançado → Navegação</strong> e desabilite \"Exibir barras de rolagem\".",
@@ -74,6 +74,6 @@ var strings = {
 	"explanation: move_bars_during_scroll" : "Desative esta opção caso encontre problemas de performance.<br>A posição da barra será atualizada ao terminar a rolagem.",
 	"explanation: trigger area" : "Aumenta a área de utilização das barras."/*, mas itens que estiverem sob essa área não poderão ser acessados a menos que você esconda a interface pelo menu de contexto."*/,
 	"explanation: superbar" : "A \"superbar\" é uma versão combinada das barras vertical e horizontal.<br>Logo só fica disponível quando ambas as barras são necessárias.<br>Sua posição é alinhada com as barras de rolagem vertical e horizontal.",
-	"explanation: custom functions" : "A rolagem nativa do Opera às vezes é irregular e lenta. Ativando esta opção a extensão também assume, o que pode resultar em uma melhora na performance.",
+	"explanation: custom functions" : "A rolagem nativa do Opera às vezes é irregular e lenta. Ativando esta opção a extensão também assume o controle da rolagem, o que pode resultar em uma melhora na performance.",
 	"explanation: animate scroll" : "Com esta opção a página não irá pular para a posição direto, mas automaticamente vai rolar até a posição a uma velocidade ajustável.<br>Se aplica aos 'botões de rolagem' e a cliques nas barras de fundo assim como rolagem pelo mouse (se as \"funções de rolagem personalizada\" estiverem ativas)."
 };
