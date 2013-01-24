@@ -5,15 +5,16 @@ modern scroll bringt das Scrollen in Opera auf ein ganz neues Niveau.
 Was ist das Geniale an modern scroll?
 
 + beschleunigt das Scrollen!
++ anpassbare Scroll-Geschwindigkeit
 + die Bildlaufleisten nehmen keinen eigenen Platz ein; so kann die gesamte Breite des Bildschirms das anzeigen, wofür ein Browser gemacht wurde: Webseiten
-+ Elemente oder ganze Webseiten springen nicht ein paar Pixel, wenn der Inhalt sich ändert und Bildlaufleisten (un)nötig werden
++ Layout von Webseiten bleibt unberührt, wenn der Inhalt sich ändert und Bildlaufleisten (un)nötig werden
 + Bildlaufleisten sind auch im Vollbild-Modus verfügbar
 + Bildlaufleisten werden automatisch ausgeblendet, wenn sie nicht benötigt werden
 + einzigartige "Superbar", die es ermöglicht, gleichzeitig horizontal und vertikal zu scrollen
-+ optionale Buttons um zum Seitenanfang oder -Ende zu scrollen
++ Buttons um zum Seitenanfang oder -Ende zu scrollen
 + Verhalten und Aussehen ist vollständig anpassbar
 
-Diese Erweiterung war ursprünglich als Update für "Slim ScrollBar" von damage92 geplant. Da sie aber keine einzige Code-Zeile mit der originalen Erweiterung gemeinsam hat, haben wir uns dazu entschieden, sie eigenständig zu veröffentlichen. Slim scrollbar wird natürlich weiterhin verfügbar sein, wenn du die andere Implementierung bevorzugst oder eine ältere Version von Opera als 12.10 benutzt, für die modern scroll nicht zur Verfügung steht. Auf Grund von damage92s mangelnder Freizeit wird diese aber im Moment nicht aktiv weiterentwickelt.
+Diese Erweiterung war ursprünglich als Update für "Slim ScrollBar" von damage92 geplant. Da sie aber keine einzige Code-Zeile mit der originalen Erweiterung gemeinsam hat, haben wir uns dazu entschieden, sie eigenständig zu veröffentlichen. Slim ScrollBar wird natürlich weiterhin verfügbar sein, wenn du die andere Implementierung bevorzugst oder eine ältere Version von Opera als 12.10 nutzt, für die modern scroll nicht zur Verfügung steht. Auf Grund von damage92s mangelnder Freizeit wird diese aber im Moment nicht aktiv weiterentwickelt.
 
 Changelog:
 ----------
