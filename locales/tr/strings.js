@@ -39,6 +39,7 @@ var strings = {
 	"bg_special_ends" : "Arkaplan çubuklarının sonlarına tıklamak bir sayfa atlamak yerine sayfanın sonuna/başına gider.",
 	"container1" : "Modern scroll\'u şu mesafede tetikle",
 	"container2" : "px (kenara)",
+	"superbar" : "Superbar",
 	"show_superbar" : "\"superbar\"ı göster",
 	"show_superbar_minipage" : "superbarı kaydırırken web sitesinin mini-versiyonunu arkaplanda göster",
 	"superbar_opacity" : "Üzerine gelince superbarın saydamlığı",
