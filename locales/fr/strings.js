@@ -39,6 +39,7 @@ var strings = {
 	"bg_special_ends" : "En cliquant sur ​​les extrémités de barres de fond défile complètement vers le haut/bas (respectivement gauche/droite) au lieu de par une page",
 	"container1" : "Déclencher modern scroll dans un rayon de",
 	"container2" : "px à la frontière",
+	"superbar" : "Superbar",
 	"show_superbar" : "Affiche le \"superbar\"",
 	"show_superbar_minipage" : "Affiche une version mini du site en arrière-plan lorsque tu glisses le superbar",
 	"superbar_opacity" : "Opacité de la superbar lorsque planait avec la souris",

@@ -39,6 +39,7 @@ var strings = {
 	"bg_special_ends" : "Ein Klick auf die Enden der Hintergrund-Leisten scrollt ganz nach oben/unten (bzw. links/rechts) statt um 1 Seite",
 	"container1" : "modern scroll im Abstand von ",
 	"container2" : "px zum Rand triggern",
+	"superbar" : "Superbar",
 	"show_superbar" : "Zeige die \"Superbar\"",
 	"show_superbar_minipage" : "Zeige eine Mini-Version der Seite beim Ziehen der Superbar im Hintergrund",
 	"superbar_opacity" : "Sichtbarkeit der Superbar beim Überfahren mit der Maus",

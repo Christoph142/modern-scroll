@@ -39,6 +39,7 @@ var strings = {
 	"bg_special_ends" : "Clicar nas pontas das barras de fundo rolam completamente para o topo/fundo (esquerda/direita respectivamente) invés de uma página",
 	"container1" : "Utilizar modern scroll a uma distância de até",
 	"container2" : "px da borda",
+	"superbar" : "Superbar",
 	"show_superbar" : "Mostrar a \"superbar\"",
 	"show_superbar_minipage" : "Mostrar uma mini-versão do website no fundo quando arrastar a superbar",
 	"superbar_opacity" : "Opacidade da superbar ao passar o mouse sobre",
