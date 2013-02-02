@@ -39,6 +39,7 @@ var strings = {
 	"bg_special_ends" : "Clicking at the ends of the background bars scrolls completely to the top/bottom (respectively left/right) instead of by one page",
 	"container1" : "Trigger modern scroll within a distance of",
 	"container2" : "px to the border",
+	"superbar" : "Superbar",
 	"show_superbar" : "Show the \"superbar\"",
 	"show_superbar_minipage" : "Show a mini-version of the website in the background when dragging the superbar",
 	"superbar_opacity" : "Opacity of the superbar on hover",
