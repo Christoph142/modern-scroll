@@ -16,14 +16,22 @@ What's awesome about modern scroll?
 
 This extension was originally planned as an update to "Slim ScrollBar" by damage92. But since it doesn't have a single line of code in common with the original extension we decided to publish it as a new one. Slim scrollbar will of course continue to exist if you prefer the other implementation or if you are using Opera below 12.10 where modern scroll isn't available. Due to damage92's rare spare time it's not being actively developed at the moment, though.
 
+
 Changelog:
 ----------
 
 v 2.X
 ---------
+!new: sync settings via Opera Link
 !new: scroll bars for elements
 !new: interface and scrolling functions are available independently
 ?new: mouse wheel scrolling speed / distance dependend on wheel spin speed
+
+v 2.2.1
+---------
+!fix: arrow keys aren't responding in certain textareas (thx Henry for reporting)
+!fix: modern scroll blocks scrolling with the arrow keys when no interface is present (e.g. MyOpera Mail, Google Docs)
+upd: Polish translation (thx Piotr)
 
 v 2.2
 ---------
