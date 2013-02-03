@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<widget xmlns="http://www.w3.org/ns/widgets" id="https://github.com/Christoph142/modern-scroll" defaultlocale="en" version="2.2">
+<widget xmlns="http://www.w3.org/ns/widgets" id="https://github.com/Christoph142/modern-scroll" defaultlocale="en" version="2.2.1">
 
 	<name>modern scroll</name>
 	<author href="http://my.opera.com/christoph142/blog">Christoph D.</author>
 	<icon src="images/icon.png" />
 	
+	<description xml:lang="cs">Takes scrolling in Opera to a whole new level</description>
 	<description xml:lang="de">Bringt das Scrollen in Opera auf ein ganz neues Niveau</description>
 	<description xml:lang="en">Takes scrolling in Opera to a whole new level</description>
 	<description xml:lang="fr">Prend le défilement d'Opera à un niveau entièrement nouveau</description>
