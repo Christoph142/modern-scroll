@@ -29,6 +29,7 @@ v 2.X
 
 v 2.2.1
 ---------
+!new: Czech translation (thx Ahoj1234)
 !fix: arrow keys aren't responding in certain textareas (thx Henry for reporting)
 !fix: modern scroll blocks scrolling with the arrow keys when no interface is present (e.g. MyOpera Mail, Google Docs)
 upd: Polish translation (thx Piotr)
