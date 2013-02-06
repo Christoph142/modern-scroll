@@ -70,6 +70,7 @@ function initialize()
 		add_ui();
 		window.opera.addEventListener("AfterEvent.DOMContentLoaded", resize_bars, false);
 	}
+	window.addEventListener("resize", add_or_remove_ui, false);
 	
 	opera.extension.onmessage = function(){
 		window.clearTimeout(timeout);
@@ -225,7 +226,6 @@ function add_functionality(){
 	if(!document.URL.match("://vk.com"))	window.addEventListener("DOMNodeRemoved", onDOMNode, false);
 	
 	window.addEventListener("resize", resize_bars, false);
-	window.addEventListener("resize", add_or_remove_ui, false);
 	window.addEventListener("mouseup", check_resize, false);
 	if(w.move_bars_during_scroll == "1") window.addEventListener("scroll", reposition_bars, false);
 	else window.addEventListener("scroll", onScroll, false);
@@ -659,7 +659,7 @@ function contextmenu_click()
 }
 
 function add_or_remove_ui()
-{ 
+{
 	//alert(window.outerHeight+"\n"+window.innerHeight);
 	if		(w.fullscreen_only === "0" || window.screen.height === window.outerHeight) add_ui();
 	else if	(w.fullscreen_only === "1" && window.screen.height !== window.outerHeight) remove_ui();
@@ -682,7 +682,7 @@ function remove_ui()
 	window.removeEventListener("DOMNodeInserted", onDOMNode, false);
 	window.removeEventListener("DOMNodeRemoved", onDOMNode, false);
 	window.removeEventListener("resize", resize_bars, false);
-	window.removeEventListener("resize", add_or_remove_ui, false);
+	//window.removeEventListener("resize", add_or_remove_ui, false);
 	window.removeEventListener("keydown", arrowkeyscroll, false);
 	window.removeEventListener("keydown", otherkeyscroll, false);
 	window.removeEventListener("mousewheel", mousescroll_y, false);
