@@ -31,6 +31,7 @@ v 2.X
 
 v 2.2.1
 ---------
+new: Arabic translation (thx netmain)
 new: Czech translation (thx Ahoj1234)
 fix: fullscreen mode only use (thx aboutblank6 for reporting)
 fix: modern scroll blocks scrolling with the arrow keys when no interface is present (e.g. MyOpera Mail, Google Docs)

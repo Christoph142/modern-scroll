@@ -21,6 +21,7 @@ Changelog:
 
 v 2.2.1
 ---------
+neu: Arabische Übersetzung (Danke netmain)
 neu: Tschechische Übersetzung (Danke Ahoj1234)
 fix: exklusive Nutzung im Vollbild-Modus (Danke aboutblank6 für's Melden)
 fix: modern scroll blockiert das Scrollen mit den Pfeil-Tasten, wenn keine Oberfläche sichtbar ist (z.B. MyOpera Mail, Google Docs)
