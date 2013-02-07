@@ -26,6 +26,7 @@ v 2.X
 !new: scroll bars for elements
 !new: interface and scrolling functions are available independently
 !new: Norsk translation (thx Daniel)
+!new: Romanian translation (thx Cryio)
 ?new: mouse wheel scrolling speed / distance dependend on wheel spin speed
 !fix: arrow keys aren't responding in certain textareas (thx Henry for reporting)
 
@@ -45,7 +46,7 @@ fix: detection of scrollable elements (thx Ahoj1234 for reporting)
 fix: arrow keys in search-input fields (thx Cryio for reporting)
 fix: PgUp/PgDwn/Home/End keys in select fields (thx André for reporting)
 fix: milliyet.com.tr (thx Mağruf for reporting)
-upd: Turkish localization (thx metude)
+upd: Turkish translation (thx metude)
 
 v 2.1.3
 ---------
