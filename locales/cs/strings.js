@@ -73,7 +73,7 @@ var strings = {
 	"contextmenu_hide" : "Skrýt moderní rolování",
 	"explanation: save set" : "Zde můžete uložit současnou konfiguraci. Jen odentrujte název a klikněte na tlačítko uložit. Pokud vyberete jméno, které již existuje, tak obsah bude přepsán.",
 	"explanation: move_bars_during_scroll" : "Deaktivujte tuto možnost pokud jste narazili na výkonnostní problémy.<br>Pozice rolovacích posuvníků bude aktualizována až rolování bude dokončeno.",
-	"explanation: trigger area" : "Zvětšit posuvníky při dostání se do jejich oblasti.",
+	"explanation: trigger area" : "Zvětší posuvníky při dostání se do této oblasti.",
 	"explanation: superbar" : "\"Superbar\" je kombinací horizontálního a vertikálního rolovacího posuvníku.<br>A tím pádem se zobrazí, jen když jsou nezbytné oba posuvníky.<br>Jeho pozice je zarovnána s vertikálními a horizontálními rolovacími posuvníky.",
 	"explanation: custom functions" : "Standardní rolovací zážitek Opery je někdy trochu trhavý a pomalý. Aktivací těchto možností převezme rozšíření korespondující rolování, což by mělo vyústit v pozorovatelný výkonnostní nárůst.",
 	"explanation: animate scroll" : "Pokud vyberete tuto možnost, tak stránka víckrát hned nepřeskočí na požadovanou pozici, ale automaticky tam sroluje s nastavitelným tempem.<br>Toto se týká rolovacích tlačítek, kliknutí na lišty v pozadí a taktéž rolování pomocí klávesnice (pokud \"Využívat vlastní rolovací funkce pro klávesnici\" je aktivováno)."
