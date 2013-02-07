@@ -21,6 +21,7 @@ Changelog:
 
 v 2.2.1
 ---------
+!neu: Rumänische Übersetzung (Danke Cryio)
 neu: Norwegische Übersetzung (Danke Daniel)
 neu: Arabische Übersetzung (Danke netmain)
 neu: Tschechische Übersetzung (Danke Ahoj1234)
