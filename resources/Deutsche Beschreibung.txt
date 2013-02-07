@@ -21,6 +21,7 @@ Changelog:
 
 v 2.2.1
 ---------
+neu: Norwegische Übersetzung (Danke Daniel)
 neu: Arabische Übersetzung (Danke netmain)
 neu: Tschechische Übersetzung (Danke Ahoj1234)
 fix: exklusive Nutzung im Vollbild-Modus (Danke aboutblank6 für's Melden)
