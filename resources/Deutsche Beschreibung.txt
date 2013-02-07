@@ -19,9 +19,12 @@ Diese Erweiterung war ursprünglich als Update für "Slim ScrollBar" von damage9
 Changelog:
 ----------
 
-v 2.2.1
+v 2.x
 ---------
 !neu: Rumänische Übersetzung (Danke Cryio)
+
+v 2.2.1
+---------
 neu: Norwegische Übersetzung (Danke Daniel)
 neu: Arabische Übersetzung (Danke netmain)
 neu: Tschechische Übersetzung (Danke Ahoj1234)
