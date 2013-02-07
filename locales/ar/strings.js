@@ -1,6 +1,6 @@
 ﻿var strings = {
 	"lang" : "ar",//"عربية",
-	"by" : "netmain",
+	"by" : "by",//"netmain",
 	"saved sets" : "تم حفظ الإعدادات",
 	"save set" : "حفظ الإعدادات الحالية تحت إسم",
 	"new set name" : "إسم",
