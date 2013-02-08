@@ -5,31 +5,32 @@
 <script type="text/javascript" src="strings.js">/* localization */</script>
 <script>
 	opera.extension.onmessage = function(event){
-		if(event.data == "update") opera.extension.broadcastMessage("update");
-		else if(event.data == "show_contextmenu") show_contextmenu();
-		else if(event.data == "hide_contextmenu") hide_contextmenu();
-		else if(event.data == "contextmenu_show_when_update"){ show_contextmenu(); hide_contextmenu(); }
-		else if(event.data == "reset_contextmenu"){
+		if		(event.data === "update")			opera.extension.broadcastMessage("update");
+		else if	(event.data === "show_contextmenu") show_contextmenu();
+		else if	(event.data === "hide_contextmenu") hide_contextmenu();
+		else if	(event.data === "contextmenu_show_when_update"){ show_contextmenu(); hide_contextmenu(); }
+		else if	(event.data === "reset_contextmenu"){
 			if(opera.contexts.menu.item(0)) opera.contexts.menu.item(0).title = strings["contextmenu_hide"];
 		}
+		//else if (event.data === "change_contextmenu_into_show_string")
 	}
 	
 	hide_contextmenu();
 	show_contextmenu();
 	
 	function show_contextmenu(){ // if contextmenu is not set to "never visible":
-		if(widget.preferences.contextmenu_show_when != "1" && !opera.contexts.menu.item(0)){
+		if(widget.preferences.contextmenu_show_when !== "1" && !opera.contexts.menu.item(0)){
 			opera.contexts.menu.addItem(opera.contexts.menu.createItem({title:strings["contextmenu_hide"],icon:"images/contextmenu.png"}));
 			opera.contexts.menu.onclick = function(){
 				opera.contexts.menu.item(0).title =
-					opera.contexts.menu.item(0).title==strings["contextmenu_show"] ? strings["contextmenu_hide"] : strings["contextmenu_show"];
+					opera.contexts.menu.item(0).title===strings["contextmenu_show"] ? strings["contextmenu_hide"] : strings["contextmenu_show"];
 			}
 		}
 	}
 	
 	function hide_contextmenu(){ // if contextmenu is not set to "always visible":
-		if(widget.preferences.contextmenu_show_when != "3" && opera.contexts.menu.item(0))
-			if(opera.contexts.menu.item(0).title == strings["contextmenu_hide"]) opera.contexts.menu.removeItem(0);
+		if(widget.preferences.contextmenu_show_when !== "3" && opera.contexts.menu.item(0))
+			if(opera.contexts.menu.item(0).title === strings["contextmenu_hide"]) opera.contexts.menu.removeItem(0);
 	}
 </script>
 </head>
