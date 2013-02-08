@@ -66,6 +66,8 @@ var strings = {
 	"mousescroll_velocity" : "Scroll-Geschwindigkeit mit Maus-Rad und Trackpad",
 	"mousescroll_distance" : "Scroll-Distanz pro Umdrehung des Maus-Rades",
 	"animatedscroll_velocity" : "Geschwindigkeit des animierten Scrollens",
+	"external_interface_headline" : "Externe Schnittstelle",
+	"external_interface" : "Stelle eine Schnittstelle für den Zugang von außen bereit",
 	"how to" : "Wie verwende ich diese Erweiterung?",
 	"disable standard bars" : "Wenn du modern scroll nicht ausschließlich im Vollbild-Modus nutzt, sollten Operas Standard-Leisten deaktiviert werden.<br>Gehe dazu in Opera → Einstellungen → Einstellungen... (Strg+F12) → Erweitert → Browser und deaktiviere dort \"Bildlaufleisten zeigen\"",
 	"footer" : "Danke für das Installieren dieser Erweiterung. Für Feedback und Fragen stehe ich jederzeit gerne zur Verfügung.",
@@ -76,5 +78,6 @@ var strings = {
 	"explanation: trigger area" : "Diese Fläche erleichtert die Nutzung der Bildlaufleisten.",
 	"explanation: superbar" : "Die \"Superbar\" ist eine Kombination aus horizontaler und vertikaler Bildlaufleiste.<br>Sie wird deshalb nur sichtbar, wenn beide Leisten benötigt werden und befindet sich dann vertikal zentriert zur vertikalen und horizontal zentriert zur horizontalen Leiste.",
 	"explanation: custom functions" : "Operas Standard-Scroll-Erfahrung ist teilweiße etwas ruckelig und langsam. Durch das Aktivieren dieser Optionen übernimmt die Erweiterung auch das jeweilige Scrollen, was für einen spürbaren Leistungsanstieg sorgen sollte.",
-	"explanation: animate scroll" : "Wenn diese Option aktiviert wird, dann springt die Seite nicht mehr an die gewünschte Position, sondern scrollt automatisiert in einer einstellbaren Geschwindigkeit dort hin.<br>Dies betrifft sowohl die Scroll-Buttons, Klicks auf die Hintergrund-Leisten als auch Tastatur-Eingaben (falls \"Benutze eigene Scroll-Funktionen für die Tastatur\" aktiviert ist)."
+	"explanation: animate scroll" : "Wenn diese Option aktiviert wird, dann springt die Seite nicht mehr an die gewünschte Position, sondern scrollt automatisiert in einer einstellbaren Geschwindigkeit dort hin.<br>Dies betrifft sowohl die Scroll-Buttons, Klicks auf die Hintergrund-Leisten als auch Tastatur-Eingaben (falls \"Benutze eigene Scroll-Funktionen für die Tastatur\" aktiviert ist).",
+	"explanation: external_interface" : "Durch das Aktivieren dieser Option stellt modern scroll ein paar seiner Hauptfunktionen für die Nutzung durch Drittanbieter-Erweiterungen, Webseiten oder dich zur Verfügung. Du kannst damit dann z.B. eigene Maus-Gesten schaffen.<br><a href='http://my.opera.com/christoph142/blog/2013/02/08/modern-scroll-documentation' target='_blank'>Schau dir die Dokumentierung (Englisch) an um mehr darüber zu erfahren.</a>"
 };

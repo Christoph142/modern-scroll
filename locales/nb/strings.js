@@ -66,6 +66,8 @@ var strings = {
 	"mousescroll_velocity" : "Rullehastighet fra musehjul og berøringsenheter",
 	"mousescroll_distance" : "Rulleavstand per musehjulrotasjon",
 	"animatedscroll_velocity" : "Rulleanimasjonshastighet",
+	"external_interface_headline" : "External Interface",
+	"external_interface" : "Provide an interface for external access",
 	"how to" : "Hvordan bruker jeg denne utvidelsen?",
 	"disable standard bars" : "Om du ikke utelukkende bruker modern scroll utvidelsen i fullskjermmodus bør du skru av Opera sine egne rullefelt for å unngå to sett med rullefelt. For å skru av Opera sine rullefelt, åpne <strong>Opera → Verktøy → Instillinger… (Ctrl+F12) → Avansert → Nettleser</strong> og slå av valget for «Vis rullefelt.»",
 	"footer" : "Takk for at du installerte denne utvidelsen. Du kan kontakte meg (på engelsk) når som helst for å gi tilbakemelding og stille spørsmål.",
@@ -76,5 +78,6 @@ var strings = {
 	"explanation: trigger area" : "Gjør område feltene er tilgjengelig i større.",
 	"explanation: superbar" : "Superlinjen er en kombinasjon av de horisontale og vertikale rullefeltene.<br>Den er kun synlig når begge feltene trengs.<br>Possisjonen dens samkjøres med de horisontale og vertilake rullefeltene.",
 	"explanation: custom functions" : "Rulleopplevelsen i Opera kan oppleves som rykkvis og treg. Med disse valgene bør du kunne få en merkbar hastighetsforbedring.",
-	"explanation: animate scroll" : "Om du bruker dette valget vil ikke sider lengre hoppe øyeblikkelig til det angitte området. De vil i steden rulle dit med den angitte hastigheten. Dette gjelder rulleknappene, klikk på rullelinjen, samt rulling med tastaturet om valget «Bruk egne rullefunksjoner for tastaturet» er i bruk."
+	"explanation: animate scroll" : "Om du bruker dette valget vil ikke sider lengre hoppe øyeblikkelig til det angitte området. De vil i steden rulle dit med den angitte hastigheten. Dette gjelder rulleknappene, klikk på rullelinjen, samt rulling med tastaturet om valget «Bruk egne rullefunksjoner for tastaturet» er i bruk.",
+	"explanation: external_interface" : "By checking this option, modern scroll will provide some of its key features for usage by third-party-extensions, websites or you. You can then e.g. create custom mouse gestures.<br><a href='http://my.opera.com/christoph142/blog/2013/02/08/modern-scroll-documentation' target='_blank'>Visit the documentation to learn more about it.</a>"
 };

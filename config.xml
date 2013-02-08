@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<widget xmlns="http://www.w3.org/ns/widgets" id="https://github.com/Christoph142/modern-scroll" defaultlocale="en" version="2.2.1">
+<widget xmlns="http://www.w3.org/ns/widgets" id="https://github.com/Christoph142/modern-scroll" defaultlocale="en" version="2.3">
 
 	<name>modern scroll</name>
 	<author href="http://my.opera.com/christoph142/blog">Christoph D.</author>
@@ -34,11 +34,6 @@
 	<preference name="fullscreen_only" value="0" />
 	<preference name="bg_special_ends" value="1" />
 	<preference name="move_bars_during_scroll" value="1" />
-	<preference name="show_buttons" value="0" />
-	<preference name="buttonposition" value="48" />
-	<preference name="button_height" value="50" />
-	<preference name="button_width" value="100" />
-	<preference name="button_opacity" value="10" />
 	<preference name="show_superbar" value="0" />
 	<preference name="show_superbar_minipage" value="1" />
 	<preference name="superbar_opacity" value="70" />
@@ -48,6 +43,13 @@
 	<preference name="container" value="0" />
 	<preference name="container_size" value="30" />
 	<preference name="gap" value="2" />
+	
+	<preference name="show_buttons" value="0" />
+	<preference name="buttonposition" value="48" />
+	<preference name="button_height" value="50" />
+	<preference name="button_width" value="100" />
+	<preference name="button_opacity" value="10" />
+	
 	<preference name="animate_scroll" value="1" />
 	<preference name="animate_scroll_max" value="2" />
 	<preference name="use_own_scroll_functions" value="1" />
@@ -56,5 +58,7 @@
 	<preference name="keyscroll_velocity" value="2" />
 	<preference name="mousescroll_velocity" value="3" />
 	<preference name="mousescroll_distance" value="1" />
+	
+	<preference name="external_interface" value="1" />
 	
 </widget>

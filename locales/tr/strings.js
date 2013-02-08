@@ -66,6 +66,8 @@ var strings = {
 	"mousescroll_velocity" : "Fare tekerleğiyle kaydırma sürati and trackpad",
 	"mousescroll_distance" : "Distance scrolled per mouse wheel rotation",
 	"animatedscroll_velocity" : "Otomatik kaydırma sürati",
+	"external_interface_headline" : "External Interface",
+	"external_interface" : "Provide an interface for external access",
 	"how to" : "Bu eklentiyi nasıl kullanabilirim?",
 	"disable standard bars" : "Bu eklentiyi kullanabilmek için Opera\'nın standart kaydırma çubukları kapatılmalı.<br>Bunu yapmak için, Opera → Ayarlar → Tercihler... → Gelişmiş → Tarama ve \"kaydırma çubuklarını göster\" deki işareti kaldırın",
 	"footer" : "Bu eklentiyi kurduğunuz için teşekkürler. Geribildirim ve yorumlar için benimle iletişime geçmekten çekinmeyin",
@@ -76,5 +78,6 @@ var strings = {
 	"explanation: trigger area" : "Çubukların erişebileceği alanı genişletir."/*, but items covered by this area won't be clickable anymore, unless you hide the interface via the context menu."*/,
 	"explanation: superbar" : "\"superbar\" yatay ve dikey kaydırma çubuklarının birleştirilmişidir. <br>Böylelikle, iki çubuk da ihtiyaç olduğunda görünür. Konumu dikey ve yatay çubuklarla ayarlanmıştır.",
 	"explanation: custom functions" : "Opera'nın standart kaydırma çubukları bazen yavaş ve hantal olabiliyor. Bu seçeneği aktifleştirerek eklenti aynı zamanda kaydırma ile ilgili düzeltmeler de yaparak kayda değer bir performans artımı yakalıyor.",
-	"explanation: animate scroll" : "Eğer bu seçeneği seçtiyseniz, sayfa istenen konuma bir anda gitmeyecektir. Ama ayarlanabilir bir oranla otomatik olarak oraya kayacaktır. <br> Bu kaydırma çubuklarına, arkaplan çubuklarındaki tıklamalara ve klavye ile kaydırmaya uygulanacaktır. (eğer \"Kişiselleştirilmiş kaydırma fonksiyonlarını klavye için kullan\" aktif ise)"
+	"explanation: animate scroll" : "Eğer bu seçeneği seçtiyseniz, sayfa istenen konuma bir anda gitmeyecektir. Ama ayarlanabilir bir oranla otomatik olarak oraya kayacaktır. <br> Bu kaydırma çubuklarına, arkaplan çubuklarındaki tıklamalara ve klavye ile kaydırmaya uygulanacaktır. (eğer \"Kişiselleştirilmiş kaydırma fonksiyonlarını klavye için kullan\" aktif ise)",
+	"explanation: external_interface" : "By checking this option, modern scroll will provide some of its key features for usage by third-party-extensions, websites or you. You can then e.g. create custom mouse gestures.<br><a href='http://my.opera.com/christoph142/blog/2013/02/08/modern-scroll-documentation' target='_blank'>Visit the documentation to learn more about it.</a>"
 };

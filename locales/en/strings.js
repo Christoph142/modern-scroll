@@ -66,6 +66,8 @@ var strings = {
 	"mousescroll_velocity" : "Velocity of scrolling by mouse wheel and trackpad",
 	"mousescroll_distance" : "Distance scrolled per mouse wheel rotation",
 	"animatedscroll_velocity" : "Velocity of animated scrolling",
+	"external_interface_headline" : "External Interface",
+	"external_interface" : "Provide an interface for external access",
 	"how to" : "How do I use this extension?",
 	"disable standard bars" : "If you don't use modern scroll exclusively in fullscreen mode, Opera's standard scrollbars should be disabled to avoid double bars.<br>To do so, go to <strong>Opera → Settings → Preferences... (Ctrl+F12) → Advanced → Browsing</strong> and deactivate \"show scroll bars\" there.",
 	"footer" : "Thanks for installing this extension. You can contact me at any time for feedback and questions.",
@@ -76,5 +78,6 @@ var strings = {
 	"explanation: trigger area" : "Enlarges the bars accessing area.",
 	"explanation: superbar" : "The \"superbar\" is a combination of a horizontal and a vertical scroll bar.<br>Thus, it only gets visible when both bars are necessary.<br>Its position is aligned with the vertical and horizontal scroll bars.",
 	"explanation: custom functions" : "Opera's standard scrolling experience is sometimes a bit jerky and slow. By activating these options the extension also takes over the corresponding scrolling, which should result in a noticeable performance boost.",
-	"explanation: animate scroll" : "If you select this option, the page will not instantly jump to the desired position anymore, but automatically scroll there with an adjustable rate.<br>This applies to the scroll buttons, clicks at the background bars as well as scrolling with the keyboard (if \"Use custom scrolling functions for the keyboard\" is activated)."
+	"explanation: animate scroll" : "If you select this option, the page will not instantly jump to the desired position anymore, but automatically scroll there with an adjustable rate.<br>This applies to the scroll buttons, clicks at the background bars as well as scrolling with the keyboard (if \"Use custom scrolling functions for the keyboard\" is activated).",
+	"explanation: external_interface" : "By checking this option, modern scroll will provide some of its key features for usage by third-party-extensions, websites or you. You can then e.g. create custom mouse gestures.<br><a href='http://my.opera.com/christoph142/blog/2013/02/08/modern-scroll-documentation' target='_blank'>Visit the documentation to learn more about it.</a>"
 };

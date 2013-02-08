@@ -66,6 +66,8 @@ var strings = {
 	"mousescroll_velocity" : "Vitesse de défilement par molette de la souris et le trackpad",
 	"mousescroll_distance" : "Distance défilé par rotation de la molette de la souris",
 	"animatedscroll_velocity" : "Vitesse de défilement animé",
+	"external_interface_headline" : "External Interface",
+	"external_interface" : "Provide an interface for external access",
 	"how to" : "Comment puis-je utiliser cette extension?",
 	"disable standard bars" : "Les barres de défilement standards d'Opera doivent être désactivés pour éviter doubles barres.<br>Donc ouvre Opera → Réglages → Préférences... → Avancé → Navigation et désactive \"Afficher les barres de défilement\"",
 	"footer" : "Merci d'avoir installé cette extension. Tu peux me contacter toujours pour des commentaires et des questions.",
@@ -76,5 +78,6 @@ var strings = {
 	"explanation: trigger area" : "Cette zone rend l'accès des barres plus facile."/*, mais les éléments couverts par ce domaine ne peuvent plus être cliqué, sauf que tu masques l'interface via le menu contextuel."*/,
 	"explanation: superbar" : "Le \"superbar\" est une barre de défilement horizontale et verticale combinée.<br>Donc, il devient visibles seulement si les deux barres sont nécessaires et apparaîtra alors centré verticalement à la verticale et centré horizontalement à la barre horizontale.",
 	"explanation: custom functions" : "L'expérience de défilement standard d'Opera est parfois un peu saccadé et lent. En activant cettes options, l'extension reprend également le défilement respectif, ce qui devrait se traduire par un gain de performance notable.",
-	"explanation: animate scroll" : "Si tu sélectionnes cette option, la page ne ​​saute plus à la position souhaitée, mais il là défile automatiquement avec un taux révisable.<br>Cela vaut pour les boutons de défilement, les clics aux barres d'arrière-plan ainsi que le défilement avec le clavier (si \"Utilise des fonctions de défilement personnalisées pour le clavier\" est activée)."
+	"explanation: animate scroll" : "Si tu sélectionnes cette option, la page ne ​​saute plus à la position souhaitée, mais il là défile automatiquement avec un taux révisable.<br>Cela vaut pour les boutons de défilement, les clics aux barres d'arrière-plan ainsi que le défilement avec le clavier (si \"Utilise des fonctions de défilement personnalisées pour le clavier\" est activée).",
+	"explanation: external_interface" : "By checking this option, modern scroll will provide some of its key features for usage by third-party-extensions, websites or you. You can then e.g. create custom mouse gestures.<br><a href='http://my.opera.com/christoph142/blog/2013/02/08/modern-scroll-documentation' target='_blank'>Visit the documentation to learn more about it.</a>"
 };

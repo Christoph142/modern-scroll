@@ -66,6 +66,8 @@ var strings = {
 	"mousescroll_velocity" : "Prędkość przewijania kółkiem myszy i gładzikiem",
 	"mousescroll_distance" : "Długość przewinięcia kółkiem myszy",
 	"animatedscroll_velocity" : "Prędkość przewijania z animacją",
+	"external_interface_headline" : "External Interface",
+	"external_interface" : "Provide an interface for external access",
 	"how to" : "Jak się tego używa?",
 	"disable standard bars" : "Lepiej, żeby typowe paski Opery były wyłączone, nie potrzeba nam aż dwóch. <br>W tym celu należy odznaczyć opcję „Pokaż paski przewijania” z grupy Opera → Ustawienia → Preferencje… → Zaawansowane → Przeglądanie.",
 	"footer" : "Dzięki, że zainstalowałaś(-eś) to rozszerzenie. Nie wahaj się wysyłać mi opinii ani pytań",
@@ -76,5 +78,6 @@ var strings = {
 	"explanation: trigger area" : "Powiększa obszar dostępu do pasków."/* w zamian za brak możliwości klikniecia elementów znajdujących się w tym obszarze do czasu ukrycia pasków poprzez menu podręczne"*/,
 	"explanation: superbar" : "Arkusz łączy w sobie oba paski przewijania.<br>W związku z tym jest dostępny, gdy strona nie mieści się na ekranie w obu kierunkach.<br>Jego położenie odpowiada położeniu pionowego i poziomego paska.",
 	"explanation: custom functions" : "Przewijając strony w Operze bez ulepszeń możesz zaobserwować przycinanie. Z tą funkcją rozszerzenie przyjmuje wprost polecenia przewijania kółkiem, co powinno przełożyć się na znaczny wzrost wydajności.",
- "explanation: animate scroll" : "Kiedy włączysz tę funkcję, strona nie będzie od razu przeskakiwać w docelowe miejsce, ale przewinie się w określonym tempie.<br>Powyższe dotyczy przycisków przewijania, kliknięć na szynach oraz przewijania klawiaturą (o ile zaznaczono pole Pozwól rozszerzeniu kontrolować przewijanie klawiaturą)."
+ "explanation: animate scroll" : "Kiedy włączysz tę funkcję, strona nie będzie od razu przeskakiwać w docelowe miejsce, ale przewinie się w określonym tempie.<br>Powyższe dotyczy przycisków przewijania, kliknięć na szynach oraz przewijania klawiaturą (o ile zaznaczono pole Pozwól rozszerzeniu kontrolować przewijanie klawiaturą).",
+	"explanation: external_interface" : "By checking this option, modern scroll will provide some of its key features for usage by third-party-extensions, websites or you. You can then e.g. create custom mouse gestures.<br><a href='http://my.opera.com/christoph142/blog/2013/02/08/modern-scroll-documentation' target='_blank'>Visit the documentation to learn more about it.</a>"
 };
