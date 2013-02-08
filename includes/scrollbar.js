@@ -654,8 +654,8 @@ function adjust_contextmenu()
 	
 function contextmenu_click()
 {
-	if(document.getElementById("modern_scroll")) remove_ui();
-	else add_ui();
+	if(document.getElementById("modern_scroll").style.display === "none") show_ui();
+	else hide_ui();
 }
 
 function add_or_remove_ui()
@@ -738,8 +738,6 @@ function ms_scrollBy_y_mouse(y)
 
 function ms_scrollBy_x(x)
 {
-	stopEvent();
-	
 	if((by_x >= 0 && x > 0) || (by_x <= 0 && x < 0)){
 		by_x += x;
 		if(window.pageXOffset + by_x < 0) by_x = -window.pageXOffset;
@@ -760,8 +758,6 @@ function ms_scrollBy_x(x)
 }
 function ms_scrollBy_y(y)
 {
-	stopEvent();
-	
 	if((by_y >= 0 && y > 0) || (by_y <= 0 && y < 0)){
 		by_y += y;
 		if(window.pageYOffset + by_y < 0) by_y = -window.pageYOffset;
@@ -1051,5 +1047,20 @@ function target_is_input(e){
 }
 
 function stopEvent(){ window.event.preventDefault(); window.event.stopPropagation(); }
+
+function show_ui(){ document.getElementById("modern_scroll").style.display = null; }
+function hide_ui(){
+	document.getElementById("modern_scroll").style.display = "none";
+	// send message to bg
+}
+
+if(w.external_interface === "1") // provide interface for external access:
+{
+	window.modern_scroll = {};
+	window.modern_scroll.show = show_ui;
+	window.modern_scroll.hide = hide_ui;
+	window.modern_scroll.scroll_2_top = scroll_Pos1;
+	window.modern_scroll.scroll_2_bottom = scroll_End;
+}
 
 }());
