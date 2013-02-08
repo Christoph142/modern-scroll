@@ -24,10 +24,15 @@ v 2.X
 ---------
 !new: sync settings via Opera Link
 !new: scroll bars for elements
-!new: interface and scrolling functions are available independently
-!new: Romanian translation (thx Cryio)
 ?new: mouse wheel scrolling speed / distance dependend on wheel spin speed
-!fix: arrow keys aren't responding in certain textareas (thx Henry for reporting)
+!fix: arrow keys aren't responding in certain textareas (thx Henryk for reporting)
+
+v 2.3
+---------
+new: interface for external access of modern scroll
+!new: components are available independently
+new: Romanian translation (thx Cryio)
+fix: hiding the UI also disables the scrolling functions
 
 v 2.2.1
 ---------

@@ -19,9 +19,12 @@ Diese Erweiterung war ursprünglich als Update für "Slim ScrollBar" von damage9
 Changelog:
 ----------
 
-v 2.x
+v 2.3
 ---------
-!neu: Rumänische Übersetzung (Danke Cryio)
+neu: Schnittstelle für den Zugang von außen
+!neu: die Komponenten sind unabhängig voneinander nutzbar
+neu: Rumänische Übersetzung (Danke Cryio)
+fix: Ausblenden der Benutzeroberfläche deaktiviert gleichzeitig die eigenen Scroll-Funktionen
 
 v 2.2.1
 ---------
