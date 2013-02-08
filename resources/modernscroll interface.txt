@@ -1,0 +1,5 @@
+modernscroll.
+			 show();
+			 hide();
+			 scroll2top();
+			 scroll2bottom();
