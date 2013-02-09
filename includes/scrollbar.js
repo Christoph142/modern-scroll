@@ -647,8 +647,10 @@ function onScroll(){ window.clearTimeout(timeout); timeout = window.setTimeout(r
 function adjust_contextmenu()
 {
 	window.event.stopPropagation();	// prevent bubbling (e.g. prevent drag being triggered on separately opened images)
-	if(window.event.which != 3 || w.contextmenu_show_when !== "2") return; // only right mouse button:
-	if(window.event.target.id.substr(0,3) === "ms_") opera.extension.postMessage("show_contextmenu");
+	if(window.event.which !== 3 || w.contextmenu_show_when !== "2") return; // only right mouse button:
+	
+	if(window.event.target.id.substr(0,3) === "ms_" || document.getElementById("modern_scroll").style.display === "none")
+		opera.extension.postMessage("show_contextmenu");
 	else opera.extension.postMessage("hide_contextmenu");
 }
 	
@@ -1048,10 +1050,15 @@ function target_is_input(e){
 
 function stopEvent(){ window.event.preventDefault(); window.event.stopPropagation(); }
 
-function show_ui(){ document.getElementById("modern_scroll").style.display = null; }
-function hide_ui(){
+function show_ui()
+{
+	document.getElementById("modern_scroll").style.display = null;
+	opera.extension.postMessage("change_contextmenu_string_into_hide");
+}
+function hide_ui()
+{
 	document.getElementById("modern_scroll").style.display = "none";
-	// send message to bg
+	opera.extension.postMessage("change_contextmenu_string_into_show");
 }
 
 if(w.external_interface === "1") // provide interface for external access:
