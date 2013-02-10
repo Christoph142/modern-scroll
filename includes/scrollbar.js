@@ -84,6 +84,8 @@ function initialize()
 	opera.extension.postMessage("reset_contextmenu");
 	window.addEventListener("mousedown", adjust_contextmenu, false);
 	opera.contexts.menu.onclick = contextmenu_click;
+	
+	add_external_interface();
 }
 
 function inject_css()
@@ -653,7 +655,7 @@ function adjust_contextmenu()
 		opera.extension.postMessage("show_contextmenu");
 	else opera.extension.postMessage("hide_contextmenu");
 }
-	
+
 function contextmenu_click()
 {
 	if(document.getElementById("modern_scroll").style.display === "none") show_ui();
@@ -1061,13 +1063,15 @@ function hide_ui()
 	opera.extension.postMessage("change_contextmenu_string_into_show");
 }
 
-if(w.external_interface === "1") // provide interface for external access:
-{
-	window.modern_scroll = {};
-	window.modern_scroll.show = show_ui;
-	window.modern_scroll.hide = hide_ui;
-	window.modern_scroll.scroll_2_top = scroll_Pos1;
-	window.modern_scroll.scroll_2_bottom = scroll_End;
+function add_external_interface(){
+	if(w.external_interface === "1") // provide interface for external access:
+	{
+		window.modernscroll = {};
+		window.modernscroll.show = show_ui;
+		window.modernscroll.hide = hide_ui;
+		window.modernscroll.scroll_2_top = scroll_Pos1;
+		window.modernscroll.scroll_2_bottom = scroll_End;
+	}
 }
 
 }());
