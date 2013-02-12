@@ -66,8 +66,8 @@ var strings = {
 	"mousescroll_velocity" : "Rychlost rolování pomocí kolečka myši a touchpadu",
 	"mousescroll_distance" : "Vzdálenost rolování na otočení kolečka myši",
 	"animatedscroll_velocity" : "Rychlost animovaného rolování",
-	"external_interface_headline" : "External Interface",
-	"external_interface" : "Provide an interface for external access",
+	"external_interface_headline" : "Externí rozhraní",
+	"external_interface" : "Poskytovat rozhraní pro externí přístup",
 	"how to" : "Jak mám používat toto rozšíření?",
 	"disable standard bars" : "Pokud nepoužíváte moderní rolování výhradně v celoobrazovkovém režimu, tak standardní rolovací posuvníky Opery by měly být vypnuty pro předejítí zdvojení posuvníků.<br>Pro udělání tohoto jděte do <strong>Opera › Nastavení › Nastavení... (Ctrl+F12) › Pokročilé volby › Prohlížení</strong> a vypněte zde \"Zobrazit posuvníky\".",
 	"footer" : "Díky za nainstalování tohoto rozšíření. Můžete mě kontaktovat v jakoukoli dobu pro zpětnou vazbu a otázky.",
@@ -79,5 +79,5 @@ var strings = {
 	"explanation: superbar" : "\"Superbar\" je kombinací horizontálního a vertikálního rolovacího posuvníku.<br>A tím pádem se zobrazí, jen když jsou nezbytné oba posuvníky.<br>Jeho pozice je zarovnána s vertikálními a horizontálními rolovacími posuvníky.",
 	"explanation: custom functions" : "Standardní rolovací zážitek Opery je někdy trochu trhavý a pomalý. Aktivací těchto možností převezme rozšíření korespondující rolování, což by mělo vyústit v pozorovatelný výkonnostní nárůst.",
 	"explanation: animate scroll" : "Pokud vyberete tuto možnost, tak stránka víckrát hned nepřeskočí na požadovanou pozici, ale automaticky tam sroluje s nastavitelným tempem.<br>Toto se týká rolovacích tlačítek, kliknutí na lišty v pozadí a taktéž rolování pomocí klávesnice (pokud \"Využívat vlastní rolovací funkce pro klávesnici\" je aktivováno).",
-	"explanation: external_interface" : "By checking this option, modern scroll will provide some of its key features for usage by third-party-extensions, websites or you. You can then e.g. create custom mouse gestures.<br><a href='http://my.opera.com/christoph142/blog/2013/02/08/modern-scroll-documentation' target='_blank'>Visit the documentation to learn more about it.</a>"
+	"explanation: external_interface" : "Po zatrhnutím této možnosti bude moderní rolování poskytvet nějaké z vlastních klíčových vlastností pro užívání rozšíření 3 stran, webů nebo vaše. Můžtete tedy například vytvořit vlastní pohybový příkaz pro myš.<br><a href='http://my.opera.com/christoph142/blog/2013/02/08/modern-scroll-documentation' target='_blank'>Navštivte tuto dokumentaci pro zjištění více informací (psáno anglicky).</a>"
 };
