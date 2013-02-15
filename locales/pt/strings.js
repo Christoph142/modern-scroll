@@ -66,8 +66,8 @@ var strings = {
 	"mousescroll_velocity" : "Velocidade da rolagem com a roda do mouse e trackpad",
 	"mousescroll_distance" : "Distância rolada pela rotação da roda do mouse e pelo trackpad",
 	"animatedscroll_velocity" : "Velocidade da rolagem animada",
-	"external_interface_headline" : "External Interface",
-	"external_interface" : "Provide an interface for external access",
+	"external_interface_headline" : "Interface Externa",
+	"external_interface" : "Habilitar interface para acesso externo",
 	"how to" : "Como eu uso esta extensão?",
 	"disable standard bars" : "Se você não usa o modern scroll exclusivamente em tela cheia as barras de rolagem padrão do Opera podem ser desabilitadas para evitar barras duplas.<br>Para fazer isso, vá para <strong>Opera → Configurações → Preferências... (Ctrl+F12) → Avançado → Navegação</strong> e desabilite \"Exibir barras de rolagem\".",
 	"footer" : "Obrigado por instalar esta extensão. Para comentários e perguntas não hesite em contatar-me.",
@@ -79,5 +79,5 @@ var strings = {
 	"explanation: superbar" : "A \"superbar\" é uma versão combinada das barras vertical e horizontal.<br>Logo só fica disponível quando ambas as barras são necessárias.<br>Sua posição é alinhada com as barras de rolagem vertical e horizontal.",
 	"explanation: custom functions" : "A rolagem nativa do Opera às vezes é irregular e lenta. Ativando esta opção a extensão também assume o controle da rolagem, o que pode resultar em uma melhora na performance.",
 	"explanation: animate scroll" : "Com esta opção a página não irá pular para a posição direto, mas automaticamente vai rolar até a posição a uma velocidade ajustável.<br>Se aplica aos 'botões de rolagem' e a cliques nas barras de fundo assim como rolagem pelo mouse (se as \"funções de rolagem personalizada\" estiverem ativas).",
-	"explanation: external_interface" : "By checking this option, modern scroll will provide some of its key features for usage by third-party-extensions, websites or you. You can then e.g. create custom mouse gestures.<br><a href='http://my.opera.com/christoph142/blog/2013/02/08/modern-scroll-documentation' target='_blank'>Visit the documentation to learn more about it.</a>"
+	"explanation: external_interface" : "Marcando esta opção vai deixar que alumas funções do modern scroll fiquem acessíveis para extensões de terceiros, websites e você. Por exemplo, você pode criar um gesto do mouse para controlar o modern scroll.<br><a href='http://my.opera.com/christoph142/blog/2013/02/08/modern-scroll-documentation' target='_blank'>Visite a documentação para mais detalhes.</a>"
 };
