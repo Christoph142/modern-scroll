@@ -34,7 +34,8 @@ var strings = {
 	"always" : "Sempre",
 	"show_bg_bars_when" : "E as barras de fundo?",
 	"like bars" : "Como as barras de rolagem",
-	"fullscreen_only" : "Usar modern scroll apenas em tela cheia",
+	"fullscreen_only" : "Show the bars in fullscreen mode only", //"Usar modern scroll apenas em tela cheia",
+	"fullscreen_only_short" : "Only in fullscreen mode",
 	"move_bars_during_scroll" : "Animar as barras de rolagem ao rolar com a roda do mouse / teclado",
 	"bg_special_ends" : "Clicar nas pontas das barras de fundo rolam completamente para o topo/fundo (esquerda/direita respectivamente) invés de uma página",
 	"container1" : "Utilizar modern scroll a uma distância de até",
@@ -79,5 +80,5 @@ var strings = {
 	"explanation: superbar" : "A \"superbar\" é uma versão combinada das barras vertical e horizontal.<br>Logo só fica disponível quando ambas as barras são necessárias.<br>Sua posição é alinhada com as barras de rolagem vertical e horizontal.",
 	"explanation: custom functions" : "A rolagem nativa do Opera às vezes é irregular e lenta. Ativando esta opção a extensão também assume o controle da rolagem, o que pode resultar em uma melhora na performance.",
 	"explanation: animate scroll" : "Com esta opção a página não irá pular para a posição direto, mas automaticamente vai rolar até a posição a uma velocidade ajustável.<br>Se aplica aos 'botões de rolagem' e a cliques nas barras de fundo assim como rolagem pelo mouse (se as \"funções de rolagem personalizada\" estiverem ativas).",
-	"explanation: external_interface" : "Marcando esta opção vai deixar que alumas funções do modern scroll fiquem acessíveis para extensões de terceiros, websites e você. Por exemplo, você pode criar um gesto do mouse para controlar o modern scroll.<br><a href='http://my.opera.com/christoph142/blog/2013/02/08/modern-scroll-documentation' target='_blank'>Visite a documentação para mais detalhes.</a>"
+	"explanation: external_interface" : "Marcando esta opção vai deixar que alumas funções do modern scroll fiquem acessíveis para extensões de terceiros, websites e você. Por exemplo, você pode criar um gesto do mouse para controlar o modern scroll.<br><a href='http://my.opera.com/christoph142/blog/2013/02/08/modern-scroll-documentation' target='_blank'>Visite a documentação para madetalhes.</a>"
 };
