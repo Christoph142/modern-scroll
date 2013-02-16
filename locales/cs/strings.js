@@ -34,7 +34,7 @@ var strings = {
 	"always" : "Vždy",
 	"show_bg_bars_when" : "A lišty v pozadí posuvníků?",
 	"like bars" : "Jako posuvníky",
-	"fullscreen_only" : "Zobrazovat posuvníky jen v celoobrazovkovém režimu",//"Používat moderní rolování jen v celoobrazovkovém režimu"
+	"fullscreen_only" : "Zobrazovat posuvníky jen v celoobrazovkovém režimu",
 	"fullscreen_only_short" : "Pouze v celoobrazovkovém režimu",
 	"move_bars_during_scroll" : "Animovat rolovací posuvníky během rolování kolečkem na myši / klávesnicí",
 	"bg_special_ends" : "Kliknutí na konec lišty v pozadí posuvníků sroluje úplně nahoru/dolů (respektive doleva/doprava) místo o jednu stránku",
