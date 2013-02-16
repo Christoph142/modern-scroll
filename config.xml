@@ -39,12 +39,11 @@
 	<preference name="superbar_opacity" value="70" />
 	<preference name="vbar_at_left" value="0" />
 	<preference name="hbar_at_top" value="0" />
-	<preference name="contextmenu_show_when" value="2" /><!-- 1 = never, 2 = only over interface, 3 = always -->
 	<preference name="container" value="0" />
 	<preference name="container_size" value="30" />
 	<preference name="gap" value="2" />
 	
-	<preference name="show_buttons" value="0" />
+	<preference name="show_buttons" value="0" /><!-- 0 = no, 1 = yes (old), 2 = only fullscreen, 4 = yes -->
 	<preference name="buttonposition" value="48" />
 	<preference name="button_height" value="50" />
 	<preference name="button_width" value="100" />
@@ -52,12 +51,15 @@
 	
 	<preference name="animate_scroll" value="1" />
 	<preference name="animate_scroll_max" value="2" />
+	
 	<preference name="use_own_scroll_functions" value="1" />
 	<preference name="use_own_scroll_functions_mouse" value="1" />
 	<preference name="scroll_velocity" value="5" />
 	<preference name="keyscroll_velocity" value="2" />
 	<preference name="mousescroll_velocity" value="3" />
 	<preference name="mousescroll_distance" value="1" />
+	
+	<preference name="contextmenu_show_when" value="2" /><!-- 1 = never, 2 = only over interface, 3 = always -->
 	
 	<preference name="external_interface" value="1" />
 	
