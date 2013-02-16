@@ -66,6 +66,8 @@ var strings = {
 	"mousescroll_velocity" : "Velocitatea derulării cu rotiţa cursorului şi a trackpad-ului",
 	"mousescroll_distance" : "Distanţa derulată per rotire a rotiţei",
 	"animatedscroll_velocity" : "Velocitatea derulării animate",
+	"external_interface_headline" : "External Interface",
+	"external_interface" : "Provide an interface for external access",
 	"how to" : "Cum folosesc această extensie?",
 	"disable standard bars" : "Dacă nu foloseşti Modern Scroll exclusiv în modul fullscreen, barele normale de la Opera ar trebui dezactivate pentru a evita bare duble.<br> Pentru a face asta, mergi în <strong>Opera → Setări → Preferinţe... (Ctrl+F12) → Avansat → Navigare </strong> şi dezactivează \" arată barele de derulare \" de acolo.",
 	"footer" : "Vă mulţumesc pentru instalarea acestei extensii. Mă puteţi contacta la orice oră pentru feedback şi întrebări.",
@@ -76,5 +78,6 @@ var strings = {
 	"explanation: trigger area" : "Măreşte suprafaţa de acces a barelor de navigare.",
 	"explanation: superbar" : "\"Superbara\" este o combinaţie dintre bara de navigare orizontală şi cea verticală.<br>Astfel, devine vizibilă doar când ambele bare sunt necesare.<br>Poziţia sa este aliniată cu barele verticale si orizontale.",
 	"explanation: custom functions" : "Navigarea prin derularea standard din Opera este câteodată o experienţă sacadată şi înceată. Prin activarea acestor opţiuni extensia preia controlul asupra derulării respective, ceea ce ar trebui să rezulte într-o îmbunătăţire vizibilă a performanţei.",
-	"explanation: animate scroll" : "Dacă selectezi această opţiune, pagina nu o să mai sară la poziţia dorită, ci o să se deruleze automat până la acel punct cu o rată ajustabilă.<br>Aceasta se aplică butoanelor de derulare, click-urilor pe barele de fundal cât si navigării cu tastatura. (dacă \"Foloseşte funcţiile modificate pentru tastatură \" sunt activate)."
+	"explanation: animate scroll" : "Dacă selectezi această opţiune, pagina nu o să mai sară la poziţia dorită, ci o să se deruleze automat până la acel punct cu o rată ajustabilă.<br>Aceasta se aplică butoanelor de derulare, click-urilor pe barele de fundal cât si navigării cu tastatura. (dacă \"Foloseşte funcţiile modificate pentru tastatură \" sunt activate).",
+	"explanation: external_interface" : "By checking this option, modern scroll will provide some of its key features for usage by third-party-extensions, websites or you. You can then e.g. create custom mouse gestures.<br><a href='http://my.opera.com/christoph142/blog/2013/02/08/modern-scroll-documentation' target='_blank'>Visit the documentation to learn more about it.</a>"
 };
