@@ -32,6 +32,8 @@ function save_buttonposition(){
 // restore preferences:
 function getprefs()
 {
+	if(widget.preferences.show_buttons === "1") widget.preferences.show_buttons = 4; // changed from 0, 1 into 0, 2(fullscreen), 4
+	
 	if(!widget.preferences.saved_sets){ // save default configuration if it's missing:
 		var default_set = {"Default":{}};
 		for(var setting in widget.preferences){
@@ -75,7 +77,7 @@ function getprefs()
 		else document.getElementsByTagName("select")[i].value = widget.preferences[selects[i].id];
 	}
 	
-	if(document.getElementById("show_buttons").checked) document.getElementById("button_container").style.height = "auto";
+	if(document.getElementById("show_buttons").value !== "0") document.getElementById("button_container").style.height = "auto";
 	if(!document.getElementById("show_superbar").checked) document.getElementById("superbar_container").style.height = "0px";
 	if(!document.getElementById("use_own_scroll_functions").checked)
 		document.getElementById("keyscroll_velocity_container").style.display="none";

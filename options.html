@@ -128,7 +128,15 @@
     
     <fieldset>
     <h4><script>_("buttons");</script>:</h4>
-    <input type="checkbox" id="show_buttons" name="show_buttons" onChange="document.getElementById('button_container').style.height=(this.checked?'auto':'0px');"> <label for="show_buttons"><script>_("show buttons");</script></label><br>
+    <script>_("show buttons");</script><br>
+    <input type="range" name="show_buttons" id="show_buttons" min="0" max="4" value="0" step="2" style="width:100%;" onChange="document.getElementById('button_container').style.height=(this.value==='0'?'0px':'auto');" />
+    <table>
+    	<tr>
+        	<td width="20%" style="text-align:left; padding-left:10px; vertical-align:top;"><script>_("never");</script></td>
+            <td width="60%" style="text-align:center; vertical-align:top;"><script>_("fullscreen_only");</script></td>
+            <td width="20%" style="text-align:right; padding-right:10px; vertical-align:top;"><script>_("always");</script></td>
+        </tr>
+    </table><br>
     <div id="button_container" style="overflow:hidden; height:0px;"><br>
     	<table><tr><td style="text-align:left;">
     	<label for="button_width"><script>_("button_width");</script>: </label>
