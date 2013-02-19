@@ -302,7 +302,7 @@ function check_dimensions_delayed(){
 	if(window.event.target.id.substr(0,3) === "ms_") return;
 	last_clicked_element_is_scrollable = is_scrollable(window.event.target, 2) ? 1 : 0;
 	
-	window.setTimeout(check_dimensions, 200); // needs some time to affect page height if click expands element
+	window.setTimeout(check_dimensions, 200); // needs some time to affect page height if click expands element <-> prob with long animations
 }
 var isFullscreen;
 function check_dimensions()
@@ -711,11 +711,7 @@ function adjust_contextmenu()
 	else opera.extension.postMessage("hide_contextmenu");
 }
 
-function contextmenu_click()
-{
-	if(document.getElementById("modern_scroll").style.display === "none") show_ui();
-	else hide_ui();
-}
+function contextmenu_click(){ if(document.getElementById("modern_scroll").style.display === "none") show_ui(); else hide_ui(); }
 
 
 
@@ -789,15 +785,19 @@ function handle_button(whichone)
 	}
 }
 
+var button_timeout;
 function show_or_hide_buttons()
 {
-	// timed...?
-	if(window.pageYOffset > 0)							document.getElementById("ms_upbutton").style.display = "inline";
-	else												document.getElementById("ms_upbutton").style.display = null;
-	
-	if(window.pageYOffset < window.scrollMaxY)			document.getElementById("ms_downbutton").style.display = "inline";
-	else												document.getElementById("ms_downbutton").style.display = null;
+	window.clearTimeout(button_timeout);
+	button_timeout = window.setTimeout(function(){
+		if(window.pageYOffset > 0)					document.getElementById("ms_upbutton").style.display = "inline";
+		else										document.getElementById("ms_upbutton").style.display = null;
+		
+		if(window.pageYOffset < window.scrollMaxY)	document.getElementById("ms_downbutton").style.display = "inline";
+		else										document.getElementById("ms_downbutton").style.display = null;
+	}, 200);
 }
+
 
 
 // ######################################
