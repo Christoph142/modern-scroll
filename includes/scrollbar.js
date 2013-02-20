@@ -38,12 +38,7 @@ var w = widget.preferences;	// \
 var vbar;					//  | pass by reference!
 var hbar;					// /
 
-(function check_if_tab_is_ready(){
-	if(document.body)	initialize();
-	else				window.setTimeout(check_if_tab_is_ready, 50);
-}()); //declare and execute
-
-function initialize()
+(function check_if_tab_needs_bars()
 {
 	if(window.matchMedia("all and (view-mode: minimized)").matches) return; // stop if it's a speed dial
 	if(window.self !== window.top){ // only treat main & iframes
@@ -55,7 +50,16 @@ function initialize()
 		}catch(e){ return; /* window.self.frameElement == protected variable */ }
 	}
 	
-	add_ms();
+	(function check_if_tab_is_ready()
+	{
+		if(document.body)	initialize();
+		else				window.setTimeout(check_if_tab_is_ready, 50);
+	}());
+}()); //declare and execute
+
+function initialize()
+{	
+	add_ms()
 	
 	// delayed update outside of options page when settings change (to work around DSK-380461):
 	if(document.URL.substr(0,9) === "widget://") opera.extension.onmessage = update_ms;
@@ -87,10 +91,11 @@ function remove_ms()
 {
 	if(!document.getElementById("modern_scroll")) return;
 	
-	window.removeEventListener("DOMNodeInserted", onDOMNode, false);
+	document.removeEventListener("transitionend", check_dimensions, false);
+	document.removeEventListener("animationend", onDOMNode, false);
 	window.removeEventListener("DOMNodeRemoved", onDOMNode, false);
 	window.removeEventListener("resize", check_dimensions, false);
-	window.removeEventListener("mouseup", check_dimensions_delayed, false);
+	window.removeEventListener("mouseup", check_dimensions_after_click, false);
 	
 	window.removeEventListener("keydown", arrowkeyscroll, false);
 	window.removeEventListener("keydown", otherkeyscroll, false);
@@ -156,7 +161,12 @@ function inject_css()
 		".dragged #ms_vbar, .dragged #ms_hbar{ opacity:"+(w.opacity>80?"1":((parseInt(w.opacity)+20)/100))+"; }"+
 		".dragged #ms_vbar_ui, .dragged #ms_vbar_bg_ui{ width:"+w.hover_size+"px; }"+
 		".dragged #ms_hbar_ui, .dragged #ms_hbar_bg_ui{ height:"+w.hover_size+"px; }"+
-		"#ms_superbar.dragged{ opacity:"+(w.show_superbar_minipage === "1" ? 1 : (w.superbar_opacity/100))+"; }";
+		"#ms_superbar.dragged{ opacity:"+(w.show_superbar_minipage === "1" ? 1 : (w.superbar_opacity/100))+"; }"+
+		
+		// DOMNodeInserted-hack by Daniel Buchner (http://www.backalleycoder.com/2012/04/25/i-want-a-damnodeinserted)
+		"@keyframes nodeInserted { from{ clip:rect(1px, auto, auto, auto); }to{ clip:rect(0px, auto, auto, auto); } }"+
+		"@-o-keyframes nodeInserted { from{ clip:rect(1px, auto, auto, auto); }to{ clip:rect(0px, auto, auto, auto); } }"+
+		"* { animation: nodeInserted 1ms; -o-animation: nodeInserted 1ms; }";
 	
 	if(document.getElementById("ms_style")) document.getElementById("ms_style").innerHTML = ms_style; // when options changed
 	else{ // when website is initially loaded
@@ -250,10 +260,11 @@ function add_dimension_checkers()
 {
 	window.addEventListener("load", check_dimensions, false);
 	window.addEventListener("resize", check_dimensions, false);
-	window.addEventListener("mouseup", check_dimensions_delayed, false);
+	window.addEventListener("mouseup", check_dimensions_after_click, false);
+	document.addEventListener("transitionend", check_dimensions, false);
 	
-	if(!document.URL.match("megalab.it/") && !document.URL.match(".milliyet.com.tr/") && !document.URL.match("https://lastpass.com"))
-		window.addEventListener("DOMNodeInserted", onDOMNode, false);
+	// DOMNodeInserted-hack by Daniel Buchner (http://www.backalleycoder.com/2012/04/25/i-want-a-damnodeinserted)
+	document.addEventListener("animationend", onDOMNode, false);
 	if(!document.URL.match("://vk.com")) window.addEventListener("DOMNodeRemoved", onDOMNode, false);
 }
 
@@ -298,7 +309,9 @@ function hide_ui()
 	opera.extension.postMessage("change_contextmenu_string_into_show");
 }
 
-function check_dimensions_delayed(){
+/*function check_dimensions_after_transition(){ if(window.event.target.id.substr(0,3) !== "ms_") check_dimensions(); }*/
+function check_dimensions_after_click()
+{
 	if(window.event.target.id.substr(0,3) === "ms_") return;
 	last_clicked_element_is_scrollable = is_scrollable(window.event.target, 2) ? 1 : 0;
 	
