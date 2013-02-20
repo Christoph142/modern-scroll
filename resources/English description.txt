@@ -28,10 +28,11 @@ v 2.X
 
 v 2.3
 ---------
-new: interface for external access of modern scroll
+new: modern scroll can be used for custom mouse gestures (external interface)
 new: components are available independently
 new: Romanian translation (thx Cryio)
 fix: hiding the UI also disables the scrolling functions
+fix: page's dimensions aren't updated after long transitions/animations (thx aiwork & arkenighte for reporting)
 fix: lastpass.com (thx netmain for reporting)
 
 v 2.2.1

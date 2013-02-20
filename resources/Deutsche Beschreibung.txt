@@ -21,10 +21,12 @@ Changelog:
 
 v 2.3
 ---------
-neu: Schnittstelle für den Zugang von außen
-!neu: die Komponenten sind unabhängig voneinander nutzbar
+neu: modern scroll kann für eigene Mausgesten verwendet werden (externe Schnittstelle)
+neu: die Komponenten sind unabhängig voneinander nutzbar
 neu: Rumänische Übersetzung (Danke Cryio)
 fix: Ausblenden der Benutzeroberfläche deaktiviert gleichzeitig die eigenen Scroll-Funktionen
+fix: Dimensionen der Seite werden nach langen Animationen nicht upgedated (Danke aiwork & arkenighte für's Melden)
+fix: lastpass.com (Danke netmain für's Melden)
 
 v 2.2.1
 ---------
