@@ -381,8 +381,8 @@ function resize_vbar()
 		return;
 	}
 	var vbar_height_before = vbar.style.height;
-	var vbar_new_height = Math.round(window.innerHeight/(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)/window.innerHeight));
-	vbar.style.height = vbar_new_height+"px"; // resize it
+	var vbar_new_height = Math.max(Math.round(window.innerHeight/(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)/window.innerHeight)), 30+2*w.gap);
+	vbar.style.height = vbar_new_height+"px";
 	
 	if(vbar.style.display !== "inline"){
 		document.getElementById("ms_vbar_ui").style.height = vbar_new_height-2*w.gap+"px";
@@ -392,10 +392,9 @@ function resize_vbar()
 		show_bar("v");
 		opera.extension.postMessage("reset_contextmenu");
 		
-		if(window.self.frameElement || w.use_own_scroll_functions_mouse === "1")
-			window.addEventListener("mousewheel", mousescroll_y, false);
+		if(window.self.frameElement || w.use_own_scroll_functions_mouse === "1") window.addEventListener("mousewheel", mousescroll_y, false);
 	}
-	else if(vbar_height_before != vbar_new_height+"px"){
+	else if(vbar_height_before !== vbar_new_height+"px"){
 		document.getElementById("ms_vbar_ui").style.height = vbar_new_height-2*w.gap+"px";
 		show_bar("v");
 	}
@@ -414,8 +413,8 @@ function resize_hbar()
 		return;
 	}
 	var hbar_width_before = hbar.style.width;
-	var hbar_new_width = Math.round(window.innerWidth/(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)/window.innerWidth));
-	hbar.style.width = hbar_new_width+"px"; // resize it
+	var hbar_new_width = Math.max(Math.round(window.innerWidth/(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)/window.innerWidth)), 30+2*w.gap);
+	hbar.style.width = hbar_new_width+"px";
 	
 	if(hbar.style.display !== "inline"){
 		document.getElementById("ms_hbar_ui").style.width = hbar_new_width-2*w.gap+"px";
@@ -425,7 +424,7 @@ function resize_hbar()
 		show_bar("h");
 		opera.extension.postMessage("reset_contextmenu");
 	}
-	else if(hbar_width_before != hbar_new_width+"px"){
+	else if(hbar_width_before !== hbar_new_width+"px"){
 		document.getElementById("ms_hbar_ui").style.width = hbar_new_width-2*w.gap+"px";
 		show_bar("h");
 	}
