@@ -6,7 +6,6 @@
 // @exclude *://mail.google.*
 // @exclude *://maps.google.*
 // @exclude *mail.live.com/*
-// @exclude http://docs.sencha.com/*
 // @exclude https://mega.co.nz/*
 // ==/UserScript==
 
@@ -83,7 +82,7 @@ function add_ms()
 	add_dimension_checkers();
 	check_dimensions();
 	
-	if(document.URL.substr(0,9) !== "widget://") add_contextmenu(); // include only partially in options ( <-> !contextmenu)
+	if(document.URL.substr(0,9) !== "widget://") add_contextmenu();
 	add_external_interface();
 }
 
