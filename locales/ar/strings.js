@@ -35,7 +35,7 @@
 	"show_bg_bars_when" : "و الأشرطة الخلفية",
 	"like bars" : "مثل أشرطة التمرير",
 	"fullscreen_only" : "Show the bars in fullscreen mode only", //"إظهار الأشرطة فقط في نمط ملء الشاشة",
-	"fullscreen_only_short" : "Only in fullscreen mode",
+	"fullscreen_only_short" : "فقط في نمط ملء الشاشة",
 	"move_bars_during_scroll" : "تحريك أشرطة التمرير عند التصفح باستعمال عجلة الفأرة أو لوحة المفاتيح",
 	"bg_special_ends" : "عند النقر على نهاية أشرطة التمرير الخلفية، يرجى التفح الى أعلى/أسفل ( و أيضا يمين/يسار) الموقع بل التصفح صفحة بصفحة",
 	"container1" : " مسافة تفعيل أشرطة التمرير ضمن ",
@@ -67,8 +67,8 @@
 	"mousescroll_velocity" : "سرعة التمرير باستعمال عجلة الفأرة",
 	"mousescroll_distance" : "المسافة المجتازة عند كل دورة لعجلة الفأرة",
 	"animatedscroll_velocity" : "سرعة التمرير المتحرك",
-	"external_interface_headline" : "External Interface",
-	"external_interface" : "Provide an interface for external access",
+	"external_interface_headline" : "الوسيط الخارجي",
+	"external_interface" : "توفير وسيط للولوج الخارجي",
 	"how to" : "كيف يمكنني استعمال هذه الإضافة",
 	"disable standard bars" : "يجب إبطال و إخفاء أشرطة التمرير الخاصة بأوبرا لتجنب ظهور مزدوج لهذه الأشؤطة.للقيام بذلك قم بفتح أوبرا ← إعدادات ← تفضيلات ← خيارات متقدمة ← استعراض ← و قم بإزالة تحديد (إظهار أشرطة التمرير) ، ",
 	"footer" : "شكرا لتثبيتكم هذه الإضافة. يمكنكم دائما الاتصال بي إن كانت لديكم أي تعليقات أو أسئلة.",
@@ -76,9 +76,9 @@
 	"contextmenu_hide" : "إخفاء التمرير المتطور",
 	"explanation: save set" : "يمكنك حفظ إعداداتك الحالية هنا. يكفي إدخال إسم و الضغط على الزر للحفظ. إذا أدخلت إسم موجود مسبقا فالاعدادات المحفوظة تحت هذا الأسم سيتم دعسها..",
 	"explanation: move_bars_during_scroll" : "إبطال هذا الإختيار إذا واجهتك مشاكل في الأداء. عندها موضع أشرطة التمرير سيحدًث فقط عند الإنتهاء من التمرير.",
-	"explanation: trigger area" : "هذه المنطقة تجعل الوصول للأشرطة أسهل."/*, لكن عناصر الصفحة الموجودة ضمن هذه المسافة تصبح غير قابلة للنقر إلا في حالة إخفاء أشرطة التمرير باستمال قائمة السياق أو قائمة زر الفأرة الأيمن"*/,
+	"explanation: trigger area" : "هذه المنطقة تجعل الوصول للأشرطة أسهل.",
 	"explanation: superbar" : "الشريط الخارق يستعمل للتصفح العمودي و الأفقي معا.لذا فهي لا تظهر إلا عند الحاجة للأشرطة العمودية و الأفقية، مكانها هو مركز الشريط العمودي عموديا و مركزالشريط الأفقي أفقيا",
 	"explanation: custom functions" : "التمرير أو التصفح الإفتراضي لأاوبرا في العادة سيء و بطيء. عند تفعيل هذا الخيار، هذه الإضافة ستتولى أمر التمرير مما يترجم بتحسن ملحوظ في الأداء",
 	"explanation: animate scroll" : "إذا حددت هذا الخيار، الصفحة لن تقفز أبدا للمكان المراد لكنها ستتحرك إلى هناك آليا بمقدار محدد.هذا ساري المفعول أيضا بالنسبة لأزرار التمرير، الضغط على نهايات أشرطة التمرير الخلفية و التصفح باستعمال لوحة التحكم في حالة ما إذا كنت تستعمل وضائف التمرير الإضافية لــلوحة التحكم).",
-	"explanation: external_interface" : "By checking this option, modern scroll will provide some of its key features for usage by third-party-extensions, websites or you. You can then e.g. create custom mouse gestures.<br><a href='http://my.opera.com/christoph142/blog/2013/02/20/modern-scroll-documentation' target='_blank'>Visit the documentation to learn more about it.</a>"
+	"explanation: external_interface" : "بالنقر على هذه الخاصية، ستوفر هذه الإضافة بعض من وظائفها الأساسية للاستغلال عن طريق إضافات أخرى، مواقع أو 'المستعمل'. يمكنك مثلا تخصيص إختصار لإماءات الفأرة .<br><a href='http://my.opera.com/christoph142/blog/2013/02/20/modern-scroll-documentation' target='_blank'>للمزيد من المعلومات يرجى الإطلاع على الوثائق و الشروحات المعنية.</a>"
 };
