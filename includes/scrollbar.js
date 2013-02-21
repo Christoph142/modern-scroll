@@ -571,28 +571,31 @@ function reposition_bars()
 	var vbar_top_before = vbar.style.top;
 	var hbar_left_before = hbar.style.left;
 	
-	if(vbar.style.display == "inline")
+	if(vbar.style.display === "inline")
 		vbar.style.top = Math.round(window.pageYOffset/window.scrollMaxY*(window.innerHeight-vbar.offsetHeight))+"px";
-	if(hbar.style.display == "inline"){
-		var left = Math.round(window.pageXOffset/window.scrollMaxX*(window.innerWidth-hbar.offsetWidth));
-		hbar.style.left = left-(parseInt(w.hover_size)*left/(window.innerWidth-hbar.offsetWidth))+(w.vbar_at_left=="1"?parseInt(w.hover_size):0)+"px";
+	if(hbar.style.display === "inline")
+	{
+		var left = Math.round(window.pageXOffset/window.scrollMaxX*(window.innerWidth-w.hover_size-hbar.offsetWidth));
+		hbar.style.left = left+(w.vbar_at_left === "1" ? parseInt(w.hover_size) : 0)+"px";
 	}
 	
-	if(vbar.style.display == "inline" && hbar.style.display == "inline" && w.show_superbar=="1"){
+	if(vbar.style.display === "inline" && hbar.style.display === "inline" && w.show_superbar === "1")
+	{
 		document.getElementById("ms_superbar").style.top = vbar.style.top;
 		document.getElementById("ms_superbar").style.height = vbar.style.height;
 		document.getElementById("ms_superbar").style.left = hbar.style.left;
 		document.getElementById("ms_superbar").style.width = hbar.style.width;
-		if(w.show_superbar_minipage=="0"){
+		if(w.show_superbar_minipage === "0")
+		{
 			document.getElementById("ms_superbar").style.transform = "scale("+(window.innerWidth/10)/parseInt(document.getElementById("ms_superbar").style.width)+","+(window.innerHeight/10)/parseInt(document.getElementById("ms_superbar").style.height)+")";
 		}
 		document.getElementById("ms_superbar").style.display = "inline";
 	}
-	else if(w.show_superbar === "1" && document.getElementById("ms_superbar").style.opacity != "1") //if superbar doesn't get dragged (minipage only -> no bars)
+	else if(w.show_superbar === "1" && document.getElementById("ms_superbar").style.opacity !== "1") //if superbar doesn't get dragged (minipage only -> no bars)
 		window.setTimeout(function(){ document.getElementById("ms_superbar").style.display = null; }, 1500);
 	
-	if(vbar_top_before != vbar.style.top) show_bar("v");
-	if(hbar_left_before != hbar.style.left) show_bar("h");
+	if(vbar_top_before !== vbar.style.top)		show_bar("v");
+	if(hbar_left_before !== hbar.style.left)	show_bar("h");
 	
 	document.getElementById("ms_vbar_bg").style.width = null; //DSK-375403 (hover-width not reset) (?)
 	hide_bars();
@@ -911,7 +914,7 @@ function ms_scroll_start_x(){
 		hbar.style.transition = "left "+(window.scrollMaxX-window.pageXOffset)/scroll_velocity+"ms linear";
 		hbar.style.left = window.innerWidth-parseInt(hbar.style.width)-(w.vbar_at_left==="0"?parseInt(w.gap)+parseInt(w.hover_size):0)+"px";
 	}
-	ms_scroll_inner_x(new Date().getTime()-10);
+	ms_scroll_inner_x(Date.now()-10);
 }
 function ms_scroll_start_y(){
 	window.removeEventListener("scroll", onScroll, false);
@@ -927,12 +930,12 @@ function ms_scroll_start_y(){
 		vbar.style.transition = "top "+(window.scrollMaxY-window.pageYOffset)/scroll_velocity+"ms linear";
 		vbar.style.top = window.innerHeight-parseInt(vbar.style.height)+"px";
 	}
-	ms_scroll_inner_y(new Date().getTime()-10);
+	ms_scroll_inner_y(Date.now()-10);
 }
 
 function ms_scroll_inner_x(lastTick)
 {
-	var curTick = new Date().getTime();
+	var curTick = Date.now();
 	var scrollamount = (curTick - lastTick) * scroll_velocity;
 	
 	if(by_x < 0){ scrollamount = -scrollamount; if(scrollamount < by_x) scrollamount = by_x; }
@@ -946,7 +949,7 @@ function ms_scroll_inner_x(lastTick)
 }
 function ms_scroll_inner_y(lastTick)
 {
-	var curTick = new Date().getTime();
+	var curTick = Date.now();
 	var scrollamount = (curTick - lastTick) * scroll_velocity;
 	
 	if(by_y < 0){ scrollamount = -scrollamount; if(scrollamount < by_y) scrollamount = by_y; }
@@ -996,25 +999,19 @@ function arrowkeyscroll(){
 		window.removeEventListener("scroll", reposition_bars, false);
 		window.removeEventListener("scroll", onScroll, false);
 		
-		if(e.which === 40)
-		{
-			arrowkeyscroll_down(new Date().getTime()-10);
-			
-			var time_to_scroll_to_end = (window.scrollMaxY-window.pageYOffset)/w.keyscroll_velocity;
-			if(w.move_bars_during_scroll === "1" && document.getElementById("modern_scroll_bars"))
-			{
-				show_bar("v");
-				vbar.style.transition = "top "+time_to_scroll_to_end+"ms linear";
-				vbar.style.top = window.innerHeight-parseInt(vbar.style.height)+"px";
-			}
-		}
-		else if	(e.which === 38) arrowkeyscroll_up(new Date().getTime()-10);
-		else if	(e.which === 39) arrowkeyscroll_right(new Date().getTime()-10);
-		else					 arrowkeyscroll_left(new Date().getTime()-10);
+		if		(e.which === 40) arrowkeyscroll_down(Date.now()-10);
+		else if	(e.which === 38) arrowkeyscroll_up(Date.now()-10);
+		else if	(e.which === 39) arrowkeyscroll_right(Date.now()-10);
+		else					 arrowkeyscroll_left(Date.now()-10);
 		
 		if(w.move_bars_during_scroll === "1" && document.getElementById("modern_scroll_bars"))
 		{
-			if(e.which === 38){
+			if(e.which === 40){
+				show_bar("v");
+				vbar.style.transition = "top "+(window.scrollMaxY-window.pageYOffset)/w.keyscroll_velocity+"ms linear";
+				vbar.style.top = window.innerHeight-parseInt(vbar.style.height)+"px";
+			}
+			else if(e.which === 38){
 				show_bar("v");
 				vbar.style.transition = "top "+window.pageYOffset/w.keyscroll_velocity+"ms linear";
 				vbar.style.top = "0px";
@@ -1022,12 +1019,12 @@ function arrowkeyscroll(){
 			else if(e.which === 39){
 				show_bar("h");
 				hbar.style.transition = "left "+(window.scrollMaxX-window.pageXOffset)/w.keyscroll_velocity+"ms linear";
-				hbar.style.left = window.innerWidth-parseInt(hbar.style.width)-(w.vbar_at_left==="0"?parseInt(document.getElementById("ms_hbar_bg").currentStyle.right):0)+"px";
+				hbar.style.left = window.innerWidth-parseInt(hbar.style.width)-(w.vbar_at_left === "0" ? w.hover_size : 0)+"px";
 			}
 			else if(e.which === 37){
 				show_bar("h");
 				hbar.style.transition = "left "+window.pageXOffset/w.keyscroll_velocity+"ms linear";
-				hbar.style.left = (w.vbar_at_left==="1"?parseInt(document.getElementById("ms_hbar_bg").currentStyle.left):0)+"px";
+				hbar.style.left = (w.vbar_at_left === "1" ? w.hover_size : 0)+"px";
 			}
 		}
 	}
@@ -1054,25 +1051,25 @@ function arrowkeyscroll(){
 	
 	function arrowkeyscroll_down(lastTick)
 	{
-		var curTick = new Date().getTime();
+		var curTick = Date.now();
 		window.scrollBy(0, (curTick - lastTick)*w.keyscroll_velocity);
 		scroll_timeout_id_y = window.setTimeout(function(){ arrowkeyscroll_down(curTick); },1);
 	}
 	function arrowkeyscroll_up(lastTick)
 	{
-		var curTick = new Date().getTime();
+		var curTick = Date.now();
 		window.scrollBy(0, (lastTick - curTick)*w.keyscroll_velocity);
 		scroll_timeout_id_y = window.setTimeout(function(){ arrowkeyscroll_up(curTick); },1);
 	}
 	function arrowkeyscroll_right(lastTick)
 	{
-		var curTick = new Date().getTime();
+		var curTick = Date.now();
 		window.scrollBy((curTick - lastTick)*w.keyscroll_velocity, 0);
 		scroll_timeout_id_x = window.setTimeout(function(){ arrowkeyscroll_right(curTick); },1);
 	}
 	function arrowkeyscroll_left(lastTick)
 	{
-		var curTick = new Date().getTime();
+		var curTick = Date.now();
 		window.scrollBy((lastTick - curTick)*w.keyscroll_velocity, 0);
 		scroll_timeout_id_x = window.setTimeout(function(){ arrowkeyscroll_left(curTick); },1);
 	}
