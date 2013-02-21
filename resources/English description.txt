@@ -24,7 +24,6 @@ v 2.X
 ---------
 !new: sync settings via Opera Link
 !new: scroll bars for elements
-?fix: arrow keys aren't responding in certain textareas (thx Henryk for reporting)
 
 v 2.3
 ---------
@@ -36,6 +35,7 @@ fix: page's dimensions aren't updated after long transitions/animations (thx aiw
 fix: lastpass.com (thx netmain for reporting)
 fix: incompatibility with ExtJS framework (thx Alexander for reporting)
 fix: position of bars is slightly incorrect for very long pages
+fix: keyboard navigation in contenteditable sections (thx Henryk for reporting)
 
 v 2.2.1
 ---------

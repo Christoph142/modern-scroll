@@ -29,6 +29,7 @@ fix: Dimensionen der Seite werden nach langen Animationen nicht upgedated (Danke
 fix: lastpass.com (Danke Netmain für's Melden)
 fix: Inkompatibilität mit ExtJS Framework (Danke Alexander für's Melden)
 fix: Position der Leisten ist leicht falsch bei sehr langen Seiten
+fix: Tastatur-Navigation in contenteditable-Bereichen (Danke Henryk für's Melden)
 
 v 2.2.1
 ---------
