@@ -26,7 +26,9 @@ neu: die Komponenten sind unabhängig voneinander nutzbar
 neu: Rumänische Übersetzung (Danke Cryio)
 fix: Ausblenden der Benutzeroberfläche deaktiviert gleichzeitig die eigenen Scroll-Funktionen
 fix: Dimensionen der Seite werden nach langen Animationen nicht upgedated (Danke aiwork & arkenighte für's Melden)
-fix: lastpass.com (Danke netmain für's Melden)
+fix: lastpass.com (Danke Netmain für's Melden)
+fix: Inkompatibilität mit ExtJS Framework (Danke Alexander für's Melden)
+fix: Position der Leisten ist leicht falsch bei sehr langen Seiten
 
 v 2.2.1
 ---------

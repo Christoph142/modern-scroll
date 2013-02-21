@@ -34,6 +34,8 @@ new: Romanian translation (thx Cryio)
 fix: hiding the UI also disables the scrolling functions
 fix: page's dimensions aren't updated after long transitions/animations (thx aiwork & arkenighte for reporting)
 fix: lastpass.com (thx netmain for reporting)
+fix: incompatibility with ExtJS framework (thx Alexander for reporting)
+fix: position of bars is slightly incorrect for very long pages
 
 v 2.2.1
 ---------
