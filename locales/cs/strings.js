@@ -71,7 +71,7 @@ var strings = {
 	"external_interface" : "Poskytovat rozhraní pro externí přístup",
 	"how to" : "Jak mám používat toto rozšíření?",
 	"disable standard bars" : "Pokud nepoužíváte moderní rolování výhradně v celoobrazovkovém režimu, tak standardní rolovací posuvníky Opery by měly být vypnuty pro předejítí zdvojení posuvníků.<br>Pro udělání tohoto jděte do <strong>Opera › Nastavení › Nastavení... (Ctrl+F12) › Pokročilé volby › Prohlížení</strong> a vypněte zde \"Zobrazit posuvníky\".",
-	"footer" : "Díky za nainstalování tohoto rozšíření. Můžete mě kontaktovat v jakoukoli dobu pro zpětnou vazbu a otázky.",
+	"footer" : "Díky za nainstalování tohoto rozšíření. Můžete mě kdykoli kontaktovat pro zpětnou vazbu a otázky.",
 	"contextmenu_show" : "Ukázat moderní rolování",
 	"contextmenu_hide" : "Skrýt moderní rolování",
 	"explanation: save set" : "Zde můžete uložit současnou konfiguraci. Jen odentrujte název a klikněte na tlačítko uložit. Pokud vyberete jméno, které již existuje, tak obsah bude přepsán.",
