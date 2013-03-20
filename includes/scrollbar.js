@@ -681,7 +681,7 @@ function onDOMNode()
 {
 	window.clearTimeout(timeout);
 	if(!document.getElementById("modern_scroll")) timeout = window.setTimeout(initialize, 100); // whenever a script removed modern scroll
-	else timeout = window.setTimeout(check_dimensions, 200);
+	else timeout = window.setTimeout(check_dimensions, 100);
 	
 	if(document.getElementById("ms_style").innerHTML === "") // cleanPages
 	{
