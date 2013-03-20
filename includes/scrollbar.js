@@ -7,27 +7,8 @@
 // @exclude *://maps.google.*
 // @exclude *mail.live.com/*
 // @exclude https://mega.co.nz/*
+// @exclude https://secure.ingdirect.fr/*
 // ==/UserScript==
-
-/*
-window.addEventListener("mouseover", function(){ if(window.event.target.ms_init) window.event.target.ms_init(); }, false);
-//for(var i in window.HTMLTextAreaElement.prototype) console.log(i);
-window.HTMLTextAreaElement.prototype.ms_in = function(){ this.modern_scroll.orig_color = this.style.background; this.style.background = "#0FF"; };
-window.HTMLTextAreaElement.prototype.ms_out = function(){ this.style.background = this.modern_scroll.orig_color; this.modern_scroll.orig_color = null; };
-window.HTMLTextAreaElement.prototype.ms_init = function(){
-	this.ms_in();
-	/*var div = document.createElement("div");
-	div.style = "position:absolute; top:0; right:0; z-index:999999; height:100px; width:100px; background:#0FF;";
-	div.innerHTML = "testi";
-	this.appendChild(div);*/
-	/*this.addEventListener("mouseover", this.ms_in, false);
-	this.addEventListener("mouseout", this.ms_out, false);
-	this.ms_init = null;
-};
-window.HTMLTextAreaElement.prototype.modern_scroll = {
-	orig_color : null,
-	xxx : function(){ var x = "empty"; }
-};*/
 
 (function(){
 
@@ -162,10 +143,10 @@ function inject_css()
 		".dragged #ms_hbar_ui, .dragged #ms_hbar_bg_ui{ height:"+w.hover_size+"px; }"+
 		"#ms_superbar.dragged{ opacity:"+(w.show_superbar_minipage === "1" ? 1 : (w.superbar_opacity/100))+"; }"+
 		
-		// DOMNodeInserted-hack by Daniel Buchner (http://www.backalleycoder.com/2012/04/25/i-want-a-damnodeinserted)
-		"@keyframes nodeInserted { from{ clip:rect(1px, auto, auto, auto); }to{ clip:rect(0px, auto, auto, auto); } }"+
-		"@-o-keyframes nodeInserted { from{ clip:rect(1px, auto, auto, auto); }to{ clip:rect(0px, auto, auto, auto); } }"+
-		"* { animation: nodeInserted 1ms; -o-animation: nodeInserted 1ms; }";
+		// DOMnodeInserted-hack by Daniel Buchner (http://www.backalleycoder.com/2012/04/25/i-want-a-damnodeInserted)
+		"@keyframes ms_nodeInserted { from{ clip:rect(1px, auto, auto, auto); }to{ clip:rect(0px, auto, auto, auto); } }"+
+		"@-o-keyframes ms_nodeInserted { from{ clip:rect(1px, auto, auto, auto); }to{ clip:rect(0px, auto, auto, auto); } }"+
+		"* { animation: ms_nodeInserted 1ms; -o-animation: ms_nodeInserted 1ms; }";
 	
 	if(document.getElementById("ms_style")) document.getElementById("ms_style").innerHTML = ms_style; // when options changed
 	else{ // when website is initially loaded
@@ -262,7 +243,7 @@ function add_dimension_checkers()
 	window.addEventListener("mouseup", check_dimensions_after_click, false);
 	document.addEventListener("transitionend", check_dimensions, false);
 	
-	// DOMNodeInserted-hack by Daniel Buchner (http://www.backalleycoder.com/2012/04/25/i-want-a-damnodeinserted)
+	// DOMnodeInserted-hack by Daniel Buchner (http://www.backalleycoder.com/2012/04/25/i-want-a-damnodeInserted)
 	document.addEventListener("animationend", onDOMNode, false);
 	if(!document.URL.match("://vk.com")) window.addEventListener("DOMNodeRemoved", onDOMNode, false);
 }
@@ -700,7 +681,7 @@ function onDOMNode()
 {
 	window.clearTimeout(timeout);
 	if(!document.getElementById("modern_scroll")) timeout = window.setTimeout(initialize, 100); // whenever a script removed modern scroll
-	else timeout = window.setTimeout(check_dimensions, 100);
+	else timeout = window.setTimeout(check_dimensions, 200);
 	
 	if(document.getElementById("ms_style").innerHTML === "") // cleanPages
 	{
