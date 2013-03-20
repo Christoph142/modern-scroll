@@ -232,7 +232,7 @@ function add_functionality_2_bars(){
 		}, false);
 	}
 	
-	if(w.move_bars_during_scroll == "1") window.addEventListener("scroll", reposition_bars, false);
+	if(w.move_bars_during_scroll === "1") window.addEventListener("scroll", reposition_bars, false);
 	else window.addEventListener("scroll", onScroll, false);
 }
 
