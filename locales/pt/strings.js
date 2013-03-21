@@ -34,8 +34,8 @@ var strings = {
 	"always" : "Sempre",
 	"show_bg_bars_when" : "E as barras de fundo?",
 	"like bars" : "Como as barras de rolagem",
-	"fullscreen_only" : "Show the bars in fullscreen mode only", //"Usar modern scroll apenas em tela cheia",
-	"fullscreen_only_short" : "Only in fullscreen mode",
+	"fullscreen_only" : "Usar modern scroll apenas em tela cheia",
+	"fullscreen_only_short" : "Apenas em tela cheia",
 	"move_bars_during_scroll" : "Animar as barras de rolagem ao rolar com a roda do mouse / teclado",
 	"bg_special_ends" : "Clicar nas pontas das barras de fundo rolam completamente para o topo/fundo (esquerda/direita respectivamente) invés de uma página",
 	"container1" : "Utilizar modern scroll a uma distância de até",
@@ -76,9 +76,9 @@ var strings = {
 	"contextmenu_hide" : "Esconder modern scroll",
 	"explanation: save set" : "Você pode salvar sua configuração atual aqui. Apenas dê um nome e clique no botão de salvar. Se você escolher um nome já existente ele será sobrescrito.",
 	"explanation: move_bars_during_scroll" : "Desative esta opção caso encontre problemas de performance.<br>A posição da barra será atualizada ao terminar a rolagem.",
-	"explanation: trigger area" : "Aumenta a área de utilização das barras."/*, mas itens que estiverem sob essa área não poderão ser acessados a menos que você esconda a interface pelo menu de contexto."*/,
+	"explanation: trigger area" : "Aumenta a área de utilização das barras.",
 	"explanation: superbar" : "A \"superbar\" é uma versão combinada das barras vertical e horizontal.<br>Logo só fica disponível quando ambas as barras são necessárias.<br>Sua posição é alinhada com as barras de rolagem vertical e horizontal.",
 	"explanation: custom functions" : "A rolagem nativa do Opera às vezes é irregular e lenta. Ativando esta opção a extensão também assume o controle da rolagem, o que pode resultar em uma melhora na performance.",
 	"explanation: animate scroll" : "Com esta opção a página não irá pular para a posição direto, mas automaticamente vai rolar até a posição a uma velocidade ajustável.<br>Se aplica aos 'botões de rolagem' e a cliques nas barras de fundo assim como rolagem pelo mouse (se as \"funções de rolagem personalizada\" estiverem ativas).",
-	"explanation: external_interface" : "Marcando esta opção vai deixar que alumas funções do modern scroll fiquem acessíveis para extensões de terceiros, websites e você. Por exemplo, você pode criar um gesto do mouse para controlar o modern scroll.<br><a href='http://my.opera.com/christoph142/blog/2013/02/20/modern-scroll-documentation' target='_blank'>Visite a documentação para madetalhes.</a>"
+	"explanation: external_interface" : "Marcando esta opção vai deixar que algumas funções do modern scroll fiquem acessíveis para extensões de terceiros, websites e você. Por exemplo, você pode criar um gesto do mouse para controlar o modern scroll.<br><a href='http://my.opera.com/christoph142/blog/2013/02/20/modern-scroll-documentation' target='_blank'>Visite a documentação para mais detalhes.</a>"
 };
