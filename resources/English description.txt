@@ -25,6 +25,13 @@ v 2.X
 !new: sync settings via Opera Link
 !new: scroll bars for elements
 
+v 2.3.1
+---------
+fix: ingdirect.fr (thx terdale for reporting)
+fix: Bootstrap's modal popups not appearing (thx Johnny for reporting; semi-fixed only)
+upd: Czech & Arabic translations (thx Ahoj1234 & Netmain)
+upd: minimal overall performance improvements
+
 v 2.3
 ---------
 new: modern scroll can be used for custom mouse gestures (external interface)
