@@ -679,6 +679,21 @@ function show_minipage()
 
 function onDOMNode()
 {
+	document.removeEventListener("transitionend", check_dimensions, false);
+	document.removeEventListener("animationend", onDOMNode, false);
+	window.removeEventListener("DOMNodeRemoved", onDOMNode, false);
+	
+	onDOMNode_check();
+	
+	window.setTimeout(function(){
+		onDOMNode_check();
+		document.addEventListener("transitionend", check_dimensions, false);
+		document.addEventListener("animationend", onDOMNode, false);
+		if(!document.URL.match("://vk.com")) window.addEventListener("DOMNodeRemoved", onDOMNode, false);
+	}, 300);
+}
+function onDOMNode_check()
+{
 	window.clearTimeout(timeout);
 	if(!document.getElementById("modern_scroll")) timeout = window.setTimeout(initialize, 100); // whenever a script removed modern scroll
 	else timeout = window.setTimeout(check_dimensions, 100);
