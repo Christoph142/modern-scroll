@@ -238,6 +238,7 @@ function add_functionality_2_bars(){
 
 function add_dimension_checkers()
 {
+	document.addEventListener("readystatechange", check_dimensions, false); // fires when all resources, i.e. images are loaded
 	window.addEventListener("load", check_dimensions, false);
 	window.addEventListener("resize", check_dimensions, false);
 	window.addEventListener("mouseup", check_dimensions_after_click, false);
