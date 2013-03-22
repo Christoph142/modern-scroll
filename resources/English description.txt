@@ -25,6 +25,10 @@ v 2.X
 !new: sync settings via Opera Link
 !new: scroll bars for elements
 
+v 2.3.2
+---------
+upd: Portuguese translation (thx André)
+
 v 2.3.1
 ---------
 fix: ingdirect.fr (thx terdale for reporting)

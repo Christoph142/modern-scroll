@@ -19,6 +19,10 @@ Diese Erweiterung war ursprünglich als Update für "Slim ScrollBar" von damage9
 Changelog:
 ----------
 
+v 2.3.2
+---------
+upd: Portugiesische Übersetzung (Danke André)
+
 v 2.3.1
 ---------
 fix: ingdirect.fr (Danke terdale für's Melden)
