@@ -14,6 +14,7 @@
 
 var timeout;				// scrolling animation
 var hide_timeout;			// hide bars
+var dimension_checks;		// Interval to check if page expanded / contracted
 var w = widget.preferences;	// \
 var vbar;					//  | pass by reference!
 var hbar;					// /
@@ -54,25 +55,33 @@ function add_ms()
 	
 	var ms_container = document.createElement("div");
 	ms_container.id = "modern_scroll";
-	document.body.appendChild(ms_container);
+	try{ document.documentElement.appendChild(ms_container); }catch(e){ document.body.appendChild(ms_container); }
 	
 	add_bars();
 	add_buttons();
 	add_scrollingfunctions();
+	 
+	add_external_interface();
 	
 	add_dimension_checkers();
 	check_dimensions();
 	
-	if(document.URL.substr(0,9) !== "widget://") add_contextmenu();
-	add_external_interface();
+	if(document.URL.substr(0,9) !== "widget://")
+	{
+		add_contextmenu();
+		document.addEventListener("resize", adjust_ui_fullscreen_change, false);
+	}
+	
+	//document.addEventListener("visibilitychange", start_or_stop_dimension_checks, false);
+	//start_or_stop_dimension_checks();
 }
 
 function remove_ms()
 {
 	if(!document.getElementById("modern_scroll")) return;
 	
-	document.removeEventListener("transitionend", check_dimensions, false);
-	document.removeEventListener("animationend", onDOMNode, false);
+	document.body.removeEventListener("transitionend", check_dimensions, false);
+	document.body.removeEventListener("animationend", onDOMNode, false);
 	window.removeEventListener("DOMNodeRemoved", onDOMNode, false);
 	window.removeEventListener("resize", check_dimensions, false);
 	window.removeEventListener("mouseup", check_dimensions_after_click, false);
@@ -141,12 +150,12 @@ function inject_css()
 		".dragged #ms_vbar, .dragged #ms_hbar{ opacity:"+(w.opacity>80?"1":((parseInt(w.opacity)+20)/100))+"; }"+
 		".dragged #ms_vbar_ui, .dragged #ms_vbar_bg_ui{ width:"+w.hover_size+"px; }"+
 		".dragged #ms_hbar_ui, .dragged #ms_hbar_bg_ui{ height:"+w.hover_size+"px; }"+
-		"#ms_superbar.dragged{ opacity:"+(w.show_superbar_minipage === "1" ? 1 : (w.superbar_opacity/100))+"; }"+
+		"#ms_superbar.dragged{ opacity:"+(w.show_superbar_minipage === "1" ? 1 : (w.superbar_opacity/100))+"; }";
 		
 		// DOMnodeInserted-hack by Daniel Buchner (http://www.backalleycoder.com/2012/04/25/i-want-a-damnodeInserted)
-		"@keyframes ms_nodeInserted { from{ clip:rect(1px, auto, auto, auto); }to{ clip:rect(0px, auto, auto, auto); } }"+
-		"@-o-keyframes ms_nodeInserted { from{ clip:rect(1px, auto, auto, auto); }to{ clip:rect(0px, auto, auto, auto); } }"+
-		"* { animation: ms_nodeInserted 1ms; -o-animation: ms_nodeInserted 1ms; }";
+		"@keyframes ms_nodeInserted{ from{ clip:auto; }to{ clip:auto; } }"+
+		"@-o-keyframes ms_nodeInserted{ from{ clip:auto; }to{ clip:auto; } }"+
+		"body *{ animation:ms_nodeInserted 1ms; -o-animation:ms_nodeInserted 1ms; }";
 	
 	if(document.getElementById("ms_style")) document.getElementById("ms_style").innerHTML = ms_style; // when options changed
 	else{ // when website is initially loaded
@@ -242,11 +251,16 @@ function add_dimension_checkers()
 	window.addEventListener("load", check_dimensions, false);
 	window.addEventListener("resize", check_dimensions, false);
 	window.addEventListener("mouseup", check_dimensions_after_click, false);
-	document.addEventListener("transitionend", check_dimensions, false);
+	document.body.addEventListener("transitionend", check_dimensions, false);
 	
 	// DOMnodeInserted-hack by Daniel Buchner (http://www.backalleycoder.com/2012/04/25/i-want-a-damnodeInserted)
-	document.addEventListener("animationend", onDOMNode, false);
+	document.body.addEventListener("animationend", onDOMNode, false);
 	if(!document.URL.match("://vk.com")) window.addEventListener("DOMNodeRemoved", onDOMNode, false);
+}
+function start_or_stop_dimension_checks()
+{
+	window.clearInterval(dimension_checks);
+	if(!document.hidden) dimension_checks = window.setInterval(check_dimensions, 500);
 }
 
 function add_scrollingfunctions()
@@ -307,19 +321,6 @@ function check_dimensions()
 	set_new_scrollMax_values();
 	
 	if(scrollMaxX_old !== window.scrollMaxX || scrollMaxY_old !== window.scrollMaxY) adjust_ui_new_size();
-	
-	if(document.URL.substr(0,9) === "widget://") return; // ignore fullscreen changes in options page
-	
-	if(window.innerWidth === window.screen.width && window.innerHeight === window.screen.height && isFullscreen !== 1)
-	{
-		isFullscreen = 1;
-		adjust_ui_fullscreen_change();
-	}
-	else if((window.innerWidth !== window.screen.width || window.innerHeight !== window.screen.height) && isFullscreen !== 0)
-	{
-		isFullscreen = 0;
-		adjust_ui_fullscreen_change();
-	}
 }
 function set_new_scrollMax_values()
 {
@@ -334,6 +335,10 @@ function adjust_ui_new_size()
 }
 function adjust_ui_fullscreen_change()
 {
+	if(window.innerWidth === window.screen.width && window.innerHeight === window.screen.height && isFullscreen !== 1) isFullscreen = 1;
+	else if((window.innerWidth !== window.screen.width || window.innerHeight !== window.screen.height) && isFullscreen!==0) isFullscreen = 0;
+	else return;
+	
 	if(w.fullscreen_only === "1")
 	{
 		if(isFullscreen === 0)	document.getElementById("modern_scroll_bars").style.display = "none";
@@ -680,16 +685,16 @@ function show_minipage()
 
 function onDOMNode()
 {
-	document.removeEventListener("transitionend", check_dimensions, false);
-	document.removeEventListener("animationend", onDOMNode, false);
+	document.body.removeEventListener("transitionend", check_dimensions, false);
+	document.body.removeEventListener("animationend", onDOMNode, false);
 	window.removeEventListener("DOMNodeRemoved", onDOMNode, false);
-	
+	//alert(window.event.animationName);
 	onDOMNode_check();
 	
 	window.setTimeout(function(){
 		onDOMNode_check();
-		document.addEventListener("transitionend", check_dimensions, false);
-		document.addEventListener("animationend", onDOMNode, false);
+		document.body.addEventListener("transitionend", check_dimensions, false);
+		document.body.addEventListener("animationend", onDOMNode, false);
 		if(!document.URL.match("://vk.com")) window.addEventListener("DOMNodeRemoved", onDOMNode, false);
 	}, 300);
 }
