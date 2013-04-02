@@ -1,0 +1,15 @@
+{
+	"manifest_version" : 2,
+	
+	"name"				: "modern scroll for Chrome",
+	"description"		: "ms",
+	"version"			: "1.0",
+	
+	"content_scripts" :
+	[{
+		  "matches"		: ["http://*/*","https://*/*"],
+		  "js"			: ["scrollbar.js"],
+		  "run_at"		: "document_start",
+		  "all_frames"	: true
+	}]
+}
