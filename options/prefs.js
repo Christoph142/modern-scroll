@@ -16,8 +16,8 @@ window.addEventListener("change", function(e)
 		}
 	}
 	
-	if(e.target.id === "contextmenu_show_when")	opera.extension.postMessage("contextmenu_show_when_update");
-	else										opera.extension.postMessage("update");
+	if(e.target.id === "contextmenu_show_when") opera.extension.bgProcess.update_contextmenu_show_when();
+	else										queue_update();
 	
 },false);
 
@@ -25,8 +25,20 @@ window.addEventListener("mouseup", save_buttonposition, false);
 function save_buttonposition(){
 	if(document.getElementsByClassName("dragged_button")[0]){
 		widget.preferences.buttonposition = 100 * document.getElementsByClassName("dragged_button")[0].offsetLeft / window.innerWidth;
-		opera.extension.postMessage("update");
+		queue_update();
 	}
+}
+
+function queue_update()
+{
+	opera.extension.postMessage("update_optionspage");
+	window.removeEventListener("blur", distribute_update, false);
+	window.addEventListener("blur", distribute_update, false);
+}
+function distribute_update()
+{
+	window.removeEventListener("blur", distribute_update, false);
+	opera.extension.bgProcess.distribute_update();
 }
 
 // restore preferences:
@@ -151,7 +163,7 @@ function getprefs()
 		for(var setting in sets[document.getElementById("saved_sets").value]){
 			widget.preferences[setting] = sets[document.getElementById("saved_sets").value][setting];
 		}
-		opera.extension.postMessage("update");
+		queue_update();
 		getprefs();
 	}
 	

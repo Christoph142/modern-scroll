@@ -40,11 +40,8 @@ var hbar;					// /
 
 function initialize()
 {	
-	add_ms()
-	
-	// delayed update outside of options page when settings change (to work around DSK-380461):
-	if(document.URL.substr(0,9) === "widget://") opera.extension.onmessage = update_ms;
-	else opera.extension.onmessage = function(){ window.clearTimeout(timeout); timeout = window.setTimeout(update_ms, 500); }
+	add_ms();
+	opera.extension.onmessage = update_ms;
 }
 
 function add_ms()
@@ -101,7 +98,7 @@ function remove_ms()
 	
 	delete window.modernscroll;
 	
-	document.body.removeChild(document.getElementById("modern_scroll"));
+	document.documentElement.removeChild(document.getElementById("modern_scroll"));
 	
 	delete window.scrollMaxX; delete window.scrollMaxY;
 	isFullscreen = null;

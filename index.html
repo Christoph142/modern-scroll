@@ -7,17 +7,19 @@
 	hide_contextmenu();	show_contextmenu();
 
 	opera.extension.onmessage = function(event){
-		if		(event.data === "update")								opera.extension.broadcastMessage("update");
+		if		(event.data === "update_optionspage")					event.source.postMessage("update");
 		else if	(event.data === "show_contextmenu")						show_contextmenu();
 		else if	(event.data === "hide_contextmenu")						hide_contextmenu();
-		else if	(event.data === "contextmenu_show_when_update"){		show_contextmenu(); hide_contextmenu(); }
 		else if (event.data === "change_contextmenu_string_into_show"){	show_contextmenu(); change_contextmenu_string_into("contextmenu_show");}
 		else if (event.data === "change_contextmenu_string_into_hide")	change_contextmenu_string_into("contextmenu_hide");
 		else if	(event.data === "reset_contextmenu")					change_contextmenu_string_into("contextmenu_hide");
 	}
 	
+	function distribute_update(){ opera.extension.broadcastMessage("update"); }
+	
 	function change_contextmenu_string_into(s){ if(opera.contexts.menu.item(0)) opera.contexts.menu.item(0).title = strings[s]; }
 	
+	function update_contextmenu_show_when(){ show_contextmenu(); hide_contextmenu(); }
 	function show_contextmenu() // if contextmenu is not set to "never visible":
 	{
 		if(widget.preferences.contextmenu_show_when !== "1" && !opera.contexts.menu.item(0))
