@@ -21,7 +21,10 @@ Changelog:
 
 v 2.3.2
 ---------
+neu: besserer Mechanismus wenn Einstellungen geändert werden
 upd: Portugiesische Übersetzung (Danke André)
+upd: Hintergrund-Leisten werden standardmäßig jetzt nur beim Überfahren mit der Maus angezeigt
+upd: Restrukturierung und Performance-Verbesserungen
 
 v 2.3.1
 ---------

@@ -29,6 +29,8 @@ v 2.3.2
 ---------
 new: smarter settings update mechanism
 upd: Portuguese translation (thx André)
+upd: background bars are only visible when you hover them with your mouse now by default
+upd: restructuring and performance improvements
 
 v 2.3.1
 ---------
