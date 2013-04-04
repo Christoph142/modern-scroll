@@ -321,8 +321,8 @@ function check_dimensions()
 }
 function set_new_scrollMax_values()
 {
-	window.scrollMaxX = Math.max(document.body.scrollWidth, document.documentElement.scrollWidth, window.innerWidth) - window.innerWidth;
-	window.scrollMaxY = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, window.innerHeight) - window.innerHeight;
+	window.scrollMaxX = (document.documentElement.scrollWidth>window.innerWidth ? document.documentElement.scrollWidth-window.innerWidth : 0);
+	window.scrollMaxY = (document.documentElement.scrollHeight>window.innerHeight ? document.documentElement.scrollHeight-window.innerHeight : 0);
 }
 
 function adjust_ui_new_size()
