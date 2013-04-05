@@ -14,7 +14,6 @@
 
 var timeout;				// scrolling animation
 var hide_timeout;			// hide bars
-var dimension_checks;		// Interval to check if page expanded / contracted
 var w = widget.preferences;	// \
 var vbar;					//  | pass by reference!
 var hbar;					// /
@@ -33,15 +32,19 @@ var hbar;					// /
 	
 	(function check_if_tab_is_ready()
 	{
-		if(document.body)	initialize();
-		else				window.setTimeout(check_if_tab_is_ready, 50);
+		if(document.hidden)		document.addEventListener("visibilitychange", initialize, false);
+		else if(document.body)	initialize();
+		else					window.setTimeout(check_if_tab_is_ready, 50);
 	}());
-}()); //declare and execute
+}());
 
 function initialize()
-{	
+{
 	add_ms();
 	opera.extension.onmessage = update_ms;
+	
+	document.removeEventListener("visibilitychange", initialize, false);
+	document.addEventListener("visibilitychange", add_or_remove_ms, false);
 }
 
 function add_ms()
@@ -68,10 +71,6 @@ function add_ms()
 		add_contextmenu();
 		document.addEventListener("resize", adjust_ui_fullscreen_change, false);
 	}
-	
-	document.addEventListener("visibilitychange", add_or_remove_ms, false);
-	//document.addEventListener("visibilitychange", start_or_stop_dimension_checks, false);
-	//start_or_stop_dimension_checks();
 }
 
 function remove_ms()
@@ -119,19 +118,19 @@ function inject_css()
 		"#modern_scroll{ display:inline; }"+
 		"#ms_v_container{ height:100%; width:"+(w.container==="1"?w.container_size:"1")+"px; "+(w.vbar_at_left=="1"?"left":"right")+":0px; top:0px; background:rgba(0,0,0,0); }"+
 		"#ms_h_container{ height:"+(w.container==="1"?w.container_size:"1")+"px; width:100%; left:0px; "+(w.hbar_at_top==="1"?"top":"bottom")+":0px; background:rgba(0,0,0,0); }"+
-		"#ms_vbar_bg, #ms_hbar_bg{ opacity:"+((w.show_when==="3" && w.show_bg_bars_when==="3")?(w.opacity/100):"0")+"; transition:opacity 0.5s 1s; }"+
+		"#ms_vbar_bg, #ms_hbar_bg{ opacity:"+((w.show_when==="3" && w.show_bg_bars_when==="3")?(w.opacity/100):"0")+"; transition:opacity 0.5s "+w.show_how_long+"ms; }"+
 		"#ms_vbar_bg{ top:"+w.gap+"px; bottom:"+w.gap+"px; height:auto; width:auto; "+(w.vbar_at_left==="1"?"left":"right")+":0px; "+(w.vbar_at_left==="0"?"left":"right")+":auto; }"+
 		"#ms_hbar_bg{ "+(w.vbar_at_left==="0"?"left":"right")+":0px; "+(w.vbar_at_left==="1"?"left":"right")+":"+(parseInt(w.hover_size)+parseInt(w.gap))+"px; "+(w.vbar_at_left==="0"?"left":"right")+":"+w.gap+"px; width:auto; height:auto; "+(w.hbar_at_top==="1"?"top":"bottom")+":0px; "+(w.hbar_at_top==="0"?"top":"bottom")+":auto; }"+
 		"#ms_vbar_bg_ui, #ms_hbar_bg_ui{ background:"+w.color_bg+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" !important; border-radius:"+w.border_radius+"px; }"+
 		"#ms_vbar_bg_ui{ margin-"+(w.vbar_at_left==="1"?"left":"right")+":"+(w.gap)+"px; height:100%; width:"+w.size+"px; transition:width 0.25s; }"+
 		"#ms_hbar_bg_ui{ margin-"+(w.hbar_at_top==="1"?"top":"bottom")+":"+(w.gap)+"px; width:100%; height:"+w.size+"px; transition:height 0.25s; }"+
-		"#ms_vbar, #ms_hbar{ opacity:"+((w.show_when==="3")?(w.opacity/100):"0")+"; transition:opacity 0.5s 1s; }"+
+		"#ms_vbar, #ms_hbar{ opacity:"+((w.show_when==="3")?(w.opacity/100):"0")+"; transition:opacity 0.5s "+w.show_how_long+"ms; }"+
 		"#ms_vbar{ top:0px; height:"+(30+2*w.gap)+"px; min-height:"+(30+2*w.gap)+"px; width:auto; "+(w.vbar_at_left==="1"?"left":"right")+":0px; "+(w.vbar_at_left==="0"?"left":"right")+":auto; }"+
 		"#ms_hbar{ left:0px; width:"+(30+2*w.gap)+"px; min-width:"+(30+2*w.gap)+"px; height:auto; "+(w.hbar_at_top==="1"?"top":"bottom")+":0px; "+(w.hbar_at_top==="0"?"top":"bottom")+":auto; }"+
 		"#ms_vbar_ui, #ms_hbar_ui{ background:"+w.color+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" !important; border-radius:"+w.border_radius+"px; }"+
 		"#ms_vbar_ui{ height:30px; min-height:30px; width:"+w.size+"px; margin-top:"+w.gap+"px; margin-bottom:"+w.gap+"px; margin-"+(w.vbar_at_left=="1"?"left":"right")+":"+w.gap+"px; transition:width 0.25s; }"+
 		"#ms_hbar_ui{ width:30px; min-width:30px; height:"+w.size+"px; margin-left:"+w.gap+"px; margin-right:"+w.gap+"px; margin-"+(w.hbar_at_top=="1"?"top":"bottom")+":"+(w.gap)+"px; transition:height 0.25s; }"+
-		"#ms_superbar{ width:100px; background:"+(w.show_superbar_minipage==="0"?w.color:"rgba(0,0,0,0)")+"; opacity:"+((w.show_when==="3")?"0.5":"0")+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" "+(w.show_superbar_minipage==="1"?", 0 0 200px 10px #999":"")+" !important; border-radius:"+w.border_radius+"px; transition:opacity 0.5s 1s; min-width:30px; min-height:30px; }"+
+		"#ms_superbar{ width:100px; background:"+(w.show_superbar_minipage==="0"?w.color:"rgba(0,0,0,0)")+"; opacity:"+((w.show_when==="3")?"0.5":"0")+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" "+(w.show_superbar_minipage==="1"?", 0 0 200px 10px #999":"")+" !important; border-radius:"+w.border_radius+"px; transition:opacity 0.5s "+w.show_how_long+"ms; min-width:30px; min-height:30px; }"+
 		"#ms_page_cover{ left:0px; top:0px; width:100%; height:100%; background:rgba(0,0,0,0); padding:0px; margin:0px; }"+
 		"#ms_upbutton, #ms_downbutton{ height:"+w.button_height*2+"px; width:"+w.button_width+"px; left:"+w.buttonposition+"%; opacity:"+w.button_opacity/100+"; background:"+w.color+"; border-radius:50px; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5); transition:opacity 0.5s; }"+
 		"#ms_upbutton{ top:-"+w.button_height+"px; }"+
@@ -256,11 +255,6 @@ function add_dimension_checkers()
 	// DOMnodeInserted-hack by Daniel Buchner (http://www.backalleycoder.com/2012/04/25/i-want-a-damnodeInserted)
 	document.body.addEventListener("animationend", onDOMNode, false);
 	if(!document.URL.match("://vk.com")) window.addEventListener("DOMNodeRemoved", onDOMNode, false);
-}
-function start_or_stop_dimension_checks()
-{
-	window.clearInterval(dimension_checks);
-	if(!document.hidden) dimension_checks = window.setInterval(check_dimensions, 500);
 }
 
 function add_scrollingfunctions()
@@ -578,7 +572,7 @@ function reposition_bars()
 		document.getElementById("ms_superbar").style.display = "inline";
 	}
 	else if(w.show_superbar === "1" && document.getElementById("ms_superbar").style.opacity !== "1") //if superbar doesn't get dragged (minipage only -> no bars)
-		window.setTimeout(function(){ document.getElementById("ms_superbar").style.display = null; }, 1500);
+		window.setTimeout(function(){ document.getElementById("ms_superbar").style.display = null; }, eval(w.show_how_long));
 	
 	if(vbar_top_before !== vbar.style.top)		show_bar("v");
 	if(hbar_left_before !== hbar.style.left)	show_bar("h");
@@ -624,9 +618,10 @@ function show_bars(){ show_bar("v"); show_bar("h"); }
 function hide_bars()
 {
 	if(document.getElementsByClassName("dragged").length > 0) return;
+	hide_bar("v"); hide_bar("h");
 	
-	window.clearTimeout(hide_timeout);
-	hide_timeout = window.setTimeout(function(){ hide_bar("v"); hide_bar("h");}, 500);
+	/*window.clearTimeout(hide_timeout);
+	hide_timeout = window.setTimeout(function(){ hide_bar("v"); hide_bar("h"); }, 1000);*/
 }
 
 function show_bar(whichone)
