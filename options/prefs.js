@@ -175,6 +175,19 @@ function getprefs()
 			document.getElementById("save_set_img").click();
 		}
 	}, false);
+	
+	var info_bubbles = document.getElementsByClassName("i");
+	var bubble_setback;
+	for(var i=0; i<info_bubbles.length; i++)
+	{
+		info_bubbles[i].addEventListener("mouseover", function(){
+			window.clearTimeout(bubble_setback);
+			if(this.offsetTop>window.scrollY+window.innerHeight/2) this.lastChild.style.marginTop = -this.lastChild.offsetHeight+"px";
+		}, false);
+		info_bubbles[i].addEventListener("mouseout", function(){
+			bubble_setback = window.setTimeout(function(){this.lastChild.style.marginTop= null;}.bind(this),500);
+		}, false);
+	}
 }
 
 var timeout;
