@@ -34,6 +34,7 @@ var strings = {
 	"always" : "Sempre",
 	"show_bg_bars_when" : "E as barras de fundo?",
 	"like bars" : "Como as barras de rolagem",
+	"show_how_long" : "How long do you want the bars to stay visible?",
 	"fullscreen_only" : "Exibir barras de rolagem apenas em tela cheia",
 	"fullscreen_only_short" : "Barras apenas em tela cheia",
 	"move_bars_during_scroll" : "Animar as barras de rolagem ao rolar com a roda do mouse / teclado",

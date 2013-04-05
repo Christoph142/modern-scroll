@@ -34,6 +34,7 @@ var strings = {
 	"always" : "Zawsze",
 	"show_bg_bars_when" : "Co z szynami?",
 	"like bars" : "Wtedy, kiedy i paski",
+	"show_how_long" : "How long do you want the bars to stay visible?",
 	"fullscreen_only" : "Show the bars in fullscreen mode only",//"Wyświetlaj paski tylko w trybie pełnoekranowym",
 	"fullscreen_only_short" : "Only in fullscreen mode",
 	"move_bars_during_scroll" : "Animuj paski przewijania podczas przewijania myszą i klawiaturą",

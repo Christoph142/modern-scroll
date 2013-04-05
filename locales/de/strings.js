@@ -34,6 +34,7 @@ var strings = {
 	"always" : "Immer",
 	"show_bg_bars_when" : "Und die Hintergrund-Leisten?",
 	"like bars" : "Wie die Bildlaufleisten",
+	"show_how_long" : "Wie lange sollen die Leisten zu sehen sein?",
 	"fullscreen_only" : "Zeige die Leisten nur im Vollbild-Modus",
 	"fullscreen_only_short" : "Nur im Vollbild-Modus",
 	"move_bars_during_scroll" : "Bildlaufleiste während dem Scrollen mit dem Maus-Rad / der Tastatur animieren",

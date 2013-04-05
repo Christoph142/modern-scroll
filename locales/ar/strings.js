@@ -34,6 +34,7 @@
 	"always" : "دائما",
 	"show_bg_bars_when" : "و الأشرطة الخلفية",
 	"like bars" : "مثل أشرطة التمرير",
+	"show_how_long" : "How long do you want the bars to stay visible?",
 	"fullscreen_only" : "إظهار الأشرطة فقط في نمط ملء الشاشة",
 	"fullscreen_only_short" : "فقط في نمط ملء الشاشة",
 	"move_bars_during_scroll" : "تحريك أشرطة التمرير عند التصفح باستعمال عجلة الفأرة أو لوحة المفاتيح",

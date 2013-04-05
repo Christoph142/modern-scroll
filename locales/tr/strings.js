@@ -34,6 +34,7 @@ var strings = {
 	"always" : "Her zaman",
 	"show_bg_bars_when" : "Ve arkaplan çubukları?",
 	"like bars" : "Kaydırma çubukları gibi",
+	"show_how_long" : "How long do you want the bars to stay visible?",
 	"fullscreen_only" : "Show the bars in fullscreen mode only",//"Modern Scroll\'u sadece tam ekranda kullan",
 	"fullscreen_only_short" : "Only in fullscreen mode",
 	"move_bars_during_scroll" : "Fare tekerleği veya klavye ile kaydırırken kaydırma çubuklarını animasyonla",

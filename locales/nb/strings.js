@@ -34,6 +34,7 @@ var strings = {
 	"always" : "Hele tiden",
 	"show_bg_bars_when" : "—og rullelinjene?",
 	"like bars" : "Samme som rullefeltene",
+	"show_how_long" : "How long do you want the bars to stay visible?",
 	"fullscreen_only" : "Show the bars in fullscreen mode only",//"Bruk modern scroll bare i fullskjermmodus",
 	"fullscreen_only_short" : "Only in fullscreen mode",
 	"move_bars_during_scroll" : "Animer feltene mens siden rulles med musen eller tastaturet",

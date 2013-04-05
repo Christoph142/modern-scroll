@@ -56,7 +56,7 @@
         <td style="text-align:right;"><input type="number" max="5" min="0" id="gap" name="gap" value="2"></td>
     </tr><tr>
     	<td style="text-align:left; vertical-align:top;"><label for="opacity"><script>_("opacity");</script>: </label><label id="opacity_display"><script>document.write(widget.preferences.opacity+"%");</script></label></td>
-        <td style="text-align:right;"><input type="range" name="opacity" id="opacity" min="0" max="100" value="50" step="1" onChange="document.getElementById('opacity_display').innerHTML = this.value+'%';" /></td>
+        <td style="text-align:right;"><input type="range" name="opacity" id="opacity" min="0" max="100" value="50" step="1" onchange="document.getElementById('opacity_display').innerHTML = this.value+'%';" /></td>
     </tr></table>
         
     <h4><script>_("border");</script>:</h4>
@@ -98,8 +98,17 @@
             <td width="40%" style="text-align:center; vertical-align:top;"><script>_("only_over");</script></td>
             <td width="30%" style="text-align:right; padding-right:10px; vertical-align:top;"><script>_("like bars");</script></td>
         </tr>
-    </table><br>
-    <table class="c"><tr>
+	</table><br>
+	<table>
+	<tr>
+		<td style="text-align:left;"><label for="show_how_long"><script>_("show_how_long");</script></label></td>
+		<td style="text-align:right;">
+			<input type="number" max="5000" min="100" step="100" id="show_how_long" style="width:50px;" value="1000"> ms
+		</td>
+    </tr>
+    </table>
+    <table class="c">
+    <tr>
         <td><input type="checkbox" id="fullscreen_only" name="fullscreen_only"></td>
         <td><label for="fullscreen_only"><script>_("fullscreen_only");</script></label></td>
     </tr><tr>
@@ -116,12 +125,12 @@
     
     <fieldset>
     <h4><script>_("superbar");</script>:</h4>
-    <input type="checkbox" id="show_superbar" name="show_superbar" onChange="document.getElementById('superbar_container').style.height=(this.checked?'auto':'0px');"> <label for="show_superbar"><script>_("show_superbar");</script></label><div id="superbar_info" class="i">i<div id="superbar_info_text" class="i_text"><script>_("explanation: superbar");</script></div></div>
+    <input type="checkbox" id="show_superbar" name="show_superbar" onchange="document.getElementById('superbar_container').style.height=(this.checked?'auto':'0px');"> <label for="show_superbar"><script>_("show_superbar");</script></label><div id="superbar_info" class="i">i<div id="superbar_info_text" class="i_text"><script>_("explanation: superbar");</script></div></div>
     <div id="superbar_container" style="overflow:hidden; height:auto;">
     <input type="checkbox" id="show_superbar_minipage" name="show_superbar_minipage" checked="checked"> <label for="show_superbar_minipage"><script>_("show_superbar_minipage");</script></label><br>
     <table><tr>
     <td style="text-align:left; vertical-align:top;"><label for="superbar_opacity"><script>_("superbar_opacity");</script>: </label><label id="superbar_opacity_display"><script>document.write(widget.preferences.superbar_opacity+"%");</script></label></td>
-        <td style="text-align:right;"><input type="range" name="superbar_opacity" id="superbar_opacity" min="0" max="100" value="70" step="1" onChange="document.getElementById('superbar_opacity_display').innerHTML = this.value+'%';" /></td>
+        <td style="text-align:right;"><input type="range" name="superbar_opacity" id="superbar_opacity" min="0" max="100" value="70" step="1" onchange="document.getElementById('superbar_opacity_display').innerHTML = this.value+'%';" /></td>
     </tr></table>
     </div>
     </fieldset><br>
@@ -129,7 +138,7 @@
     <fieldset>
     <h4><script>_("buttons");</script>:</h4>
     <script>_("show buttons");</script><br>
-    <input type="range" name="show_buttons" id="show_buttons" min="0" max="4" value="0" step="2" style="width:100%;" onChange="document.getElementById('button_container').style.height=(this.value==='0'?'0px':'auto');" />
+    <input type="range" name="show_buttons" id="show_buttons" min="0" max="4" value="0" step="2" style="width:100%;" onchange="document.getElementById('button_container').style.height=(this.value==='0'?'0px':'auto');" />
     <table>
     	<tr>
         	<td width="20%" style="text-align:left; padding-left:10px; vertical-align:top;"><script>_("never");</script></td>
@@ -146,7 +155,7 @@
         <input type="number" max="500" min="2" id="button_height" name="button_height" value="50">
         </td><td style="text-align:right;">
         <label for="button_opacity"><script>_("button_opacity");</script>: </label>
-        <input type="range" name="button_opacity" id="button_opacity" min="0" max="100" value="10" step="1" onChange="document.getElementById('button_opacity_display').innerHTML = this.value+'%'" /><label id="button_opacity_display"><script>document.write(widget.preferences.button_opacity+"%");</script></label>
+        <input type="range" name="button_opacity" id="button_opacity" min="0" max="100" value="10" step="1" onchange="document.getElementById('button_opacity_display').innerHTML = this.value+'%'" /><label id="button_opacity_display"><script>document.write(widget.preferences.button_opacity+"%");</script></label>
         </td></tr></table>
         <br>
         <script>_("drag buttons");</script>
@@ -170,33 +179,33 @@
     <h4><script>_("custom scroll functions");</script>:</h4>
     <script>_("use custom functions");</script><div id="own_functions_info" class="i">i<div id="own_functions_info_text" class="i_text"><script>_("explanation: custom functions");</script></div></div>
     <table class="c"><tr>
-        <td><input type="checkbox" id="use_own_scroll_functions" name="use_own_scroll_functions" checked="checked" onChange="document.getElementById('keyscroll_velocity_container').style.display=(this.checked?null:'none');"></td>
+        <td><input type="checkbox" id="use_own_scroll_functions" name="use_own_scroll_functions" checked="checked" onchange="document.getElementById('keyscroll_velocity_container').style.display=(this.checked?null:'none');"></td>
         <td><label for="use_own_scroll_functions"><script>_("use custom functions keyboard");</script></label></td>
     </tr><tr>
     	<td></td><td><div id="keyscroll_velocity_container" style="margin:-5px -4px 5px -4px;">
             <table><tr>
                 <td style="text-align:left; vertical-align:top; width:auto;"><label for="keyscroll_velocity"><script>_("keyscroll_velocity");</script>: </label><label id="keyscroll_velocity_display"><script>document.write(Math.round(100*widget.preferences.keyscroll_velocity/2)+"%");
                 </script></label></td>
-                <td style="text-align:right;"><input type="range" name="keyscroll_velocity" id="keyscroll_velocity" min="1" max="5" value="2" step="0.1" onChange="document.getElementById('keyscroll_velocity_display').innerHTML = Math.round(100*this.value/2)+'%';"></td>
+                <td style="text-align:right;"><input type="range" name="keyscroll_velocity" id="keyscroll_velocity" min="1" max="5" value="2" step="0.1" onchange="document.getElementById('keyscroll_velocity_display').innerHTML = Math.round(100*this.value/2)+'%';"></td>
             </tr></table>
         </div></td>
     </tr><tr>
-        <td><input type="checkbox" id="use_own_scroll_functions_mouse" name="use_own_scroll_functions_mouse" checked="checked" onChange="document.getElementById('mousescroll_container').style.display=(this.checked?null:'none');"></td>
+        <td><input type="checkbox" id="use_own_scroll_functions_mouse" name="use_own_scroll_functions_mouse" checked="checked" onchange="document.getElementById('mousescroll_container').style.display=(this.checked?null:'none');"></td>
         <td><label for="use_own_scroll_functions_mouse"><script>_("use custom functions mouse");</script></label></td>
     </tr><tr>
     	<td></td><td><div id="mousescroll_container" style="margin:-5px -4px 5px -4px;">
             <table><tr>
                 <td style="text-align:left; vertical-align:top; width:auto;"><label for="mousescroll_velocity"><script>_("mousescroll_velocity");</script>: </label><label id="mousescroll_velocity_display"><script>document.write(Math.round(100*widget.preferences.mousescroll_velocity/3)+"%");
                 </script></label></td>
-                <td style="text-align:right;"><input type="range" name="mousescroll_velocity" id="mousescroll_velocity" min="1" max="6" value="3" step="0.1" onChange="document.getElementById('mousescroll_velocity_display').innerHTML = Math.round(100*this.value/3)+'%';"></td>
+                <td style="text-align:right;"><input type="range" name="mousescroll_velocity" id="mousescroll_velocity" min="1" max="6" value="3" step="0.1" onchange="document.getElementById('mousescroll_velocity_display').innerHTML = Math.round(100*this.value/3)+'%';"></td>
             </tr><tr>
                 <td style="text-align:left; vertical-align:top; width:auto;"><label for="mousescroll_distance"><script>_("mousescroll_distance");</script>: </label><label id="mousescroll_distance_display"><script>document.write(Math.round(100*widget.preferences.mousescroll_distance)+"%");
                 </script></label></td>
-                <td style="text-align:right;"><input type="range" name="mousescroll_distance" id="mousescroll_distance" min="0.1" max="4" value="1" step="0.1" onChange="document.getElementById('mousescroll_distance_display').innerHTML = Math.round(100*this.value)+'%';"></td>
+                <td style="text-align:right;"><input type="range" name="mousescroll_distance" id="mousescroll_distance" min="0.1" max="4" value="1" step="0.1" onchange="document.getElementById('mousescroll_distance_display').innerHTML = Math.round(100*this.value)+'%';"></td>
             </tr></table>
         </div></td>
     </tr><tr>
-        <td><input type="checkbox" id="animate_scroll" name="animate_scroll" onChange="document.getElementById('scroll_container').style.display=(this.checked?null:'none');" checked="checked"></td>
+        <td><input type="checkbox" id="animate_scroll" name="animate_scroll" onchange="document.getElementById('scroll_container').style.display=(this.checked?null:'none');" checked="checked"></td>
         <td><label for="animate_scroll"><script>_("animate scroll");</script></label><div id="animate_scroll_info" class="i">i<div id="animate_scroll_info_text" class="i_text"><script>_("explanation: animate scroll");</script></div></div> <script>_("animate up to");</script> <select id="animate_scroll_max">
         		<option value="0"><script>_("infinite");</script></option>
                 <option value="1">1 <script>_("page");</script></option>
@@ -210,7 +219,7 @@
         <table><tr>
             <td style="text-align:left; vertical-align:top; width:auto;"><label id="scroll_v_label" for="scroll_velocity"><script>_("animatedscroll_velocity");</script></label>: <label id="scroll_velocity_display"><script>document.write(Math.round(100*widget.preferences.scroll_velocity/5)+"%");
             </script></label></td>
-            <td style="text-align:right;"><input type="range" name="scroll_velocity" id="scroll_velocity" min="1" max="15" value="5" step="0.1" onChange="document.getElementById('scroll_velocity_display').innerHTML = Math.round(100*this.value/5)+'%';"></td>
+            <td style="text-align:right;"><input type="range" name="scroll_velocity" id="scroll_velocity" min="1" max="15" value="5" step="0.1" onchange="document.getElementById('scroll_velocity_display').innerHTML = Math.round(100*this.value/5)+'%';"></td>
         </tr></table>
     </div></td>
     </tr></table>

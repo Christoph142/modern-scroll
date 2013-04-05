@@ -34,6 +34,7 @@ var strings = {
 	"always" : "Vždy",
 	"show_bg_bars_when" : "A lišty v pozadí posuvníků?",
 	"like bars" : "Jako posuvníky",
+	"show_how_long" : "How long do you want the bars to stay visible?",
 	"fullscreen_only" : "Zobrazovat posuvníky jen v celoobrazovkovém režimu",
 	"fullscreen_only_short" : "Pouze v celoobrazovkovém režimu",
 	"move_bars_during_scroll" : "Animovat rolovací posuvníky během rolování kolečkem na myši / klávesnicí",

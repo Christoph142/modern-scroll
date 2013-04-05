@@ -34,6 +34,7 @@ var strings = {
 	"always" : "Toujours",
 	"show_bg_bars_when" : "Et les barres d'arrière-plan?",
 	"like bars" : "Comme les barres de défilement",
+	"show_how_long" : "Combien de temps veux-tu les barres de rester visible?",
 	"fullscreen_only" : "Affiche les barres seulement en mode plein écran",
 	"fullscreen_only_short" : "Seulement en mode plein écran",
 	"move_bars_during_scroll" : "Anime les barres de défilement pendant le défilement avec la mouse wheel/keyboard",

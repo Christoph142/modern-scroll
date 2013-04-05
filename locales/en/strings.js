@@ -34,6 +34,7 @@ var strings = {
 	"always" : "Always",
 	"show_bg_bars_when" : "And the background bars?",
 	"like bars" : "Like the scroll bars",
+	"show_how_long" : "How long do you want the bars to stay visible?",
 	"fullscreen_only" : "Show the bars in fullscreen mode only",
 	"fullscreen_only_short" : "Only in fullscreen mode",
 	"move_bars_during_scroll" : "Animate the scroll bars during scrolling with the mouse wheel / keyboard",

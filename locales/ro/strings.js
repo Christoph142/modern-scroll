@@ -34,6 +34,7 @@ var strings = {
 	"always" : "Intotdeuna",
 	"show_bg_bars_when" : "Şi barele de fundal?",
 	"like bars" : "La fel ca barele de navigare",
+	"show_how_long" : "How long do you want the bars to stay visible?",
 	"fullscreen_only" : "Show the bars in fullscreen mode only",//"Foloseşte Modern Scroll numai în modul fullscreen",
 	"fullscreen_only_short" : "Only in fullscreen mode",
 	"move_bars_during_scroll" : "Animează barele de navigare în timpul derulării cu rotiţa cursorului/săgeţile tastaturii",
