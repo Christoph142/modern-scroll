@@ -19,9 +19,11 @@ Diese Erweiterung war ursprünglich als Update für "Slim ScrollBar" von damage9
 Changelog:
 ----------
 
-v 2.3.2
+v 2.4
 ---------
-neu: besserer Mechanismus wenn Einstellungen geändert werden
+neu: anpassbare Zeit, bevor die Leisten ausgeblendet werden
+neu: modern scroll ist nur noch im aktuellen Tab aktiv, nicht mehr in allen geöffneten
+neu: Beschreibungen in den Optionen werden nach oben angezeigt, wenn sie sich unterhalb der Mitte der Seite befinden
 upd: Portugiesische Übersetzung (Danke André)
 upd: Hintergrund-Leisten werden standardmäßig jetzt nur beim Überfahren mit der Maus angezeigt
 upd: Restrukturierung und Performance-Verbesserungen

@@ -25,9 +25,11 @@ v 2.X
 !new: sync settings via Opera Link
 !new: scroll bars for elements
 
-v 2.3.2
+v 2.4
 ---------
-new: smarter settings update mechanism
+new: adjustable time before hiding bars
+new: modern scroll is only active in current tab, not in all opened ones anymore
+new: explanation fields in options page show up to the top if they are below middle of the screen
 upd: Portuguese translation (thx André)
 upd: background bars are only visible when you hover them with your mouse now by default
 upd: restructuring and performance improvements
