@@ -32,6 +32,7 @@ function save_buttonposition(){
 function queue_update()
 {
 	opera.extension.postMessage("update_optionspage");
+	return; // REST NOT NEEDED IF IT GETS INSERTED ON TAB SELECTION ANYWAY
 	window.removeEventListener("blur", distribute_update, false);
 	window.addEventListener("blur", distribute_update, false);
 }

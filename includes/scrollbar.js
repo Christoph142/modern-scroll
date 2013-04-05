@@ -69,6 +69,7 @@ function add_ms()
 		document.addEventListener("resize", adjust_ui_fullscreen_change, false);
 	}
 	
+	document.addEventListener("visibilitychange", add_or_remove_ms, false);
 	//document.addEventListener("visibilitychange", start_or_stop_dimension_checks, false);
 	//start_or_stop_dimension_checks();
 }
@@ -98,13 +99,15 @@ function remove_ms()
 	
 	delete window.modernscroll;
 	
-	document.documentElement.removeChild(document.getElementById("modern_scroll"));
+	try		 { document.documentElement.removeChild(document.getElementById("modern_scroll"));
+	}catch(e){ document.body.removeChild(document.getElementById("modern_scroll")); }
 	
 	delete window.scrollMaxX; delete window.scrollMaxY;
 	isFullscreen = null;
 }
 
 function update_ms(){ remove_ms(); add_ms(); }
+function add_or_remove_ms(){ if(document.hidden) remove_ms(); else add_ms(); }
 
 function inject_css()
 {
@@ -364,7 +367,7 @@ function resize_vbar()
 		return;
 	}
 	var vbar_height_before = vbar.style.height;
-	var vbar_new_height = Math.max(Math.round(window.innerHeight/(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)/window.innerHeight)), 30+2*w.gap);
+	var vbar_new_height = Math.max(Math.round(window.innerHeight/(document.documentElement.scrollHeight/window.innerHeight)), 30+2*w.gap);
 	vbar.style.height = vbar_new_height+"px";
 	
 	if(vbar.style.display !== "inline"){
@@ -396,7 +399,7 @@ function resize_hbar()
 		return;
 	}
 	var hbar_width_before = hbar.style.width;
-	var hbar_new_width = Math.max(Math.round(window.innerWidth/(Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)/window.innerWidth)), 30+2*w.gap);
+	var hbar_new_width = Math.max(Math.round(window.innerWidth/(document.documentElement.scrollWidth/window.innerWidth)), 30+2*w.gap);
 	hbar.style.width = hbar_new_width+"px";
 	
 	if(hbar.style.display !== "inline"){
@@ -657,9 +660,9 @@ function show_minipage()
 	}
 	
 	document.body.style.transformOrigin = "0% 0%";
-	document.body.style.transform = "scale("+(window.innerWidth/Math.max(document.body.scrollWidth,document.documentElement.scrollWidth,window.innerWidth))+","+(window.innerHeight/Math.max(document.body.scrollHeight,document.documentElement.scrollHeight,window.innerHeight))+")";
+	document.body.style.transform = "scale("+(window.innerWidth/Math.max(document.documentElement.scrollWidth,window.innerWidth))+","+(window.innerHeight/Math.max(document.documentElement.scrollHeight,window.innerHeight))+")";
 	window.scrollBy(-window.pageXOffset, -window.pageYOffset);
-	if(document.body.className == "zoom"){
+	if(document.body.className === "zoom"){
 		var img = document.body.firstChild;
 		img.style.transformOrigin = "0% 0%";
 		img.style.transform = "scale("+(window.innerWidth/img.scrollWidth)+","+(window.innerHeight/img.scrollHeight)+")";
@@ -685,7 +688,7 @@ function onDOMNode()
 	document.body.removeEventListener("transitionend", check_dimensions, false);
 	document.body.removeEventListener("animationend", onDOMNode, false);
 	window.removeEventListener("DOMNodeRemoved", onDOMNode, false);
-	//alert(window.event.animationName);
+	
 	onDOMNode_check();
 	
 	window.setTimeout(function(){
@@ -707,7 +710,7 @@ function onDOMNode_check()
 		inject_css();
 		window.setTimeout(function(){
 			document.getElementById("toggle").style.right = (w.vbar_at_left === "0" ? (parseInt(w.hover_size)+parseInt(w.gap)+"px") : "0px");
-			add_or_remove_ui();
+			update_ms();
 		}, 200);
 	}
 }
