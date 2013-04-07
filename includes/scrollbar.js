@@ -244,8 +244,13 @@ function add_functionality_2_bars(){
 
 function add_dimension_checkers()
 {
-	document.addEventListener("readystatechange", check_dimensions, false); // fires when all resources, i.e. images are loaded
-	window.addEventListener("load", check_dimensions, false);
+	if(document.readyState !== "complete")
+	{
+		window.addEventListener("load", check_dimensions, false);
+		document.addEventListener("readystatechange", add_dimension_checkers, false); // fires when all resources, i.e. images are loaded
+		return;
+	}
+	
 	window.addEventListener("resize", check_dimensions, false);
 	window.addEventListener("mouseup", check_dimensions_after_click, false);
 	document.body.addEventListener("transitionend", check_dimensions, false);
@@ -253,6 +258,8 @@ function add_dimension_checkers()
 	// DOMnodeInserted-hack by Daniel Buchner (http://www.backalleycoder.com/2012/04/25/i-want-a-damnodeInserted)
 	document.body.addEventListener("animationend", onDOMNode, false);
 	if(!document.URL.match("://vk.com")) window.addEventListener("DOMNodeRemoved", onDOMNode, false);
+	
+	check_dimensions();
 }
 
 function add_scrollingfunctions()
