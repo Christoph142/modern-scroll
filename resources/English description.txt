@@ -25,6 +25,11 @@ v 2.X
 !new: sync settings via Opera Link
 !new: scroll bars for elements
 
+v 2.4.1
+---------
+fix: border settings do not affect scroll buttons (thx Dimitri for reporting)
+!fix: scroll bar sometimes jumps to top with touchpad (thx Cryio & André for reporting)
+
 v 2.4
 ---------
 new: adjustable time before hiding bars

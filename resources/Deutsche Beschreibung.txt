@@ -19,6 +19,11 @@ Diese Erweiterung war ursprünglich als Update für "Slim ScrollBar" von damage9
 Changelog:
 ----------
 
+v 2.4.1
+---------
+fix: Umrandungs-Einstellungen verändern die Scroll-Buttons nicht (Danke Dimitri für's Melden)
+!fix: Scroll-Leiste springt manchmal nach oben mit dem Touchpad (Danke Cryio & André für's Melden)
+
 v 2.4
 ---------
 neu: anpassbare Zeit, bevor die Leisten ausgeblendet werden
