@@ -638,14 +638,15 @@ function show_bar(whichone)
 	document.getElementById("ms_"+whichone+"bar").style.transition = "opacity 0s 0s";
 	document.getElementById("ms_"+whichone+"bar").style.opacity = w.opacity/100;
 }
+var hide_timeout;
 function hide_bar(whichone)
-{
-	window.setTimeout(function(){ // set timeout to prevent bar from not showing up at all
+{	
+	hide_timeout = window.setTimeout(function(){ // set timeout to prevent bar from not showing up at all
 		document.getElementById("ms_"+whichone+"bar_bg").style.transition = null;
 		document.getElementById("ms_"+whichone+"bar_bg").style.opacity = null;
 		document.getElementById("ms_"+whichone+"bar").style.transition = null;
 		document.getElementById("ms_"+whichone+"bar").style.opacity = null;
-	}, 1);
+	}, 0);
 }
 
 function show_minipage()
@@ -905,6 +906,7 @@ function ms_scrollBy_y(y)
 function ms_scroll_start_x(){
 	window.removeEventListener("scroll", onScroll, false);
 	window.removeEventListener("scroll", reposition_bars, false);
+	window.clearTimeout(hide_timeout); // better in show_bar()?
 	
 	show_bar("h");
 	if(by_x <0){
@@ -920,6 +922,7 @@ function ms_scroll_start_x(){
 function ms_scroll_start_y(){
 	window.removeEventListener("scroll", onScroll, false);
 	window.removeEventListener("scroll", reposition_bars, false);
+	window.clearTimeout(hide_timeout); // better in show_bar()?
 	
 	show_bar("v");
 	if(by_y < 0){
