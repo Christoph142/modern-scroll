@@ -22,6 +22,7 @@ Changelog:
 v 2.4.1
 ---------
 fix: Umrandungs-Einstellungen verändern die Scroll-Buttons nicht (Danke Dimitri für's Melden)
+fix: Dimensionen der Seite werden manchmal falsch berechnet
 !fix: Scroll-Leiste springt manchmal nach oben mit dem Touchpad (Danke Cryio & André für's Melden)
 
 v 2.4

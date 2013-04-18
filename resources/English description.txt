@@ -28,6 +28,7 @@ v 2.X
 v 2.4.1
 ---------
 fix: border settings do not affect scroll buttons (thx Dimitri for reporting)
+fix: page's dimensions are miscalculated on some websites
 !fix: scroll bar sometimes jumps to top with touchpad (thx Cryio & André for reporting)
 
 v 2.4
