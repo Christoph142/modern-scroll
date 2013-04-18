@@ -113,7 +113,7 @@ function inject_css()
 		"#ms_vbar_ui, #ms_hbar_ui, #ms_vbar_bg_ui, #ms_hbar_bg_ui{ border:none; padding:0; margin:0; }"+
 		
 		/* set values (most general first - can be overwritten by following rules): */
-		"#modern_scroll{ display:inline; }"+
+		"#modern_scroll, #modern_scroll_bars, #modern_scroll_buttons{ display:inline; }"+
 		"#ms_v_container{ height:100%; width:"+(w.container==="1"?w.container_size:"1")+"px; "+(w.vbar_at_left=="1"?"left":"right")+":0px; top:0px; background:rgba(0,0,0,0); }"+
 		"#ms_h_container{ height:"+(w.container==="1"?w.container_size:"1")+"px; width:100%; left:0px; "+(w.hbar_at_top==="1"?"top":"bottom")+":0px; background:rgba(0,0,0,0); }"+
 		"#ms_vbar_bg, #ms_hbar_bg{ opacity:"+((w.show_when==="3" && w.show_bg_bars_when==="3")?(w.opacity/100):"0")+"; transition:opacity 0.5s "+w.show_how_long+"ms; }"+
@@ -324,8 +324,11 @@ function check_dimensions()
 }
 function set_new_scrollMax_values()
 {
-	window.scrollMaxX = (document.documentElement.scrollWidth>window.innerWidth ? document.documentElement.scrollWidth-window.innerWidth : 0);
-	window.scrollMaxY = (document.documentElement.scrollHeight>window.innerHeight ? document.documentElement.scrollHeight-window.innerHeight : 0);
+	var new_scrollWidth = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth);
+	var new_scrollHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+	
+	window.scrollMaxX = (new_scrollWidth > window.innerWidth ? new_scrollWidth-window.innerWidth : 0);
+	window.scrollMaxY = (new_scrollHeight > window.innerHeight ? new_scrollHeight-window.innerHeight : 0);
 }
 
 function adjust_ui_new_size()
@@ -367,7 +370,7 @@ function resize_vbar()
 		return;
 	}
 	var vbar_height_before = vbar.style.height;
-	var vbar_new_height = Math.max(Math.round(window.innerHeight/(document.documentElement.scrollHeight/window.innerHeight)), 30+2*w.gap);
+	var vbar_new_height = Math.max(Math.round(window.innerHeight/(Math.max(document.documentElement.scrollHeight,document.body.scrollHeight)/window.innerHeight)), 30+2*w.gap);
 	vbar.style.height = vbar_new_height+"px";
 	
 	if(vbar.style.display !== "inline"){
@@ -399,7 +402,7 @@ function resize_hbar()
 		return;
 	}
 	var hbar_width_before = hbar.style.width;
-	var hbar_new_width = Math.max(Math.round(window.innerWidth/(document.documentElement.scrollWidth/window.innerWidth)), 30+2*w.gap);
+	var hbar_new_width = Math.max(Math.round(window.innerWidth/(Math.max(document.documentElement.scrollWidth,document.body.scrollWidth)/window.innerWidth)), 30+2*w.gap);
 	hbar.style.width = hbar_new_width+"px";
 	
 	if(hbar.style.display !== "inline"){
