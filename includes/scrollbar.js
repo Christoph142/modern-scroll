@@ -81,6 +81,8 @@ function remove_ms()
 	window.removeEventListener("DOMNodeRemoved", onDOMNode, false);
 	window.removeEventListener("resize", check_dimensions, false);
 	window.removeEventListener("mouseup", check_dimensions_after_click, false);
+	// Blink: swap all onDOMNodes with:
+	//DOM_observer.disconnect();
 	
 	window.removeEventListener("keydown", arrowkeyscroll, false);
 	window.removeEventListener("keydown", otherkeyscroll, false);
@@ -243,6 +245,7 @@ function add_functionality_2_bars(){
 	else window.addEventListener("scroll", onScroll, false);
 }
 
+//var DOM_observer = new WebKitMutationObserver(check_dimensions);
 function add_dimension_checkers()
 {
 	if(document.readyState !== "complete")
@@ -259,6 +262,8 @@ function add_dimension_checkers()
 	// DOMnodeInserted-hack by Daniel Buchner (http://www.backalleycoder.com/2012/04/25/i-want-a-damnodeInserted)
 	document.body.addEventListener("animationend", onDOMNode, false);
 	if(!document.URL.match("://vk.com")) window.addEventListener("DOMNodeRemoved", onDOMNode, false);
+	// Blink: swap hack with:
+	//DOM_observer.observe(document.body, { childList:true, subtree:true });
 	
 	check_dimensions();
 }
@@ -643,11 +648,12 @@ function show_bar(whichone)
 }
 var hide_timeout;
 function hide_bar(whichone)
-{	
+{
 	hide_timeout = window.setTimeout(function(){ // set timeout to prevent bar from not showing up at all
 		document.getElementById("ms_"+whichone+"bar_bg").style.transition = null;
 		document.getElementById("ms_"+whichone+"bar_bg").style.opacity = null;
-		document.getElementById("ms_"+whichone+"bar").style.transition = null;
+		if(document.getElementById("ms_"+whichone+"bar").style.transitionProperty === "opacity") // prevent top animation from canceling
+			document.getElementById("ms_"+whichone+"bar").style.transition = null;
 		document.getElementById("ms_"+whichone+"bar").style.opacity = null;
 	}, 0);
 }
@@ -692,6 +698,8 @@ function onDOMNode()
 	document.body.removeEventListener("transitionend", check_dimensions, false);
 	document.body.removeEventListener("animationend", onDOMNode, false);
 	window.removeEventListener("DOMNodeRemoved", onDOMNode, false);
+	// Blink: swap all onDOMNodes with:
+	//DOM_observer.disconnect();
 	
 	onDOMNode_check();
 	
@@ -700,6 +708,8 @@ function onDOMNode()
 		document.body.addEventListener("transitionend", check_dimensions, false);
 		document.body.addEventListener("animationend", onDOMNode, false);
 		if(!document.URL.match("://vk.com")) window.addEventListener("DOMNodeRemoved", onDOMNode, false);
+		// Blink: swap all onDOMNodes with:
+		//DOM_observer.observe(document.body, { childList:true, subtree:true });
 	}, 300);
 }
 function onDOMNode_check()
@@ -875,7 +885,6 @@ function ms_scrollBy_x(x)
 		{
 			window.scrollBy(by_x, 0);
 			by_x = 0;
-			ms_scroll_end("x");
 		}
 		else if(by_x !== 0 && !scroll_timeout_id_x){
 			scroll_velocity = w.scroll_velocity;
@@ -896,7 +905,6 @@ function ms_scrollBy_y(y)
 		{
 			window.scrollBy(0, by_y);
 			by_y = 0;
-			ms_scroll_end("y");
 		}
 		else if(by_y !== 0 && !scroll_timeout_id_y){
 			scroll_velocity = w.scroll_velocity;
@@ -909,7 +917,6 @@ function ms_scrollBy_y(y)
 function ms_scroll_start_x(){
 	window.removeEventListener("scroll", onScroll, false);
 	window.removeEventListener("scroll", reposition_bars, false);
-	window.clearTimeout(hide_timeout); // better in show_bar()?
 	
 	show_bar("h");
 	if(by_x <0){
@@ -921,11 +928,25 @@ function ms_scroll_start_x(){
 		hbar.style.left = window.innerWidth-parseInt(hbar.style.width)-(w.vbar_at_left==="0"?parseInt(w.gap)+parseInt(w.hover_size):0)+"px";
 	}
 	ms_scroll_inner_x(Date.now());
+	function ms_scroll_inner_x(lastTick)
+	{
+		var curTick = Date.now();
+		var scrollamount = (curTick - lastTick) * scroll_velocity;
+		
+		if(by_x < 0){ scrollamount = -scrollamount; if(scrollamount < by_x) scrollamount = by_x; }
+		else		{								if(scrollamount > by_x) scrollamount = by_x; }
+		
+		by_x -= scrollamount;
+		window.scrollBy(scrollamount, 0);
+		
+		if(by_x !== 0)	scroll_timeout_id_x = window.setTimeout(function(){ ms_scroll_inner_x(curTick); }, 1);
+		else			ms_scroll_end("x");
+	}
 }
+
 function ms_scroll_start_y(){
 	window.removeEventListener("scroll", onScroll, false);
 	window.removeEventListener("scroll", reposition_bars, false);
-	window.clearTimeout(hide_timeout); // better in show_bar()?
 	
 	show_bar("v");
 	if(by_y < 0){
@@ -937,35 +958,20 @@ function ms_scroll_start_y(){
 		vbar.style.top = window.innerHeight-parseInt(vbar.style.height)+"px";
 	}
 	ms_scroll_inner_y(Date.now());
-}
-
-function ms_scroll_inner_x(lastTick)
-{
-	var curTick = Date.now();
-	var scrollamount = (curTick - lastTick) * scroll_velocity;
-	
-	if(by_x < 0){ scrollamount = -scrollamount; if(scrollamount < by_x) scrollamount = by_x; }
-	else		{								if(scrollamount > by_x) scrollamount = by_x; }
-	
-	by_x -= scrollamount;
-	window.scrollBy(scrollamount, 0);
-	
-	if(by_x !== 0)	scroll_timeout_id_x = window.setTimeout(function(){ ms_scroll_inner_x(curTick); }, 1);
-	else			ms_scroll_end("x");
-}
-function ms_scroll_inner_y(lastTick)
-{
-	var curTick = Date.now();
-	var scrollamount = (curTick - lastTick) * scroll_velocity;
-	
-	if(by_y < 0){ scrollamount = -scrollamount; if(scrollamount < by_y) scrollamount = by_y; }
-	else		{								if(scrollamount > by_y) scrollamount = by_y; }
-	
-	by_y -= scrollamount;
-	window.scrollBy(0, scrollamount);
-	
-	if(by_y !== 0)	scroll_timeout_id_y = window.setTimeout(function(){ ms_scroll_inner_y(curTick); }, 1);
-	else			ms_scroll_end("y");
+	function ms_scroll_inner_y(lastTick)
+	{
+		var curTick = Date.now();
+		var scrollamount = (curTick - lastTick) * scroll_velocity;
+		
+		if(by_y < 0){ scrollamount = -scrollamount; if(scrollamount < by_y) scrollamount = by_y; }
+		else		{								if(scrollamount > by_y) scrollamount = by_y; }
+		
+		by_y -= scrollamount;
+		window.scrollBy(0, scrollamount);
+		
+		if(by_y !== 0)	scroll_timeout_id_y = window.setTimeout(function(){ ms_scroll_inner_y(curTick); }, 1);
+		else			ms_scroll_end("y");
+	}
 }
 
 function ms_scroll_end(direction){
@@ -987,7 +993,8 @@ function ms_scroll_end(direction){
 
 var last_clicked_element_is_scrollable;
 
-function arrowkeyscroll(){
+function arrowkeyscroll()
+{
 	var e = window.event;
 	if(e.which < 37 || e.which > 40 || modifierkey_pressed(e) || target_is_input(e)) return;
 	
