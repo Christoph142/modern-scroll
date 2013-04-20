@@ -177,12 +177,7 @@ function inject_css()
 		".dragged #ms_vbar, .dragged #ms_hbar{ opacity:"+(w.opacity>80?"1":((parseInt(w.opacity)+20)/100))+"; }"+
 		".dragged #ms_vbar_ui, .dragged #ms_vbar_bg_ui{ width:"+w.hover_size+"px; }"+
 		".dragged #ms_hbar_ui, .dragged #ms_hbar_bg_ui{ height:"+w.hover_size+"px; }"+
-		"#ms_superbar.dragged{ opacity:"+(w.show_superbar_minipage === "1" ? 1 : (w.superbar_opacity/100))+"; }"+
-		
-		// DOMnodeInserted-hack by Daniel Buchner (http://www.backalleycoder.com/2012/04/25/i-want-a-damnodeInserted)
-		"@keyframes ms_nodeInserted { from{ clip:rect(1px, auto, auto, auto); }to{ clip:rect(0px, auto, auto, auto); } }"+
-		"@-o-keyframes ms_nodeInserted { from{ clip:rect(1px, auto, auto, auto); }to{ clip:rect(0px, auto, auto, auto); } }"+
-		"* { animation: ms_nodeInserted 1ms; -o-animation: ms_nodeInserted 1ms; }";
+		"#ms_superbar.dragged{ opacity:"+(w.show_superbar_minipage === "1" ? 1 : (w.superbar_opacity/100))+"; }";
 	
 	if(document.getElementById("ms_style")) document.getElementById("ms_style").innerHTML = ms_style; // when options changed
 	else{ // when website is initially loaded
@@ -272,6 +267,7 @@ function add_functionality_2_bars(){
 	else window.addEventListener("scroll", onScroll, false);
 }
 
+var DOM_observer;
 function add_dimension_checkers()
 {
 	document.addEventListener("readystatechange", check_dimensions, false); // fires when all resources, i.e. images are loaded
@@ -280,13 +276,9 @@ function add_dimension_checkers()
 	window.addEventListener("mouseup", check_dimensions_after_click, false);
 	document.addEventListener("transitionend", check_dimensions, false);
 	
-	// DOMnodeInserted-hack by Daniel Buchner (http://www.backalleycoder.com/2012/04/25/i-want-a-damnodeInserted)
-	document.addEventListener("animationend", onDOMNode, false);
-	if(!document.URL.match("://vk.com")) window.addEventListener("DOMNodeRemoved", onDOMNode, false);
-	
 	// track dimension changes:
-	/*var observer = new WebKitMutationObserver(function(){alert("mutated!");});
-	observer.observe(document.body, { childList:true });*/
+	DOM_observer = new WebKitMutationObserver(check_dimensions);
+	DOM_observer.observe(document.body, { childList:true, subtree:true });
 }
 
 function add_scrollingfunctions()
@@ -721,16 +713,13 @@ function show_minipage()
 function onDOMNode()
 {
 	document.removeEventListener("transitionend", check_dimensions, false);
-	document.removeEventListener("animationend", onDOMNode, false);
-	window.removeEventListener("DOMNodeRemoved", onDOMNode, false);
+	DOM_observer.disconnect();
 	
 	onDOMNode_check();
 	
 	window.setTimeout(function(){
 		onDOMNode_check();
-		document.addEventListener("transitionend", check_dimensions, false);
-		document.addEventListener("animationend", onDOMNode, false);
-		if(!document.URL.match("://vk.com")) window.addEventListener("DOMNodeRemoved", onDOMNode, false);
+		DOM_observer.observe(document.body, { childList:true, subtree:true });
 	}, 300);
 }
 function onDOMNode_check()
