@@ -150,12 +150,12 @@ function inject_css()
 		".dragged #ms_vbar, .dragged #ms_hbar{ opacity:"+(w.opacity>80?"1":((parseInt(w.opacity)+20)/100))+"; }"+
 		".dragged #ms_vbar_ui, .dragged #ms_vbar_bg_ui{ width:"+w.hover_size+"px; }"+
 		".dragged #ms_hbar_ui, .dragged #ms_hbar_bg_ui{ height:"+w.hover_size+"px; }"+
-		"#ms_superbar.dragged{ opacity:"+(w.show_superbar_minipage === "1" ? 1 : (w.superbar_opacity/100))+"; }";
+		"#ms_superbar.dragged{ opacity:"+(w.show_superbar_minipage === "1" ? 1 : (w.superbar_opacity/100))+"; }"+
 		
-		// DOMnodeInserted-hack by Daniel Buchner (http://www.backalleycoder.com/2012/04/25/i-want-a-damnodeInserted)
+		// DOMnodeInserted-hack by Daniel Buchner (http://www.backalleycoder.com/2012/04/25/i-want-a-damnodeInserted) for Opera without Blink
 		"@keyframes ms_nodeInserted{ from{ clip:auto; }to{ clip:auto; } }"+
 		"@-o-keyframes ms_nodeInserted{ from{ clip:auto; }to{ clip:auto; } }"+
-		"body *{ animation:ms_nodeInserted 1ms; -o-animation:ms_nodeInserted 1ms; }";
+		(window.opera ? "body *{ animation:ms_nodeInserted 1ms; -o-animation:ms_nodeInserted 1ms; }" : ""); //typeof mutationObserver
 	
 	if(document.getElementById("ms_style")) document.getElementById("ms_style").innerHTML = ms_style; // when options changed
 	else{ // when website is initially loaded
