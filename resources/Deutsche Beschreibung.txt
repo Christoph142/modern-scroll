@@ -21,9 +21,9 @@ Changelog:
 
 v 2.4.1
 ---------
-fix: Umrandungs-Einstellungen verändern die Scroll-Buttons nicht (Danke Dimitri für's Melden)
-fix: modern scroll funktioniert auf manchen Seiten nicht (Danke jonastheroman für's Melden)
-!fix: Scroll-Leiste springt manchmal nach oben mit dem Touchpad (Danke Cryio & André für's Melden)
+neu: Umrandungs-Einstellungen betreffen auch die Scroll-Buttons (Danke Dimitri für's Melden)
+fix: modern scroll funktioniert auf manchen Seiten nicht (Danke André, jonastheroman & orhano für's Melden)
+fix: Scroll-Leiste springt während dem Scrollen zwischendurch nach oben/unten (Danke Cryio, André & orhano für's Melden)
 
 v 2.4
 ---------
