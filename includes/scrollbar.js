@@ -720,11 +720,9 @@ function onDOMNode_check()
 	
 	if(document.getElementById("ms_style").innerHTML === "") // cleanPages
 	{
-		remove_ui();
 		inject_css();
 		window.setTimeout(function(){
 			document.getElementById("toggle").style.right = (w.vbar_at_left === "0" ? (parseInt(w.hover_size)+parseInt(w.gap)+"px") : "0px");
-			update_ms();
 		}, 200);
 	}
 }
