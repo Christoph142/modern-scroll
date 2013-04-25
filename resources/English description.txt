@@ -25,6 +25,11 @@ v 2.X
 !new: sync settings via Opera Link
 !new: scroll bars for elements
 
+v 2.4.2
+---------
+fix: restore cleanPages extension compatibility
+!fix: flickering scroll bars during touchpad/mouse scrolling
+
 v 2.4.1
 ---------
 new: border settings affect scroll buttons, too (thx Dimitri for reporting)
