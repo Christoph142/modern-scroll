@@ -43,9 +43,7 @@ function initialize()
 	opera.extension.onmessage = update_ms;
 	
 	document.removeEventListener("visibilitychange", initialize, false);
-	//document.addEventListener("visibilitychange", add_or_remove_ms, false);
-	window.addEventListener("blur", remove_ms, false);
-	window.addEventListener("focus", add_ms, false);
+	document.addEventListener("visibilitychange", add_or_remove_ms, false);
 }
 
 function add_ms()
@@ -110,7 +108,7 @@ function remove_ms()
 }
 
 function update_ms(){ remove_ms(); add_ms(); }
-//function add_or_remove_ms(){ if(document.hidden) remove_ms(); else add_ms(); }
+function add_or_remove_ms(){ if(document.hidden) remove_ms(); else add_ms(); }
 
 function inject_css()
 {
