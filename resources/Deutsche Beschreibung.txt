@@ -21,6 +21,8 @@ Changelog:
 
 v 2.4.2
 ---------
+neu: verbessertes Rendering
+fix: Interface ist unsichtbar, wenn ein anderer Tab geschlossen wird
 fix: Kompatibilität mit cleanPages-Erweiterung wiederhergestellt
 !fix: Scroll-Leisten flackern während dem Scrollen mit Touchpad/Maus
 
