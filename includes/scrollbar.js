@@ -43,7 +43,9 @@ function initialize()
 	opera.extension.onmessage = update_ms;
 	
 	document.removeEventListener("visibilitychange", initialize, false);
-	document.addEventListener("visibilitychange", add_or_remove_ms, false);
+	//document.addEventListener("visibilitychange", add_or_remove_ms, false);
+	window.addEventListener("blur", remove_ms, false);
+	window.addEventListener("focus", add_ms, false);
 }
 
 function add_ms()
@@ -94,7 +96,9 @@ function remove_ms()
 	
 	window.removeEventListener("mousedown", adjust_contextmenu, false);
 	
-	window.clearTimeout(timeout);		timeout = null;
+	window.clearTimeout(timeout);					timeout = null;
+	window.clearTimeout(hide_timeout);				hide_timeout = null;
+	window.clearTimeout(dimension_check_timeout);	dimension_check_timeout = null;
 	
 	delete window.modernscroll;
 	
@@ -106,7 +110,7 @@ function remove_ms()
 }
 
 function update_ms(){ remove_ms(); add_ms(); }
-function add_or_remove_ms(){ if(document.hidden) remove_ms(); else add_ms(); }
+//function add_or_remove_ms(){ if(document.hidden) remove_ms(); else add_ms(); }
 
 function inject_css()
 {
@@ -309,13 +313,13 @@ function hide_ui()
 	opera.extension.postMessage("change_contextmenu_string_into_show");
 }
 
-/*function check_dimensions_after_transition(){ if(window.event.target.id.substr(0,3) !== "ms_") check_dimensions(); }*/
+var dimension_check_timeout;
 function check_dimensions_after_click()
 {
 	if(window.event.target.id.substr(0,3) === "ms_") return;
 	last_clicked_element_is_scrollable = is_scrollable(window.event.target, 2) ? 1 : 0;
 	
-	window.setTimeout(check_dimensions, 200); // needs some time to affect page height if click expands element <-> prob with long animations
+	dimension_check_timeout = window.setTimeout(check_dimensions, 200); // needs some time to affect page height if click expands element
 }
 var isFullscreen;
 function check_dimensions()
@@ -701,7 +705,7 @@ function onDOMNode()
 	// Blink: swap all onDOMNodes with:
 	//DOM_observer.disconnect();
 	
-	onDOMNode_check();
+	check_dimensions();
 	
 	window.setTimeout(function(){
 		document.body.addEventListener("transitionend", check_dimensions, false);
@@ -709,22 +713,8 @@ function onDOMNode()
 		if(!document.URL.match("://vk.com")) window.addEventListener("DOMNodeRemoved", onDOMNode, false);
 		// Blink: swap all onDOMNodes with:
 		//DOM_observer.observe(document.body, { childList:true, subtree:true });
-		onDOMNode_check();
+		check_dimensions();
 	}, 300);
-}
-function onDOMNode_check()
-{
-	window.clearTimeout(timeout);
-	/*if(!document.getElementById("modern_scroll")) timeout = window.setTimeout(add_ms, 100); // whenever a script removed modern scroll
-	else */timeout = window.setTimeout(check_dimensions, 100);
-	
-	/*if(document.getElementById("ms_style").innerHTML === "") // cleanPages
-	{
-		inject_css();
-		window.setTimeout(function(){
-			document.getElementById("toggle").style.right = (w.vbar_at_left === "0" ? (parseInt(w.hover_size)+parseInt(w.gap)+"px") : "0px");
-		}, 200);
-	}*/
 }
 
 function onScroll(){ window.clearTimeout(timeout); timeout = window.setTimeout(reposition_bars, 100); }
@@ -1008,11 +998,12 @@ function arrowkeyscroll()
 		window.removeEventListener("scroll", reposition_bars, false);
 		window.removeEventListener("scroll", onScroll, false);
 		
+		if(test ===0){
 		if		(e.which === 40) arrowkeyscroll_down(Date.now());
 		else if	(e.which === 38) arrowkeyscroll_up(Date.now());
 		else if	(e.which === 39) arrowkeyscroll_right(Date.now());
 		else					 arrowkeyscroll_left(Date.now());
-		
+		}
 		if(w.move_bars_during_scroll === "1" && document.getElementById("modern_scroll_bars"))
 		{
 			if(e.which === 40){
@@ -1024,8 +1015,7 @@ function arrowkeyscroll()
 				{
 					scroll_start_time = Date.now();
 					document.body.style.transition = "all "+(window.scrollMaxY-window.pageYOffset)/w.keyscroll_velocity+"ms linear";
-					document.body.style.transform = "translate(0,"+(window.pageYOffset-window.scrollMaxY)+"px)";
-					//document.body.style.marginTop = window.pageYOffset-window.scrollMaxY+"px";
+					document.body.style.marginTop = window.pageYOffset-window.scrollMaxY+"px";
 				}
 			}
 			else if(e.which === 38){
@@ -1036,7 +1026,7 @@ function arrowkeyscroll()
 				if(test === 1)
 				{
 					scroll_start_time = Date.now();
-					document.body.style.transition = "margin-top "+(window.scrollMaxY-window.pageYOffset)/w.keyscroll_velocity+"ms linear";
+					document.body.style.transition = "margin-top "+window.pageYOffset/w.keyscroll_velocity+"ms linear";
 					document.body.style.marginTop = window.pageYOffset+"px";
 				}
 			}
@@ -1059,10 +1049,10 @@ function arrowkeyscroll()
 		// CSS scrolling:
 		if(test === 1)
 		{
-			document.body.style.transition = null;
-			document.body.style.marginTop = null;
 			var scrollamount = (Date.now()-scroll_start_time)*w.keyscroll_velocity;
+			document.body.style.marginTop = null;
 			window.scrollBy(0,(e.which===40?scrollamount:-scrollamount));
+			document.body.style.transition = null;
 		}
 		
 		// JS scrolling:
