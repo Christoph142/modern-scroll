@@ -704,27 +704,27 @@ function onDOMNode()
 	onDOMNode_check();
 	
 	window.setTimeout(function(){
-		onDOMNode_check();
 		document.body.addEventListener("transitionend", check_dimensions, false);
 		document.body.addEventListener("animationend", onDOMNode, false);
 		if(!document.URL.match("://vk.com")) window.addEventListener("DOMNodeRemoved", onDOMNode, false);
 		// Blink: swap all onDOMNodes with:
 		//DOM_observer.observe(document.body, { childList:true, subtree:true });
+		onDOMNode_check();
 	}, 300);
 }
 function onDOMNode_check()
 {
 	window.clearTimeout(timeout);
-	if(!document.getElementById("modern_scroll")) timeout = window.setTimeout(initialize, 100); // whenever a script removed modern scroll
-	else timeout = window.setTimeout(check_dimensions, 100);
+	/*if(!document.getElementById("modern_scroll")) timeout = window.setTimeout(add_ms, 100); // whenever a script removed modern scroll
+	else */timeout = window.setTimeout(check_dimensions, 100);
 	
-	if(document.getElementById("ms_style").innerHTML === "") // cleanPages
+	/*if(document.getElementById("ms_style").innerHTML === "") // cleanPages
 	{
 		inject_css();
 		window.setTimeout(function(){
 			document.getElementById("toggle").style.right = (w.vbar_at_left === "0" ? (parseInt(w.hover_size)+parseInt(w.gap)+"px") : "0px");
 		}, 200);
-	}
+	}*/
 }
 
 function onScroll(){ window.clearTimeout(timeout); timeout = window.setTimeout(reposition_bars, 100); }
@@ -833,8 +833,8 @@ function show_or_hide_buttons()
 // ######################################
 
 var scroll_velocity;
-var scroll_timeout_id_x; var scroll_end_timeout_id_x; var by_x = 0;
-var scroll_timeout_id_y; var scroll_end_timeout_id_y; var by_y = 0;
+var scroll_timeout_id_x; var by_x = 0;
+var scroll_timeout_id_y; var by_y = 0;
 
 /*function ms_scrollTo(x, y){
 	x = x - window.pageXOffset;
@@ -937,7 +937,7 @@ function ms_scroll_start_x(){
 		by_x -= scrollamount;
 		window.scrollBy(scrollamount, 0);
 		
-		if(by_x !== 0)	scroll_timeout_id_x = window.setTimeout(function(){ ms_scroll_inner_x(curTick); }, 1);
+		if(by_x !== 0)	scroll_timeout_id_x = requestAnimFrame( function(){ ms_scroll_inner_x(curTick); } );
 		else			ms_scroll_end("x");
 	}
 }
@@ -967,21 +967,19 @@ function ms_scroll_start_y(){
 		by_y -= scrollamount;
 		window.scrollBy(0, scrollamount);
 		
-		if(by_y !== 0)	scroll_timeout_id_y = window.setTimeout(function(){ ms_scroll_inner_y(curTick); }, 1);
+		if(by_y !== 0)	scroll_timeout_id_y = requestAnimFrame( function(){ ms_scroll_inner_y(curTick); } );
 		else			ms_scroll_end("y");
 	}
 }
 
 function ms_scroll_end(direction){
 	if(direction === "y"){
-		window.clearTimeout(scroll_timeout_id_y); scroll_timeout_id_y = null; // scrolling timeout
+		cancelAnimFrame(scroll_timeout_id_y); scroll_timeout_id_y = null; // scrolling timeout
 		if(window.self.frameElement || w.use_own_scroll_functions === "1") vbar.style.transition = null;
-		scroll_end_timeout_id_y = null; // end timeout
 	}
 	else{
-		window.clearTimeout(scroll_timeout_id_x); scroll_timeout_id_x = null;
+		cancelAnimFrame(scroll_timeout_id_x); scroll_timeout_id_x = null;
 		if(window.self.frameElement || w.use_own_scroll_functions === "1") hbar.style.transition = null;
-		scroll_end_timeout_id_x = null;
 	}
 	reposition_bars();
 	
@@ -990,7 +988,8 @@ function ms_scroll_end(direction){
 }
 
 var last_clicked_element_is_scrollable;
-
+var scroll_start_time;
+var test = 0;
 function arrowkeyscroll()
 {
 	var e = window.event;
@@ -1000,8 +999,8 @@ function arrowkeyscroll()
 	if(window.scrollMaxY !== 0 || e.which === 37 || e.which === 39) // fix Google Docs & MyOpera Mail (no interface)
 		window.addEventListener("keydown", stopEvent, true);
 	
-	if(scroll_timeout_id_x){ window.clearTimeout(scroll_timeout_id_x); scroll_timeout_id_x = null; }
-	if(scroll_timeout_id_y){ window.clearTimeout(scroll_timeout_id_y); scroll_timeout_id_y = null; }
+	if(scroll_timeout_id_x){ cancelAnimFrame(scroll_timeout_id_x); scroll_timeout_id_x = null; }
+	if(scroll_timeout_id_y){ cancelAnimFrame(scroll_timeout_id_y); scroll_timeout_id_y = null; }
 	
 	if(last_clicked_element_is_scrollable) window.addEventListener("scroll", element_finished_scrolling, false);
 	else{
@@ -1020,11 +1019,26 @@ function arrowkeyscroll()
 				show_bar("v");
 				vbar.style.transition = "top "+(window.scrollMaxY-window.pageYOffset)/w.keyscroll_velocity+"ms linear";
 				vbar.style.top = window.innerHeight-parseInt(vbar.style.height)+"px";
+				
+				if(test === 1)
+				{
+					scroll_start_time = Date.now();
+					document.body.style.transition = "all "+(window.scrollMaxY-window.pageYOffset)/w.keyscroll_velocity+"ms linear";
+					document.body.style.transform = "translate(0,"+(window.pageYOffset-window.scrollMaxY)+"px)";
+					//document.body.style.marginTop = window.pageYOffset-window.scrollMaxY+"px";
+				}
 			}
 			else if(e.which === 38){
 				show_bar("v");
 				vbar.style.transition = "top "+window.pageYOffset/w.keyscroll_velocity+"ms linear";
 				vbar.style.top = "0px";
+				
+				if(test === 1)
+				{
+					scroll_start_time = Date.now();
+					document.body.style.transition = "margin-top "+(window.scrollMaxY-window.pageYOffset)/w.keyscroll_velocity+"ms linear";
+					document.body.style.marginTop = window.pageYOffset+"px";
+				}
 			}
 			else if(e.which === 39){
 				show_bar("h");
@@ -1042,8 +1056,18 @@ function arrowkeyscroll()
 	window.addEventListener("keyup", arrowkeyscroll_end, false);
 	function arrowkeyscroll_end()
 	{
-		if(scroll_timeout_id_x){ window.clearTimeout(scroll_timeout_id_x); scroll_timeout_id_x = null; }
-		if(scroll_timeout_id_y){ window.clearTimeout(scroll_timeout_id_y); scroll_timeout_id_y = null; }
+		// CSS scrolling:
+		if(test === 1)
+		{
+			document.body.style.transition = null;
+			document.body.style.marginTop = null;
+			var scrollamount = (Date.now()-scroll_start_time)*w.keyscroll_velocity;
+			window.scrollBy(0,(e.which===40?scrollamount:-scrollamount));
+		}
+		
+		// JS scrolling:
+		if(scroll_timeout_id_x){ cancelAnimFrame(scroll_timeout_id_x); scroll_timeout_id_x = null; }
+		cancelAnimFrame(scroll_timeout_id_y); scroll_timeout_id_y = null;
 		
 		window.addEventListener("keydown", arrowkeyscroll, false);
 		window.removeEventListener("keydown", stopEvent, true);
@@ -1063,25 +1087,25 @@ function arrowkeyscroll()
 	{
 		var curTick = Date.now();
 		window.scrollBy(0, (curTick - lastTick)*w.keyscroll_velocity);
-		scroll_timeout_id_y = window.setTimeout(function(){ arrowkeyscroll_down(curTick); },1);
+		scroll_timeout_id_y = requestAnimFrame( function(){ arrowkeyscroll_down(curTick); } );
 	}
 	function arrowkeyscroll_up(lastTick)
 	{
 		var curTick = Date.now();
 		window.scrollBy(0, (lastTick - curTick)*w.keyscroll_velocity);
-		scroll_timeout_id_y = window.setTimeout(function(){ arrowkeyscroll_up(curTick); },1);
+		scroll_timeout_id_y = requestAnimFrame( function(){ arrowkeyscroll_up(curTick); } );
 	}
 	function arrowkeyscroll_right(lastTick)
 	{
 		var curTick = Date.now();
 		window.scrollBy((curTick - lastTick)*w.keyscroll_velocity, 0);
-		scroll_timeout_id_x = window.setTimeout(function(){ arrowkeyscroll_right(curTick); },1);
+		scroll_timeout_id_x = requestAnimFrame( function(){ arrowkeyscroll_right(curTick); } );
 	}
 	function arrowkeyscroll_left(lastTick)
 	{
 		var curTick = Date.now();
 		window.scrollBy((lastTick - curTick)*w.keyscroll_velocity, 0);
-		scroll_timeout_id_x = window.setTimeout(function(){ arrowkeyscroll_left(curTick); },1);
+		scroll_timeout_id_x = requestAnimFrame( function(){ arrowkeyscroll_left(curTick); } );
 	}
 }
 
@@ -1170,5 +1194,17 @@ function target_is_input(e){
 }
 
 function stopEvent(){ window.event.preventDefault(); window.event.stopPropagation(); }
+
+// request/cancelAnimationFrame polyfill by Erik Möller (http://my.opera.com/emoller)
+var lastTime = 0;
+requestAnimFrame = (window.requestAnimationFrame ? window.requestAnimationFrame : function(callback, element) {
+		var currTime = Date.now();
+		var timeToCall = Math.max(0, 16 + lastTime - currTime);
+		lastTime = currTime + timeToCall;
+		var id = window.setTimeout(function() { callback(lastTime); }, timeToCall);
+		
+		return id;
+	});
+cancelAnimFrame = (window.cancelAnimationFrame ? window.cancelAnimationFrame : function(id){ window.clearTimeout(id); });
 
 }());
