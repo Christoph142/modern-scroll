@@ -40,7 +40,7 @@ var hbar;					// /
 function initialize()
 {
 	add_ms();
-	opera.extension.onmessage = update_ms;
+	if(document.URL.substr(0,9) === "widget://") opera.extension.onmessage = update_ms;
 	
 	document.removeEventListener("visibilitychange", initialize, false);
 	document.addEventListener("visibilitychange", add_or_remove_ms, false);

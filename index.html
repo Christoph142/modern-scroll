@@ -15,8 +15,6 @@
 		else if	(event.data === "reset_contextmenu")					change_contextmenu_string_into("contextmenu_hide");
 	}
 	
-	function distribute_update(){ opera.extension.broadcastMessage("update"); }
-	
 	function change_contextmenu_string_into(s){ if(opera.contexts.menu.item(0)) opera.contexts.menu.item(0).title = strings[s]; }
 	
 	function update_contextmenu_show_when(){ show_contextmenu(); hide_contextmenu(); }
