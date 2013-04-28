@@ -978,8 +978,8 @@ function ms_scroll_end(direction)
 }
 
 var last_clicked_element_is_scrollable;
-var scroll_start_time;
-var test = 0;
+//var scroll_start_time;
+//var test = 0;
 function arrowkeyscroll()
 {
 	var e = window.event;
@@ -998,37 +998,37 @@ function arrowkeyscroll()
 		window.removeEventListener("scroll", reposition_bars, false);
 		window.removeEventListener("scroll", onScroll, false);
 		
-		if(test ===0){
+		//if(test ===0){
 		if		(e.which === 40) arrowkeyscroll_down(Date.now());
 		else if	(e.which === 38) arrowkeyscroll_up(Date.now());
 		else if	(e.which === 39) arrowkeyscroll_right(Date.now());
 		else					 arrowkeyscroll_left(Date.now());
-		}
+		//}
 		if(w.move_bars_during_scroll === "1" && document.getElementById("modern_scroll_bars"))
 		{
 			if(e.which === 40){
 				show_bar("v");
 				vbar.style.transition = "top "+(window.scrollMaxY-window.pageYOffset)/w.keyscroll_velocity+"ms linear";
 				vbar.style.top = window.innerHeight-parseInt(vbar.style.height)+"px";
-				
+				/*
 				if(test === 1)
 				{
 					scroll_start_time = Date.now();
 					document.body.style.transition = "all "+(window.scrollMaxY-window.pageYOffset)/w.keyscroll_velocity+"ms linear";
 					document.body.style.marginTop = window.pageYOffset-window.scrollMaxY+"px";
-				}
+				}*/
 			}
 			else if(e.which === 38){
 				show_bar("v");
 				vbar.style.transition = "top "+window.pageYOffset/w.keyscroll_velocity+"ms linear";
 				vbar.style.top = "0px";
-				
+				/*
 				if(test === 1)
 				{
 					scroll_start_time = Date.now();
 					document.body.style.transition = "margin-top "+window.pageYOffset/w.keyscroll_velocity+"ms linear";
 					document.body.style.marginTop = window.pageYOffset+"px";
-				}
+				}*/
 			}
 			else if(e.which === 39){
 				show_bar("h");
@@ -1047,14 +1047,14 @@ function arrowkeyscroll()
 	function arrowkeyscroll_end()
 	{
 		// CSS scrolling:
-		if(test === 1)
+		/*if(test === 1)
 		{
 			var scrollamount = (Date.now()-scroll_start_time)*w.keyscroll_velocity;
 			document.body.style.marginTop = null;
 			window.scrollBy(0,(e.which===40?scrollamount:-scrollamount));
 			document.body.style.transition = null;
 		}
-		
+		*/
 		// JS scrolling:
 		if(scroll_timeout_id_x){ cancelAnimFrame(scroll_timeout_id_x); scroll_timeout_id_x = null; }
 		cancelAnimFrame(scroll_timeout_id_y); scroll_timeout_id_y = null;
