@@ -639,6 +639,7 @@ function hide_bars()
 
 function show_bar(whichone)
 {
+	window.clearTimeout(hide_timeout); hide_timeout = null;
 	if(w.show_when === "1") return;		// 1 = only onmouseover
 	if(w.show_bg_bars_when === "3"){	// 3 = like scroll bars
 		document.getElementById("ms_"+whichone+"bar_bg").style.transition = "opacity 0s 0s";
@@ -652,10 +653,10 @@ var hide_timeout;
 function hide_bar(whichone)
 {
 	hide_timeout = window.setTimeout(function(){ // set timeout to prevent bar from not showing up at all
+		if(!hide_timeout) return; // hide_bar got fired for v & h -> only h is cancelable -> check if show_bars() canceled hide_timeout
 		document.getElementById("ms_"+whichone+"bar_bg").style.transition = null;
 		document.getElementById("ms_"+whichone+"bar_bg").style.opacity = null;
-		if(document.getElementById("ms_"+whichone+"bar").style.transitionProperty === "opacity") // prevent top animation from canceling
-			document.getElementById("ms_"+whichone+"bar").style.transition = null;
+		document.getElementById("ms_"+whichone+"bar").style.transition = null;
 		document.getElementById("ms_"+whichone+"bar").style.opacity = null;
 	}, 0);
 }
@@ -960,15 +961,16 @@ function ms_scroll_start_y(){
 	}
 }
 
-function ms_scroll_end(direction){
+function ms_scroll_end(direction)
+{
 	if(direction === "y"){
-		cancelAnimFrame(scroll_timeout_id_y); scroll_timeout_id_y = null; // scrolling timeout
+		cancelAnimFrame(scroll_timeout_id_y); scroll_timeout_id_y = null;
 		if(window.self.frameElement || w.use_own_scroll_functions === "1") vbar.style.transition = null;
-	}
-	else{
+	}else{
 		cancelAnimFrame(scroll_timeout_id_x); scroll_timeout_id_x = null;
 		if(window.self.frameElement || w.use_own_scroll_functions === "1") hbar.style.transition = null;
 	}
+	
 	reposition_bars();
 	
 	if(w.move_bars_during_scroll === "1") window.addEventListener("scroll", reposition_bars, false);

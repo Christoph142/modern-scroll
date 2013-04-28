@@ -30,7 +30,7 @@ v 2.4.2
 new: improved rendering
 fix: interface is invisible when another tab gets closed
 fix: restore cleanPages extension compatibility
-!fix: flickering scroll bars during touchpad/mouse scrolling
+fix: flickering scroll bars during touchpad/mouse scrolling
 
 v 2.4.1
 ---------
