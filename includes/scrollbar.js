@@ -39,11 +39,11 @@ var hbar;					// /
 
 function initialize()
 {
-	add_ms();
-	if(document.URL.substr(0,9) === "widget://") opera.extension.onmessage = update_ms;
-	
 	document.removeEventListener("visibilitychange", initialize, false);
 	document.addEventListener("visibilitychange", add_or_remove_ms, false);
+	
+	add_ms();
+	if(document.URL.substr(0,9) === "widget://") opera.extension.onmessage = update_ms;
 }
 
 function add_ms()
@@ -76,13 +76,18 @@ function remove_ms()
 {
 	if(!document.getElementById("modern_scroll")) return;
 	
-	document.body.removeEventListener("transitionend", check_dimensions, false);
+	document.removeEventListener("resize", adjust_ui_fullscreen_change, false);
+	document.removeEventListener("readystatechange", add_dimension_checkers, false);
+	
 	document.body.removeEventListener("animationend", onDOMNode, false);
 	window.removeEventListener("DOMNodeRemoved", onDOMNode, false);
-	window.removeEventListener("resize", check_dimensions, false);
-	window.removeEventListener("mouseup", check_dimensions_after_click, false);
 	// Blink: swap all onDOMNodes with:
 	//DOM_observer.disconnect();
+	
+	document.body.removeEventListener("transitionend", check_dimensions, false);
+	window.removeEventListener("load", check_dimensions, false);
+	window.removeEventListener("resize", check_dimensions, false);
+	window.removeEventListener("mouseup", check_dimensions_after_click, false);
 	
 	window.removeEventListener("keydown", arrowkeyscroll, false);
 	window.removeEventListener("keydown", otherkeyscroll, false);
@@ -113,7 +118,7 @@ function add_or_remove_ms(){ if(document.hidden) remove_ms(); else add_ms(); }
 function inject_css()
 {
 	var ms_style = /* set back standard values (CSS values not necessarily used by modern scroll, but maybe altered by the website): */
-		"#modern_scroll, #ms_v_container, #ms_h_container, #ms_vbar_bg, #ms_hbar_bg, #ms_vbar, #ms_hbar, #ms_superbar, #ms_page_cover, #ms_upbutton, #ms_downbutton, #ms_minipage_canvas{ position:fixed; z-index:2147483647; border:none; padding:0; margin:0; display:none; }"+
+		"#modern_scroll, #ms_v_container, #ms_h_container, #ms_vbar_bg, #ms_hbar_bg, #ms_vbar, #ms_hbar, #ms_superbar, #ms_page_cover, #ms_upbutton, #ms_downbutton, #ms_minipage_canvas{ position:fixed; z-index:2147483647; border:none; padding:0; margin:0; display:none; background:none; }"+
 		"#ms_vbar_ui, #ms_hbar_ui, #ms_vbar_bg_ui, #ms_hbar_bg_ui{ border:none; padding:0; margin:0; }"+
 		
 		/* set values (most general first - can be overwritten by following rules): */
@@ -317,6 +322,7 @@ function check_dimensions_after_click()
 	if(window.event.target.id.substr(0,3) === "ms_") return;
 	last_clicked_element_is_scrollable = is_scrollable(window.event.target, 2) ? 1 : 0;
 	
+	window.clearTimeout(dimension_check_timeout);
 	dimension_check_timeout = window.setTimeout(check_dimensions, 200); // needs some time to affect page height if click expands element
 }
 var isFullscreen;
@@ -706,7 +712,8 @@ function onDOMNode()
 	
 	check_dimensions();
 	
-	window.setTimeout(function(){
+	window.clearTimeout(dimension_check_timeout);
+	dimension_check_timeout = window.setTimeout(function(){
 		document.body.addEventListener("transitionend", check_dimensions, false);
 		document.body.addEventListener("animationend", onDOMNode, false);
 		if(!document.URL.match("://vk.com")) window.addEventListener("DOMNodeRemoved", onDOMNode, false);

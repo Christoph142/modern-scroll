@@ -27,7 +27,7 @@ v 2.X
 
 v 2.4.3
 ---------
-(!)fix: interface stays invisible when switching tabs during loading
+fix: interface stays invisible when switching tabs during loading
 fix: bars have a white rectangular background @ www.testberichte.de
 
 v 2.4.2

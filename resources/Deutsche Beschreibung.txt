@@ -21,7 +21,7 @@ Changelog:
 
 v 2.4.3
 ---------
-(!)fix: Interface bleibt unsichtbar, wenn man während dem Laden Tabs wechselt
+fix: Interface bleibt unsichtbar, wenn man während dem Laden Tabs wechselt
 fix: Leisten haben einen weißen rechteckigen Hintergrund @ www.testberichte.de
 
 v 2.4.2
