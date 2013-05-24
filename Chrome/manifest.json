@@ -1,15 +1,20 @@
 {
-	"manifest_version" : 2,
+	"manifest_version"	: 2,
 	
-	"name"				: "modern scroll for Chrome",
-	"description"		: "ms",
-	"version"			: "1.0",
+	"name"				: "modern scroll",
+	"description"		: "Takes scrolling to a whole new level",
+	"default_locale"	: "en",
+	"version"			: "2.4.3",
+	"icons"				: { "16": "images/contextmenu.png", /*"48": "images/icon48.png",*/ "128": "images/icon@2x.png" },
 	
 	"content_scripts" :
 	[{
 		  "matches"		: ["http://*/*","https://*/*"],
-		  "js"			: ["scrollbar.js"],
+		  "css"			: ["includes/remove_default_bars.css"],
+		  "js"			: ["includes/scrollbar.js"],
 		  "run_at"		: "document_start",
 		  "all_frames"	: true
-	}]
+	}],
+	
+	"options_page": "options/options.html"
 }

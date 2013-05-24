@@ -6,15 +6,15 @@
 	<icon src="images/icon.png" />
 	
 	<description xml:lang="ar">الإرتقاء بالتمرير و التصفح على أوبرا إلى مستوى آخر</description>
-	<description xml:lang="cs">Přeneste rolování v Opeře na úplně novou úroveň</description>
-	<description xml:lang="de">Bringt das Scrollen in Opera auf ein ganz neues Niveau</description>
-	<description xml:lang="en">Takes scrolling in Opera to a whole new level</description>
-	<description xml:lang="fr">Prend le défilement d'Opera à un niveau entièrement nouveau</description>
-	<description xml:lang="nb">Tar rulleopplevelsen i Opera opp til neste nivå</description>
-	<description xml:lang="pl">Przeniesienie przewijania w Operze na całkowicie nowy poziom</description>
-	<description xml:lang="pt">Leva a rolagem no Opera a um novo nível</description>
-	<description xml:lang="ro">Duce derularea din Opera la un complet nou nivel</description>
-	<description xml:lang="tr">Opera'da kaydırma için yeni bir seviye</description>
+	<description xml:lang="cs">Přeneste rolování na úplně novou úroveň</description>
+	<description xml:lang="de">Bringt das Scrollen auf ein ganz neues Niveau</description>
+	<description xml:lang="en">Takes scrolling to a whole new level</description>
+	<description xml:lang="fr">Prend le défilement à un niveau entièrement nouveau</description>
+	<description xml:lang="nb">Tar rulleopplevelsen opp til neste nivå</description>
+	<description xml:lang="pl">Przeniesienie przewijania na całkowicie nowy poziom</description>
+	<description xml:lang="pt">Leva a rolagem a um novo nível</description>
+	<description xml:lang="ro">Duce derularea la un complet nou nivel</description>
+	<description xml:lang="tr">Kaydırma için yeni bir seviye</description>
 	
 	<feature name="opera:screenshot" />
 	<feature name="opera:contextmenus" />
