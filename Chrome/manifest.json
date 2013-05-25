@@ -16,5 +16,6 @@
 		  "all_frames"	: true
 	}],
 	
-	"options_page": "options/options.html"
+	"permissions"		: ["storage"],
+	"options_page"		: "options/options.html"
 }

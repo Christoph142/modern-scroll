@@ -52,8 +52,6 @@ function add_ms()
 	
 	update_prefs();
 	
-	inject_css();
-	
 	var ms_container = document.createElement("div");
 	ms_container.id = "modern_scroll";
 	try{ document.documentElement.appendChild(ms_container); }catch(e){ document.body.appendChild(ms_container); }
@@ -75,52 +73,56 @@ function add_ms()
 }
 function update_prefs()
 {
-	w = {
-	"size" :				(!localStorage["size"] ? "8" : localStorage["size"]),
-	"hover_size" :			(!localStorage["hover_size"] ? "12" : localStorage["hover_size"]),
-	"opacity" :				(!localStorage["opacity"] ? "50" : localStorage["opacity"]),
-	"color" :				(!localStorage["color"] ? "#000000" : localStorage["color"]),
-	"color_bg" :			(!localStorage["color_bg"] ? "#999999" : localStorage["color_bg"]),
-	"border_radius" :		(!localStorage["border_radius"] ? "7" : localStorage["border_radius"]),
-	"border_width" :		(!localStorage["border_width"] ? "2" : localStorage["border_width"]),
-	"border_color" :		(!localStorage["border_color"] ? "#FFFFFF" : localStorage["border_color"]),
-	"border_color_rgba" :	(!localStorage["border_color_rgba"] ? "rgba(255,255,255,0.5)" : localStorage["border_color_rgba"]),
-	"border_blur" :			(!localStorage["border_blur"] ? "0" : localStorage["border_blur"]),
-	"show_when" :			(!localStorage["show_when"] ? "2" : localStorage["show_when"]),<!-- 1 = onmouseover only, 2 = normal, 3 = always -->
-	"show_how_long" :		(!localStorage["show_how_long"] ? "1000" : localStorage["show_how_long"]),
-	"show_bg_bars_when" :	(!localStorage["show_bg_bars_when"] ? "2" : localStorage["show_bg_bars_when"]),<!-- 1 = never, 2 = onmouseover only, 3 = like bars -->
-	"fullscreen_only" :		(!localStorage["fullscreen_only"] ? "0" : localStorage["fullscreen_only"]),
-	"bg_special_ends" :		(!localStorage["bg_special_ends"] ? "1" : localStorage["bg_special_ends"]),
-	"move_bars_during_scroll" : (!localStorage["move_bars_during_scroll"] ? "1" : localStorage["move_bars_during_scroll"]),
-	"show_superbar" :		(!localStorage["show_superbar"] ? "0" : localStorage["show_superbar"]),
-	"show_superbar_minipage" : (!localStorage["show_superbar_minipage"] ? "1" : localStorage["show_superbar_minipage"]),
-	"superbar_opacity" :	(!localStorage["superbar_opacity"] ? "70" : localStorage["superbar_opacity"]),
-	"vbar_at_left" :		(!localStorage["vbar_at_left"] ? "0" : localStorage["vbar_at_left"]),
-	"hbar_at_top" :			(!localStorage["hbar_at_top"] ? "0" : localStorage["hbar_at_top"]),
-	"container" :			(!localStorage["container"] ? "0" : localStorage["container"]),
-	"container_size" :		(!localStorage["container_size"] ? "30" : localStorage["container_size"]),
-	"gap" :					(!localStorage["gap"] ? "2" : localStorage["gap"]),
-	
-	"show_buttons" :		(!localStorage["show_buttons"] ? "0" : localStorage["show_buttons"]),<!-- 0 = no, 1 = yes (old), 2 = only fullscreen, 4 = yes -->
-	"buttonposition" :		(!localStorage["buttonposition"] ? "48" : localStorage["buttonposition"]),
-	"button_height" :		(!localStorage["button_height"] ? "50" : localStorage["button_height"]),
-	"button_width" :		(!localStorage["button_width"] ? "100" : localStorage["button_width"]),
-	"button_opacity" :		(!localStorage["button_opacity"] ? "10" : localStorage["button_opacity"]),
-	
-	"animate_scroll" :		(!localStorage["animate_scroll"] ? "1" : localStorage["animate_scroll"]),
-	"animate_scroll_max" :	(!localStorage["animate_scroll_max"] ? "2" : localStorage["animate_scroll_max"]),
-	
-	"use_own_scroll_functions" : (!localStorage["use_own_scroll_functions"] ? "1" : localStorage["use_own_scroll_functions"]),
-	"use_own_scroll_functions_mouse" : (!localStorage["use_own_scroll_functions_mouse"] ? "1" : localStorage["use_own_scroll_functions_mouse"]),
-	"scroll_velocity" :		(!localStorage["scroll_velocity"] ? "5" : localStorage["scroll_velocity"]),
-	"keyscroll_velocity" :	(!localStorage["keyscroll_velocity"] ? "2" : localStorage["keyscroll_velocity"]),
-	"mousescroll_velocity" : (!localStorage["mousescroll_velocity"] ? "3" : localStorage["mousescroll_velocity"]),
-	"mousescroll_distance" : (!localStorage["mousescroll_distance"] ? "1" : localStorage["mousescroll_distance"]),
-	
-	"contextmenu_show_when" : (!localStorage["contextmenu_show_when"] ? "2" : localStorage["contextmenu_show_when"]),<!-- 1 = never, 2 = only over interface, 3 = always -->
-	
-	"external_interface" : (!localStorage["external_interface"] ? "1" : localStorage["external_interface"])
-	};
+	chrome.storage.sync.get( null, function(storage){
+		w = {
+		"size" :				(!storage["size"] ? "8" : storage["size"]),
+		"hover_size" :			(!storage["hover_size"] ? "12" : storage["hover_size"]),
+		"opacity" :				(!storage["opacity"] ? "50" : storage["opacity"]),
+		"color" :				(!storage["color"] ? "#000000" : storage["color"]),
+		"color_bg" :			(!storage["color_bg"] ? "#999999" : storage["color_bg"]),
+		"border_radius" :		(!storage["border_radius"] ? "7" : storage["border_radius"]),
+		"border_width" :		(!storage["border_width"] ? "2" : storage["border_width"]),
+		"border_color" :		(!storage["border_color"] ? "#FFFFFF" : storage["border_color"]),
+		"border_color_rgba" :	(!storage["border_color_rgba"] ? "rgba(255,255,255,0.5)" : storage["border_color_rgba"]),
+		"border_blur" :			(!storage["border_blur"] ? "0" : storage["border_blur"]),
+		"show_when" :			(!storage["show_when"] ? "2" : storage["show_when"]),<!-- 1 = onmouseover only, 2 = normal, 3 = always -->
+		"show_how_long" :		(!storage["show_how_long"] ? "1000" : storage["show_how_long"]),
+		"show_bg_bars_when" :	(!storage["show_bg_bars_when"] ? "2" : storage["show_bg_bars_when"]),<!-- 1 = never, 2 = onmouseover only, 3 = like bars -->
+		"fullscreen_only" :		(!storage["fullscreen_only"] ? "0" : storage["fullscreen_only"]),
+		"bg_special_ends" :		(!storage["bg_special_ends"] ? "1" : storage["bg_special_ends"]),
+		"move_bars_during_scroll" : (!storage["move_bars_during_scroll"] ? "1" : storage["move_bars_during_scroll"]),
+		"show_superbar" :		(!storage["show_superbar"] ? "0" : storage["show_superbar"]),
+		"show_superbar_minipage" : (!storage["show_superbar_minipage"] ? "1" : storage["show_superbar_minipage"]),
+		"superbar_opacity" :	(!storage["superbar_opacity"] ? "70" : storage["superbar_opacity"]),
+		"vbar_at_left" :		(!storage["vbar_at_left"] ? "0" : storage["vbar_at_left"]),
+		"hbar_at_top" :			(!storage["hbar_at_top"] ? "0" : storage["hbar_at_top"]),
+		"container" :			(!storage["container"] ? "0" : storage["container"]),
+		"container_size" :		(!storage["container_size"] ? "30" : storage["container_size"]),
+		"gap" :					(!storage["gap"] ? "2" : storage["gap"]),
+		
+		"show_buttons" :		(!storage["show_buttons"] ? "0" : storage["show_buttons"]),<!-- 0 = no, 1 = yes (old), 2 = only fullscreen, 4 = yes -->
+		"buttonposition" :		(!storage["buttonposition"] ? "48" : storage["buttonposition"]),
+		"button_height" :		(!storage["button_height"] ? "50" : storage["button_height"]),
+		"button_width" :		(!storage["button_width"] ? "100" : storage["button_width"]),
+		"button_opacity" :		(!storage["button_opacity"] ? "10" : storage["button_opacity"]),
+		
+		"animate_scroll" :		(!storage["animate_scroll"] ? "1" : storage["animate_scroll"]),
+		"animate_scroll_max" :	(!storage["animate_scroll_max"] ? "2" : storage["animate_scroll_max"]),
+		
+		"use_own_scroll_functions" : (!storage["use_own_scroll_functions"] ? "1" : storage["use_own_scroll_functions"]),
+		"use_own_scroll_functions_mouse" : (!storage["use_own_scroll_functions_mouse"] ? "1" : storage["use_own_scroll_functions_mouse"]),
+		"scroll_velocity" :		(!storage["scroll_velocity"] ? "5" : storage["scroll_velocity"]),
+		"keyscroll_velocity" :	(!storage["keyscroll_velocity"] ? "2" : storage["keyscroll_velocity"]),
+		"mousescroll_velocity" : (!storage["mousescroll_velocity"] ? "3" : storage["mousescroll_velocity"]),
+		"mousescroll_distance" : (!storage["mousescroll_distance"] ? "1" : storage["mousescroll_distance"]),
+		
+		"contextmenu_show_when" : (!storage["contextmenu_show_when"] ? "2" : storage["contextmenu_show_when"]),<!-- 1 = never, 2 = only over interface, 3 = always -->
+		
+		"external_interface" : (!storage["external_interface"] ? "1" : storage["external_interface"])
+		};
+		
+		inject_css();
+	});
 }
 
 function remove_ms()
