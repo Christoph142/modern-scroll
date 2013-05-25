@@ -2,7 +2,7 @@
 	"manifest_version"	: 2,
 	
 	"name"				: "modern scroll",
-	"description"		: "Takes scrolling to a whole new level",
+	"description"		: "__MSG_description__",
 	"default_locale"	: "en",
 	"version"			: "2.4.3",
 	"icons"				: { "16": "images/contextmenu.png", /*"48": "images/icon48.png",*/ "128": "images/icon@2x.png" },
