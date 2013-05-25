@@ -2,7 +2,7 @@
 	"lang" :						{ "message" : "ro" },
 	"by" :							{ "message" : "de" },
 	"saved_sets" :					{ "message" : "Configuraţii salvate" },
-	"save_set" :					{ "message" : "Salvează configuraţia curentă ca" },
+	"save_set_as" :					{ "message" : "Salvează configuraţia curentă ca" },
 	"new_set_name" :				{ "message" : "Nume" },
 	"load_or_delete_set" :			{ "message" : "Incarcă sau şterge" },
 	"default" :						{ "message" : "Prestabilite" },

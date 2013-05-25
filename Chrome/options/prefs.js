@@ -1,4 +1,5 @@
 window.addEventListener("DOMContentLoaded", getprefs, false);
+window.addEventListener("DOMContentLoaded", localize, false);
 function _(to_translate){ console.log( chrome.i18n.getMessage(to_translate) ); }
 
 // save preferences:
@@ -34,9 +35,7 @@ function save_buttonposition(){
 function getprefs(){ chrome.storage.sync.get( null, function(storage){ restoreprefs(storage); } ); }
 
 function restoreprefs(storage) // restore preferences:
-{
-	if(chrome.i18n.getMessage("lang") === "ar") document.body.dir = "rtl"; else document.body.dir = "ltr";
-	
+{	
 	document.getElementById("save_set").innerHTML = chrome.i18n.getMessage("new_set_name");
 	document.getElementById("save_set").addEventListener("blur",function(){
 		if(this.innerHTML === "") this.innerHTML = chrome.i18n.getMessage("new_set_name");
@@ -170,6 +169,16 @@ function restoreprefs(storage) // restore preferences:
 			bubble_setback = window.setTimeout(function(){this.lastChild.style.marginTop= null;}.bind(this),500);
 		}, false);
 	}
+}
+
+function localize()
+{
+	if(chrome.i18n.getMessage("lang") === "ar") document.body.dir = "rtl"; else document.body.dir = "ltr";
+	
+	var strings = document.getElementsByClassName("i18n");
+	for(var i = 0; i < strings.length; i++)	strings[i].innerHTML = chrome.i18n.getMessage(strings[i].id);
+	
+	//################# tooltips for save/restor/delete pics
 }
 
 var timeout;

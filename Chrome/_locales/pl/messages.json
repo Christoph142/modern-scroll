@@ -2,7 +2,7 @@
 	"lang" :						{ "message" : "pl" },
 	"by" :							{ "message" : "autorstwa" },
 	"saved_sets" :					{ "message" : "Przechowywane zestawy ustawień" },
-	"save_set" :					{ "message" : "Zapisz obecny zestaw pod nazwą" },
+	"save_set_as" :					{ "message" : "Zapisz obecny zestaw pod nazwą" },
 	"new_set_name" :				{ "message" : "Nazwa" },
 	"load_or_delete_set" :			{ "message" : "Wczytaj albo usuń" },
 	"default" :						{ "message" : "Fabryczny" },

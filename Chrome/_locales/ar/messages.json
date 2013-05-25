@@ -3,7 +3,7 @@
 	"by" : { "message" : "من طرف" },
 	"description" : { "message" : "الإرتقاء بالتمرير و التصفح على أوبرا إلى مستوى آخر" },
 	"saved_sets" : { "message" : "تم حفظ الإعدادات" },
-	"save_set" : { "message" : "حفظ الإعدادات الحالية تحت إسم" },
+	"save_set_as" : { "message" : "حفظ الإعدادات الحالية تحت إسم" },
 	"new_set_name" : { "message" : "إسم" },
 	"load_or_delete_set" : { "message" : "تحميل أو حذف" },
 	"default" : { "message" : "إفتراضي" },

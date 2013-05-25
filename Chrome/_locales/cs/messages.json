@@ -3,7 +3,7 @@
 	"by" : { "message" : "od" },
 	"description" : { "message" : "Přeneste rolování na úplně novou úroveň" },
 	"saved_sets" : { "message" : "Uložená nastavení" },
-	"save_set" : { "message" : "Uložit aktuální konfiguraci jako" },
+	"save_set_as" : { "message" : "Uložit aktuální konfiguraci jako" },
 	"new_set_name" : { "message" : "Název" },
 	"load_or_delete_set" : { "message" : "Načíst, nebo smazat" },
 	"default" : { "message" : "Výchozí" },

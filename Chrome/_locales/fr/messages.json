@@ -2,7 +2,7 @@
 	"lang" : { "message" : "fr" },
 	"by" : { "message" : "de" },
 	"saved_sets" : { "message" : "Configurations enregistrées" },
-	"save_set" : { "message" : "Enregistre la configuration actuelle comme" },
+	"save_set_as" : { "message" : "Enregistre la configuration actuelle comme" },
 	"new_set_name" : { "message" : "Nom" },
 	"load_or_delete_set" : { "message" : "Charge ou supprime" },
 	"default" : { "message" : "Défaut" },

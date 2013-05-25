@@ -3,7 +3,7 @@
 	"by" : { "message" : "von" },
 	"description" : { "message" : "Bringt das Scrollen auf ein ganz neues Niveau" },
 	"saved_sets" : { "message" : "Gespeicherte Konfigurationen" },
-	"save_set" : { "message" : "Speichere die aktuelle Konfiguration als" },
+	"save_set_as" : { "message" : "Speichere die aktuelle Konfiguration als" },
 	"new_set_name" : { "message" : "Name" },
 	"load_or_delete_set" : { "message" : "Lade oder lösche" },
 	"default" : { "message" : "Standard" },
