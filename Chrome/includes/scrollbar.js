@@ -13,53 +13,8 @@
 (function(){
 
 var timeout;				// scrolling animation
-var w = {
-	"size" : "8",
-	"hover_size" : "12",
-	"opacity" : "50",
-	"color" : "#000000",
-	"color_bg" : "#999999",
-	"border_radius" : "7",
-	"border_width" : "2",
-	"border_color" : "#FFFFFF",
-	"border_color_rgba" : "rgba(255,255,255,0.5)",
-	"border_blur" : "0",
-	"show_when" : "2",<!-- 1 = onmouseover only, 2 = normal, 3 = always -->
-	"show_how_long" : "1000",
-	"show_bg_bars_when" : "2",<!-- 1 = never, 2 = onmouseover only, 3 = like bars -->
-	"fullscreen_only" : "0",
-	"bg_special_ends" : "1",
-	"move_bars_during_scroll" : "1",
-	"show_superbar" : "0",
-	"show_superbar_minipage" : "1",
-	"superbar_opacity" : "70",
-	"vbar_at_left" : "0",
-	"hbar_at_top" : "0",
-	"container" : "0",
-	"container_size" : "30",
-	"gap" : "2",
-	
-	"show_buttons" : "0",<!-- 0 = no, 1 = yes (old), 2 = only fullscreen, 4 = yes -->
-	"buttonposition" : "48",
-	"button_height" : "50",
-	"button_width" : "100",
-	"button_opacity" : "10",
-	
-	"animate_scroll" : "1",
-	"animate_scroll_max" : "2",
-	
-	"use_own_scroll_functions" : "1",
-	"use_own_scroll_functions_mouse" : "1",
-	"scroll_velocity" : "5",
-	"keyscroll_velocity" : "2",
-	"mousescroll_velocity" : "3",
-	"mousescroll_distance" : "1",
-	
-	"contextmenu_show_when" : "2",<!-- 1 = never, 2 = only over interface, 3 = always -->
-	
-	"external_interface" : "1"
-};
-var vbar;					//  | pass by reference!
+var w = {};					// settings -> updated when tab gets activated
+var vbar;					// \ pass by reference!
 var hbar;					// /
 
 (function check_if_tab_needs_bars()
@@ -95,6 +50,8 @@ function add_ms()
 {
 	if(document.getElementById("modern_scroll")) return;
 	
+	update_prefs();
+	
 	inject_css();
 	
 	var ms_container = document.createElement("div");
@@ -115,6 +72,55 @@ function add_ms()
 		add_contextmenu();
 		document.addEventListener("resize", adjust_ui_fullscreen_change, false);
 	}
+}
+function update_prefs()
+{
+	w = {
+	"size" :				(!localStorage["size"] ? "8" : localStorage["size"]),
+	"hover_size" :			(!localStorage["hover_size"] ? "12" : localStorage["hover_size"]),
+	"opacity" :				(!localStorage["opacity"] ? "50" : localStorage["opacity"]),
+	"color" :				(!localStorage["color"] ? "#000000" : localStorage["color"]),
+	"color_bg" :			(!localStorage["color_bg"] ? "#999999" : localStorage["color_bg"]),
+	"border_radius" :		(!localStorage["border_radius"] ? "7" : localStorage["border_radius"]),
+	"border_width" :		(!localStorage["border_width"] ? "2" : localStorage["border_width"]),
+	"border_color" :		(!localStorage["border_color"] ? "#FFFFFF" : localStorage["border_color"]),
+	"border_color_rgba" :	(!localStorage["border_color_rgba"] ? "rgba(255,255,255,0.5)" : localStorage["border_color_rgba"]),
+	"border_blur" :			(!localStorage["border_blur"] ? "0" : localStorage["border_blur"]),
+	"show_when" :			(!localStorage["show_when"] ? "2" : localStorage["show_when"]),<!-- 1 = onmouseover only, 2 = normal, 3 = always -->
+	"show_how_long" :		(!localStorage["show_how_long"] ? "1000" : localStorage["show_how_long"]),
+	"show_bg_bars_when" :	(!localStorage["show_bg_bars_when"] ? "2" : localStorage["show_bg_bars_when"]),<!-- 1 = never, 2 = onmouseover only, 3 = like bars -->
+	"fullscreen_only" :		(!localStorage["fullscreen_only"] ? "0" : localStorage["fullscreen_only"]),
+	"bg_special_ends" :		(!localStorage["bg_special_ends"] ? "1" : localStorage["bg_special_ends"]),
+	"move_bars_during_scroll" : (!localStorage["move_bars_during_scroll"] ? "1" : localStorage["move_bars_during_scroll"]),
+	"show_superbar" :		(!localStorage["show_superbar"] ? "0" : localStorage["show_superbar"]),
+	"show_superbar_minipage" : (!localStorage["show_superbar_minipage"] ? "1" : localStorage["show_superbar_minipage"]),
+	"superbar_opacity" :	(!localStorage["superbar_opacity"] ? "70" : localStorage["superbar_opacity"]),
+	"vbar_at_left" :		(!localStorage["vbar_at_left"] ? "0" : localStorage["vbar_at_left"]),
+	"hbar_at_top" :			(!localStorage["hbar_at_top"] ? "0" : localStorage["hbar_at_top"]),
+	"container" :			(!localStorage["container"] ? "0" : localStorage["container"]),
+	"container_size" :		(!localStorage["container_size"] ? "30" : localStorage["container_size"]),
+	"gap" :					(!localStorage["gap"] ? "2" : localStorage["gap"]),
+	
+	"show_buttons" :		(!localStorage["show_buttons"] ? "0" : localStorage["show_buttons"]),<!-- 0 = no, 1 = yes (old), 2 = only fullscreen, 4 = yes -->
+	"buttonposition" :		(!localStorage["buttonposition"] ? "48" : localStorage["buttonposition"]),
+	"button_height" :		(!localStorage["button_height"] ? "50" : localStorage["button_height"]),
+	"button_width" :		(!localStorage["button_width"] ? "100" : localStorage["button_width"]),
+	"button_opacity" :		(!localStorage["button_opacity"] ? "10" : localStorage["button_opacity"]),
+	
+	"animate_scroll" :		(!localStorage["animate_scroll"] ? "1" : localStorage["animate_scroll"]),
+	"animate_scroll_max" :	(!localStorage["animate_scroll_max"] ? "2" : localStorage["animate_scroll_max"]),
+	
+	"use_own_scroll_functions" : (!localStorage["use_own_scroll_functions"] ? "1" : localStorage["use_own_scroll_functions"]),
+	"use_own_scroll_functions_mouse" : (!localStorage["use_own_scroll_functions_mouse"] ? "1" : localStorage["use_own_scroll_functions_mouse"]),
+	"scroll_velocity" :		(!localStorage["scroll_velocity"] ? "5" : localStorage["scroll_velocity"]),
+	"keyscroll_velocity" :	(!localStorage["keyscroll_velocity"] ? "2" : localStorage["keyscroll_velocity"]),
+	"mousescroll_velocity" : (!localStorage["mousescroll_velocity"] ? "3" : localStorage["mousescroll_velocity"]),
+	"mousescroll_distance" : (!localStorage["mousescroll_distance"] ? "1" : localStorage["mousescroll_distance"]),
+	
+	"contextmenu_show_when" : (!localStorage["contextmenu_show_when"] ? "2" : localStorage["contextmenu_show_when"]),<!-- 1 = never, 2 = only over interface, 3 = always -->
+	
+	"external_interface" : (!localStorage["external_interface"] ? "1" : localStorage["external_interface"])
+	};
 }
 
 function remove_ms()
