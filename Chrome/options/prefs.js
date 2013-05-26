@@ -7,7 +7,7 @@ window.addEventListener("change", function(e)
 {
 	if(e.target.id === "save_set" || e.target.id === "saved_sets") return; // handled via onclick funtions
 	var saveobject = {};
-	if(e.target.type === "checkbox") saveobject[e.target.id] = e.target.checked?1:0;
+	if(e.target.type === "checkbox") saveobject[e.target.id] = e.target.checked?true:"0";
 	else 							 saveobject[e.target.id] = e.target.value;
 	chrome.storage.sync.set(saveobject);
 	
@@ -57,7 +57,7 @@ function restoreprefs(storage)
 	
 	for(var i=0; i<inputs.length; i++){
 		if(!storage[inputs[i].id]) continue;
-		if(inputs[i].type==="checkbox")	document.getElementsByTagName("input")[i].checked = (storage[inputs[i].id] === "0" ? 0 : 1);
+		if(inputs[i].type==="checkbox")	document.getElementsByTagName("input")[i].checked = (storage[inputs[i].id] === "0" ? false : true);
 		else							document.getElementsByTagName("input")[i].value = storage[inputs[i].id];
 	}
 	for(var i=0; i<selects.length; i++){
