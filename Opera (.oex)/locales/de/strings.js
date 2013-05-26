@@ -8,7 +8,7 @@ var strings = {
 	"default" : "Standard",
 	"default change impossible" : "Du kannst die Standard-Konfiguration nicht verändern! Bitte nutze einen anderen Namen.",
 	"default delete impossible" : "Du kannst die Standard-Konfiguration nicht löschen!",
-	"confirm delete" : "Willst du diese Konfiguration wirklich unwiederruflich löschen?",
+	"confirm delete" : "Willst du diese Konfiguration wirklich unwiderruflich löschen?",
 	"confirm overwrite" : "Willst du diese Konfiguration wirklich überschreiben?",
 	"tooltip save" : "Speichern",
 	"tooltip load" : "Laden",
