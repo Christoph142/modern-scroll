@@ -34,8 +34,8 @@ function save_buttonposition(){
 
 function getprefs(){ chrome.storage.sync.get( null, function(storage){ restoreprefs(storage); } ); }
 
-function restoreprefs(storage) // restore preferences:
-{	
+function restoreprefs(storage)
+{//for(var i in storage) alert(i+": "+storage[i]);
 	document.getElementById("save_set").innerHTML = chrome.i18n.getMessage("new_set_name");
 	document.getElementById("save_set").addEventListener("blur",function(){
 		if(this.innerHTML === "") this.innerHTML = chrome.i18n.getMessage("new_set_name");
@@ -48,15 +48,17 @@ function restoreprefs(storage) // restore preferences:
 	var selects = document.getElementsByTagName("select");
 	
 	for(var i=0; i<inputs.length; i++){
-		if(!storage[inputs[i].id]) return;
-		if(inputs[i].type==="checkbox")	document.getElementsByTagName("input")[i].checked = storage[inputs[i].id]==="0"?0:1;
+		if(!storage[inputs[i].id]) continue;
+		if(inputs[i].type==="checkbox")	document.getElementsByTagName("input")[i].checked = (storage[inputs[i].id] === "0" ? 0 : 1);
 		else							document.getElementsByTagName("input")[i].value = storage[inputs[i].id];
 	}
 	for(var i=0; i<selects.length; i++){
-		if(selects[i].id === "saved_sets"){
-			if(selects[i].options.length < 2){
+		if(selects[i].id === "saved_sets")
+		{
+			if(selects[i].options.length === 1) // prevent attaching sets multiple times on update
+			{
 				for(var option in JSON.parse(storage.saved_sets)){
-					if(option !== "Default") selects[i].options[selects[i].options.length] = new Option(option, option); // Option(name, value)
+					selects[i].options[selects[i].options.length] = new Option(option, option); // Option(name, value)
 				}
 			}
 			else continue;
@@ -176,9 +178,11 @@ function localize()
 	if(chrome.i18n.getMessage("lang") === "ar") document.body.dir = "rtl"; else document.body.dir = "ltr";
 	
 	var strings = document.getElementsByClassName("i18n");
-	for(var i = 0; i < strings.length; i++)	strings[i].innerHTML = chrome.i18n.getMessage(strings[i].id);
-	
-	//################# tooltips for save/restor/delete pics
+	for(var i = 0; i < strings.length; i++)
+	{
+		if(strings[i].tagName === "IMG")	strings[i].title = chrome.i18n.getMessage(strings[i].title); // tooltips
+		else								strings[i].innerHTML += chrome.i18n.getMessage(strings[i].id);
+	}
 }
 
 var timeout;

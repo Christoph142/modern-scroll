@@ -21,3 +21,4 @@ fieldset	{ border:none; background:rgba(150,160,200,0.25); border-radius:2px; pa
 .i			{ background:#FFF; display:inline; border-radius:10px; font-weight:bold; padding:2px 8px; margin-left:5px; transition:opacity 0.5s; }
 .i:hover	{ background:#888; box-shadow:0 0 6px #888; transition:opacity 0.2s; text-shadow:0 0 3px #FFF; color:#000; }
 .i_text		{ display:none; background:linear-gradient(-45deg, #CCC, #888); position:absolute; margin:13px 5px 0 3px; padding:10px 15px; box-shadow:0 0 6px #888; font-weight:normal; transition:opacity 0.2s; text-shadow:0 0 2px #FFF; color:#000; max-width:500px; z-index:99; }
+.slider_values::after{ content:"%"; }
