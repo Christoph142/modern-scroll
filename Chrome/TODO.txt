@@ -1,0 +1,5 @@
+save button position in options page
+make settings auto-update / remove bars when you switch tabs
+replace currentStyle
+account for missing settings / default
+integrate slider values in options page
