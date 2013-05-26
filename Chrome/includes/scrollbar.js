@@ -1183,7 +1183,24 @@ function mousescroll_y(){
 function is_scrollable(element, direction) // direction: 0 = up, 1 = down, 2 = all
 {
 	if(element == "[object HTMLBodyElement]" || element == "[object HTMLHtmlElement]" || element == "[object HTMLDocument]" || element.parentNode == "[object HTMLBodyElement]") return false;
-	else if((element.currentStyle.overflow === "scroll" || element.currentStyle.overflow === "auto" || element.currentStyle.overflow === "" || element == "[object HTMLTextAreaElement]") && element.offsetHeight < element.scrollHeight){
+	else if(/*(element.currentStyle.overflow === "scroll" || element.currentStyle.overflow === "auto" || element.currentStyle.overflow === "" || element == "[object HTMLTextAreaElement]") &&*/ element.offsetHeight < element.scrollHeight){
+		
+		
+		
+		
+		
+		
+		// ########################################## !currentStyle
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		var max_scrollTop = element.scrollHeight /*+ parseInt(element.currentStyle.borderTopWidth) + parseInt(element.currentStyle.borderBottomWidth)*/ - element.offsetHeight; //+(element.offsetWidth < element.scrollWidth?0:0)
 		if((direction === 0 && element.scrollTop > 0) || (direction === 1 && element.scrollTop < max_scrollTop) || direction === 2)
 			return true;
