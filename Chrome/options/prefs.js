@@ -35,7 +35,15 @@ function save_buttonposition(){
 function getprefs(){ chrome.storage.sync.get( null, function(storage){ restoreprefs(storage); } ); }
 
 function restoreprefs(storage)
-{//for(var i in storage) alert(i+": "+storage[i]);
+{
+	// ###########################################################
+		/*for(var i in storage) alert(i+": "+storage[i]);
+		if(storage.saved_sets){
+			for(var i in storage.saved_sets)
+				for(var j in storage.saved_sets[i]) alert("Set: "+i+" -> "+j+": "+storage.saved_sets[i][j]);
+		}*/
+	// ###########################################################
+	
 	document.getElementById("save_set").innerHTML = chrome.i18n.getMessage("new_set_name");
 	document.getElementById("save_set").addEventListener("blur",function(){
 		if(this.innerHTML === "") this.innerHTML = chrome.i18n.getMessage("new_set_name");
@@ -53,11 +61,12 @@ function restoreprefs(storage)
 		else							document.getElementsByTagName("input")[i].value = storage[inputs[i].id];
 	}
 	for(var i=0; i<selects.length; i++){
+		if(!storage[selects[i].id]) continue;
 		if(selects[i].id === "saved_sets")
 		{
 			if(selects[i].options.length === 1) // prevent attaching sets multiple times on update
 			{
-				for(var option in JSON.parse(storage.saved_sets)){
+				for(var option in storage.saved_sets){
 					selects[i].options[selects[i].options.length] = new Option(option, option); // Option(name, value)
 				}
 			}
@@ -90,11 +99,8 @@ function restoreprefs(storage)
 	
 	// save, restore & delete configurations:
 	
-	document.getElementById("save_set_img").onclick = function(){
-		if(document.getElementById("save_set").innerHTML === "Default"){
-			alert(chrome.i18n.getMessage("default_change_impossible"));
-			return;
-		}
+	document.getElementById("save_set_img").addEventListener("click", function(){ // save set:
+		if(document.getElementById("save_set").innerHTML === "Default"){ alert(chrome.i18n.getMessage("default_change_impossible")); return; }
 		
 		for(var option = 0; option < document.getElementById("saved_sets").options.length; option++){
 			if(document.getElementById("saved_sets").options[option].value === document.getElementById("save_set").innerHTML){
@@ -104,20 +110,21 @@ function restoreprefs(storage)
 			}
 		}
 		
-		var sets = JSON.parse(storage.saved_sets);
-		sets[document.getElementById("save_set").innerHTML] = {};
+		if(!storage.saved_sets) storage.saved_sets = {};
+		storage.saved_sets[document.getElementById("save_set").innerHTML] = {};
 		for(var setting in storage){
-			if(setting === "saved_sets") break;
-			sets[document.getElementById("save_set").innerHTML][setting] = storage[setting];
+			if(setting === "saved_sets") continue;
+			storage.saved_sets[document.getElementById("save_set").innerHTML][setting] = storage[setting];
 		}
-		storage.saved_sets = JSON.stringify(sets);
+		
+		chrome.storage.sync.set( {"saved_sets" : storage.saved_sets} );
 		
 		if(overwrite_confirmed) return; // don't add a new option if one gets overwritten
 		document.getElementById("saved_sets").options[document.getElementById("saved_sets").options.length] =
 			new Option(document.getElementById("save_set").innerHTML, document.getElementById("save_set").innerHTML);
-	}
+	}, false);
 	
-	document.getElementById("delete_set_img").onclick = function(){
+	document.getElementById("delete_set_img").addEventListener("click", function(){ // delete set:
 		if(document.getElementById("saved_sets").value === "Default"){
 			alert(chrome.i18n.getMessage("default_delete_impossible"));
 			return;
@@ -125,31 +132,35 @@ function restoreprefs(storage)
 		var delete_confirmed = window.confirm(chrome.i18n.getMessage("confirm_delete"));
 		if (!delete_confirmed) return;
 		
-		var sets = JSON.parse(storage.saved_sets);
-		delete sets[document.getElementById("saved_sets").value];
-		storage.saved_sets = JSON.stringify(sets);
+		delete storage.saved_sets[document.getElementById("saved_sets").value];
+		chrome.storage.sync.set( {"saved_sets" : storage.saved_sets} );
 		
 		for(var i in document.getElementById("saved_sets").options){
 			if(document.getElementById("saved_sets").options[i].value === document.getElementById("saved_sets").value)
+			{
 				document.getElementById("saved_sets").remove(i);
+				break;
+			}
 		}
-	}
+	}, false);
 	
-	document.getElementById("load_set_img").onclick = function(){ // load set
-		var sets = JSON.parse(storage.saved_sets);
+	document.getElementById("load_set_img").addEventListener("click", function(){ // load set
+		if(storage.saved_sets) var sets = storage.saved_sets;
 		if(document.getElementById("saved_sets").value === "Default")
 		{
-			//#################### delete everything but saved sets
+			chrome.storage.sync.clear(); // delete everything
+			if(sets) chrome.storage.sync.set( {"saved_sets" : sets} ); // restore saved sets (if any)
 		}
 		else
 		{
 			for(var setting in sets[document.getElementById("saved_sets").value]){
-				storage[setting] = sets[document.getElementById("saved_sets").value][setting];
+				var temp_obj = {};
+				temp_obj[setting] = sets[document.getElementById("saved_sets").value][setting];
+				chrome.storage.sync.set(temp_obj);
 			}
 		}
-		opera.extension.postMessage("update_optionspage");
-		getprefs();
-	}
+		window.location.reload();
+	}, false);
 	
 	document.getElementById("save_set").addEventListener("keydown", function(){ // Enter -> save configuration
 		if(window.event.which === 13){
@@ -180,8 +191,9 @@ function localize()
 	var strings = document.getElementsByClassName("i18n");
 	for(var i = 0; i < strings.length; i++)
 	{
-		if(strings[i].tagName === "IMG")	strings[i].title = chrome.i18n.getMessage(strings[i].title); // tooltips
-		else								strings[i].innerHTML += chrome.i18n.getMessage(strings[i].id);
+		if(strings[i].tagName === "IMG")		strings[i].title = chrome.i18n.getMessage(strings[i].title); // tooltips
+		else if(strings[i].tagName === "LABEL")	strings[i].innerHTML += chrome.i18n.getMessage( (!strings[i].id ? strings[i].htmlFor : strings[i].id) );
+		else									strings[i].innerHTML += chrome.i18n.getMessage(strings[i].id);
 	}
 }
 
