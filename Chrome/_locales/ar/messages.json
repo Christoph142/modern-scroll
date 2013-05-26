@@ -2,7 +2,7 @@
 	"lang" : { "message" : "ar" },//"عربية" },
 	"by" : { "message" : "من طرف" },
 	"description" : { "message" : "الإرتقاء بالتمرير و التصفح على أوبرا إلى مستوى آخر" },
-	"saved_sets" : { "message" : "تم حفظ الإعدادات" },
+	"saved_sets_headline" : { "message" : "تم حفظ الإعدادات" },
 	"save_set_as" : { "message" : "حفظ الإعدادات الحالية تحت إسم" },
 	"new_set_name" : { "message" : "إسم" },
 	"load_or_delete_set" : { "message" : "تحميل أو حذف" },

@@ -1,7 +1,7 @@
 {
 	"lang" : { "message" : "pt" },
 	"by" : { "message" : "por" },
-	"saved_sets" : { "message" : "Configurações salvas" },
+	"saved_sets_headline" : { "message" : "Configurações salvas:" },
 	"save_set_as" : { "message" : "Salvar a configuração atual como" },
 	"new_set_name" : { "message" : "Nome" },
 	"load_or_delete_set" : { "message" : "Carregar ou deletar" },

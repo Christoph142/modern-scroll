@@ -2,7 +2,7 @@
 	"lang" : { "message" : "en" },
 	"description" : { "message" : "Takes scrolling to a whole new level" },
 	"by" : { "message" : "by" },
-	"saved_sets" : { "message" : "Saved configurations" },
+	"saved_sets_headline" : { "message" : "Saved configurations:" },
 	"save_set_as" : { "message" : "Save the current configuration as" },
 	"new_set_name" : { "message" : "Name" },
 	"load_or_delete_set" : { "message" : "Load or delete" },

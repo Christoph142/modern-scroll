@@ -1,7 +1,7 @@
 {
 	"lang" : { "message" : "nb" },
 	"by" : { "message" : "av" },
-	"saved_sets" : { "message" : "Lagret oppsettene" },
+	"saved_sets_headline" : { "message" : "Lagret oppsettene:" },
 	"save_set_as" : { "message" : "Lagre det nåværende oppsettet som" },
 	"new_set_name" : { "message" : "Navn" },
 	"load_or_delete_set" : { "message" : "Last inn eller slett" },

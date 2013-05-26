@@ -1,7 +1,7 @@
 {
 	"lang" : { "message" : "tr" },
 	"by" : { "message" : "by" },
-	"saved_sets" : { "message" : "Kaydedilen ayarlar" },
+	"saved_sets_headline" : { "message" : "Kaydedilen ayarlar:" },
 	"save_set_as" : { "message" : "Varolan ayarları şöyle kaydet:" },
 	"new_set_name" : { "message" : "İsim" },
 	"load_or_delete_set" : { "message" : "Yükle veya sil" },
