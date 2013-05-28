@@ -31,16 +31,16 @@ var hbar;					// /
 	
 	(function check_if_tab_is_ready()
 	{
-		if(document.hidden)		document.addEventListener("visibilitychange", initialize, false);
-		else if(document.body)	initialize();
-		else					window.setTimeout(check_if_tab_is_ready, 50);
+		if(document.webkitHidden)	document.addEventListener("webkitvisibilitychange", initialize, false);
+		else if(document.body)		initialize();
+		else						window.setTimeout(check_if_tab_is_ready, 50);
 	}());
 }());
 
 function initialize()
 {
-	document.removeEventListener("visibilitychange", initialize, false);
-	document.addEventListener("visibilitychange", add_or_remove_ms, false);
+	document.removeEventListener("webkitvisibilitychange", initialize, false);
+	document.addEventListener("webkitvisibilitychange", add_or_remove_ms, false);
 	
 	add_ms();
 	//############### if(document.URL.substr(0,9) === "widget://") opera.extension.onmessage = update_ms;
@@ -166,7 +166,7 @@ function remove_ms()
 }
 
 function update_ms(){ remove_ms(); add_ms(); }
-function add_or_remove_ms(){ if(document.hidden) remove_ms(); else add_ms(); }
+function add_or_remove_ms(){ if(document.webkitHidden) remove_ms(); else add_ms(); }
 
 function inject_css()
 {

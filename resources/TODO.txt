@@ -1,6 +1,4 @@
 save button position in options page
 fix context menu
-fix: bar appears ofset to the right placed left
-make settings auto-update / remove bars when you switch tabs
 replace currentStyle
 implement background js to account for missing/default settings
