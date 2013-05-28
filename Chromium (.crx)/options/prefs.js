@@ -29,7 +29,10 @@ window.addEventListener("change", function(e)
 window.addEventListener("mouseup", save_buttonposition, false);
 function save_buttonposition(){
 	if(document.getElementsByClassName("dragged_button")[0])
+	{
 		chrome.storage.sync.set({ "buttonposition" : (100 * document.getElementsByClassName("dragged_button")[0].offsetLeft / window.innerWidth) });
+		window.location.reload();
+	}
 }
 
 function getprefs(){ chrome.storage.sync.get( null, function(storage){ restoreprefs(storage); } ); }
