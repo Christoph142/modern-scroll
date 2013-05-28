@@ -1,0 +1,21 @@
+{
+	"manifest_version"	: 2,
+	
+	"name"				: "modern scroll",
+	"description"		: "__MSG_description__",
+	"default_locale"	: "en",
+	"version"			: "3.0",
+	"icons"				: { "16": "images/contextmenu.png", /*"48": "images/icon48.png",*/ "128": "images/icon@2x.png" },
+	
+	"content_scripts" :
+	[{
+		  "matches"		: ["http://*/*","https://*/*"],
+		  "css"			: ["includes/remove_default_bars.css"],
+		  "js"			: ["includes/scrollbar.js"],
+		  "run_at"		: "document_start",
+		  "all_frames"	: true
+	}],
+	
+	"permissions"		: ["storage"],
+	"options_page"		: "options/options.html"
+}
