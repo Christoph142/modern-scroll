@@ -19,6 +19,14 @@ Diese Erweiterung war ursprünglich als Update für "Slim ScrollBar" von damage9
 Changelog:
 ----------
 
+v 3.0
+---------
+neu: vollständig Chromium (Chrome & Opera 15) kompatibel
+neu: modern scroll blendet die Standard-Bildlaufleisten automatisch aus
+neu: Einstellungen werden über alle Geräte hinweg synchronisiert
+neu: verbesserte Behandlung und Wiederherstellung von Standard-Werten aus gespeicherten Konfigurationen
+upd? "Eigene Scroll-Funktionen für die Maus" standardmäßig deaktiviert
+
 v 2.4.3
 ---------
 fix: Interface bleibt unsichtbar, wenn man während dem Laden Tabs wechselt

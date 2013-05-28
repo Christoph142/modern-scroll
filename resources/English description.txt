@@ -20,10 +20,13 @@ This extension was originally planned as an update to "Slim ScrollBar" by damage
 Changelog:
 ----------
 
-v 2.X
+v 3.0
 ---------
-!new: sync settings via Opera Link
-!new: scroll bars for elements
+new: fully Chromium (Chrome & Opera 15) compatible
+new: modern scroll hides default scroll bars automatically
+new: settings are synced across all of your devices
+new: better default value handling and restoration out of saved sets
+upd? custom mouse scrolling functions disabled by default
 
 v 2.4.3
 ---------
