@@ -43,7 +43,7 @@ function initialize()
 	document.addEventListener("webkitvisibilitychange", add_or_remove_ms, false);
 	
 	add_ms();
-	//############### if(document.URL.substr(0,9) === "widget://") opera.extension.onmessage = update_ms;
+	//############### if(document.URL.substr(0,19) === "chrome-extension://") opera.extension.onmessage = update_ms;
 }
 
 function add_ms()
@@ -69,7 +69,7 @@ function continue_add_ms()
 	add_dimension_checkers();
 	check_dimensions();
 	
-	if(document.URL.substr(0,9) !== "widget://")
+	if(document.URL.substr(0,19) !== "chrome-extension://")
 	{
 		add_contextmenu();
 		document.addEventListener("resize", adjust_ui_fullscreen_change, false);
@@ -793,7 +793,7 @@ function handle_button(whichone)
 {
 	window.event.preventDefault();			// prevent focus-loss in site
 	if(window.event.which !== 1) return;	// if it's not the left mouse button
-	if(document.URL.substr(0,9) !== "widget://") window.event.stopPropagation(); // prevent bubbling (e.g. prevent drag being triggered on separately opened images); provide event in options page (to save dragged button position)
+	if(document.URL.substr(0,19) !== "chrome-extension://") window.event.stopPropagation(); // prevent bubbling (e.g. prevent drag being triggered on separately opened images); provide event in options page (to save dragged button position)
 		
 	var button = document.getElementById("ms_"+whichone+"button");
 	var otherbutton = document.getElementById("ms_"+(whichone==="up"?"down":"up")+"button");
@@ -810,7 +810,7 @@ function handle_button(whichone)
 		otherbutton.style.left = button.style.left;
 		
 		document.removeEventListener("mouseup", handle_button_end, true);
-		if(document.URL.substr(0,9) === "widget://") return;
+		if(document.URL.substr(0,19) === "chrome-extension://") return;
 		document.addEventListener("mouseup", handle_button_move_end, false);
 		function handle_button_move_end()
 		{
