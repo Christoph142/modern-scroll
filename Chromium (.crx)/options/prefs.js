@@ -85,6 +85,18 @@ function restoreprefs(storage)
 	
 	document.getElementById("border_radius").max = Math.round(Math.max(document.getElementById("size").value, document.getElementById("hover_size").value)/2);
 	
+	for(var i = 0; i < document.getElementsByClassName("slider_values").length; i++) // display slider values:
+	{
+		var which_value = document.getElementsByClassName("slider_values")[i].id.split(".")[1];
+		var raw_value = (storage[which_value] ? storage[which_value] : document.getElementById(which_value).value);
+		document.getElementsByClassName("slider_values")[i].innerHTML = (document.getElementById(which_value).dataset.defaultvalue ? Math.floor(100*raw_value/document.getElementById(which_value).dataset.defaultvalue) : raw_value);
+		// ########################################################################################################################### why floor?! ####
+		
+		/*document.getElementById(which_value).addEventListener("change", function(){ // update display on change of sliders:
+			document.getElementById("storage."+which_value).innerHTML = storage[which_value];
+		},false);*/
+	}
+	
 	for(var i=0; i<document.getElementsByClassName("i").length; i++){ // information boxes:
 		document.getElementsByClassName("i")[i].addEventListener("mouseover", function(){
 			window.clearTimeout(timeout);
