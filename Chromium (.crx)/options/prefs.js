@@ -7,7 +7,7 @@ window.addEventListener("change", function(e)
 {
 	if(e.target.id === "save_set" || e.target.id === "saved_sets") return; // handled via onclick funtions
 	var saveobject = {};
-	if(e.target.type === "checkbox") saveobject[e.target.id] = e.target.checked?true:"0";
+	if(e.target.type === "checkbox") saveobject[e.target.id] = e.target.checked?"1":"0";
 	else 							 saveobject[e.target.id] = e.target.value;
 	chrome.storage.sync.set(saveobject);
 	
