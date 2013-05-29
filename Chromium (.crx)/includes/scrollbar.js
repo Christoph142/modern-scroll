@@ -43,7 +43,9 @@ function initialize()
 	document.addEventListener("webkitvisibilitychange", add_or_remove_ms, false);
 	
 	add_ms();
-	//############### if(document.URL.substr(0,19) === "chrome-extension://") opera.extension.onmessage = update_ms;
+	if(document.URL.substr(0,19) === "chrome-extension://") chrome.extension.onMessage.addListener( function(request){
+		if(request.data === "update_optionspage") update_ms();
+	});
 }
 
 function add_ms()
@@ -69,11 +71,8 @@ function continue_add_ms()
 	add_dimension_checkers();
 	check_dimensions();
 	
-	if(document.URL.substr(0,19) !== "chrome-extension://")
-	{
-		add_contextmenu();
-		document.addEventListener("resize", adjust_ui_fullscreen_change, false);
-	}
+	add_contextmenu();
+	if(document.URL.substr(0,19) !== "chrome-extension://") document.addEventListener("resize", adjust_ui_fullscreen_change, false);
 }
 function update_prefs()
 {
@@ -104,7 +103,7 @@ function update_prefs()
 		"container_size" :		(!storage["container_size"] ? "30" : storage["container_size"]),
 		"gap" :					(!storage["gap"] ? "2" : storage["gap"]),
 		
-		"show_buttons" :		(!storage["show_buttons"] ? "0" : storage["show_buttons"]),<!-- 0 = no, 1 = yes (old), 2 = only fullscreen, 4 = yes -->
+		"show_buttons" :		(!storage["show_buttons"] ? "1" : storage["show_buttons"]),<!-- 1 = no, 2 = only fullscreen, 3 = yes -->
 		"buttonposition" :		(!storage["buttonposition"] ? "48" : storage["buttonposition"]),
 		"button_height" :		(!storage["button_height"] ? "50" : storage["button_height"]),
 		"button_width" :		(!storage["button_width"] ? "100" : storage["button_width"]),
@@ -329,11 +328,18 @@ function add_scrollingfunctions()
 }
 
 function add_contextmenu()
-{	
-	//############# opera.extension.postMessage("reset_contextmenu");
-	window.addEventListener("mousedown", adjust_contextmenu, false);
-	//############# opera.contexts.menu.onclick = contextmenu_click;
+{
+	if		(w.contextmenu_show_when === "3")	chrome.extension.sendMessage({data:"show_contextmenu_permanently"}); // always
+	else if (w.contextmenu_show_when === "2")	window.addEventListener("mousedown", adjust_contextmenu, false);	 // only over interface
 }
+function adjust_contextmenu()
+{
+	if(window.event.which !== 3) return; // only right mouse button
+	
+	if		(window.event.target.id.substr(0,3) === "ms_")						chrome.extension.sendMessage({data:"show_contextmenu", string:"hide"});
+	else if	(document.getElementById("modern_scroll").style.display === "none")	chrome.extension.sendMessage({data:"show_contextmenu", string:"show"});
+}
+function contextmenu_click(){ if(document.getElementById("modern_scroll").style.display === "none") show_ui(); else hide_ui(); }
 
 function add_external_interface()
 {
@@ -349,7 +355,7 @@ function add_external_interface()
 function show_ui()
 {
 	document.getElementById("modern_scroll").style.display = null;
-	//############## opera.extension.postMessage("change_contextmenu_string_into_hide");
+	chrome.runtime.sendMessage({data:"change_contextmenu_string_into_hide"});
 	
 	show_bars();
 	hide_bars();
@@ -357,7 +363,7 @@ function show_ui()
 function hide_ui()
 {
 	document.getElementById("modern_scroll").style.display = "none";
-	//################ opera.extension.postMessage("change_contextmenu_string_into_show");
+	chrome.runtime.sendMessage({data:"change_contextmenu_string_into_show"});
 }
 
 var dimension_check_timeout;
@@ -436,7 +442,7 @@ function resize_vbar()
 		document.getElementById("ms_vbar_bg").style.display = "inline";
 		vbar.style.display = "inline";
 		show_bar("v");
-		//############ opera.extension.postMessage("reset_contextmenu");
+		chrome.runtime.sendMessage({data:"reset_contextmenu"});
 		
 		if(window.self.frameElement || w.use_own_scroll_functions_mouse === "1") window.addEventListener("mousewheel", mousescroll_y, false);
 	}
@@ -468,7 +474,7 @@ function resize_hbar()
 		document.getElementById("ms_hbar_bg").style.display = "inline";
 		hbar.style.display = "inline";
 		show_bar("h");
-		//############## opera.extension.postMessage("reset_contextmenu");
+		chrome.runtime.sendMessage({data:"reset_contextmenu"});
 	}
 	else if(hbar_width_before !== hbar_new_width+"px"){
 		document.getElementById("ms_hbar_ui").style.width = hbar_new_width-2*w.gap+"px";
@@ -748,18 +754,6 @@ function show_minipage()
 
 function onScroll(){ window.clearTimeout(timeout); timeout = window.setTimeout(reposition_bars, 100); }
 
-function adjust_contextmenu()
-{
-	window.event.stopPropagation();	// prevent bubbling (e.g. prevent drag being triggered on separately opened images)
-	if(window.event.which !== 3 || w.contextmenu_show_when !== "2") return; // only right mouse button:
-	
-	/*if(window.event.target.id.substr(0,3) === "ms_" || document.getElementById("modern_scroll").style.display === "none")
-		opera.extension.postMessage("show_contextmenu");
-	else opera.extension.postMessage("hide_contextmenu");*/
-}
-
-function contextmenu_click(){ if(document.getElementById("modern_scroll").style.display === "none") show_ui(); else hide_ui(); }
-
 
 
 // #################################
@@ -768,7 +762,7 @@ function contextmenu_click(){ if(document.getElementById("modern_scroll").style.
 
 function add_buttons()
 {
-	if(w.show_buttons === "0") return;
+	if(w.show_buttons === "1") return;
 	
 	var upbutton = document.createElement("div");
 	upbutton.id = "ms_upbutton";
@@ -956,7 +950,7 @@ function ms_scroll_start_x(){
 		by_x -= scrollamount;
 		window.scrollBy(scrollamount, 0);
 		
-		if(by_x !== 0)	scroll_timeout_id_x = requestAnimFrame( function(){ ms_scroll_inner_x(curTick); } );
+		if(by_x !== 0)	scroll_timeout_id_x = window.requestAnimationFrame( function(){ ms_scroll_inner_x(curTick); } );
 		else			ms_scroll_end("x");
 	}
 }
@@ -986,7 +980,7 @@ function ms_scroll_start_y(){
 		by_y -= scrollamount;
 		window.scrollBy(0, scrollamount);
 		
-		if(by_y !== 0)	scroll_timeout_id_y = requestAnimFrame( function(){ ms_scroll_inner_y(curTick); } );
+		if(by_y !== 0)	scroll_timeout_id_y = window.requestAnimationFrame( function(){ ms_scroll_inner_y(curTick); } );
 		else			ms_scroll_end("y");
 	}
 }
@@ -994,10 +988,10 @@ function ms_scroll_start_y(){
 function ms_scroll_end(direction)
 {
 	if(direction === "y"){
-		cancelAnimFrame(scroll_timeout_id_y); scroll_timeout_id_y = null;
+		window.cancelAnimationFrame(scroll_timeout_id_y); scroll_timeout_id_y = null;
 		if(window.self.frameElement || w.use_own_scroll_functions === "1") vbar.style.transition = null;
 	}else{
-		cancelAnimFrame(scroll_timeout_id_x); scroll_timeout_id_x = null;
+		window.cancelAnimationFrame(scroll_timeout_id_x); scroll_timeout_id_x = null;
 		if(window.self.frameElement || w.use_own_scroll_functions === "1") hbar.style.transition = null;
 	}
 	
@@ -1019,8 +1013,8 @@ function arrowkeyscroll()
 	if(window.scrollMaxY !== 0 || e.which === 37 || e.which === 39) // fix Google Docs & MyOpera Mail (no interface)
 		window.addEventListener("keydown", stopEvent, true);
 	
-	if(scroll_timeout_id_x){ cancelAnimFrame(scroll_timeout_id_x); scroll_timeout_id_x = null; }
-	if(scroll_timeout_id_y){ cancelAnimFrame(scroll_timeout_id_y); scroll_timeout_id_y = null; }
+	if(scroll_timeout_id_x){ window.cancelAnimationFrame(scroll_timeout_id_x); scroll_timeout_id_x = null; }
+	if(scroll_timeout_id_y){ window.cancelAnimationFrame(scroll_timeout_id_y); scroll_timeout_id_y = null; }
 	
 	if(last_clicked_element_is_scrollable) window.addEventListener("scroll", element_finished_scrolling, false);
 	else{
@@ -1086,8 +1080,8 @@ function arrowkeyscroll()
 		}
 		*/
 		// JS scrolling:
-		if(scroll_timeout_id_x){ cancelAnimFrame(scroll_timeout_id_x); scroll_timeout_id_x = null; }
-		cancelAnimFrame(scroll_timeout_id_y); scroll_timeout_id_y = null;
+		if(scroll_timeout_id_x){ window.cancelAnimationFrame(scroll_timeout_id_x); scroll_timeout_id_x = null; }
+		window.cancelAnimationFrame(scroll_timeout_id_y); scroll_timeout_id_y = null;
 		
 		window.addEventListener("keydown", arrowkeyscroll, false);
 		window.removeEventListener("keydown", stopEvent, true);
@@ -1107,25 +1101,25 @@ function arrowkeyscroll()
 	{
 		var curTick = Date.now();
 		window.scrollBy(0, (curTick - lastTick)*w.keyscroll_velocity);
-		scroll_timeout_id_y = requestAnimFrame( function(){ arrowkeyscroll_down(curTick); } );
+		scroll_timeout_id_y = window.requestAnimationFrame( function(){ arrowkeyscroll_down(curTick); } );
 	}
 	function arrowkeyscroll_up(lastTick)
 	{
 		var curTick = Date.now();
 		window.scrollBy(0, (lastTick - curTick)*w.keyscroll_velocity);
-		scroll_timeout_id_y = requestAnimFrame( function(){ arrowkeyscroll_up(curTick); } );
+		scroll_timeout_id_y = window.requestAnimationFrame( function(){ arrowkeyscroll_up(curTick); } );
 	}
 	function arrowkeyscroll_right(lastTick)
 	{
 		var curTick = Date.now();
 		window.scrollBy((curTick - lastTick)*w.keyscroll_velocity, 0);
-		scroll_timeout_id_x = requestAnimFrame( function(){ arrowkeyscroll_right(curTick); } );
+		scroll_timeout_id_x = window.requestAnimationFrame( function(){ arrowkeyscroll_right(curTick); } );
 	}
 	function arrowkeyscroll_left(lastTick)
 	{
 		var curTick = Date.now();
 		window.scrollBy((lastTick - curTick)*w.keyscroll_velocity, 0);
-		scroll_timeout_id_x = requestAnimFrame( function(){ arrowkeyscroll_left(curTick); } );
+		scroll_timeout_id_x = window.requestAnimationFrame( function(){ arrowkeyscroll_left(curTick); } );
 	}
 }
 
@@ -1187,25 +1181,9 @@ function mousescroll_y(){
 function is_scrollable(element, direction) // direction: 0 = up, 1 = down, 2 = all
 {
 	if(element == "[object HTMLBodyElement]" || element == "[object HTMLHtmlElement]" || element == "[object HTMLDocument]" || element.parentNode == "[object HTMLBodyElement]") return false;
-	else if(/*(element.currentStyle.overflow === "scroll" || element.currentStyle.overflow === "auto" || element.currentStyle.overflow === "" || element == "[object HTMLTextAreaElement]") &&*/ element.offsetHeight < element.scrollHeight){
-		
-		
-		
-		
-		
-		
-		// ########################################## !currentStyle
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		var max_scrollTop = element.scrollHeight /*+ parseInt(element.currentStyle.borderTopWidth) + parseInt(element.currentStyle.borderBottomWidth)*/ - element.offsetHeight; //+(element.offsetWidth < element.scrollWidth?0:0)
+	else if((window.getComputedStyle(element, null).overflow === "scroll" || window.getComputedStyle(element, null).overflow === "auto" || window.getComputedStyle(element, null).overflow === "" || element == "[object HTMLTextAreaElement]") && element.offsetHeight < element.scrollHeight)
+	{
+		var max_scrollTop = element.scrollHeight /*+ parseInt(window.getComputedStyle(element, null).borderTopWidth) + parseInt(window.getComputedStyle(element, null).borderBottomWidth)*/ - element.offsetHeight; //+(element.offsetWidth < element.scrollWidth?0:0)
 		if((direction === 0 && element.scrollTop > 0) || (direction === 1 && element.scrollTop < max_scrollTop) || direction === 2)
 			return true;
 	}
@@ -1218,10 +1196,7 @@ function element_finished_scrolling(){
 	window.addEventListener("keydown", preventScrolling, false);
 	window.removeEventListener("scroll", element_finished_scrolling, false);
 }
-function preventScrolling(){
-	stopEvent();
-	window.removeEventListener("keydown", preventScrolling, false);
-}
+function preventScrolling(){ stopEvent(); window.removeEventListener("keydown", preventScrolling, false); }
 
 function modifierkey_pressed(e){ return (e.ctrlKey || e.shiftKey || e.altKey || e.metaKey) ? true : false; }
 
@@ -1231,17 +1206,5 @@ function target_is_input(e){
 }
 
 function stopEvent(){ window.event.preventDefault(); window.event.stopPropagation(); }
-
-// request/cancelAnimationFrame polyfill by Erik Möller (http://my.opera.com/emoller)
-var lastTime = 0;
-requestAnimFrame = (window.requestAnimationFrame ? window.requestAnimationFrame : function(callback, element) {
-		var currTime = Date.now();
-		var timeToCall = Math.max(0, 16 + lastTime - currTime);
-		lastTime = currTime + timeToCall;
-		var id = window.setTimeout(function() { callback(lastTime); }, timeToCall);
-		
-		return id;
-	});
-cancelAnimFrame = (window.cancelAnimationFrame ? window.cancelAnimationFrame : function(id){ window.clearTimeout(id); });
 
 }());

@@ -16,6 +16,8 @@
 		  "all_frames"	: true
 	}],
 	
-	"permissions"		: ["storage"],
+	"background"		: {"scripts": ["background.js"]},
+  
+	"permissions"		: ["contextMenus", "storage"],
 	"options_page"		: "options/options.html"
 }
