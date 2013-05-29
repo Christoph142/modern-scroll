@@ -33,13 +33,13 @@ window.addEventListener("change", function(e)
 	if(e.target.id === "animate_scroll")				 document.getElementById("scroll_container").style.display=(e.target.checked?null:"none");
 	
 	// update slider values:
-	if(e.target.id === "opacity")				document.getElementById("opacity_display").innerHTML				= e.target.value;
-	if(e.target.id === "superbar_opacity")		document.getElementById("superbar_opacity_display").innerHTML		= e.target.value;
-	if(e.target.id === "button_opacity")		document.getElementById("button_opacity_display").innerHTML			= e.target.value;
-	if(e.target.id === "keyscroll_velocity")	document.getElementById("keyscroll_velocity_display").innerHTML		= Math.round(100*e.target.value/2);
-	if(e.target.id === "mousescroll_velocity")	document.getElementById("mousescroll_velocity_display").innerHTML	= Math.round(100*e.target.value/3);
-	if(e.target.id === "mousescroll_distance")	document.getElementById("mousescroll_distance_display").innerHTML	= Math.round(100*e.target.value);
-	if(e.target.id === "scroll_velocity")		document.getElementById("scroll_velocity_display").innerHTML		= Math.round(100*e.target.value/5);
+	if(e.target.id === "opacity")				document.getElementById("storage.opacity").innerHTML				= e.target.value;
+	if(e.target.id === "superbar_opacity")		document.getElementById("storage.superbar_opacity").innerHTML		= e.target.value;
+	if(e.target.id === "button_opacity")		document.getElementById("storage.button_opacity").innerHTML			= e.target.value;
+	if(e.target.id === "keyscroll_velocity")	document.getElementById("storage.keyscroll_velocity").innerHTML		= Math.round(100*e.target.value/2);
+	if(e.target.id === "mousescroll_velocity")	document.getElementById("storage.mousescroll_velocity").innerHTML	= Math.round(100*e.target.value/3);
+	if(e.target.id === "mousescroll_distance")	document.getElementById("storage.mousescroll_distance").innerHTML	= Math.round(100*e.target.value);
+	if(e.target.id === "scroll_velocity")		document.getElementById("storage.scroll_velocity").innerHTML		= Math.round(100*e.target.value/5);
 	
 },false);
 
