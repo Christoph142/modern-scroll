@@ -6,6 +6,7 @@ function _(to_translate){ console.log( chrome.i18n.getMessage(to_translate) ); }
 window.addEventListener("change", function(e)
 {
 	if(e.target.id === "save_set" || e.target.id === "saved_sets") return; // handled via onclick funtions
+	
 	var saveobject = {};
 	if(e.target.type === "checkbox") saveobject[e.target.id] = e.target.checked?"1":"0";
 	else 							 saveobject[e.target.id] = e.target.value;
@@ -21,8 +22,24 @@ window.addEventListener("change", function(e)
 		}
 	}
 	
-	if(e.target.id === "contextmenu_show_when") opera.extension.bgProcess.update_contextmenu_show_when();
-	else										window.location.reload();
+	if(e.target.id === "contextmenu_show_when") chrome.extension.sendMessage({data:"update_contextmenu_show_when"});
+	else										chrome.extension.sendMessage({data:"update_optionspage"});
+	
+	// show/hide containers:
+	if(e.target.id === "show_superbar")					 document.getElementById("superbar_container").style.height=(e.target.checked?"auto":"0");
+	if(e.target.id === "show_buttons")					 document.getElementById("button_container").style.height=(e.target.value==="1"?"0":"auto");
+	if(e.target.id === "use_own_scroll_functions")		 document.getElementById("keyscroll_velocity_container").style.display=(e.target.checked?null:"none");
+	if(e.target.id === "use_own_scroll_functions_mouse") document.getElementById("mousescroll_container").style.display=(e.target.checked?null:"none");
+	if(e.target.id === "animate_scroll")				 document.getElementById("scroll_container").style.display=(e.target.checked?null:"none");
+	
+	// update slider values:
+	if(e.target.id === "opacity")				document.getElementById("opacity_display").innerHTML				= e.target.value;
+	if(e.target.id === "superbar_opacity")		document.getElementById("superbar_opacity_display").innerHTML		= e.target.value;
+	if(e.target.id === "button_opacity")		document.getElementById("button_opacity_display").innerHTML			= e.target.value;
+	if(e.target.id === "keyscroll_velocity")	document.getElementById("keyscroll_velocity_display").innerHTML		= Math.round(100*e.target.value/2);
+	if(e.target.id === "mousescroll_velocity")	document.getElementById("mousescroll_velocity_display").innerHTML	= Math.round(100*e.target.value/3);
+	if(e.target.id === "mousescroll_distance")	document.getElementById("mousescroll_distance_display").innerHTML	= Math.round(100*e.target.value);
+	if(e.target.id === "scroll_velocity")		document.getElementById("scroll_velocity_display").innerHTML		= Math.round(100*e.target.value/5);
 	
 },false);
 
@@ -31,7 +48,7 @@ function save_buttonposition(){
 	if(document.getElementsByClassName("dragged_button")[0])
 	{
 		chrome.storage.sync.set({ "buttonposition" : (100 * document.getElementsByClassName("dragged_button")[0].offsetLeft / window.innerWidth) });
-		window.location.reload();
+		chrome.extension.sendMessage({data:"update_optionspage"});
 	}
 }
 
@@ -39,14 +56,6 @@ function getprefs(){ chrome.storage.sync.get( null, function(storage){ restorepr
 
 function restoreprefs(storage)
 {
-	// ###########################################################
-		/*for(var i in storage) alert(i+": "+storage[i]);
-		if(storage.saved_sets){
-			for(var i in storage.saved_sets)
-				for(var j in storage.saved_sets[i]) alert("Set: "+i+" -> "+j+": "+storage.saved_sets[i][j]);
-		}*/
-	// ###########################################################
-	
 	document.getElementById("save_set").innerHTML = chrome.i18n.getMessage("new_set_name");
 	document.getElementById("save_set").addEventListener("blur",function(){
 		if(this.innerHTML === "") this.innerHTML = chrome.i18n.getMessage("new_set_name");
@@ -78,13 +87,13 @@ function restoreprefs(storage)
 		else document.getElementsByTagName("select")[i].value = storage[selects[i].id];
 	}
 	
-	if(document.getElementById("show_buttons").value !== "0") document.getElementById("button_container").style.height = "auto";
-	if(!document.getElementById("show_superbar").checked) document.getElementById("superbar_container").style.height = "0px";
+	if(document.getElementById("show_buttons").value !== "1")	document.getElementById("button_container").style.height = "auto";
+	if(!document.getElementById("show_superbar").checked)		document.getElementById("superbar_container").style.height = "0px";
 	if(!document.getElementById("use_own_scroll_functions").checked)
 		document.getElementById("keyscroll_velocity_container").style.display="none";
 	if(!document.getElementById("use_own_scroll_functions_mouse").checked)
 		document.getElementById("mousescroll_container").style.display="none";
-	if(!document.getElementById('animate_scroll').checked) document.getElementById('scroll_container').style.display = "none";
+	if(!document.getElementById("animate_scroll").checked)		document.getElementById("scroll_container").style.display = "none";
 	
 	document.getElementById("border_radius").max = Math.round(Math.max(document.getElementById("size").value, document.getElementById("hover_size").value)/2);
 	
@@ -174,7 +183,7 @@ function restoreprefs(storage)
 				chrome.storage.sync.set(temp_obj);
 			}
 		}
-		window.location.reload();
+		chrome.extension.sendMessage({data:"update_optionspage"});
 	}, false);
 	
 	document.getElementById("save_set").addEventListener("keydown", function(){ // Enter -> save configuration

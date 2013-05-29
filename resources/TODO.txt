@@ -1,4 +1,2 @@
-save button position in options page
 fix context menu
-replace currentStyle
 implement background js to account for missing/default settings

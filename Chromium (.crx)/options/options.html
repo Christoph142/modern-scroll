@@ -53,7 +53,7 @@
         <td style="text-align:right;"><input type="number" max="5" min="0" id="gap" name="gap" value="2"></td>
     </tr><tr>
     	<td style="text-align:left; vertical-align:top;"><label for="opacity" class="i18n"></label>: <label id="opacity_display"><span class="slider_values" id="storage.opacity"></span></label></td>
-        <td style="text-align:right;"><input type="range" name="opacity" id="opacity" min="0" max="100" value="50" step="1" onchange="document.getElementById('opacity_display').innerHTML = this.value;" /></td>
+        <td style="text-align:right;"><input type="range" name="opacity" id="opacity" min="0" max="100" value="50" step="1" /></td>
     </tr></table>
         
     <h4><span id="border" class="i18n"></span>:</h4>
@@ -122,12 +122,12 @@
     
     <fieldset>
     <h4><span id="superbar" class="i18n"></span>:</h4>
-    <input type="checkbox" id="show_superbar" name="show_superbar" onchange="document.getElementById('superbar_container').style.height=(this.checked?'auto':'0px');"> <label for="show_superbar" class="i18n"></label><div id="superbar_info" class="i">i<div id="superbar_info_text" class="i_text"><span id="explanation_superbar" class="i18n"></span></div></div>
+    <input type="checkbox" id="show_superbar" name="show_superbar"> <label for="show_superbar" class="i18n"></label><div id="superbar_info" class="i">i<div id="superbar_info_text" class="i_text"><span id="explanation_superbar" class="i18n"></span></div></div>
     <div id="superbar_container" style="overflow:hidden; height:auto;">
     <input type="checkbox" id="show_superbar_minipage" name="show_superbar_minipage" checked="checked"> <label for="show_superbar_minipage" class="i18n"></label><br>
     <table><tr>
     <td style="text-align:left; vertical-align:top;"><label for="superbar_opacity" class="i18n"></label>: <label id="superbar_opacity_display"><span class="slider_values" id="storage.superbar_opacity"></span></label></td>
-        <td style="text-align:right;"><input type="range" name="superbar_opacity" id="superbar_opacity" min="0" max="100" value="70" step="1" onchange="document.getElementById('superbar_opacity_display').innerHTML = this.value;" /></td>
+        <td style="text-align:right;"><input type="range" name="superbar_opacity" id="superbar_opacity" min="0" max="100" value="70" step="1" /></td>
     </tr></table>
     </div>
     </fieldset><br>
@@ -135,7 +135,7 @@
     <fieldset>
     <h4><span id="buttons" class="i18n"></span>:</h4>
     <span id="show_buttons" class="i18n"></span><br>
-    <input type="range" name="show_buttons" id="show_buttons" min="0" max="4" value="0" step="2" style="width:100%;" onchange="document.getElementById('button_container').style.height=(this.value==='0'?'0px':'auto');" />
+    <input type="range" name="show_buttons" id="show_buttons" min="1" max="3" value="1" step="1" style="width:100%;" />
     <table>
     	<tr>
         	<td width="20%" style="text-align:left; padding-left:10px; vertical-align:top;"><span id="never" class="i18n"></span></td>
@@ -152,7 +152,7 @@
         <input type="number" max="500" min="2" id="button_height" name="button_height" value="50">
         </td><td style="text-align:right;">
         <label for="button_opacity" class="i18n"></label>: 
-        <input type="range" name="button_opacity" id="button_opacity" min="0" max="100" value="10" step="1" onchange="document.getElementById('button_opacity_display').innerHTML = this.value" /><label id="button_opacity_display"><span class="slider_values" id="storage.button_opacity"></span></label>
+        <input type="range" name="button_opacity" id="button_opacity" min="0" max="100" value="10" step="1" /><label id="button_opacity_display"><span class="slider_values" id="storage.button_opacity"></span></label>
         </td></tr></table>
         <br>
         <span id="drag_buttons" class="i18n"></span>
@@ -176,33 +176,33 @@
     <h4><span id="custom_scroll_functions" class="i18n"></span>:</h4>
     <span id="use_custom_functions" class="i18n"></span><div id="own_functions_info" class="i">i<div id="own_functions_info_text" class="i_text"><span id="explanation_custom_functions" class="i18n"></span></div></div>
     <table class="c"><tr>
-        <td><input type="checkbox" id="use_own_scroll_functions" name="use_own_scroll_functions" checked="checked" onchange="document.getElementById('keyscroll_velocity_container').style.display=(this.checked?null:'none');"></td>
+        <td><input type="checkbox" id="use_own_scroll_functions" name="use_own_scroll_functions" checked="checked"></td>
         <td><label for="use_own_scroll_functions" id="use_custom_functions_keyboard" class="i18n"></label></td>
     </tr><tr>
     	<td></td><td><div id="keyscroll_velocity_container" style="margin:-5px -4px 5px -4px;">
             <table><tr>
                 <td style="text-align:left; vertical-align:top; width:auto;"><label for="keyscroll_velocity" class="i18n"></label>: <label id="keyscroll_velocity_display"><span class="slider_values" id="storage.keyscroll_velocity"></span>
                 </label></td>
-                <td style="text-align:right;"><input type="range" name="keyscroll_velocity" id="keyscroll_velocity" min="1" max="5" value="2" data-defaultvalue="2" step="0.1" onchange="document.getElementById('keyscroll_velocity_display').innerHTML = Math.round(100*this.value/2);"></td>
+                <td style="text-align:right;"><input type="range" name="keyscroll_velocity" id="keyscroll_velocity" min="1" max="5" value="2" data-defaultvalue="2" step="0.1"></td>
             </tr></table>
         </div></td>
     </tr><tr>
-        <td><input type="checkbox" id="use_own_scroll_functions_mouse" name="use_own_scroll_functions_mouse" checked="checked" onchange="document.getElementById('mousescroll_container').style.display=(this.checked?null:'none');"></td>
+        <td><input type="checkbox" id="use_own_scroll_functions_mouse" name="use_own_scroll_functions_mouse" checked="checked"></td>
         <td><label for="use_own_scroll_functions_mouse" id="use_custom_functions_mouse" class="i18n"></label></td>
     </tr><tr>
     	<td></td><td><div id="mousescroll_container" style="margin:-5px -4px 5px -4px;">
             <table><tr>
                 <td style="text-align:left; vertical-align:top; width:auto;"><label for="mousescroll_velocity" class="i18n"></label>: <label id="mousescroll_velocity_display"><span class="slider_values" id="storage.mousescroll_velocity"></span>
                 </label></td>
-                <td style="text-align:right;"><input type="range" name="mousescroll_velocity" id="mousescroll_velocity" min="1" max="6" value="3" data-defaultvalue="3" step="0.1" onchange="document.getElementById('mousescroll_velocity_display').innerHTML = Math.round(100*this.value/3);"></td>
+                <td style="text-align:right;"><input type="range" name="mousescroll_velocity" id="mousescroll_velocity" min="1" max="6" value="3" data-defaultvalue="3" step="0.1"></td>
             </tr><tr>
                 <td style="text-align:left; vertical-align:top; width:auto;"><label for="mousescroll_distance" class="i18n"></label>: <label id="mousescroll_distance_display"><span class="slider_values" id="storage.mousescroll_distance"></span>
                 </label></td>
-                <td style="text-align:right;"><input type="range" name="mousescroll_distance" id="mousescroll_distance" min="0.1" max="4" value="1" data-defaultvalue="1" step="0.1" onchange="document.getElementById('mousescroll_distance_display').innerHTML = Math.round(100*this.value);"></td>
+                <td style="text-align:right;"><input type="range" name="mousescroll_distance" id="mousescroll_distance" min="0.1" max="4" value="1" data-defaultvalue="1" step="0.1"></td>
             </tr></table>
         </div></td>
     </tr><tr>
-        <td><input type="checkbox" id="animate_scroll" name="animate_scroll" onchange="document.getElementById('scroll_container').style.display=(this.checked?null:'none');" checked="checked"></td>
+        <td><input type="checkbox" id="animate_scroll" name="animate_scroll" checked="checked"></td>
         <td><label for="animate_scroll" class="i18n"></label><div id="animate_scroll_info" class="i">i<div id="animate_scroll_info_text" class="i_text"><span id="explanation_animate_scroll" class="i18n"></span></div></div> <span id="animate_up_to" class="i18n"></span> <select id="animate_scroll_max">
         		<option value="0" id="infinite" class="i18n"></option>
                 <option value="1" id="page" class="i18n">1 </option>
@@ -216,7 +216,7 @@
         <table><tr>
             <td style="text-align:left; vertical-align:top; width:auto;"><label id="scroll_v_label" for="scroll_velocity"><span id="animatedscroll_velocity" class="i18n"></span></label>: <label id="scroll_velocity_display"><span class="slider_values" id="storage.scroll_velocity"></span>
             </label></td>
-            <td style="text-align:right;"><input type="range" name="scroll_velocity" id="scroll_velocity" min="1" max="15" value="5" data-defaultvalue="5" step="0.1" onchange="document.getElementById('scroll_velocity_display').innerHTML = Math.round(100*this.value/5);"></td>
+            <td style="text-align:right;"><input type="range" name="scroll_velocity" id="scroll_velocity" min="1" max="15" value="5" data-defaultvalue="5" step="0.1"></td>
         </tr></table>
     </div></td>
     </tr></table>
