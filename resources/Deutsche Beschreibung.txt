@@ -25,7 +25,6 @@ neu: vollständig Chromium (Chrome & Opera 15) kompatibel
 neu: modern scroll blendet die Standard-Bildlaufleisten automatisch aus
 neu: Einstellungen werden über alle Geräte hinweg synchronisiert
 neu: verbesserte Behandlung und Wiederherstellung von Standard-Werten aus gespeicherten Konfigurationen
-upd? "Eigene Scroll-Funktionen für die Maus" standardmäßig deaktiviert
 
 v 2.4.3
 ---------

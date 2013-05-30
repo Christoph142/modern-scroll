@@ -1,2 +1,0 @@
-fix context menu
-implement background js to account for missing/default settings

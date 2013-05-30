@@ -26,7 +26,6 @@ new: fully Chromium (Chrome & Opera 15) compatible
 new: modern scroll hides default scroll bars automatically
 new: settings are synced across all of your devices
 new: better default value handling and restoration out of saved sets
-upd? custom mouse scrolling functions disabled by default
 
 v 2.4.3
 ---------
