@@ -49,7 +49,8 @@ chrome.storage.sync.get( null, function(storage){
 });
 
 chrome.extension.onMessage.addListener( function(request, sender, sendResponse){
-	if		(request.data === "show_contextmenu")				show_contextmenu(request.string);
+	if		(request.data === "settings")						sendResponse(w);
+	else if	(request.data === "show_contextmenu")				show_contextmenu(request.string);
 	else if	(request.data === "show_contextmenu_permanently")	show_contextmenu_permanently();
 	else if (request.data === "change_contextmenu_string")		change_contextmenu_into(request.string);
 });
@@ -66,15 +67,3 @@ function show_contextmenu(s)
 	});*/
 }
 function contextmenu_click(){ chrome.contextMenus.remove("ms_contextmenu"); }
-
-function show_contextmenu_permanently()
-{
-	chrome.contextMenus.create({
-		"id"		:	"ms_contextmenu",
-		"title"		:	chrome.i18n.getMessage("contextmenu_hide"),
-		"onclick"	:	change_contextmenu_into(chrome.i18n.getMessage("contextmenu_show"))
-	}, function(){/*created successfully*/});
-	/*chrome.contextMenus.onClicked.addListener( function(info, tab){
-		alert(info);
-	});*/
-}
