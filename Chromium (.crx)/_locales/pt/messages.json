@@ -1,5 +1,6 @@
 {
 	"lang" : { "message" : "pt" },
+	"description" : { "message" : "Leva a rolagem a um novo nível" },
 	"by" : { "message" : "por" },
 	"saved_sets_headline" : { "message" : "Configurações salvas:" },
 	"save_set_as" : { "message" : "Salvar a configuração atual como" },
@@ -33,7 +34,7 @@
 	"normal" : { "message" : "Quando passar com o mouse sobre, ao rolar e ao mudar a posição ou tamanho" },
 	"always" : { "message" : "Sempre" },
 	"show_bg_bars_when" : { "message" : "E as barras de fundo?" },
-	"like bars" : { "message" : "Como as barras de rolagem" },
+	"like_bars" : { "message" : "Como as barras de rolagem" },
 	"show_how_long" : { "message" : "Quanto tempo as barras ficam visíveis?" },
 	"fullscreen_only" : { "message" : "Exibir barras de rolagem apenas em tela cheia" },
 	"fullscreen_only_short" : { "message" : "Barras apenas em tela cheia" },
