@@ -1,15 +1,3 @@
-// ==UserScript==
-// @name          modern scroll
-// @description	  takes scrolling in Opera to a whole new level
-// @author        Christoph D.
-// @exclude http://acid3.acidtests.org/
-// @exclude *://mail.google.*
-// @exclude *://maps.google.*
-// @exclude *mail.live.com/*
-// @exclude https://mega.co.nz/*
-// @exclude https://secure.ingdirect.fr/*
-// ==/UserScript==
-
 (function(){
 
 var timeout;				// scrolling animation
@@ -279,15 +267,22 @@ function add_scrollingfunctions()
 
 function add_contextmenu()
 {
-	if		(w.contextmenu_show_when === "3")	chrome.extension.sendMessage({data:"show_contextmenu_permanently"}); // always
-	else if (w.contextmenu_show_when === "2")	window.addEventListener("mousedown", adjust_contextmenu, false);	 // only over interface
+	if(w.contextmenu_show_when !== "1") window.addEventListener("mousedown", adjust_contextmenu, false);
+	
+	chrome.extension.onMessage.addListener( function(request){ // listen for contextmenu clicks:
+		if(request.data === "ms_toggle_visibility")
+			document.getElementById("modern_scroll").style.display = (document.getElementById("modern_scroll").style.display === "none" ? null : "none");
+	});
 }
 function adjust_contextmenu()
 {
 	if(window.event.which !== 3) return; // only right mouse button
 	
-	if		(window.event.target.id.substr(0,3) === "ms_")						chrome.extension.sendMessage({data:"show_contextmenu", string:"hide"});
+	if		(document.getElementById("modern_scroll").style.display !== "none" &&
+			((w.contextmenu_show_when === "2" && window.event.target.id.substr(0,3) === "ms_") || (w.contextmenu_show_when === "3")))
+																				chrome.extension.sendMessage({data:"show_contextmenu", string:"hide"});
 	else if	(document.getElementById("modern_scroll").style.display === "none")	chrome.extension.sendMessage({data:"show_contextmenu", string:"show"});
+	else																		chrome.extension.sendMessage({data:"hide_contextmenu"});
 }
 function contextmenu_click(){ if(document.getElementById("modern_scroll").style.display === "none") show_ui(); else hide_ui(); }
 
