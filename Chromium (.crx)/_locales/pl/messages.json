@@ -1,5 +1,6 @@
 {
 	"lang" :						{ "message" : "pl" },
+	"description" :					{ "message" : "Przeniesienie przewijania na całkowicie nowy poziom" },
 	"by" :							{ "message" : "autorstwa" },
 	"saved_sets_headline" :			{ "message" : "Przechowywane zestawy ustawień:" },
 	"save_set_as" :					{ "message" : "Zapisz obecny zestaw pod nazwą" },

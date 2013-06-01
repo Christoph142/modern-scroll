@@ -1,5 +1,6 @@
 {
 	"lang" : { "message" : "fr" },
+	"description" : { "message" : "Prend le défilement à un niveau entièrement nouveau" },
 	"by" : { "message" : "de" },
 	"saved_sets_headline" : { "message" : "Configurations enregistrées:" },
 	"save_set_as" : { "message" : "Enregistre la configuration actuelle comme" },

@@ -1,5 +1,6 @@
 {
 	"lang" : { "message" : "nb" },
+	"description" : { "message" : "Tar rulleopplevelsen opp til neste nivå" },
 	"by" : { "message" : "av" },
 	"saved_sets_headline" : { "message" : "Lagret oppsettene:" },
 	"save_set_as" : { "message" : "Lagre det nåværende oppsettet som" },
