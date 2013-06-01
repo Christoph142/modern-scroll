@@ -107,7 +107,9 @@ function add_or_remove_ms(){ if(document.webkitHidden) remove_ms(); else add_ms(
 
 function inject_css()
 {
-	var ms_style = /* set back standard values (CSS values not necessarily used by modern scroll, but maybe altered by the website): */
+	var ms_style = /*CSS3 working draft; will replace manual overwriting of each and every value: */
+		"#modern_scroll{ all:default; }"+
+		/* set back standard values (CSS values not necessarily used by modern scroll, but maybe altered by the website): */
 		"#modern_scroll, #ms_v_container, #ms_h_container, #ms_vbar_bg, #ms_hbar_bg, #ms_vbar, #ms_hbar, #ms_superbar, #ms_page_cover, #ms_upbutton, #ms_downbutton, #ms_minipage_canvas{ position:fixed; z-index:2147483647; border:none; padding:0; margin:0; display:none; background:none; }"+
 		"#ms_vbar_ui, #ms_hbar_ui, #ms_vbar_bg_ui, #ms_hbar_bg_ui{ border:none; padding:0; margin:0; }"+
 		
@@ -149,11 +151,11 @@ function inject_css()
 		".dragged #ms_hbar_ui, .dragged #ms_hbar_bg_ui{ height:"+w.hover_size+"px; }"+
 		"#ms_superbar.dragged{ opacity:"+(w.show_superbar_minipage === "1" ? 1 : (w.superbar_opacity/100))+"; }"+
 		
-		"body *::-webkit-scrollbar{ width: 8px; }"+
-		"body *::-webkit-scrollbar-button{ width: 8px; height:5px; }"+
-		"body *::-webkit-scrollbar-track { background:#eee; border: thin solid lightgray;	box-shadow: 0px 0px 3px #dfdfdf inset; border-radius:10px; }"+
-		"body *::-webkit-scrollbar-thumb { background:#999; border: thin solid gray; border-radius:10px; }"+
-		"body *::-webkit-scrollbar-thumb:hover { background:#7d7d7d; }";
+		"body *::-webkit-scrollbar{ width: "+w.size+"px; }"+
+		"body *::-webkit-scrollbar-button{ display:none; }"+//width:"+w.size+"px; height:"+w.size+"px; background:"+w.color_bg+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" !important; }"+
+		"body *::-webkit-scrollbar-track { background:"+w.color_bg+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" !important; border-radius:"+w.border_radius+"px; }"+
+		"body *::-webkit-scrollbar-thumb { background:"+w.color+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" !important; border-radius:"+w.border_radius+"px; }"+
+		"body *::-webkit-scrollbar-thumb:hover { background:"+w.color+"; }";
 	
 	if(document.getElementById("ms_style")) document.getElementById("ms_style").innerHTML = ms_style; // when options changed
 	else{ // when website is initially loaded
