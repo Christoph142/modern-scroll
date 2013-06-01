@@ -87,8 +87,6 @@ function remove_ms()
 	window.removeEventListener("scroll", onScroll, false);
 	window.removeEventListener("scroll", reposition_bars, false);
 	
-	window.removeEventListener("mousedown", adjust_contextmenu, false);
-	
 	window.clearTimeout(timeout);					timeout = null;
 	window.clearTimeout(hide_timeout);				hide_timeout = null;
 	window.clearTimeout(dimension_check_timeout);	dimension_check_timeout = null;
@@ -151,13 +149,14 @@ function inject_css()
 		".dragged #ms_hbar_ui, .dragged #ms_hbar_bg_ui{ height:"+w.hover_size+"px; }"+
 		"#ms_superbar.dragged{ opacity:"+(w.show_superbar_minipage === "1" ? 1 : (w.superbar_opacity/100))+"; }"+
 		
+		// page elements:
 		"body *::-webkit-scrollbar{ width: "+w.size+"px; }"+
 		"body *::-webkit-scrollbar-button{ display:none; }"+//width:"+w.size+"px; height:"+w.size+"px; background:"+w.color_bg+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" !important; }"+
 		"body *::-webkit-scrollbar-track { background:"+w.color_bg+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" !important; border-radius:"+w.border_radius+"px; }"+
 		"body *::-webkit-scrollbar-thumb { background:"+w.color+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" !important; border-radius:"+w.border_radius+"px; }"+
 		"body *::-webkit-scrollbar-thumb:hover { background:"+w.color+"; }";
 	
-	if(document.getElementById("ms_style")) document.getElementById("ms_style").innerHTML = ms_style; // when options changed
+	if(document.getElementById("ms_style")) document.getElementById("ms_style").innerHTML = ms_style; // switched tabs
 	else{ // when website is initially loaded
 		var style = document.createElement("style");
 		style.setAttribute("type","text/css");
@@ -274,25 +273,19 @@ function add_scrollingfunctions()
 }
 
 function add_contextmenu()
-{
-	if(w.contextmenu_show_when !== "1") window.addEventListener("mousedown", adjust_contextmenu, false);
-	
-	chrome.extension.onMessage.addListener( function(request){ // listen for contextmenu clicks:
-		if(request.data === "ms_toggle_visibility")
-			document.getElementById("modern_scroll").style.display = (document.getElementById("modern_scroll").style.display === "none" ? null : "none");
-	});
+{	
+	if(w.contextmenu_show_when !== "1") // if contextmenu is not set to "never show up":
+	{
+		chrome.extension.onMessage.addListener( function(request){ if(request.data === "ms_toggle_visibility") contextmenu_click(); });
+		show_ui();
+	}
+	else chrome.extension.sendMessage({data:"hide_contextmenu"});
 }
-function adjust_contextmenu()
+function contextmenu_click()
 {
-	if(window.event.which !== 3) return; // only right mouse button
-	
-	if		(document.getElementById("modern_scroll").style.display !== "none" &&
-			((w.contextmenu_show_when === "2" && window.event.target.id.substr(0,3) === "ms_") || (w.contextmenu_show_when === "3")))
-																				chrome.extension.sendMessage({data:"show_contextmenu", string:"hide"});
-	else if	(document.getElementById("modern_scroll").style.display === "none")	chrome.extension.sendMessage({data:"show_contextmenu", string:"show"});
-	else																		chrome.extension.sendMessage({data:"hide_contextmenu"});
+	if(document.getElementById("modern_scroll").style.display === "none")	show_ui();
+	else																	hide_ui();
 }
-function contextmenu_click(){ if(document.getElementById("modern_scroll").style.display === "none") show_ui(); else hide_ui(); }
 
 function add_external_interface()
 {
@@ -308,7 +301,14 @@ function add_external_interface()
 function show_ui()
 {
 	document.getElementById("modern_scroll").style.display = null;
-	chrome.runtime.sendMessage({data:"change_contextmenu_string_into_hide"});
+	
+	if(w.contextmenu_show_when === "2") // only over interface:
+	{
+		send_contextmenu_hide_msg_to_bg();
+		document.getElementById("modern_scroll").addEventListener("mouseover", send_contextmenu_show_msg_to_bg, false);
+		document.getElementById("modern_scroll").addEventListener("mouseout", send_contextmenu_hide_msg_to_bg, false);
+	}
+	else if(w.contextmenu_show_when === "3") send_contextmenu_show_msg_to_bg();
 	
 	show_bars();
 	hide_bars();
@@ -316,8 +316,12 @@ function show_ui()
 function hide_ui()
 {
 	document.getElementById("modern_scroll").style.display = "none";
-	chrome.runtime.sendMessage({data:"change_contextmenu_string_into_show"});
+	if(w.contextmenu_show_when !== "1") chrome.extension.sendMessage({data:"show_contextmenu", string:"show"});
+	document.getElementById("modern_scroll").removeEventListener("mouseover", send_contextmenu_show_msg_to_bg, false);
+	document.getElementById("modern_scroll").removeEventListener("mouseout", send_contextmenu_hide_msg_to_bg, false);
 }
+function send_contextmenu_show_msg_to_bg(){ chrome.extension.sendMessage({data:"show_contextmenu", string:"hide"}); }
+function send_contextmenu_hide_msg_to_bg(){ chrome.extension.sendMessage({data:"hide_contextmenu"}); }
 
 var dimension_check_timeout;
 function check_dimensions_after_click()

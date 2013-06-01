@@ -66,4 +66,8 @@ function contextmenu_click(){
 		chrome.tabs.sendMessage(tabs[0].id, {data:"ms_toggle_visibility"});
 	});
 }
-function hide_contextmenu(){ chrome.contextMenus.remove("ms_contextmenu"); contextmenu = false; }
+function hide_contextmenu()
+{
+	if(!contextmenu) return;
+	chrome.contextMenus.remove("ms_contextmenu"); contextmenu = false;
+}
