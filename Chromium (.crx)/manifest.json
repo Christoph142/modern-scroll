@@ -3,13 +3,16 @@
 	
 	"name"				: "modern scroll",
 	"description"		: "__MSG_description__",
+	"developer"			: {"name" : "Christoph D."},
+	"homepage_url"		: "http://my.opera.com/christoph142/blog",
+	
 	"default_locale"	: "en",
 	"version"			: "3.0",
 	"icons"				: { "16": "images/contextmenu.png", /*"48": "images/icon48.png",*/ "128": "images/icon@2x.png" },
 	
 	"content_scripts" :
 	[{
-		  "matches"		: ["http://*/*","https://*/*"],
+		  "matches"		: ["<all_urls>"],
 		  "css"			: ["includes/remove_default_bars.css"],
 		  "js"			: ["includes/scrollbar.js"],
 		  "run_at"		: "document_start",
