@@ -1,0 +1,2 @@
+style bars in elements (invisible atm)
+other method for contextmenu?
