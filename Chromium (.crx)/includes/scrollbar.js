@@ -147,7 +147,13 @@ function inject_css()
 		".dragged #ms_vbar, .dragged #ms_hbar{ opacity:"+(w.opacity>80?"1":((parseInt(w.opacity)+20)/100))+"; }"+
 		".dragged #ms_vbar_ui, .dragged #ms_vbar_bg_ui{ width:"+w.hover_size+"px; }"+
 		".dragged #ms_hbar_ui, .dragged #ms_hbar_bg_ui{ height:"+w.hover_size+"px; }"+
-		"#ms_superbar.dragged{ opacity:"+(w.show_superbar_minipage === "1" ? 1 : (w.superbar_opacity/100))+"; }";
+		"#ms_superbar.dragged{ opacity:"+(w.show_superbar_minipage === "1" ? 1 : (w.superbar_opacity/100))+"; }"+
+		
+		"body *::-webkit-scrollbar{ width: 8px; }"+
+		"body *::-webkit-scrollbar-button{ width: 8px; height:5px; }"+
+		"body *::-webkit-scrollbar-track { background:#eee; border: thin solid lightgray;	box-shadow: 0px 0px 3px #dfdfdf inset; border-radius:10px; }"+
+		"body *::-webkit-scrollbar-thumb { background:#999; border: thin solid gray; border-radius:10px; }"+
+		"body *::-webkit-scrollbar-thumb:hover { background:#7d7d7d; }";
 	
 	if(document.getElementById("ms_style")) document.getElementById("ms_style").innerHTML = ms_style; // when options changed
 	else{ // when website is initially loaded
