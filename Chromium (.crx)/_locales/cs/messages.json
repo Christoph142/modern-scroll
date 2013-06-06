@@ -1,5 +1,5 @@
 {
-	"lang" : { "message" : "cs" },//"عربية" },
+	"lang" : { "message" : "cs" },
 	"by" : { "message" : "od" },
 	"description" : { "message" : "Přeneste rolování na úplně novou úroveň" },
 	"saved_sets_headline" : { "message" : "Uložená nastavení:" },
@@ -71,8 +71,6 @@
 	"animatedscroll_velocity" : { "message" : "Rychlost animovaného rolování" },
 	"external_interface_headline" : { "message" : "Externí rozhraní" },
 	"external_interface" : { "message" : "Poskytovat rozhraní pro externí přístup" },
-	"how_to" : { "message" : "Jak mám používat toto rozšíření?" },
-	"disable_standard_bars" : { "message" : "Pokud nepoužíváte moderní rolování výhradně v celoobrazovkovém režimu, tak standardní rolovací posuvníky Opery by měly být vypnuty pro předejítí zdvojení posuvníků.<br>Pro udělání tohoto jděte do <strong>Opera › Nastavení › Nastavení... (Ctrl+F12) › Pokročilé volby › Prohlížení</strong> a vypněte zde \"Zobrazit posuvníky\"." },
 	"footer" : { "message" : "Díky za nainstalování tohoto rozšíření. Můžete mě kdykoli kontaktovat pro zpětnou vazbu a otázky." },
 	"contextmenu_show" : { "message" : "Ukázat moderní rolování" },
 	"contextmenu_hide" : { "message" : "Skrýt moderní rolování" },

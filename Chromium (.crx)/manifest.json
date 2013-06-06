@@ -8,7 +8,7 @@
 	
 	"default_locale"	: "en",
 	"version"			: "3.0",
-	"icons"				: { "16": "images/contextmenu.png", /*"48": "images/icon48.png",*/ "128": "images/icon@2x.png" },
+	"icons"				: { "16": "images/contextmenu.png", "128": "images/icon@2x.png" },
 	
 	"content_scripts" :
 	[{
