@@ -184,24 +184,11 @@ function add_page_handling()
 	
 	var info_bubbles = document.getElementsByClassName("i"); // info bubbles:
 	
-	for(var i=0; i<info_bubbles.length; i++) // show/hide:
-	{
-		info_bubbles[i].addEventListener("mouseover", function(){
-			window.clearTimeout(timeout);
-			document.getElementById(this.id+"_text").style.display = "inline";
-			document.getElementById(this.id+"_text").style.opacity = "1";
-		}, false);
-		info_bubbles[i].addEventListener("mouseout", function(){
-			document.getElementById(this.id+"_text").style.opacity = "0";
-			timeout = window.setTimeout("document.getElementById('"+this.id+"_text').style.display = null;", 200);
-		}, false);
-	}
-	
 	for(var i=0; i<info_bubbles.length; i++) // position top/bottom:
 	{
 		info_bubbles[i].addEventListener("mouseover", function(){
 			window.clearTimeout(bubble_setback);
-			if(this.offsetTop>window.scrollY+window.innerHeight/2) this.lastChild.style.marginTop = -this.lastChild.offsetHeight+"px";
+			if(this.offsetTop>window.scrollY+window.innerHeight/2) this.lastChild.style.marginTop = (-this.lastChild.offsetHeight+8)+"px";
 		}, false);
 		info_bubbles[i].addEventListener("mouseout", function(){
 			bubble_setback = window.setTimeout(function(){this.lastChild.style.marginTop= null;}.bind(this),500);
@@ -222,4 +209,4 @@ function localize()
 	}
 }
 
-var timeout; var bubble_setback; // timeouts for info bubbles
+var bubble_setback; // timeout for info bubbles
