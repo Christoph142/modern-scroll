@@ -1,5 +1,5 @@
 //retrieve and store settings (filled with default values) for all pages:
-chrome.storage.sync.get( null, function(storage){
+function update_settings(){ chrome.storage.sync.get( null, function(storage){
 	w = {
 	"size" :				(!storage["size"]					? "8" : storage["size"]),
 	"hover_size" :			(!storage["hover_size"]				? "12" : storage["hover_size"]),
@@ -46,10 +46,14 @@ chrome.storage.sync.get( null, function(storage){
 	
 	"external_interface" :	(!storage["external_interface"]		? "1" : storage["external_interface"])
 	};
-});
+	
+	chrome.extension.sendMessage( {data:"update_optionspage"} );
+}); }
+update_settings();
 
 chrome.extension.onMessage.addListener( function(request, sender, sendResponse){
 	if		(request.data === "settings")						sendResponse(w);
+	else if (request.data === "update_settings")				update_settings(); // will request options page update when finished
 	else if	(request.data === "show_contextmenu")				show_contextmenu(request.string);
 	else if	(request.data === "hide_contextmenu")				hide_contextmenu();
 });

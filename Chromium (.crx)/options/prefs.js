@@ -105,20 +105,11 @@ function restoreprefs()
 		// ########################################################################################################################### why floor?! ####
 	}
 	
-	for(var i=0; i<document.getElementsByClassName("i").length; i++){ // information boxes:
-		document.getElementsByClassName("i")[i].addEventListener("mouseover", function(){
-			window.clearTimeout(timeout);
-			document.getElementById(this.id+"_text").style.display = "inline";
-			document.getElementById(this.id+"_text").style.opacity = "1";
-		}, false);
-		document.getElementsByClassName("i")[i].addEventListener("mouseout", function(){
-			document.getElementById(this.id+"_text").style.opacity = "0";
-			timeout = window.setTimeout("document.getElementById('"+this.id+"_text').style.display = 'none';", 200);
-		}, false);
-	}
-	
-	// save, restore & delete configurations:
-	
+	add_page_handling();
+}
+
+function add_page_handling()
+{		
 	document.getElementById("save_set_img").addEventListener("click", function(){ // save set:
 		if(document.getElementById("save_set").innerHTML === "Default"){ alert(chrome.i18n.getMessage("default_change_impossible")); return; }
 		
@@ -179,7 +170,7 @@ function restoreprefs()
 				chrome.storage.sync.set(temp_obj);
 			}
 		}
-		chrome.extension.sendMessage({data:"update_optionspage"});
+		chrome.extension.sendMessage({data:"update_settings"});
 	}, false);
 	
 	document.getElementById("save_set").addEventListener("keydown", function(){ // Enter -> save configuration
@@ -190,9 +181,23 @@ function restoreprefs()
 		}
 	}, false);
 	
-	var info_bubbles = document.getElementsByClassName("i");
-	var bubble_setback;
-	for(var i=0; i<info_bubbles.length; i++)
+	
+	var info_bubbles = document.getElementsByClassName("i"); // info bubbles:
+	
+	for(var i=0; i<info_bubbles.length; i++) // show/hide:
+	{
+		info_bubbles[i].addEventListener("mouseover", function(){
+			window.clearTimeout(timeout);
+			document.getElementById(this.id+"_text").style.display = "inline";
+			document.getElementById(this.id+"_text").style.opacity = "1";
+		}, false);
+		info_bubbles[i].addEventListener("mouseout", function(){
+			document.getElementById(this.id+"_text").style.opacity = "0";
+			timeout = window.setTimeout("document.getElementById('"+this.id+"_text').style.display = null;", 200);
+		}, false);
+	}
+	
+	for(var i=0; i<info_bubbles.length; i++) // position top/bottom:
 	{
 		info_bubbles[i].addEventListener("mouseover", function(){
 			window.clearTimeout(bubble_setback);
@@ -217,4 +222,4 @@ function localize()
 	}
 }
 
-var timeout;
+var timeout; var bubble_setback; // timeouts for info bubbles

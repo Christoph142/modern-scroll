@@ -1,1 +1,2 @@
-load sets
+default bars @ github?!
+no bars at addons.opera.com
