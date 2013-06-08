@@ -5,7 +5,7 @@ body		{ font:13px/24px "helvetica neue",arial,sans-serif; cursor:default; max-wi
 header		{ display:block; text-align:center; padding:25px 50px 10px 50px; margin:0 50px;
 			  border-bottom:1px solid rgba(0,0,0,0.15); box-shadow:0 1px #fff; }
 section 	{ display:block; padding:0 50px; }
-fieldset	{ border:none; background:rgba(150,160,200,0.25); border-radius:2px; padding:0px 20px 15px 20px; }
+fieldset	{ border:none; background:rgba(150,160,200,0.25); border-radius:2px; padding:1px 20px 15px 20px; }
 footer		{ display:block; text-align:center; padding:0 50px; margin:30px 50px 0 50px;
 			  border-top:1px solid #fff; box-shadow:0 -1px rgba(0,0,0,0.15); }
 h1			{ margin:0px; margin-bottom:-10px; font-size:24px; }
