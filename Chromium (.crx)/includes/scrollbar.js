@@ -108,7 +108,7 @@ function inject_css()
 	var ms_style = /*CSS3 working draft; will replace manual overwriting of each and every value: */
 		"#modern_scroll{ all:default; }"+
 		/* set back standard values (CSS values not necessarily used by modern scroll, but maybe altered by the website): */
-		"#modern_scroll, #ms_v_container, #ms_h_container, #ms_vbar_bg, #ms_hbar_bg, #ms_vbar, #ms_hbar, #ms_superbar, #ms_page_cover, #ms_upbutton, #ms_downbutton, #ms_minipage_canvas{ position:fixed; z-index:2147483647; border:none; padding:0; margin:0; display:none; background:none; }"+
+		"#modern_scroll, #ms_v_container, #ms_h_container, #ms_vbar_bg, #ms_hbar_bg, #ms_vbar, #ms_hbar, #ms_superbar, #ms_page_cover, #ms_upbutton, #ms_downbutton{ position:fixed; z-index:2147483647; border:none; padding:0; margin:0; display:none; background:none; }"+
 		"#ms_vbar_ui, #ms_hbar_ui, #ms_vbar_bg_ui, #ms_hbar_bg_ui{ border:none; padding:0; margin:0; }"+
 		
 		/* set values (most general first - can be overwritten by following rules): */
@@ -129,7 +129,6 @@ function inject_css()
 		"#ms_hbar_ui{ width:30px; min-width:30px; height:"+w.size+"px; margin-left:"+w.gap+"px; margin-right:"+w.gap+"px; margin-"+(w.hbar_at_top=="1"?"top":"bottom")+":"+(w.gap)+"px; transition:height 0.25s; }"+
 		"#ms_superbar{ width:100px; background:"+(w.show_superbar_minipage==="0"?w.color:"rgba(0,0,0,0)")+"; opacity:"+((w.show_when==="3")?"0.5":"0")+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" "+(w.show_superbar_minipage==="1"?", 0 0 200px 10px #999":"")+" !important; border-radius:"+w.border_radius+"px; transition:opacity 0.5s "+w.show_how_long+"ms; min-width:30px; min-height:30px; }"+
 		"#ms_page_cover{ left:0px; top:0px; width:100%; height:100%; background:rgba(0,0,0,0); padding:0px; margin:0px; }"+
-		"#ms_minipage_canvas{ top:0px; left:0px; background:#000; }"+
 		
 		"#ms_upbutton, #ms_downbutton{ height:"+w.button_height*2+"px; width:"+w.button_width+"px; left:"+w.buttonposition+"%; opacity:"+w.button_opacity/100+"; background:"+w.color+"; border-radius:50px; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+"; transition:opacity 0.5s; }"+
 		"#ms_upbutton{ top:-"+w.button_height+"px; }"+
@@ -173,9 +172,7 @@ function add_bars()
 	var bars_container = document.createElement("div");
 	bars_container.id = "modern_scroll_bars";
 	bars_container.innerHTML =
-		"<div id='ms_page_cover'>"+
-			"<canvas id='ms_minipage_canvas' width='"+window.innerWidth+"' height='"+window.innerHeight+"'></canvas>"+
-		"</div>"+
+		"<div id='ms_page_cover'></div>"+
 		"<div id='ms_superbar'></div>"+
 		"<div id='ms_h_container'>"+
 			"<div id='ms_hbar_bg'><div id='ms_hbar_bg_ui'></div></div>"+
@@ -557,13 +554,14 @@ function drag_super()
 	function drag_super_end()
 	{
 		if(w.show_superbar_minipage === "1"){
+			document.body.style["-webkit-transform"] = null;
+			document.body.style["-webkit-transform-origin"] = null;
 			window.scroll(parseInt(superbar.style.left)/(window.innerWidth-superbar.offsetWidth)*window.scrollMaxX, parseInt(superbar.style.top)/(window.innerHeight-superbar.offsetHeight)*window.scrollMaxY);
 			
 			document.getElementById("ms_vbar_bg").style.display = "inline";
 			document.getElementById("ms_hbar_bg").style.display = "inline";
 			vbar.style.display = "inline";
 			hbar.style.display = "inline";
-			document.getElementById("ms_minipage_canvas").style.display = null;
 		}
 		
 		drag_mode(0);
@@ -685,28 +683,9 @@ function show_minipage()
 		document.getElementById("ms_downbutton").style.display = null;
 	}
 	
-	document.body.style.transformOrigin = "0% 0%";
-	document.body.style.transform = "scale("+(window.innerWidth/Math.max(document.documentElement.scrollWidth,window.innerWidth))+","+(window.innerHeight/Math.max(document.documentElement.scrollHeight,window.innerHeight))+")";
+	document.body.style["-webkit-transform-origin"] = "0% 0%";
+	document.body.style["-webkit-transform"] = "scale("+(window.innerWidth/Math.max(document.documentElement.scrollWidth,window.innerWidth))+","+(window.innerHeight/Math.max(document.documentElement.scrollHeight,window.innerHeight))+")";
 	window.scrollBy(-window.pageXOffset, -window.pageYOffset);
-	if(document.body.className === "zoom"){
-		var img = document.body.firstChild;
-		img.style.transformOrigin = "0% 0%";
-		img.style.transform = "scale("+(window.innerWidth/img.scrollWidth)+","+(window.innerHeight/img.scrollHeight)+")";
-		window.scroll(img.offsetLeft,img.offsetTop);
-	}	
-	document.getElementById("ms_superbar").style.display = null;
-	
-	/*opera.extension.getScreenshot(function(imageData){
-		if(document.body.className === "zoom"){
-			document.body.firstChild.style.transformOrigin = null;
-			document.body.firstChild.style.transform = null;
-		}
-		document.body.style.transform = null;
-		document.body.style.transformOrigin = null;
-		document.getElementById("ms_superbar").style.display = "inline";
-		document.getElementById("ms_minipage_canvas").getContext('2d').putImageData(imageData, 0, 0);
-		document.getElementById("ms_minipage_canvas").style.display = "inline";
-	});*/
 }
 
 function onScroll(){ window.clearTimeout(timeout); timeout = window.setTimeout(reposition_bars, 100); }

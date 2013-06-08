@@ -1,6 +1,4 @@
-{
-	"manifest_version"	: 2,
-	
+{	
 	"name"				: "modern scroll",
 	"description"		: "__MSG_description__",
 	"developer"			: {"name" : "Christoph D."},
@@ -22,5 +20,7 @@
 	"background"		: {"scripts": ["background.js"]},
   
 	"permissions"		: ["contextMenus", "storage"],
-	"options_page"		: "options/options.html"
+	"options_page"		: "options/options.html",
+	
+	"manifest_version"	: 2
 }
