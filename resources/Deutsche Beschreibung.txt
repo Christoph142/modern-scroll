@@ -25,6 +25,7 @@ neu: vollständig Chromium (Chrome & Opera 15) kompatibel
 neu: blendet die Standard-Bildlaufleisten automatisch aus
 neu: Styling der Scroll-Leisten von Seiten-Elementen (z.B. Mehrzeiligen Textfeldern)
 neu: Einstellungen werden über alle Geräte hinweg synchronisiert
+neu: live Mini-Seite hinter der Superbar
 neu: verbesserte Behandlung und Wiederherstellung von Standard-Werten aus gespeicherten Konfigurationen
 
 v 2.4.3

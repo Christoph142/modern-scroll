@@ -26,6 +26,7 @@ new: fully Chromium (Chrome & Opera 15) compatible
 new: hides default scroll bars automatically
 new: styling of page element's scroll bars (e.g. textareas)
 new: settings are synced across all of your devices
+new: live mini page behind superbar
 new: better default value handling and retrieval of saved configurations
 
 v 2.4.3
