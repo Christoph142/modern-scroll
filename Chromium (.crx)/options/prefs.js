@@ -57,6 +57,7 @@ function save_buttonposition(){
 function restoreprefs()
 {
 	var storage = chrome.extension.getBackgroundPage().w;
+	chrome.storage.sync.get("saved_sets", function(s){ storage.saved_sets = s.saved_sets; });
 	
 	document.getElementById("save_set").innerHTML = chrome.i18n.getMessage("new_set_name");
 	document.getElementById("save_set").addEventListener("blur",function(){
@@ -101,15 +102,14 @@ function restoreprefs()
 	{
 		var which_value = document.getElementsByClassName("slider_values")[i].id.split(".")[1];
 		var raw_value = (storage[which_value] ? storage[which_value] : document.getElementById(which_value).value);
-		document.getElementsByClassName("slider_values")[i].innerHTML = (document.getElementById(which_value).dataset.defaultvalue ? Math.floor(100*raw_value/document.getElementById(which_value).dataset.defaultvalue) : raw_value);
-		// ########################################################################################################################### why floor?! ####
+		document.getElementsByClassName("slider_values")[i].innerHTML = (document.getElementById(which_value).dataset.defaultvalue ? Math.round(100*raw_value/document.getElementById(which_value).dataset.defaultvalue) : raw_value);
 	}
 	
-	add_page_handling();
+	add_page_handling(storage);
 }
 
-function add_page_handling()
-{		
+function add_page_handling(storage)
+{
 	document.getElementById("save_set_img").addEventListener("click", function(){ // save set:
 		if(document.getElementById("save_set").innerHTML === "Default"){ alert(chrome.i18n.getMessage("default_change_impossible")); return; }
 		
@@ -156,6 +156,14 @@ function add_page_handling()
 	}, false);
 	
 	document.getElementById("load_set_img").addEventListener("click", function(){ // load set
+		chrome.extension.onMessage.addListener(function(msg){
+			if(msg.data === "update_optionspage")
+			{
+				chrome.extension.onMessage.removeListener(arguments.callee);
+				restoreprefs();
+			}
+		});
+	
 		if(storage.saved_sets) var sets = storage.saved_sets;
 		if(document.getElementById("saved_sets").value === "Default")
 		{
@@ -164,11 +172,11 @@ function add_page_handling()
 		}
 		else
 		{
+			var temp_obj = {};
 			for(var setting in sets[document.getElementById("saved_sets").value]){
-				var temp_obj = {};
 				temp_obj[setting] = sets[document.getElementById("saved_sets").value][setting];
-				chrome.storage.sync.set(temp_obj);
 			}
+			chrome.storage.sync.set(temp_obj);
 		}
 		chrome.extension.sendMessage({data:"update_settings"});
 	}, false);
