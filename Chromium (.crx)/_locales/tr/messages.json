@@ -35,9 +35,6 @@
 	"always" : 						{ "message" : "Her zaman" },
 	"show_bg_bars_when" : 			{ "message" : "Ve arkaplan çubukları?" },
 	"like_bars" : 					{ "message" : "Kaydırma çubukları gibi" },
-	"show_how_long" : 				{ "message" : "How long do you want the bars to stay visible?" },
-	"fullscreen_only" : 			{ "message" : "Show the bars in fullscreen mode only" },
-	"fullscreen_only_short" : 		{ "message" : "Only in fullscreen mode" },
 	"move_bars_during_scroll" : 	{ "message" : "Fare tekerleği veya klavye ile kaydırırken kaydırma çubuklarını animasyonla" },
 	"bg_special_ends" : 			{ "message" : "Arkaplan çubuklarının sonlarına tıklamak bir sayfa atlamak yerine sayfanın sonuna/başına gider." },
 	"container1" : 					{ "message" : "modern scroll'u şu mesafede tetikle" },
@@ -67,10 +64,7 @@
 	"pages" : 						{ "message" : "sayfalar" },
 	"keyscroll_velocity" : 			{ "message" : "Ok tuşlarıyla kaydırmanın sürati" },
 	"mousescroll_velocity" : 		{ "message" : "Fare tekerleğiyle kaydırma sürati and trackpad" },
-	"mousescroll_distance" : 		{ "message" : "Distance scrolled per mouse wheel rotation" },
 	"animatedscroll_velocity" : 	{ "message" : "Otomatik kaydırma sürati" },
-	"external_interface_headline" : { "message" : "External Interface" },
-	"external_interface" : 			{ "message" : "Provide an interface for external access" },
 	"footer" : 						{ "message" : "Bu eklentiyi kurduğunuz için teşekkürler. Geribildirim ve yorumlar için benimle iletişime geçmekten çekinmeyin" },
 	"contextmenu_show" : 			{ "message" : "modern scrollu göster" },
 	"contextmenu_hide" : 			{ "message" : "modern scrollu gizle" },
@@ -79,6 +73,5 @@
 	"explanation_trigger_area" : 	{ "message" : "Çubukların erişebileceği alanı genişletir." },
 	"explanation_superbar" : 		{ "message" : "\"superbar\" yatay ve dikey kaydırma çubuklarının birleştirilmişidir. <br>Böylelikle, iki çubuk da ihtiyaç olduğunda görünür. Konumu dikey ve yatay çubuklarla ayarlanmıştır." },
 	"explanation_custom_functions" : { "message" : "Opera'nın standart kaydırma çubukları bazen yavaş ve hantal olabiliyor. Bu seçeneği aktifleştirerek eklenti aynı zamanda kaydırma ile ilgili düzeltmeler de yaparak kayda değer bir performans artımı yakalıyor." },
-	"explanation_animate_scroll" : { "message" : "Eğer bu seçeneği seçtiyseniz, sayfa istenen konuma bir anda gitmeyecektir. Ama ayarlanabilir bir oranla otomatik olarak oraya kayacaktır. <br> Bu kaydırma çubuklarına, arkaplan çubuklarındaki tıklamalara ve klavye ile kaydırmaya uygulanacaktır. (eğer \"Kişiselleştirilmiş kaydırma fonksiyonlarını klavye için kullan\" aktif ise)" },
-	"explanation_external_interface" : { "message" : "By checking this option, modern scroll will provide some of its key features for usage by third-party-extensions, websites or you. You can then e.g. create custom mouse gestures.<br><a href='http://my.opera.com/christoph142/blog/2013/02/20/modern-scroll-documentation' target='_blank'>Visit the documentation to learn more about it.</a>" }
+	"explanation_animate_scroll" : { "message" : "Eğer bu seçeneği seçtiyseniz, sayfa istenen konuma bir anda gitmeyecektir. Ama ayarlanabilir bir oranla otomatik olarak oraya kayacaktır. <br> Bu kaydırma çubuklarına, arkaplan çubuklarındaki tıklamalara ve klavye ile kaydırmaya uygulanacaktır. (eğer \"Kişiselleştirilmiş kaydırma fonksiyonlarını klavye için kullan\" aktif ise)" }
 }

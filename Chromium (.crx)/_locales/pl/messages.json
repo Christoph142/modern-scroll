@@ -35,9 +35,6 @@
 	"always" :						{ "message" : "Zawsze" },
 	"show_bg_bars_when" :			{ "message" : "Co z szynami?" },
 	"like_bars" :					{ "message" : "Wtedy, kiedy i paski" },
-	"show_how_long" :				{ "message" : "How long do you want the bars to stay visible?" },
-	"fullscreen_only" :				{ "message" : "Show the bars in fullscreen mode only" },
-	"fullscreen_only_short" :		{ "message" : "Only in fullscreen mode" },
 	"move_bars_during_scroll" :		{ "message" : "Animuj paski przewijania podczas przewijania myszą i klawiaturą" },
 	"bg_special_ends" :				{ "message" : "Kliknięcie na samym końcu szyny przenosi na kraniec strony (górny, dolny, prawy albo lewy), a nie przewija o jedną stronę" },
 	"container1" :					{ "message" : "Przywołuj paski z odległości" },
@@ -69,8 +66,6 @@
 	"mousescroll_velocity" :		{ "message" : "Prędkość przewijania kółkiem myszy i gładzikiem" },
 	"mousescroll_distance" :		{ "message" : "Długość przewinięcia kółkiem myszy" },
 	"animatedscroll_velocity" :		{ "message" : "Prędkość przewijania z animacją" },
-	"external_interface_headline" :	{ "message" : "External Interface" },
-	"external_interface" :			{ "message" : "Provide an interface for external access" },
 	"footer" :						{ "message" : "Dzięki, że zainstalowałaś(-eś) to rozszerzenie. Nie wahaj się wysyłać mi opinii ani pytań" },
 	"contextmenu_show" :			{ "message" : "Pokaż modern scroll" },
 	"contextmenu_hide" :			{ "message" : "Ukryj modern scroll" },
@@ -79,6 +74,5 @@
 	"explanation_trigger_area" :	{ "message" : "Powiększa obszar dostępu do pasków." },
 	"explanation_superbar" :		{ "message" : "Arkusz łączy w sobie oba paski przewijania.<br>W związku z tym jest dostępny, gdy strona nie mieści się na ekranie w obu kierunkach.<br>Jego położenie odpowiada położeniu pionowego i poziomego paska." },
 	"explanation_custom_functions" : { "message" : "Przewijając strony w Operze bez ulepszeń możesz zaobserwować przycinanie. Z tą funkcją rozszerzenie przyjmuje wprost polecenia przewijania kółkiem, co powinno przełożyć się na znaczny wzrost wydajności." },
-	"explanation_animate_scroll" :	{ "message" : "Kiedy włączysz tę funkcję, strona nie będzie od razu przeskakiwać w docelowe miejsce, ale przewinie się w określonym tempie.<br>Powyższe dotyczy przycisków przewijania, kliknięć na szynach oraz przewijania klawiaturą (o ile zaznaczono pole Pozwól rozszerzeniu kontrolować przewijanie klawiaturą)." },
-	"explanation_external_interface" : { "message" : "By checking this option, modern scroll will provide some of its key features for usage by third-party-extensions, websites or you. You can then e.g. create custom mouse gestures.<br><a href='http://my.opera.com/christoph142/blog/2013/02/20/modern-scroll-documentation' target='_blank'>Visit the documentation to learn more about it.</a>" }
+	"explanation_animate_scroll" :	{ "message" : "Kiedy włączysz tę funkcję, strona nie będzie od razu przeskakiwać w docelowe miejsce, ale przewinie się w określonym tempie.<br>Powyższe dotyczy przycisków przewijania, kliknięć na szynach oraz przewijania klawiaturą (o ile zaznaczono pole Pozwól rozszerzeniu kontrolować przewijanie klawiaturą)." }
 }
