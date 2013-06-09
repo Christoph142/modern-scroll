@@ -60,12 +60,13 @@ function restoreprefs()
 	chrome.storage.sync.get("saved_sets", function(s){ storage.saved_sets = s.saved_sets; });
 	
 	document.getElementById("save_set").innerHTML = chrome.i18n.getMessage("new_set_name");
-	document.getElementById("save_set").addEventListener("blur",function(){
-		if(this.innerHTML === "") this.innerHTML = chrome.i18n.getMessage("new_set_name");
-	},false);
+	/*################### use when Issue 247969 is fixed: ######################
 	document.getElementById("save_set").addEventListener("focus",function(){
 		if(this.innerHTML === chrome.i18n.getMessage("new_set_name")) this.innerHTML = "";
 	},false);
+	document.getElementById("save_set").addEventListener("blur",function(){
+		if(this.innerHTML === "") this.innerHTML = chrome.i18n.getMessage("new_set_name");
+	},false);*/
 	
 	var inputs = document.getElementsByTagName("input");
 	var selects = document.getElementsByTagName("select");
