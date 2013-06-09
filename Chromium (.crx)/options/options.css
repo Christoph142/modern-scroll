@@ -19,6 +19,7 @@ input[type=text]:focus{ color:#000; background:rgba(0,0,0,0); border:0; }
 .slider_values::after{ content:"%"; }
 
 #save_set_img, #delete_set_img, #load_set_img{ height:17px; cursor:pointer; }	
+#save_set	{ cursor:text; }
 
 .i			{ background:#FFF; display:inline; border-radius:10px; font-weight:bold; padding:2px 8px; margin-left:5px; transition:opacity 0.5s; }
 .i:hover	{ background:#888; box-shadow:0 0 6px #888; transition:opacity 0.2s; text-shadow:0 0 3px #FFF; color:#000; }
