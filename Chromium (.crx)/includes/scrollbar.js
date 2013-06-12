@@ -572,7 +572,7 @@ function drag_super()
 
 function reposition_bars()
 {
-	document.getElementById("ms_vbar_bg").style.width = vbar.offsetWidth+"px"; //DSK-375403 (?)
+	//document.getElementById("ms_vbar_bg").style.width = vbar.offsetWidth+"px"; //DSK-375403 (?)
 	
 	var vbar_top_before = vbar.style.top;
 	var hbar_left_before = hbar.style.left;
@@ -603,7 +603,7 @@ function reposition_bars()
 	if(vbar_top_before !== vbar.style.top)		show_bar("v");
 	if(hbar_left_before !== hbar.style.left)	show_bar("h");
 	
-	document.getElementById("ms_vbar_bg").style.width = null; //DSK-375403 (hover-width not reset) (?)
+	//document.getElementById("ms_vbar_bg").style.width = null; //DSK-375403 (hover-width not reset) (?)
 	hide_bars();
 }
 
