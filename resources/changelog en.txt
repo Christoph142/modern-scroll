@@ -1,26 +1,4 @@
-﻿----- This extension requires Opera 12.10 or newer! -----
-modern scroll takes scrolling in Opera to a whole new level.
-(Opera's standard scrollbars should be disabled to avoid double bars. Therefore go to Opera → Settings → Preferences... (Ctrl+F12) → Advanced → Browsing and uncheck "Show scroll bars")
-
-What's awesome about modern scroll?
-
-+ boosts your scrolling performance!
-+ scrolling speed is adjustable
-+ its scroll bars don't take up any space so the whole screen width can be used to display what a browser is made for: websites
-+ elements or whole pages don't shift by some pixels when content changes and bars become (un)necessary
-+ scroll bars are usable in fullscreen mode as well
-+ scroll bars automatically hide when they are not needed
-+ unique "superbar" which makes it possible to scroll horizontally and vertically at the same time
-+ optional buttons for scrolling to top and bottom of the page
-+ behavior and appearance is fully customizable
-
-This extension was originally planned as an update to "Slim ScrollBar" by damage92. But since it doesn't have a single line of code in common with the original extension we decided to publish it as a new one. Slim scrollbar will of course continue to exist if you prefer the other implementation or if you are using Opera below 12.10 where modern scroll isn't available. Due to damage92's rare spare time it's not being actively developed at the moment, though.
-
-
-Changelog:
-----------
-
-v 3.0
+﻿v 3.0
 ---------
 new: fully Chromium (Chrome & Opera 15) compatible
 new: hides default scroll bars automatically
@@ -92,7 +70,7 @@ new: all kinds of scrolling are even smoother
 fix: detection of scrollable elements (thx Ahoj1234 for reporting)
 fix: arrow keys in search-input fields (thx Cryio for reporting)
 fix: PgUp/PgDwn/Home/End keys in select fields (thx André for reporting)
-fix: milliyet.com.tr (thx Mağruf for reporting)
+fix: milliyet.com.tr (thx Magruf for reporting)
 upd: Turkish translation (thx metude)
 
 v 2.1.3
@@ -109,7 +87,7 @@ fix: options page in installations that were not updated from version 2.0
 
 v 2.1.1
 ---------
-fix: keyboard shortcuts with command key ⌘ (thx ayni for reporting)
+fix: keyboard shortcuts with command key ? (thx ayni for reporting)
 upd: Portuguese translation (thx André)
 
 v 2.1

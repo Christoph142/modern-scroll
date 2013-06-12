@@ -1,25 +1,4 @@
-﻿----- Diese Erweiterung benötigt Opera 12.10 oder neuer! -----
-modern scroll bringt das Scrollen in Opera auf ein ganz neues Niveau.
-(Operas Standard-Bildlaufleisten sollten ausgeblendet werden um doppelte Leisten zu verhindern. Gehe dazu in Opera → Einstellungen → Einstellungen... (Strg+F12) → Erweitert → Browser und deaktiviere "Bildlaufleisten zeigen")
-
-Was ist das Geniale an modern scroll?
-
-+ beschleunigt das Scrollen!
-+ anpassbare Scroll-Geschwindigkeit
-+ die Bildlaufleisten nehmen keinen eigenen Platz ein; so kann die gesamte Breite des Bildschirms das anzeigen, wofür ein Browser gemacht wurde: Webseiten
-+ Layout von Webseiten bleibt unberührt, wenn der Inhalt sich ändert und Bildlaufleisten (un)nötig werden
-+ Bildlaufleisten sind auch im Vollbild-Modus verfügbar
-+ Bildlaufleisten werden automatisch ausgeblendet, wenn sie nicht benötigt werden
-+ einzigartige "Superbar", die es ermöglicht, gleichzeitig horizontal und vertikal zu scrollen
-+ Buttons um zum Seitenanfang oder -Ende zu scrollen
-+ Verhalten und Aussehen ist vollständig anpassbar
-
-Diese Erweiterung war ursprünglich als Update für "Slim ScrollBar" von damage92 geplant. Da sie aber keine einzige Code-Zeile mit der originalen Erweiterung gemeinsam hat, haben wir uns dazu entschieden, sie eigenständig zu veröffentlichen. Slim ScrollBar wird natürlich weiterhin verfügbar sein, wenn du die andere Implementierung bevorzugst oder eine ältere Version von Opera als 12.10 nutzt, für die modern scroll nicht zur Verfügung steht. Auf Grund von damage92s mangelnder Freizeit wird diese aber im Moment nicht aktiv weiterentwickelt.
-
-Changelog:
-----------
-
-v 3.0
+﻿v 3.0
 ---------
 neu: vollständig Chromium (Chrome & Opera 15) kompatibel
 neu: blendet die Standard-Bildlaufleisten automatisch aus
@@ -91,7 +70,7 @@ neu: alle Arten des Scrollens sind noch flüssiger
 fix: Erkennung von Scrollbaren Elementen (Danke Ahoj1234 für's Melden)
 fix: Pfeil-Tasten in Such-Eingabe-Feldern (Danke Cryio für's Melden)
 fix: BildAuf&-Ab/Pos1/Ende Tasten in Select-Feldern (Danke André für's Melden)
-fix: milliyet.com.tr (Danke Mağruf für's Melden)
+fix: milliyet.com.tr (Danke Magruf für's Melden)
 upd: Türkische Übersetzung (Danke metude)
 
 v 2.1.3
@@ -108,7 +87,7 @@ fix: Einstellungs-Seite in Installationen, die nicht von Version 2.0 geupdatet w
 
 v 2.1.1
 ---------
-fix: Tastatur-Befehle mit der Command-Taste ⌘ (Danke ayni für's Melden)
+fix: Tastatur-Befehle mit der Command-Taste ? (Danke ayni für's Melden)
 upd: Portugiesische Übersetzung (Danke André)
 
 v 2.1
