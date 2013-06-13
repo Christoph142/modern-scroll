@@ -42,7 +42,8 @@ window.addEventListener("change", function(e) // save preferences:
 
 function save_new_value(key, value)
 {
-	var saveobject = { key : value };
+	var saveobject = {};
+	saveobject[key] = value;
 	chrome.storage.sync.set(saveobject);					// save it in Chrome's synced storage
 	chrome.extension.getBackgroundPage().w[key] = value;	// update settings in background.js
 	
@@ -57,38 +58,31 @@ function save_buttonposition(){
 function restoreprefs()
 {
 	var storage = chrome.extension.getBackgroundPage().w;
-	chrome.storage.sync.get("saved_sets", function(s){ storage.saved_sets = s.saved_sets; });
+	chrome.storage.sync.get("saved_sets", function(s){
+		storage.saved_sets = s.saved_sets;
+		
+		var selects = document.getElementsByTagName("select");
+		for(var i=0; i<selects.length; i++){
+			if(!storage[selects[i].id]) continue;
+			if(selects[i].id === "saved_sets")
+			{
+				if(selects[i].options.length === 1) // prevent attaching sets multiple times on update
+				{
+					for(var option in storage.saved_sets){
+						selects[i].options[selects[i].options.length] = new Option(option, option); // Option(name, value)
+					}
+				}
+				else continue;
+			}
+			else document.getElementsByTagName("select")[i].value = storage[selects[i].id];
+		}
+	});
 	
-	document.getElementById("save_set").innerHTML = chrome.i18n.getMessage("new_set_name");
-	/*################### use when Issue 247969 is fixed: ######################
-	document.getElementById("save_set").addEventListener("focus",function(){
-		if(this.innerHTML === chrome.i18n.getMessage("new_set_name")) this.innerHTML = "";
-	},false);
-	document.getElementById("save_set").addEventListener("blur",function(){
-		if(this.innerHTML === "") this.innerHTML = chrome.i18n.getMessage("new_set_name");
-	},false);*/
-	
-	var inputs = document.getElementsByTagName("input");
-	var selects = document.getElementsByTagName("select");
-	
+	var inputs = document.getElementsByTagName("input");	
 	for(var i=0; i<inputs.length; i++){
 		if(!storage[inputs[i].id]) continue;
 		if(inputs[i].type==="checkbox")	document.getElementsByTagName("input")[i].checked = (storage[inputs[i].id] === "0" ? false : true);
 		else							document.getElementsByTagName("input")[i].value = storage[inputs[i].id];
-	}
-	for(var i=0; i<selects.length; i++){
-		if(!storage[selects[i].id]) continue;
-		if(selects[i].id === "saved_sets")
-		{
-			if(selects[i].options.length === 1) // prevent attaching sets multiple times on update
-			{
-				for(var option in storage.saved_sets){
-					selects[i].options[selects[i].options.length] = new Option(option, option); // Option(name, value)
-				}
-			}
-			else continue;
-		}
-		else document.getElementsByTagName("select")[i].value = storage[selects[i].id];
 	}
 	
 	if(document.getElementById("show_buttons").value !== "1")				document.getElementById("button_container").style.height				= "auto";
@@ -111,6 +105,14 @@ function restoreprefs()
 
 function add_page_handling(storage)
 {
+	/*################### use when Issue 247969 is fixed: ######################
+	document.getElementById("save_set").addEventListener("focus",function(){
+		if(this.innerHTML === chrome.i18n.getMessage("new_set_name")) this.innerHTML = "";
+	},false);
+	document.getElementById("save_set").addEventListener("blur",function(){
+		if(this.innerHTML === "") this.innerHTML = chrome.i18n.getMessage("new_set_name");
+	},false);*/
+	
 	document.getElementById("save_set_img").addEventListener("click", function(){ // save set:
 		if(document.getElementById("save_set").innerHTML === "Default"){ alert(chrome.i18n.getMessage("default_change_impossible")); return; }
 		
@@ -129,7 +131,7 @@ function add_page_handling(storage)
 			storage.saved_sets[document.getElementById("save_set").innerHTML][setting] = storage[setting];
 		}
 		
-		chrome.storage.sync.set( {"saved_sets" : storage.saved_sets} );
+		chrome.storage.sync.set(storage);
 		
 		if(overwrite_confirmed) return; // don't add a new option if one gets overwritten
 		document.getElementById("saved_sets").options[document.getElementById("saved_sets").options.length] =
@@ -213,8 +215,8 @@ function localize()
 	for(var i = 0; i < strings.length; i++)
 	{
 		if(strings[i].tagName === "IMG")		strings[i].title = chrome.i18n.getMessage(strings[i].title); // tooltips
-		else if(strings[i].tagName === "LABEL")	strings[i].innerHTML += chrome.i18n.getMessage( (!strings[i].id ? strings[i].htmlFor : strings[i].id) );
-		else									strings[i].innerHTML += chrome.i18n.getMessage( (!strings[i].id ? strings[i].dataset.i18n : strings[i].id));
+		else if(strings[i].dataset.i18n)		strings[i].innerHTML += chrome.i18n.getMessage(strings[i].dataset.i18n);
+		else									strings[i].innerHTML += chrome.i18n.getMessage(strings[i].id);
 	}
 }
 
