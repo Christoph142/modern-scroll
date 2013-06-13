@@ -23,7 +23,7 @@
 	<fieldset>
     <h4 id="saved_sets_headline" class="i18n"></h4>
     <table><tr>
-    	<td style="text-align:left;"><span id="save_set_as" class="i18n"></span> "<b contenteditable="true" id="save_set">Name</b>":<div id="save_set_info" class="i">i<div id="save_set_info_text" class="i_text"><span id="explanation_save_set" class="i18n"></span></div></div></td>
+    	<td style="text-align:left;"><span id="save_set_as" class="i18n"></span> "<b contenteditable="true" id="save_set" class="i18n" data-i18n="new_set_name"></b>":<div id="save_set_info" class="i">i<div id="save_set_info_text" class="i_text"><span id="explanation_save_set" class="i18n"></span></div></div></td>
         <td style="text-align:right;"><img src="../images/save.png" id="save_set_img" title="tooltip_save" class="i18n"></td>
     </tr><tr>
     	<td style="text-align:left;"><span id="load_or_delete_set" class="i18n"></span> <select id="saved_sets"><option value="Default" id="default" class="i18n"></option></select>:</td>
@@ -32,36 +32,36 @@
     </fieldset><br>
     
     <fieldset>
-    <h4><span id="look" class="i18n"></span>:</h4>
+    <h4><span id="look" class="i18n" data-i18n="look"></span>:</h4>
     <table><tr>
-    	<td style="text-align:left;"><label for="color" class="i18n"></label>:</td>
+    	<td style="text-align:left;"><label for="color" class="i18n" data-i18n="color"></label>:</td>
         <td style="text-align:right;"><input type="color" id="color" name="color"></td>
     </tr><tr>
-    	<td style="text-align:left;"><label for="color_bg" class="i18n"></label>:</td>
+    	<td style="text-align:left;"><label for="color_bg" class="i18n" data-i18n="color_bg"></label>:</td>
         <td style="text-align:right;"><input type="color" id="color_bg" name="color_bg" value="#999999"></td>
     </tr><tr>
-    	<td style="text-align:left;"><label for="size" class="i18n"></label>:</td>
+    	<td style="text-align:left;"><label for="size" class="i18n" data-i18n="size"></label>:</td>
         <td style="text-align:right;"><input type="number" max="20" min="1" id="size" name="size" value="10"></td>
     </tr><tr>
-    	<td style="text-align:left;"><label for="hover_size" class="i18n"></label>:</td>
+    	<td style="text-align:left;"><label for="hover_size" class="i18n" data-i18n="hover_size"></label>:</td>
         <td style="text-align:right;"><input type="number" max="30" min="1" id="hover_size" name="hover_size" value="14"></td>
     </tr><tr>
-    	<td style="text-align:left;"><label for="border_radius" class="i18n"></label>:</td>
+    	<td style="text-align:left;"><label for="border_radius" class="i18n" data-i18n="border_radius"></label>:</td>
         <td style="text-align:right;"><input type="number" max="15" min="0" id="border_radius" name="border_radius" value="7"></td>
     </tr><tr>
-    	<td style="text-align:left;"><label for="gap" class="i18n"></label>:</td>
+    	<td style="text-align:left;"><label for="gap" class="i18n" data-i18n="gap"></label>:</td>
         <td style="text-align:right;"><input type="number" max="5" min="0" id="gap" name="gap" value="2"></td>
     </tr><tr>
-    	<td style="text-align:left; vertical-align:top;"><label for="opacity" class="i18n"></label>: <label id="opacity_display"><span class="slider_values" id="storage.opacity"></span></label></td>
+    	<td style="text-align:left; vertical-align:top;"><label for="opacity" class="i18n" data-i18n="opacity"></label>: <label id="opacity_display"><span class="slider_values" id="storage.opacity"></span></label></td>
         <td style="text-align:right;"><input type="range" name="opacity" id="opacity" min="0" max="100" value="50" step="1" /></td>
     </tr></table>
         
     <h4><span id="border" class="i18n"></span>:</h4>
     <table><tr><td style="text-align:left;">
-        <label for="border_width" class="i18n"></label>: 
+        <label for="border_width" class="i18n" data-i18n="border_width"></label>: 
         <input type="number" max="10" min="0" id="border_width" name="border_width" value="2">
     </td><td style="text-align:center;">
-        <label for="border_blur" class="i18n"></label>: 
+        <label for="border_blur" class="i18n" data-i18n="border_blur"></label>: 
         <input type="number" max="10" min="0" id="border_blur" name="border_blur" value="0">
     </td><td style="text-align:right;">
     	<span id="border_color" class="i18n"></span>: <input type="color" id="border_color" name="border_color" value="#FFFFFF">
@@ -69,10 +69,10 @@
     <br>
     <table class="c"><tr>
         <td><input type="checkbox" id="vbar_at_left" name="vbar_at_left"></td>
-        <td><label for="vbar_at_left" class="i18n"></label></td>
+        <td><label for="vbar_at_left" class="i18n" data-i18n="vbar_at_left"></label></td>
     </tr><tr>
     	<td><input type="checkbox" id="hbar_at_top" name="hbar_at_top"></td>
-        <td><label for="hbar_at_top" class="i18n"></label></td>
+        <td><label for="hbar_at_top" class="i18n" data-i18n="hbar_at_top"></label></td>
     </tr></table>
     </fieldset><br>
     
@@ -98,7 +98,7 @@
 	</table><br>
 	<table>
 	<tr>
-		<td style="text-align:left;"><label for="show_how_long" class="i18n"></label></td>
+		<td style="text-align:left;"><label for="show_how_long" class="i18n" data-i18n="show_how_long"></label></td>
 		<td style="text-align:right;">
 			<input type="number" max="5000" min="100" step="100" id="show_how_long" style="width:50px;" value="1000"> ms
 		</td>
@@ -107,26 +107,26 @@
     <table class="c">
     <tr>
         <td><input type="checkbox" id="fullscreen_only" name="fullscreen_only"></td>
-        <td><label for="fullscreen_only" class="i18n"></label></td>
+        <td><label for="fullscreen_only" class="i18n" data-i18n="fullscreen_only"></label></td>
     </tr><tr>
     	<td><input type="checkbox" id="move_bars_during_scroll" name="move_bars_during_scroll" checked="checked"></td>
-        <td><label for="move_bars_during_scroll" class="i18n"></label><div id="move_bars_during_scroll_info" class="i">i<div id="move_bars_during_scroll_info_text" class="i_text"><span id="explanation_move_bars_during_scroll" class="i18n"></span></div></div></td>
+        <td><label for="move_bars_during_scroll" class="i18n" data-i18n="move_bars_during_scroll"></label><div id="move_bars_during_scroll_info" class="i">i<div id="move_bars_during_scroll_info_text" class="i_text"><span id="explanation_move_bars_during_scroll" class="i18n"></span></div></div></td>
     </tr><tr>
     	<td><input type="checkbox" id="bg_special_ends" name="bg_special_ends" checked="checked"></td>
-        <td><label for="bg_special_ends" class="i18n"></label></td>
+        <td><label for="bg_special_ends" class="i18n" data-i18n="bg_special_ends"></label></td>
     </tr><tr>
     	<td><input type="checkbox" id="container" name="container"></td>
-        <td><label for="container" id="container1" class="i18n"></label> <input type="number" max="100" min="1" id="container_size" value="30"> <label for="container" id="container2" class="i18n"></label><div id="trigger_area_info" class="i">i<div id="trigger_area_info_text" class="i_text"><span id="explanation_trigger_area" class="i18n"></span></div></div></td>
+        <td><label for="container" id="container1" class="i18n" data-i18n="container"></label> <input type="number" max="100" min="1" id="container_size" value="30"> <label for="container" id="container2" class="i18n"></label><div id="trigger_area_info" class="i">i<div id="trigger_area_info_text" class="i_text"><span id="explanation_trigger_area" class="i18n"></span></div></div></td>
     </tr></table>
     </fieldset><br>
     
     <fieldset>
     <h4><span id="superbar" class="i18n"></span>:</h4>
-    <input type="checkbox" id="show_superbar" name="show_superbar"> <label for="show_superbar" class="i18n"></label><div id="superbar_info" class="i">i<div id="superbar_info_text" class="i_text"><span id="explanation_superbar" class="i18n"></span></div></div>
+    <input type="checkbox" id="show_superbar" name="show_superbar"> <label for="show_superbar" class="i18n" data-i18n="show_superbar"></label><div id="superbar_info" class="i">i<div id="superbar_info_text" class="i_text"><span id="explanation_superbar" class="i18n"></span></div></div>
     <div id="superbar_container" style="overflow:hidden; height:0;">
-    <input type="checkbox" id="show_superbar_minipage" name="show_superbar_minipage" checked="checked"> <label for="show_superbar_minipage" class="i18n"></label><br>
+    <input type="checkbox" id="show_superbar_minipage" name="show_superbar_minipage" checked="checked"> <label for="show_superbar_minipage" class="i18n" data-i18n="show_superbar_minipage"></label><br>
     <table><tr>
-    <td style="text-align:left; vertical-align:top;"><label for="superbar_opacity" class="i18n"></label>: <label id="superbar_opacity_display"><span class="slider_values" id="storage.superbar_opacity"></span></label></td>
+    <td style="text-align:left; vertical-align:top;"><label for="superbar_opacity" class="i18n" data-i18n="superbar_opacity"></label>: <label id="superbar_opacity_display"><span class="slider_values" id="storage.superbar_opacity"></span></label></td>
         <td style="text-align:right;"><input type="range" name="superbar_opacity" id="superbar_opacity" min="0" max="100" value="70" step="1" /></td>
     </tr></table>
     </div>
@@ -145,13 +145,13 @@
     </table><br>
     <div id="button_container" style="overflow:hidden; height:0;"><br>
     	<table><tr><td style="text-align:left;">
-    	<label for="button_width" class="i18n"></label>: 
+    	<label for="button_width" class="i18n" data-i18n="button_width"></label>: 
         <input type="number" max="500" min="2" id="button_width" name="button_width" value="100">
         </td><td style="text-align:center;">
-        <label for="button_height" class="i18n"></label>: 
+        <label for="button_height" class="i18n" data-i18n="button_height"></label>: 
         <input type="number" max="500" min="2" id="button_height" name="button_height" value="50">
         </td><td style="text-align:right;">
-        <label for="button_opacity" class="i18n"></label>: 
+        <label for="button_opacity" class="i18n" data-i18n="button_opacity"></label>: 
         <input type="range" name="button_opacity" id="button_opacity" min="0" max="100" value="10" step="1" /><label id="button_opacity_display"><span class="slider_values" id="storage.button_opacity"></span></label>
         </td></tr></table>
         <br>
@@ -181,7 +181,7 @@
     </tr><tr>
     	<td></td><td><div id="keyscroll_velocity_container" style="margin:-5px -4px 5px -4px;">
             <table><tr>
-                <td style="text-align:left; vertical-align:top; width:auto;"><label for="keyscroll_velocity" class="i18n"></label>: <label id="keyscroll_velocity_display"><span class="slider_values" id="storage.keyscroll_velocity"></span>
+                <td style="text-align:left; vertical-align:top; width:auto;"><label for="keyscroll_velocity" class="i18n" data-i18n="keyscroll_velocity"></label>: <label id="keyscroll_velocity_display"><span class="slider_values" id="storage.keyscroll_velocity"></span>
                 </label></td>
                 <td style="text-align:right;"><input type="range" name="keyscroll_velocity" id="keyscroll_velocity" min="1" max="5" value="2" data-defaultvalue="2" step="0.1"></td>
             </tr></table>
@@ -192,24 +192,24 @@
     </tr><tr>
     	<td></td><td><div id="mousescroll_container" style="margin:-5px -4px 5px -4px;">
             <table><tr>
-                <td style="text-align:left; vertical-align:top; width:auto;"><label for="mousescroll_velocity" class="i18n"></label>: <label id="mousescroll_velocity_display"><span class="slider_values" id="storage.mousescroll_velocity"></span>
+                <td style="text-align:left; vertical-align:top; width:auto;"><label for="mousescroll_velocity" class="i18n" data-i18n="mousescroll_velocity"></label>: <label id="mousescroll_velocity_display"><span class="slider_values" id="storage.mousescroll_velocity"></span>
                 </label></td>
                 <td style="text-align:right;"><input type="range" name="mousescroll_velocity" id="mousescroll_velocity" min="1" max="6" value="3" data-defaultvalue="3" step="0.1"></td>
             </tr><tr>
-                <td style="text-align:left; vertical-align:top; width:auto;"><label for="mousescroll_distance" class="i18n"></label>: <label id="mousescroll_distance_display"><span class="slider_values" id="storage.mousescroll_distance"></span>
+                <td style="text-align:left; vertical-align:top; width:auto;"><label for="mousescroll_distance" class="i18n" data-i18n="mousescroll_distance"></label>: <label id="mousescroll_distance_display"><span class="slider_values" id="storage.mousescroll_distance"></span>
                 </label></td>
                 <td style="text-align:right;"><input type="range" name="mousescroll_distance" id="mousescroll_distance" min="0.1" max="4" value="1" data-defaultvalue="1" step="0.1"></td>
             </tr></table>
         </div></td>
     </tr><tr>
         <td><input type="checkbox" id="animate_scroll" name="animate_scroll" checked="checked"></td>
-        <td><label for="animate_scroll" class="i18n"></label><div id="animate_scroll_info" class="i">i<div id="animate_scroll_info_text" class="i_text"><span id="explanation_animate_scroll" class="i18n"></span></div></div> <span id="animate_up_to" class="i18n"></span> <select id="animate_scroll_max">
-        		<option value="0" id="infinite" class="i18n"></option>
-                <option value="1" id="page" class="i18n">1 </option>
-                <option value="2" id="pages" class="i18n" selected="selected">2 </option>
-                <option value="3" id="pages" class="i18n">3 </option>
-                <option value="4" id="pages" class="i18n">4 </option>
-                <option value="5" id="pages" class="i18n">5 </option>
+        <td><label for="animate_scroll" class="i18n" data-i18n="animate_scroll"></label><div id="animate_scroll_info" class="i">i<div id="animate_scroll_info_text" class="i_text"><span id="explanation_animate_scroll" class="i18n"></span></div></div> <span id="animate_up_to" class="i18n"></span> <select id="animate_scroll_max">
+                <option value="1" class="i18n" data-i18n="page">1 </option>
+                <option value="2" class="i18n" data-i18n="pages" selected="selected">2 </option>
+                <option value="3" class="i18n" data-i18n="pages">3 </option>
+                <option value="4" class="i18n" data-i18n="pages">4 </option>
+                <option value="5" class="i18n" data-i18n="pages">5 </option>
+                <option value="0" class="i18n" data-i18n="infinite"></option>
         	</select></td>
     </tr><tr>
     	<td></td><td><div id="scroll_container" style="margin:-5px -4px 5px -4px;">
@@ -224,7 +224,7 @@
     
     <fieldset>
     <h4><span id="external_interface_headline" class="i18n"></span>:</h4>
-    <input type="checkbox" id="external_interface" name="external_interface"> <label for="external_interface" class="i18n"></label><div id="external_interface_info" class="i">i<div id="external_interface_info_text" class="i_text"><span id="explanation_external_interface" class="i18n"></span></div></div>
+    <input type="checkbox" id="external_interface" name="external_interface"> <label for="external_interface" class="i18n" data-i18n="external_interface"></label><div id="external_interface_info" class="i">i<div id="external_interface_info_text" class="i_text"><span id="explanation_external_interface" class="i18n"></span></div></div>
     </fieldset><br>
     
 </section>
