@@ -1,0 +1,4 @@
+height of horizontal bars in elements
+min/max value of number input <> entering manually
+show bars -> never
+external interface -> toggle superbar
