@@ -1,10 +1,10 @@
 {
     "animatedscroll_velocity": {
-        "message": "Rulleanimasjonshastighet",
+        "message": "Velocity of animated scrolling",
         "description": ""
     },
     "behavior": {
-        "message": "Oppf\u00f8rsel",
+        "message": "Behavior",
         "description": ""
     },
     "explanation_custom_functions": {
@@ -12,15 +12,15 @@
         "description": ""
     },
     "color": {
-        "message": "Fargen til rullefeltet, superlinjen, og rulleknappene",
+        "message": "Color of the scroll bars, the superbar and the scroll buttons",
         "description": ""
     },
     "hover_size": {
-        "message": "Bredden (og h\u00f8yden for horisontale rullelinjer) n\u00e5r rullefeltet er fokusert med musen",
+        "message": "Width (respectively height for horizontal bars) when hovered with the mouse",
         "description": ""
     },
     "explanation_save_set": {
-        "message": "Du kan lagre ditt n\u00e5v\u00e6rende oppsett her. Fyll inn et navn og trykk p\u00e5 Lagre-knappen. Du kan overskrive et eksisterende oppsett ved \u00e5 fylle inn det samme navnet.",
+        "message": "You can save your current configuration here. Just enter a name and click the save-button. If you choose a name that already exists this entry gets overwritten.",
         "description": ""
     },
     "fullscreen_only": {
@@ -32,51 +32,51 @@
         "description": ""
     },
     "contextmenu_show": {
-        "message": "Vis modern scroll",
+        "message": "Show modern scroll",
         "description": ""
     },
     "bg_special_ends": {
-        "message": "N\u00e5r \u00f8verste eller nederste del av rullelinjen klikkes, rull til toppen eller bunnen av siden istedenfor en skjerm opp eller ned",
+        "message": "Clicking at the ends of the background bars scrolls completely to the top/bottom (respectively left/right) instead of by one page",
         "description": ""
     },
     "default": {
-        "message": "Forvalgt",
+        "message": "Default",
         "description": ""
     },
     "tooltip_delete": {
-        "message": "Slett",
+        "message": "Delete",
         "description": ""
     },
     "border_width": {
-        "message": "Bredde",
+        "message": "Width",
         "description": ""
     },
     "border_radius": {
-        "message": "Rammekrumningsradius",
+        "message": "Border curvature radius",
         "description": ""
     },
     "show_superbar": {
-        "message": "Vis \u00absuperlinjen\u00bb",
+        "message": "Show the \"superbar\"",
         "description": ""
     },
     "saved_sets_headline": {
-        "message": "Lagret oppsettene:",
+        "message": "Saved configurations:",
         "description": ""
     },
     "contextmenu_over_only": {
-        "message": "N\u00e5r jeg h\u00f8yre\u2013klikker p\u00e5 rullefeltet",
+        "message": "When I right-click the modern scroll interface",
         "description": ""
     },
     "border": {
-        "message": "Ramme",
+        "message": "Border",
         "description": ""
     },
     "show_bg_bars_when": {
-        "message": "\u2014og rullelinjene?",
+        "message": "And the background bars?",
         "description": ""
     },
     "size": {
-        "message": "Bredden (og h\u00f8yden for horisontale rullelinjer) i normal tilstand",
+        "message": "Width (respectively height for horizontal bars) in normal state",
         "description": ""
     },
     "show_how_long": {
@@ -84,31 +84,31 @@
         "description": ""
     },
     "animate_scroll": {
-        "message": "Animer rulling",
+        "message": "Animate scrolling",
         "description": ""
     },
     "show_superbar_minipage": {
-        "message": "Vis en miniatirvisning av siden i bakgrunnen mens superlinjen trekkes",
+        "message": "Show a mini-version of the website in the background when dragging the superbar",
         "description": ""
     },
     "button_width": {
-        "message": "Bredde",
+        "message": "Width",
         "description": ""
     },
     "footer": {
-        "message": "Takk for at du installerte denne utvidelsen. Du kan kontakte meg (p\u00e5 engelsk) n\u00e5r som helst for \u00e5 gi tilbakemelding og stille sp\u00f8rsm\u00e5l.",
+        "message": "Thanks for installing this extension. You can contact me at any time for feedback and questions.",
         "description": ""
     },
     "drag_buttons": {
-        "message": "Du kan trekke knappene rundt til possisjonen du \u00f8nsker her i instillingsdialogen. Posisjonen du velger blir brukt for alle nettsider. Du kan trekke knappene rundt p\u00e5 andre nettsider midlertidig ogs\u00e5, men standardpossisjonen blir ikke endret",
+        "message": "You can drag the buttons to any position here in the options. This position will become the default for all websites. If they cover an element on some pages, you still will be able to drag them out of the way there",
         "description": ""
     },
     "animate_up_to": {
-        "message": "opptil en lengde av",
+        "message": "up to a length of",
         "description": ""
     },
     "description": {
-        "message": "Tar rulleopplevelsen opp til neste niv\u00e5",
+        "message": "Takes scrolling to a whole new level",
         "description": ""
     },
     "external_interface_headline": {
@@ -116,111 +116,111 @@
         "description": ""
     },
     "show_contextmenu_when": {
-        "message": "N\u00e5r \u00f8nsker du valget for \u00e5 skjule modern scroll i kontekstmenyer?",
+        "message": "When do you want an option in the context menu for hiding modern scroll?",
         "description": ""
     },
     "save_set_as": {
-        "message": "Lagre det n\u00e5v\u00e6rende oppsettet som",
+        "message": "Save the current configuration as",
         "description": ""
     },
     "tooltip_save": {
-        "message": "Lagre",
+        "message": "Save",
         "description": ""
     },
     "buttons": {
-        "message": "Rulleknapper",
+        "message": "Scroll buttons",
         "description": ""
     },
     "color_bg": {
-        "message": "Fargen til rullesjakten",
+        "message": "Color of the background bars",
         "description": ""
     },
     "mousescroll_velocity": {
-        "message": "Rullehastighet fra musehjul og ber\u00f8ringsenheter",
+        "message": "Velocity of scrolling by mouse wheel and trackpad",
         "description": ""
     },
     "superbar_opacity": {
-        "message": "Gjennomsiktighetsgrad n\u00e5r fokusert med musen",
+        "message": "Opacity of the superbar on hover",
         "description": ""
     },
     "hbar_at_top": {
-        "message": "Vis det horisontale rullefeltet p\u00e5 toppen istedenfor p\u00e5 bunnen",
+        "message": "Display the horizontal scroll bar at the top instead of bottom",
         "description": ""
     },
     "move_bars_during_scroll": {
-        "message": "Animer feltene mens siden rulles med musen eller tastaturet",
+        "message": "Animate the scroll bars during scrolling with the mouse wheel / keyboard",
         "description": ""
     },
     "use_custom_functions_keyboard": {
-        "message": "for tastaturet",
+        "message": "for the keyboard",
         "description": ""
     },
     "explanation_trigger_area": {
-        "message": "Gj\u00f8r omr\u00e5de feltene er tilgjengelig i st\u00f8rre.",
+        "message": "Enlarges the bars accessing area.",
         "description": ""
     },
     "button_height": {
-        "message": "H\u00f8yde",
+        "message": "Height",
         "description": ""
     },
     "opacity": {
-        "message": "Gjennomsiktighetsgrad for rullefeltet",
+        "message": "Opacity of the scroll bars",
         "description": ""
     },
     "border_blur": {
-        "message": "Uskarphet",
+        "message": "Blur",
         "description": ""
     },
     "never": {
-        "message": "Aldri",
+        "message": "Never",
         "description": ""
     },
     "explanation_animate_scroll": {
-        "message": "Om du bruker dette valget vil ikke sider lengre hoppe \u00f8yeblikkelig til det angitte omr\u00e5det. De vil i steden rulle dit med den angitte hastigheten. Dette gjelder rulleknappene, klikk p\u00e5 rullelinjen, samt rulling med tastaturet om valget \u00abBruk egne rullefunksjoner for tastaturet\u00bb er i bruk.",
+        "message": "If you select this option, the page will not instantly jump to the desired position anymore, but automatically scroll there with an adjustable rate.<br>This applies to the scroll buttons, clicks at the background bars as well as scrolling with the keyboard (if \"Use custom scrolling functions for the keyboard\" is activated).",
         "description": ""
     },
     "explanation_move_bars_during_scroll": {
-        "message": "Skru av dette valget om du opplever hastighetsproblemer.<br>Rullefeltets posisjon blir bare oppdatert n\u00e5r endeposisjonen for rullingen er n\u00e5dd.",
+        "message": "Deactivate this option if you encounter performance problems.<br>The scroll bars' positions will only be updated when scrolling has finished.",
         "description": ""
     },
     "normal": {
-        "message": "N\u00e5r de fokuseres eller siden rulles",
+        "message": "Upon hovering, while scrolling and at changes of position or size",
         "description": ""
     },
     "border_color": {
-        "message": "Farge",
+        "message": "Color",
         "description": ""
     },
     "default_change_impossible": {
-        "message": "Du kan ikke endre standardoppsettet! Velg et annet navn.",
+        "message": "You cannot alter the default configuration! Please choose another name.",
         "description": ""
     },
     "load_or_delete_set": {
-        "message": "Last inn eller slett",
+        "message": "Load or delete",
         "description": ""
     },
     "confirm_overwrite": {
-        "message": "Vil du virkelig overskrive dette oppsettet?",
+        "message": "Do you really want to overwrite this configuration?",
         "description": ""
     },
     "mousescroll_distance": {
-        "message": "Rulleavstand per musehjulrotasjon",
+        "message": "Distance scrolled per mouse wheel rotation",
         "description": ""
     },
     "pages": {
-        "message": "sider",
+        "message": "pages",
         "description": ""
     },
     "use_custom_functions_mouse": {
-        "message": "for musen",
+        "message": "for the mouse",
         "description": ""
     },
     "infinite": {
-        "message": "uendelig",
+        "message": "infinite",
         "description": ""
     },
     "gap": {
-        "message": "Avstand fra vindusrammen",
+        "message": "Distance to the border of the window",
         "description": ""
     },
     "external_interface": {
@@ -228,7 +228,7 @@
         "description": ""
     },
     "by": {
-        "message": "av",
+        "message": "by",
         "description": ""
     },
     "fullscreen_only_short": {
@@ -236,11 +236,11 @@
         "description": ""
     },
     "look": {
-        "message": "L\u00e5s",
+        "message": "Look",
         "description": ""
     },
     "lang": {
-        "message": "nb",
+        "message": "en",
         "description": ""
     },
     "explanation_external_interface": {
@@ -248,83 +248,83 @@
         "description": ""
     },
     "contextmenu": {
-        "message": "Kontekstmeny (h\u00f8yre\u2013klikk)",
+        "message": "Context menu",
         "description": ""
     },
     "show_buttons": {
-        "message": "Vis rulleknapper p\u00e5 toppen og bunnen av sider",
+        "message": "Show buttons for scrolling to the top/bottom of the page",
         "description": ""
     },
     "only_over": {
-        "message": "Bare n\u00e5r de fokuseres med musen",
+        "message": "Only when hovered with the mouse",
         "description": ""
     },
     "show_when": {
-        "message": "N\u00e5r vil du se rullefeltet?",
+        "message": "When do you want the bars to show up?",
         "description": ""
     },
     "default_delete_impossible": {
-        "message": "Du kan ikke slette standardoppsettet!",
+        "message": "You cannot delete the default configuration!",
         "description": ""
     },
     "always": {
-        "message": "Hele tiden",
+        "message": "Always",
         "description": ""
     },
     "like_bars": {
-        "message": "Samme som rullefeltene",
+        "message": "Like the scroll bars",
         "description": ""
     },
     "tooltip_load": {
-        "message": "Last inn",
+        "message": "Load",
         "description": ""
     },
     "keyscroll_velocity": {
-        "message": "Rullehastighet fra piltastene",
+        "message": "Velocity of scrolling via the arrow keys",
         "description": ""
     },
     "use_custom_functions": {
-        "message": "Bruk egne rullefunksjoner",
+        "message": "Use custom scrolling functions",
         "description": ""
     },
     "button_opacity": {
-        "message": "Gjennomsiktighetsgrad",
+        "message": "Opacity",
         "description": ""
     },
     "vbar_at_left": {
-        "message": "Vis det vertikale rullefeltet til venstre istedenfor til h\u00f8yre",
+        "message": "Display the vertical scroll bar at the left instead of right",
         "description": ""
     },
     "contextmenu_hide": {
-        "message": "Skjul modern scroll",
+        "message": "Hide modern scroll",
         "description": ""
     },
     "superbar": {
-        "message": "Superlinjen",
+        "message": "Superbar",
         "description": ""
     },
     "custom_scroll_functions": {
-        "message": "Rullefunksjoner",
+        "message": "Scrolling functions",
         "description": ""
     },
     "new_set_name": {
-        "message": "Navn",
+        "message": "Name",
         "description": ""
     },
     "confirm_delete": {
-        "message": "Vil du slettet dette oppsettet? Slettingen kan ikke angres.",
+        "message": "Do you really want to irreversibly delete this configuration?",
         "description": ""
     },
     "container1": {
-        "message": "Vis modern scroll n\u00e5r musen er n\u00e6rmere enn",
+        "message": "Trigger modern scroll within a distance of",
         "description": ""
     },
     "page": {
-        "message": "side",
+        "message": "page",
         "description": ""
     },
     "container2": {
-        "message": "px fra vindusrammen",
+        "message": "px to the border",
         "description": ""
     }
 }
