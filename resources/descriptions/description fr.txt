@@ -1,17 +1,18 @@
-﻿----- This extension requires Opera 12.10 or newer! -----
-modern scroll takes scrolling to a whole new level.
-(Opera's standard scrollbars should be disabled to avoid double bars. Therefore go to Opera → Settings → Preferences... (Ctrl+F12) → Advanced → Browsing and uncheck "Show scroll bars")
+----- Cette extension nécessite Opera 12.10 ou plus récent! -----
+modern scroll prend le défilement à un niveau entièrement nouveau
+(Les barres de défilement standards d'Opera doivent être désactivés pour éviter doubles barres.
+Donc ouvre Opera → Réglages → Préférences... (Ctrl+F12) → Avancé → Navigation et désactive "Afficher les barres de défilement"
 
-What's awesome about modern scroll?
+Quel est l'aspect génial de modern scroll?
 
-+ boosts your scrolling performance!
-+ scrolling speed is adjustable
-+ its scroll bars don't take up any space so the whole screen width can be used to display what a browser is made for: websites
-+ elements or whole pages don't shift by some pixels when content changes and bars become (un)necessary
-+ scroll bars are usable in fullscreen mode as well
-+ scroll bars automatically hide when they are not needed
-+ unique "superbar" which makes it possible to scroll horizontally and vertically at the same time
-+ optional buttons for scrolling to top and bottom of the page
-+ behavior and appearance is fully customizable
++ booste le performance du défilement!
++ vitesse de défilement est réglable
++ ses barres de défilement ne prennent pas de place donc toute la largeur de l'écran peut être utilisé pour afficher ce qu'un navigateur est fait: sites web
++ éléments ou pages entières ne se déplacent pas par certains pixels lorsque des changements de contenu et des bars deviennent (ne plus) nécessaire
++ les barres de défilement sont utilisables aussi bien en mode plein écran
++ les barres de défilement se cachent automatiquement quand ils ne sont pas nécessaires
++ unique "superbar" qui permet de défiler horizontalement et verticalement en même temps
++ boutons optionnels pour le défilement en haut et en bas de la page
++ comportement et l'apparence sont entièrement personnalisable
 
-This extension was originally planned as an update to "Slim ScrollBar" by damage92. But since it doesn't have a single line of code in common with the original extension we decided to publish it as a new one. Slim scrollbar will of course continue to exist if you prefer the other implementation or if you are using Opera below 12.10 where modern scroll isn't available. Due to damage92's rare spare time it's not being actively developed at the moment, though.
+Cette extension a été initialement conçu comme une mise à jour de "Slim ScrollBar" de damage92. Mais puisqu'il n'a pas une seule ligne de code en commun avec l'extension originale, nous avons décidé de la publier comme une nouvelle. Slim ScrollBar vais bien sûr continuer à exister si tu préférs l'autre mise en œuvre ou si tu utilises Opera dessous de 12.10 où modern scroll n'est pas disponible. En raison du temps libre rare de damage92 il n'est pas développé activement pour le moment cependant.
