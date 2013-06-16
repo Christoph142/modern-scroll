@@ -14,150 +14,150 @@ fix: Leisten haben einen weißen rechteckigen Hintergrund @ www.testberichte.de
 
 v 2.4.2
 ---------
-new: improved rendering
-fix: interface is invisible when another tab gets closed
-fix: restore cleanPages extension compatibility (thx QuHno)
-fix: flickering scroll bars during touchpad/mouse scrolling
+neu: verbessertes Rendering
+fix: Interface ist unsichtbar, wenn ein anderer Tab geschlossen wird
+fix: Kompatibilität mit cleanPages-Erweiterung wiederhergestellt (Danke QuHno)
+fix: Scroll-Leisten flackern während dem Scrollen mit Touchpad/Maus
 
 v 2.4.1
 ---------
-new: border settings affect scroll buttons, too (thx Dimitri for reporting)
-fix: modern scroll doesn't work on some websites (thx André, jonastheroman & orhano for reporting)
-fix: scroll bar momentarily jumps to top/bottom during scrolling (thx Cryio, André & orhano for reporting)
+neu: Umrandungs-Einstellungen betreffen auch die Scroll-Buttons (Danke Dimitri für's Melden)
+fix: modern scroll funktioniert auf manchen Seiten nicht (Danke André, jonastheroman & orhano für's Melden)
+fix: Scroll-Leiste springt während dem Scrollen zwischendurch nach oben/unten (Danke Cryio, André & orhano für's Melden)
 
 v 2.4
 ---------
-new: adjustable time before hiding bars
-new: modern scroll is only active in current tab, not in all opened ones anymore
-new: explanation fields in options page show up to the top if they are below middle of the screen
-upd: Portuguese translation (thx André)
-upd: background bars are only visible when you hover them with your mouse now by default
-upd: restructuring and performance improvements
+neu: anpassbare Zeit, bevor die Leisten ausgeblendet werden
+neu: modern scroll ist nur noch im aktuellen Tab aktiv, nicht mehr in allen geöffneten
+neu: Beschreibungen in den Optionen werden nach oben angezeigt, wenn sie sich unterhalb der Mitte der Seite befinden
+upd: Portugiesische Übersetzung (Danke André)
+upd: Hintergrund-Leisten werden standardmäßig jetzt nur beim Überfahren mit der Maus angezeigt
+upd: Restrukturierung und Performance-Verbesserungen
 
 v 2.3.1
 ---------
-fix: ingdirect.fr (thx terdale for reporting)
-fix: Bootstrap's modal popups not appearing (thx Johnny for reporting; semi-fixed only)
-upd: Czech & Arabic translations (thx Ahoj1234 & Netmain)
-upd: minimal overall performance improvements
+fix: ingdirect.fr (Danke terdale für's Melden)
+fix: Bootstraps modale Popups erscheinen nicht (Danke Johnny für's Melden; nicht vollständig behoben)
+upd: Tschechische & Arabische Übersetzung (Danke Ahoj1234 & Netmain)
+upd: allgemeine Performance minimal verbessert
 
 v 2.3
 ---------
-new: modern scroll can be used for custom mouse gestures (external interface)
-new: components are available independently
-new: Romanian translation (thx Cryio)
-fix: hiding the UI also disables the scrolling functions
-fix: page's dimensions aren't updated after long transitions/animations (thx aiwork & arkenighte for reporting)
-fix: lastpass.com (thx Netmain for reporting)
-fix: incompatibility with ExtJS framework (thx Alexander for reporting)
-fix: position of bars is slightly incorrect for very long pages
-fix: horizontal bar is misplaced if distance to the borders of the window is not 0
-fix: keyboard navigation in contenteditable sections (thx Henryk for reporting)
+neu: modern scroll kann für eigene Mausgesten verwendet werden (externe Schnittstelle)
+neu: die Komponenten sind unabhängig voneinander nutzbar
+neu: Rumänische Übersetzung (Danke Cryio)
+fix: Ausblenden der Benutzeroberfläche deaktiviert gleichzeitig die eigenen Scroll-Funktionen
+fix: Dimensionen der Seite werden nach langen Animationen nicht upgedated (Danke aiwork & arkenighte für's Melden)
+fix: lastpass.com (Danke Netmain für's Melden)
+fix: Inkompatibilität mit ExtJS Framework (Danke Alexander für's Melden)
+fix: Position der Leisten ist leicht falsch bei sehr langen Seiten
+fix: horizontale Leiste wird falsch plaziert wenn der Abstand der Leisten zum Rand nicht 0 ist
+fix: Tastatur-Navigation in contenteditable-Bereichen (Danke Henryk für's Melden)
 
 v 2.2.1
 ---------
-new: Norwegian translation (thx Daniel)
-new: Arabic translation (thx netmain)
-new: Czech translation (thx Ahoj1234)
-fix: fullscreen mode only use (thx aboutblank6 for reporting)
-fix: modern scroll blocks scrolling with the arrow keys when no interface is present (e.g. MyOpera Mail, Google Docs)
-upd: Polish translation (thx Piotr)
+neu: Norwegische Übersetzung (Danke Daniel)
+neu: Arabische Übersetzung (Danke netmain)
+neu: Tschechische Übersetzung (Danke Ahoj1234)
+fix: exklusive Nutzung im Vollbild-Modus (Danke aboutblank6 für's Melden)
+fix: modern scroll blockiert das Scrollen mit den Pfeil-Tasten, wenn keine Oberfläche sichtbar ist (z.B. MyOpera Mail, Google Docs)
+upd: Polnische Übersetzung (Danke Piotr)
 
 v 2.2
 ---------
-new: scrolling with mouse and trackpad is configurable
-new: all kinds of scrolling are even smoother
-fix: detection of scrollable elements (thx Ahoj1234 for reporting)
-fix: arrow keys in search-input fields (thx Cryio for reporting)
-fix: PgUp/PgDwn/Home/End keys in select fields (thx André for reporting)
-fix: milliyet.com.tr (thx Magruf for reporting)
-upd: Turkish translation (thx metude)
+neu: Scrollen mit Maus und Trackpad ist anpassbar
+neu: alle Arten des Scrollens sind noch flüssiger
+fix: Erkennung von Scrollbaren Elementen (Danke Ahoj1234 für's Melden)
+fix: Pfeil-Tasten in Such-Eingabe-Feldern (Danke Cryio für's Melden)
+fix: BildAuf&-Ab/Pos1/Ende Tasten in Select-Feldern (Danke André für's Melden)
+fix: milliyet.com.tr (Danke Magruf für's Melden)
+upd: Türkische Übersetzung (Danke metude)
 
 v 2.1.3
 ---------
-fix: horizontal mouse scrolling (thx kimmy8624 for reporting)
-fix: mouse scrolling over select elements (thx Vincent for your support)
-upd: animate scrolling by default
+fix: horizontales Scrollen mit der Maus (Danke kimmy8624 für's Melden)
+fix: Scrollen mit der Maus über Select-Elementen (Danke Vincent für die Unterstützung)
+upd: animiere das Scrollen standardmäßig
 
 v 2.1.2
 ---------
-new: pressing Enter in configuration's name field in options page saves it
-fix: insanely fast mouse scrolling on Mac (thx Lauren & ayni for reporting)
-fix: options page in installations that were not updated from version 2.0
+neu: Drücken von Enter im Konfigurations-Namen-Feld in den Optionen speichert diese
+fix: viel zu schnelles Scrollen mit der Maus in MacOS (Danke Lauren & ayni für's Melden)
+fix: Einstellungs-Seite in Installationen, die nicht von Version 2.0 geupdatet wurden
 
 v 2.1.1
 ---------
-fix: keyboard shortcuts with command key ? (thx ayni for reporting)
-upd: Portuguese translation (thx André)
+fix: Tastatur-Befehle mit der Command-Taste (Danke ayni für's Melden)
+upd: Portugiesische Übersetzung (Danke André)
 
 v 2.1
 ---------
-new: interface is present as soon as possible during site loading
-new: enhanced visibility setting of the background bars
-new: setting for maximum length of animations
-new: support for cleanPages extension
-new: trigger area doesn't prevent covered part of page from being clicked anymore
-fix: keyboard commands using Ctrl/Alt/Shift + PgUp/PgDwn/Home/End (thx zablociak for reporting)
-fix: Microsoft Bing, outlook.com, Facebook (thx André, netmain & ahoj1234 for reporting)
-fix: number input fields in options page may make themselves independent when clicking their arrows (thx Sally for reporting)
-fix: megalab.it (not excluded anymore)
+neu: Oberfläche ist so bald wie möglich während dem Laden der Seite verfügbar
+neu: umfangreichere Einstellungs-Möglichkeit für die Sichtbarkeit der Hintergrund-Leisten
+neu: Einstellung der maximalen Länge von Animationen
+neu: Unterstützung der cleanPages-Erweiterung
+neu: Die Fläche zur einfacheren Nutzung verhindert nicht mehr, dass der verdeckte Teil der Seite angeklickt werden kann
+fix: Tastatur-Befehle mit Strg/Alt/Shift + PgUp/PgDwn/Home/End (Danke zablociak für's Melden)
+fix: Microsoft Bing, outlook.com, Facebook (Danke André, netmain & ahoj1234 für's Melden)
+fix: Die numerischen Eingabefelder in den Optionen können sich beim Klicken der Pfeile verselbstständigen (Danke Sally für's Melden)
+fix: megalab.it (nicht mehr ausgeschlossen)
 
 v 2.0
 ---------
-new: modern scroll speeds up scrolling!
-new: configurations can be saved and restored
-new: horizontal bar shortened to prevent overlapping
-new: optionally animate scrolling
-new: additional explanations for some settings
-new: support for iframes
-fix: clicking a background bar may result in vertical and horizontal scrolling at the same time
-fix: various smaller bugs
-upd: improved overall performance
+neu: modern scroll beschleunigt das Scrollen!
+neu: Konfigurationen können gespeichert und wiederhergestellt werden
+neu: horizontale Bildlaufleiste gekürzt um ein Überschneiden zu verhindern
+neu: Scrollen wird optional animiert
+neu: zusätzliche Erklärungen für manche Optionen
+neu: Unterstützung für iFrames
+fix: ein Klick auf die Hintergrund-Leisten kann gleichzeitig zu vertikalem und horizontalem Scrollen führen
+fix: diverse kleinere Fehler
+upd: allgemeine Performance verbessert
 
 v 1.3.1
 ---------
-fix: bars cover the whole page (e.g. anidb.net; thx Luke for reporting)
-fix: buttons sometimes jump to the left border of the screen in options
+fix: Leisten verdecken die komplette Seite (z.B. anidb.net; Danke Luke für's Melden)
+fix: Buttons springen in den Optionen manchmal an den linken Bildschirmrand
 
 v 1.3
 ---------
-new: optionally set an area to trigger hover mode for easier access
-new: bar moved inwards from the border (adjustable)
-new: transparency setting for scroll bars
-new: Portuguese translation (thx André)
-fix: mini page is incorrect on separately opened images
-fix: button position isn't saved anymore (thx ura & mubaidr for reporting)
-upd: animate scroll by mouse / keyboard by default
-upd: changed behavior and look of the superbar
+neu: optional kann ein Bereich festgelegt werden, der die Oberfläche triggert
+neu: Bildlaufleisten vom Rand nach innen gerückt (anpassbar)
+neu: Transparenz-Einstellung der Bildlaufleisten
+neu: Portugiesische Lokalisation (Danke André)
+fix: Mini-Seite ist inkorrekt bei separat geöffneten Bildern
+fix: Scroll Button Position wird nicht mehr gespeichert (Danke ura & mubaidr für's Melden)
+upd: Scrollen mit Maus / Keyboard wird standardmäßig animiert
+upd: Aussehen und Handhabung der Superbar geändert
 
 v 1.2.1
 ---------
-fix: context menu entry doesn't show up anymore
-fix: interface gets inadvertently visible again after hiding it
-fix: various console errors
-upd: superbar is disabled by default
+fix: Kontextmenü-Eintrag wird nicht mehr angezeigt
+fix: Oberfläche wird nach dem Ausblenden ungewollt wieder angezeigt
+fix: verschiedene Konsolen-Fehler
+upd: Superbar ist standardmäßig deaktiviert
 
 v 1.2
 ---------
-new: modern scroll can also be displayed in fullscreen mode only
-new: enhanced possibilities to adjust the interface (colors, transparency, border)
-new: interface gets updated when page content is expanded / contracted on click
-fix: area next to scroll bars isn't clickable (thx Aleksey for reporting)
-fix: background bars show up although they are disabled (thx laurenbacall for reporting)
-fix: local files are not supported (thx TerDale for reporting)
-fix: bars get visible every time new content is loaded even if the dimensions of the page do not change (thx Rizky for reporting)
+neu: modern scroll kann auch nur im Vollbild-Modus verwendet werden
+neu: erweiterte Möglichkeiten, die Oberfläche anzupassen (Farben, Transparenz, Rahmen)
+neu: Oberfläche wird angepasst, wenn Elemente durch Klicken vergrößert / verkleinert werden
+fix: Bereich neben den Bildlaufleisten kann nicht angeklickt werden (Danke Aleksey für's Melden)
+fix: Hintergrundleisten werden sichtbar obwohl sie deaktiviert wurden (Danke laurenbacall für's Melden)
+fix: Lokale Dateien werden nicht unterstützt (Danke TerDale für's Melden)
+fix: Bildlaufleisten werden jedes Mal angezeigt, wenn neuer Inhalt geladen wird auch wenn sich die Größe der Seite dadurch nicht verändert (Danke Rizky für's Melden)
 
 v 1.1
 ---------
-new: top- and bottommost part of the background bar can be used to scroll to top / bottom
-new: scroll bars can be attached to the opposite side of the screen
-new: optional animation of bar during scrolling by mouse wheel / keyboard
-new: contextmenu entry only shows up if you right-click the modern scroll interface (adjustable)
-new: scroll button width and height adjustable
-fix: scrollbar position not updated, when superbar is dragged to top left corner (thx Daniel for reporting)
-fix: scrollbars don't have a border on some websites (e.g. iphoneforums.net)
-fix: options page doesn't show any text if no supported language is chosen in Opera (thx Piotr for reporting)
+neu: Enden der Hintergrund-Leisten können genutzt werden um zum Seitenanfang/-Ende zu scrollen
+neu: Bildlaufleisten können an der jeweils gegenüberliegenden Seite angezeigt werden
+neu: optionale Animation der Bildlaufleisten während dem Scrollen mit dem Mausrad / Keyboard
+neu: Eintrag im Kontextmenü wird nur beim Rechtsklick auf die modern scroll Oberfläche angezeigt (anpassbar)
+neu: Breite und Höhe der Scroll-Buttons anpassbar
+fix: Position der Bildlaufleisten wird nicht aktualisiert, wenn die Superbar in die obere linke Ecke gezogen wird (Danke Daniel für's Melden)
+fix: Bildlaufleisten haben auf manchen Webseiten keinen Rand (z.B. iphoneforums.net)
+fix: kein Text in Optionen, wenn in Opera keine unterstützte Sprache ausgewählt ist (Danke Piotr für's Melden)
 
 v 1.0
 ---------
-Initial release
+Erstes Release

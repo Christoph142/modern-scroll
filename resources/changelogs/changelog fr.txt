@@ -1,11 +1,11 @@
-﻿v 3.0
+v 3.0
 ---------
-new: fully Chromium (Chrome & Opera 15) compatible
-new: hides default scroll bars automatically
-new: styling of page element's scroll bars (e.g. textareas)
-new: settings are synced across all of your devices
-new: live mini page behind superbar
-new: better default value handling and retrieval of saved configurations
+nouveau: entièrement compatible avec Chromium (Chrome et Opera 15)
+nouveau: cache les barres de défilement défaut automatiquement
+nouveau: stylisme des barres de défilement d'éléments de la page (p.e. zones de texte)
+nouveau: les réglages sont synchronisés sur tous tes appareils
+nouveau: mini page en direct derrière superbar
+nouveau: meilleure maniabilité des valeur défaut et la récupération des configurations enregistrées
 
 v 2.4.3
 ---------
