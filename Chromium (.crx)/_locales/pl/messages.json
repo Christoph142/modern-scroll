@@ -24,7 +24,7 @@
         "description": ""
     },
     "fullscreen_only": {
-        "message": "Show the bars in fullscreen mode only",
+        "message": "Wy\u015bwietlaj tylko na pe\u0142nym ekranie",
         "description": ""
     },
     "explanation_superbar": {
@@ -80,7 +80,7 @@
         "description": ""
     },
     "show_how_long": {
-        "message": "How long do you want the bars to stay visible?",
+        "message": "Przez jaki czas paski maj\u0105 pozosta\u0107 widocznymi?",
         "description": ""
     },
     "animate_scroll": {
@@ -112,7 +112,7 @@
         "description": ""
     },
     "external_interface_headline": {
-        "message": "External Interface",
+        "message": "Sterowanie z zewn\u0105trz",
         "description": ""
     },
     "show_contextmenu_when": {
@@ -224,7 +224,7 @@
         "description": ""
     },
     "external_interface": {
-        "message": "Provide an interface for external access",
+        "message": "Udost\u0119pnij mo\u017cliwo\u015b\u0107 sterowania z zewn\u0105trz",
         "description": ""
     },
     "by": {
@@ -232,7 +232,7 @@
         "description": ""
     },
     "fullscreen_only_short": {
-        "message": "Only in fullscreen mode",
+        "message": "Tylko na pe\u0142nym ekranie",
         "description": ""
     },
     "look": {
@@ -244,7 +244,7 @@
         "description": ""
     },
     "explanation_external_interface": {
-        "message": "By checking this option, modern scroll will provide some of its key features for usage by third-party-extensions, websites or you. You can then e.g. create custom mouse gestures.<br><a href='http://my.opera.com/christoph142/blog/2013/02/20/modern-scroll-documentation' target='_blank'>Visit the documentation to learn more about it.</a>",
+        "message": "Kiedy ta opcja jest wybrana, modern scroll udost\u0119pnia kilka najwa\u017cniejszych funkcji pozosta\u0142ym rozszerzeniom, witrynom i tobie. Dzi\u0119ki temu mo\u017cesz np. przypisa\u0107 w\u0142asne gesty myszy.<br><a href='http://my.opera.com/christoph142/blog/2013/02/20/modern-scroll-documentation' target='_blank'>Po bardziej szczeg\u00f3\u0142owe informacje zapraszam do dokumentacji (ang.).</a>",
         "description": ""
     },
     "contextmenu": {

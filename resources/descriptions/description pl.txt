@@ -1,11 +1,11 @@
-﻿----- This extension requires Opera 12.10 or newer! -----
+----- Rozszerzenie wymaga Opery w wersji co najmniej 12.10! -----
 Odnowione alternatywne paski przewijania.
 (Lepiej, żeby typowe paski Opery były wyłączone, nie potrzeba nam aż dwóch. W tym celu należy odznaczyć opcję „Pokaż paski przewijania” z grupy Opera → Ustawienia → Preferencje… (Ctrl+F12) → Zaawansowane → Przeglądanie)
 
 Dlaczego te paski są wyśmienite?
 
 + czasem przewijają szybciej niż zwykłe paski Opery!
-+ scrolling speed is adjustable
++ można regulować szybkość przewijania
 + nie potrzebują wydzielonego miejsca, więc cała szerokość ekranu przeznaczona jest temu, co najważniejsze: stronom
 + zapobiegają kilkupikselowym przesunięciom zawartości stron, kiedy paski z nagła stają się (nie)potrzebne
 + paski przewijania są widoczne w trybie pełnoekranowym
