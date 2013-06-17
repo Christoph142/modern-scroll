@@ -1,11 +1,11 @@
 إصدار 3.0
 ---------
-new: fully Chromium (Chrome & Opera 15) compatible
-new: hides default scroll bars automatically
-new: styling of page element's scroll bars (e.g. textareas)
-new: settings are synced across all of your devices
-new: live mini page behind superbar
-new: better default value handling and retrieval of saved configurations
+جديد: توافق كلي مع كروميوم ( كروم و أوبرا 15)
+جديد: إخفاء أشرطة التمرير الإفتراضية تلقائيا.
+جديد: تطبيق التصميم على أشرطة تمرير عناصر الصفحة (مثال: مربعات النصوص)
+جديد: الإعدادات الآن متزامنة بين كل أجهزتكم.
+جديد: صفحة مصغرة "حية" خلف الشريط الخارق
+جديد: تحسين التعامل مع القيم الإفتراضية و استرجاع الإعدادات المحفوظة.
 
 v 2.4.3
 ---------
