@@ -24,7 +24,7 @@
         "description": ""
     },
     "fullscreen_only": {
-        "message": "Show the bars in fullscreen mode only",
+        "message": "\u00c7ubuklar\u0131 sadece tam ekran modunda g\u00f6ster",
         "description": ""
     },
     "explanation_superbar": {
@@ -80,7 +80,7 @@
         "description": ""
     },
     "show_how_long": {
-        "message": "How long do you want the bars to stay visible?",
+        "message": "Kayd\u0131rma \u00e7ubuklar\u0131n\u0131n ne kadar s\u00fcre g\u00f6r\u00fcn\u00fcr kalmas\u0131n\u0131 istiyorsunuz?",
         "description": ""
     },
     "animate_scroll": {
@@ -96,7 +96,7 @@
         "description": ""
     },
     "footer": {
-        "message": "Bu eklentiyi kurdu\u011funuz i\u00e7in te\u015fekk\u00fcrler. Geribildirim ve yorumlar i\u00e7in benimle ileti\u015fime ge\u00e7mekten \u00e7ekinmeyin",
+        "message": "Bu eklentiyi kurdu\u011funuz i\u00e7in te\u015fekk\u00fcrler. Geri bildirim ve yorumlar i\u00e7in benimle ileti\u015fime ge\u00e7mekten \u00e7ekinmeyin",
         "description": ""
     },
     "drag_buttons": {
@@ -112,7 +112,7 @@
         "description": ""
     },
     "external_interface_headline": {
-        "message": "External Interface",
+        "message": "Harici aray\u00fcz",
         "description": ""
     },
     "show_contextmenu_when": {
@@ -204,7 +204,7 @@
         "description": ""
     },
     "mousescroll_distance": {
-        "message": "Distance scrolled per mouse wheel rotation",
+        "message": "Her fare orta tu\u015fu yuvarland\u0131\u011f\u0131ndaki kayd\u0131rma mesafesi",
         "description": ""
     },
     "pages": {
@@ -224,7 +224,7 @@
         "description": ""
     },
     "external_interface": {
-        "message": "Provide an interface for external access",
+        "message": "Harici eri\u015fim i\u00e7in bir aray\u00fcz olu\u015ftur",
         "description": ""
     },
     "by": {
@@ -232,7 +232,7 @@
         "description": ""
     },
     "fullscreen_only_short": {
-        "message": "Only in fullscreen mode",
+        "message": "Sadece tam ekran modunda",
         "description": ""
     },
     "look": {
@@ -244,7 +244,7 @@
         "description": ""
     },
     "explanation_external_interface": {
-        "message": "By checking this option, modern scroll will provide some of its key features for usage by third-party-extensions, websites or you. You can then e.g. create custom mouse gestures.<br><a href='http://my.opera.com/christoph142/blog/2013/02/20/modern-scroll-documentation' target='_blank'>Visit the documentation to learn more about it.</a>",
+        "message": "BU se\u00e7ene\u011fi i\u015faretledi\u011finizde; modern scroll size \u00fc\u00e7\u00fcnc\u00fc taraf eklentilerin, web sayfalar\u0131n\u0131n ve sizin kullanabilece\u011finiz baz\u0131 ek \u00f6zellikler sunacakt\u0131r. Daha sonra \u00f6rne\u011fin size \u00f6zel fare hareketleri olu\u015fturabilirsiniz. <br><a href='http://my.opera.com/christoph142/blog/2013/02/20/modern-scroll-documentation' target='_blank'>Daha fazla bilgi i\u00e7in bu belgeyi inceleyebilirsiniz.(EN)</a>",
         "description": ""
     },
     "contextmenu": {
