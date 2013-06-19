@@ -1,17 +1,18 @@
-اس توسیع  کے لئےاوپیرا 12,10 یا جدید تر کی ضرورت ہے.
+اس extension کے لئےاوپیرا 12,10 یا جدید تر کی ضرورت ہے.
 Modern Scroll, scrolling ایک مکمل نئی سطح پر لےجانا ہے.
-(Opera's standard scrollbars should be disabled to avoid double bars. Therefore go to Opera → Settings → Preferences... (Ctrl+F12) → Advanced → Browsing and uncheck "Show scroll bars")
+(اوپیرا کی scrollbars کے سے بچنے کے لئے غیر فعال کیا جانا چاہئے. لہذا اوپیرا → → ترجیحات کی ترتیبات کو دیکھیں ... (Ctrl + F12) → → اعلی درجے کی براؤزنگ اور نشان ہٹا دیں "scroll bars show")
 
 modern scroll کے بارے میں کیا بہت اچھا ہے؟
 
 +Scrolling کی کارکردگی بڑھاتا ہے!
 scrolling کر کی رفتار سایڈست ہے.
-+ its scroll bars don't take up any space so the whole screen width can be used to display what a browser is made for: websites
-+ elements or whole pages don't shift by some pixels when content changes and bars become (un)necessary
-+ scroll bars are usable in fullscreen mode as well
-+ scroll bars automatically hide when they are not needed
-+ unique "superbar" which makes it possible to scroll horizontally and vertically at the same time
-+ optional buttons for scrolling to top and bottom of the page
-+ behavior and appearance is fully customizable
++ یہ scroll bars کوئی جگہ نہیں لیتے ہیں. تاکہ پوری سکرین کی چوڑائی ایک براؤزر کے لئے بنایا ہے ظاہر کرنے کے لئے استعمال کیا جا سکتا: ویب سائٹس
+مواد تبدیلیوں اور scroll bars کے ضروری ہو جب + عناصر یا پورے صفحات کچھ پکسلز کی طرف سے منتقل نہیں کرتے
+scroll bars پورے اسکرین کے موڈ میں استعمال کے قابل ہیں.
+جب ضرورت نہیں scroll bars خود کار طریقے سے چھپانے ہے.
 
-This extension was originally planned as an update to "Slim ScrollBar" by damage92. But since it doesn't have a single line of code in common with the original extension we decided to publish it as a new one. Slim scrollbar will of course continue to exist if you prefer the other implementation or if you are using Opera below 12.10 where modern scroll isn't available. Due to damage92's rare spare time it's not being actively developed at the moment, though.
+یہ ممکن ہے کہ ایک ہی وقت میں افقی اور عمودی طور scroll bars کرنے کے لئے بناتا ہے جس میں منفرد "superbar".
++ صفحے کے سب سے اوپر اور نیچے کے لئے scrolling کر کے لئے اختیاری بٹن
++ رویے اور ظاہری شکل کو مکمل طور پر مرضی کے مطابق ہے.
+
+یہ  extension اصل damage92 کی طرف سے "Slim ScrollBar" کے لئے ایک اپ ڈیٹ کے طور پر منصوبہ بندی کی گئی تھی.لیکن یہ اصل توسیع کے ساتھ اسی طرح کے کوڈ کی ایک لائن کی ملتی نہیں ہے تو ہم ایک نئ extension  کے طور پر شائع کرنے کا فیصلہ کیا.Slim scrollbar موجود رھے گی کیون کھ modern scroll موجود نھی ھے Opera 12.10 سے کم کے لیے۔ Slim ScrollBar، اپڈيٹ نھی کی جا رھی کیون کھ damage92's کے پاس وقت نھی ھے۔
