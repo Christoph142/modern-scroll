@@ -28,7 +28,7 @@
         "description": ""
     },
     "explanation_superbar": {
-        "message": "Die \"Superbar\" ist eine Kombination aus horizontaler und vertikaler Bildlaufleiste.<br>Sie wird deshalb nur sichtbar, wenn beide Leisten ben\u00f6tigt werden und befindet sich dann vertikal zentriert zur vertikalen und horizontal zentriert zur horizontalen Leiste.",
+        "message": "Die \"Superbar\" ist eine Kombination aus horizontaler und vertikaler Bildlaufleiste.\nSie wird deshalb nur sichtbar, wenn beide Leisten ben\u00f6tigt werden und befindet sich dann vertikal zentriert zur vertikalen und horizontal zentriert zur horizontalen Leiste.",
         "description": ""
     },
     "contextmenu_show": {
@@ -88,7 +88,7 @@
         "description": ""
     },
     "show_superbar_minipage": {
-        "message": "Zeige eine Mini-Version der Seite beim Ziehen der Superbar im Hintergrund",
+        "message": "Zeige beim Ziehen der Superbar eine Mini-Version der Seite im Hintergrund",
         "description": ""
     },
     "button_width": {
@@ -176,11 +176,11 @@
         "description": ""
     },
     "explanation_animate_scroll": {
-        "message": "Wenn diese Option aktiviert wird, dann springt die Seite nicht mehr an die gew\u00fcnschte Position, sondern scrollt automatisiert in einer einstellbaren Geschwindigkeit dort hin.<br>Dies betrifft sowohl die Scroll-Buttons, Klicks auf die Hintergrund-Leisten als auch Tastatur-Eingaben (falls \"Benutze eigene Scroll-Funktionen f\u00fcr die Tastatur\" aktiviert ist).",
+        "message": "Wenn diese Option aktiviert wird, dann springt die Seite nicht mehr an die gew\u00fcnschte Position, sondern scrollt automatisiert in einer einstellbaren Geschwindigkeit dort hin.\nDies betrifft sowohl die Scroll-Buttons, Klicks auf die Hintergrund-Leisten als auch Tastatur-Eingaben (falls \"Benutze eigene Scroll-Funktionen f\u00fcr die Tastatur\" aktiviert ist).",
         "description": ""
     },
     "explanation_move_bars_during_scroll": {
-        "message": "Deaktiviere diese Option, falls Performance-Probleme auftreten.<br>Die Bildlaufleisten werden dann nur am Ende des Scrollens an die neue Position gesetzt.",
+        "message": "Deaktiviere diese Option, falls Performance-Probleme auftreten.\nDie Bildlaufleisten werden dann nur am Ende des Scrollens an die neue Position gesetzt.",
         "description": ""
     },
     "normal": {
@@ -244,7 +244,7 @@
         "description": ""
     },
     "explanation_external_interface": {
-        "message": "Durch das Aktivieren dieser Option stellt modern scroll ein paar seiner Hauptfunktionen f\u00fcr die Nutzung durch Drittanbieter-Erweiterungen, Webseiten oder dich zur Verf\u00fcgung. Du kannst damit dann z.B. eigene Maus-Gesten schaffen.<br><a href='http://my.opera.com/christoph142/blog/2013/02/20/modern-scroll-documentation' target='_blank'>Schau dir die Dokumentierung (Englisch) an um mehr dar\u00fcber zu erfahren.</a>",
+        "message": "Durch das Aktivieren dieser Option stellt modern scroll ein paar seiner Hauptfunktionen f\u00fcr die Nutzung durch Drittanbieter-Erweiterungen, Webseiten oder dich zur Verf\u00fcgung. Du kannst damit dann z.B. eigene Maus-Gesten schaffen.\n<a href='http://my.opera.com/christoph142/blog/2013/02/20/modern-scroll-documentation' target='_blank'>Schau dir die Dokumentierung (Englisch) an um mehr dar\u00fcber zu erfahren.</a>",
         "description": ""
     },
     "contextmenu": {
@@ -252,7 +252,7 @@
         "description": ""
     },
     "show_buttons": {
-        "message": "Scroll-Buttons zum Seiten-Anfang und -Ende zeigen",
+        "message": "Scroll-Buttons zum Seiten-Anfang und -Ende anzeigen",
         "description": ""
     },
     "only_over": {
