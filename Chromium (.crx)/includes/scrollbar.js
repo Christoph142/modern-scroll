@@ -945,8 +945,9 @@ function arrowkeyscroll()
 	if(e.which < 37 || e.which > 40 || modifierkey_pressed(e) || target_is_input(e)) return;
 	
 	window.removeEventListener("keydown", arrowkeyscroll, false);
-	if(window.scrollMaxY !== 0 || e.which === 37 || e.which === 39) // fix Google Docs & MyOpera Mail (no interface)
-		window.addEventListener("keydown", stopEvent, true);
+	// fix Google Docs & MyOpera Mail (no interface):
+	//if((window.scrollMaxY !== 0 || e.which === 37 || e.which === 39) && document.URL.indexOf("://vk.com") !== -1) 
+		//window.addEventListener("keydown", stopEvent, true);
 	
 	if(scroll_timeout_id_x){ window.cancelAnimationFrame(scroll_timeout_id_x); scroll_timeout_id_x = null; }
 	if(scroll_timeout_id_y){ window.cancelAnimationFrame(scroll_timeout_id_y); scroll_timeout_id_y = null; }
@@ -1122,9 +1123,10 @@ function is_scrollable(element, direction) // direction: 0 = up, 1 = down, 2 = a
 		if((direction === 0 && element.scrollTop > 0) || (direction === 1 && element.scrollTop < max_scrollTop) || direction === 2)
 			return true;
 	}
-	else if(element == "[object HTMLSelectElement]") return true;
-	else if(element.className === "uiScrollableAreaBody") return true; // Facebook's scrolling implementation
-	else return is_scrollable(element.parentNode, direction);
+	else if(element == "[object HTMLSelectElement]")		return true;
+	else if(element.className === "uiScrollableAreaBody")	return true; // Facebook's scrolling implementation
+	else if(element.parentNode.id === "layer_wrap")			return true; // vKontakte's scrolling implementation
+	else													return is_scrollable(element.parentNode, direction);
 }
 
 function element_finished_scrolling(){
