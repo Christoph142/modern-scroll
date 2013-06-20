@@ -300,6 +300,10 @@ function add_external_interface()
 	window.modernscroll.hide = hide_ui;
 	window.modernscroll.scroll_2_top = scroll_Pos1;
 	window.modernscroll.scroll_2_bottom = scroll_End;
+	window.modernscroll.toggle_superbar = function(){
+		document.getElementById("ms_superbar").style.display =	(document.getElementById("ms_superbar").style.display === "inline" ? null : 
+																(vbar.style.display === "inline" && hbar.style.display === "inline" ? "inline" : null));
+	};
 }
 
 function show_ui()
@@ -367,7 +371,13 @@ function adjust_ui_fullscreen_change()
 	}
 }
 
-function resize_bars(){ resize_vbar(); resize_hbar(); reposition_bars(); }
+function resize_bars()
+{
+	resize_vbar();
+	resize_hbar();
+	resize_superbar();
+	reposition_bars();
+}
 
 function resize_vbar()
 {	
@@ -430,6 +440,23 @@ function resize_hbar()
 		document.getElementById("ms_hbar_ui").style.width = hbar_new_width-2*w.gap+"px";
 		show_bar("h");
 	}
+}
+
+function resize_superbar()
+{
+	if(w.show_superbar === "0") return;
+	
+	if(vbar.style.display === "inline" && hbar.style.display === "inline")
+	{
+		document.getElementById("ms_superbar").style.height = vbar.style.height;
+		document.getElementById("ms_superbar").style.width = hbar.style.width;
+		
+		if(w.show_superbar_minipage === "0")
+			document.getElementById("ms_superbar").style.transform = "scale("+(window.innerWidth/10)/parseInt(document.getElementById("ms_superbar").style.width)+","+(window.innerHeight/10)/parseInt(document.getElementById("ms_superbar").style.height)+")";
+		
+		document.getElementById("ms_superbar").style.display = "inline";
+	}
+	else document.getElementById("ms_superbar").style.display = null;
 }
 
 function drag_mode(which_bar){
@@ -581,20 +608,16 @@ function reposition_bars()
 		hbar.style.left = left+(w.vbar_at_left === "1" ? parseInt(w.hover_size) : 0)+"px";
 	}
 	
-	if(vbar.style.display === "inline" && hbar.style.display === "inline" && w.show_superbar === "1")
+	if(w.show_superbar === "1")
 	{
-		document.getElementById("ms_superbar").style.top = vbar.style.top;
-		document.getElementById("ms_superbar").style.height = vbar.style.height;
-		document.getElementById("ms_superbar").style.left = hbar.style.left;
-		document.getElementById("ms_superbar").style.width = hbar.style.width;
-		if(w.show_superbar_minipage === "0")
+		if(vbar.style.display === "inline" && hbar.style.display === "inline")
 		{
-			document.getElementById("ms_superbar").style.transform = "scale("+(window.innerWidth/10)/parseInt(document.getElementById("ms_superbar").style.width)+","+(window.innerHeight/10)/parseInt(document.getElementById("ms_superbar").style.height)+")";
+			document.getElementById("ms_superbar").style.top = vbar.style.top;
+			document.getElementById("ms_superbar").style.left = hbar.style.left;
 		}
-		document.getElementById("ms_superbar").style.display = "inline";
+		else if(document.getElementById("ms_superbar").style.opacity !== "1") //if superbar doesn't get dragged (minipage only -> no bars)
+			window.setTimeout(function(){ document.getElementById("ms_superbar").style.display = null; }, eval(w.show_how_long));
 	}
-	else if(w.show_superbar === "1" && document.getElementById("ms_superbar").style.opacity !== "1") //if superbar doesn't get dragged (minipage only -> no bars)
-		window.setTimeout(function(){ document.getElementById("ms_superbar").style.display = null; }, eval(w.show_how_long));
 	
 	if(vbar_top_before !== vbar.style.top)		show_bar("v");
 	if(hbar_left_before !== hbar.style.left)	show_bar("h");

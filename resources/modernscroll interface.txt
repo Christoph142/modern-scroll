@@ -3,5 +3,6 @@ modernscroll.
 		hide();
 		scroll2top();
 		scroll2bottom();
+		toggle_superbar();
 
 http://my.opera.com/christoph142/blog/2013/02/20/modern-scroll-documentation
