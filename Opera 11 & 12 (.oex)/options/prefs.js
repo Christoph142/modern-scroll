@@ -50,12 +50,12 @@ function getprefs()
 		widget.preferences.saved_sets = JSON.stringify(saved_sets);
 	}
 	
-	document.getElementById("save_set").innerHTML = strings["new set name"];
+	document.getElementById("save_set").innerHTML = strings["new_set_name"]["message"];
 	document.getElementById("save_set").addEventListener("blur",function(){
-		if(this.innerHTML === "") this.innerHTML = strings['new set name'];
+		if(this.innerHTML === "") this.innerHTML = strings["new_set_name"]["message"];
 	},false);
 	document.getElementById("save_set").addEventListener("focus",function(){
-		if(this.innerHTML === strings["new set name"]) this.innerHTML = "";
+		if(this.innerHTML === strings["new_set_name"]["message"]) this.innerHTML = "";
 	},false);
 	
 	var inputs = document.getElementsByTagName("input");
