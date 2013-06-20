@@ -1,14 +1,37 @@
-v 3.0
+﻿v 3.0
+
 ---------
+
 neu: vollständig Chromium (Chrome & Opera 15) kompatibel
+
 neu: blendet die Standard-Bildlaufleisten automatisch aus
+
 neu: Styling der Scroll-Leisten von Seiten-Elementen (z.B. Mehrzeiligen Textfeldern)
+
 neu: Einstellungen werden über alle Geräte hinweg synchronisiert
+
 neu: live Mini-Seite hinter der Superbar
+
 neu: verbesserte Behandlung und Wiederherstellung von Standard-Werten aus gespeicherten Konfigurationen
 
-v 2.4.3
+
+
+v 2.4.4
+
 ---------
+
+neu: Superbar kann durch Mausgesten ein- und ausgeblendet werden
+
+fix: Scrollen von Bildern @ vk.com (Danke Maxim für's Melden)
+
+upd: verschiedene Übersetzungen (Danke an alle Übersetzer)
+
+
+
+v 2.4.3
+
+---------
+
 fix: Interface bleibt unsichtbar, wenn man während dem Laden Tabs wechselt
 fix: Leisten haben einen weißen rechteckigen Hintergrund @ www.testberichte.de
 

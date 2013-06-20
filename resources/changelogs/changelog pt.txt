@@ -7,6 +7,12 @@ novo: configurações são sincronizadas entre seus dispositivos
 novo: mini página ao vivo na superbar
 novo: melhores valores iniciais e obtenção das configurações salvas
 
+v 2.4.4
+---------
+new: visibility of superbar can be toggled via custom mouse gestures
+fix: scrolling of pictures @ vk.com (thx Maxim for reporting)
+upd: various translations
+
 v 2.4.3
 ---------
 correção: interface invisível ao alternar guias durante carregamento

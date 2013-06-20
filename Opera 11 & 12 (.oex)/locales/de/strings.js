@@ -1,4 +1,5 @@
-var strings = {
+var strings = 
+{
     "animatedscroll_velocity": {
         "message": "Geschwindigkeit des animierten Scrollens",
         "description": ""
@@ -71,8 +72,8 @@ var strings = {
         "message": "Rahmen",
         "description": ""
     },
-    "show_bg_bars_when": {
-        "message": "Und die Hintergrund-Leisten?",
+    "how_to": {
+        "message": "Wie verwende ich diese Erweiterung?",
         "description": ""
     },
     "size": {
@@ -133,6 +134,10 @@ var strings = {
     },
     "color_bg": {
         "message": "Farbe der Hintergrundleisten",
+        "description": ""
+    },
+    "show_bg_bars_when": {
+        "message": "Und die Hintergrund-Leisten?",
         "description": ""
     },
     "mousescroll_velocity": {
@@ -217,6 +222,10 @@ var strings = {
     },
     "infinite": {
         "message": "unendlich",
+        "description": ""
+    },
+    "disable_standard_bars": {
+        "message": "Wenn du modern scroll nicht ausschlie\u00dflich im Vollbild-Modus nutzt, sollten Operas Standard-Leisten deaktiviert werden.<br>Gehe dazu in <strong>Opera \u2192 Einstellungen \u2192 Einstellungen... (Strg+F12) \u2192 Erweitert \u2192 Browser</strong> und deaktiviere dort \"Bildlaufleisten zeigen\"",
         "description": ""
     },
     "gap": {
@@ -327,4 +336,4 @@ var strings = {
         "message": "px zum Rand triggern",
         "description": ""
     }
-};
+}; 

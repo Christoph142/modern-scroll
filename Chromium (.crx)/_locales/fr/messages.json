@@ -71,8 +71,8 @@
         "message": "Bordure",
         "description": ""
     },
-    "show_bg_bars_when": {
-        "message": "Et les barres d'arri\u00e8re-plan?",
+    "how_to": {
+        "message": "Comment puis-je utiliser cette extension?",
         "description": ""
     },
     "size": {
@@ -133,6 +133,10 @@
     },
     "color_bg": {
         "message": "Couleur des barres d'arri\u00e8re-plan",
+        "description": ""
+    },
+    "show_bg_bars_when": {
+        "message": "Et les barres d'arri\u00e8re-plan?",
         "description": ""
     },
     "mousescroll_velocity": {
@@ -217,6 +221,10 @@
     },
     "infinite": {
         "message": "infini",
+        "description": ""
+    },
+    "disable_standard_bars": {
+        "message": "Les barres de d\u00e9filement standards d'Opera doivent \u00eatre d\u00e9sactiv\u00e9s pour \u00e9viter doubles barres.<br>Donc ouvre <strong>Opera \u2192 R\u00e9glages \u2192 Pr\u00e9f\u00e9rences... (Ctrl+F12) \u2192 Avanc\u00e9 \u2192 Navigation</strong> et d\u00e9sactive \"Afficher les barres de d\u00e9filement\"",
         "description": ""
     },
     "gap": {

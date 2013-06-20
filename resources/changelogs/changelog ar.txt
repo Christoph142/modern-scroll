@@ -7,6 +7,12 @@
 جديد: صفحة مصغرة "حية" خلف الشريط الخارق
 جديد: تحسين التعامل مع القيم الإفتراضية و استرجاع الإعدادات المحفوظة.
 
+v 2.4.4
+---------
+new: visibility of superbar can be toggled via custom mouse gestures
+fix: scrolling of pictures @ vk.com (thx Maxim for reporting)
+upd: various translations
+
 v 2.4.3
 ---------
 fix: interface stays invisible when switching tabs during loading

@@ -71,8 +71,8 @@
         "message": "Obrys",
         "description": ""
     },
-    "show_bg_bars_when": {
-        "message": "Co z szynami?",
+    "how_to": {
+        "message": "Jak si\u0119 tego u\u017cywa?",
         "description": ""
     },
     "size": {
@@ -133,6 +133,10 @@
     },
     "color_bg": {
         "message": "Kolor szyn",
+        "description": ""
+    },
+    "show_bg_bars_when": {
+        "message": "Co z szynami?",
         "description": ""
     },
     "mousescroll_velocity": {
@@ -217,6 +221,10 @@
     },
     "infinite": {
         "message": "niesko\u0144czonej",
+        "description": ""
+    },
+    "disable_standard_bars": {
+        "message": "Lepiej, \u017ceby typowe paski Opery by\u0142y wy\u0142\u0105czone, nie potrzeba nam a\u017c dw\u00f3ch.<br>W tym celu nale\u017cy odznaczy\u0107 opcj\u0119 \u201ePoka\u017c paski przewijania\u201d z grupy <strong>Opera \u2192 Ustawienia \u2192 Preferencje\u2026 (Ctrl+F12) \u2192 Zaawansowane \u2192 Przegl\u0105danie</strong>.",
         "description": ""
     },
     "gap": {

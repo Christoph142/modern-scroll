@@ -7,6 +7,12 @@ nouveau: les réglages sont synchronisés sur tous tes appareils
 nouveau: mini page en direct derrière superbar
 nouveau: meilleure maniabilité des valeur défaut et la récupération des configurations enregistrées
 
+v 2.4.4
+---------
+nouveau: visibilité de la superbar peut être changée via les gestes de souris personnalisés
+fixé: défilement de pictures @ vk.com (merci Maxim pour rapporter)
+mis à jour: plusieurs traductions (merci à tous les traducteurs)
+
 v 2.4.3
 ---------
 fix: interface stays invisible when switching tabs during loading

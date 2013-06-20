@@ -71,8 +71,8 @@
         "message": "Margine",
         "description": ""
     },
-    "show_bg_bars_when": {
-        "message": "\u015ei barele de fundal?",
+    "how_to": {
+        "message": "Cum folosesc aceast\u0103 extensie?",
         "description": ""
     },
     "size": {
@@ -133,6 +133,10 @@
     },
     "color_bg": {
         "message": "Culoarea barelor de fundal",
+        "description": ""
+    },
+    "show_bg_bars_when": {
+        "message": "\u015ei barele de fundal?",
         "description": ""
     },
     "mousescroll_velocity": {
@@ -217,6 +221,10 @@
     },
     "infinite": {
         "message": "infinit",
+        "description": ""
+    },
+    "disable_standard_bars": {
+        "message": "Dac\u0103 nu folose\u015fti Modern Scroll exclusiv \u00een modul fullscreen, barele normale de la Opera ar trebui dezactivate pentru a evita bare duble.<br> Pentru a face asta, mergi \u00een <strong>Opera \u2192 Set\u0103ri \u2192 Preferin\u0163e... (Ctrl+F12) \u2192 Avansat \u2192 Navigare</strong> \u015fi dezactiveaz\u0103 \"arat\u0103 barele de derulare\" de acolo.",
         "description": ""
     },
     "gap": {
