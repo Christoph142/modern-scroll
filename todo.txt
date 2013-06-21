@@ -1,2 +1,1 @@
 show bars -> never
-external interface -> toggle superbar
