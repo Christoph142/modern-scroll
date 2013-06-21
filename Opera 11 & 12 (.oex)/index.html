@@ -15,19 +15,19 @@
 		else if	(event.data === "reset_contextmenu")					change_contextmenu_string_into("contextmenu_hide");
 	}
 	
-	function change_contextmenu_string_into(s){ if(opera.contexts.menu.item(0)) opera.contexts.menu.item(0).title = strings[s]; }
+	function change_contextmenu_string_into(s){ if(opera.contexts.menu.item(0)) opera.contexts.menu.item(0).title = strings[s]["message"]; }
 	
 	function update_contextmenu_show_when(){ show_contextmenu(); hide_contextmenu(); }
 	function show_contextmenu() // if contextmenu is not set to "never visible":
 	{
 		if(widget.preferences.contextmenu_show_when !== "1" && !opera.contexts.menu.item(0))
-			opera.contexts.menu.addItem(opera.contexts.menu.createItem({title:strings["contextmenu_hide"],icon:"images/contextmenu.png"}));
+			opera.contexts.menu.addItem(opera.contexts.menu.createItem({title:strings["contextmenu_hide"]["message"],icon:"images/contextmenu.png"}));
 	}
 	
 	function hide_contextmenu() // if contextmenu is not set to "always visible":
 	{
 		if(widget.preferences.contextmenu_show_when !== "3" && opera.contexts.menu.item(0))
-			if(opera.contexts.menu.item(0).title === strings["contextmenu_hide"]) opera.contexts.menu.removeItem(0);
+			if(opera.contexts.menu.item(0).title === strings["contextmenu_hide"]["message"]) opera.contexts.menu.removeItem(0);
 	}
 </script>
 </head>
