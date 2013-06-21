@@ -11,7 +11,7 @@ v 2.4.4
 ---------
 new: visibility of superbar can be toggled via custom mouse gestures
 fix: scrolling of pictures @ vk.com (thx Maxim for reporting)
-upd: various translations
+upd: various translations (thx to all translators)
 
 v 2.4.3
 ---------
