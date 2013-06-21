@@ -1141,13 +1141,13 @@ function arrowkeyscroll()
 function otherkeyscroll()
 {
 	var e = window.event;
-	if(e.which < 33 || e.which > 36 || modifierkey_pressed(e) || target_is_input(e)) return;
+	if(e.which < 32 || e.which > 36 || modifierkey_pressed(e) || target_is_input(e)) return;
 	stopEvent();
 	
-	if		(e.which === 34) scroll_PageDown();
-	else if	(e.which === 33) scroll_PageUp();
-	else if	(e.which === 36) scroll_Pos1();
-	else					 scroll_End();
+	if		(e.which === 32 || e.which === 34)	scroll_PageDown(); // 32 = space bar
+	else if	(e.which === 33) 					scroll_PageUp();
+	else if	(e.which === 36) 					scroll_Pos1();
+	else									 	scroll_End();
 }
 function scroll_PageDown(){
 	if(w.animate_scroll === "1") ms_scrollBy_y(window.innerHeight);
