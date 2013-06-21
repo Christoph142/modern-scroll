@@ -300,9 +300,18 @@ function add_external_interface()
 	window.modernscroll.hide = hide_ui;
 	window.modernscroll.scroll_2_top = scroll_Pos1;
 	window.modernscroll.scroll_2_bottom = scroll_End;
-	window.modernscroll.toggle_superbar = function(){
-		document.getElementById("ms_superbar").style.display =	(document.getElementById("ms_superbar").style.display === "inline" ? null : 
-																(vbar.style.display === "inline" && hbar.style.display === "inline" ? "inline" : null));
+	window.modernscroll.toggle_superbar = function(){ // permanently change show_superbar setting (<-> CRX: temporarily):													
+		if(w.show_superbar === "1")
+		{
+			w.show_superbar = "0";
+			document.getElementById("ms_superbar").style.display = null;
+		}
+		else
+		{
+			w.show_superbar = "1";
+			resize_superbar();
+			reposition_bars();
+		}
 	};
 }
 

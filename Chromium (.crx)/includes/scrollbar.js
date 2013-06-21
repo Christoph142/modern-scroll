@@ -178,7 +178,8 @@ function add_bars()
 			"<div id='ms_hbar'><div id='ms_hbar_ui'></div></div>"+
 		"</div>"+
 		"<div id='ms_v_container'>"+ // last in DOM gets displayed top
-			"<div id='ms_vbar_bg'><div id='ms_vbar_bg_ui'></div></div><div id='ms_vbar'><div id='ms_vbar_ui'></div></div>"+
+			"<div id='ms_vbar_bg'><div id='ms_vbar_bg_ui'></div></div>"+
+			"<div id='ms_vbar'><div id='ms_vbar_ui'></div></div>"+
 		"</div>";
 		
 	document.getElementById("modern_scroll").appendChild(bars_container);
@@ -292,9 +293,18 @@ function add_external_interface()
 	window.modernscroll.hide = hide_ui;
 	window.modernscroll.scroll_2_top = scroll_Pos1;
 	window.modernscroll.scroll_2_bottom = scroll_End;
-	window.modernscroll.toggle_superbar = function(){
-		document.getElementById("ms_superbar").style.display =	(document.getElementById("ms_superbar").style.display === "inline" ? null : 
-																(vbar.style.display === "inline" && hbar.style.display === "inline" ? "inline" : null));
+	window.modernscroll.toggle_superbar = function(){ // overwrite show_superbar in this page's copy of settings:
+		if(w.show_superbar === "1")
+		{
+			w.show_superbar = "0";
+			document.getElementById("ms_superbar").style.display = null;
+		}
+		else
+		{
+			w.show_superbar = "1";
+			resize_superbar();
+			reposition_bars();
+		}
 	};
 }
 
