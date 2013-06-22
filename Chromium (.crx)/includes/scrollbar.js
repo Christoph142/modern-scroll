@@ -1091,13 +1091,22 @@ function arrowkeyscroll()
 function otherkeyscroll()
 {
 	var e = window.event;
-	if(e.which < 32 || e.which > 36 || modifierkey_pressed(e) || target_is_input(e)) return;
-	stopEvent();
-	
-	if		(e.which === 32 || e.which === 34)	scroll_PageDown(); // 32 = space bar
-	else if	(e.which === 33)					scroll_PageUp();
-	else if	(e.which === 36) 					scroll_Pos1();
-	else					 					scroll_End();
+	if(e.which > 32 && e.which < 37 && !modifierkey_pressed(e) && !target_is_input(e))
+	{
+		stopEvent();
+		
+		if		(e.which === 34)	scroll_PageDown();
+		else if	(e.which === 33)	scroll_PageUp();
+		else if	(e.which === 36) 	scroll_Pos1();
+		else					 	scroll_End();
+	}
+	else if(e.which === 32 && !e.altKey && !e.metaKey && !e.ctrlKey && !target_is_input(e)) // 32 = space bar
+	{
+		stopEvent();
+		
+		if		(!e.shiftKey)		scroll_PageDown();
+		else						scroll_PageUp();
+	}
 }
 function scroll_PageDown(){
 	if(w.animate_scroll === "1") ms_scrollBy_y(window.innerHeight);

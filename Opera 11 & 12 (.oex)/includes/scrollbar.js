@@ -1017,8 +1017,6 @@ function ms_scroll_end(direction)
 }
 
 var last_clicked_element_is_scrollable;
-//var scroll_start_time;
-//var test = 0;
 function arrowkeyscroll()
 {
 	var e = window.event;
@@ -1037,37 +1035,22 @@ function arrowkeyscroll()
 		window.removeEventListener("scroll", reposition_bars, false);
 		window.removeEventListener("scroll", onScroll, false);
 		
-		//if(test ===0){
 		if		(e.which === 40) arrowkeyscroll_down(Date.now());
 		else if	(e.which === 38) arrowkeyscroll_up(Date.now());
 		else if	(e.which === 39) arrowkeyscroll_right(Date.now());
 		else					 arrowkeyscroll_left(Date.now());
-		//}
+		
 		if(w.move_bars_during_scroll === "1" && document.getElementById("modern_scroll_bars"))
 		{
 			if(e.which === 40){
 				show_bar("v");
 				vbar.style.transition = "top "+(window.scrollMaxY-window.pageYOffset)/w.keyscroll_velocity+"ms linear";
 				vbar.style.top = window.innerHeight-parseInt(vbar.style.height)+"px";
-				/*
-				if(test === 1)
-				{
-					scroll_start_time = Date.now();
-					document.body.style.transition = "all "+(window.scrollMaxY-window.pageYOffset)/w.keyscroll_velocity+"ms linear";
-					document.body.style.marginTop = window.pageYOffset-window.scrollMaxY+"px";
-				}*/
 			}
 			else if(e.which === 38){
 				show_bar("v");
 				vbar.style.transition = "top "+window.pageYOffset/w.keyscroll_velocity+"ms linear";
 				vbar.style.top = "0px";
-				/*
-				if(test === 1)
-				{
-					scroll_start_time = Date.now();
-					document.body.style.transition = "margin-top "+window.pageYOffset/w.keyscroll_velocity+"ms linear";
-					document.body.style.marginTop = window.pageYOffset+"px";
-				}*/
 			}
 			else if(e.which === 39){
 				show_bar("h");
@@ -1085,16 +1068,6 @@ function arrowkeyscroll()
 	window.addEventListener("keyup", arrowkeyscroll_end, false);
 	function arrowkeyscroll_end()
 	{
-		// CSS scrolling:
-		/*if(test === 1)
-		{
-			var scrollamount = (Date.now()-scroll_start_time)*w.keyscroll_velocity;
-			document.body.style.marginTop = null;
-			window.scrollBy(0,(e.which===40?scrollamount:-scrollamount));
-			document.body.style.transition = null;
-		}
-		*/
-		// JS scrolling:
 		if(scroll_timeout_id_x){ cancelAnimFrame(scroll_timeout_id_x); scroll_timeout_id_x = null; }
 		cancelAnimFrame(scroll_timeout_id_y); scroll_timeout_id_y = null;
 		
@@ -1141,13 +1114,22 @@ function arrowkeyscroll()
 function otherkeyscroll()
 {
 	var e = window.event;
-	if(e.which < 32 || e.which > 36 || modifierkey_pressed(e) || target_is_input(e)) return;
-	stopEvent();
-	
-	if		(e.which === 32 || e.which === 34)	scroll_PageDown(); // 32 = space bar
-	else if	(e.which === 33) 					scroll_PageUp();
-	else if	(e.which === 36) 					scroll_Pos1();
-	else									 	scroll_End();
+	if(e.which > 32 && e.which < 37 && !modifierkey_pressed(e) && !target_is_input(e))
+	{
+		stopEvent();
+		
+		if		(e.which === 34)	scroll_PageDown();
+		else if	(e.which === 33)	scroll_PageUp();
+		else if	(e.which === 36) 	scroll_Pos1();
+		else					 	scroll_End();
+	}
+	else if(e.which === 32 && !e.altKey && !e.metaKey && !e.ctrlKey && !target_is_input(e)) // 32 = space bar
+	{
+		stopEvent();
+		
+		if		(!e.shiftKey)		scroll_PageDown();
+		else						scroll_PageUp();
+	}
 }
 function scroll_PageDown(){
 	if(w.animate_scroll === "1") ms_scrollBy_y(window.innerHeight);
