@@ -10,7 +10,7 @@ neu: verbesserte Behandlung und Wiederherstellung von Standard-Werten aus gespei
 v 2.4.4
 ---------
 neu: Superbar kann durch Mausgesten ein- und ausgeblendet werden
-neu: modern scroll übernimmt auch das Abwärts-Scrollen beim Drücken der Leertaste (Danke kapsi für's Melden)
+neu: modern scroll übernimmt auch das Scrollen beim Drücken der Leertaste (Danke kapsi für's Melden)
 fix: Scrollen von Bildern @ vk.com (Danke Maxim für's Melden)
 upd: verschiedene Übersetzungen (Danke an alle Übersetzer)
 

@@ -10,7 +10,7 @@ novo: melhores valores iniciais e obtenção das configurações salvas
 v 2.4.4
 ---------
 new: visibility of superbar can be toggled via custom mouse gestures
-new: modern scroll also takes over downward scrolling by pressing the space bar (thx kapsi for reporting)
+new: modern scroll also takes over scrolling by pressing the space bar (thx kapsi for reporting)
 fix: scrolling of pictures @ vk.com (thx Maxim for reporting)
 upd: various translations (thx to all translators)
 

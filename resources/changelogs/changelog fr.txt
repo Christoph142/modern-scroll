@@ -10,7 +10,7 @@ nouveau: meilleure maniabilité des valeur défaut et la récupération des conf
 v 2.4.4
 ---------
 nouveau: visibilité de la superbar peut être changée via les gestes de souris personnalisés
-nouveau: modern scroll se charge également du défilement vers le bas en appuyant sur la barre d'espace (merci kapsi pour rapporter)
+nouveau: modern scroll se charge également du défilement en appuyant sur la barre d'espace (merci kapsi pour rapporter)
 fixé: défilement de pictures @ vk.com (merci Maxim pour rapporter)
 mis à jour: plusieurs traductions (merci à tous les traducteurs)
 
