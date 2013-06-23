@@ -1,8 +1,8 @@
-﻿----- This extension requires Opera 12.10 or newer! -----
-modern scroll takes scrolling to a whole new level.
-(Opera's standard scrollbars should be disabled to avoid double bars. Therefore go to Opera → Settings → Preferences... (Ctrl+F12) → Advanced → Browsing and uncheck "Show scroll bars")
+----- Toto rozšíření požaduje Opera 12.10 nebo novější! -----
+modern scroll přenese rolování na zcela novou úroveň
+(Standardní rolovací posuvníky by měly být vypnuty pro předejítí zdvojení posuvníků. Proto jděte do Opera → Nastavení → Nastavení... (Ctrl+F12) → Pokročilé volby → Prohlížení a vypněte zde "Zobrazit posuvníky")
 
-What's awesome about modern scroll?
+Co je úžasného na modern scroll?
 
 + boosts your scrolling performance!
 + scrolling speed is adjustable
