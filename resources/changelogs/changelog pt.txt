@@ -4,15 +4,15 @@ novo: compatibilidade total no Chromium (Chrome & Opera 15)
 novo: oculta as barras padrão automaticamente
 novo: modifica barras de rolagem de elementos da página (ex.: áreas de texto)
 novo: configurações são sincronizadas entre seus dispositivos
-novo: mini página ao vivo na superbar
+novo: mini página ao vivo na 'superbar'
 novo: melhores valores iniciais e obtenção das configurações salvas
 
 v 2.4.4
 ---------
-new: visibility of superbar can be toggled via custom mouse gestures
-new: modern scroll also takes over scrolling by pressing the space bar (thx kapsi for reporting)
-fix: scrolling of pictures @ vk.com (thx Maxim for reporting)
-upd: various translations (thx to all translators)
+novo: visibilidade da 'superbar' pode ser alternada com gestos do mouse
+novo: modern scroll também assume a rolagem da barra de espaço (obg kapsi por reportar)
+correção: rolagem de imagens @vk.com (obg Maxim por reportar)
+atualização: várias traduções (obg a todos os tradutores)
 
 v 2.4.3
 ---------
@@ -37,8 +37,8 @@ v 2.4
 novo: tempo para ocultar barras ajustável
 novo: modern scroll é ativado apenas na guia ativa, não em todas as abertas
 novo: campos de explicação na página de configurações são exibidas no topo se estão abaixo da metade da tela
-atualização: tradução Portuguesa (obg André)
-atualização: barras de fundo são visíveis apenas quando passar sobre elas com o mouse por padrão agora
+atualização: tradução Português (obg André)
+atualização: barras de fundo visíveis apenas quando passar sobre elas com o mouse por padrão agora
 atualização: reestruturação e melhoras de performance
 
 v 2.3.1
@@ -95,7 +95,7 @@ correção: página de opções em instalações que não foram atualizadas da v
 v 2.1.1
 ---------
 correção: atalhos de teclado com tecla de comando ? (obg ayni por reportar)
-atualização: tradução Portuguesa (obg André)
+atualização: tradução Português (obg André)
 
 v 2.1
 ---------

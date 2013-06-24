@@ -249,7 +249,7 @@ var strings =
         "description": ""
     },
     "lang": {
-        "message": "en",
+        "message": "ur_PK",
         "description": ""
     },
     "explanation_external_interface": {

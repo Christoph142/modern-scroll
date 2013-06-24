@@ -33,7 +33,7 @@ var strings =
         "description": ""
     },
     "contextmenu_show": {
-        "message": "\u663e\u793a\u73b0\u4ee3\u6eda\u52a8",
+        "message": "\u663e\u793amodern scroll",
         "description": ""
     },
     "bg_special_ends": {
@@ -117,7 +117,7 @@ var strings =
         "description": ""
     },
     "show_contextmenu_when": {
-        "message": "\u4f55\u65f6\u5728\u83dc\u5355\u4e2d\u663e\u793a\u9690\u85cf\u73b0\u4ee3\u6eda\u52a8\u6761",
+        "message": "\u4f55\u65f6\u5728\u83dc\u5355\u4e2d\u7ed9\u51fa\u9690\u85cfmodern scroll\u9009\u9879?",
         "description": ""
     },
     "save_set_as": {
@@ -225,7 +225,7 @@ var strings =
         "description": ""
     },
     "disable_standard_bars": {
-        "message": "\u5982\u679c\u4f60\u4e0d\u4ec5\u53ea\u5728\u5168\u5c4f\u76f8\u7231\u4f7f\u7528\u6b64\u6269\u5c55\uff0c\u8bf7\u7981\u7528opera\u7684\u9ed8\u8ba4\u6eda\u52a8\u6761\u4ee5\u907f\u514d\u591a\u91cd\u6eda\u52a8\u6761\u3002 \u64cd\u4f5c\u5982\u4e0b\uff1a Opera \u2192 \u8bbe\u7f6e \u2192 \u9996\u9009\u9879... (\u6216\u76f4\u63a5\u6309 Ctrl+F12) \u2192 \u9ad8\u7ea7 \u2192\u6d4f\u89c8 \uff08\u53d6\u6d88\u52fe\u9009 \u201c\u663e\u793a\u6eda\u52a8\u6761\u201d\uff09\u3002",
+        "message": "\u5982\u679c\u4f60\u4e0d\u4ec5\u53ea\u5728\u5168\u5c4f\u65f6\u4f7f\u7528\uff0c\u8bf7\u7981\u7528opera\u7684\u9ed8\u8ba4\u6eda\u52a8\u6761\u4ee5\u907f\u514d\u591a\u91cd\u6eda\u52a8\u6761\u3002 \u64cd\u4f5c\u5982\u4e0b\uff1a Opera \u2192 \u8bbe\u7f6e \u2192 \u9996\u9009\u9879... (\u6216\u76f4\u63a5\u6309 Ctrl+F12) \u2192 \u9ad8\u7ea7 \u2192\u6d4f\u89c8 \uff08\u53d6\u6d88\u52fe\u9009 \u201c\u663e\u793a\u6eda\u52a8\u6761\u201d\uff09\u3002",
         "description": ""
     },
     "gap": {
@@ -249,11 +249,11 @@ var strings =
         "description": ""
     },
     "lang": {
-        "message": "en",
+        "message": "zh_CN",
         "description": ""
     },
     "explanation_external_interface": {
-        "message": "\u9009\u62e9\u6b64\u9879\uff0c\u73b0\u4ee3\u6269\u5c55\u5c06\u63d0\u4f9b\u4e00\u4e9b\u5173\u952e\u7279\u6027\u4f9b\u7b2c\u4e09\u65b9\u6269\u5c55\u3001\u7f51\u7ad9\u6216\u4f60\u4f7f\u7528\uff0c\u4f8b\u5982\u521b\u5efa\u81ea\u5b9a\u4e49\u7684\u9f20\u6807\u624b\u52bf\u3002\u8bbf\u95ee http://my.opera.com/christoph142/blog/2013/02/20/modern-scroll-documentation \u4ee5\u4e86\u89e3\u66f4\u591a\u3002",
+        "message": "\u9009\u62e9\u6b64\u9879\uff0cmodern scroll\u5c06\u63d0\u4f9b\u4e00\u4e9b\u5173\u952e\u7279\u6027\u4f9b\u7b2c\u4e09\u65b9\u6269\u5c55\u3001\u7f51\u7ad9\u6216\u4f60\u4f7f\u7528\uff0c\u4f8b\u5982\u521b\u5efa\u81ea\u5b9a\u4e49\u7684\u9f20\u6807\u624b\u52bf\u3002\u8bbf\u95ee http://my.opera.com/christoph142/blog/2013/02/20/modern-scroll-documentation \u4ee5\u4e86\u89e3\u66f4\u591a\u3002",
         "description": ""
     },
     "contextmenu": {
@@ -305,7 +305,7 @@ var strings =
         "description": ""
     },
     "contextmenu_hide": {
-        "message": "\u9690\u85cf\u73b0\u4ee3\u6269\u5c55",
+        "message": "\u9690\u85cfmodern scroll",
         "description": ""
     },
     "superbar": {
@@ -325,7 +325,7 @@ var strings =
         "description": ""
     },
     "container1": {
-        "message": "\u89e6\u53d1\u73b0\u4ee3\u6269\u5c55\u7684\u8ddd\u79bb",
+        "message": "\u89e6\u53d1modern scroll\u7684\u8ddd\u79bb",
         "description": ""
     },
     "page": {

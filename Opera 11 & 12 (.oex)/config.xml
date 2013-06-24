@@ -14,8 +14,10 @@
 	<description xml:lang="pl">Przeniesienie przewijania na całkowicie nowy poziom</description>
 	<description xml:lang="pt">Leva a rolagem a um novo nível</description>
 	<description xml:lang="ro">Duce derularea la un complet nou nivel</description>
-	<description xml:lang="tr">Kaydırma için yeni bir seviye</description>
 	<description xml:lang="ru">Поднимает возможности прокрутки на совершенно новый уровень</description>
+	<description xml:lang="tr">Kaydırma için yeni bir seviye</description>
+	<description xml:lang="ur_PK">Takes scrolling to a whole new level</description>
+	<description xml:lang="zh_CN">将滚动提升至全新水平</description>
 	
 	<feature name="opera:screenshot" />
 	<feature name="opera:contextmenus" />

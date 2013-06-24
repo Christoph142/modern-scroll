@@ -1,0 +1,4 @@
+show bars -> never
+buttons fullscreen
+fast forward with space
+ur_PK in config.xml
