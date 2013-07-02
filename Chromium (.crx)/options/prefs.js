@@ -5,6 +5,16 @@ window.addEventListener("mouseup", save_buttonposition, false);
 window.addEventListener("change", function(e) // save preferences:
 {
 	if(e.target.id === "save_set" || e.target.id === "saved_sets") return; // handled via onclick funtions
+	if(!e.target.validity.valid) // correct out-of-range inputs
+	{
+		e.target.style.transition = "box-shadow 500ms";
+		e.target.style.boxShadow = "#F00 0 0 10px 0";
+		window.setTimeout(function(){
+			e.target.value = chrome.extension.getBackgroundPage().w[e.target.id];
+			e.target.style.boxShadow = null;
+		}, 500);
+		return;
+	}
 	
 	if(e.target.type === "checkbox") save_new_value(e.target.id, e.target.checked?"1":"0");
 	else 							 save_new_value(e.target.id, e.target.value);
