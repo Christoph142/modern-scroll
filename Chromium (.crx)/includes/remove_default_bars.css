@@ -1,1 +1,5 @@
+/* remove window's default scroll bars: */
 html::-webkit-scrollbar, body::-webkit-scrollbar{ display:none !important; width:0 !important; height:0 !important; }
+
+/* dimension change listener hack (http://www.backalleycoder.com/2013/03/18/cross-browser-event-based-element-resize-detection): */
+.resize-sensor, .resize-sensor > div { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: -1; }
