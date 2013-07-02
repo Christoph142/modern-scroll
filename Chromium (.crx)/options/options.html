@@ -16,23 +16,23 @@
 <header><br>
 	<img src="../images/icon.png">
     <h1 id="widget-name"><font size="+3">m</font>odern <font size="+3">s</font>croll</h1>
-    <h3><span id="by" class="i18n"></span> <a href="http://my.opera.com/christoph142/blog/" target="_blank">Christoph D.</a></h3>
+    <h3><span class="i18n" data-i18n="by"></span> <a href="http://my.opera.com/christoph142/blog/" target="_blank">Christoph D.</a></h3>
 </header>
 <br>
 <section>
 	<fieldset>
-    <h4 id="saved_sets_headline" class="i18n"></h4>
+    <h4 class="i18n" data-i18n="saved_sets_headline"></h4>
     <table><tr>
-    	<td style="text-align:left;"><span id="save_set_as" class="i18n"></span> "<b contenteditable="true" id="save_set" class="i18n" data-i18n="new_set_name"></b>":<div id="save_set_info" class="i">i<div id="save_set_info_text" class="i_text"><span id="explanation_save_set" class="i18n"></span></div></div></td>
+    	<td style="text-align:left;"><span class="i18n" data-i18n="save_set_as"></span> "<b contenteditable="true" id="save_set" class="i18n" data-i18n="new_set_name"></b>":<div id="save_set_info" class="i">i<div id="save_set_info_text" class="i_text"><span class="i18n" data-i18n="explanation_save_set"></span></div></div></td>
         <td style="text-align:right;"><img src="../images/save.png" id="save_set_img" title="tooltip_save" class="i18n"></td>
     </tr><tr>
-    	<td style="text-align:left;"><span id="load_or_delete_set" class="i18n"></span> <select id="saved_sets"><option value="Default" id="default" class="i18n"></option></select>:</td>
+    	<td style="text-align:left;"><span class="i18n" data-i18n="load_or_delete_set"></span> <select id="saved_sets"><option value="Default" id="default" class="i18n" data-i18n="default"></option></select>:</td>
         <td style="text-align:right;"><img src="../images/delete.png" id="delete_set_img" title="tooltip_delete" class="i18n"> <img src="../images/load.png" id="load_set_img" title="tooltip_load" class="i18n"></td>
     </tr></table>
     </fieldset><br>
     
     <fieldset>
-    <h4><span id="look" class="i18n" data-i18n="look"></span>:</h4>
+    <h4><span class="i18n" data-i18n="look"></span>:</h4>
     <table><tr>
     	<td style="text-align:left;"><label for="color" class="i18n" data-i18n="color"></label>:</td>
         <td style="text-align:right;"><input type="color" id="color" name="color"></td>
@@ -56,7 +56,7 @@
         <td style="text-align:right;"><input type="range" name="opacity" id="opacity" min="0" max="100" value="50" step="1" /></td>
     </tr></table>
         
-    <h4><span id="border" class="i18n"></span>:</h4>
+    <h4><span class="i18n" data-i18n="border"></span>:</h4>
     <table><tr><td style="text-align:left;">
         <label for="border_width" class="i18n" data-i18n="border_width"></label>: 
         <input type="number" max="10" min="0" id="border_width" name="border_width" value="2">
@@ -64,7 +64,7 @@
         <label for="border_blur" class="i18n" data-i18n="border_blur"></label>: 
         <input type="number" max="10" min="0" id="border_blur" name="border_blur" value="0">
     </td><td style="text-align:right;">
-    	<span id="border_color" class="i18n"></span>: <input type="color" id="border_color" name="border_color" value="#FFFFFF">
+    	<span class="i18n" data-i18n="border_color"></span>: <input type="color" id="border_color" name="border_color" value="#FFFFFF">
     </td></tr></table>
     <br>
     <table class="c"><tr>
@@ -77,23 +77,23 @@
     </fieldset><br>
     
     <fieldset>
-    <h4><span id="behavior" class="i18n"></span>:</h4>
-    <span id="show_when" class="i18n"></span><br>
+    <h4><span class="i18n" data-i18n="behavior"></span>:</h4>
+    <span class="i18n" data-i18n="show_when"></span><br>
     <input type="range" name="show_when" id="show_when" min="1" max="3" value="2" step="1" style="width:100%;" />
     <table>
     	<tr>
-        	<td width="30%" style="text-align:left; padding-left:10px; vertical-align:top;"><span id="only_over" class="i18n"></span></td>
-            <td width="40%" style="text-align:center; vertical-align:top;"><span id="normal" class="i18n"></span></td>
-            <td width="30%" style="text-align:right; padding-right:10px; vertical-align:top;"><span id="always" class="i18n"></span></td>
+        	<td width="30%" style="text-align:left; padding-left:10px; vertical-align:top;"><span class="i18n" data-i18n="only_over"></span></td>
+            <td width="40%" style="text-align:center; vertical-align:top;"><span class="i18n" data-i18n="normal"></span></td>
+            <td width="30%" style="text-align:right; padding-right:10px; vertical-align:top;"><span class="i18n" data-i18n="always"></span></td>
         </tr>
     </table><br>
-    <span id="show_bg_bars_when" class="i18n"></span><br>
+    <span class="i18n" data-i18n="show_bg_bars_when"></span><br>
     <input type="range" name="show_bg_bars_when" id="show_bg_bars_when" min="1" max="3" value="3" step="1" style="width:100%;" />
     <table>
     	<tr>
-        	<td width="30%" style="text-align:left; padding-left:10px; vertical-align:top;"><span id="never" class="i18n"></span></td>
-            <td width="40%" style="text-align:center; vertical-align:top;"><span id="only_over" class="i18n"></span></td>
-            <td width="30%" style="text-align:right; padding-right:10px; vertical-align:top;"><span id="like_bars" class="i18n"></span></td>
+        	<td width="30%" style="text-align:left; padding-left:10px; vertical-align:top;"><span class="i18n" data-i18n="never"></span></td>
+            <td width="40%" style="text-align:center; vertical-align:top;"><span class="i18n" data-i18n="only_over"></span></td>
+            <td width="30%" style="text-align:right; padding-right:10px; vertical-align:top;"><span class="i18n" data-i18n="like_bars"></span></td>
         </tr>
 	</table><br>
 	<table>
@@ -118,8 +118,8 @@
     </fieldset><br>
     
     <fieldset>
-    <h4><span id="superbar" class="i18n"></span>:</h4>
-    <input type="checkbox" id="show_superbar" name="show_superbar"> <label for="show_superbar" class="i18n" data-i18n="show_superbar"></label><div id="superbar_info" class="i">i<div id="superbar_info_text" class="i_text"><span id="explanation_superbar" class="i18n"></span></div></div>
+    <h4><span class="i18n" data-i18n="superbar"></span>:</h4>
+    <input type="checkbox" id="show_superbar" name="show_superbar"> <label for="show_superbar" class="i18n" data-i18n="show_superbar"></label><div id="superbar_info" class="i">i<div id="superbar_info_text" class="i_text"><span class="i18n" data-i18n="explanation_superbar"></span></div></div>
     <div id="superbar_container" style="overflow:hidden; height:0;">
     <input type="checkbox" id="show_superbar_minipage" name="show_superbar_minipage" checked="checked"> <label for="show_superbar_minipage" class="i18n" data-i18n="show_superbar_minipage"></label><br>
     <table><tr>
@@ -130,14 +130,14 @@
     </fieldset><br>
     
     <fieldset>
-    <h4><span id="buttons" class="i18n"></span>:</h4>
-    <span data-i18n="show_buttons" class="i18n"></span><br>
+    <h4><span class="i18n" data-i18n="buttons"></span>:</h4>
+    <span class="i18n" data-i18n="show_buttons"></span><br>
     <input type="range" name="show_buttons" id="show_buttons" min="1" max="3" value="1" step="1" style="width:100%;" />
     <table>
     	<tr>
-        	<td width="20%" style="text-align:left; padding-left:10px; vertical-align:top;"><span id="never" class="i18n"></span></td>
-            <td width="60%" style="text-align:center; vertical-align:top;"><span id="fullscreen_only_short" class="i18n"></span></td>
-            <td width="20%" style="text-align:right; padding-right:10px; vertical-align:top;"><span id="always" class="i18n"></span></td>
+        	<td width="20%" style="text-align:left; padding-left:10px; vertical-align:top;"><span class="i18n" data-i18n="never"></span></td>
+            <td width="60%" style="text-align:center; vertical-align:top;"><span class="i18n" data-i18n="fullscreen_only_short"></span></td>
+            <td width="20%" style="text-align:right; padding-right:10px; vertical-align:top;"><span class="i18n" data-i18n="always"></span></td>
         </tr>
     </table><br>
     <div id="button_container" style="overflow:hidden; height:0;"><br>
@@ -152,29 +152,29 @@
         <input type="range" name="button_opacity" id="button_opacity" min="0" max="100" value="10" step="1" /><label id="button_opacity_display"><span class="slider_values" id="storage.button_opacity"></span></label>
         </td></tr></table>
         <br>
-        <span id="drag_buttons" class="i18n"></span>
+        <span class="i18n" data-i18n="drag_buttons"></span>
     </div>
     </fieldset><br>
     
     <fieldset>
-    <h4><span id="contextmenu" class="i18n"></span>:</h4>
-    <span id="show_contextmenu_when" class="i18n"></span><br>
+    <h4><span class="i18n" data-i18n="contextmenu"></span>:</h4>
+    <span class="i18n" data-i18n="show_contextmenu_when"></span><br>
     <input type="range" name="contextmenu_show_when" id="contextmenu_show_when" min="1" max="3" value="2" step="1" style="width:100%;" />
     <table>
     	<tr>
-        	<td width="30%" style="text-align:left; padding-left:10px; vertical-align:top;"><span id="never" class="i18n"></span></td>
-            <td width="40%" style="text-align:center; vertical-align:top;"><span id="contextmenu_over_only" class="i18n"></span></td>
-            <td width="30%" style="text-align:right; padding-right:10px; vertical-align:top;"><span id="always" class="i18n"></span></td>
+        	<td width="30%" style="text-align:left; padding-left:10px; vertical-align:top;"><span class="i18n" data-i18n="never"></span></td>
+            <td width="40%" style="text-align:center; vertical-align:top;"><span class="i18n" data-i18n="contextmenu_over_only"></span></td>
+            <td width="30%" style="text-align:right; padding-right:10px; vertical-align:top;"><span class="i18n" data-i18n="always"></span></td>
         </tr>
     </table>
     </fieldset><br>
     
     <fieldset>
-    <h4><span id="custom_scroll_functions" class="i18n"></span>:</h4>
-    <span id="use_custom_functions" class="i18n"></span><div id="own_functions_info" class="i">i<div id="own_functions_info_text" class="i_text"><span id="explanation_custom_functions" class="i18n"></span></div></div>
+    <h4><span class="i18n" data-i18n="custom_scroll_functions"></span>:</h4>
+    <span class="i18n" data-i18n="use_custom_functions"></span><div id="own_functions_info" class="i">i<div id="own_functions_info_text" class="i_text"><span class="i18n" data-i18n="explanation_custom_functions"></span></div></div>
     <table class="c"><tr>
         <td><input type="checkbox" id="use_own_scroll_functions" name="use_own_scroll_functions" checked="checked"></td>
-        <td><label for="use_own_scroll_functions" id="use_custom_functions_keyboard" class="i18n"></label></td>
+        <td><label for="use_own_scroll_functions" class="i18n" data-i18n="use_custom_functions_keyboard"></label></td>
     </tr><tr>
     	<td></td><td><div id="keyscroll_velocity_container" style="margin:-5px -4px 5px -4px;">
             <table><tr>
@@ -185,7 +185,7 @@
         </div></td>
     </tr><tr>
         <td><input type="checkbox" id="use_own_scroll_functions_mouse" name="use_own_scroll_functions_mouse" checked="checked"></td>
-        <td><label for="use_own_scroll_functions_mouse" id="use_custom_functions_mouse" class="i18n"></label></td>
+        <td><label for="use_own_scroll_functions_mouse" class="i18n" data-i18n="use_custom_functions_mouse"></label></td>
     </tr><tr>
     	<td></td><td><div id="mousescroll_container" style="margin:-5px -4px 5px -4px;">
             <table><tr>
@@ -200,7 +200,7 @@
         </div></td>
     </tr><tr>
         <td><input type="checkbox" id="animate_scroll" name="animate_scroll" checked="checked"></td>
-        <td><label for="animate_scroll" class="i18n" data-i18n="animate_scroll"></label><div id="animate_scroll_info" class="i">i<div id="animate_scroll_info_text" class="i_text"><span id="explanation_animate_scroll" class="i18n"></span></div></div> <span id="animate_up_to" class="i18n"></span> <select id="animate_scroll_max">
+        <td><label for="animate_scroll" class="i18n" data-i18n="animate_scroll"></label><div id="animate_scroll_info" class="i">i<div id="animate_scroll_info_text" class="i_text"><span class="i18n" data-i18n="explanation_animate_scroll"></span></div></div> <span class="i18n" data-i18n="animate_up_to"></span> <select id="animate_scroll_max">
                 <option value="1" class="i18n" data-i18n="page">1 </option>
                 <option value="2" class="i18n" data-i18n="pages" selected="selected">2 </option>
                 <option value="3" class="i18n" data-i18n="pages">3 </option>
@@ -211,7 +211,7 @@
     </tr><tr>
     	<td></td><td><div id="scroll_container" style="margin:-5px -4px 5px -4px;">
         <table><tr>
-            <td style="text-align:left; vertical-align:top; width:auto;"><label id="scroll_v_label" for="scroll_velocity"><span id="animatedscroll_velocity" class="i18n"></span></label>: <label id="scroll_velocity_display"><span class="slider_values" id="storage.scroll_velocity"></span>
+            <td style="text-align:left; vertical-align:top; width:auto;"><label id="scroll_v_label" for="scroll_velocity"><span class="i18n" data-i18n="animatedscroll_velocity"></span></label>: <label id="scroll_velocity_display"><span class="slider_values" id="storage.scroll_velocity"></span>
             </label></td>
             <td style="text-align:right;"><input type="range" name="scroll_velocity" id="scroll_velocity" min="1" max="15" value="5" data-defaultvalue="5" step="0.1"></td>
         </tr></table>
@@ -220,14 +220,14 @@
     </fieldset><br>
     
     <fieldset>
-    <h4><span id="external_interface_headline" class="i18n"></span>:</h4>
-    <input type="checkbox" id="external_interface" name="external_interface"> <label for="external_interface" class="i18n" data-i18n="external_interface"></label><div id="external_interface_info" class="i">i<div id="external_interface_info_text" class="i_text"><span id="explanation_external_interface" class="i18n"></span></div></div>
+    <h4><span class="i18n" data-i18n="external_interface_headline"></span>:</h4>
+    <input type="checkbox" id="external_interface" name="external_interface"> <label for="external_interface" class="i18n" data-i18n="external_interface"></label><div id="external_interface_info" class="i">i<div id="external_interface_info_text" class="i_text"><span class="i18n" data-i18n="explanation_external_interface"></span></div></div>
     </fieldset><br>
     
 </section>
 
 <footer>
-    <p><a href="http://my.opera.com/christoph142/blog/" target="_blank"><span id="footer" class="i18n"></span> :)</a><br><br></p>
+    <p><a href="http://my.opera.com/christoph142/blog/" target="_blank"><span class="i18n" data-i18n="footer"></span> :)</a><br><br></p>
 </footer>
   
 </body>

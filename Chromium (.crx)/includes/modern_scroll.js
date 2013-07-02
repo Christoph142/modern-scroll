@@ -1024,9 +1024,6 @@ function arrowkeyscroll()
 	if(e.which < 37 || e.which > 40 || modifierkey_pressed(e) || target_is_input(e)) return;
 	
 	window.removeEventListener("keydown", arrowkeyscroll, false);
-	// fix Google Docs & MyOpera Mail (no interface):
-	//if((window.scrollMaxY !== 0 || e.which === 37 || e.which === 39) && document.URL.indexOf("://vk.com") !== -1) 
-		//window.addEventListener("keydown", stopEvent, true);
 	
 	if(scroll_timeout_id_x){ window.cancelAnimationFrame(scroll_timeout_id_x); scroll_timeout_id_x = null; }
 	if(scroll_timeout_id_y){ window.cancelAnimationFrame(scroll_timeout_id_y); scroll_timeout_id_y = null; }

@@ -209,14 +209,13 @@ function add_page_handling(storage)
 
 function localize()
 {
-	if(chrome.i18n.getMessage("lang") === "ar") document.body.dir = "rtl"; else document.body.dir = "ltr";
+	if(chrome.i18n.getMessage("lang") === "ar" || chrome.i18n.getMessage("lang") === "ur_PK") document.body.dir = "rtl";
 	
 	var strings = document.getElementsByClassName("i18n");
 	for(var i = 0; i < strings.length; i++)
 	{
-		if(strings[i].tagName === "IMG")		strings[i].title = chrome.i18n.getMessage(strings[i].title); // tooltips
-		else if(strings[i].dataset.i18n)		strings[i].innerHTML += chrome.i18n.getMessage(strings[i].dataset.i18n);
-		else									strings[i].innerHTML += chrome.i18n.getMessage(strings[i].id);
+		if(strings[i].tagName === "IMG")	strings[i].title = chrome.i18n.getMessage(strings[i].title); // tooltips
+		else								strings[i].innerHTML += chrome.i18n.getMessage(strings[i].dataset.i18n);
 	}
 }
 
