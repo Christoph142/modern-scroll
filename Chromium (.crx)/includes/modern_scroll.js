@@ -60,7 +60,7 @@ function continue_add_ms()
 	
 	add_external_interface();
 	
-	add_dimension_listener();
+	addResizeListener(document.documentElement, check_dimensions);
 	check_dimensions();
 	
 	add_contextmenu();
@@ -82,7 +82,6 @@ function remove_ms()
 	window.removeEventListener("click", check_if_element_is_scrollable, false);
 	
 	window.removeEventListener("scroll", show_or_hide_buttons, false);
-	window.removeEventListener("scroll", onScroll, false);
 	window.removeEventListener("scroll", reposition_bars, false);
 	
 	window.clearTimeout(timeout);					timeout = null;
@@ -232,102 +231,98 @@ function add_functionality_2_bars(){
 		}, false);
 	}
 	
-	if(w.move_bars_during_scroll === "1") window.addEventListener("scroll", reposition_bars, false);
-	else window.addEventListener("scroll", onScroll, false);
+	window.addEventListener("scroll", reposition_bars, false);
 }
 
-function add_dimension_listener()
-{
-	function addFlowListener(element, type, fn){
-		var flow = type == 'over';
-		element.addEventListener('OverflowEvent' in window ? 'overflowchanged' : type + 'flow', function(e){
-			if (e.type == (type + 'flow') ||
-			((e.orient == 0 && e.horizontalOverflow == flow) ||
-			(e.orient == 1 && e.verticalOverflow == flow) ||
-			(e.orient == 2 && e.horizontalOverflow == flow && e.verticalOverflow == flow))) {
-				e.flow = type;
-				return fn.call(this, e);
-			}
-		}, false);
-	};
-	
-	function fireEvent(element, type, data, options){
-		var options = options || {},
-			event = document.createEvent('Event');
-		event.initEvent(type, 'bubbles' in options ? options.bubbles : true, 'cancelable' in options ? options.cancelable : true);
-		for (var z in data) event[z] = data[z];
-		element.dispatchEvent(event);
-    };
-	
-	function addResizeListener(element, fn){
-		var resize = 'onresize' in element;
-		if (!resize && !element._resizeSensor) {
-			var sensor = element._resizeSensor = document.createElement('div');
-				sensor.className = 'resize-sensor';
-				sensor.innerHTML = '<div class="resize-overflow"><div></div></div><div class="resize-underflow"><div></div></div>';
-				
-			var x = 0, y = 0,
-				first = sensor.firstElementChild.firstChild,
-				last = sensor.lastElementChild.firstChild,
-				matchFlow = function(event){
-					var change = false,
-						width = element.offsetWidth;
-					if (x != width) {
-						first.style.width = width - 1 + 'px';	
-						last.style.width = width + 1 + 'px';
-						change = true;
-						x = width;
-					}
-					var height = element.offsetHeight;
-					if (y != height) {
-						first.style.height = height - 1 + 'px';
-						last.style.height = height + 1 + 'px';	
-						change = true;
-						y = height;
-					}
-					if (change && event.currentTarget != element) fireEvent(element, 'resize');
-				};
+// resize listener hack by backalleycoder:
+function addFlowListener(element, type, fn){
+	var flow = type == 'over';
+	element.addEventListener('OverflowEvent' in window ? 'overflowchanged' : type + 'flow', function(e){
+		if (e.type == (type + 'flow') ||
+		((e.orient == 0 && e.horizontalOverflow == flow) ||
+		(e.orient == 1 && e.verticalOverflow == flow) ||
+		(e.orient == 2 && e.horizontalOverflow == flow && e.verticalOverflow == flow))) {
+			e.flow = type;
+			return fn.call(this, e);
+		}
+	}, false);
+};
+
+function fireEvent(element, type, data, options){
+	var options = options || {},
+		event = document.createEvent('Event');
+	event.initEvent(type, 'bubbles' in options ? options.bubbles : true, 'cancelable' in options ? options.cancelable : true);
+	for (var z in data) event[z] = data[z];
+	element.dispatchEvent(event);
+};
+
+function addResizeListener(element, fn){
+	var resize = 'onresize' in element;
+	if (!resize && !element._resizeSensor) {
+		var sensor = element._resizeSensor = document.createElement('div');
+			sensor.className = 'resize-sensor';
+			sensor.innerHTML = '<div class="resize-overflow"><div></div></div><div class="resize-underflow"><div></div></div>';
 			
-			if (getComputedStyle(element).position == 'static'){
-				element.style.position = 'relative';
-				element._resizeSensor._resetPosition = true;
-			}
-			addFlowListener(sensor, 'over', matchFlow);
-			addFlowListener(sensor, 'under', matchFlow);
-			addFlowListener(sensor.firstElementChild, 'over', matchFlow);
-			addFlowListener(sensor.lastElementChild, 'under', matchFlow);	
-			element.appendChild(sensor);
-			matchFlow({});
+		var x = 0, y = 0,
+			first = sensor.firstElementChild.firstChild,
+			last = sensor.lastElementChild.firstChild,
+			matchFlow = function(event){
+				var change = false,
+					width = element.offsetWidth;
+				if (x != width) {
+					first.style.width = width - 1 + 'px';	
+					last.style.width = width + 1 + 'px';
+					change = true;
+					x = width;
+				}
+				var height = element.offsetHeight;
+				if (y != height) {
+					first.style.height = height - 1 + 'px';
+					last.style.height = height + 1 + 'px';	
+					change = true;
+					y = height;
+				}
+				if (change && event.currentTarget != element) fireEvent(element, 'resize');
+			};
+		
+		if (getComputedStyle(element).position == 'static'){
+			element.style.position = 'relative';
+			element._resizeSensor._resetPosition = true;
 		}
-		var events = element._flowEvents || (element._flowEvents = []);
-		if (events.indexOf(fn) == -1) events.push(fn);
-		if (!resize) element.addEventListener('resize', fn, false);
-		element.onresize = function(e){
-			events.forEach(function(fn){
-				fn.call(element, e);
-			});
-		};
+		addFlowListener(sensor, 'over', matchFlow);
+		addFlowListener(sensor, 'under', matchFlow);
+		addFlowListener(sensor.firstElementChild, 'over', matchFlow);
+		addFlowListener(sensor.lastElementChild, 'under', matchFlow);	
+		element.appendChild(sensor);
+		matchFlow({});
+	}
+	var events = element._flowEvents || (element._flowEvents = []);
+	if (events.indexOf(fn) == -1) events.push(fn);
+	if (!resize) element.addEventListener('resize', fn, false);
+	element.onresize = function(e){
+		events.forEach(function(fn){
+			fn.call(element, e);
+		});
 	};
-	
-	function removeResizeListener(element, fn){
-		var index = element._flowEvents.indexOf(fn);
-		if (index > -1) element._flowEvents.splice(index, 1);
-		if (!element._flowEvents.length) {
-			var sensor = element._resizeSensor;
-			if (sensor) {
-				element.removeChild(sensor);
-				if (sensor._resetPosition) element.style.position = 'static';
-				delete element._resizeSensor;
-			}
-			if ('onresize' in element) element.onresize = null;
-			delete element._flowEvents;
-		}
-		element.removeEventListener('resize', fn);
-	};
-	
-	addResizeListener(document.documentElement, check_dimensions);
-}
+};
 
+function removeResizeListener(element, fn){
+	var index = element._flowEvents.indexOf(fn);
+	if (index > -1) element._flowEvents.splice(index, 1);
+	if (!element._flowEvents.length) {
+		var sensor = element._resizeSensor;
+		if (sensor) {
+			element.removeChild(sensor);
+			if (sensor._resetPosition) element.style.position = 'static';
+			delete element._resizeSensor;
+		}
+		if ('onresize' in element) element.onresize = null;
+		delete element._flowEvents;
+	}
+	element.removeEventListener('resize', fn);
+};
+// end of resize listener hack
+	
 function add_scrollingfunctions()
 {
 	if(!window.self.frameElement && w.use_own_scroll_functions === "0") return;
@@ -535,13 +530,11 @@ function resize_superbar()
 function drag_mode(which_bar){
 	if(which_bar){
 		window.removeEventListener("scroll", reposition_bars, false);
-		window.removeEventListener("scroll", onScroll, false);
 		document.getElementById("ms_page_cover").style.display = "inline";
 		document.getElementById("ms_"+which_bar).className = "dragged";
 	}
 	else{
-		if(w.move_bars_during_scroll === "1") window.addEventListener("scroll", reposition_bars, false);
-		else window.addEventListener("scroll", onScroll, false);
+		window.addEventListener("scroll", reposition_bars, false);
 		document.getElementById("ms_page_cover").style.display = null;
 		document.getElementsByClassName("dragged")[0].className = null;
 	}
@@ -776,8 +769,6 @@ function show_minipage()
 	window.scrollBy(-window.pageXOffset, -window.pageYOffset);
 }
 
-function onScroll(){ window.clearTimeout(timeout); timeout = window.setTimeout(reposition_bars, 100); }
-
 
 
 // #################################
@@ -949,8 +940,8 @@ function ms_scrollBy_y(y)
 	else by_y = 0;
 }
 
-function ms_scroll_start_x(){
-	window.removeEventListener("scroll", onScroll, false);
+function ms_scroll_start_x()
+{
 	window.removeEventListener("scroll", reposition_bars, false);
 	
 	show_bar("h");
@@ -979,8 +970,8 @@ function ms_scroll_start_x(){
 	}
 }
 
-function ms_scroll_start_y(){
-	window.removeEventListener("scroll", onScroll, false);
+function ms_scroll_start_y()
+{
 	window.removeEventListener("scroll", reposition_bars, false);
 	
 	show_bar("v");
@@ -1021,8 +1012,7 @@ function ms_scroll_end(direction)
 	
 	reposition_bars();
 	
-	if(w.move_bars_during_scroll === "1") window.addEventListener("scroll", reposition_bars, false);
-	else window.addEventListener("scroll", onScroll, false);
+	window.addEventListener("scroll", reposition_bars, false);
 }
 
 var last_clicked_element_is_scrollable;
@@ -1045,7 +1035,6 @@ function arrowkeyscroll()
 	else{
 		stopEvent();
 		window.removeEventListener("scroll", reposition_bars, false);
-		window.removeEventListener("scroll", onScroll, false);
 		
 		//if(test ===0){
 		if		(e.which === 40) scroll_timeout_id_y = window.requestAnimationFrame( function(){ arrowkeyscroll_down(Date.now()); } );
@@ -1053,13 +1042,13 @@ function arrowkeyscroll()
 		else if	(e.which === 39) scroll_timeout_id_x = window.requestAnimationFrame( function(){ arrowkeyscroll_right(Date.now()); } );
 		else					 scroll_timeout_id_x = window.requestAnimationFrame( function(){ arrowkeyscroll_left(Date.now()); } );
 		//}
-		if(w.move_bars_during_scroll === "1" && document.getElementById("modern_scroll_bars"))
+		if(document.getElementById("modern_scroll_bars"))
 		{
 			if(e.which === 40){
-				show_bar("v");
+				show_bar("v");/*
 				vbar.style.transition = "top "+(window.scrollMaxY-window.pageYOffset)/w.keyscroll_velocity+"ms linear";
 				vbar.style.top = window.innerHeight-parseInt(vbar.style.height)+"px";
-				/*
+				
 				if(test === 1)
 				{
 					scroll_start_time = Date.now();
@@ -1069,9 +1058,9 @@ function arrowkeyscroll()
 			}
 			else if(e.which === 38){
 				show_bar("v");
-				vbar.style.transition = "top "+window.pageYOffset/w.keyscroll_velocity+"ms linear";
+				/*vbar.style.transition = "top "+window.pageYOffset/w.keyscroll_velocity+"ms linear";
 				vbar.style.top = "0px";
-				/*
+				
 				if(test === 1)
 				{
 					scroll_start_time = Date.now();
@@ -1118,20 +1107,23 @@ function arrowkeyscroll()
 		reposition_bars();
 		vbar.style.transition = null;
 		hbar.style.transition = null;
-		if(w.move_bars_during_scroll === "1") window.addEventListener("scroll", reposition_bars, false);
-		else								  window.addEventListener("scroll", onScroll, false);
+		window.addEventListener("scroll", reposition_bars, false);
 	}
 	
 	function arrowkeyscroll_down(lastTick)
 	{
 		var curTick = Date.now();
-		window.scrollBy(0, (curTick - lastTick)*w.keyscroll_velocity);
+		var scrollamount = (curTick - lastTick)*w.keyscroll_velocity;
+		window.scrollBy(0, scrollamount);
+		vbar.style.top = (window.pageYOffset/window.scrollMaxY*(window.innerHeight-parseInt(vbar.style.height)))+"px";
 		scroll_timeout_id_y = window.requestAnimationFrame( function(){ arrowkeyscroll_down(curTick); } );
 	}
 	function arrowkeyscroll_up(lastTick)
 	{
 		var curTick = Date.now();
-		window.scrollBy(0, (lastTick - curTick)*w.keyscroll_velocity);
+		var scrollamount = (lastTick - curTick)*w.keyscroll_velocity;
+		window.scrollBy(0, scrollamount);
+		vbar.style.top = (window.pageYOffset/window.scrollMaxY*(window.innerHeight-parseInt(vbar.style.height)))+"px";
 		scroll_timeout_id_y = window.requestAnimationFrame( function(){ arrowkeyscroll_up(curTick); } );
 	}
 	function arrowkeyscroll_right(lastTick)

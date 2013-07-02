@@ -16,7 +16,6 @@ function update_settings(){ chrome.storage.sync.get( null, function(storage){
 	"show_bg_bars_when" :	(!storage["show_bg_bars_when"]		? "2" : storage["show_bg_bars_when"]),<!-- 1 = never, 2 = onmouseover only, 3 = like bars -->
 	"fullscreen_only" :		(!storage["fullscreen_only"]		? "0" : storage["fullscreen_only"]),
 	"bg_special_ends" :		(!storage["bg_special_ends"]		? "1" : storage["bg_special_ends"]),
-	"move_bars_during_scroll" : (!storage["move_bars_during_scroll"] ? "1" : storage["move_bars_during_scroll"]),
 	"show_superbar" :		(!storage["show_superbar"]			? "0" : storage["show_superbar"]),
 	"show_superbar_minipage" : (!storage["show_superbar_minipage"] ? "1" : storage["show_superbar_minipage"]),
 	"superbar_opacity" :	(!storage["superbar_opacity"]		? "70" : storage["superbar_opacity"]),
