@@ -1,3 +1,8 @@
+﻿v 3.1
+---------
+nouveau: manière plus efficiente et fiable de mise à jour des dimensions des bars
+fixé: les positions des barres sont incorrects pendant le défilement dans Chrome 27+ & Opera
+
 v 3.0
 ---------
 nouveau: entièrement compatible avec Chromium (Chrome et Opera 15)

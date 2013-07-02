@@ -1,3 +1,8 @@
+﻿v 3.1
+---------
+new: more efficient and reliable way of updating bars' sizes
+fix: bars' positions are incorrect during scrolling in Chrome 27+ & Opera
+
 v 3.0
 ---------
 novo: compatibilidade total no Chromium (Chrome & Opera 15)

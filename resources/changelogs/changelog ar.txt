@@ -1,4 +1,9 @@
-إصدار 3.0
+﻿v 3.1
+---------
+new: more efficient and reliable way of updating bars' sizes
+fix: bars' positions are incorrect during scrolling in Chrome 27+ & Opera
+
+v 3.0
 ---------
 جديد: توافق كلي مع كروميوم ( كروم و أوبرا 15)
 جديد: إخفاء أشرطة التمرير الإفتراضية تلقائيا.

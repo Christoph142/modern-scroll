@@ -1,3 +1,8 @@
+﻿v 3.1
+---------
+neu: effizienteres und verlässlicheres Aktualisieren der Leisten-Größen
+fix: Positionen der Leisten sind in Chrome 27+ & Opera während dem Scrollen inkorrekt
+
 v 3.0
 ---------
 neu: vollständig Chromium (Chrome & Opera 15) kompatibel

@@ -1,4 +1,9 @@
-﻿v 3.0
+﻿v 3.1
+---------
+new: more efficient and reliable way of updating bars' sizes
+fix: bars' positions are incorrect during scrolling in Chrome 27+ & Opera
+
+v 3.0
 ---------
 new: fully Chromium (Chrome & Opera 15) compatible
 new: hides default scroll bars automatically
