@@ -5,7 +5,7 @@
 	"homepage_url"		: "http://my.opera.com/christoph142/blog",
 	
 	"default_locale"	: "en",
-	"version"			: "3.0",
+	"version"			: "3.1",
 	"icons"				: { "16": "images/contextmenu.png", "128": "images/icon@2x.png" },
 	
 	"content_scripts" :
