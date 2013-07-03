@@ -21,7 +21,7 @@ var strings =
         "description": ""
     },
     "explanation_save_set": {
-        "message": "Zde m\u016f\u017eete ulo\u017eit sou\u010dasnou konfiguraci. Jen odentrujte n\u00e1zev a klikn\u011bte na tla\u010d\u00edtko ulo\u017eit. Pokud vyberete jm\u00e9no, kter\u00e9 ji\u017e existuje, tak obsah bude p\u0159eps\u00e1n.",
+        "message": "Zde m\u016f\u017eete ulo\u017eit sou\u010dasnou konfiguraci. Jen vlo\u017ete n\u00e1zev a klikn\u011bte na tla\u010d\u00edtko ulo\u017eit. Pokud vyberete jm\u00e9no, kter\u00e9 ji\u017e existuje, tak obsah bude p\u0159eps\u00e1n.",
         "description": ""
     },
     "fullscreen_only": {
@@ -33,7 +33,7 @@ var strings =
         "description": ""
     },
     "contextmenu_show": {
-        "message": "Uk\u00e1zat modern\u00ed rolov\u00e1n\u00ed",
+        "message": "Uk\u00e1zat modern scroll",
         "description": ""
     },
     "bg_special_ends": {
@@ -65,7 +65,7 @@ var strings =
         "description": ""
     },
     "contextmenu_over_only": {
-        "message": "Kdy\u017e kliknu prav\u00fdm tla\u010d\u00edtkem (right-click) do prost\u0159ed\u00ed modern\u00edho rolov\u00e1n\u00ed",
+        "message": "Kdy\u017e kliknu prav\u00fdm tla\u010d\u00edtkem (right-click) do prost\u0159ed\u00ed modern scroll",
         "description": ""
     },
     "border": {
@@ -225,7 +225,7 @@ var strings =
         "description": ""
     },
     "disable_standard_bars": {
-        "message": "Pokud nepou\u017e\u00edv\u00e1te modern\u00ed rolov\u00e1n\u00ed v\u00fdhradn\u011b v celoobrazovkov\u00e9m re\u017eimu, tak standardn\u00ed rolovac\u00ed posuvn\u00edky Opery by m\u011bly b\u00fdt vypnuty pro p\u0159edej\u00edt\u00ed zdvojen\u00ed posuvn\u00edk\u016f.<br>Pro ud\u011bl\u00e1n\u00ed tohoto jd\u011bte do <strong>Opera \u2192 Nastaven\u00ed \u2192 Nastaven\u00ed... (Ctrl+F12) \u2192 Pokro\u010dil\u00e9 volby \u2192 Prohl\u00ed\u017een\u00ed</strong> a vypn\u011bte zde \"Zobrazit posuvn\u00edky\".",
+        "message": "Pokud nepou\u017e\u00edv\u00e1te modern scroll v\u00fdhradn\u011b v celoobrazovkov\u00e9m re\u017eimu, tak standardn\u00ed rolovac\u00ed posuvn\u00edky Opery by m\u011bly b\u00fdt vypnuty pro p\u0159edej\u00edt\u00ed zdvojen\u00ed posuvn\u00edk\u016f.<br>Pro ud\u011bl\u00e1n\u00ed tohoto jd\u011bte do <strong>Opera \u2192 Nastaven\u00ed \u2192 Nastaven\u00ed... (Ctrl+F12) \u2192 Pokro\u010dil\u00e9 volby \u2192 Prohl\u00ed\u017een\u00ed</strong> a vypn\u011bte zde \"Zobrazit posuvn\u00edky\".",
         "description": ""
     },
     "gap": {
@@ -253,7 +253,7 @@ var strings =
         "description": ""
     },
     "explanation_external_interface": {
-        "message": "Zatrhnut\u00edm t\u00e9to mo\u017enosti bude modern\u00ed rolov\u00e1n\u00ed poskytvet n\u011bjak\u00e9 z vlastn\u00edch kl\u00ed\u010dov\u00fdch vlastnost\u00ed pro u\u017e\u00edv\u00e1n\u00ed roz\u0161\u00ed\u0159en\u00ed t\u0159et\u00edch stran, web\u016f nebo va\u0161e. M\u016f\u017etete tedy nap\u0159\u00edklad vytvo\u0159it vlastn\u00ed pohybov\u00fd p\u0159\u00edkaz pro my\u0161.<br><a href='http://my.opera.com/christoph142/blog/2013/02/20/modern-scroll-documentation' target='_blank'>Nav\u0161tivte tuto dokumentaci pro zji\u0161t\u011bn\u00ed v\u00edce informac\u00ed (ps\u00e1no anglicky).</a>",
+        "message": "Zatrhnut\u00edm t\u00e9to mo\u017enosti bude modern scroll poskytovat n\u011bjak\u00e9 z vlastn\u00edch kl\u00ed\u010dov\u00fdch vlastnost\u00ed pro u\u017e\u00edv\u00e1n\u00ed roz\u0161\u00ed\u0159en\u00ed t\u0159et\u00edch stran, web\u016f nebo va\u0161e. M\u016f\u017eete tedy nap\u0159\u00edklad vytvo\u0159it vlastn\u00ed pohybov\u00fd p\u0159\u00edkaz pro my\u0161.<br><a href='http://my.opera.com/christoph142/blog/2013/02/20/modern-scroll-documentation' target='_blank'>Nav\u0161tivte tuto dokumentaci pro zji\u0161t\u011bn\u00ed v\u00edce informac\u00ed (ps\u00e1no anglicky).</a>",
         "description": ""
     },
     "contextmenu": {
@@ -305,7 +305,7 @@ var strings =
         "description": ""
     },
     "contextmenu_hide": {
-        "message": "Skr\u00fdt modern\u00ed rolov\u00e1n\u00ed",
+        "message": "Skr\u00fdt modern scroll",
         "description": ""
     },
     "superbar": {
@@ -325,7 +325,7 @@ var strings =
         "description": ""
     },
     "container1": {
-        "message": "Spustit modern\u00ed rolov\u00e1n\u00ed ve vzd\u00e1lenosti od",
+        "message": "Spustit modern scroll ve vzd\u00e1lenosti od",
         "description": ""
     },
     "page": {
