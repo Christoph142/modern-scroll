@@ -61,6 +61,7 @@ function continue_add_ms()
 	add_external_interface();
 	
 	addResizeListener(document.documentElement, check_dimensions);
+	document.addEventListener("readystatechange", check_dimensions, false);
 	check_dimensions();
 	
 	add_contextmenu();
@@ -413,8 +414,8 @@ function set_new_scrollMax_values()
 	var new_scrollWidth = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth);
 	var new_scrollHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
 	
-	window.scrollMaxX = (new_scrollWidth > window.innerWidth ? new_scrollWidth-window.innerWidth : 0);
-	window.scrollMaxY = (new_scrollHeight > window.innerHeight ? new_scrollHeight-window.innerHeight : 0);
+	window.scrollMaxX = (new_scrollWidth > window.innerWidth+1 ? new_scrollWidth-window.innerWidth : 0);
+	window.scrollMaxY = (new_scrollHeight > window.innerHeight+1 ? new_scrollHeight-window.innerHeight : 0);
 }
 
 function adjust_ui_new_size()
