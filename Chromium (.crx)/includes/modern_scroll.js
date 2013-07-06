@@ -1069,13 +1069,13 @@ function arrowkeyscroll()
 			}
 			else if(e.which === 39){
 				show_bar("h");
-				hbar.style.transition = "left "+(window.scrollMaxX-window.pageXOffset)/w.keyscroll_velocity+"ms linear";
-				hbar.style.left = window.innerWidth-parseInt(hbar.style.width)-(w.vbar_at_left === "0" ? w.hover_size : 0)+"px";
+				/*hbar.style.transition = "left "+(window.scrollMaxX-window.pageXOffset)/w.keyscroll_velocity+"ms linear";
+				hbar.style.left = window.innerWidth-parseInt(hbar.style.width)-(w.vbar_at_left === "0" ? w.hover_size : 0)+"px";*/
 			}
 			else if(e.which === 37){
 				show_bar("h");
-				hbar.style.transition = "left "+window.pageXOffset/w.keyscroll_velocity+"ms linear";
-				hbar.style.left = (w.vbar_at_left === "1" ? w.hover_size : 0)+"px";
+				/*hbar.style.transition = "left "+window.pageXOffset/w.keyscroll_velocity+"ms linear";
+				hbar.style.left = (w.vbar_at_left === "1" ? w.hover_size : 0)+"px";*/
 			}
 		}
 	}
@@ -1112,16 +1112,14 @@ function arrowkeyscroll()
 	function arrowkeyscroll_down(lastTick)
 	{
 		var curTick = Date.now();
-		var scrollamount = (curTick - lastTick)*w.keyscroll_velocity;
-		window.scrollBy(0, scrollamount);
+		window.scrollBy(0, (curTick - lastTick)*w.keyscroll_velocity);
 		vbar.style.top = (window.pageYOffset/window.scrollMaxY*(window.innerHeight-parseInt(vbar.style.height)))+"px";
 		scroll_timeout_id_y = window.requestAnimationFrame( function(){ arrowkeyscroll_down(curTick); } );
 	}
 	function arrowkeyscroll_up(lastTick)
 	{
 		var curTick = Date.now();
-		var scrollamount = (lastTick - curTick)*w.keyscroll_velocity;
-		window.scrollBy(0, scrollamount);
+		window.scrollBy(0, (lastTick - curTick)*w.keyscroll_velocity);
 		vbar.style.top = (window.pageYOffset/window.scrollMaxY*(window.innerHeight-parseInt(vbar.style.height)))+"px";
 		scroll_timeout_id_y = window.requestAnimationFrame( function(){ arrowkeyscroll_up(curTick); } );
 	}
@@ -1129,12 +1127,14 @@ function arrowkeyscroll()
 	{
 		var curTick = Date.now();
 		window.scrollBy((curTick - lastTick)*w.keyscroll_velocity, 0);
+		hbar.style.left = window.pageXOffset/window.scrollMaxX*(window.innerWidth-w.hover_size-parseInt(hbar.style.width))+(w.vbar_at_left === "1" ? parseInt(w.hover_size) : 0)+"px";
 		scroll_timeout_id_x = window.requestAnimationFrame( function(){ arrowkeyscroll_right(curTick); } );
 	}
 	function arrowkeyscroll_left(lastTick)
 	{
 		var curTick = Date.now();
 		window.scrollBy((lastTick - curTick)*w.keyscroll_velocity, 0);
+		hbar.style.left = window.pageXOffset/window.scrollMaxX*(window.innerWidth-w.hover_size-parseInt(hbar.style.width))+(w.vbar_at_left === "1" ? parseInt(w.hover_size) : 0)+"px";
 		scroll_timeout_id_x = window.requestAnimationFrame( function(){ arrowkeyscroll_left(curTick); } );
 	}
 }
