@@ -1,3 +1,4 @@
+var strings = 
 {
     "animatedscroll_velocity": {
         "message": "Tốc độ của hiệu ứng khi kéo chuột",
@@ -335,4 +336,4 @@
         "message": "điểm ảnh đến đường viền",
         "description": ""
     }
-}
+}; 

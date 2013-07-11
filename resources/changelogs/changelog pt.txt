@@ -1,6 +1,8 @@
 ﻿v 3.1
 ---------
 novo: atualização do tamanho das barras mais eficiente e confiável
+new: keeping the mouse down on background bars will scroll page to mouse position
+new: Vietnamese translation (thx ppanhh)
 correção: posições das barras incorretas durante rolagem no Chrome 27+ & Opera
 
 v 3.0

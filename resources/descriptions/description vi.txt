@@ -1,17 +1,17 @@
-﻿----- This extension requires Opera 12.10 or newer! -----
-modern scroll takes scrolling to a whole new level.
-(Opera's standard scrollbars should be disabled to avoid double bars. Therefore go to Opera → Settings → Preferences... (Ctrl+F12) → Advanced → Browsing and uncheck "Show scroll bars")
+﻿----- Tiện ích này chỉ chạy trên Opera 12.10 hoặc mới hơn! -----
+chương trình này sẽ giúp bạn thao tác khi trượt lên một tầm cao mới.
+(Thanh cuộn mặc định của Opera sẽ bị vô hiệu hóa để tránh trường hợp hiển thị chồng lên nhau. Hãy thao tác Opera → Settings → Preferences... (Ctrl+F12) → Advanced → Browsing và bỏ chọn "Show scroll bars")
 
-What's awesome about modern scroll?
+Điều gì đặc biệt mà chương trình này mang lại?
 
-+ boosts your scrolling performance!
-+ scrolling speed is adjustable
-+ its scroll bars don't take up any space so the whole screen width can be used to display what a browser is made for: websites
-+ elements or whole pages don't shift by some pixels when content changes and bars become (un)necessary
-+ scroll bars are usable in fullscreen mode as well
-+ scroll bars automatically hide when they are not needed
-+ unique "superbar" which makes it possible to scroll horizontally and vertically at the same time
-+ optional buttons for scrolling to top and bottom of the page
-+ behavior and appearance is fully customizable
++ cải thiện hiệu năng khi trượt!
++ chỉnh tốc độ trượt
++ Phần thanh trượt sẽ không chiếm dụng khoảng không gian trên màn hình, và như vậy có thể hiển thị nội dung tốt hơn dành cho: websites
++ các đối tượng hoặc toàn bộ trang sẽ không chuyển dịch bởi các điểm ảnh khi nội dung thay đổi và thanh trượt trở nên (không)cần thiết
++ thanh trượt cũng có thể được sử dụng trong chế độ toàn màn hình
++ thanh trượt tự động ẩn khi không cần thiết
++ thanh tác vụ độc đáo sẽ giúp bạn trượt theo chiều ngang lẫn chiều dọc vào bất cứ thời điểm nào
++ bao gồm các nút tùy chọn cho phép bạn trượt lên đầu hoặc cuối trang
++ thao tác và giao diện hoàn toàn có thể được tùy chỉnh
 
-This extension was originally planned as an update to "Slim ScrollBar" by damage92. But since it doesn't have a single line of code in common with the original extension we decided to publish it as a new one. Slim scrollbar will of course continue to exist if you prefer the other implementation or if you are using Opera below 12.10 where modern scroll isn't available. Due to damage92's rare spare time it's not being actively developed at the moment, though.
+Phần tiện ích này vốn là một phiên bản cập nhật "Slim ScrollBar" của damage92. Nhưng hầu như chương trình đó không có bất kỳ cải thiện nào về mã nguồn nên chúng tôi đã tự mình phát triển phiên bản mới. Slim scrollbar sẽ vẫn hữu dụng nếu bạn sử dụng phiên bản Opera cũ hơn 12.10.

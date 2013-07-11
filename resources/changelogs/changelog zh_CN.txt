@@ -1,6 +1,8 @@
 ﻿v 3.1
 ---------
 new: more efficient and reliable way of updating bars' sizes
+new: keeping the mouse down on background bars will scroll page to mouse position
+new: Vietnamese translation (thx ppanhh)
 fix: bars' positions are incorrect during scrolling in Chrome 27+ & Opera
 
 v 3.0
