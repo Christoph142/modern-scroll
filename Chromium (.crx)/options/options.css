@@ -18,6 +18,12 @@ input[type=text]{ color:#999; text-align:center; }
 input[type=text]:focus{ color:#000; background:rgba(0,0,0,0); border:0; }
 .slider_values::after{ content:"%"; }
 
+#help		{ position:fixed; top:20px; right:20px; width:auto; height:auto; box-shadow:0 0 10px #F00; background:#FFF; padding:10px; text-align:center; cursor:pointer; }
+#close_help	{ position:fixed; top:25px; right:25px; height:13px; width:13px; border-radius:4px; border:1px solid #BBB; cursor:default; transition:200ms; }
+#close_help:hover{background:#DDD;}
+#close_help > p{ position:fixed; top:5px; right:30px; }
+#close_help > p::before{ content:"x"; font-size:xx-small; }
+
 #save_set_img, #delete_set_img, #load_set_img{ height:17px; cursor:pointer; }	
 #save_set	{ cursor:text; }
 

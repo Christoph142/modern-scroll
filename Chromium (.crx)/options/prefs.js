@@ -108,7 +108,7 @@ function restoreprefs()
 		var which_value = document.getElementsByClassName("slider_values")[i].id.split(".")[1];
 		var raw_value = (storage[which_value] ? storage[which_value] : document.getElementById(which_value).value);
 		document.getElementsByClassName("slider_values")[i].innerHTML = (document.getElementById(which_value).dataset.defaultvalue ? Math.round(100*raw_value/document.getElementById(which_value).dataset.defaultvalue) : raw_value);
-	}
+	}	
 	
 	add_page_handling(storage);
 }
@@ -227,6 +227,15 @@ function localize()
 		if(strings[i].tagName === "IMG")	strings[i].title = chrome.i18n.getMessage(strings[i].title); // tooltips
 		else								strings[i].innerHTML += chrome.i18n.getMessage(strings[i].dataset.i18n);
 	}
+	
+	//help:
+	document.getElementById("help").addEventListener("click", function(){
+		window.open("http://my.opera.com/christoph142/blog/2013/06/27/help");
+	}, false);
+	document.getElementById("close_help").addEventListener("click", function(e){
+		e.stopPropagation();
+		document.getElementById("help").style.display = "none";
+	}, false);
 }
 
 var bubble_setback; // timeout for info bubbles
