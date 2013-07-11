@@ -699,8 +699,34 @@ function scroll_bg_v()
 	
 	if		(window.event.clientY < 50 && w.bg_special_ends === "1")						scroll_Pos1();
 	else if	((window.innerHeight-window.event.clientY) < 50 && w.bg_special_ends === "1")	scroll_End();
-	else if	(window.event.clientY > parseInt(vbar.style.top))								scroll_PageDown();
-	else																					scroll_PageUp();
+	else // scroll one more page until mouse position is reached if mouse is kept pressed:
+	{
+		var t;
+		scroll_bg_v_loop(window.event.clientY, parseInt(vbar.style.top));
+		
+		function scroll_bg_v_loop(mouse, vbar_top)
+		{
+			if(mouse-parseInt(vbar.style.height) > vbar_top)
+			{
+				scroll_PageDown();
+				vbar_top += parseInt(vbar.style.height);
+			}
+			else if(mouse < vbar_top)
+			{
+				scroll_PageUp();
+				vbar_top -= parseInt(vbar.style.height);
+			}
+			
+			t = window.setTimeout(function(){scroll_bg_v_loop(mouse, vbar_top);}, Math.round(window.innerHeight/w.scroll_velocity));
+		}
+		
+		window.addEventListener("mouseup", scroll_bg_v_end, false);
+		function scroll_bg_v_end()
+		{
+			window.clearTimeout(t);
+			window.removeEventListener("mouseup", scroll_bg_v_end, false);
+		}
+	}
 }
 
 function scroll_bg_h(){
