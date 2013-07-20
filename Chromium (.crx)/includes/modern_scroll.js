@@ -60,6 +60,7 @@ function continue_add_ms()
 	
 	add_external_interface();
 	
+	document.addEventListener("click", check_dimensions, false);
 	addResizeListener(document.documentElement, check_dimensions);
 	document.addEventListener("readystatechange", check_dimensions, false);
 	check_dimensions();
@@ -257,7 +258,7 @@ function fireEvent(element, type, data, options){
 };
 
 function addResizeListener(element, fn){
-	var resize = "onresize" in element;
+	var resize = false;//"onresize" in element;
 	if (!resize && !element._resizeSensor) {
 		var sensor = element._resizeSensor = document.createElement("div");
 			sensor.className = "resize-sensor";
