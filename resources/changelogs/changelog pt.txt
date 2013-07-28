@@ -2,6 +2,7 @@
 ---------
 novo: atualização do tamanho das barras mais eficiente e confiável
 novo: manter o mouse pressionado nas barras de fundo rola a página até a posição do cursor
+new: hide all scroll bars when elements are not hovered or focused
 novo: tradução Vietnamita (obg ppanhh)
 correção: posições das barras incorretas durante rolagem no Chrome 27+ & Opera
 
