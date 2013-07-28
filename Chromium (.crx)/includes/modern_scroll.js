@@ -60,6 +60,17 @@ function continue_add_ms()
 	
 	add_external_interface();
 	
+	
+	
+	/*##############################################
+	var t = document.createElement("div");
+	t.style = "position:absolute !important; top:0; left:0; right:0; bottom:0; background:#F00;";
+	t.innerHTML = "############";
+	document.body.appendChild(t);
+	document.body.addEventListener("overflowchanged", function(){alert("miiiiip!"); t.style.height = (parseInt(document.body.offsetHeight)-(-1))+"px";}, false);
+	*/
+	
+	
 	document.addEventListener("click", check_dimensions, false);
 	addResizeListener(document.documentElement, check_dimensions);
 	document.addEventListener("readystatechange", check_dimensions, false);
@@ -146,6 +157,8 @@ function inject_css()
 		"#ms_superbar.dragged{ opacity:"+(w.show_superbar_minipage === "1" ? 1 : (w.superbar_opacity/100))+"; }\n\n"+
 		
 		// page elements:
+		/* hide all scrollbars inside of body when not hovered or focused if bars are not set to "show always": */
+		(w.show_when !== "3" ? "body *:not(:hover):not(:focus)::-webkit-scrollbar{ display:none !important; width:0 !important; height:0 !important; }\n" : "")+
 		"body *::-webkit-scrollbar{ width:"+w.size+"px; height:"+w.size+"px; }\n"+
 		"body *::-webkit-scrollbar-button{ display:none; }\n"+//width:"+w.size+"px; height:"+w.size+"px; background:"+w.color_bg+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" !important; }"+
 		"body *::-webkit-scrollbar-track { background:"+w.color_bg+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" !important; border-radius:"+w.border_radius+"px; }\n"+
