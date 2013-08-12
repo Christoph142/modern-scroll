@@ -59,23 +59,7 @@ function continue_add_ms()
 	window.addEventListener("click", check_if_element_is_scrollable, false);
 	
 	add_external_interface();
-	
-	
-	
-	/*##############################################
-	var t = document.createElement("div");
-	t.style = "position:absolute !important; top:0; left:0; right:0; bottom:0; background:#F00;";
-	t.innerHTML = "############";
-	document.body.appendChild(t);
-	document.body.addEventListener("overflowchanged", function(){alert("miiiiip!"); t.style.height = (parseInt(document.body.offsetHeight)-(-1))+"px";}, false);
-	*/
-	
-	
-	document.addEventListener("click", check_dimensions, false);
-	addResizeListener(document.documentElement, check_dimensions);
-	document.addEventListener("readystatechange", check_dimensions, false);
-	check_dimensions();
-	
+	add_dimension_checkers();
 	add_contextmenu();
 	
 	if(document.URL.substr(0,19) !== "chrome-extension://") document.addEventListener("resize", adjust_ui_fullscreen_change, false);
@@ -86,8 +70,14 @@ function remove_ms()
 	if(!document.getElementById("modern_scroll")) return;
 	
 	document.removeEventListener("resize", adjust_ui_fullscreen_change, false);
-	
-	removeResizeListener(document.documentElement, check_dimensions);
+	document.removeEventListener("readystatechange", add_dimension_checkers, false);
+	DOM_observer.disconnect();
+ 	
+	document.body.removeEventListener("transitionend", check_dimensions, false);
+	window.removeEventListener("load", check_dimensions, false);
+	window.removeEventListener("resize", check_dimensions, false);
+	window.removeEventListener("mouseup", check_dimensions_after_click, false);
+
 	
 	window.removeEventListener("keydown", arrowkeyscroll, false);
 	window.removeEventListener("keydown", otherkeyscroll, false);
@@ -99,6 +89,7 @@ function remove_ms()
 	
 	window.clearTimeout(timeout);					timeout = null;
 	window.clearTimeout(hide_timeout);				hide_timeout = null;
+	window.clearTimeout(dimension_check_timeout);	dimension_check_timeout = null;
 	
 	delete window.modernscroll;
 	
@@ -249,95 +240,39 @@ function add_functionality_2_bars(){
 	window.addEventListener("scroll", reposition_bars, false);
 }
 
-// resize listener hack by backalleycoder:
-function addFlowListener(element, type, fn){
-	var flow = type === "over";
-	element.addEventListener("OverflowEvent" in window ? "overflowchanged" : type + "flow", function(e){
-		if	(e.type === (type + "flow") || ((e.orient === 0 && e.horizontalOverflow === flow) ||
-			(e.orient === 1 && e.verticalOverflow === flow) || (e.orient === 2 && e.horizontalOverflow === flow && e.verticalOverflow === flow)))
-		{
-			e.flow = type;
-			return fn.call(this, e);
-		}
-	}, false);
-};
-
-function fireEvent(element, type, data, options){
-	var options = options || {},
-		event = document.createEvent("Event");
-	event.initEvent(type, "bubbles" in options ? options.bubbles : true, "cancelable" in options ? options.cancelable : true);
-	for (var z in data) event[z] = data[z];
-	element.dispatchEvent(event);
-};
-
-function addResizeListener(element, fn){
-	var resize = false;//"onresize" in element;
-	if (!resize && !element._resizeSensor) {
-		var sensor = element._resizeSensor = document.createElement("div");
-			sensor.className = "resize-sensor";
-			sensor.innerHTML = "<div class='resize-overflow'><div></div></div><div class='resize-underflow'><div></div></div>";
-			
-		var x = 0, y = 0,
-			first = sensor.firstElementChild.firstChild,
-			last = sensor.lastElementChild.firstChild,
-			matchFlow = function(event){
-				var change = false,
-					width = element.offsetWidth;
-				if (x !== width) {
-					first.style.width = width - 1 + "px";	
-					last.style.width = width + 1 + "px";
-					change = true;
-					x = width;
-				}
-				var height = element.offsetHeight;
-				if (y !== height) {
-					first.style.height = height - 1 + "px";
-					last.style.height = height + 1 + "px";	
-					change = true;
-					y = height;
-				}
-				if (change && event.currentTarget !== element) fireEvent(element, "resize");
-			};
-		
-		if (getComputedStyle(element).position === "static"){
-			element.style.position = "relative";
-			element._resizeSensor._resetPosition = true;
-		}
-		addFlowListener(sensor, "over", matchFlow);
-		addFlowListener(sensor, "under", matchFlow);
-		addFlowListener(sensor.firstElementChild, "over", matchFlow);
-		addFlowListener(sensor.lastElementChild, "under", matchFlow);	
-		element.appendChild(sensor);
-		matchFlow({});
-	}
-	var events = element._flowEvents || (element._flowEvents = []);
-	if (events.indexOf(fn) === -1) events.push(fn);
-	if (!resize) element.addEventListener("resize", fn, false);
-	element.onresize = function(e){
-		events.forEach(function(fn){
-			fn.call(element, e);
-		});
-	};
-};
-
-function removeResizeListener(element, fn){
-	var index = element._flowEvents.indexOf(fn);
-	if (index > -1) element._flowEvents.splice(index, 1);
-	if (!element._flowEvents.length)
+var DOM_observer = new WebKitMutationObserver(check_dimensions);
+function add_dimension_checkers()
+{
+	if(document.readyState !== "complete")
 	{
-		var sensor = element._resizeSensor;
-		if (sensor)
-		{
-			element.removeChild(sensor);
-			if (sensor._resetPosition) element.style.position = "static";
-			delete element._resizeSensor;
-		}
-		if ("onresize" in element) element.onresize = null;
-		delete element._flowEvents;
+		window.addEventListener("load", check_dimensions, false);
+		document.addEventListener("readystatechange", add_dimension_checkers, false); // fires when all resources, i.e. images are loaded
+		return;
 	}
-	element.removeEventListener("resize", fn);
-};
-// end of resize listener hack
+	
+	document.body.addEventListener("overflowchanged", function(e){ alert(e.verticalOverflow);}, false);
+	
+	document.addEventListener("click", check_dimensions, false);
+	document.addEventListener("readystatechange", check_dimensions, false);
+	
+	window.addEventListener("resize", check_dimensions, false);
+	window.addEventListener("mouseup", check_dimensions_after_click, false);
+	document.body.addEventListener("transitionend", check_dimensions, false);
+	
+	DOM_observer.observe(document.body, { childList:true, subtree:true });
+	
+	check_dimensions();
+}
+
+var dimension_check_timeout;
+function check_dimensions_after_click()
+{
+	if(window.event.target.id.substr(0,3) === "ms_") return;
+	last_clicked_element_is_scrollable = is_scrollable(window.event.target, 2) ? 1 : 0;
+	
+	window.clearTimeout(dimension_check_timeout);
+	dimension_check_timeout = window.setTimeout(check_dimensions, 200); // needs some time to affect page height if click expands element
+}
 	
 function add_scrollingfunctions()
 {
