@@ -250,8 +250,7 @@ function add_dimension_checkers()
 		return;
 	}
 	
-	document.body.addEventListener("overflowchanged", function(e){ alert(e.verticalOverflow);}, false);
-	
+	document.body.addEventListener("overflowchanged", check_dimensions, false); //#####
 	document.addEventListener("click", check_dimensions, false);
 	document.addEventListener("readystatechange", check_dimensions, false);
 	
