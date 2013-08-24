@@ -1,9 +1,8 @@
-﻿v 3.1
+﻿v 3.0.1
 ---------
-nouveau: manière plus efficiente et fiable de mise à jour des dimensions des bars
-new: keeping the mouse down on background bars will scroll page to mouse position
-new: hide all scroll bars when elements are not hovered or focused
-new: Vietnamese translation (thx ppanhh)
+nouveau: garder la souris appuyé sur les barres de fond permet de défiler la page à la position de la souris
+nouveau: cache toutes les barres de défilement lorsque les éléments ne sont pas plané ou concentrés
+nouveau: Traduction en vietnamien (merci ppanhh)
 fixé: les positions des barres sont incorrects pendant le défilement dans Chrome 27+ & Opera
 
 v 3.0

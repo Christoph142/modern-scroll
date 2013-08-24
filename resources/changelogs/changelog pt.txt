@@ -1,8 +1,7 @@
-﻿v 3.1
+﻿v 3.0.1
 ---------
-novo: atualização do tamanho das barras mais eficiente e confiável
 novo: manter o mouse pressionado nas barras de fundo rola a página até a posição do cursor
-new: hide all scroll bars when elements are not hovered or focused
+novo: esconde todas as barras quando elementos não estão focados ou com o mouse sobre
 novo: tradução Vietnamita (obg ppanhh)
 correção: posições das barras incorretas durante rolagem no Chrome 27+ & Opera
 

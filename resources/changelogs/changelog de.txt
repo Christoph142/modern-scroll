@@ -1,6 +1,5 @@
-﻿v 3.1
+﻿v 3.0.1
 ---------
-neu: effizienteres und verlässlicheres Aktualisieren der Leisten-Größen
 neu: Gedrückt-halten der Maus auf den Hintergrund-Leisten scrollt zur Maus-Position
 neu: alle Scrollbars werden ausgeblendet, wenn die entsprechenden Elemente keinen Fokus haben
 neu: Vietnamesische Übersetzung (Danke ppanhh)
