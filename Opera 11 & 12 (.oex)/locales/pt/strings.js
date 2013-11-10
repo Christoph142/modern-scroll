@@ -9,11 +9,11 @@ var strings =
         "description": ""
     },
     "explanation_custom_functions": {
-        "message": "A rolagem nativa do Opera \u00e0s vezes \u00e9 irregular e lenta. Ativando estas op\u00e7\u00f5es a extens\u00e3o tamb\u00e9m assume o controle da rolagem, o que pode resultar em uma melhora na performance.",
+        "message": "A rolagem nativa do Opera às vezes é irregular e lenta. Ativando estas opções a extensão também assume o controle da rolagem, o que pode resultar em uma melhora na performance.",
         "description": ""
     },
     "color": {
-        "message": "Cor das barras de rolagem, da 'superbar' e dos bot\u00f5es de rolagem",
+        "message": "Cor das barras de rolagem, da 'superbar' e dos botões de rolagem",
         "description": ""
     },
     "hover_size": {
@@ -21,7 +21,7 @@ var strings =
         "description": ""
     },
     "explanation_save_set": {
-        "message": "Voc\u00ea pode salvar sua configura\u00e7\u00e3o atual aqui. Apenas d\u00ea um nome e clique no bot\u00e3o de salvar. Se voc\u00ea escolher um nome j\u00e1 existente ela substituir\u00e1 a existente.",
+        "message": "Você pode salvar sua configuração atual aqui. Apenas dê um nome e clique no botão de salvar. Se você escolher um nome já existente ela substituirá a existente.",
         "description": ""
     },
     "fullscreen_only": {
@@ -29,7 +29,7 @@ var strings =
         "description": ""
     },
     "explanation_superbar": {
-        "message": "A 'superbar' \u00e9 uma vers\u00e3o combinada das barras vertical e horizontal.<br>Logo, s\u00f3 fica dispon\u00edvel quando ambas as barras s\u00e3o necess\u00e1rias.<br>Sua posi\u00e7\u00e3o \u00e9 alinhada com as barras de rolagem vertical e horizontal.",
+        "message": "A 'superbar' é uma versão combinada das barras vertical e horizontal.<br>Logo, só fica disponível quando ambas as barras são necessárias.<br>Sua posição é alinhada com as barras de rolagem vertical e horizontal.",
         "description": ""
     },
     "contextmenu_show": {
@@ -37,11 +37,11 @@ var strings =
         "description": ""
     },
     "bg_special_ends": {
-        "message": "Clicar nas pontas das barras de fundo rolam para o topo/fundo (esquerda/direita respectivamente) inv\u00e9s de uma p\u00e1gina",
+        "message": "Clicar nas pontas das barras de fundo rolam para o topo/fundo (esquerda/direita respectivamente) invés de uma página",
         "description": ""
     },
     "default": {
-        "message": "Padr\u00e3o",
+        "message": "Padrão",
         "description": ""
     },
     "tooltip_delete": {
@@ -61,11 +61,11 @@ var strings =
         "description": ""
     },
     "saved_sets_headline": {
-        "message": "Configura\u00e7\u00f5es salvas:",
+        "message": "Configurações salvas:",
         "description": ""
     },
     "contextmenu_over_only": {
-        "message": "Ao clicar com o bot\u00e3o direito sobre a interface do modern scroll",
+        "message": "Ao clicar com o botão direito sobre a interface do modern scroll",
         "description": ""
     },
     "border": {
@@ -73,7 +73,7 @@ var strings =
         "description": ""
     },
     "how_to": {
-        "message": "Como eu uso esta extens\u00e3o?",
+        "message": "Como eu uso esta extensão?",
         "description": ""
     },
     "size": {
@@ -81,7 +81,7 @@ var strings =
         "description": ""
     },
     "show_how_long": {
-        "message": "Quanto tempo as barras ficam vis\u00edveis?",
+        "message": "Quanto tempo as barras ficam visíveis?",
         "description": ""
     },
     "animate_scroll": {
@@ -89,7 +89,7 @@ var strings =
         "description": ""
     },
     "show_superbar_minipage": {
-        "message": "Exibir uma mini-vers\u00e3o do website no fundo quando arrastar a 'superbar'",
+        "message": "Exibir uma mini-versão do website no fundo quando arrastar a 'superbar'",
         "description": ""
     },
     "button_width": {
@@ -97,19 +97,19 @@ var strings =
         "description": ""
     },
     "footer": {
-        "message": "Obrigado por instalar esta extens\u00e3o. Voc\u00ea pode entrar em contato comigo a qualquer hora para coment\u00e1rios e perguntas.",
+        "message": "Obrigado por instalar esta extensão. Você pode entrar em contato comigo a qualquer hora para comentários e perguntas.",
         "description": ""
     },
     "drag_buttons": {
-        "message": "Voc\u00ea pode arrastar os bot\u00f5es para qualquer posi\u00e7\u00e3o aqui nas prefer\u00eancias. Esta posi\u00e7\u00e3o ser\u00e1 a padr\u00e3o para todos os websites. Voc\u00ea poder\u00e1 mov\u00ea-las nas p\u00e1ginas caso ficarem sobre algum elemento, mas n\u00e3o modificar\u00e1 o padr\u00e3o.",
+        "message": "Você pode arrastar os botões para qualquer posição aqui nas preferências. Esta posição será a padrão para todos os websites. Você poderá movê-las nas páginas caso ficarem sobre algum elemento, mas não modificará o padrão.",
         "description": ""
     },
     "animate_up_to": {
-        "message": "que a dist\u00e2ncia seja",
+        "message": "que a distância seja",
         "description": ""
     },
     "description": {
-        "message": "Leva a rolagem a um novo n\u00edvel",
+        "message": "Leva a rolagem a um novo nível",
         "description": ""
     },
     "external_interface_headline": {
@@ -117,11 +117,11 @@ var strings =
         "description": ""
     },
     "show_contextmenu_when": {
-        "message": "Quando voc\u00ea quer que apare\u00e7a uma op\u00e7\u00e3o para ocultar o modern scroll no menu de contexto?",
+        "message": "Quando você quer que apareça uma opção para ocultar o modern scroll no menu de contexto?",
         "description": ""
     },
     "save_set_as": {
-        "message": "Salvar a configura\u00e7\u00e3o atual como",
+        "message": "Salvar a configuração atual como",
         "description": ""
     },
     "tooltip_save": {
@@ -129,7 +129,7 @@ var strings =
         "description": ""
     },
     "buttons": {
-        "message": "Bot\u00f5es de rolagem",
+        "message": "Botões de rolagem",
         "description": ""
     },
     "color_bg": {
@@ -137,7 +137,7 @@ var strings =
         "description": ""
     },
     "show_bg_bars_when": {
-        "message": "Quando voc\u00ea quer que as barras do fundo apare\u00e7am?",
+        "message": "Quando você quer que as barras do fundo apareçam?",
         "description": ""
     },
     "mousescroll_velocity": {
@@ -149,7 +149,7 @@ var strings =
         "description": ""
     },
     "hbar_at_top": {
-        "message": "Colocar a barra horizontal no topo ao inv\u00e9s do fundo",
+        "message": "Colocar a barra horizontal no topo ao invés do fundo",
         "description": ""
     },
     "move_bars_during_scroll": {
@@ -161,7 +161,7 @@ var strings =
         "description": ""
     },
     "explanation_trigger_area": {
-        "message": "Aumenta a \u00e1rea de utiliza\u00e7\u00e3o das barras.",
+        "message": "Aumenta a área de utilização das barras.",
         "description": ""
     },
     "button_height": {
@@ -181,15 +181,15 @@ var strings =
         "description": ""
     },
     "explanation_animate_scroll": {
-        "message": "Com esta op\u00e7\u00e3o a p\u00e1gina n\u00e3o ir\u00e1 pular direto para a posi\u00e7\u00e3o, mas vai rolar automaticamente at\u00e9 a posi\u00e7\u00e3o a uma velocidade ajust\u00e1vel.<br>Se aplica aos 'bot\u00f5es de rolagem', cliques nas barras de fundo assim como a pelo teclado com as teclas Home/End e PageUp/PageDown (se a \"fun\u00e7\u00f5es de rolagem personalizada para o teclado\" estiver ativa).",
+        "message": "Com esta opção a página não irá pular direto para a posição, mas irá rolar automaticamente até a posição a uma velocidade ajustável.<br>Se aplica aos 'botões de rolagem', cliques nas barras de fundo, assim como pelo teclado com as teclas Home/End e PageUp/PageDown (se a \"funções de rolagem personalizada para o teclado\" estiver ativa).",
         "description": ""
     },
     "explanation_move_bars_during_scroll": {
-        "message": "Desative esta op\u00e7\u00e3o caso encontre problemas de performance.<br>A posi\u00e7\u00e3o da barra ser\u00e1 atualizada ao terminar a rolagem.",
+        "message": "Desative esta opção caso encontre problemas de performance.<br>A posição da barra será atualizada ao terminar a rolagem.",
         "description": ""
     },
     "normal": {
-        "message": "Ao passar com o mouse sobre, ao rolar e a mudan\u00e7as de posi\u00e7\u00e3o ou tamanho",
+        "message": "Ao passar com o mouse sobre, ao rolar e à mudanças de posição ou tamanho",
         "description": ""
     },
     "border_color": {
@@ -197,7 +197,7 @@ var strings =
         "description": ""
     },
     "default_change_impossible": {
-        "message": "Voc\u00ea n\u00e3o pode modificar a configura\u00e7\u00e3o padr\u00e3o! Por favor escolha outro nome.",
+        "message": "Você não pode modificar a configuração padrão! Por favor escolha outro nome.",
         "description": ""
     },
     "load_or_delete_set": {
@@ -205,15 +205,15 @@ var strings =
         "description": ""
     },
     "confirm_overwrite": {
-        "message": "Voc\u00ea realmente quer substituir esta configura\u00e7\u00e3o?",
+        "message": "Você realmente quer substituir esta configuração?",
         "description": ""
     },
     "mousescroll_distance": {
-        "message": "Dist\u00e2ncia rolada pela roda do mouse e pelo trackpad",
+        "message": "Distância rolada pela roda do mouse e pelo trackpad",
         "description": ""
     },
     "pages": {
-        "message": "p\u00e1ginas",
+        "message": "páginas",
         "description": ""
     },
     "use_custom_functions_mouse": {
@@ -225,11 +225,11 @@ var strings =
         "description": ""
     },
     "disable_standard_bars": {
-        "message": "Se voc\u00ea n\u00e3o usa o modern scroll exclusivamente em tela cheia, a barra de rolagem padr\u00e3o do Opera pode ser desabilitada para evitar barras duplas.<br>Para desabilitar v\u00e1 em <strong>Opera \u2192 Configura\u00e7\u00f5es \u2192 Prefer\u00eancias... (Ctrl+F12) \u2192 Avan\u00e7ado \u2192 Navega\u00e7\u00e3o</strong> e desabilite \"Exibir barras de rolagem\".",
+        "message": "Se você não usa o modern scroll exclusivamente em tela cheia, a barra de rolagem padrão do Opera pode ser desabilitada para evitar barras duplas.<br>Para desabilitar vá em <strong>Opera → Configurações → Preferências... (Ctrl+F12) → Avançado → Navegação</strong> e desabilite \"Exibir barras de rolagem\".",
         "description": ""
     },
     "gap": {
-        "message": "Dist\u00e2ncia da borda da janela",
+        "message": "Distância da borda da janela",
         "description": ""
     },
     "external_interface": {
@@ -245,7 +245,7 @@ var strings =
         "description": ""
     },
     "look": {
-        "message": "Apar\u00eancia",
+        "message": "Aparência",
         "description": ""
     },
     "lang": {
@@ -253,7 +253,7 @@ var strings =
         "description": ""
     },
     "explanation_external_interface": {
-        "message": "Marcando esta op\u00e7\u00e3o permitir\u00e1 que algumas fun\u00e7\u00f5es do modern scroll fiquem acess\u00edveis para extens\u00f5es de terceiros, websites e voc\u00ea. Por exemplo, voc\u00ea pode criar um gesto do mouse para controlar o modern scroll.<br><a href='http://my.opera.com/christoph142/blog/2013/02/20/modern-scroll-documentation' target='_blank'>Visite a documenta\u00e7\u00e3o para mais detalhes.</a>",
+        "message": "Marcando esta opção permitirá que algumas funções do modern scroll fiquem acessíveis para extensões de terceiros, websites e você. Por exemplo, você pode criar um gesto do mouse para controlar o modern scroll.<br><a href='http://my.opera.com/christoph142/blog/2013/02/20/modern-scroll-documentation' target='_blank'>Visite a documentação para mais detalhes.</a>",
         "description": ""
     },
     "contextmenu": {
@@ -261,19 +261,19 @@ var strings =
         "description": ""
     },
     "show_buttons": {
-        "message": "Exibir bot\u00f5es para rolar ao topo/fundo da p\u00e1gina",
+        "message": "Exibir botões para rolar ao topo/fundo da página",
         "description": ""
     },
     "only_over": {
-        "message": "Apenas ao passar com o mouse sobre",
+        "message": "Ao passar com o mouse sobre",
         "description": ""
     },
     "show_when": {
-        "message": "Quando voc\u00ea quer que as barras de rolagem apare\u00e7am?",
+        "message": "Quando você quer que as barras de rolagem apareçam?",
         "description": ""
     },
     "default_delete_impossible": {
-        "message": "Voc\u00ea n\u00e3o pode excluir a configura\u00e7\u00e3o padr\u00e3o!",
+        "message": "Você não pode excluir a configuração padrão!",
         "description": ""
     },
     "always": {
@@ -289,11 +289,11 @@ var strings =
         "description": ""
     },
     "keyscroll_velocity": {
-        "message": "Velocidade da rolagem com as teclas de dire\u00e7\u00e3o",
+        "message": "Velocidade da rolagem com as teclas de direção",
         "description": ""
     },
     "use_custom_functions": {
-        "message": "Ativar fun\u00e7\u00f5es de rolagem personalizada",
+        "message": "Ativar funções de rolagem personalizada",
         "description": ""
     },
     "button_opacity": {
@@ -301,7 +301,7 @@ var strings =
         "description": ""
     },
     "vbar_at_left": {
-        "message": "Colocar a barra vertical na esquerda ao inv\u00e9s da direita",
+        "message": "Colocar a barra vertical na esquerda ao invés da direita",
         "description": ""
     },
     "contextmenu_hide": {
@@ -313,7 +313,7 @@ var strings =
         "description": ""
     },
     "custom_scroll_functions": {
-        "message": "Fun\u00e7\u00f5es de rolagem",
+        "message": "Funções de rolagem",
         "description": ""
     },
     "new_set_name": {
@@ -321,15 +321,15 @@ var strings =
         "description": ""
     },
     "confirm_delete": {
-        "message": "Voc\u00ea realmente quer irreversivelmente apagar esta configura\u00e7\u00e3o?",
+        "message": "Você realmente quer irreversivelmente apagar esta configuração?",
         "description": ""
     },
     "container1": {
-        "message": "Utilizar modern scroll a uma dist\u00e2ncia de",
+        "message": "Utilizar modern scroll a uma distância de",
         "description": ""
     },
     "page": {
-        "message": "p\u00e1gina",
+        "message": "página",
         "description": ""
     },
     "container2": {
