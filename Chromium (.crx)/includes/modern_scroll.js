@@ -72,6 +72,7 @@ function remove_ms()
 	document.removeEventListener("resize", adjust_ui_fullscreen_change, false);
 	document.removeEventListener("readystatechange", add_dimension_checkers, false);
 	DOM_observer.disconnect();
+	height_observer.disconnect();
  	
 	document.body.removeEventListener("transitionend", check_dimensions, false);
 	window.removeEventListener("load", check_dimensions, false);
@@ -241,6 +242,7 @@ function add_functionality_2_bars(){
 }
 
 var DOM_observer = new WebKitMutationObserver(check_dimensions);
+var height_observer = new WebKitMutationObserver(check_dimensions); //Disqus
 function add_dimension_checkers()
 {
 	if(document.readyState !== "complete")
@@ -259,6 +261,7 @@ function add_dimension_checkers()
 	document.body.addEventListener("transitionend", check_dimensions, false);
 	
 	DOM_observer.observe(document.body, { childList:true, subtree:true });
+	height_observer.observe(document.body, { subtree:true, attributes:true, attributeFilter:["height", "style"] });
 	
 	check_dimensions();
 }
