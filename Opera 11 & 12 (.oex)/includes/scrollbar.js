@@ -1124,7 +1124,7 @@ function otherkeyscroll()
 		else if	(e.which === 36) 	scroll_Pos1();
 		else					 	scroll_End();
 	}
-	else if(e.which === 32 && !e.altKey && !e.metaKey && !e.ctrlKey && !target_is_input(e)) // 32 = space bar
+	else if(e.which === 32 && !e.altKey && !e.metaKey && !e.ctrlKey && !target_is_input(e) && window.pageYOffset - window.scrollMaxY > 5) // 32 = space bar
 	{
 		stopEvent();
 		
