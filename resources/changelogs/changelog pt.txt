@@ -1,4 +1,10 @@
-﻿v 3.0.1
+﻿v 3.0.2
+---------
+new: additional dimension checks for even better compatibility with all websites
+fix: incorrect bar sizes on pages using Disqus
+atualização: tradução Português (obg André)
+
+v 3.0.1
 ---------
 novo: manter o mouse pressionado nas barras de fundo rola a página até a posição do cursor
 novo: esconde todas as barras quando elementos não estão focados ou com o mouse sobre

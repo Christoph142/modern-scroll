@@ -1,4 +1,10 @@
-﻿v 3.0.1
+﻿v 3.0.2
+---------
+new: additional dimension checks for even better compatibility with all websites
+fix: incorrect bar sizes on pages using Disqus
+增加葡萄牙语的翻译（感谢André）
+
+v 3.0.1
 ---------
 new: keeping the mouse down on background bars will scroll page to mouse position
 new: hide all scroll bars when elements are not hovered or focused

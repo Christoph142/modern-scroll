@@ -1,4 +1,10 @@
-﻿v 3.0.1
+﻿v 3.0.2
+---------
+nouveau: contrôles de dimensions supplémentaires pour une meilleure compatibilité avec tous les sites web
+fixé: tailles des barres sont incorrectes aux pages avec Disqus
+upd: Portuguese translation (thx André)
+
+v 3.0.1
 ---------
 nouveau: garder la souris appuyé sur les barres de fond permet de défiler la page à la position de la souris
 nouveau: cache toutes les barres de défilement lorsque les éléments ne sont pas plané ou concentrés

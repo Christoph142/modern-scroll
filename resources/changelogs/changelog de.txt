@@ -1,4 +1,10 @@
-﻿v 3.0.1
+﻿v 3.0.2
+---------
+neu: zusätzliche Checks der Seitengröße für noch bessere Kompatibilität mit allen Webseiten
+fix: falsche Größe der Scrollbars auf Seiten mit Disqus
+upd: Portugiesische Übersetzung (Danke André)
+
+v 3.0.1
 ---------
 neu: Gedrückt-halten der Maus auf den Hintergrund-Leisten scrollt zur Maus-Position
 neu: alle Scrollbars werden ausgeblendet, wenn die entsprechenden Elemente keinen Fokus haben
