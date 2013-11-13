@@ -2,7 +2,7 @@
 <widget xmlns="http://www.w3.org/ns/widgets" id="https://github.com/Christoph142/modern-scroll" defaultlocale="en" version="2.4.4">
 
 	<name>modern scroll</name>
-	<author href="http://my.opera.com/christoph142/blog">Christoph D.</author>
+	<author href="http://christoph142.wordpress.com">Christoph D.</author>
 	<icon src="images/icon.png" />
 	
 	<description xml:lang="ar">الإرتقاء بالتمرير و التصفح على أوبرا إلى مستوى آخر</description>
