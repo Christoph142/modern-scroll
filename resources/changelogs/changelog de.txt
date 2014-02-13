@@ -1,4 +1,9 @@
-﻿v 3.0.2
+﻿v 3.0.3
+---------
+new: custom mouse wheel click scrolling
+upd: disable custom mouse scrolling by default
+
+v 3.0.2
 ---------
 neu: zusätzliche Checks der Seitengröße für noch bessere Kompatibilität mit allen Webseiten
 fix: falsche Größe der Scrollbars auf Seiten mit Disqus
@@ -19,6 +24,12 @@ neu: Styling der Scroll-Leisten von Seiten-Elementen (z.B. Mehrzeiligen Textfeld
 neu: Einstellungen werden über alle Geräte hinweg synchronisiert
 neu: live Mini-Seite hinter der Superbar
 neu: verbesserte Behandlung und Wiederherstellung von Standard-Werten aus gespeicherten Konfigurationen
+
+v 2.4.5
+---------
+fix: fast forward with space bar (thx André)
+upd: Portugiesische Übersetzung (Danke André)
+upd: links to new blog
 
 v 2.4.4
 ---------

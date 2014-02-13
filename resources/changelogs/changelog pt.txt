@@ -1,4 +1,9 @@
-﻿v 3.0.2
+﻿v 3.0.3
+---------
+new: custom mouse wheel click scrolling
+upd: disable custom mouse scrolling by default
+
+v 3.0.2
 ---------
 new: additional dimension checks for even better compatibility with all websites
 fix: incorrect bar sizes on pages using Disqus
@@ -19,6 +24,12 @@ novo: modifica barras de rolagem de elementos da página (ex.: áreas de texto)
 novo: configurações são sincronizadas entre seus dispositivos
 novo: mini página ao vivo na 'superbar'
 novo: melhores valores iniciais e obtenção das configurações salvas
+
+v 2.4.5
+---------
+fix: fast forward with space bar (thx André)
+atualização: tradução Português (obg André)
+upd: links to new blog
 
 v 2.4.4
 ---------
