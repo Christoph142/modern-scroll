@@ -36,7 +36,7 @@ window.addEventListener("change", function(e) // save preferences:
 	if(e.target.id === "show_superbar")					 document.getElementById("superbar_container").style.height=(e.target.checked?"auto":"0");
 	if(e.target.id === "show_buttons")					 document.getElementById("button_container").style.height=(e.target.value==="1"?"0":"auto");
 	if(e.target.id === "use_own_scroll_functions")		 document.getElementById("keyscroll_velocity_container").style.display=(e.target.checked?null:"none");
-	if(e.target.id === "use_own_scroll_functions_mouse") document.getElementById("mousescroll_container").style.display=(e.target.checked?null:"none");
+	if(e.target.id === "use_own_scroll_functions_mouse") document.getElementById("mousescroll_container").style.display=(e.target.checked?"inline":"none");
 	if(e.target.id === "animate_scroll")				 document.getElementById("scroll_container").style.display=(e.target.checked?null:"none");
 	
 	// update slider values:
@@ -98,7 +98,7 @@ function restoreprefs()
 	if(document.getElementById("show_buttons").value !== "1")				document.getElementById("button_container").style.height				= "auto";
 	if(document.getElementById("show_superbar").checked)					document.getElementById("superbar_container").style.height				= "auto";
 	if(!document.getElementById("use_own_scroll_functions").checked)		document.getElementById("keyscroll_velocity_container").style.display	= "none";
-	if(!document.getElementById("use_own_scroll_functions_mouse").checked)	document.getElementById("mousescroll_container").style.display			= "none";
+	if(document.getElementById("use_own_scroll_functions_mouse").checked)	document.getElementById("mousescroll_container").style.display			= "inline";
 	if(!document.getElementById("animate_scroll").checked)					document.getElementById("scroll_container").style.display				= "none";
 	
 	document.getElementById("border_radius").max = Math.round(Math.max(document.getElementById("size").value, document.getElementById("hover_size").value)/2);

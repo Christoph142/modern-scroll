@@ -35,7 +35,7 @@ function update_settings(){ chrome.storage.sync.get( null, function(storage){
 	"animate_scroll_max" :	(!storage["animate_scroll_max"]		? "2" : storage["animate_scroll_max"]),
 	
 	"use_own_scroll_functions" : (!storage["use_own_scroll_functions"] ? "1" : storage["use_own_scroll_functions"]),
-	"use_own_scroll_functions_mouse" : (!storage["use_own_scroll_functions_mouse"] ? "1" : storage["use_own_scroll_functions_mouse"]),
+	"use_own_scroll_functions_mouse" : (!storage["use_own_scroll_functions_mouse"] ? "0" : storage["use_own_scroll_functions_mouse"]),
 	"scroll_velocity" :		(!storage["scroll_velocity"]		? "5" : storage["scroll_velocity"]),
 	"keyscroll_velocity" :	(!storage["keyscroll_velocity"]		? "2" : storage["keyscroll_velocity"]),
 	"mousescroll_velocity" :(!storage["mousescroll_velocity"]	? "3" : storage["mousescroll_velocity"]),
