@@ -83,6 +83,10 @@
         "message": "Khi rê sang phía trên, trong khi trượt và thay đổi vị trí hoặc kích thước",
         "description": ""
     },
+    "middlescroll_velocity": {
+        "message": "Velocity of scrolling by mouse wheel clicking",
+        "description": ""
+    },
     "button_width": {
         "message": "Độ rộng",
         "description": ""
@@ -253,6 +257,10 @@
     },
     "disable_standard_bars": {
         "message": "Nếu bạn không sử dụng chương trình trong chế độ toàn màn hình, Các tiêu chuẩn của Opera về thanh cuộn sẽ bị vô hiệu hóa để tránh việc hiển thị trùng lặp.<br>Để làm thế, hãy thao tác <strong>Opera → Settings → Preferences... (Ctrl+F12) → Advanced → Browsing</strong> và tắt tùy chọn \"show scroll bars\".",
+        "description": ""
+    },
+    "use_custom_functions_middle": {
+        "message": "for mouse wheel clicks",
         "description": ""
     },
     "external_interface_headline": {

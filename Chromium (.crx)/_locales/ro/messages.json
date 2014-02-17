@@ -83,6 +83,10 @@
         "message": "Când cursorul este poziţionat deasupra , când derulezi şi la schimbarea poziţiei sau a mărimii",
         "description": ""
     },
+    "middlescroll_velocity": {
+        "message": "Velocity of scrolling by mouse wheel clicking",
+        "description": ""
+    },
     "button_width": {
         "message": "Lăţime",
         "description": ""
@@ -253,6 +257,10 @@
     },
     "disable_standard_bars": {
         "message": "Dacă nu foloseşti Modern Scroll exclusiv în modul fullscreen, barele normale de la Opera ar trebui dezactivate pentru a evita bare duble.<br> Pentru a face asta, mergi în <strong>Opera → Setări → Preferinţe... (Ctrl+F12) → Avansat → Navigare</strong> şi dezactivează \"arată barele de derulare\" de acolo.",
+        "description": ""
+    },
+    "use_custom_functions_middle": {
+        "message": "for mouse wheel clicks",
         "description": ""
     },
     "external_interface_headline": {

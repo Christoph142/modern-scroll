@@ -279,11 +279,17 @@ function check_dimensions_after_click()
 	
 function add_scrollingfunctions()
 {
-	if(!window.self.frameElement && w.use_own_scroll_functions === "0") return;
+	if(window.self.frameElement || w.use_own_scroll_functions === "1")
+	{
+		window.addEventListener("keydown", arrowkeyscroll, false);
+		window.addEventListener("keydown", otherkeyscroll, false);
+	}
 	
-	window.addEventListener("keydown", arrowkeyscroll, false);
-	window.addEventListener("keydown", otherkeyscroll, false);
-	window.addEventListener("mousedown", middlebuttonscroll, true);
+	if(w.own_scroll_functions_middle === "1")
+	{
+		window.addEventListener("mousedown", middlebuttonscroll, true);
+	}
+
 	//window.addEventListener("mousewheel", mousescroll_y, false); // -> set in resize_vbar()
 }
 
@@ -1233,7 +1239,7 @@ function middlebuttonscroll()
 	function middlebuttonscroll_inner(lastTick)
 	{
 		var curTick = Date.now();
-		var amount = (curTick - lastTick)/5000;
+		var amount = w.middlescroll_velocity * (curTick - lastTick) / 5000;
 		x += x_delta*amount*Math.abs(x_delta);  // abs deltas -> fine grained control for small movements & fast for bigger ones
 		y += y_delta*amount*Math.abs(y_delta);
 		if(x < 0) x = 0; else if (x > window.scrollMaxX) x = window.scrollMaxX;

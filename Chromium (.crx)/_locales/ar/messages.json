@@ -83,6 +83,10 @@
         "message": "عند الحومان، التمرير و تغيير المكان و الحجم",
         "description": ""
     },
+    "middlescroll_velocity": {
+        "message": "Velocity of scrolling by mouse wheel clicking",
+        "description": ""
+    },
     "button_width": {
         "message": "عرض",
         "description": ""
@@ -253,6 +257,10 @@
     },
     "disable_standard_bars": {
         "message": "إذا لم تكن تستعمل \"التمرير الحديث (ModernScroll) حصريا في وضع ملء الشاشة، يجب تعطيل و إخفاء أشرطة التمرير الخاصة بأوبرا لتجنب ظهور مزدوج لهذه الأشرطة.للقيام بذلك قم بفتح أوبرا ← إعدادات (ctrl+F12) ←  تفضيلات ← خيارات ← متقدمة استعراض ← و قم بإزالة تحديد (إظهار أشرطة التمرير)",
+        "description": ""
+    },
+    "use_custom_functions_middle": {
+        "message": "for mouse wheel clicks",
         "description": ""
     },
     "external_interface_headline": {

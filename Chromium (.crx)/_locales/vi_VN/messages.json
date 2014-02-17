@@ -83,6 +83,10 @@
         "message": "Upon hovering, while scrolling and at changes of position or size",
         "description": ""
     },
+    "middlescroll_velocity": {
+        "message": "Velocity of scrolling by mouse wheel clicking",
+        "description": ""
+    },
     "button_width": {
         "message": "Width",
         "description": ""
@@ -253,6 +257,10 @@
     },
     "disable_standard_bars": {
         "message": "If you don't use modern scroll exclusively in fullscreen mode, Opera's standard scrollbars should be disabled to avoid double bars.<br>To do so, go to <strong>Opera → Settings → Preferences... (Ctrl+F12) → Advanced → Browsing</strong> and deactivate \"show scroll bars\" there.",
+        "description": ""
+    },
+    "use_custom_functions_middle": {
+        "message": "for mouse wheel clicks",
         "description": ""
     },
     "external_interface_headline": {

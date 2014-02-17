@@ -83,6 +83,10 @@
         "message": "Po najechaniu kursorem i podczas przewijania lub zmiany rozmiaru",
         "description": ""
     },
+    "middlescroll_velocity": {
+        "message": "Velocity of scrolling by mouse wheel clicking",
+        "description": ""
+    },
     "button_width": {
         "message": "Szerokość",
         "description": ""
@@ -253,6 +257,10 @@
     },
     "disable_standard_bars": {
         "message": "Lepiej, żeby typowe paski Opery były wyłączone, nie potrzeba nam aż dwóch.<br>W tym celu należy odznaczyć opcję „Pokaż paski przewijania” z grupy <strong>Opera → Ustawienia → Preferencje… (Ctrl+F12) → Zaawansowane → Przeglądanie</strong>.",
+        "description": ""
+    },
+    "use_custom_functions_middle": {
+        "message": "for mouse wheel clicks",
         "description": ""
     },
     "external_interface_headline": {

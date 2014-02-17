@@ -34,13 +34,15 @@ function update_settings(){ chrome.storage.sync.get( null, function(storage){
 	"animate_scroll" :		(!storage["animate_scroll"]			? "1" : storage["animate_scroll"]),
 	"animate_scroll_max" :	(!storage["animate_scroll_max"]		? "2" : storage["animate_scroll_max"]),
 	
-	"use_own_scroll_functions" : (!storage["use_own_scroll_functions"] ? "1" : storage["use_own_scroll_functions"]),
-	"use_own_scroll_functions_mouse" : (!storage["use_own_scroll_functions_mouse"] ? "0" : storage["use_own_scroll_functions_mouse"]),
+	"use_own_scroll_functions" 		 : (!storage["use_own_scroll_functions"] 		? "1" : storage["use_own_scroll_functions"]),
+	"use_own_scroll_functions_mouse" : (!storage["use_own_scroll_functions_mouse"] 	? "0" : storage["use_own_scroll_functions_mouse"]),
+	"own_scroll_functions_middle" 	 : (!storage["own_scroll_functions_middle"] 	? "0" : storage["own_scroll_functions_middle"]),
 	"scroll_velocity" :		(!storage["scroll_velocity"]		? "5" : storage["scroll_velocity"]),
 	"keyscroll_velocity" :	(!storage["keyscroll_velocity"]		? "2" : storage["keyscroll_velocity"]),
 	"mousescroll_velocity" :(!storage["mousescroll_velocity"]	? "3" : storage["mousescroll_velocity"]),
 	"mousescroll_distance" :(!storage["mousescroll_distance"]	? "1" : storage["mousescroll_distance"]),
-	
+	"middlescroll_velocity" :(!storage["middlescroll_velocity"]	? "1" : storage["middlescroll_velocity"]),
+
 	"contextmenu_show_when":(!storage["contextmenu_show_when"]	? "2" : storage["contextmenu_show_when"]),<!-- 1 = never, 2 = only over interface, 3 = always -->
 	
 	"external_interface" :	(!storage["external_interface"]		? "1" : storage["external_interface"])

@@ -83,6 +83,10 @@
         "message": "Beim Überfahren mit der Maus, beim Scrollen und bei Änderungen von Position oder Größe",
         "description": ""
     },
+    "middlescroll_velocity": {
+        "message": "Velocity of scrolling by mouse wheel clicking",
+        "description": ""
+    },
     "button_width": {
         "message": "Breite",
         "description": ""
@@ -253,6 +257,10 @@
     },
     "disable_standard_bars": {
         "message": "Wenn du modern scroll nicht ausschließlich im Vollbild-Modus nutzt, sollten Operas Standard-Leisten deaktiviert werden.<br>Gehe dazu in <strong>Opera → Einstellungen → Einstellungen... (Strg+F12) → Erweitert → Browser</strong> und deaktiviere dort \"Bildlaufleisten zeigen\"",
+        "description": ""
+    },
+    "use_custom_functions_middle": {
+        "message": "for mouse wheel clicks",
         "description": ""
     },
     "external_interface_headline": {

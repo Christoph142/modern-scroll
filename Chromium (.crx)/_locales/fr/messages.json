@@ -83,6 +83,10 @@
         "message": "Sur le vol stationnaire, tandis que le défilement et les changements de position ou la taille",
         "description": ""
     },
+    "middlescroll_velocity": {
+        "message": "Velocity of scrolling by mouse wheel clicking",
+        "description": ""
+    },
     "button_width": {
         "message": "Largeur",
         "description": ""
@@ -253,6 +257,10 @@
     },
     "disable_standard_bars": {
         "message": "Les barres de défilement standards d'Opera doivent être désactivés pour éviter doubles barres.<br>Donc ouvre <strong>Opera → Réglages → Préférences... (Ctrl+F12) → Avancé → Navigation</strong> et désactive \"Afficher les barres de défilement\"",
+        "description": ""
+    },
+    "use_custom_functions_middle": {
+        "message": "for mouse wheel clicks",
         "description": ""
     },
     "external_interface_headline": {

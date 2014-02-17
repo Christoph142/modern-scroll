@@ -83,6 +83,10 @@
         "message": "Når de fokuseres eller siden rulles",
         "description": ""
     },
+    "middlescroll_velocity": {
+        "message": "Velocity of scrolling by mouse wheel clicking",
+        "description": ""
+    },
     "button_width": {
         "message": "Bredde",
         "description": ""
@@ -253,6 +257,10 @@
     },
     "disable_standard_bars": {
         "message": "Om du ikke utelukkende bruker modern scroll utvidelsen i fullskjermmodus bør du skru av Opera sine egne rullefelt for å unngå to sett med rullefelt. For å skru av Opera sine rullefelt, åpne <strong>Opera → Verktøy → Instillinger… (Ctrl+F12) → Avansert → Nettleser</strong> og slå av valget for «Vis rullefelt».\"",
+        "description": ""
+    },
+    "use_custom_functions_middle": {
+        "message": "for mouse wheel clicks",
         "description": ""
     },
     "external_interface_headline": {

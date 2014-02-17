@@ -83,6 +83,10 @@
         "message": "Při vznášení kurzoru myši nad nimi, během rolování a při změnách pozice nebo velikosti",
         "description": ""
     },
+    "middlescroll_velocity": {
+        "message": "Velocity of scrolling by mouse wheel clicking",
+        "description": ""
+    },
     "button_width": {
         "message": "Šířka",
         "description": ""
@@ -253,6 +257,10 @@
     },
     "disable_standard_bars": {
         "message": "Pokud nepoužíváte modern scroll výhradně v celoobrazovkovém režimu, tak standardní rolovací posuvníky Opery by měly být vypnuty pro předejítí zdvojení posuvníků.<br>Pro udělání tohoto jděte do <strong>Opera → Nastavení → Nastavení... (Ctrl+F12) → Pokročilé volby → Prohlížení</strong> a vypněte zde \"Zobrazit posuvníky\".",
+        "description": ""
+    },
+    "use_custom_functions_middle": {
+        "message": "for mouse wheel clicks",
         "description": ""
     },
     "external_interface_headline": {

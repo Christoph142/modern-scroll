@@ -83,6 +83,10 @@
         "message": "在悬停，滚动，位置或大小改变时",
         "description": ""
     },
+    "middlescroll_velocity": {
+        "message": "Velocity of scrolling by mouse wheel clicking",
+        "description": ""
+    },
     "button_width": {
         "message": "宽度",
         "description": ""
@@ -253,6 +257,10 @@
     },
     "disable_standard_bars": {
         "message": "如果你不仅只在全屏时使用，请禁用opera的默认滚动条以避免多重滚动条。 操作如下： Opera → 设置 → 首选项... (或直接按 Ctrl+F12) → 高级 →浏览 （取消勾选 “显示滚动条”）。",
+        "description": ""
+    },
+    "use_custom_functions_middle": {
+        "message": "for mouse wheel clicks",
         "description": ""
     },
     "external_interface_headline": {

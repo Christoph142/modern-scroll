@@ -83,6 +83,10 @@
         "message": "Üzerine gelince, kaydırırken ve konum veya boyutunu değiştirirken",
         "description": ""
     },
+    "middlescroll_velocity": {
+        "message": "Velocity of scrolling by mouse wheel clicking",
+        "description": ""
+    },
     "button_width": {
         "message": "Genişlik",
         "description": ""
@@ -253,6 +257,10 @@
     },
     "disable_standard_bars": {
         "message": "Bu eklentiyi kullanabilmek için Opera\\'nın standart kaydırma çubukları kapatılmalı.<br>Bunu yapmak için, <strong>Opera → Ayarlar → Tercihler... (Ctrl+F12) → Gelişmiş → Tarama</strong> ve \"kaydırma çubuklarını göster\" deki işareti kaldırın.",
+        "description": ""
+    },
+    "use_custom_functions_middle": {
+        "message": "for mouse wheel clicks",
         "description": ""
     },
     "external_interface_headline": {
