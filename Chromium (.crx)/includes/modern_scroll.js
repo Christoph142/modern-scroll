@@ -82,6 +82,7 @@ function remove_ms()
 	window.removeEventListener("keydown", arrowkeyscroll, false);
 	window.removeEventListener("keydown", otherkeyscroll, false);
 	window.removeEventListener("mousewheel", mousescroll_y, false);
+	window.removeEventListener("mousedown", middlebuttonscroll, true);
 	window.removeEventListener("click", check_if_element_is_scrollable, false);
 	
 	window.removeEventListener("scroll", show_or_hide_buttons, false);
@@ -1239,7 +1240,7 @@ function middlebuttonscroll()
 	function middlebuttonscroll_inner(lastTick)
 	{
 		var curTick = Date.now();
-		var amount = w.middlescroll_velocity * (curTick - lastTick) / 5000;
+		var amount = w.middlescroll_velocity * (curTick - lastTick) / 20000;
 		x += x_delta*amount*Math.abs(x_delta);  // abs deltas -> fine grained control for small movements & fast for bigger ones
 		y += y_delta*amount*Math.abs(y_delta);
 		if(x < 0) x = 0; else if (x > window.scrollMaxX) x = window.scrollMaxX;
