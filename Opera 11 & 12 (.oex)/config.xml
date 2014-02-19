@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<widget xmlns="http://www.w3.org/ns/widgets" id="https://github.com/Christoph142/modern-scroll" defaultlocale="en" version="2.4.5">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" id="https://github.com/Christoph142/modern-scroll" defaultlocale="en" version="2.4.6">
 
 	<name>modern scroll</name>
-	<author href="http://christoph142.wordpress.com">Christoph D.</author>
+	<author href="https://christoph142.wordpress.com">Christoph D.</author>
 	<icon src="images/icon.png" />
 	
 	<description xml:lang="ar">الإرتقاء بالتمرير و التصفح على أوبرا إلى مستوى آخر</description>

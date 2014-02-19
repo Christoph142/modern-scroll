@@ -233,7 +233,7 @@ function localize()
 	
 	//help:
 	document.getElementById("help").addEventListener("click", function(){
-		window.open("http://christoph142.wordpress.com/2013/06/27/help/");
+		window.open("https://christoph142.wordpress.com/2013/06/27/help/");
 	}, false);
 	document.getElementById("close_help").addEventListener("click", function(e){
 		e.stopPropagation();
