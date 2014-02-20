@@ -28,7 +28,7 @@ novo: melhores valores iniciais e obtenção das configurações salvas
 v 2.4.5
 ---------
 fix: fast forward with space bar (thx André)
-atualização: tradução Português (obg André)
+upd: various translations (thx to all contributors)
 upd: links to new blog
 
 v 2.4.4

@@ -1,115 +1,267 @@
 var strings = 
 {
-    "animatedscroll_velocity": {
-        "message": "Geschwindigkeit des animierten Scrollens",
+    "hbar_at_top": {
+        "message": "Zeige die horizontale Bildlaufleiste oben statt unten",
         "description": ""
     },
-    "behavior": {
-        "message": "Verhalten",
+    "use_custom_functions": {
+        "message": "Benutze eigene Scroll-Funktionen",
         "description": ""
     },
-    "explanation_custom_functions": {
-        "message": "Operas Standard-Scroll-Erfahrung ist teilwei\u00dfe etwas ruckelig und langsam. Durch das Aktivieren dieser Optionen \u00fcbernimmt die Erweiterung auch das jeweilige Scrollen, was f\u00fcr einen sp\u00fcrbaren Leistungsanstieg sorgen sollte.",
+    "tooltip_save": {
+        "message": "Speichern",
         "description": ""
     },
-    "color": {
-        "message": "Farbe der Bildlaufleisten, der Superbar und der Scroll-Buttons",
+    "only_over": {
+        "message": "Nur wenn die Maus darüber ist",
         "description": ""
     },
-    "hover_size": {
-        "message": "Breite (bzw. H\u00f6he bei horizontaler Leiste) wenn die Maus dar\u00fcber ist",
-        "description": ""
-    },
-    "explanation_save_set": {
-        "message": "Hier kannst du deine aktuelle Konfiguration speichern. Gib dazu einen Namen ein und dr\u00fccke den Speicher-Knopf. Wenn du einen Namen verwendest, der schon existiert, wird dieser Eintrag \u00fcberschrieben.",
-        "description": ""
-    },
-    "fullscreen_only": {
-        "message": "Zeige die Leisten nur im Vollbild-Modus",
-        "description": ""
-    },
-    "explanation_superbar": {
-        "message": "Die \"Superbar\" ist eine Kombination aus horizontaler und vertikaler Bildlaufleiste.\nSie wird deshalb nur sichtbar, wenn beide Leisten ben\u00f6tigt werden und befindet sich dann vertikal zentriert zur vertikalen und horizontal zentriert zur horizontalen Leiste.",
-        "description": ""
-    },
-    "contextmenu_show": {
-        "message": "modern scroll einblenden",
-        "description": ""
-    },
-    "bg_special_ends": {
-        "message": "Ein Klick auf die Enden der Hintergrund-Leisten scrollt ganz nach oben/unten (bzw. links/rechts) statt um 1 Seite",
-        "description": ""
-    },
-    "default": {
-        "message": "Standard",
-        "description": ""
-    },
-    "tooltip_delete": {
-        "message": "L\u00f6schen",
-        "description": ""
-    },
-    "border_width": {
-        "message": "Breite",
-        "description": ""
-    },
-    "border_radius": {
-        "message": "Radius der Rundung an den Ecken",
-        "description": ""
-    },
-    "show_superbar": {
-        "message": "Zeige die \"Superbar\"",
-        "description": ""
-    },
-    "saved_sets_headline": {
-        "message": "Gespeicherte Konfigurationen:",
-        "description": ""
-    },
-    "contextmenu_over_only": {
-        "message": "Beim Rechtsklick auf die modern scroll-Oberfl\u00e4che",
-        "description": ""
-    },
-    "border": {
-        "message": "Rahmen",
-        "description": ""
-    },
-    "how_to": {
-        "message": "Wie verwende ich diese Erweiterung?",
-        "description": ""
-    },
-    "size": {
-        "message": "Breite (bzw. H\u00f6he bei horizontaler Leiste) im Normalzustand",
-        "description": ""
-    },
-    "show_how_long": {
-        "message": "Wie lange sollen die Leisten zu sehen sein?",
-        "description": ""
-    },
-    "animate_scroll": {
-        "message": "Animiere das Scrollen",
+    "keyscroll_velocity": {
+        "message": "Scroll-Geschwindigkeit mit den Pfeil-Tasten",
         "description": ""
     },
     "show_superbar_minipage": {
         "message": "Zeige beim Ziehen der Superbar eine Mini-Version der Seite im Hintergrund",
         "description": ""
     },
+    "default_delete_impossible": {
+        "message": "Du kannst die Standard-Konfiguration nicht löschen!",
+        "description": ""
+    },
+    "confirm_delete": {
+        "message": "Willst du diese Konfiguration wirklich unwiderruflich löschen?",
+        "description": ""
+    },
+    "container2": {
+        "message": "px zum Rand triggern",
+        "description": ""
+    },
+    "buttons": {
+        "message": "Scroll-Buttons",
+        "description": ""
+    },
+    "mousescroll_velocity": {
+        "message": "Scroll-Geschwindigkeit mit Maus-Rad und Trackpad",
+        "description": ""
+    },
+    "like_bars": {
+        "message": "Wie die Bildlaufleisten",
+        "description": ""
+    },
+    "border_blur": {
+        "message": "Unschärfe",
+        "description": ""
+    },
+    "move_bars_during_scroll": {
+        "message": "Bildlaufleiste während dem Scrollen mit dem Maus-Rad / der Tastatur animieren",
+        "description": ""
+    },
+    "border": {
+        "message": "Rahmen",
+        "description": ""
+    },
+    "infinite": {
+        "message": "unendlich",
+        "description": ""
+    },
+    "show_buttons": {
+        "message": "Scroll-Buttons zum Seiten-Anfang und -Ende anzeigen",
+        "description": ""
+    },
+    "explanation_trigger_area": {
+        "message": "Diese Fläche erleichtert die Nutzung der Bildlaufleisten.",
+        "description": ""
+    },
+    "confirm_overwrite": {
+        "message": "Willst du diese Konfiguration wirklich überschreiben?",
+        "description": ""
+    },
+    "by": {
+        "message": "von",
+        "description": ""
+    },
+    "normal": {
+        "message": "Beim Überfahren mit der Maus, beim Scrollen und bei Änderungen von Position oder Größe",
+        "description": ""
+    },
+    "middlescroll_velocity": {
+        "message": "Scroll-Geschwindigkeit beim Klicken des Maus-Rads",
+        "description": ""
+    },
     "button_width": {
         "message": "Breite",
         "description": ""
     },
-    "footer": {
-        "message": "Danke f\u00fcr das Installieren dieser Erweiterung. F\u00fcr Feedback und Fragen stehe ich jederzeit gerne zur Verf\u00fcgung.",
+    "show_when": {
+        "message": "Wann sollen die Bildlaufleisten zu sehen sein?",
+        "description": ""
+    },
+    "superbar": {
+        "message": "Superbar",
+        "description": ""
+    },
+    "border_radius": {
+        "message": "Radius der Rundung an den Ecken",
+        "description": ""
+    },
+    "always": {
+        "message": "Immer",
+        "description": ""
+    },
+    "fullscreen_only_short": {
+        "message": "Nur im Vollbild-Modus",
+        "description": ""
+    },
+    "explanation_save_set": {
+        "message": "Hier kannst du deine aktuelle Konfiguration speichern. Gib dazu einen Namen ein und drücke den Speicher-Knopf. Wenn du einen Namen verwendest, der schon existiert, wird dieser Eintrag überschrieben.",
+        "description": ""
+    },
+    "custom_scroll_functions": {
+        "message": "Scroll-Funktionen",
+        "description": ""
+    },
+    "superbar_opacity": {
+        "message": "Sichtbarkeit der Superbar beim Überfahren mit der Maus",
+        "description": ""
+    },
+    "contextmenu_over_only": {
+        "message": "Beim Rechtsklick auf die modern scroll-Oberfläche",
+        "description": ""
+    },
+    "border_color": {
+        "message": "Farbe",
+        "description": ""
+    },
+    "show_superbar": {
+        "message": "Zeige die \"Superbar\"",
+        "description": ""
+    },
+    "load_or_delete_set": {
+        "message": "Lade oder lösche",
+        "description": ""
+    },
+    "explanation_animate_scroll": {
+        "message": "Wenn diese Option aktiviert wird, dann springt die Seite nicht mehr an die gewünschte Position, sondern scrollt automatisiert in einer einstellbaren Geschwindigkeit dort hin.\nDies betrifft sowohl die Scroll-Buttons, Klicks auf die Hintergrund-Leisten als auch Tastatur-Eingaben (falls \"Benutze eigene Scroll-Funktionen für die Tastatur\" aktiviert ist).",
+        "description": ""
+    },
+    "default_change_impossible": {
+        "message": "Du kannst die Standard-Konfiguration nicht verändern! Bitte nutze einen anderen Namen.",
+        "description": ""
+    },
+    "page": {
+        "message": "Seite",
+        "description": ""
+    },
+    "bg_special_ends": {
+        "message": "Ein Klick auf die Enden der Hintergrund-Leisten scrollt ganz nach oben/unten (bzw. links/rechts) statt um 1 Seite",
+        "description": ""
+    },
+    "vbar_at_left": {
+        "message": "Zeige die vertikale Bildlaufleiste links statt rechts",
+        "description": ""
+    },
+    "look": {
+        "message": "Aussehen",
+        "description": ""
+    },
+    "tooltip_delete": {
+        "message": "Löschen",
+        "description": ""
+    },
+    "mousescroll_distance": {
+        "message": "Scroll-Distanz pro Umdrehung des Maus-Rades",
+        "description": ""
+    },
+    "color_bg": {
+        "message": "Farbe der Hintergrundleisten",
         "description": ""
     },
     "drag_buttons": {
-        "message": "Du kannst die Buttons hier in den Einstellungen an eine beliebige Position ziehen. Diese wird dann zum Standard f\u00fcr alle Seiten. Falls sie auf einzelnen Seiten etwas verdecken sollten, kannst du sie dann dort aus dem Weg schieben",
+        "message": "Du kannst die Buttons hier in den Einstellungen an eine beliebige Position ziehen. Diese wird dann zum Standard für alle Seiten. Falls sie auf einzelnen Seiten etwas verdecken sollten, kannst du sie dann dort aus dem Weg schieben",
         "description": ""
     },
-    "animate_up_to": {
-        "message": "bis zu einer L\u00e4nge von",
+    "color": {
+        "message": "Farbe der Bildlaufleisten, der Superbar und der Scroll-Buttons",
         "description": ""
     },
-    "description": {
-        "message": "Bringt das Scrollen auf ein ganz neues Niveau",
+    "button_opacity": {
+        "message": "Sichtbarkeit",
+        "description": ""
+    },
+    "use_custom_functions_mouse": {
+        "message": "für die Maus",
+        "description": ""
+    },
+    "footer": {
+        "message": "Danke für das Installieren dieser Erweiterung. Für Feedback und Fragen stehe ich jederzeit gerne zur Verfügung.",
+        "description": ""
+    },
+    "lang": {
+        "message": "de",
+        "description": ""
+    },
+    "tooltip_load": {
+        "message": "Laden",
+        "description": ""
+    },
+    "border_width": {
+        "message": "Breite",
+        "description": ""
+    },
+    "explanation_custom_functions": {
+        "message": "Operas Standard-Scroll-Erfahrung ist teilweiße etwas ruckelig und langsam. Durch das Aktivieren dieser Optionen übernimmt die Erweiterung auch das jeweilige Scrollen, was für einen spürbaren Leistungsanstieg sorgen sollte.",
+        "description": ""
+    },
+    "hover_size": {
+        "message": "Breite (bzw. Höhe bei horizontaler Leiste) wenn die Maus darüber ist",
+        "description": ""
+    },
+    "behavior": {
+        "message": "Verhalten",
+        "description": ""
+    },
+    "container1": {
+        "message": "modern scroll im Abstand von ",
+        "description": ""
+    },
+    "fullscreen_only": {
+        "message": "Zeige die Leisten nur im Vollbild-Modus",
+        "description": ""
+    },
+    "never": {
+        "message": "Nie",
+        "description": ""
+    },
+    "opacity": {
+        "message": "Sichtbarkeit der Bildlaufleisten",
+        "description": ""
+    },
+    "contextmenu_hide": {
+        "message": "modern scroll ausblenden",
+        "description": ""
+    },
+    "external_interface": {
+        "message": "Stelle eine Schnittstelle für den Zugang von außen bereit",
+        "description": ""
+    },
+    "save_set_as": {
+        "message": "Speichere die aktuelle Konfiguration als",
+        "description": ""
+    },
+    "contextmenu": {
+        "message": "Kontextmenü",
+        "description": ""
+    },
+    "explanation_superbar": {
+        "message": "Die \"Superbar\" ist eine Kombination aus horizontaler und vertikaler Bildlaufleiste.\nSie wird deshalb nur sichtbar, wenn beide Leisten benötigt werden und befindet sich dann vertikal zentriert zur vertikalen und horizontal zentriert zur horizontalen Leiste.",
+        "description": ""
+    },
+    "disable_standard_bars": {
+        "message": "Wenn du modern scroll nicht ausschließlich im Vollbild-Modus nutzt, sollten Operas Standard-Leisten deaktiviert werden.<br>Gehe dazu in <strong>Opera → Einstellungen → Einstellungen... (Strg+F12) → Erweitert → Browser</strong> und deaktiviere dort \"Bildlaufleisten zeigen\"",
+        "description": ""
+    },
+    "use_custom_functions_middle": {
+        "message": "für Maus-Rad-Klicks",
         "description": ""
     },
     "external_interface_headline": {
@@ -117,223 +269,79 @@ var strings =
         "description": ""
     },
     "show_contextmenu_when": {
-        "message": "Wann soll eine Option im Kontextmen\u00fc angezeigt werden um modern scroll auszublenden?",
-        "description": ""
-    },
-    "save_set_as": {
-        "message": "Speichere die aktuelle Konfiguration als",
-        "description": ""
-    },
-    "tooltip_save": {
-        "message": "Speichern",
-        "description": ""
-    },
-    "buttons": {
-        "message": "Scroll-Buttons",
-        "description": ""
-    },
-    "color_bg": {
-        "message": "Farbe der Hintergrundleisten",
-        "description": ""
-    },
-    "show_bg_bars_when": {
-        "message": "Und die Hintergrund-Leisten?",
-        "description": ""
-    },
-    "mousescroll_velocity": {
-        "message": "Scroll-Geschwindigkeit mit Maus-Rad und Trackpad",
-        "description": ""
-    },
-    "superbar_opacity": {
-        "message": "Sichtbarkeit der Superbar beim \u00dcberfahren mit der Maus",
-        "description": ""
-    },
-    "hbar_at_top": {
-        "message": "Zeige die horizontale Bildlaufleiste oben statt unten",
-        "description": ""
-    },
-    "move_bars_during_scroll": {
-        "message": "Bildlaufleiste w\u00e4hrend dem Scrollen mit dem Maus-Rad / der Tastatur animieren",
-        "description": ""
-    },
-    "use_custom_functions_keyboard": {
-        "message": "f\u00fcr die Tastatur",
-        "description": ""
-    },
-    "explanation_trigger_area": {
-        "message": "Diese Fl\u00e4che erleichtert die Nutzung der Bildlaufleisten.",
+        "message": "Wann soll eine Option im Kontextmenü angezeigt werden um modern scroll auszublenden?",
         "description": ""
     },
     "button_height": {
-        "message": "H\u00f6he",
-        "description": ""
-    },
-    "opacity": {
-        "message": "Sichtbarkeit der Bildlaufleisten",
-        "description": ""
-    },
-    "border_blur": {
-        "message": "Unsch\u00e4rfe",
-        "description": ""
-    },
-    "never": {
-        "message": "Nie",
-        "description": ""
-    },
-    "explanation_animate_scroll": {
-        "message": "Wenn diese Option aktiviert wird, dann springt die Seite nicht mehr an die gew\u00fcnschte Position, sondern scrollt automatisiert in einer einstellbaren Geschwindigkeit dort hin.\nDies betrifft sowohl die Scroll-Buttons, Klicks auf die Hintergrund-Leisten als auch Tastatur-Eingaben (falls \"Benutze eigene Scroll-Funktionen f\u00fcr die Tastatur\" aktiviert ist).",
-        "description": ""
-    },
-    "explanation_move_bars_during_scroll": {
-        "message": "Deaktiviere diese Option, falls Performance-Probleme auftreten.\nDie Bildlaufleisten werden dann nur am Ende des Scrollens an die neue Position gesetzt.",
-        "description": ""
-    },
-    "normal": {
-        "message": "Beim \u00dcberfahren mit der Maus, beim Scrollen und bei \u00c4nderungen von Position oder Gr\u00f6\u00dfe",
-        "description": ""
-    },
-    "border_color": {
-        "message": "Farbe",
-        "description": ""
-    },
-    "default_change_impossible": {
-        "message": "Du kannst die Standard-Konfiguration nicht ver\u00e4ndern! Bitte nutze einen anderen Namen.",
-        "description": ""
-    },
-    "load_or_delete_set": {
-        "message": "Lade oder l\u00f6sche",
-        "description": ""
-    },
-    "confirm_overwrite": {
-        "message": "Willst du diese Konfiguration wirklich \u00fcberschreiben?",
-        "description": ""
-    },
-    "mousescroll_distance": {
-        "message": "Scroll-Distanz pro Umdrehung des Maus-Rades",
-        "description": ""
-    },
-    "pages": {
-        "message": "Seiten",
-        "description": ""
-    },
-    "use_custom_functions_mouse": {
-        "message": "f\u00fcr die Maus",
-        "description": ""
-    },
-    "infinite": {
-        "message": "unendlich",
-        "description": ""
-    },
-    "disable_standard_bars": {
-        "message": "Wenn du modern scroll nicht ausschlie\u00dflich im Vollbild-Modus nutzt, sollten Operas Standard-Leisten deaktiviert werden.<br>Gehe dazu in <strong>Opera \u2192 Einstellungen \u2192 Einstellungen... (Strg+F12) \u2192 Erweitert \u2192 Browser</strong> und deaktiviere dort \"Bildlaufleisten zeigen\"",
+        "message": "Höhe",
         "description": ""
     },
     "gap": {
         "message": "Abstand zum Fensterrahmen",
         "description": ""
     },
-    "external_interface": {
-        "message": "Stelle eine Schnittstelle f\u00fcr den Zugang von au\u00dfen bereit",
+    "pages": {
+        "message": "Seiten",
         "description": ""
     },
-    "by": {
-        "message": "von",
+    "use_custom_functions_keyboard": {
+        "message": "für die Tastatur",
         "description": ""
     },
-    "fullscreen_only_short": {
-        "message": "Nur im Vollbild-Modus",
+    "animate_up_to": {
+        "message": "bis zu einer Länge von",
         "description": ""
     },
-    "look": {
-        "message": "Aussehen",
+    "how_to": {
+        "message": "Wie verwende ich diese Erweiterung?",
         "description": ""
     },
-    "lang": {
-        "message": "de",
-        "description": ""
-    },
-    "explanation_external_interface": {
-        "message": "Durch das Aktivieren dieser Option stellt modern scroll ein paar seiner Hauptfunktionen f\u00fcr die Nutzung durch Drittanbieter-Erweiterungen, Webseiten oder dich zur Verf\u00fcgung. Du kannst damit dann z.B. eigene Maus-Gesten schaffen.\n<a href='http://my.opera.com/christoph142/blog/2013/02/20/modern-scroll-documentation' target='_blank'>Schau dir die Dokumentierung (Englisch) an um mehr dar\u00fcber zu erfahren.</a>",
-        "description": ""
-    },
-    "contextmenu": {
-        "message": "Kontextmen\u00fc",
-        "description": ""
-    },
-    "show_buttons": {
-        "message": "Scroll-Buttons zum Seiten-Anfang und -Ende anzeigen",
-        "description": ""
-    },
-    "only_over": {
-        "message": "Nur wenn die Maus dar\u00fcber ist",
-        "description": ""
-    },
-    "show_when": {
-        "message": "Wann sollen die Bildlaufleisten zu sehen sein?",
-        "description": ""
-    },
-    "default_delete_impossible": {
-        "message": "Du kannst die Standard-Konfiguration nicht l\u00f6schen!",
-        "description": ""
-    },
-    "always": {
-        "message": "Immer",
-        "description": ""
-    },
-    "like_bars": {
-        "message": "Wie die Bildlaufleisten",
-        "description": ""
-    },
-    "tooltip_load": {
-        "message": "Laden",
-        "description": ""
-    },
-    "keyscroll_velocity": {
-        "message": "Scroll-Geschwindigkeit mit den Pfeil-Tasten",
-        "description": ""
-    },
-    "use_custom_functions": {
-        "message": "Benutze eigene Scroll-Funktionen",
-        "description": ""
-    },
-    "button_opacity": {
-        "message": "Sichtbarkeit",
-        "description": ""
-    },
-    "vbar_at_left": {
-        "message": "Zeige die vertikale Bildlaufleiste links statt rechts",
-        "description": ""
-    },
-    "contextmenu_hide": {
-        "message": "modern scroll ausblenden",
-        "description": ""
-    },
-    "superbar": {
-        "message": "Superbar",
-        "description": ""
-    },
-    "custom_scroll_functions": {
-        "message": "Scroll-Funktionen",
+    "contextmenu_show": {
+        "message": "modern scroll einblenden",
         "description": ""
     },
     "new_set_name": {
         "message": "Name",
         "description": ""
     },
-    "confirm_delete": {
-        "message": "Willst du diese Konfiguration wirklich unwiderruflich l\u00f6schen?",
+    "animatedscroll_velocity": {
+        "message": "Geschwindigkeit des animierten Scrollens",
         "description": ""
     },
-    "container1": {
-        "message": "modern scroll im Abstand von ",
+    "show_how_long": {
+        "message": "Wie lange sollen die Leisten zu sehen sein?",
         "description": ""
     },
-    "page": {
-        "message": "Seite",
+    "default": {
+        "message": "Standard",
         "description": ""
     },
-    "container2": {
-        "message": "px zum Rand triggern",
+    "explanation_external_interface": {
+        "message": "Durch das Aktivieren dieser Option stellt modern scroll ein paar seiner Hauptfunktionen für die Nutzung durch Drittanbieter-Erweiterungen, Webseiten oder dich zur Verfügung. Du kannst damit dann z.B. eigene Maus-Gesten schaffen.\n<a href='http://my.opera.com/christoph142/blog/2013/02/20/modern-scroll-documentation' target='_blank'>Schau dir die Dokumentierung (Englisch) an um mehr darüber zu erfahren.</a>",
+        "description": ""
+    },
+    "size": {
+        "message": "Breite (bzw. Höhe bei horizontaler Leiste) im Normalzustand",
+        "description": ""
+    },
+    "show_bg_bars_when": {
+        "message": "Und die Hintergrund-Leisten?",
+        "description": ""
+    },
+    "animate_scroll": {
+        "message": "Animiere das Scrollen",
+        "description": ""
+    },
+    "saved_sets_headline": {
+        "message": "Gespeicherte Konfigurationen:",
+        "description": ""
+    },
+    "explanation_move_bars_during_scroll": {
+        "message": "Deaktiviere diese Option, falls Performance-Probleme auftreten.\nDie Bildlaufleisten werden dann nur am Ende des Scrollens an die neue Position gesetzt.",
+        "description": ""
+    },
+    "description": {
+        "message": "Bringt das Scrollen auf ein ganz neues Niveau",
         "description": ""
     }
 }; 

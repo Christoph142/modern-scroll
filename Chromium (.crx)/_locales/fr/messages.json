@@ -84,7 +84,7 @@
         "description": ""
     },
     "middlescroll_velocity": {
-        "message": "Velocity of scrolling by mouse wheel clicking",
+        "message": "Vitesse de défilement en cliquant sur la roulette de la souris",
         "description": ""
     },
     "button_width": {
@@ -260,7 +260,7 @@
         "description": ""
     },
     "use_custom_functions_middle": {
-        "message": "for mouse wheel clicks",
+        "message": "pour les clics de roulette de la souris",
         "description": ""
     },
     "external_interface_headline": {
