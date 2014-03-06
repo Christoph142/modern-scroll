@@ -218,19 +218,7 @@ function add_page_handling(storage)
 			bubble_setback = window.setTimeout(function(){this.lastChild.style.marginTop= null;}.bind(this),500);
 		}, false);
 	}
-}
 
-function localize()
-{
-	if(chrome.i18n.getMessage("lang") === "ar" || chrome.i18n.getMessage("lang") === "ur_PK") document.body.dir = "rtl";
-	
-	var strings = document.getElementsByClassName("i18n");
-	for(var i = 0; i < strings.length; i++)
-	{
-		if(strings[i].tagName === "IMG")	strings[i].title = chrome.i18n.getMessage(strings[i].title); // tooltips
-		else								strings[i].innerHTML += chrome.i18n.getMessage(strings[i].dataset.i18n);
-	}
-	
 	//help:
 	document.getElementById("help").addEventListener("click", function(){
 		window.open("https://christoph142.wordpress.com/2013/06/27/help/");
@@ -239,6 +227,16 @@ function localize()
 		e.stopPropagation();
 		document.getElementById("help").style.display = "none";
 	}, false);
+}
+
+function localize()
+{
+	var strings = document.getElementsByClassName("i18n");
+	for(var i = 0; i < strings.length; i++)
+	{
+		if(strings[i].tagName === "IMG")	strings[i].title = chrome.i18n.getMessage(strings[i].title); // tooltips
+		else								strings[i].innerHTML += chrome.i18n.getMessage(strings[i].dataset.i18n);
+	}
 }
 
 var bubble_setback; // timeout for info bubbles

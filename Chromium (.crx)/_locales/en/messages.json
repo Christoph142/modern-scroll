@@ -1,5 +1,4 @@
 {
-	"lang" :							{ "message" : "en" },
 	"description" :						{ "message" : "Takes scrolling to a whole new level" },
 	"by" :								{ "message" : "by" },
 	"saved_sets_headline" :				{ "message" : "Saved configurations:" },
