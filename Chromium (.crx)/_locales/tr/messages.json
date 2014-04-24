@@ -195,10 +195,6 @@
         "message": "Bu eklentiyi kurduğunuz için teşekkürler. Geri bildirim ve yorumlar için benimle iletişime geçmekten çekinmeyin",
         "description": ""
     },
-    "lang": {
-        "message": "tr",
-        "description": ""
-    },
     "tooltip_load": {
         "message": "Yükle",
         "description": ""

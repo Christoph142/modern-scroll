@@ -195,10 +195,6 @@
         "message": "Спасибо за установку этого расширения. Вы можете связаться со мной в любое время для отзывов и вопросов.",
         "description": ""
     },
-    "lang": {
-        "message": "ru",
-        "description": ""
-    },
     "tooltip_load": {
         "message": "Загрузить",
         "description": ""

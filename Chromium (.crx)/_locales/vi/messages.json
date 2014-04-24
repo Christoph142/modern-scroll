@@ -195,10 +195,6 @@
         "message": "Xin cảm ơn bạn đã cài đặt phần tiện ích này. Bạn có thể liên hệ chúng tôi bất cứ khi nào để gửi các phản hồi cũng như các thắc mắc của các bạn.",
         "description": ""
     },
-    "lang": {
-        "message": "en",
-        "description": ""
-    },
     "tooltip_load": {
         "message": "Tải",
         "description": ""

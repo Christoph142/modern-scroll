@@ -1,18 +1,17 @@
------ Cette extension nécessite Opera 12.10 ou plus récent! -----
-modern scroll prend le défilement à un niveau entièrement nouveau
-(Les barres de défilement standards d'Opera doivent être désactivés pour éviter doubles barres.
-Donc ouvre Opera → Réglages → Préférences... (Ctrl+F12) → Avancé → Navigation et désactive "Afficher les barres de défilement"
+----- Cette extension nécessite d'avoir Opera 12.10 ou plus récent d'installé ! -----
+Modern scroll porte le défilement à l'écran à un tout nouveau niveau
+(Les barres de défilement standards d'Opera doivent être désactivées pour éviter la présence de deux barres. Pour cela aller dans le menu Opera → Réglages → Préférences... (Ctrl+F12) → Avancé → Navigation pour désactiver "Afficher les barres de défilement"
 
-Quel est l'aspect génial de modern scroll?
+Qu'est ce que Modern scroll apporte-il de génial ?
 
-+ booste le performance du défilement!
-+ vitesse de défilement est réglable
-+ ses barres de défilement ne prennent pas de place donc toute la largeur de l'écran peut être utilisé pour afficher ce qu'un navigateur est fait: sites web
-+ éléments ou pages entières ne se déplacent pas par certains pixels lorsque des changements de contenu et des bars deviennent (ne plus) nécessaire
-+ les barres de défilement sont utilisables aussi bien en mode plein écran
-+ les barres de défilement se cachent automatiquement quand ils ne sont pas nécessaires
-+ unique "superbar" qui permet de défiler horizontalement et verticalement en même temps
-+ boutons optionnels pour le défilement en haut et en bas de la page
-+ comportement et l'apparence sont entièrement personnalisable
++ il augmente la performance du défilement !
++ la vitesse de défilement est réglable
++ ses barres de défilement ne prennent pas plus de place, donc toute la largeur de l'écran peut être utilisée pour afficher les pages web
++ les éléments ou les pages entières ne bougent pas d'un pixel lorsque le des pages web change ou que les bars deviennent (non-)nécessaires
++ les barres de défilement sont également utilisables en mode plein-écran
++ les barres de défilement se masquent automatiquement lorsqu'elles ne sont pas nécessaires
++ une "barre des tâches" unique, rendant possible le défilement à la fois horizontal et vertical
++ des boutons optionnels pour faire défiler directement vers le haut ou le bas de la page
++ le comportement et l'apparence de la barre sont totalement personnalisables
 
-Cette extension a été initialement conçu comme une mise à jour de "Slim ScrollBar" de damage92. Mais puisqu'il n'a pas une seule ligne de code en commun avec l'extension originale, nous avons décidé de la publier comme une nouvelle. Slim ScrollBar vais bien sûr continuer à exister si tu préférs l'autre mise en œuvre ou si tu utilises Opera dessous de 12.10 où modern scroll n'est pas disponible. En raison du temps libre rare de damage92 il n'est pas développé activement pour le moment cependant.
+Cette extension était initialement conçue pour succéder à "Slim ScrollBar" de damage92. Mais puisqu'elle n'avait pas la moindre ligne de code de programmation commune avec l'extension originale, nous avons décidé de la publier sous la forme d'une nouvelle extension. Slim ScrollBar va bien sûr continuer d'exister si vous la préférez ou si vous utilisez Opera dont la version est inférieure à la 12.10, sous laquelle Modern scroll n'est pas disponible. D'autant plus qu'en raison du peu de temps libre dont dispose damage92, son développement actif pour les versions inférieures n'est pas sa priorité.

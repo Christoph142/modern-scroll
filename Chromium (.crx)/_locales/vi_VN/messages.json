@@ -195,10 +195,6 @@
         "message": "Thanks for installing this extension. You can contact me at any time for feedback and questions.",
         "description": ""
     },
-    "lang": {
-        "message": "en",
-        "description": ""
-    },
     "tooltip_load": {
         "message": "Load",
         "description": ""

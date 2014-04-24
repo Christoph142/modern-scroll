@@ -195,10 +195,6 @@
         "message": "Obrigado por instalar esta extensão. Você pode entrar em contato comigo a qualquer hora para comentários e perguntas.",
         "description": ""
     },
-    "lang": {
-        "message": "pt",
-        "description": ""
-    },
     "tooltip_load": {
         "message": "Carregar",
         "description": ""

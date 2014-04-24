@@ -195,10 +195,6 @@
         "message": "Díky za nainstalování tohoto rozšíření. Můžete mě kdykoli kontaktovat pro zpětnou vazbu a otázky.",
         "description": ""
     },
-    "lang": {
-        "message": "cs",
-        "description": ""
-    },
     "tooltip_load": {
         "message": "Načíst",
         "description": ""

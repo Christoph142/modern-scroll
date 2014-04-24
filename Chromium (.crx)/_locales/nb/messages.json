@@ -195,10 +195,6 @@
         "message": "Takk for at du installerte denne utvidelsen. Du kan kontakte meg (på engelsk) når som helst for å gi tilbakemelding og stille spørsmål.",
         "description": ""
     },
-    "lang": {
-        "message": "nb",
-        "description": ""
-    },
     "tooltip_load": {
         "message": "Last inn",
         "description": ""

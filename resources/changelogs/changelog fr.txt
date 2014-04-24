@@ -1,13 +1,13 @@
 ﻿v 3.0.3
 ---------
-new: custom mouse wheel click scrolling
-upd: disable custom mouse scrolling by default
+nouveau : clic de défilement avec la molette personnalisé
+mis à jour : le défilement personnalisé avec la souris est désactivé par défaut
 
 v 3.0.2
 ---------
 nouveau: contrôles de dimensions supplémentaires pour une meilleure compatibilité avec tous les sites web
 fixé: tailles des barres sont incorrectes aux pages avec Disqus
-upd: Portuguese translation (thx André)
+mis à jour : traduction portugaises (merci à André)
 
 v 3.0.1
 ---------
@@ -18,18 +18,18 @@ fixé: les positions des barres sont incorrects pendant le défilement dans Chro
 
 v 3.0
 ---------
-nouveau: entièrement compatible avec Chromium (Chrome et Opera 15)
-nouveau: cache les barres de défilement défaut automatiquement
-nouveau: stylisme des barres de défilement d'éléments de la page (p.e. zones de texte)
-nouveau: les réglages sont synchronisés sur tous tes appareils
-nouveau: mini page en direct derrière superbar
-nouveau: meilleure maniabilité des valeur défaut et la récupération des configurations enregistrées
+nouveau : entièrement compatible avec Chromium (Chrome et Opera 15)
+nouveau : cache les barres de défilement originelles automatiquement
+nouveau : personnalisation des barres de défilement (ex : les zones de texte)
+nouveau : les réglages sont synchronisés sur tous vos appareils
+nouveau : mini page en direct derrière la barre des tâches
+nouveau : meilleure configuration des valeurs choisies par défaut et de la récupération des configurations enregistrées
 
 v 2.4.5
 ---------
-fix: fast forward with space bar (thx André)
-upd: various translations (thx to all contributors)
-upd: links to new blog
+corrigé : le défilement était trop rapide avec la barre d'espace
+mis à jour : diverses traductions (merci à tous les contributeurs)
+mis à jour : liens vers le nouveau blog
 
 v 2.4.4
 ---------
@@ -40,86 +40,86 @@ mis à jour: plusieurs traductions (merci à tous les traducteurs)
 
 v 2.4.3
 ---------
-fix: interface stays invisible when switching tabs during loading
-fix: bars have a white rectangular background @ www.testberichte.de
+corrigé : l'interface restait invisible lorsque les onglets étaient déplacés lors de leur chargement
+corrigé : les barres avaient un fond rectangulaire blanc @ www.testberichte.de
 
 v 2.4.2
 ---------
-new: improved rendering
-fix: interface is invisible when another tab gets closed
-fix: restore cleanPages extension compatibility (thx QuHno)
-fix: flickering scroll bars during touchpad/mouse scrolling
+nouveau : rendu amélioré
+corrigé : l'interface pouvait devenir invisible lorsqu'un onglet était fermé
+corrigé : restauration de la compatibilité avec l'extension cleanPages (merci à QuHno)
+corrigé : les barres de défilement clignotantes clignotaient lorsqu'elles étaient défilées avec la souris ou le pavé tactile
 
 v 2.4.1
 ---------
-new: border settings affect scroll buttons, too (thx Dimitri for reporting)
-fix: modern scroll doesn't work on some websites (thx André, jonastheroman & orhano for reporting)
-fix: scroll bar momentarily jumps to top/bottom during scrolling (thx Cryio, André & orhano for reporting)
+nouveau : les paramètres ?? affectent maintenant les boutons de défilement (merci à Dimitri  de l'avoir signalé)
+corrigé : Moderne scroll ne fonctionnait pas sur certains sites web (merci à André, jonastheroman & orhano de l'avoir signalé)
+corrigé : la barre de défilement allait directement par moments en haut/en bas lors du défilement (merci à Cryio, André & orhano de l'avoir signalé)
 
 v 2.4
 ---------
-new: adjustable time before hiding bars
-new: modern scroll is only active in current tab, not in all opened ones anymore
-new: explanation fields in options page show up to the top if they are below middle of the screen
-upd: Portuguese translation (thx André)
-upd: background bars are only visible when you hover them with your mouse now by default
-upd: restructuring and performance improvements
+nouveau : il est possible d'ajuster un temps avant que les barres ne se masquent
+nouveau : Modern scroll peut n'être actif que sur des onglets précis, et non obligatoirement sur tous
+nouveau : des bulles explicatives dans les pages d'option s'affichent dans le haut des pages si elles sont en-dessous du milieu de l'écran
+mis à jour : traduction portugaises (merci à André)
+mis à jour : par défaut, les barres de fond ne sont visibles que lorsque vous passez la souris au-dessus
+mis à jour : améliorations des performances et dans la disposition de l'interface
 
 v 2.3.1
 ---------
-fix: ingdirect.fr (thx terdale for reporting)
+corrigé : ingdirect.fr (merci à terdale de l'avoir signalé)
 fix: Bootstrap's modal popups not appearing (thx Johnny for reporting; semi-fixed only)
-upd: Czech & Arabic translations (thx Ahoj1234 & Netmain)
-upd: minimal overall performance improvements
+mis à jour : traductions arabes et tchèques (merci à Ahoj1234 & Netmain)
+mis à jour : améliorations minimales apportées aux performances en général
 
 v 2.3
 ---------
-new: modern scroll can be used for custom mouse gestures (external interface)
-new: components are available independently
-new: Romanian translation (thx Cryio)
-fix: hiding the UI also disables the scrolling functions
-fix: page's dimensions aren't updated after long transitions/animations (thx aiwork & arkenighte for reporting)
-fix: lastpass.com (thx Netmain for reporting)
-fix: incompatibility with ExtJS framework (thx Alexander for reporting)
-fix: position of bars is slightly incorrect for very long pages
-fix: horizontal bar is misplaced if distance to the borders of the window is not 0
-fix: keyboard navigation in contenteditable sections (thx Henryk for reporting)
+nouveau : Modern scroll peut être utilisé pour personnaliser les mouvements de souris (interface externe)
+nouveau : les composants sont disponibles indépendamment d'entre eux
+nouveau : traductions roumaines (merci à Cryio)
+corrigé : masquer l'interface utilisateur désactivait les fonctions de défilement
+corrigé : les dimensions des pages n'étaient pas mises à jour à la suite de trop longues traductions/animations (merci à aiwork & arkenighte de l'avoir signalé)
+corrigé : lastpass.com (merci à Netmain de l'avoir signalé)
+corrigé : Modern scroll était incompatible avec ExtJS framework (merci à Alexander de l'avoir signalé)
+corrigé : la position des barres était légèrement incorrecte pour les pages trop longues 
+corrigé : la barre horizontale était remplacée si la distance avec les bords de la fenêtre n'étaient pas mis sur 0
+corrigé : la navigation avec le clavier n'était pas possible dans le contenu éditable (merci à Henryk  de l'avoir signalé)
 
 v 2.2.1
 ---------
-new: Norwegian translation (thx Daniel)
-new: Arabic translation (thx netmain)
-new: Czech translation (thx Ahoj1234)
+nouveau : traduction norvégienne (merci à Daniel)
+nouveau  : traduction en arabe (merci à netmain)
+nouveau : traduction en tchèque (merci à Ahoj1234)
 fix: fullscreen mode only use (thx aboutblank6 for reporting)
-fix: modern scroll blocks scrolling with the arrow keys when no interface is present (e.g. MyOpera Mail, Google Docs)
-upd: Polish translation (thx Piotr)
+corrigé : Modern scroll bloquait le défilement au moyen des touches fléchées lorsque l'interface n'était pas apparente (ex : MyOpera Mail, Google Docs)
+mis à jour : traduction polonaise (merci à Piotr)
 
 v 2.2
 ---------
-new: scrolling with mouse and trackpad is configurable
-new: all kinds of scrolling are even smoother
-fix: detection of scrollable elements (thx Ahoj1234 for reporting)
-fix: arrow keys in search-input fields (thx Cryio for reporting)
+nouveau : le défilement avec la souris comme le pavé tactile est configurable
+nouveau : tous les types de défilement sont maintenant plus fluides
+corrigé : certains éléments pour lesquels il était possible de faire défiler l'écran n'étaient pourtant pas toujours détectés (merci à Ahoj1234 de l'avoir signalé)
+corrigé : les touches fléchées ??? dans les zones de recherches (merci à Cryio de l'avoir signalé)
 fix: PgUp/PgDwn/Home/End keys in select fields (thx André for reporting)
-fix: milliyet.com.tr (thx Magruf for reporting)
-upd: Turkish translation (thx metude)
+corrigé : milliyet.com.tr (merci à Magruf de l'avoir signalé)
+mis à jour : traduction en turc (merci à metude)
 
 v 2.1.3
 ---------
 fix: horizontal mouse scrolling (thx kimmy8624 for reporting)
 fix: mouse scrolling over select elements (thx Vincent for your support)
-upd: animate scrolling by default
+mis à jour : l'animation du défilement est choisie par défaut
 
 v 2.1.2
 ---------
 new: pressing Enter in configuration's name field in options page saves it
-fix: insanely fast mouse scrolling on Mac (thx Lauren & ayni for reporting)
-fix: options page in installations that were not updated from version 2.0
+corrigé : le défilement pouvait être extrêmement rapide sur Mac (merci à Lauren & ayni de l'avoir signalé)
+corrigé : les pages d'options pouvaient ne pas s'être mises à jour depuis la version 2.0
 
 v 2.1.1
 ---------
-fix: keyboard shortcuts with command key ? (thx ayni for reporting)
-upd: Portuguese translation (thx André)
+corrigé : les raccourcis clavier comportant une commande avec ? pouvaient ne pas fonctionner (merci à ayni de l'avoir signalé)
+mis à jour : traduction portugaises (merci à André)
 
 v 2.1
 ---------
@@ -135,15 +135,15 @@ fix: megalab.it (not excluded anymore)
 
 v 2.0
 ---------
-new: modern scroll speeds up scrolling!
-new: configurations can be saved and restored
-new: horizontal bar shortened to prevent overlapping
-new: optionally animate scrolling
-new: additional explanations for some settings
+nouveau : Moderne scroll voit grandement sa vitesse de défilement améliorée !
+nouveau : les configurations peuvent être sauvegardées et améliorées
+nouveau : la barre de défilement horizontale a été réduite pour éviter le chevauchement avec celle verticale
+nouveau : le défilement peut être paramétré pour devenir animé
+nouveau : explications supplémentaires ajoutées pour expliquer certains paramêtres
 new: support for iframes
-fix: clicking a background bar may result in vertical and horizontal scrolling at the same time
-fix: various smaller bugs
-upd: improved overall performance
+corrigé : cliquer sur une barre en arrière-plan pouvait entrainer un défilement vertical et horizontal en même temps
+corrigé : plusieurs bogues mineurs
+mis à jour : amélioration des performances générales
 
 v 1.3.1
 ---------

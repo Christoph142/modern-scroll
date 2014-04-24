@@ -1,6 +1,6 @@
 {
     "hbar_at_top": {
-        "message": "Affiche la barre de défilement horizontale en haut au lieu de bas",
+        "message": "Afficher la barre de défilement horizontal en haut et non pas en bas",
         "description": ""
     },
     "use_custom_functions": {
@@ -20,7 +20,7 @@
         "description": ""
     },
     "show_superbar_minipage": {
-        "message": "Affiche une version mini du site en arrière-plan lorsque tu glisses le superbar",
+        "message": "Afficher une mini-version du site web en arrière-plan lorsque vous faites glisser la barre des tâches",
         "description": ""
     },
     "default_delete_impossible": {
@@ -40,7 +40,7 @@
         "description": ""
     },
     "mousescroll_velocity": {
-        "message": "Vitesse de défilement par molette de la souris et le trackpad",
+        "message": "Vitesse de défilement avec molette de la souris et le pavé tactile",
         "description": ""
     },
     "like_bars": {
@@ -48,11 +48,11 @@
         "description": ""
     },
     "border_blur": {
-        "message": "Blur",
+        "message": "Flou",
         "description": ""
     },
     "move_bars_during_scroll": {
-        "message": "Anime les barres de défilement pendant le défilement avec la mouse wheel/keyboard",
+        "message": "Animer les barres de défilement lors du défilement avec la molette/le clavier",
         "description": ""
     },
     "border": {
@@ -60,7 +60,7 @@
         "description": ""
     },
     "infinite": {
-        "message": "infini",
+        "message": "infinie",
         "description": ""
     },
     "show_buttons": {
@@ -68,15 +68,15 @@
         "description": ""
     },
     "explanation_trigger_area": {
-        "message": "Cette zone rend l'accès des barres plus facile.",
+        "message": "Élargit l'étendue de la zone accordée aux barres de défilement.",
         "description": ""
     },
     "confirm_overwrite": {
-        "message": "Veux-tu vraiment écraser cette configuration?",
+        "message": "Voulez-vous vraiment écraser cette configuration ?",
         "description": ""
     },
     "by": {
-        "message": "de",
+        "message": "par",
         "description": ""
     },
     "normal": {
@@ -112,7 +112,7 @@
         "description": ""
     },
     "explanation_save_set": {
-        "message": "Tu peux sauvegarder ton configuration actuelle ici. Il suffit d'entrer un nom et de cliquer sur le bouton de sauvegarde. Si tu choisis un nom qui existe déjà cette entrée est écrasée.",
+        "message": "Vous pouvez sauvegarder votre configuration actuelle ici. Il vous suffit d'entrer un nom et de cliquer sur le bouton de sauvegarde. Si vous choisissez un nom qui existe déjà, cette entrée sera écrasée.",
         "description": ""
     },
     "custom_scroll_functions": {
@@ -120,11 +120,11 @@
         "description": ""
     },
     "superbar_opacity": {
-        "message": "Opacité de la superbar lorsque planait avec la souris",
+        "message": "Opacité de la barre des tâches lorsque la souris passe au-dessus",
         "description": ""
     },
     "contextmenu_over_only": {
-        "message": "Quand je fais une clic droite à l'interface de modern scroll",
+        "message": "Lorsque je clique-droit, l'interface de modern scroll",
         "description": ""
     },
     "border_color": {
@@ -132,19 +132,19 @@
         "description": ""
     },
     "show_superbar": {
-        "message": "Affiche le \"superbar\"",
+        "message": "Afficher la \"barre des tâches\"",
         "description": ""
     },
     "load_or_delete_set": {
-        "message": "Charge ou supprime",
+        "message": "Charger ou supprimer",
         "description": ""
     },
     "explanation_animate_scroll": {
-        "message": "Si tu sélectionnes cette option, la page ne ​​saute plus à la position souhaitée, mais il là défile automatiquement avec un taux révisable.<br>Cela vaut pour les boutons de défilement, les clics aux barres d'arrière-plan ainsi que le défilement avec le clavier (si \"Utilise des fonctions de défilement personnalisées pour le clavier\" est activée).",
+        "message": "Si vous sélectionnez cette option, la page ne s'affichera pas directement à la position désirée, mais y défilera automatiquement de façon progressive.<br>Cela s'applique aux boutons de défilement, les clics aux barres d'arrière-plan ainsi que le défilement avec le clavier (si \"Utilise des fonctions de défilement personnalisées pour le clavier\" est activée).",
         "description": ""
     },
     "default_change_impossible": {
-        "message": "Tu ne peux pas modifier la configuration par défaut! Choisis un autre nom s'il te plaît.",
+        "message": "Vous ne pouvez pas changer la configuration par défaut ! Choisissez un autre nom s'il vous plaît.",
         "description": ""
     },
     "page": {
@@ -152,11 +152,11 @@
         "description": ""
     },
     "bg_special_ends": {
-        "message": "En cliquant sur ​​les extrémités de barres de fond défile complètement vers le haut/bas (respectivement gauche/droite) au lieu de par une page",
+        "message": "En cliquant sur ​​les extrémités de la barre de défilement, faire défiler la page complètement vers le haut ou le bas (et respectivement la gauche ou la droite) au lieu d'un défilement page par page",
         "description": ""
     },
     "vbar_at_left": {
-        "message": "Affiche la barre de défilement verticale à gauche no pas à droite",
+        "message": "Afficher la barre de défilement vertical à gauche et non pas à droite",
         "description": ""
     },
     "look": {
@@ -168,7 +168,7 @@
         "description": ""
     },
     "mousescroll_distance": {
-        "message": "Distance défilé par rotation de la molette de la souris",
+        "message": "Distance parcourue lors du défilement à chaque rotation faite avec la molette de la souris",
         "description": ""
     },
     "color_bg": {
@@ -176,11 +176,11 @@
         "description": ""
     },
     "drag_buttons": {
-        "message": "Tu peux tirer les boutons à chaque position ici dans les options. Cette position deviendra le défaut pour tous les sites. Si ils couvrent un élément sur ​​certaines pages, tu les peux déplacer là",
+        "message": "Vous pouvez déplacer les boutons sur chacune des positions, ici, dans les options. Cette position deviendra celle par défaut pour tous les sites web. Si ces sites couvrent un élément sur ​​certaines pages, vous pourrez toujours les déplacer en dehors de ce qui est prévu ici",
         "description": ""
     },
     "color": {
-        "message": "Couleur des barres de défilements, de superbar et des boutons de défilement",
+        "message": "Couleur des barres de défilements, de la barre des tâches et des boutons de défilement",
         "description": ""
     },
     "button_opacity": {
@@ -192,11 +192,7 @@
         "description": ""
     },
     "footer": {
-        "message": "Merci d'avoir installé cette extension. Tu peux me contacter toujours pour des commentaires et des questions.",
-        "description": ""
-    },
-    "lang": {
-        "message": "fr",
+        "message": "Merci d'avoir installé cette extension. Vous pouvez toujours me contacter pour me soumettre des commentaires et me poser des questions.",
         "description": ""
     },
     "tooltip_load": {
@@ -212,7 +208,7 @@
         "description": ""
     },
     "hover_size": {
-        "message": "Largeur (respectivement hauteur de barres horizontales) lorsque planait avec la souris",
+        "message": "Largeur (et respectivement Hauteur de barres horizontales) lorsque vous faite survoler la souris au-dessus",
         "description": ""
     },
     "behavior": {
@@ -224,7 +220,7 @@
         "description": ""
     },
     "fullscreen_only": {
-        "message": "Affiche les barres seulement en mode plein écran",
+        "message": "Afficher les barres seulement en mode plein écran",
         "description": ""
     },
     "never": {
@@ -240,11 +236,11 @@
         "description": ""
     },
     "external_interface": {
-        "message": "Fourni une interface pour l'accès externe",
+        "message": "Fournie une interface pour un accès externe",
         "description": ""
     },
     "save_set_as": {
-        "message": "Enregistre la configuration actuelle comme",
+        "message": "Enregistrer la configuration actuelle comme",
         "description": ""
     },
     "contextmenu": {
@@ -252,7 +248,7 @@
         "description": ""
     },
     "explanation_superbar": {
-        "message": "Le \"superbar\" est une barre de défilement horizontale et verticale combinée.<br>Donc, il devient visibles seulement si les deux barres sont nécessaires et apparaîtra alors centré verticalement à la verticale et centré horizontalement à la barre horizontale.",
+        "message": "La \"barre des tâches\" est une bare combinant celles de défilement horizontal et vertical.<br>Elle devient ainsi visible lorsque les deux barres sont nécessairement affichées.<br> Sa position est alignée avec les barres de défilement horizontal et vertical.",
         "description": ""
     },
     "disable_standard_bars": {
@@ -268,7 +264,7 @@
         "description": ""
     },
     "show_contextmenu_when": {
-        "message": "Quand veux-tu une option dans le menu contextuel pour cacher modern scroll?",
+        "message": "Quand voulez-vous une option dans le menu contextuel pour cacher Modern scroll ?",
         "description": ""
     },
     "button_height": {
@@ -276,7 +272,7 @@
         "description": ""
     },
     "gap": {
-        "message": "Distance jusqu'à la frontière de la fenêtre",
+        "message": "Distance jusqu'à la limite de la fenêtre",
         "description": ""
     },
     "pages": {
@@ -296,7 +292,7 @@
         "description": ""
     },
     "contextmenu_show": {
-        "message": "Affiche modern scroll",
+        "message": "Afficher la barre modern scroll",
         "description": ""
     },
     "new_set_name": {
@@ -304,11 +300,11 @@
         "description": ""
     },
     "animatedscroll_velocity": {
-        "message": "Vitesse de défilement animé",
+        "message": "Vitesse du défilement animé",
         "description": ""
     },
     "show_how_long": {
-        "message": "Combien de temps veux-tu les barres de rester visible?",
+        "message": "Combien de temps voulez-vous que les barres restent visibles ?",
         "description": ""
     },
     "default": {
@@ -316,27 +312,27 @@
         "description": ""
     },
     "explanation_external_interface": {
-        "message": "En cochant cette option, modern scroll fournira certaines de ses caractéristiques essentielles pour l'utilisation par des tierces-parties-extensions, sites web ou tu. Tu peux alors par exemple créer des gestes de souris personnalisés.<br><a href='http://my.opera.com/christoph142/blog/2013/02/20/modern-scroll-documentation' target='_blank'>Visite la documentation pour en savoir plus à ce sujet.</a>",
+        "message": "En cochant cette option, modern scroll fournira certaines de ses caractéristiques essentielles pour l'utilisation par des tierces-parties-extensions, sites web ou tu. Tu peux alors par exemple créer des gestes de souris personnalisés.<br><a href='https://christoph142.wordpress.com/2013/02/20/modern-scroll-documentation/' target='_blank'>Visite la documentation pour en savoir plus à ce sujet.</a>",
         "description": ""
     },
     "size": {
-        "message": "Largeur (respectivement la hauteur des barres horizontales) à l'état normal",
+        "message": "Largeur (et respectivement la Hauteur pour les barres horizontales) à l'état normal",
         "description": ""
     },
     "show_bg_bars_when": {
-        "message": "Et les barres d'arrière-plan?",
+        "message": "Et les barres d'arrière-plan ?",
         "description": ""
     },
     "animate_scroll": {
-        "message": "Anime le défilement",
+        "message": "Animer le défilement",
         "description": ""
     },
     "saved_sets_headline": {
-        "message": "Configurations enregistrées:",
+        "message": "Configurations enregistrées :",
         "description": ""
     },
     "explanation_move_bars_during_scroll": {
-        "message": "Désactive cette option si tu rencontres des problèmes de performance.<br>Les positions des barres de défilement sera seulement mis à jour lorsque le défilement est terminé.",
+        "message": "Désactivez cette option si vous rencontrez des problèmes de performance.<br>Les positions des barres de défilement seront mises à jour uniquement lorsque le défilement sera terminé.",
         "description": ""
     },
     "description": {

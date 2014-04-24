@@ -195,10 +195,6 @@
         "message": "感谢您安装此扩展.欢迎随时联系,以反馈与交流.",
         "description": ""
     },
-    "lang": {
-        "message": "zh_CN",
-        "description": ""
-    },
     "tooltip_load": {
         "message": "载入",
         "description": ""

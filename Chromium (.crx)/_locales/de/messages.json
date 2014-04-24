@@ -195,10 +195,6 @@
         "message": "Danke für das Installieren dieser Erweiterung. Für Feedback und Fragen stehe ich jederzeit gerne zur Verfügung.",
         "description": ""
     },
-    "lang": {
-        "message": "de",
-        "description": ""
-    },
     "tooltip_load": {
         "message": "Laden",
         "description": ""

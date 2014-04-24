@@ -195,10 +195,6 @@
         "message": "أشكركم على تثبيت هذه الإضافة. يمكنكم الإتصال بي وقتما شئتم لإبداء أرائكم أو طرح تساؤلاتكم",
         "description": ""
     },
-    "lang": {
-        "message": "عربي",
-        "description": ""
-    },
     "tooltip_load": {
         "message": "تحميل",
         "description": ""

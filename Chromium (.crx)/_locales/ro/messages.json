@@ -195,10 +195,6 @@
         "message": "Vă mulţumesc pentru instalarea acestei extensii. Mă puteţi contacta la orice oră pentru feedback şi întrebări.",
         "description": ""
     },
-    "lang": {
-        "message": "ro",
-        "description": ""
-    },
     "tooltip_load": {
         "message": "Incarcă",
         "description": ""
