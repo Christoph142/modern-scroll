@@ -97,7 +97,7 @@ function remove_ms()
 	try		 { document.documentElement.removeChild(document.getElementById("modern_scroll"));
 	}catch(e){ document.body.removeChild(document.getElementById("modern_scroll")); }
 	
-	delete window.scrollMaxX; delete window.scrollMaxY;
+	delete window.scrollMaxX; delete window.scrollMaxY; delete window.devicePixelRatio_old;
 	isFullscreen = null;
 }
 
@@ -114,8 +114,8 @@ function inject_css()
 		
 		/* set values (most general first - can be overwritten by following rules): */
 		"#modern_scroll, #modern_scroll_bars, #modern_scroll_buttons{ display:inline; }\
-		 #ms_v_container{ height:100%; width:"+(w.container==="1"?w.container_size:"1")+"px; "+(w.vbar_at_left=="1"?"left":"right")+":0px; top:0px; background:rgba(0,0,0,0); }\
-		 #ms_h_container{ height:"+(w.container==="1"?w.container_size:"1")+"px; width:100%; left:0px; "+(w.hbar_at_top==="1"?"top":"bottom")+":0px; background:rgba(0,0,0,0); }\
+		 #ms_v_container{ height:100%; width:"+(w.container==="1"?w.container_size:"1")+"px; "+(w.vbar_at_left=="1"?"left":"right")+":0px; top:0px; background:rgba(0,0,0,0); transform-origin:100% 0 0; -webkit-transform-origin:100% 50% 0; }\
+		 #ms_h_container{ height:"+(w.container==="1"?w.container_size:"1")+"px; width:100%; left:0px; "+(w.hbar_at_top==="1"?"top":"bottom")+":0px; background:rgba(0,0,0,0); transform-origin:0 100% 0; -webkit-transform-origin:50% 100% 0;  }\
 		 #ms_vbar_bg, #ms_hbar_bg{ opacity:"+((w.show_when==="3" && w.show_bg_bars_when==="3")?(w.opacity/100):"0")+"; transition:opacity 0.5s "+w.show_how_long+"ms; }\
 		 #ms_vbar_bg{ top:"+w.gap+"px; bottom:"+w.gap+"px; height:auto; width:auto; "+(w.vbar_at_left==="1"?"left":"right")+":0px; "+(w.vbar_at_left==="0"?"left":"right")+":auto; }\
 		 #ms_hbar_bg{ "+(w.vbar_at_left==="0"?"left":"right")+":0px; "+(w.vbar_at_left==="1"?"left":"right")+":"+(parseInt(w.hover_size)+parseInt(w.gap))+"px; "+(w.vbar_at_left==="0"?"left":"right")+":"+w.gap+"px; width:auto; height:auto; "+(w.hbar_at_top==="1"?"top":"bottom")+":0px; "+(w.hbar_at_top==="0"?"top":"bottom")+":auto; }\n"+
@@ -367,6 +367,9 @@ function check_dimensions()
 	set_new_scrollMax_values();
 	
 	if(scrollMaxX_old !== window.scrollMaxX || scrollMaxY_old !== window.scrollMaxY) adjust_ui_new_size();
+
+	// zoomed:
+	if(window.devicePixelRatio_old !== window.devicePixelRatio) scaleUI();
 }
 function set_new_scrollMax_values()
 {
@@ -375,6 +378,13 @@ function set_new_scrollMax_values()
 	
 	window.scrollMaxX = (new_scrollWidth > window.innerWidth+1 ? new_scrollWidth-window.innerWidth : 0);
 	window.scrollMaxY = (new_scrollHeight > window.innerHeight+1 ? new_scrollHeight-window.innerHeight : 0);
+}
+
+function scaleUI(){
+	window.devicePixelRatio_old = window.devicePixelRatio;
+	//document.getElementById("ms_vbar_bg").style.height = document.getElementById("ms_hbar_bg").style.width = 100*window.devicePixelRatio+"%";
+	document.getElementById("ms_v_container").style.transform = document.getElementById("ms_v_container").style.webkitTransform = "scale("+1/window.devicePixelRatio+",1)";
+	document.getElementById("ms_h_container").style.transform = document.getElementById("ms_h_container").style.webkitTransform = "scale(1,"+1/window.devicePixelRatio+")";
 }
 
 function adjust_ui_new_size()
@@ -481,7 +491,7 @@ function resize_superbar()
 		document.getElementById("ms_superbar").style.width = hbar.style.width;
 		
 		if(w.show_superbar_minipage === "0")
-			document.getElementById("ms_superbar").style.transform = "scale("+(window.innerWidth/10)/parseInt(document.getElementById("ms_superbar").style.width)+","+(window.innerHeight/10)/parseInt(document.getElementById("ms_superbar").style.height)+")";
+			document.getElementById("ms_superbar").style.transform = document.getElementById("ms_superbar").style.webkitTransform = "scale("+(window.innerWidth/10)/parseInt(document.getElementById("ms_superbar").style.width)+","+(window.innerHeight/10)/parseInt(document.getElementById("ms_superbar").style.height)+")";
 		
 		document.getElementById("ms_superbar").style.display = "inline";
 	}
@@ -604,8 +614,8 @@ function drag_super()
 	function drag_super_end()
 	{
 		if(w.show_superbar_minipage === "1"){
-			document.body.style["-webkit-transform"] = null;
-			document.body.style["-webkit-transform-origin"] = null;
+			document.body.style.transform = document.body.style.webkitTransform = null;
+			document.body.style.transformOrigin = document.body.style.webkitTransformOrigin = null;
 			window.scroll(parseInt(superbar.style.left)/(window.innerWidth-superbar.offsetWidth)*window.scrollMaxX, parseInt(superbar.style.top)/(window.innerHeight-superbar.offsetHeight)*window.scrollMaxY);
 			
 			document.getElementById("ms_vbar_bg").style.display = "inline";
@@ -751,8 +761,8 @@ function show_minipage()
 		document.getElementById("ms_downbutton").style.display = null;
 	}
 	
-	document.body.style["-webkit-transform-origin"] = "0% 0%";
-	document.body.style["-webkit-transform"] = "scale("+(window.innerWidth/Math.max(document.documentElement.scrollWidth,window.innerWidth))+","+(window.innerHeight/Math.max(document.documentElement.scrollHeight,window.innerHeight))+")";
+	document.body.style.transformOrigin = document.body.style.webkitTransformOrigin = "0% 0%";
+	document.body.style.transform = document.body.style.webkitTransform = "scale("+(window.innerWidth/Math.max(document.documentElement.scrollWidth,window.innerWidth))+","+(window.innerHeight/Math.max(document.documentElement.scrollHeight,window.innerHeight))+")";
 	window.scrollBy(-window.pageXOffset, -window.pageYOffset);
 }
 
@@ -1231,7 +1241,7 @@ function middlebuttonscroll()
 		x_delta = e.x - x_start;
 		y_delta = e.y - y_start;
 		var rad = -Math.atan2(x_delta, y_delta);
-		document.getElementById("ms_middleclick_cursor").style.webkitTransform = document.getElementById("ms_middleclick_cursor").style.transform = "rotate("+rad+"rad)";
+		document.getElementById("ms_middleclick_cursor").style.transform = document.getElementById("ms_middleclick_cursor").style.webkitTransform = "rotate("+rad+"rad)";
 	}
 	
 	scroll_timeout_id_middlebutton = window.requestAnimationFrame( function(){ middlebuttonscroll_inner( Date.now()-1 ); } );
