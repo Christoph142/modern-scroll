@@ -1,7 +1,7 @@
 ﻿v 3.0.4
 ---------
-new: size of UI is independent of page zoom
-upd: French translation (thx Bozz65)
+neu: Größe der UI ist unabhängig vom Seiten-Zoom
+upd: Französische Übersetzung (thx Bozz65)
 
 v 3.0.3
 ---------
