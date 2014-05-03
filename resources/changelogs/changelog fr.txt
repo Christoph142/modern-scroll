@@ -1,4 +1,9 @@
-﻿v 3.0.3
+﻿v 3.0.4
+---------
+new: size of UI is independent of page zoom
+upd: French translation (thx Bozz65)
+
+v 3.0.3
 ---------
 nouveau : clic de défilement avec la molette personnalisé
 mis à jour : le défilement personnalisé avec la souris est désactivé par défaut
@@ -68,7 +73,7 @@ mis à jour : améliorations des performances et dans la disposition de l'interf
 v 2.3.1
 ---------
 corrigé : ingdirect.fr (merci à terdale de l'avoir signalé)
-fix: Bootstrap's modal popups not appearing (thx Johnny for reporting; semi-fixed only)
+corrigé : les popups modèles de Bootsrap n'apparaîtront plus (merci à Johnny de l'avoir signalé; partiellement corrigé)
 mis à jour : traductions arabes et tchèques (merci à Ahoj1234 & Netmain)
 mis à jour : améliorations minimales apportées aux performances en général
 
@@ -90,7 +95,7 @@ v 2.2.1
 nouveau : traduction norvégienne (merci à Daniel)
 nouveau  : traduction en arabe (merci à netmain)
 nouveau : traduction en tchèque (merci à Ahoj1234)
-fix: fullscreen mode only use (thx aboutblank6 for reporting)
+corrigé : la fonction permettant de n'afficher les barres seulement qu'en plein écran est réparée (merci à aboutblank6 de l'avoir signalé)
 corrigé : Modern scroll bloquait le défilement au moyen des touches fléchées lorsque l'interface n'était pas apparente (ex : MyOpera Mail, Google Docs)
 mis à jour : traduction polonaise (merci à Piotr)
 

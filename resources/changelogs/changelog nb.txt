@@ -1,4 +1,9 @@
-﻿v 3.0.3
+﻿v 3.0.4
+---------
+new: size of UI is independent of page zoom
+upd: French translation (thx Bozz65)
+
+v 3.0.3
 ---------
 new: custom mouse wheel click scrolling
 upd: disable custom mouse scrolling by default
