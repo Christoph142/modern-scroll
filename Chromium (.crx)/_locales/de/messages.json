@@ -27,6 +27,10 @@
         "message": "Du kannst die Standard-Konfiguration nicht löschen!",
         "description": ""
     },
+    "endMiddlescrollByTurningWheel": {
+        "message": "Auch durch Drehen des Maus-Rades beenden",
+        "description": ""
+    },
     "confirm_delete": {
         "message": "Willst du diese Konfiguration wirklich unwiderruflich löschen?",
         "description": ""

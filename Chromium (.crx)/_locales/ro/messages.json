@@ -27,6 +27,10 @@
         "message": "Setările prestabilite nu pot fi şterse!",
         "description": ""
     },
+    "endMiddlescrollByTurningWheel": {
+        "message": "End as well by turning the mouse wheel",
+        "description": ""
+    },
     "confirm_delete": {
         "message": "Chiar doreşti să ştergi definitiv aceste configuraţii?",
         "description": ""

@@ -27,6 +27,10 @@
         "message": "Bạn không thể xóa thiết lập mặc định!",
         "description": ""
     },
+    "endMiddlescrollByTurningWheel": {
+        "message": "End as well by turning the mouse wheel",
+        "description": ""
+    },
     "confirm_delete": {
         "message": "Bạn có thực sự muốn xóa hẳn phần thiết lập này?",
         "description": ""

@@ -27,6 +27,10 @@
         "message": "Nie można usunąć fabrycznego zestawu!",
         "description": ""
     },
+    "endMiddlescrollByTurningWheel": {
+        "message": "End as well by turning the mouse wheel",
+        "description": ""
+    },
     "confirm_delete": {
         "message": "Na pewno chcesz nieodwracalnie usunąć ten zestaw?",
         "description": ""

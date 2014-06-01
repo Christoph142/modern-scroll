@@ -1221,12 +1221,14 @@ function middlebuttonscroll()
 
 	window.removeEventListener("mousedown", middlebuttonscroll, true);
 	window.addEventListener("mousedown", middlebuttonscrollend, true);
+	if( w.endMiddlescrollByTurningWheel === "1" ) window.addEventListener("mousewheel", middlebuttonscrollend, true);
 	function middlebuttonscrollend()
 	{
 		window.event.preventDefault();
 
 		document.removeEventListener("mousemove", getmousepos, false);
 		window.removeEventListener("mousedown", middlebuttonscrollend, true);
+		window.removeEventListener("mousewheel", middlebuttonscrollend, true);
 		window.addEventListener("mousedown", middlebuttonscroll, true);
 
 		window.cancelAnimationFrame( scroll_timeout_id_middlebutton ); scroll_timeout_id_middlebutton = null;

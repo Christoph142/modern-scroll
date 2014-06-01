@@ -27,6 +27,10 @@
         "message": "Nemůžete vymazat výchozí konfiguraci!",
         "description": ""
     },
+    "endMiddlescrollByTurningWheel": {
+        "message": "End as well by turning the mouse wheel",
+        "description": ""
+    },
     "confirm_delete": {
         "message": "Opravdu chcete nenávratně vymazat tuto konfiguraci?",
         "description": ""

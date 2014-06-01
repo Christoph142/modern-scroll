@@ -27,6 +27,10 @@
         "message": "Você não pode excluir a configuração padrão!",
         "description": ""
     },
+    "endMiddlescrollByTurningWheel": {
+        "message": "End as well by turning the mouse wheel",
+        "description": ""
+    },
     "confirm_delete": {
         "message": "Você realmente quer irreversivelmente apagar esta configuração?",
         "description": ""

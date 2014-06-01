@@ -27,6 +27,10 @@
         "message": "默认配置不可删除！",
         "description": ""
     },
+    "endMiddlescrollByTurningWheel": {
+        "message": "End as well by turning the mouse wheel",
+        "description": ""
+    },
     "confirm_delete": {
         "message": "确定要删除此配置吗（将不可逆！）？",
         "description": ""

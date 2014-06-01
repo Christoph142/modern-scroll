@@ -27,6 +27,10 @@
         "message": "You cannot delete the default configuration!",
         "description": ""
     },
+    "endMiddlescrollByTurningWheel": {
+        "message": "End as well by turning the mouse wheel",
+        "description": ""
+    },
     "confirm_delete": {
         "message": "Do you really want to irreversibly delete this configuration?",
         "description": ""

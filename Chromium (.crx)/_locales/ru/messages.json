@@ -27,6 +27,10 @@
         "message": "Вы не можете удалить конфигурацию по умолчанию!",
         "description": ""
     },
+    "endMiddlescrollByTurningWheel": {
+        "message": "End as well by turning the mouse wheel",
+        "description": ""
+    },
     "confirm_delete": {
         "message": "Вы хотите безвозвратно удалить эту конфигурацию?",
         "description": ""

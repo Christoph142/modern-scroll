@@ -27,6 +27,10 @@
         "message": "Du kan ikke slette standardoppsettet!",
         "description": ""
     },
+    "endMiddlescrollByTurningWheel": {
+        "message": "End as well by turning the mouse wheel",
+        "description": ""
+    },
     "confirm_delete": {
         "message": "Vil du slettet dette oppsettet? Slettingen kan ikke angres.",
         "description": ""

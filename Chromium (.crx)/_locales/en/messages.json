@@ -60,6 +60,7 @@
 	"use_custom_functions_keyboard" : 	{ "message" : "for the keyboard" },
 	"use_custom_functions_mouse" : 		{ "message" : "for the mouse" },
 	"use_custom_functions_middle" :		{ "message" : "for mouse wheel clicks" },
+	"endMiddlescrollByTurningWheel" :	{ "message" : "End as well by turning the mouse wheel" },
 	"animate_scroll" : 					{ "message" : "Animate scrolling" },
 	"animate_up_to" : 					{ "message" : "up to a length of" },
 	"infinite" : 						{ "message" : "infinite" },

@@ -27,6 +27,10 @@
         "message": "لا يمكنك حذف الإعدادات الإفتراضية",
         "description": ""
     },
+    "endMiddlescrollByTurningWheel": {
+        "message": "End as well by turning the mouse wheel",
+        "description": ""
+    },
     "confirm_delete": {
         "message": "هل حقا تريد حذف هذه الإعدات نهائيا و دون رجعة؟",
         "description": ""

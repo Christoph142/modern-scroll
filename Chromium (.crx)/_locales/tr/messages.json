@@ -27,6 +27,10 @@
         "message": "Varsayılan ayarları silemezsiniz!",
         "description": ""
     },
+    "endMiddlescrollByTurningWheel": {
+        "message": "End as well by turning the mouse wheel",
+        "description": ""
+    },
     "confirm_delete": {
         "message": "Ayarları kesin olarak geri alınmaz şekilde silmek istediğinize emin misiniz?",
         "description": ""
