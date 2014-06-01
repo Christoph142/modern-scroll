@@ -1,6 +1,8 @@
 ﻿v 3.0.4
 ---------
-neu: Größe der UI ist unabhängig vom Seiten-Zoom
+neu: Maus-Rad-Scrollen kann optional durch Drehen des Rades beendet werden
+neu: UI ist (teilweise) unabhängig vom Seiten-Zoom
+fix: Öffnen von Links durch Maus-Rad-Klick
 upd: Französische Übersetzung (thx Bozz65)
 
 v 3.0.3

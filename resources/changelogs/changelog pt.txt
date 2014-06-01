@@ -1,6 +1,8 @@
 ﻿v 3.0.4
 ---------
-new: size of UI is independent of page zoom
+new: optionally end mouse wheel click scrolling by turning the wheel
+new: UI is (partially) independent of page zoom
+fix: open links with mouse wheel clicks
 upd: French translation (thx Bozz65)
 
 v 3.0.3
