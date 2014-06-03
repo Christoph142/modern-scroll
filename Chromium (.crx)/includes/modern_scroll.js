@@ -70,6 +70,8 @@ function remove_ms()
 	if(!document.getElementById("modern_scroll")) return;
 	
 	document.removeEventListener("resize", adjust_ui_fullscreen_change, false);
+	document.removeEventListener("fullscreenchange", handleFullscreenAPI, false);
+	document.removeEventListener("webkitfullscreenchange", handleFullscreenAPI, false);
 	document.removeEventListener("readystatechange", add_dimension_checkers, false);
 	DOM_observer.disconnect();
 	height_observer.disconnect();
@@ -256,6 +258,8 @@ function add_dimension_checkers()
 	document.body.addEventListener("overflowchanged", check_dimensions, false); //#####
 	document.addEventListener("click", check_dimensions, false);
 	document.addEventListener("readystatechange", check_dimensions, false);
+	document.addEventListener("fullscreenchange", handleFullscreenAPI, false);
+	document.addEventListener("webkitfullscreenchange", handleFullscreenAPI, false);
 	
 	window.addEventListener("resize", check_dimensions, false);
 	window.addEventListener("mouseup", check_dimensions_after_click, false);
@@ -408,6 +412,11 @@ function adjust_ui_fullscreen_change()
 		if(isFullscreen === 0)	document.getElementById("modern_scroll_buttons").style.display = "none";
 		else					document.getElementById("modern_scroll_buttons").style.display = null;
 	}
+}
+
+function handleFullscreenAPI(){
+	if( (document.fullscreenElement || document.webkitFullscreenElement) !== null )	hide_ui(); // element in fullscreen
+	else																			show_ui();
 }
 
 function resize_bars()
