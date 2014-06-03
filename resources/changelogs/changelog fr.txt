@@ -1,9 +1,10 @@
 ﻿v 3.0.4
 ---------
-new: optionally end mouse wheel click scrolling by turning the wheel
-new: UI is (partially) independent of page zoom
-fix: open links with mouse wheel clicks
-upd: French translation (thx Bozz65)
+nouveau : faire terminer le défilement par le clic sur la molette de la souris en tournant la molette
+nouveauté : L'interface utilisateur (IU) est (partiellement) indépendante de la page de zoom
+new: support for HTML5 fullscreen API
+corrigé : ouvrir les liens par des clics avec la molette de la souris
+mis à jour : traductions françaises (merci à Bozz65)
 
 v 3.0.3
 ---------

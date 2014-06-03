@@ -2,6 +2,7 @@
 ---------
 neu: Maus-Rad-Scrollen kann optional durch Drehen des Rades beendet werden
 neu: UI ist (teilweise) unabhängig vom Seiten-Zoom
+neu: Unterstützung der HTML5-Vollbild-API
 fix: Öffnen von Links durch Maus-Rad-Klick
 upd: Französische Übersetzung (thx Bozz65)
 

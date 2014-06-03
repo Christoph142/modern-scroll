@@ -2,6 +2,7 @@
 ---------
 new: optionally end mouse wheel click scrolling by turning the wheel
 new: UI is (partially) independent of page zoom
+new: support for HTML5 fullscreen API
 fix: open links with mouse wheel clicks
 upd: French translation (thx Bozz65)
 
