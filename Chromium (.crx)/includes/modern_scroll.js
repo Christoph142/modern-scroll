@@ -255,21 +255,26 @@ var DOM_observer = ( window.MutationObserver ? new MutationObserver(check_dimens
 var height_observer = ( window.MutationObserver ? new MutationObserver(check_dimensions) : new WebKitMutationObserver(check_dimensions) ); //Disqus
 function add_dimension_checkers()
 {
-	window.addEventListener("load", check_dimensions, false);
-	window.addEventListener("resize", check_dimensions, false);
+	if(document.readyState !== "complete")
+	{
+		window.addEventListener("load", check_dimensions, false);
+		document.addEventListener("readystatechange", add_dimension_checkers, false); // fires when all resources, i.e. images are loaded
+	}
+	else // add listeners after page has finished loading to avoid slowdown of page loading
+	{
+		window.addEventListener("resize", check_dimensions, false);
+		
+		document.addEventListener("fullscreenchange", handleFullscreenAPI, false);
+		document.addEventListener("webkitfullscreenchange", handleFullscreenAPI, false);
+		
+		document.body.addEventListener("transitionend", check_dimensions, false);
+		document.body.addEventListener("overflowchanged", check_dimensions, false); //#####
+		
+		DOM_observer.observe(document.body, { childList:true, subtree:true });
+		height_observer.observe(document.body, { subtree:true, attributes:true, attributeFilter:["height", "style"] });
+	}
 	window.addEventListener("mouseup", check_dimensions_after_click, false);
 
-	document.addEventListener("click", check_dimensions, false);
-	document.addEventListener("readystatechange", check_dimensions, false);
-	document.addEventListener("fullscreenchange", handleFullscreenAPI, false);
-	document.addEventListener("webkitfullscreenchange", handleFullscreenAPI, false);
-	
-	document.body.addEventListener("transitionend", check_dimensions, false);
-	document.body.addEventListener("overflowchanged", check_dimensions, false); //#####
-	
-	DOM_observer.observe(document.body, { childList:true, subtree:true });
-	height_observer.observe(document.body, { subtree:true, attributes:true, attributeFilter:["height", "style"] });
-	
 	check_dimensions();
 }
 
