@@ -16,19 +16,22 @@ var hbar;					// /
 			else return;
 		}catch(e){ return; /* window.self.frameElement == protected variable */ }
 	}
-	
+
 	(function check_if_tab_is_ready()
 	{
-		if(document.webkitHidden)	document.addEventListener("webkitvisibilitychange", initialize, false);
-		else if(document.body)		initialize();
-		else						window.setTimeout(check_if_tab_is_ready, 50);
+		if		(document.hidden)		document.addEventListener("visibilitychange", initialize, false);
+		else if (document.webkitHidden)	document.addEventListener("webkitvisibilitychange", initialize, false);
+		else if (document.body)			initialize();
+		else							window.setTimeout(check_if_tab_is_ready, 50);
 	}());
 }());
 
 function initialize()
 {
 	document.removeEventListener("webkitvisibilitychange", initialize, false);
-	document.addEventListener("webkitvisibilitychange", add_or_remove_ms, false);
+	document.removeEventListener("visibilitychange", initialize, false);
+	if(typeof document.hidden !== "undefined")	document.addEventListener("visibilitychange", add_or_remove_ms, false);
+	else										document.addEventListener("webkitvisibilitychange", add_or_remove_ms, false);
 	
 	add_ms();
 	if(document.URL.substr(0,19) === "chrome-extension://") chrome.extension.onMessage.addListener( function(request){
@@ -104,7 +107,11 @@ function remove_ms()
 }
 
 function update_ms(){ remove_ms(); add_ms(); }
-function add_or_remove_ms(){ if(document.webkitHidden) remove_ms(); else add_ms(); }
+function add_or_remove_ms(){
+	var hidden = document.hidden || document.webkitHidden;
+	if(hidden) 	remove_ms();
+	else 		add_ms();
+}
 
 function inject_css()
 {
@@ -244,26 +251,21 @@ function add_functionality_2_bars(){
 	window.addEventListener("scroll", reposition_bars, false);
 }
 
-var DOM_observer = new WebKitMutationObserver(check_dimensions);
-var height_observer = new WebKitMutationObserver(check_dimensions); //Disqus
+var DOM_observer = ( window.MutationObserver ? new MutationObserver(check_dimensions) : new WebKitMutationObserver(check_dimensions) );
+var height_observer = ( window.MutationObserver ? new MutationObserver(check_dimensions) : new WebKitMutationObserver(check_dimensions) ); //Disqus
 function add_dimension_checkers()
 {
-	if(document.readyState !== "complete")
-	{
-		window.addEventListener("load", check_dimensions, false);
-		document.addEventListener("readystatechange", add_dimension_checkers, false); // fires when all resources, i.e. images are loaded
-		return;
-	}
-	
-	document.body.addEventListener("overflowchanged", check_dimensions, false); //#####
+	window.addEventListener("load", check_dimensions, false);
+	window.addEventListener("resize", check_dimensions, false);
+	window.addEventListener("mouseup", check_dimensions_after_click, false);
+
 	document.addEventListener("click", check_dimensions, false);
 	document.addEventListener("readystatechange", check_dimensions, false);
 	document.addEventListener("fullscreenchange", handleFullscreenAPI, false);
 	document.addEventListener("webkitfullscreenchange", handleFullscreenAPI, false);
 	
-	window.addEventListener("resize", check_dimensions, false);
-	window.addEventListener("mouseup", check_dimensions_after_click, false);
 	document.body.addEventListener("transitionend", check_dimensions, false);
+	document.body.addEventListener("overflowchanged", check_dimensions, false); //#####
 	
 	DOM_observer.observe(document.body, { childList:true, subtree:true });
 	height_observer.observe(document.body, { subtree:true, attributes:true, attributeFilter:["height", "style"] });
@@ -386,9 +388,10 @@ function set_new_scrollMax_values()
 
 function scaleUI(){
 	window.devicePixelRatio_old = window.devicePixelRatio;
+	var scaleFactor = w.baseDevicePixelRatio / window.devicePixelRatio;
 	//document.getElementById("ms_vbar_bg").style.height = document.getElementById("ms_hbar_bg").style.width = 100*window.devicePixelRatio+"%";
-	document.getElementById("ms_v_container").style.transform = document.getElementById("ms_v_container").style.webkitTransform = "scale("+1/window.devicePixelRatio+",1)";
-	document.getElementById("ms_h_container").style.transform = document.getElementById("ms_h_container").style.webkitTransform = "scale(1,"+1/window.devicePixelRatio+")";
+	document.getElementById("ms_v_container").style.transform = document.getElementById("ms_v_container").style.webkitTransform = "scale("+scaleFactor+",1)";
+	document.getElementById("ms_h_container").style.transform = document.getElementById("ms_h_container").style.webkitTransform = "scale(1,"+scaleFactor+")";
 }
 
 function adjust_ui_new_size()
@@ -428,7 +431,7 @@ function resize_bars()
 }
 
 function resize_vbar()
-{	
+{
 	if(window.scrollMaxY === 0) // don't display and stop if content fits into window:
 	{
 		if(vbar.style.display === "inline"){
@@ -437,9 +440,9 @@ function resize_vbar()
 			vbar.style.display = null;
 			window.removeEventListener("mousewheel", mousescroll_y, false);
 		}
-		
 		return;
 	}
+
 	var vbar_height_before = vbar.style.height;
 	var vbar_new_height = Math.max(Math.round(window.innerHeight/(Math.max(document.documentElement.scrollHeight,document.body.scrollHeight)/window.innerHeight)), 30+2*w.gap);
 	vbar.style.height = vbar_new_height+"px";

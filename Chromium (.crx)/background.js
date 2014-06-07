@@ -46,7 +46,9 @@ function update_settings(){ chrome.storage.sync.get( null, function(storage){
 
 	"contextmenu_show_when":(!storage["contextmenu_show_when"]	? "2" : storage["contextmenu_show_when"]), // 1 = never, 2 = only over interface, 3 = always
 	
-	"external_interface" :	(!storage["external_interface"]		? "1" : storage["external_interface"])
+	"external_interface" :	(!storage["external_interface"]		? "1" : storage["external_interface"]),
+
+	"baseDevicePixelRatio" : window.devicePixelRatio // for scaling
 	};
 	
 	chrome.extension.sendMessage( {data:"update_optionspage"} );
