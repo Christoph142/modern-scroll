@@ -1,8 +1,8 @@
 ﻿v 3.0.4
 ---------
-nouveau : faire terminer le défilement par le clic sur la molette de la souris en tournant la molette
-nouveauté : L'interface utilisateur (IU) est (partiellement) indépendante de la page de zoom
-new: support for HTML5 fullscreen API
+nouveau : faire terminer le défilement par le clic sur la molette de la souris aussi en tournant la molette
+nouveau: L'interface utilisateur (IU) est (partiellement) indépendante du zoom de la page
+nouveau: support de l'API HTML 5 fullscreen
 corrigé : ouvrir les liens par des clics avec la molette de la souris
 mis à jour : traductions françaises (merci à Bozz65)
 
