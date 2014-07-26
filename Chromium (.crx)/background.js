@@ -51,27 +51,34 @@ function update_settings(){ chrome.storage.sync.get( null, function(storage){
 	"baseDevicePixelRatio" : window.devicePixelRatio // for scaling
 	};
 	
-	chrome.extension.sendMessage( {data:"update_optionspage"} );
+	chrome.extension.sendMessage( {"data" : "update_optionspage"} );
 }); }
 update_settings();
 
-chrome.extension.onMessage.addListener( function(request, sender, sendResponse){
-	if		(request.data === "settings")						sendResponse(w);
-	else if (request.data === "update_settings")				update_settings(); // will request options page update when finished
-	else if	(request.data === "show_contextmenu")				show_contextmenu(request.string);
-	else if	(request.data === "hide_contextmenu")				hide_contextmenu();
+chrome.runtime.onMessage.addListener( function(request, sender, sendResponse){
+	if		(request.data === "settings") 			sendResponse(w);
+	else if (request.data === "update_settings") 	update_settings(); // will request options page update when finished
+	else if	(request.data === "show_contextmenu") 	show_contextmenu(request.string);
+	else if	(request.data === "hide_contextmenu") 	hide_contextmenu();
+});
+
+// zoom API currently only available in Dev channel:
+if(chrome.tabs.onZoomChange) chrome.tabs.onZoomChange.addListener( function(zoomInfo){
+	chrome.tabs.sendMessage(zoomInfo.tabId, { "data" : "zoomed", "zoom" : zoomInfo.newZoomFactor });
 });
 
 var contextmenu = false;
 function show_contextmenu(s)
 {
-	if (!contextmenu)	chrome.contextMenus.create({ "id":"ms_contextmenu",	"title" : chrome.i18n.getMessage("contextmenu_"+s), "onclick" : contextmenu_click});
+	if (!contextmenu)	chrome.contextMenus.create({ "id" : "ms_contextmenu",
+													 "title" : chrome.i18n.getMessage("contextmenu_"+s),
+													 "onclick" : contextmenu_click});
 	else				chrome.contextMenus.update("ms_contextmenu", {"title" : chrome.i18n.getMessage("contextmenu_"+s)});
 	contextmenu = true;
 }
 function contextmenu_click(){
 	chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
-		chrome.tabs.sendMessage(tabs[0].id, {data:"ms_toggle_visibility"});
+		chrome.tabs.sendMessage(tabs[0].id, { "data" : "ms_toggle_visibility" });
 	});
 }
 function hide_contextmenu()

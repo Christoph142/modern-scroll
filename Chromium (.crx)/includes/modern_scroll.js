@@ -34,7 +34,7 @@ function initialize()
 	else										document.addEventListener("webkitvisibilitychange", add_or_remove_ms, false);
 	
 	add_ms();
-	if(document.URL.substr(0,19) === "chrome-extension://") chrome.extension.onMessage.addListener( function(request){
+	if(document.URL.substr(0,19) === "chrome-extension://") chrome.runtime.onMessage.addListener( function(request){
 		if(request.data === "update_optionspage") update_ms();
 	});
 }
@@ -116,7 +116,7 @@ function add_or_remove_ms(){
 function inject_css()
 {
 	var ms_style = /*CSS3 working draft; will replace manual overwriting of each and every value: */
-		"#modern_scroll{ all:default; }\n"+
+		"#modern_scroll{ all: initial; }\n"+
 		/* set back standard values (CSS values not necessarily used by modern scroll, but maybe altered by the website): */
 		"#modern_scroll, #ms_v_container, #ms_h_container, #ms_vbar_bg, #ms_hbar_bg, #ms_vbar, #ms_hbar, #ms_superbar, #ms_page_cover, #ms_upbutton, #ms_downbutton, #ms_middleclick_cursor{ position:fixed; z-index:2147483647; border:none; padding:0; margin:0; display:none; background:none; }\
 		 #ms_vbar_ui, #ms_hbar_ui, #ms_vbar_bg_ui, #ms_hbar_bg_ui{ border:none; padding:0; margin:0; }\n\n"+
@@ -272,6 +272,11 @@ function add_dimension_checkers()
 		
 		DOM_observer.observe(document.body, { childList:true, subtree:true });
 		height_observer.observe(document.body, { subtree:true, attributes:true, attributeFilter:["height", "style"] });
+
+
+		chrome.runtime.onMessage.addListener( function(message, sender, response){
+			if ( message.data === "zoomed" ) scaleUI();
+		});
 	}
 	window.addEventListener("mouseup", check_dimensions_after_click, false);
 
@@ -308,7 +313,7 @@ function add_contextmenu()
 {	
 	if(w.contextmenu_show_when !== "1") // if contextmenu is not set to "never show up":
 	{
-		chrome.extension.onMessage.addListener( function(request){ if(request.data === "ms_toggle_visibility") contextmenu_click(); });
+		chrome.runtime.onMessage.addListener( function(request){ if(request.data === "ms_toggle_visibility") contextmenu_click(); });
 		show_ui();
 	}
 	else chrome.extension.sendMessage({data:"hide_contextmenu"});
