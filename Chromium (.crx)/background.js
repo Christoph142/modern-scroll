@@ -64,7 +64,8 @@ chrome.runtime.onMessage.addListener( function(request, sender, sendResponse){
 
 // zoom API currently only available in Dev channel:
 if(chrome.tabs.onZoomChange) chrome.tabs.onZoomChange.addListener( function(zoomInfo){
-	chrome.tabs.sendMessage(zoomInfo.tabId, { "data" : "zoomed", "zoom" : zoomInfo.newZoomFactor });
+	w.baseDevicePixelRatio = window.devicePixelRatio;
+	//chrome.tabs.sendMessage(zoomInfo.tabId, { "data" : "zoomed", "zoom" : zoomInfo.newZoomFactor });
 });
 
 var contextmenu = false;

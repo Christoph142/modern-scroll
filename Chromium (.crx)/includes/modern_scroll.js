@@ -272,11 +272,6 @@ function add_dimension_checkers()
 		
 		DOM_observer.observe(document.body, { childList:true, subtree:true });
 		height_observer.observe(document.body, { subtree:true, attributes:true, attributeFilter:["height", "style"] });
-
-
-		chrome.runtime.onMessage.addListener( function(message, sender, response){
-			if ( message.data === "zoomed" ) scaleUI();
-		});
 	}
 	window.addEventListener("mouseup", check_dimensions_after_click, false);
 
