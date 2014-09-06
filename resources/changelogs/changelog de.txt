@@ -1,4 +1,9 @@
-﻿v 3.0.4
+﻿v 3.0.5
+---------
+neu: zusätzliche Scrollmöglichkeit (Mausrad drücken -> ziehen -> loslassen)
+neu: Nutzung der neuen Zoom API
+
+v 3.0.4
 ---------
 neu: Maus-Rad-Scrollen kann optional durch Drehen des Rades beendet werden
 neu: UI ist (teilweise) unabhängig vom Seiten-Zoom

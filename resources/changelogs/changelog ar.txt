@@ -1,4 +1,9 @@
-﻿v 3.0.4
+﻿v 3.0.5
+---------
+new: additional way of scrolling (press scroll wheel -> drag -> release wheel)
+new: make use of new zoom API
+
+v 3.0.4
 ---------
 new: optionally end mouse wheel click scrolling by turning the wheel
 new: UI is (partially) independent of page zoom

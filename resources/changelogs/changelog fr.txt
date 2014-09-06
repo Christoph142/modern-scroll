@@ -1,4 +1,9 @@
-﻿v 3.0.4
+﻿v 3.0.5
+---------
+new: additional way of scrolling (press scroll wheel -> drag -> release wheel)
+new: make use of new zoom API
+
+v 3.0.4
 ---------
 nouveau : faire terminer le défilement par le clic sur la molette de la souris aussi en tournant la molette
 nouveau: L'interface utilisateur (IU) est (partiellement) indépendante du zoom de la page
