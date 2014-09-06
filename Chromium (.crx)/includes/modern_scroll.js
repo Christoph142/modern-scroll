@@ -1236,16 +1236,31 @@ function middlebuttonscroll()
 	var y_delta = 0;
 	var y_max 	= window.innerHeight;
 
-	window.removeEventListener("mousedown", middlebuttonscroll, true);
-	window.addEventListener("mousedown", middlebuttonscrollend, true);
-	if( w.endMiddlescrollByTurningWheel === "1" ) window.addEventListener("mousewheel", middlebuttonscrollend, true);
+	// determine scrolling mode:
+	window.addEventListener("mousemove", determineMiddleButtonScrollingMode, true);
+	window.addEventListener("mouseup", determineMiddleButtonScrollingMode, true);
+	function determineMiddleButtonScrollingMode(e){
+		window.removeEventListener("mousemove", determineMiddleButtonScrollingMode, true);
+		window.removeEventListener("mouseup", determineMiddleButtonScrollingMode, true);
+
+		if(e.type === "mouseup"){
+			window.removeEventListener("mousedown", middlebuttonscroll, true);
+			window.addEventListener("mousedown", middlebuttonscrollend, true);
+			if( w.endMiddlescrollByTurningWheel === "1" ) window.addEventListener("mousewheel", middlebuttonscrollend, true);
+		}
+		else{ //mousemove
+			window.addEventListener("mouseup", middlebuttonscrollend, true);
+		}
+	}
+
 	function middlebuttonscrollend()
 	{
 		window.event.preventDefault();
 
-		document.removeEventListener("mousemove", getmousepos, false);
+		window.removeEventListener("mousemove", getmousepos, false);
 		window.removeEventListener("mousedown", middlebuttonscrollend, true);
 		window.removeEventListener("mousewheel", middlebuttonscrollend, true);
+		window.removeEventListener("mouseup", middlebuttonscrollend, true);
 		window.addEventListener("mousedown", middlebuttonscroll, true);
 
 		window.cancelAnimationFrame( scroll_timeout_id_middlebutton ); scroll_timeout_id_middlebutton = null;
@@ -1254,9 +1269,9 @@ function middlebuttonscroll()
 		document.getElementById("ms_page_cover").style.display = "none";
 		document.getElementById("ms_page_cover").style.cursor = "default";
 	}
-	document.addEventListener("mousemove", getmousepos, false);
-	function getmousepos(){
-		var e = window.event;
+	window.addEventListener("mousemove", getmousepos, false);
+	function getmousepos(e)
+	{
 		x_delta = e.x - x_start;
 		y_delta = e.y - y_start;
 		var rad = -Math.atan2(x_delta, y_delta);
