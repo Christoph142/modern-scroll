@@ -1,7 +1,7 @@
-﻿v 3.0.5
+v 3.0.5
 ---------
-new: additional way of scrolling (press scroll wheel -> drag -> release wheel)
-new: make use of new zoom API
+nouveau : nouvelle façon de faire défiler l'écran en pressant la molette 
+nouveau : un nouveau zoom API est possible d'utilisation
 
 v 3.0.4
 ---------
