@@ -1,4 +1,10 @@
-﻿v 3.0.5
+﻿v 3.0.6
+---------
+fix: pages with overflow:hidden (e.g. jsfiddle, Transifex) are scrollable (thx Maciej for reporting)
+fix: scroll bars get saved into PDFs and printed on paper
+fix: documentation link corrected
+
+v 3.0.5
 ---------
 new: additional way of scrolling (press scroll wheel -> drag -> release wheel)
 new: make use of new zoom API

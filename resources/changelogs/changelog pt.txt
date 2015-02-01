@@ -1,25 +1,31 @@
-﻿v 3.0.5
+﻿v 3.0.6
 ---------
-new: additional way of scrolling (press scroll wheel -> drag -> release wheel)
-new: make use of new zoom API
+fix: pages with overflow:hidden (e.g. jsfiddle, Transifex) are scrollable (thx Maciej for reporting)
+fix: scroll bars get saved into PDFs and printed on paper
+fix: documentation link corrected
+
+v 3.0.5
+---------
+novo: modo de rolagem adicional (pressione botão do meio -> arraste -> solte o botão)
+novo: utilização da nova API de zoom
 
 v 3.0.4
 ---------
-new: optionally end mouse wheel click scrolling by turning the wheel
-new: UI is (partially) independent of page zoom
-new: support for HTML5 fullscreen API
-fix: open links with mouse wheel clicks
-upd: French translation (thx Bozz65)
+novo: opção de terminar rolagem com clique do botão do meio rolando a roda do mouse
+novo: interface (parcialmente) independente do zoom da página
+novo: suporte para API de tela cheia (fullscreen) do HTML5
+correção: abrir links com o botão do meio
+atualização: tradução Francesa (obg Bozz65)
 
 v 3.0.3
 ---------
-new: custom mouse wheel click scrolling
-upd: disable custom mouse scrolling by default
+novo: rolagem personalizada com clique no botão do meio
+atualização: rolagem personalizada desabilitada por padrão
 
 v 3.0.2
 ---------
-new: additional dimension checks for even better compatibility with all websites
-fix: incorrect bar sizes on pages using Disqus
+novo: verificações adicionais das dimensões para melhor compatibilidade com todos os sites
+correção: tamanho das barra errado em páginas com o Disqus
 atualização: tradução Português (obg André)
 
 v 3.0.1
@@ -40,9 +46,9 @@ novo: melhores valores iniciais e obtenção das configurações salvas
 
 v 2.4.5
 ---------
-fix: fast forward with space bar (thx André)
-upd: various translations (thx to all contributors)
-upd: links to new blog
+correção: avançar rapidamente com barra de espaço (obg André)
+correção: várias traduções (obg a todos os contribuidores)
+atualização: links para o novo blog
 
 v 2.4.4
 ---------

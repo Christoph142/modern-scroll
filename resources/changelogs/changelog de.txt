@@ -1,4 +1,10 @@
-﻿v 3.0.5
+﻿v 3.0.6
+---------
+fix: Seiten mit overflow:hidden (z.B. jsfiddle, Transifex) sind scrollbar (danke Maciej für's Melden)
+fix: Scrollbalken werden in PDFs gespeichert und ausgedruckt
+fix: Link zur Dokumentation korrigiert
+
+v 3.0.5
 ---------
 neu: zusätzliche Scrollmöglichkeit (Mausrad drücken -> ziehen -> loslassen)
 neu: Nutzung der neuen Zoom API
