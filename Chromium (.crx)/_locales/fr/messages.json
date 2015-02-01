@@ -316,7 +316,7 @@
         "description": ""
     },
     "explanation_external_interface": {
-        "message": "En cochant cette option, modern scroll fournira certaines de ses caractéristiques essentielles pour l'utilisation par des tierces-parties-extensions, sites web ou tu. Tu peux alors par exemple créer des gestes de souris personnalisés.<br><a href='https://christoph142.wordpress.com/2013/02/20/modern-scroll-documentation/' target='_blank'>Visite la documentation pour en savoir plus à ce sujet.</a>",
+        "message": "En cochant cette option, modern scroll fournira certaines de ses caractéristiques essentielles pour l'utilisation par des tierces-parties-extensions, sites web ou tu. Tu peux alors par exemple créer des gestes de souris personnalisés.<br><a href='https://christoph142.wordpress.com/2013/02/20/modern-scroll-documentation' target='_blank'>Visite la documentation pour en savoir plus à ce sujet.</a>",
         "description": ""
     },
     "size": {

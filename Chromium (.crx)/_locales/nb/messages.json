@@ -316,7 +316,7 @@
         "description": ""
     },
     "explanation_external_interface": {
-        "message": "By checking this option, modern scroll will provide some of its key features for usage by third-party-extensions, websites or you. You can then e.g. create custom mouse gestures.<br><a href='http://my.opera.com/christoph142/blog/2013/02/20/modern-scroll-documentation' target='_blank'>Visit the documentation to learn more about it.</a>",
+        "message": "By checking this option, modern scroll will provide some of its key features for usage by third-party-extensions, websites or you. You can then e.g. create custom mouse gestures.<br><a href='https://christoph142.wordpress.com/2013/02/20/modern-scroll-documentation' target='_blank'>Visit the documentation to learn more about it.</a>",
         "description": ""
     },
     "size": {

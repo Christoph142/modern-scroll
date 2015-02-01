@@ -316,7 +316,7 @@
         "description": ""
     },
     "explanation_external_interface": {
-        "message": "Kiedy ta opcja jest wybrana, modern scroll udostępnia kilka najważniejszych funkcji pozostałym rozszerzeniom, witrynom i tobie. Dzięki temu możesz np. przypisać własne gesty myszy.<br><a href='http://my.opera.com/christoph142/blog/2013/02/20/modern-scroll-documentation' target='_blank'>Po bardziej szczegółowe informacje zapraszam do dokumentacji (ang.).</a>",
+        "message": "Kiedy ta opcja jest wybrana, modern scroll udostępnia kilka najważniejszych funkcji pozostałym rozszerzeniom, witrynom i tobie. Dzięki temu możesz np. przypisać własne gesty myszy.<br><a href='https://christoph142.wordpress.com/2013/02/20/modern-scroll-documentation' target='_blank'>Po bardziej szczegółowe informacje zapraszam do dokumentacji (ang.).</a>",
         "description": ""
     },
     "size": {

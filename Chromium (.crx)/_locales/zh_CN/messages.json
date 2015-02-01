@@ -316,7 +316,7 @@
         "description": ""
     },
     "explanation_external_interface": {
-        "message": "选择此项，modern scroll将提供一些关键特性供第三方扩展、网站或你使用，例如创建自定义的鼠标手势。访问 http://my.opera.com/christoph142/blog/2013/02/20/modern-scroll-documentation 以了解更多。",
+        "message": "选择此项，modern scroll将提供一些关键特性供第三方扩展、网站或你使用，例如创建自定义的鼠标手势。访问 <a href='https://christoph142.wordpress.com/2013/02/20/modern-scroll-documentation' target='_blank'> 以了解更多。</a>",
         "description": ""
     },
     "size": {

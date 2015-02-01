@@ -316,7 +316,7 @@
         "description": ""
     },
     "explanation_external_interface": {
-        "message": "BU seçeneği işaretlediğinizde; modern scroll size üçüncü taraf eklentilerin, web sayfalarının ve sizin kullanabileceğiniz bazı ek özellikler sunacaktır. Daha sonra örneğin size özel fare hareketleri oluşturabilirsiniz. <br><a href='http://my.opera.com/christoph142/blog/2013/02/20/modern-scroll-documentation' target='_blank'>Daha fazla bilgi için bu belgeyi inceleyebilirsiniz.(EN)</a>",
+        "message": "Bu seçeneği işaretlediğinizde; modern scroll size üçüncü taraf eklentilerin, web sayfalarının ve sizin kullanabileceğiniz bazı ek özellikler sunacaktır. Daha sonra örneğin size özel fare hareketleri oluşturabilirsiniz. <br><a href='https://christoph142.wordpress.com/2013/02/20/modern-scroll-documentation' target='_blank'>Daha fazla bilgi için bu belgeyi inceleyebilirsiniz.(EN)</a>",
         "description": ""
     },
     "size": {

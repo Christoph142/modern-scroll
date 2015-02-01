@@ -316,7 +316,7 @@
         "description": ""
     },
     "explanation_external_interface": {
-        "message": "Durch das Aktivieren dieser Option stellt modern scroll ein paar seiner Hauptfunktionen für die Nutzung durch Drittanbieter-Erweiterungen, Webseiten oder dich zur Verfügung. Du kannst damit dann z.B. eigene Maus-Gesten schaffen.\n<a href='http://my.opera.com/christoph142/blog/2013/02/20/modern-scroll-documentation' target='_blank'>Schau dir die Dokumentierung (Englisch) an um mehr darüber zu erfahren.</a>",
+        "message": "Durch das Aktivieren dieser Option stellt modern scroll dir, Drittanbieter-Erweiterungen und Webseiten ein paar seiner Hauptfunktionen zur Verfügung. Du kannst damit dann z.B. eigene Maus-Gesten schaffen.\n<a href='https://christoph142.wordpress.com/2013/02/20/modern-scroll-documentation' target='_blank'>Schau dir die Dokumentation (Englisch) an um mehr darüber zu erfahren.</a>",
         "description": ""
     },
     "size": {

@@ -316,7 +316,7 @@
         "description": ""
     },
     "explanation_external_interface": {
-        "message": "Với việc chọn lựa chọn này, chương trình sẽ cung cấp một số tổ hợp phím chức năng dành cho các phần tiện ích được cung cấp bởi bên thứ ba. Bạn có thể sau đó ví dụ chọn cách thao tác với các động tác khác từ chuột.<br><a href='http://my.opera.com/christoph142/blog/2013/02/20/modern-scroll-documentation' target='_blank'>Truy cập vào đây để tìm hiểu thêm.</a>",
+        "message": "Với việc chọn lựa chọn này, chương trình sẽ cung cấp một số tổ hợp phím chức năng dành cho các phần tiện ích được cung cấp bởi bên thứ ba. Bạn có thể sau đó ví dụ chọn cách thao tác với các động tác khác từ chuột.<br><a href='https://christoph142.wordpress.com/2013/02/20/modern-scroll-documentation' target='_blank'>Truy cập vào đây để tìm hiểu thêm.</a>",
         "description": ""
     },
     "size": {

@@ -28,7 +28,7 @@
         "description": ""
     },
     "endMiddlescrollByTurningWheel": {
-        "message": "End as well by turning the mouse wheel",
+        "message": "Parar ao rolar a roda do mouse",
         "description": ""
     },
     "confirm_delete": {
@@ -88,7 +88,7 @@
         "description": ""
     },
     "middlescroll_velocity": {
-        "message": "Velocity of scrolling by mouse wheel clicking",
+        "message": "Velocidade da rolagem com o clique do botão do meio",
         "description": ""
     },
     "button_width": {
@@ -196,7 +196,7 @@
         "description": ""
     },
     "footer": {
-        "message": "Obrigado por instalar esta extensão. Você pode entrar em contato comigo a qualquer hora para comentários e perguntas.",
+        "message": "Obrigado por instalar esta extensão. Para comentários e perguntas não hesite em me contatar.",
         "description": ""
     },
     "tooltip_load": {
@@ -260,7 +260,7 @@
         "description": ""
     },
     "use_custom_functions_middle": {
-        "message": "for mouse wheel clicks",
+        "message": "Para clique com botão do meio",
         "description": ""
     },
     "external_interface_headline": {
@@ -316,7 +316,7 @@
         "description": ""
     },
     "explanation_external_interface": {
-        "message": "Marcando esta opção permitirá que algumas funções do modern scroll fiquem acessíveis para extensões de terceiros, websites e você. Por exemplo, você pode criar um gesto do mouse para controlar o modern scroll.<br><a href='http://my.opera.com/christoph142/blog/2013/02/20/modern-scroll-documentation' target='_blank'>Visite a documentação para mais detalhes.</a>",
+        "message": "Marcando esta opção permitirá que algumas funções do modern scroll fiquem acessíveis para extensões de terceiros, websites e você. Por exemplo, você pode criar um gesto do mouse para controlar o modern scroll.<br><a href='https://christoph142.wordpress.com/2013/02/20/modern-scroll-documentation' target='_blank'>Visite a documentação para mais detalhes.</a>",
         "description": ""
     },
     "size": {
