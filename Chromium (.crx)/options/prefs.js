@@ -33,7 +33,6 @@ window.addEventListener("change", function(e) // save preferences:
 	else										chrome.extension.sendMessage({data:"update_optionspage"});
 	
 	// show/hide containers:
-	if(e.target.id === "show_superbar")					 document.getElementById("superbar_container").style.height=(e.target.checked?"auto":"0");
 	if(e.target.id === "show_buttons")					 document.getElementById("button_container").style.height=(e.target.value==="1"?"0":"auto");
 	if(e.target.id === "use_own_scroll_functions")		 document.getElementById("keyscroll_velocity_container").style.display=(e.target.checked?null:"none");
 	if(e.target.id === "use_own_scroll_functions_mouse") document.getElementById("mousescroll_container").style.display=(e.target.checked?"inline":"none");
@@ -98,7 +97,6 @@ function restoreprefs()
 	}
 	
 	if(document.getElementById("show_buttons").value !== "1")				document.getElementById("button_container").style.height				= "auto";
-	if(document.getElementById("show_superbar").checked)					document.getElementById("superbar_container").style.height				= "auto";
 	if(!document.getElementById("use_own_scroll_functions").checked)		document.getElementById("keyscroll_velocity_container").style.display	= "none";
 	if(document.getElementById("use_own_scroll_functions_mouse").checked)	document.getElementById("mousescroll_container").style.display			= "inline";
 	if(document.getElementById("own_scroll_functions_middle").checked)		document.getElementById("middlescroll_container").style.display			= "inline";
