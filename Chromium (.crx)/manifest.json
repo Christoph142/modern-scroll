@@ -1,17 +1,17 @@
 {	
 	"name"				: "modern scroll",
 	"description"		: "__MSG_description__",
-	"developer"			: {"name" : "Christoph D."},
-	"homepage_url"		: "https://christoph142.wordpress.com",
+	"developer"			: {"name" : "Christoph142"},
+	"homepage_url"		: "https://twitter.com/Christoph142",
 	
 	"default_locale"	: "en",
-	"version"			: "3.0.5",
+	"version"			: "3.0.6",
 	"icons"				: { "16": "images/contextmenu.png", "128": "images/icon@2x.png" },
 	
 	"content_scripts" :
 	[{
 		  "matches"		: ["<all_urls>"],
-		  "css"			: ["includes/modern_scroll.css"],
+		  "css"			: ["includes/hide_default_bars.css"],
 		  "js"			: ["includes/modern_scroll.js"],
 		  "run_at"		: "document_start",
 		  "all_frames"	: true
