@@ -1,8 +1,8 @@
 {	
 	"name"				: "modern scroll",
 	"description"		: "__MSG_description__",
-	"developer"			: {"name" : "Christoph142"},
-	"homepage_url"		: "https://twitter.com/Christoph142",
+	"developer"			: {"name" : "Christoph142", "url" : "https://twitter.com/Christoph142"},
+	"homepage_url"		: "https://github.com/Christoph142/modern-scroll",
 	
 	"default_locale"	: "en",
 	"version"			: "3.0.6",
