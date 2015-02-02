@@ -1,21 +1,21 @@
-﻿v 3.0.6
+версия 3.0.6
 ---------
-fix: pages with overflow:hidden (e.g. jsfiddle, Transifex) are scrollable (thx Maciej for reporting)
-fix: scroll bars get saved into PDFs and printed on paper
-fix: documentation link corrected
+исправлено: страницы с overflow:hidden (к примеру jsfiddle, Transifex) могут прокручиваться (спасибо Maciej за информацию)
+исправлено: полосы прокрутки отображались при печати и сохранении в PDF
+исправлено: ссылка на документацию
 upd: Russian translation (thx Mykhailo)
 
-v 3.0.5
+версия 3.0.5
 ---------
-new: additional way of scrolling (press scroll wheel -> drag -> release wheel)
+новое: дополнительный способ прокрутки (зажмите колёсико мышки -> перетащите указатель куда-нибудь -> отпустите колёсико)
 new: make use of new zoom API
 
-v 3.0.4
+версия 3.0.4
 ---------
 new: optionally end mouse wheel click scrolling by turning the wheel
 new: UI is (partially) independent of page zoom
-new: support for HTML5 fullscreen API
-fix: open links with mouse wheel clicks
+новое: поддержка HTML5 API полноэкранного режима
+исправлено: открытие ссылок по нажатию колёсика мышки
 upd: French translation (thx Bozz65)
 
 v 3.0.3
@@ -38,10 +38,10 @@ fix: bars' positions are incorrect during scrolling in Chrome 27+ & Opera
 
 v 3.0
 ---------
-new: fully Chromium (Chrome & Opera 15) compatible
-new: hides default scroll bars automatically
+новое: полная совместимость с Chromium (Chrome & Opera 15)
+новое: автоматическое скрытие стандартных полос прокрутки
 new: styling of page element's scroll bars (e.g. textareas)
-new: settings are synced across all of your devices
+новое: синхронизация настроек доступна на любых устройствах
 new: live mini page behind superbar
 new: better default value handling and retrieval of saved configurations
 
