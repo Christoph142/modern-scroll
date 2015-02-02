@@ -28,7 +28,7 @@
         "description": ""
     },
     "endMiddlescrollByTurningWheel": {
-        "message": "End as well by turning the mouse wheel",
+        "message": "Остановить при повторном нажатии колёсиком мышки",
         "description": ""
     },
     "confirm_delete": {
@@ -44,7 +44,7 @@
         "description": ""
     },
     "mousescroll_velocity": {
-        "message": "Скорость прокрутки для колеса мыши и трекпада",
+        "message": "Скорость прокрутки для колёсика мышки и трекпада",
         "description": ""
     },
     "like_bars": {
@@ -56,7 +56,7 @@
         "description": ""
     },
     "move_bars_during_scroll": {
-        "message": "Анимировать полосы прокрутки с помощью колеса мыши / клавиатуры",
+        "message": "Анимировать полосы прокрутки с помощью колёсика мышки / клавиатуры",
         "description": ""
     },
     "border": {
@@ -88,7 +88,7 @@
         "description": ""
     },
     "middlescroll_velocity": {
-        "message": "Velocity of scrolling by mouse wheel clicking",
+        "message": "Скорость прокрутки при нажатии на колёсико мышки",
         "description": ""
     },
     "button_width": {
@@ -124,11 +124,11 @@
         "description": ""
     },
     "superbar_opacity": {
-        "message": "Непрозрачность супер панели при наведении курсора мыши",
+        "message": "Непрозрачность супер панели при наведении курсора мышки",
         "description": ""
     },
     "contextmenu_over_only": {
-        "message": "При нажтии правой кнопкой мыши на интерфейсе modern scroll",
+        "message": "При нажтии правой кнопкой мышки на интерфейсе modern scroll",
         "description": ""
     },
     "border_color": {
@@ -172,7 +172,7 @@
         "description": ""
     },
     "mousescroll_distance": {
-        "message": "Расстояние перемещения при повороте колесика мыши",
+        "message": "Расстояние перемещения при повороте колёсика мышки",
         "description": ""
     },
     "color_bg": {
@@ -192,7 +192,7 @@
         "description": ""
     },
     "use_custom_functions_mouse": {
-        "message": "для мыши",
+        "message": "для мышки",
         "description": ""
     },
     "footer": {
@@ -260,7 +260,7 @@
         "description": ""
     },
     "use_custom_functions_middle": {
-        "message": "for mouse wheel clicks",
+        "message": "для нажатий колёсиком мышки",
         "description": ""
     },
     "external_interface_headline": {
@@ -292,7 +292,7 @@
         "description": ""
     },
     "how_to": {
-        "message": "How do I use this extension?",
+        "message": "Как мне пользоваться этим расширением?",
         "description": ""
     },
     "contextmenu_show": {
@@ -316,7 +316,7 @@
         "description": ""
     },
     "explanation_external_interface": {
-        "message": "Если включена эта опция, то modern scroll позволит использовать некоторые из его ключевых функций сторонними расширениями и веб-сайтами. После этого можно, например, создавать собственные жесты мыши.<br><a href='https://christoph142.wordpress.com/2013/02/20/modern-scroll-documentation' target='_blank'>Посмотрите документацию, чтобы узнать больше.</a>",
+        "message": "Если включена эта опция, то modern scroll позволит использовать некоторые из его ключевых функций сторонними расширениями и веб-сайтами. После этого можно, например, создавать собственные жесты мышки.<br><a href='https://christoph142.wordpress.com/2013/02/20/modern-scroll-documentation' target='_blank'>Посмотрите документацию, чтобы узнать больше.</a>",
         "description": ""
     },
     "size": {
