@@ -3,6 +3,7 @@
 fix: Seiten mit overflow:hidden (z.B. jsfiddle, Transifex) sind scrollbar (danke Maciej für's Melden)
 fix: Scrollbalken werden in PDFs gespeichert und ausgedruckt
 fix: Link zur Dokumentation korrigiert
+upd: Russische Übersetzung (danke Mykhailo)
 
 v 3.0.5
 ---------

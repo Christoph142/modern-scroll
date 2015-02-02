@@ -3,6 +3,7 @@
 fix: pages with overflow:hidden (e.g. jsfiddle, Transifex) are scrollable (thx Maciej for reporting)
 fix: scroll bars get saved into PDFs and printed on paper
 fix: documentation link corrected
+upd: Russian translation (thx Mykhailo)
 
 v 3.0.5
 ---------
