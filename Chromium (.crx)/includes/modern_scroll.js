@@ -164,9 +164,9 @@ function inject_css()
 		 body *::-webkit-scrollbar-button{ display:none; }\n\
 		 body *::-webkit-scrollbar-track { background:"+w.color_bg+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" !important; border-radius:"+w.border_radius+"px; }\n\
 		 body *::-webkit-scrollbar-thumb { background:"+w.color+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" !important; border-radius:"+w.border_radius+"px; }\n\
-		 body *::-webkit-scrollbar-thumb:hover { background:"+w.color+"; }"+
+		 body *::-webkit-scrollbar-thumb:hover { background:"+w.color+"; }\n\n"+
 		 // hide in print preview and printouts:
-		 "@media print{ #modern_scroll{ display:none !important; }";
+		 "@media print{ #modern_scroll{ display:none !important; } }";
 	
 	if(document.getElementById("ms_style")) document.getElementById("ms_style").innerHTML = ms_style; // switched tabs
 	else{ // when website is initially loaded
