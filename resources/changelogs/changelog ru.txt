@@ -1,57 +1,61 @@
-версия 3.0.6
+﻿v 3.0.7
+---------
+new: modernized responsive options page
+
+v 3.0.6
 ---------
 исправлено: страницы с overflow:hidden (к примеру jsfiddle, Transifex) могут прокручиваться (спасибо Maciej за информацию)
 исправлено: полосы прокрутки отображались при печати и сохранении в PDF
 исправлено: ссылка на документацию
-upd: Russian translation (thx Mykhailo)
+обновлено: русский перевод (спасибо Mykhailo)
 
 версия 3.0.5
 ---------
 новое: дополнительный способ прокрутки (зажмите колёсико мышки -> перетащите указатель куда-нибудь -> отпустите колёсико)
-new: make use of new zoom API
+новое: использование нового API масштабирования
 
 версия 3.0.4
 ---------
 new: optionally end mouse wheel click scrolling by turning the wheel
-new: UI is (partially) independent of page zoom
-новое: поддержка HTML5 API полноэкранного режима
+новое: интерфейс независит (частино) от масштабирования страницы
+новое: поддержка полноэкранного режима, используя HTML5 API
 исправлено: открытие ссылок по нажатию колёсика мышки
-upd: French translation (thx Bozz65)
+обновлено: французский перевод (спасибо Bozz65)
 
-v 3.0.3
+версия 3.0.3
 ---------
-new: custom mouse wheel click scrolling
-upd: disable custom mouse scrolling by default
+новое: нестандартная прокрутка по нажатию колёсика мышки
+обновлено: нестандартная прокрутка по нажатию колёсика мышки отключена по умолчанию
 
-v 3.0.2
+версия 3.0.2
 ---------
-new: additional dimension checks for even better compatibility with all websites
-fix: incorrect bar sizes on pages using Disqus
-upd: Portuguese translation (thx André)
+новое: дополнительная проверка размеров для большой совместимости с любыми сайтами
+исправлено: некорректное отображение полос прокрутки на страницах, использующих Disqus
+обновлено: партугальский перевод (спасибо André)
 
-v 3.0.1
+версия 3.0.1
 ---------
 new: keeping the mouse down on background bars will scroll page to mouse position
-new: hide all scroll bars when elements are not hovered or focused
-new: Vietnamese translation (thx ppanhh)
-fix: bars' positions are incorrect during scrolling in Chrome 27+ & Opera
+новое: скрытие всех полос прокрутки пока элементы не наведены и не в фокусе
+новое: вьетнамский перевод (спасибо ppanhh)
+исправлено: некорректное расположение полос прокрутки во время процесса прокрутки в Chrome 27+ и Opera
 
-v 3.0
+версия 3.0
 ---------
 новое: полная совместимость с Chromium (Chrome & Opera 15)
 новое: автоматическое скрытие стандартных полос прокрутки
 new: styling of page element's scroll bars (e.g. textareas)
 новое: синхронизация настроек доступна на любых устройствах
 new: live mini page behind superbar
-new: better default value handling and retrieval of saved configurations
+новое: улучшена обработка значений  по умолчанию и восстановление сохранённых настроек
 
-v 2.4.5
+версия 2.4.5
 ---------
-fix: fast forward with space bar (thx André)
-upd: various translations (thx to all contributors)
-upd: links to new blog
+исправлено: прокрутка при нажатии пробела (спасибо André)
+обновлено: различные переводы (спасибо всем участникам)
+обновлено: ссылки на новый блог
 
-v 2.4.4
+версия 2.4.4
 ---------
 new: visibility of superbar can be toggled via custom mouse gestures
 new: modern scroll also takes over scrolling by pressing the space bar (thx kapsi for reporting)
@@ -81,7 +85,7 @@ v 2.4
 new: adjustable time before hiding bars
 new: modern scroll is only active in current tab, not in all opened ones anymore
 new: explanation fields in options page show up to the top if they are below middle of the screen
-upd: Portuguese translation (thx André)
+обновлено: партугальский перевод (спасибо André)
 upd: background bars are only visible when you hover them with your mouse now by default
 upd: restructuring and performance improvements
 
@@ -139,7 +143,7 @@ fix: options page in installations that were not updated from version 2.0
 v 2.1.1
 ---------
 fix: keyboard shortcuts with command key ? (thx ayni for reporting)
-upd: Portuguese translation (thx André)
+обновлено: партугальский перевод (спасибо André)
 
 v 2.1
 ---------

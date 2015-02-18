@@ -1,4 +1,8 @@
-﻿v 3.0.6
+﻿v 3.0.7
+---------
+new: modernized responsive options page
+
+v 3.0.6
 ---------
 fix: pages with overflow:hidden (e.g. jsfiddle, Transifex) are scrollable (thx Maciej for reporting)
 fix: scroll bars get saved into PDFs and printed on paper

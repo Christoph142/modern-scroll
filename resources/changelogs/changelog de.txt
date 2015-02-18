@@ -1,4 +1,8 @@
-﻿v 3.0.6
+﻿v 3.0.7
+---------
+neu: modernere flexible Einstellungen
+
+v 3.0.6
 ---------
 fix: Seiten mit overflow:hidden (z.B. jsfiddle, Transifex) sind scrollbar (danke Maciej für's Melden)
 fix: Scrollbalken werden in PDFs gespeichert und ausgedruckt

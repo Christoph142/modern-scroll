@@ -1,9 +1,13 @@
-﻿v 3.0.6
+﻿v 3.0.7
 ---------
-fix: pages with overflow:hidden (e.g. jsfiddle, Transifex) are scrollable (thx Maciej for reporting)
-fix: scroll bars get saved into PDFs and printed on paper
-fix: documentation link corrected
-upd: Russian translation (thx Mykhailo)
+new: modernized responsive options page
+
+v 3.0.6
+---------
+correção: páginas com overflow:hidden (ex.: jsfiddle, Transifex) são roláveis (obg Maciej por reportar)
+correção: barras de rolagem são salvas em PDF e impressões em papel
+correção: links da documentação corrigidos
+atualizado: tradução Russa (obg Mykhailo)
 
 v 3.0.5
 ---------
@@ -16,18 +20,18 @@ novo: opção de terminar rolagem com clique do botão do meio rolando a roda do
 novo: interface (parcialmente) independente do zoom da página
 novo: suporte para API de tela cheia (fullscreen) do HTML5
 correção: abrir links com o botão do meio
-atualização: tradução Francesa (obg Bozz65)
+atualizado: tradução Francesa (obg Bozz65)
 
 v 3.0.3
 ---------
 novo: rolagem personalizada com clique no botão do meio
-atualização: rolagem personalizada desabilitada por padrão
+atualizado: rolagem personalizada desabilitada por padrão
 
 v 3.0.2
 ---------
 novo: verificações adicionais das dimensões para melhor compatibilidade com todos os sites
 correção: tamanho das barra errado em páginas com o Disqus
-atualização: tradução Português (obg André)
+atualizado: tradução Portuguesa (obg André)
 
 v 3.0.1
 ---------
@@ -49,14 +53,14 @@ v 2.4.5
 ---------
 correção: avançar rapidamente com barra de espaço (obg André)
 correção: várias traduções (obg a todos os contribuidores)
-atualização: links para o novo blog
+atualizado: links para o novo blog
 
 v 2.4.4
 ---------
 novo: visibilidade da 'superbar' pode ser alternada com gestos do mouse
 novo: modern scroll também assume a rolagem da barra de espaço (obg kapsi por reportar)
 correção: rolagem de imagens @vk.com (obg Maxim por reportar)
-atualização: várias traduções (obg a todos os tradutores)
+atualizado: várias traduções (obg a todos os tradutores)
 
 v 2.4.3
 ---------
@@ -81,22 +85,22 @@ v 2.4
 novo: tempo para ocultar barras ajustável
 novo: modern scroll é ativado apenas na guia ativa, não em todas as abertas
 novo: campos de explicação na página de configurações são exibidas no topo se estão abaixo da metade da tela
-atualização: tradução Português (obg André)
-atualização: barras de fundo visíveis apenas quando passar sobre elas com o mouse por padrão agora
-atualização: reestruturação e melhoras de performance
+atualizado: tradução Portuguesa (obg André)
+atualizado: barras de fundo visíveis apenas quando passar sobre elas com o mouse por padrão agora
+atualizado: reestruturação e melhoras de performance
 
 v 2.3.1
 ---------
 correção: ingdirect.fr (obg terdale por reportar)
 correção: popups de modal Bootstrap não aparecendo (obg Johnny por reportar; apenas semi-corrigido)
-atualização: traduções Tcheco & Árabe (obg Ahoj1234 & Netmain)
-atualização: melhoras mínimas na performance geral
+atualizado: traduções Tcheca & Árabe (obg Ahoj1234 & Netmain)
+atualizado: melhoras mínimas na performance geral
 
 v 2.3
 ---------
 novo: modern scroll pode ser utilizado com gestos de mouse personalizados (interface externa)
 novo: componentes estão disponíveis independentemente
-novo: tradução Romeno (obg Cryio)
+novo: tradução Romena (obg Cryio)
 correção: ocultando a UI também desabilita as funções de rolagem
 correção: dimensões da página não são atualizadas após longas transições/animações (obg aiwork & arkenighte por reportar)
 correção: lastpass.com (obg Netmain por reportar)
@@ -107,12 +111,12 @@ correção: navegação com teclado em seções contenteditable (obg Henryk por 
 
 v 2.2.1
 ---------
-novo: tradução Norueguês (obg Daniel)
+novo: tradução Norueguesa (obg Daniel)
 novo: tradução Árabe (obg netmain)
-novo: tradução Tcheco (obg Ahoj1234)
+novo: tradução Tcheca (obg Ahoj1234)
 correção: apenas em modo tela cheia (obg aboutblank6 por reportar)
 correção: modern scroll bloqueia rolagem com as teclas de direção quando a interface não está presente (ex.: MyOpera Mail, Google Docs)
-atualização: tradução Polonês (obg Piotr)
+atualizado: tradução Polonêsa (obg Piotr)
 
 v 2.2
 ---------
@@ -122,13 +126,13 @@ correção: detecção dos elementos de rolagem (obg Ahoj1234 por reportar)
 correção: teclas de direção em campos de busca/input (obg Cryio por reportar)
 correção: teclas PgUp/PgDwn/Home/End em elementos select (obg André por reportar)
 correção: milliyet.com.tr (obg Magruf por reportar)
-atualização: tradução Turco (obg metude)
+atualizado: tradução Turca (obg metude)
 
 v 2.1.3
 ---------
 correção: rolagem horizontal com o mouse (obg kimmy8624 por reportar)
 correção: rolagem com o mouse sobre elementos select (obg Vicent pelo seu suporte)
-atualização: rolagem animada por padrão
+atualizado: rolagem animada por padrão
 
 v 2.1.2
 ---------
@@ -139,7 +143,7 @@ correção: página de opções em instalações que não foram atualizadas da v
 v 2.1.1
 ---------
 correção: atalhos de teclado com tecla de comando ? (obg ayni por reportar)
-atualização: tradução Português (obg André)
+atualizado: tradução Portuguesa (obg André)
 
 v 2.1
 ---------
@@ -163,7 +167,7 @@ novo: explicações adicionais para algumas opções
 novo: suporte para iframes
 correção: clicar no fundo de uma barra pode resultar em rolagem vertical e horizontal ao mesmo tempo
 correção: vários bugs menores
-atualização: melhorada performance geral
+atualizado: melhorada performance geral
 
 v 1.3.1
 ---------
@@ -175,18 +179,18 @@ v 1.3
 novo: opcionalmente definir a área para utilizar o modern scroll
 novo: barras com distância das bordas (ajustável)
 novo: opção da transparência das barras de rolagem
-novo: tradução Português (obg André)
+novo: tradução Portuguesa (obg André)
 correção: mini página incorreta em imagem abertas separadamente
 correção: posição do botão não é mais salva (obg ura & mubaidr)
-atualização: rolagem animada com o mouse/teclado por padrão
-atualização: modificado comportamento e aparência da superbar
+atualizado: rolagem animada com o mouse/teclado por padrão
+atualizado: modificado comportamento e aparência da superbar
 
 v 1.2.1
 ---------
 correção: menu de contexto do modern scroll não aparece
 correção: interface inadvertidamente fica visível novamente após ocultá-la
 correção: vários erros de console
-atualização: superbar desabilitada por padrão
+atualizado: superbar desabilitada por padrão
 
 v 1.2
 ---------
