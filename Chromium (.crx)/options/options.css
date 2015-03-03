@@ -1,13 +1,13 @@
-html		{ background:#DDD; }
-a			{ text-decoration:none; color:#001; }
-body		{ font:13px/24px "helvetica neue",arial,sans-serif; cursor:default; max-width:900px; overflow-x:hidden;
-  			  background:#FFF; color:#1e3853; margin:15px auto; box-shadow:0 0 10px #98b0c9; direction: __MSG_@@bidi_dir__; }
-header		{ display:block; text-align:center; padding:25px 50px 10px 50px; margin:0 50px;
+html		{ width:100%; background:#DDD; }
+body		{ font:13px/24px "helvetica neue",arial,sans-serif; cursor:default; max-width:800px; overflow-x:hidden;
+  			  background:#FFF; color:#1e3853; margin:15px auto; padding:0 50px; box-shadow:0 0 10px #98b0c9; direction: __MSG_@@bidi_dir__; }
+header		{ display:block; text-align:center; padding:25px 0 10px 0;
 			  border-bottom:0.2rem solid #1e3853; box-shadow:0 1px #fff; }
-section 	{ display:block; padding:0 50px; }
+section 	{ display:block; padding:0; }
 fieldset	{ border:none; border-top:0.2rem solid #1e3853; background:#F5F5F5; border-radius:2px; padding:1px 20px 15px 20px; }
-footer		{ display:block; text-align:center; padding:0 50px; margin:30px 50px 0 50px;
+footer		{ display:block; text-align:center; margin-top:30px;
 			  border-top:1px solid #fff; box-shadow:0 -1px rgba(0,0,0,0.15); }
+a			{ text-decoration:none; color:#001; }
 h1			{ margin:0px; margin-bottom:-10px; font-size:24px; }
 h3			{ margin-bottom:5px; }
 table		{ width:100%; }
@@ -34,20 +34,21 @@ input.toggle:checked ~ div.toggle-container{ height:auto; }
 .i_text		{ display:none; position:absolute; margin:13px 5px 0 3px; padding:10px 15px; z-index:99; opacity:0; max-width:500px; font-weight:normal;
 			  background:#DDD; transition:opacity 0.2s; text-shadow:0 0 2px #FFF; color:#000; }
 
-@media all and (max-width: 910px), all and (max-device-width:910px){
+@media all and (max-width: 900px), all and (max-device-width:900px){
 	body 	{ margin:0; box-shadow:none; }
-	footer	{ padding:0; }
 	footer > p{ margin-bottom:0; }
 }
 
 @media all and (max-width: 600px), all and (max-device-width:600px){
-	section	{ padding:0 20px; }
-	footer	{ margin:0 20px; }
+	body	{ padding:0 20px; }
 }
 
 @media all and (max-width: 500px), all and (max-device-width:500px){
-	header	{ display:none; }
-	section	{ padding:0;}
+	body	{ padding:0; }
 	fieldset{ padding:1px 10px 10px 10px; }
-	footer	{ margin:0; }
+}
+
+@media all and (view-mode:floating), (view-mode:windowed){
+	html	{ max-width:900px; }
+	header	{ display:none; }
 }
