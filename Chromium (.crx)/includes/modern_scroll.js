@@ -118,12 +118,11 @@ function add_or_remove_ms(){
 function inject_css()
 {
 	var ms_style = 
-		/* set back standard values (CSS values not necessarily used by modern scroll, but maybe altered by the website): */
-		"#modern_scroll, #ms_v_container, #ms_h_container, #ms_vbar_bg, #ms_hbar_bg, #ms_vbar, #ms_hbar, #ms_superbar, #ms_page_cover, #ms_upbutton, #ms_downbutton, #ms_middleclick_cursor{ position:fixed; z-index:2147483647; border:none; padding:0; margin:0; display:none; background:none; }\n\
+		":host, #ms_v_container, #ms_h_container, #ms_vbar_bg, #ms_hbar_bg, #ms_vbar, #ms_hbar, #ms_superbar, #ms_page_cover, #ms_upbutton, #ms_downbutton, #ms_middleclick_cursor{ position:fixed; z-index:2147483647; border:none; padding:0; margin:0; display:none; background:none; }\n\
 		 #ms_vbar_ui, #ms_hbar_ui, #ms_vbar_bg_ui, #ms_hbar_bg_ui{ border:none; padding:0; margin:0; }\n\n"+
 		
 		/* set values (most general first - can be overwritten by following rules): */
-		"#modern_scroll, #modern_scroll_bars, #modern_scroll_buttons{ display:inline; }\n\
+		":host, #modern_scroll_bars, #modern_scroll_buttons{ display:inline; }\n\
 		 #ms_v_container{ height:100%; width:"+(w.container==="1"?w.container_size:"1")+"px; "+(w.vbar_at_left=="1"?"left":"right")+":0px; top:0px; background:rgba(0,0,0,0); transform-origin:100% 0 0; -webkit-transform-origin:100% 50% 0; }\n\
 		 #ms_h_container{ height:"+(w.container==="1"?w.container_size:"1")+"px; width:100%; left:0px; "+(w.hbar_at_top==="1"?"top":"bottom")+":0px; background:rgba(0,0,0,0); transform-origin:0 100% 0; -webkit-transform-origin:50% 100% 0;  }\n\
 		 #ms_vbar_bg, #ms_hbar_bg{ opacity:"+((w.show_when==="3" && w.show_bg_bars_when==="3")?(w.opacity/100):"0")+"; transition:opacity 0.5s "+w.show_how_long+"ms; }\n\
@@ -400,10 +399,12 @@ function set_new_scrollMax_values()
 	
 	window.scrollMaxX = (new_scrollWidth > window.innerWidth+1 &&
 						 window.getComputedStyle(document.documentElement).overflowX !== "hidden" &&
-						 window.getComputedStyle(document.body).overflowX !== "hidden" ? new_scrollWidth-window.innerWidth : 0);
+						 (window.getComputedStyle(document.body).overflowX !== "hidden" ||
+						  window.getComputedStyle(document.documentElement).overflowX !== "visible") ? new_scrollWidth-window.innerWidth : 0);
 	window.scrollMaxY = (new_scrollHeight > window.innerHeight+1 &&
 						 window.getComputedStyle(document.documentElement).overflowY !== "hidden" &&
-						 window.getComputedStyle(document.body).overflowY !== "hidden" ? new_scrollHeight-window.innerHeight : 0);
+						 (window.getComputedStyle(document.body).overflowY !== "hidden" ||
+						  window.getComputedStyle(document.documentElement).overflowY !== "visible") ? new_scrollHeight-window.innerHeight : 0);
 }
 
 function scaleUI(){
