@@ -4,6 +4,7 @@ var timeout;				// scrolling animation
 var w = {};					// settings -> updated when tab gets activated
 var vbar;					// \ pass by reference!
 var hbar;					// /
+var ms_shadow;				// shadow DOM root
 
 (function check_if_tab_needs_bars()
 {
@@ -45,6 +46,7 @@ function add_ms()
 	
 	var ms_container = document.createElement("div");
 	ms_container.id = "modern_scroll";
+	ms_shadow = ms_container.createShadowRoot();
 	try{ document.documentElement.appendChild(ms_container); }catch(e){ document.body.appendChild(ms_container); }
 	
 	chrome.runtime.sendMessage({data:"settings"}, function(response){ // get settings (filled with default values) from background.js
@@ -115,8 +117,7 @@ function add_or_remove_ms(){
 
 function inject_css()
 {
-	var ms_style = /*CSS3 working draft; will replace manual overwriting of each and every value: */
-		"#modern_scroll{ all: initial; }\n"+
+	var ms_style = 
 		/* set back standard values (CSS values not necessarily used by modern scroll, but maybe altered by the website): */
 		"#modern_scroll, #ms_v_container, #ms_h_container, #ms_vbar_bg, #ms_hbar_bg, #ms_vbar, #ms_hbar, #ms_superbar, #ms_page_cover, #ms_upbutton, #ms_downbutton, #ms_middleclick_cursor{ position:fixed; z-index:2147483647; border:none; padding:0; margin:0; display:none; background:none; }\n\
 		 #ms_vbar_ui, #ms_hbar_ui, #ms_vbar_bg_ui, #ms_hbar_bg_ui{ border:none; padding:0; margin:0; }\n\n"+
@@ -157,25 +158,33 @@ function inject_css()
 		 .dragged #ms_hbar_ui, .dragged #ms_hbar_bg_ui{ height:"+w.hover_size+"px; }\n\
 		 #ms_superbar.dragged{ opacity:"+(w.show_superbar_minipage === "1" ? 1 : (w.superbar_opacity/100))+"; }\n\
 		 #ms_middleclick_cursor{ width:64px; height:64px; cursor:none; background:url(data:image/png;base64,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); }\n\n"+
-		// page elements:
-		/* hide all scrollbars inside of body when not hovered or focused if bars are not set to "show always": */
+		 // hide in print preview and printouts:
+		 "@media print{ :host{ display:none !important; } }";
+
+	/* hide all scrollbars inside of body when not hovered or focused if bars are not set to "show always": */
+	var global_ms_style = 
 		(w.show_when !== "3" ? "body *:not(:hover):not(:focus)::-webkit-scrollbar{ display:none !important; width:0 !important; height:0 !important; }\n" : "")+
 		"body *::-webkit-scrollbar{ width:"+w.size+"px; height:"+w.size+"px; }\n\
 		 body *::-webkit-scrollbar-button{ display:none; }\n\
 		 body *::-webkit-scrollbar-track { background:"+w.color_bg+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" !important; border-radius:"+w.border_radius+"px; }\n\
 		 body *::-webkit-scrollbar-thumb { background:"+w.color+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" !important; border-radius:"+w.border_radius+"px; }\n\
-		 body *::-webkit-scrollbar-thumb:hover { background:"+w.color+"; }\n\n"+
-		 // hide in print preview and printouts:
-		 "@media print{ #modern_scroll{ display:none !important; } }";
-	
-	if(document.getElementById("ms_style")) document.getElementById("ms_style").innerHTML = ms_style; // switched tabs
-	else{ // when website is initially loaded
-		var style = document.createElement("style");
-		style.setAttribute("type","text/css");
-		style.id = "ms_style";
-		style.innerHTML = ms_style;
-		document.getElementsByTagName("head")[0].appendChild(style);
+		 body *::-webkit-scrollbar-thumb:hover { background:"+w.color+"; }";
+
+	if(document.getElementById("ms_style")){ // switched tabs -> update style (settings may have changed)
+		document.getElementById("ms_style").innerHTML = global_ms_style;
 	}
+	else{ // when website is initially loaded
+		var global_style = document.createElement("style");
+		global_style.setAttribute("type","text/css");
+		global_style.id = "ms_style";
+		global_style.innerHTML = global_ms_style;
+		document.querySelector("head").appendChild(global_style);
+	}
+	
+	var style = document.createElement("style");
+	style.setAttribute("type","text/css");
+	style.innerHTML = ms_style;
+	ms_shadow.appendChild(style);
 }
 
 function add_bars()
@@ -183,67 +192,67 @@ function add_bars()
 	var bars_container = document.createElement("div");
 	bars_container.id = "modern_scroll_bars";
 	bars_container.innerHTML =
-		"<div id='ms_page_cover'></div>\n"+
-		"<div id='ms_middleclick_cursor'></div>\n"+
-		"<div id='ms_superbar'></div>\n"+
-		"<div id='ms_h_container'>\n"+
-			"<div id='ms_hbar_bg'><div id='ms_hbar_bg_ui'></div></div>\n"+
-			"<div id='ms_hbar'><div id='ms_hbar_ui'></div></div>\n"+
-		"</div>\n"+
-		"<div id='ms_v_container'>\n"+ // last in DOM gets displayed top
-			"<div id='ms_vbar_bg'><div id='ms_vbar_bg_ui'></div></div>\n"+
-			"<div id='ms_vbar'><div id='ms_vbar_ui'></div></div>\n"+
-		"</div>";
+		"<div id='ms_page_cover'></div>\n\
+		<div id='ms_middleclick_cursor'></div>\n\
+		<div id='ms_superbar'></div>\n\
+		<div id='ms_h_container'>\n\
+			<div id='ms_hbar_bg'><div id='ms_hbar_bg_ui'></div></div>\n\
+			<div id='ms_hbar'><div id='ms_hbar_ui'></div></div>\n\
+		</div>\n\
+		<div id='ms_v_container'>\n"+ // last in DOM gets displayed top
+			"<div id='ms_vbar_bg'><div id='ms_vbar_bg_ui'></div></div>\n\
+			<div id='ms_vbar'><div id='ms_vbar_ui'></div></div>\n\
+		</div>";
 		
-	document.getElementById("modern_scroll").appendChild(bars_container);
+	ms_shadow.appendChild(bars_container);
 	
-	vbar = document.getElementById("ms_vbar");
-	hbar = document.getElementById("ms_hbar");
+	vbar = ms_shadow.getElementById("ms_vbar");
+	hbar = ms_shadow.getElementById("ms_hbar");
 	
 	add_functionality_2_bars();
 }
 
 function add_functionality_2_bars(){
-	document.getElementById("ms_vbar_bg").addEventListener("mousedown", scroll_bg_v, true);
-	document.getElementById("ms_hbar_bg").addEventListener("mousedown", scroll_bg_h, true);
+	ms_shadow.getElementById("ms_vbar_bg").addEventListener("mousedown", scroll_bg_v, true);
+	ms_shadow.getElementById("ms_hbar_bg").addEventListener("mousedown", scroll_bg_h, true);
 	
-	document.getElementById("ms_superbar").addEventListener("mousedown", drag_super, true);
+	ms_shadow.getElementById("ms_superbar").addEventListener("mousedown", drag_super, true);
 	vbar.addEventListener("mousedown", drag_v, true);
 	hbar.addEventListener("mousedown", drag_h, true);
 	
-	document.getElementById("ms_h_container").addEventListener("mousewheel", mousescroll_x, true);
-	document.getElementById("ms_hbar_bg").addEventListener("mousewheel", mousescroll_x, true);
+	ms_shadow.getElementById("ms_h_container").addEventListener("mousewheel", mousescroll_x, true);
+	ms_shadow.getElementById("ms_hbar_bg").addEventListener("mousewheel", mousescroll_x, true);
 	hbar.addEventListener("mousewheel", mousescroll_x, true);
 	
 	if(w.container === "1"){
-		document.getElementById("ms_v_container").addEventListener("mouseenter",function(){
-			document.getElementById("ms_v_container").style.width = "1px";
-			document.getElementById("ms_vbar_ui").style.width = w.hover_size+"px";
-			document.getElementById("ms_vbar_bg_ui").style.width = w.hover_size+"px";
+		ms_shadow.getElementById("ms_v_container").addEventListener("mouseenter",function(){
+			ms_shadow.getElementById("ms_v_container").style.width = "1px";
+			ms_shadow.getElementById("ms_vbar_ui").style.width = w.hover_size+"px";
+			ms_shadow.getElementById("ms_vbar_bg_ui").style.width = w.hover_size+"px";
 			show_bar("v");
 			window.addEventListener("mousemove", restore_v_trigger_area, false);
 			function restore_v_trigger_area(){
 				if(window.innerWidth-window.event.clientX > w.container_size){
 					hide_bar("v");
-					document.getElementById("ms_vbar_ui").style.width = null;
-					document.getElementById("ms_vbar_bg_ui").style.width = null;
-					document.getElementById("ms_v_container").style.width = null;
+					ms_shadow.getElementById("ms_vbar_ui").style.width = null;
+					ms_shadow.getElementById("ms_vbar_bg_ui").style.width = null;
+					ms_shadow.getElementById("ms_v_container").style.width = null;
 					window.removeEventListener("mousemove", restore_v_trigger_area, false);
 				}
 			}
 		}, false);
-		document.getElementById("ms_h_container").addEventListener("mouseenter",function(){
-			document.getElementById("ms_h_container").style.height = "1px";
-			document.getElementById("ms_hbar_ui").style.height = w.hover_size+"px";
-			document.getElementById("ms_hbar_bg_ui").style.height = w.hover_size+"px";
+		ms_shadow.getElementById("ms_h_container").addEventListener("mouseenter",function(){
+			ms_shadow.getElementById("ms_h_container").style.height = "1px";
+			ms_shadow.getElementById("ms_hbar_ui").style.height = w.hover_size+"px";
+			ms_shadow.getElementById("ms_hbar_bg_ui").style.height = w.hover_size+"px";
 			show_bar("h");
 			window.addEventListener("mousemove", restore_h_trigger_area, false);
 			function restore_h_trigger_area(){
 				if(window.innerHeight-window.event.clientY > w.container_size){
 					hide_bar("h");
-					document.getElementById("ms_hbar_ui").style.height = null;
-					document.getElementById("ms_hbar_bg_ui").style.height = null;
-					document.getElementById("ms_h_container").style.height = null;
+					ms_shadow.getElementById("ms_hbar_ui").style.height = null;
+					ms_shadow.getElementById("ms_hbar_bg_ui").style.height = null;
+					ms_shadow.getElementById("ms_h_container").style.height = null;
 					window.removeEventListener("mousemove", restore_h_trigger_area, false);
 				}
 			}
@@ -334,7 +343,7 @@ function add_external_interface()
 		if(w.show_superbar === "1")
 		{
 			w.show_superbar = "0";
-			document.getElementById("ms_superbar").style.display = null;
+			ms_shadow.getElementById("ms_superbar").style.display = null;
 		}
 		else
 		{
@@ -400,15 +409,15 @@ function set_new_scrollMax_values()
 function scaleUI(){
 	window.devicePixelRatio_old = window.devicePixelRatio;
 	var scaleFactor = w.baseDevicePixelRatio / window.devicePixelRatio;
-	//document.getElementById("ms_vbar_bg").style.height = document.getElementById("ms_hbar_bg").style.width = 100*window.devicePixelRatio+"%";
-	document.getElementById("ms_v_container").style.transform = document.getElementById("ms_v_container").style.webkitTransform = "scale("+scaleFactor+",1)";
-	document.getElementById("ms_h_container").style.transform = document.getElementById("ms_h_container").style.webkitTransform = "scale(1,"+scaleFactor+")";
+	//ms_shadow.getElementById("ms_vbar_bg").style.height = ms_shadow.getElementById("ms_hbar_bg").style.width = 100*window.devicePixelRatio+"%";
+	ms_shadow.getElementById("ms_v_container").style.transform = ms_shadow.getElementById("ms_v_container").style.webkitTransform = "scale("+scaleFactor+",1)";
+	ms_shadow.getElementById("ms_h_container").style.transform = ms_shadow.getElementById("ms_h_container").style.webkitTransform = "scale(1,"+scaleFactor+")";
 }
 
 function adjust_ui_new_size()
 {
 	resize_bars();
-	if(document.getElementById("modern_scroll_buttons")) show_or_hide_buttons();
+	if(ms_shadow.getElementById("modern_scroll_buttons")) show_or_hide_buttons();
 }
 function adjust_ui_fullscreen_change()
 {
@@ -418,13 +427,13 @@ function adjust_ui_fullscreen_change()
 	
 	if(w.fullscreen_only === "1")
 	{
-		if(isFullscreen === 0)	document.getElementById("modern_scroll_bars").style.display = "none";
-		else					document.getElementById("modern_scroll_bars").style.display = null;
+		if(isFullscreen === 0)	ms_shadow.getElementById("modern_scroll_bars").style.display = "none";
+		else					ms_shadow.getElementById("modern_scroll_bars").style.display = null;
 	}
 	if(w.show_buttons === "2")
 	{
-		if(isFullscreen === 0)	document.getElementById("modern_scroll_buttons").style.display = "none";
-		else					document.getElementById("modern_scroll_buttons").style.display = null;
+		if(isFullscreen === 0)	ms_shadow.getElementById("modern_scroll_buttons").style.display = "none";
+		else					ms_shadow.getElementById("modern_scroll_buttons").style.display = null;
 	}
 }
 
@@ -446,8 +455,8 @@ function resize_vbar()
 	if(window.scrollMaxY === 0) // don't display and stop if content fits into window:
 	{
 		if(vbar.style.display === "inline"){
-			document.getElementById("ms_v_container").style.display = null;
-			document.getElementById("ms_vbar_bg").style.display = null;
+			ms_shadow.getElementById("ms_v_container").style.display = null;
+			ms_shadow.getElementById("ms_vbar_bg").style.display = null;
 			vbar.style.display = null;
 			window.removeEventListener("mousewheel", mousescroll_y, false);
 		}
@@ -459,9 +468,9 @@ function resize_vbar()
 	vbar.style.height = vbar_new_height+"px";
 	
 	if(vbar.style.display !== "inline"){
-		document.getElementById("ms_vbar_ui").style.height = vbar_new_height-2*w.gap+"px";
-		document.getElementById("ms_v_container").style.display = "inline";
-		document.getElementById("ms_vbar_bg").style.display = "inline";
+		ms_shadow.getElementById("ms_vbar_ui").style.height = vbar_new_height-2*w.gap+"px";
+		ms_shadow.getElementById("ms_v_container").style.display = "inline";
+		ms_shadow.getElementById("ms_vbar_bg").style.display = "inline";
 		vbar.style.display = "inline";
 		show_bar("v");
 		chrome.runtime.sendMessage({data:"reset_contextmenu"});
@@ -469,7 +478,7 @@ function resize_vbar()
 		if(window.self.frameElement || w.use_own_scroll_functions_mouse === "1") window.addEventListener("mousewheel", mousescroll_y, false);
 	}
 	else if(vbar_height_before !== vbar_new_height+"px"){
-		document.getElementById("ms_vbar_ui").style.height = vbar_new_height-2*w.gap+"px";
+		ms_shadow.getElementById("ms_vbar_ui").style.height = vbar_new_height-2*w.gap+"px";
 		show_bar("v");
 	}
 }
@@ -479,8 +488,8 @@ function resize_hbar()
 	if(window.scrollMaxX === 0) // don't display and stop if content fits into window:
 	{
 		if(hbar.style.display === "inline"){
-			document.getElementById("ms_h_container").style.display = null;
-			document.getElementById("ms_hbar_bg").style.display = null;
+			ms_shadow.getElementById("ms_h_container").style.display = null;
+			ms_shadow.getElementById("ms_hbar_bg").style.display = null;
 			hbar.style.display = null;
 		}
 		
@@ -491,15 +500,15 @@ function resize_hbar()
 	hbar.style.width = hbar_new_width+"px";
 	
 	if(hbar.style.display !== "inline"){
-		document.getElementById("ms_hbar_ui").style.width = hbar_new_width-2*w.gap+"px";
-		document.getElementById("ms_h_container").style.display = "inline";
-		document.getElementById("ms_hbar_bg").style.display = "inline";
+		ms_shadow.getElementById("ms_hbar_ui").style.width = hbar_new_width-2*w.gap+"px";
+		ms_shadow.getElementById("ms_h_container").style.display = "inline";
+		ms_shadow.getElementById("ms_hbar_bg").style.display = "inline";
 		hbar.style.display = "inline";
 		show_bar("h");
 		chrome.runtime.sendMessage({data:"reset_contextmenu"});
 	}
 	else if(hbar_width_before !== hbar_new_width+"px"){
-		document.getElementById("ms_hbar_ui").style.width = hbar_new_width-2*w.gap+"px";
+		ms_shadow.getElementById("ms_hbar_ui").style.width = hbar_new_width-2*w.gap+"px";
 		show_bar("h");
 	}
 }
@@ -510,27 +519,27 @@ function resize_superbar()
 	
 	if(vbar.style.display === "inline" && hbar.style.display === "inline")
 	{
-		document.getElementById("ms_superbar").style.height = vbar.style.height;
-		document.getElementById("ms_superbar").style.width = hbar.style.width;
+		ms_shadow.getElementById("ms_superbar").style.height = vbar.style.height;
+		ms_shadow.getElementById("ms_superbar").style.width = hbar.style.width;
 		
 		if(w.show_superbar_minipage === "0")
-			document.getElementById("ms_superbar").style.transform = document.getElementById("ms_superbar").style.webkitTransform = "scale("+(window.innerWidth/10)/parseInt(document.getElementById("ms_superbar").style.width)+","+(window.innerHeight/10)/parseInt(document.getElementById("ms_superbar").style.height)+")";
+			ms_shadow.getElementById("ms_superbar").style.transform = ms_shadow.getElementById("ms_superbar").style.webkitTransform = "scale("+(window.innerWidth/10)/parseInt(ms_shadow.getElementById("ms_superbar").style.width)+","+(window.innerHeight/10)/parseInt(ms_shadow.getElementById("ms_superbar").style.height)+")";
 		
-		document.getElementById("ms_superbar").style.display = "inline";
+		ms_shadow.getElementById("ms_superbar").style.display = "inline";
 	}
-	else document.getElementById("ms_superbar").style.display = null;
+	else ms_shadow.getElementById("ms_superbar").style.display = null;
 }
 
 function drag_mode(which_bar){
 	if(which_bar){
 		window.removeEventListener("scroll", reposition_bars, false);
-		document.getElementById("ms_page_cover").style.display = "inline";
-		document.getElementById("ms_"+which_bar).className = "dragged";
+		ms_shadow.getElementById("ms_page_cover").style.display = "inline";
+		ms_shadow.getElementById("ms_"+which_bar).className = "dragged";
 	}
 	else{
 		window.addEventListener("scroll", reposition_bars, false);
-		document.getElementById("ms_page_cover").style.display = null;
-		document.getElementsByClassName("dragged")[0].className = null;
+		ms_shadow.getElementById("ms_page_cover").style.display = null;
+		ms_shadow.querySelector(".dragged").className = null;
 	}
 }
 
@@ -602,7 +611,7 @@ function drag_super()
 	else show_bars();
 	
 	drag_mode("superbar");
-	var superbar = document.getElementById("ms_superbar");
+	var superbar = ms_shadow.getElementById("ms_superbar");
 	var dragy = window.event.clientY - parseInt(superbar.style.top);
 	var dragx = window.event.clientX - parseInt(superbar.style.left);
 	
@@ -641,8 +650,8 @@ function drag_super()
 			document.body.style.transformOrigin = document.body.style.webkitTransformOrigin = null;
 			window.scroll(parseInt(superbar.style.left)/(window.innerWidth-superbar.offsetWidth)*window.scrollMaxX, parseInt(superbar.style.top)/(window.innerHeight-superbar.offsetHeight)*window.scrollMaxY);
 			
-			document.getElementById("ms_vbar_bg").style.display = "inline";
-			document.getElementById("ms_hbar_bg").style.display = "inline";
+			ms_shadow.getElementById("ms_vbar_bg").style.display = "inline";
+			ms_shadow.getElementById("ms_hbar_bg").style.display = "inline";
 			vbar.style.display = "inline";
 			hbar.style.display = "inline";
 		}
@@ -671,11 +680,11 @@ function reposition_bars()
 	{
 		if(vbar.style.display === "inline" && hbar.style.display === "inline")
 		{
-			document.getElementById("ms_superbar").style.top = vbar.style.top;
-			document.getElementById("ms_superbar").style.left = hbar.style.left;
+			ms_shadow.getElementById("ms_superbar").style.top = vbar.style.top;
+			ms_shadow.getElementById("ms_superbar").style.left = hbar.style.left;
 		}
-		else if(document.getElementById("ms_superbar").style.opacity !== "1") //if superbar doesn't get dragged (minipage only -> no bars)
-			window.setTimeout(function(){ document.getElementById("ms_superbar").style.display = null; }, eval(w.show_how_long));
+		else if(ms_shadow.getElementById("ms_superbar").style.opacity !== "1") //if superbar doesn't get dragged (minipage only -> no bars)
+			window.setTimeout(function(){ ms_shadow.getElementById("ms_superbar").style.display = null; }, eval(w.show_how_long));
 	}
 	if(vbar_top_before !== vbar.style.top)		show_bar("v");
 	if(hbar_left_before !== hbar.style.left)	show_bar("h");
@@ -745,7 +754,7 @@ function scroll_bg_h(){
 function show_bars(){ show_bar("v"); show_bar("h"); }
 function hide_bars()
 {
-	if(document.getElementsByClassName("dragged").length > 0) return;
+	if(ms_shadow.querySelector(".dragged")) return;
 	hide_bar("v"); hide_bar("h");
 }
 
@@ -754,34 +763,34 @@ function show_bar(whichone)
 	window.clearTimeout(hide_timeout); hide_timeout = null;
 	if(w.show_when === "1") return;		// 1 = only onmouseover
 	if(w.show_bg_bars_when === "3"){	// 3 = like scroll bars
-		document.getElementById("ms_"+whichone+"bar_bg").style.transition = "opacity 0s 0s";
-		document.getElementById("ms_"+whichone+"bar_bg").style.opacity = w.opacity/100;
+		ms_shadow.getElementById("ms_"+whichone+"bar_bg").style.transition = "opacity 0s 0s";
+		ms_shadow.getElementById("ms_"+whichone+"bar_bg").style.opacity = w.opacity/100;
 	}
-	if(document.getElementById("ms_"+whichone+"_container").className === "dragged") return;
-	document.getElementById("ms_"+whichone+"bar").style.transition = "opacity 0s 0s";
-	document.getElementById("ms_"+whichone+"bar").style.opacity = w.opacity/100;
+	if(ms_shadow.getElementById("ms_"+whichone+"_container").className === "dragged") return;
+	ms_shadow.getElementById("ms_"+whichone+"bar").style.transition = "opacity 0s 0s";
+	ms_shadow.getElementById("ms_"+whichone+"bar").style.opacity = w.opacity/100;
 }
 var hide_timeout;
 function hide_bar(whichone)
 {
 	hide_timeout = window.setTimeout(function(){ // set timeout to prevent bar from not showing up at all
 		if(!hide_timeout) return; // hide_bar got fired for v & h -> only h is cancelable -> check if show_bars() canceled hide_timeout
-		document.getElementById("ms_"+whichone+"bar_bg").style.transition = null;
-		document.getElementById("ms_"+whichone+"bar_bg").style.opacity = null;
-		document.getElementById("ms_"+whichone+"bar").style.transition = null;
-		document.getElementById("ms_"+whichone+"bar").style.opacity = null;
+		ms_shadow.getElementById("ms_"+whichone+"bar_bg").style.transition = null;
+		ms_shadow.getElementById("ms_"+whichone+"bar_bg").style.opacity = null;
+		ms_shadow.getElementById("ms_"+whichone+"bar").style.transition = null;
+		ms_shadow.getElementById("ms_"+whichone+"bar").style.opacity = null;
 	}, 0);
 }
 
 function show_minipage()
 {
-	document.getElementById("ms_vbar_bg").style.display = null;
-	document.getElementById("ms_hbar_bg").style.display = null;
+	ms_shadow.getElementById("ms_vbar_bg").style.display = null;
+	ms_shadow.getElementById("ms_hbar_bg").style.display = null;
 	vbar.style.display = null;
 	hbar.style.display = null;
-	if(document.getElementById("ms_upbutton")){
-		document.getElementById("ms_upbutton").style.display = null;
-		document.getElementById("ms_downbutton").style.display = null;
+	if(ms_shadow.getElementById("ms_upbutton")){
+		ms_shadow.getElementById("ms_upbutton").style.display = null;
+		ms_shadow.getElementById("ms_downbutton").style.display = null;
 	}
 	
 	document.body.style.transformOrigin = document.body.style.webkitTransformOrigin = "0% 0%";
@@ -813,7 +822,7 @@ function add_buttons()
 	button_container.appendChild(upbutton);
 	button_container.appendChild(downbutton);
 	
-	document.getElementById("modern_scroll").appendChild(button_container);
+	ms_shadow.appendChild(button_container);
 	
 	window.addEventListener("scroll", show_or_hide_buttons, false);
 }
@@ -824,8 +833,8 @@ function handle_button(whichone)
 	if(window.event.which !== 1) return;	// if it's not the left mouse button
 	if(document.URL.substr(0,19) !== "chrome-extension://") window.event.stopPropagation(); // prevent bubbling (e.g. prevent drag being triggered on separately opened images); provide event in options page (to save dragged button position)
 		
-	var button = document.getElementById("ms_"+whichone+"button");
-	var otherbutton = document.getElementById("ms_"+(whichone==="up"?"down":"up")+"button");
+	var button = ms_shadow.getElementById("ms_"+whichone+"button");
+	var otherbutton = ms_shadow.getElementById("ms_"+(whichone==="up"?"down":"up")+"button");
 	var x_start = window.event.clientX - Math.floor(button.style.left?parseInt(button.style.left):w.buttonposition/100*window.innerWidth);
 	
 	document.addEventListener("mousemove", handle_button_move, true);
@@ -866,11 +875,11 @@ function show_or_hide_buttons()
 {
 	window.clearTimeout(button_timeout);
 	button_timeout = window.setTimeout(function(){
-		if(window.pageYOffset > 0)					document.getElementById("ms_upbutton").style.display = "inline";
-		else										document.getElementById("ms_upbutton").style.display = null;
+		if(window.pageYOffset > 0)					ms_shadow.getElementById("ms_upbutton").style.display = "inline";
+		else										ms_shadow.getElementById("ms_upbutton").style.display = null;
 		
-		if(window.pageYOffset < window.scrollMaxY)	document.getElementById("ms_downbutton").style.display = "inline";
-		else										document.getElementById("ms_downbutton").style.display = null;
+		if(window.pageYOffset < window.scrollMaxY)	ms_shadow.getElementById("ms_downbutton").style.display = "inline";
+		else										ms_shadow.getElementById("ms_downbutton").style.display = null;
 	}, 200);
 }
 
@@ -1059,7 +1068,7 @@ function arrowkeyscroll()
 		else if	(e.which === 39) scroll_timeout_id_x = window.requestAnimationFrame( function(){ arrowkeyscroll_right(Date.now()); } );
 		else					 scroll_timeout_id_x = window.requestAnimationFrame( function(){ arrowkeyscroll_left(Date.now()); } );
 		//}
-		if(document.getElementById("modern_scroll_bars"))
+		if(ms_shadow.getElementById("modern_scroll_bars"))
 		{
 			if(e.which === 40){
 				show_bar("v");/*
@@ -1119,7 +1128,7 @@ function arrowkeyscroll()
 		window.removeEventListener("scroll", element_finished_scrolling, false);
 		window.removeEventListener("keyup", arrowkeyscroll_end, false);
 		
-		if(!document.getElementById("modern_scroll_bars")) return;
+		if(!ms_shadow.getElementById("modern_scroll_bars")) return;
 		
 		reposition_bars();
 		vbar.style.transition = null;
@@ -1227,11 +1236,11 @@ function middlebuttonscroll()
 	if(window.event.button !== 1 || isLink(window.event.target)) return; // only scroll wheel / middle button clicks
 	stopEvent();
 
-	document.getElementById("ms_page_cover").style.cursor = "url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAXCAYAAADgKtSgAAAACXBIWXMAAAsTAAALEwEAmpwYAAAKT2lDQ1BQaG90b3Nob3AgSUNDIHByb2ZpbGUAAHjanVNnVFPpFj333vRCS4iAlEtvUhUIIFJCi4AUkSYqIQkQSoghodkVUcERRUUEG8igiAOOjoCMFVEsDIoK2AfkIaKOg6OIisr74Xuja9a89+bN/rXXPues852zzwfACAyWSDNRNYAMqUIeEeCDx8TG4eQuQIEKJHAAEAizZCFz/SMBAPh+PDwrIsAHvgABeNMLCADATZvAMByH/w/qQplcAYCEAcB0kThLCIAUAEB6jkKmAEBGAYCdmCZTAKAEAGDLY2LjAFAtAGAnf+bTAICd+Jl7AQBblCEVAaCRACATZYhEAGg7AKzPVopFAFgwABRmS8Q5ANgtADBJV2ZIALC3AMDOEAuyAAgMADBRiIUpAAR7AGDIIyN4AISZABRG8lc88SuuEOcqAAB4mbI8uSQ5RYFbCC1xB1dXLh4ozkkXKxQ2YQJhmkAuwnmZGTKBNA/g88wAAKCRFRHgg/P9eM4Ors7ONo62Dl8t6r8G/yJiYuP+5c+rcEAAAOF0ftH+LC+zGoA7BoBt/qIl7gRoXgugdfeLZrIPQLUAoOnaV/Nw+H48PEWhkLnZ2eXk5NhKxEJbYcpXff5nwl/AV/1s+X48/Pf14L7iJIEyXYFHBPjgwsz0TKUcz5IJhGLc5o9H/LcL//wd0yLESWK5WCoU41EScY5EmozzMqUiiUKSKcUl0v9k4t8s+wM+3zUAsGo+AXuRLahdYwP2SycQWHTA4vcAAPK7b8HUKAgDgGiD4c93/+8//UegJQCAZkmScQAAXkQkLlTKsz/HCAAARKCBKrBBG/TBGCzABhzBBdzBC/xgNoRCJMTCQhBCCmSAHHJgKayCQiiGzbAdKmAv1EAdNMBRaIaTcA4uwlW4Dj1wD/phCJ7BKLyBCQRByAgTYSHaiAFiilgjjggXmYX4IcFIBBKLJCDJiBRRIkuRNUgxUopUIFVIHfI9cgI5h1xGupE7yAAygvyGvEcxlIGyUT3UDLVDuag3GoRGogvQZHQxmo8WoJvQcrQaPYw2oefQq2gP2o8+Q8cwwOgYBzPEbDAuxsNCsTgsCZNjy7EirAyrxhqwVqwDu4n1Y8+xdwQSgUXACTYEd0IgYR5BSFhMWE7YSKggHCQ0EdoJNwkDhFHCJyKTqEu0JroR+cQYYjIxh1hILCPWEo8TLxB7iEPENyQSiUMyJ7mQAkmxpFTSEtJG0m5SI+ksqZs0SBojk8naZGuyBzmULCAryIXkneTD5DPkG+Qh8lsKnWJAcaT4U+IoUspqShnlEOU05QZlmDJBVaOaUt2ooVQRNY9aQq2htlKvUYeoEzR1mjnNgxZJS6WtopXTGmgXaPdpr+h0uhHdlR5Ol9BX0svpR+iX6AP0dwwNhhWDx4hnKBmbGAcYZxl3GK+YTKYZ04sZx1QwNzHrmOeZD5lvVVgqtip8FZHKCpVKlSaVGyovVKmqpqreqgtV81XLVI+pXlN9rkZVM1PjqQnUlqtVqp1Q61MbU2epO6iHqmeob1Q/pH5Z/YkGWcNMw09DpFGgsV/jvMYgC2MZs3gsIWsNq4Z1gTXEJrHN2Xx2KruY/R27iz2qqaE5QzNKM1ezUvOUZj8H45hx+Jx0TgnnKKeX836K3hTvKeIpG6Y0TLkxZVxrqpaXllirSKtRq0frvTau7aedpr1Fu1n7gQ5Bx0onXCdHZ4/OBZ3nU9lT3acKpxZNPTr1ri6qa6UbobtEd79up+6Ynr5egJ5Mb6feeb3n+hx9L/1U/W36p/VHDFgGswwkBtsMzhg8xTVxbzwdL8fb8VFDXcNAQ6VhlWGX4YSRudE8o9VGjUYPjGnGXOMk423GbcajJgYmISZLTepN7ppSTbmmKaY7TDtMx83MzaLN1pk1mz0x1zLnm+eb15vft2BaeFostqi2uGVJsuRaplnutrxuhVo5WaVYVVpds0atna0l1rutu6cRp7lOk06rntZnw7Dxtsm2qbcZsOXYBtuutm22fWFnYhdnt8Wuw+6TvZN9un2N/T0HDYfZDqsdWh1+c7RyFDpWOt6azpzuP33F9JbpL2dYzxDP2DPjthPLKcRpnVOb00dnF2e5c4PziIuJS4LLLpc+Lpsbxt3IveRKdPVxXeF60vWdm7Obwu2o26/uNu5p7ofcn8w0nymeWTNz0MPIQ+BR5dE/C5+VMGvfrH5PQ0+BZ7XnIy9jL5FXrdewt6V3qvdh7xc+9j5yn+M+4zw33jLeWV/MN8C3yLfLT8Nvnl+F30N/I/9k/3r/0QCngCUBZwOJgUGBWwL7+Hp8Ib+OPzrbZfay2e1BjKC5QRVBj4KtguXBrSFoyOyQrSH355jOkc5pDoVQfujW0Adh5mGLw34MJ4WHhVeGP45wiFga0TGXNXfR3ENz30T6RJZE3ptnMU85ry1KNSo+qi5qPNo3ujS6P8YuZlnM1VidWElsSxw5LiquNm5svt/87fOH4p3iC+N7F5gvyF1weaHOwvSFpxapLhIsOpZATIhOOJTwQRAqqBaMJfITdyWOCnnCHcJnIi/RNtGI2ENcKh5O8kgqTXqS7JG8NXkkxTOlLOW5hCepkLxMDUzdmzqeFpp2IG0yPTq9MYOSkZBxQqohTZO2Z+pn5mZ2y6xlhbL+xW6Lty8elQfJa7OQrAVZLQq2QqboVFoo1yoHsmdlV2a/zYnKOZarnivN7cyzytuQN5zvn//tEsIS4ZK2pYZLVy0dWOa9rGo5sjxxedsK4xUFK4ZWBqw8uIq2Km3VT6vtV5eufr0mek1rgV7ByoLBtQFr6wtVCuWFfevc1+1dT1gvWd+1YfqGnRs+FYmKrhTbF5cVf9go3HjlG4dvyr+Z3JS0qavEuWTPZtJm6ebeLZ5bDpaql+aXDm4N2dq0Dd9WtO319kXbL5fNKNu7g7ZDuaO/PLi8ZafJzs07P1SkVPRU+lQ27tLdtWHX+G7R7ht7vPY07NXbW7z3/T7JvttVAVVN1WbVZftJ+7P3P66Jqun4lvttXa1ObXHtxwPSA/0HIw6217nU1R3SPVRSj9Yr60cOxx++/p3vdy0NNg1VjZzG4iNwRHnk6fcJ3/ceDTradox7rOEH0x92HWcdL2pCmvKaRptTmvtbYlu6T8w+0dbq3nr8R9sfD5w0PFl5SvNUyWna6YLTk2fyz4ydlZ19fi753GDborZ752PO32oPb++6EHTh0kX/i+c7vDvOXPK4dPKy2+UTV7hXmq86X23qdOo8/pPTT8e7nLuarrlca7nuer21e2b36RueN87d9L158Rb/1tWeOT3dvfN6b/fF9/XfFt1+cif9zsu72Xcn7q28T7xf9EDtQdlD3YfVP1v+3Njv3H9qwHeg89HcR/cGhYPP/pH1jw9DBY+Zj8uGDYbrnjg+OTniP3L96fynQ89kzyaeF/6i/suuFxYvfvjV69fO0ZjRoZfyl5O/bXyl/erA6xmv28bCxh6+yXgzMV70VvvtwXfcdx3vo98PT+R8IH8o/2j5sfVT0Kf7kxmTk/8EA5jz/GMzLdsAAAAgY0hSTQAAeiUAAICDAAD5/wAAgOkAAHUwAADqYAAAOpgAABdvkl/FRgAAAT1JREFUeNq01rFKw1AYxfGfQTqoIG1BHNTBwc0HUKjgLirUVcHNSd/AQXyBioOzrnYQ3AUL+gBuDi4uorQiKEInlxsobWpTkp71fucfOMn9TsY2N7el0ATmMIVvvOJ3kGl8wPkMtrCCeUziJ8AfcYP3YeHTOMEBCn1m9nGOCxzjq3sgSjBV8ILDf8CxCmHuJfj+hW/gHiXDqRR8G/3gy6jLpnrg9MBrKWKQIqZaN7yKdfloHTud8D35ajeGl5PedEZVUI6whGLO8CKWIswajWYjI1SEtxGx3yI84zNn8CeeIzTRyBneQDPO/DJn+FXnJarjLifwHa67d8sR2hnB7cDpWVxPYcdkUTVwEvf5LdbQGhLaCr7bQU3UwCLOUsTUDnOLSV9cvw79CtmdhoJexUL4C4gL+iEU9Ee/J/8NAFwkOeqbBxPWAAAAAElFTkSuQmCC), crosshair";
-	document.getElementById("ms_page_cover").style.display = "inline";
-	document.getElementById("ms_middleclick_cursor").style.top = (window.event.y-27)+"px"; // 32 (half the size of the pic) - 5 (cursor dot target isn't middle)
-	document.getElementById("ms_middleclick_cursor").style.left = (window.event.x-27)+"px";
-	document.getElementById("ms_middleclick_cursor").style.display = "inline";
+	ms_shadow.getElementById("ms_page_cover").style.cursor = "url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAXCAYAAADgKtSgAAAACXBIWXMAAAsTAAALEwEAmpwYAAAKT2lDQ1BQaG90b3Nob3AgSUNDIHByb2ZpbGUAAHjanVNnVFPpFj333vRCS4iAlEtvUhUIIFJCi4AUkSYqIQkQSoghodkVUcERRUUEG8igiAOOjoCMFVEsDIoK2AfkIaKOg6OIisr74Xuja9a89+bN/rXXPues852zzwfACAyWSDNRNYAMqUIeEeCDx8TG4eQuQIEKJHAAEAizZCFz/SMBAPh+PDwrIsAHvgABeNMLCADATZvAMByH/w/qQplcAYCEAcB0kThLCIAUAEB6jkKmAEBGAYCdmCZTAKAEAGDLY2LjAFAtAGAnf+bTAICd+Jl7AQBblCEVAaCRACATZYhEAGg7AKzPVopFAFgwABRmS8Q5ANgtADBJV2ZIALC3AMDOEAuyAAgMADBRiIUpAAR7AGDIIyN4AISZABRG8lc88SuuEOcqAAB4mbI8uSQ5RYFbCC1xB1dXLh4ozkkXKxQ2YQJhmkAuwnmZGTKBNA/g88wAAKCRFRHgg/P9eM4Ors7ONo62Dl8t6r8G/yJiYuP+5c+rcEAAAOF0ftH+LC+zGoA7BoBt/qIl7gRoXgugdfeLZrIPQLUAoOnaV/Nw+H48PEWhkLnZ2eXk5NhKxEJbYcpXff5nwl/AV/1s+X48/Pf14L7iJIEyXYFHBPjgwsz0TKUcz5IJhGLc5o9H/LcL//wd0yLESWK5WCoU41EScY5EmozzMqUiiUKSKcUl0v9k4t8s+wM+3zUAsGo+AXuRLahdYwP2SycQWHTA4vcAAPK7b8HUKAgDgGiD4c93/+8//UegJQCAZkmScQAAXkQkLlTKsz/HCAAARKCBKrBBG/TBGCzABhzBBdzBC/xgNoRCJMTCQhBCCmSAHHJgKayCQiiGzbAdKmAv1EAdNMBRaIaTcA4uwlW4Dj1wD/phCJ7BKLyBCQRByAgTYSHaiAFiilgjjggXmYX4IcFIBBKLJCDJiBRRIkuRNUgxUopUIFVIHfI9cgI5h1xGupE7yAAygvyGvEcxlIGyUT3UDLVDuag3GoRGogvQZHQxmo8WoJvQcrQaPYw2oefQq2gP2o8+Q8cwwOgYBzPEbDAuxsNCsTgsCZNjy7EirAyrxhqwVqwDu4n1Y8+xdwQSgUXACTYEd0IgYR5BSFhMWE7YSKggHCQ0EdoJNwkDhFHCJyKTqEu0JroR+cQYYjIxh1hILCPWEo8TLxB7iEPENyQSiUMyJ7mQAkmxpFTSEtJG0m5SI+ksqZs0SBojk8naZGuyBzmULCAryIXkneTD5DPkG+Qh8lsKnWJAcaT4U+IoUspqShnlEOU05QZlmDJBVaOaUt2ooVQRNY9aQq2htlKvUYeoEzR1mjnNgxZJS6WtopXTGmgXaPdpr+h0uhHdlR5Ol9BX0svpR+iX6AP0dwwNhhWDx4hnKBmbGAcYZxl3GK+YTKYZ04sZx1QwNzHrmOeZD5lvVVgqtip8FZHKCpVKlSaVGyovVKmqpqreqgtV81XLVI+pXlN9rkZVM1PjqQnUlqtVqp1Q61MbU2epO6iHqmeob1Q/pH5Z/YkGWcNMw09DpFGgsV/jvMYgC2MZs3gsIWsNq4Z1gTXEJrHN2Xx2KruY/R27iz2qqaE5QzNKM1ezUvOUZj8H45hx+Jx0TgnnKKeX836K3hTvKeIpG6Y0TLkxZVxrqpaXllirSKtRq0frvTau7aedpr1Fu1n7gQ5Bx0onXCdHZ4/OBZ3nU9lT3acKpxZNPTr1ri6qa6UbobtEd79up+6Ynr5egJ5Mb6feeb3n+hx9L/1U/W36p/VHDFgGswwkBtsMzhg8xTVxbzwdL8fb8VFDXcNAQ6VhlWGX4YSRudE8o9VGjUYPjGnGXOMk423GbcajJgYmISZLTepN7ppSTbmmKaY7TDtMx83MzaLN1pk1mz0x1zLnm+eb15vft2BaeFostqi2uGVJsuRaplnutrxuhVo5WaVYVVpds0atna0l1rutu6cRp7lOk06rntZnw7Dxtsm2qbcZsOXYBtuutm22fWFnYhdnt8Wuw+6TvZN9un2N/T0HDYfZDqsdWh1+c7RyFDpWOt6azpzuP33F9JbpL2dYzxDP2DPjthPLKcRpnVOb00dnF2e5c4PziIuJS4LLLpc+Lpsbxt3IveRKdPVxXeF60vWdm7Obwu2o26/uNu5p7ofcn8w0nymeWTNz0MPIQ+BR5dE/C5+VMGvfrH5PQ0+BZ7XnIy9jL5FXrdewt6V3qvdh7xc+9j5yn+M+4zw33jLeWV/MN8C3yLfLT8Nvnl+F30N/I/9k/3r/0QCngCUBZwOJgUGBWwL7+Hp8Ib+OPzrbZfay2e1BjKC5QRVBj4KtguXBrSFoyOyQrSH355jOkc5pDoVQfujW0Adh5mGLw34MJ4WHhVeGP45wiFga0TGXNXfR3ENz30T6RJZE3ptnMU85ry1KNSo+qi5qPNo3ujS6P8YuZlnM1VidWElsSxw5LiquNm5svt/87fOH4p3iC+N7F5gvyF1weaHOwvSFpxapLhIsOpZATIhOOJTwQRAqqBaMJfITdyWOCnnCHcJnIi/RNtGI2ENcKh5O8kgqTXqS7JG8NXkkxTOlLOW5hCepkLxMDUzdmzqeFpp2IG0yPTq9MYOSkZBxQqohTZO2Z+pn5mZ2y6xlhbL+xW6Lty8elQfJa7OQrAVZLQq2QqboVFoo1yoHsmdlV2a/zYnKOZarnivN7cyzytuQN5zvn//tEsIS4ZK2pYZLVy0dWOa9rGo5sjxxedsK4xUFK4ZWBqw8uIq2Km3VT6vtV5eufr0mek1rgV7ByoLBtQFr6wtVCuWFfevc1+1dT1gvWd+1YfqGnRs+FYmKrhTbF5cVf9go3HjlG4dvyr+Z3JS0qavEuWTPZtJm6ebeLZ5bDpaql+aXDm4N2dq0Dd9WtO319kXbL5fNKNu7g7ZDuaO/PLi8ZafJzs07P1SkVPRU+lQ27tLdtWHX+G7R7ht7vPY07NXbW7z3/T7JvttVAVVN1WbVZftJ+7P3P66Jqun4lvttXa1ObXHtxwPSA/0HIw6217nU1R3SPVRSj9Yr60cOxx++/p3vdy0NNg1VjZzG4iNwRHnk6fcJ3/ceDTradox7rOEH0x92HWcdL2pCmvKaRptTmvtbYlu6T8w+0dbq3nr8R9sfD5w0PFl5SvNUyWna6YLTk2fyz4ydlZ19fi753GDborZ752PO32oPb++6EHTh0kX/i+c7vDvOXPK4dPKy2+UTV7hXmq86X23qdOo8/pPTT8e7nLuarrlca7nuer21e2b36RueN87d9L158Rb/1tWeOT3dvfN6b/fF9/XfFt1+cif9zsu72Xcn7q28T7xf9EDtQdlD3YfVP1v+3Njv3H9qwHeg89HcR/cGhYPP/pH1jw9DBY+Zj8uGDYbrnjg+OTniP3L96fynQ89kzyaeF/6i/suuFxYvfvjV69fO0ZjRoZfyl5O/bXyl/erA6xmv28bCxh6+yXgzMV70VvvtwXfcdx3vo98PT+R8IH8o/2j5sfVT0Kf7kxmTk/8EA5jz/GMzLdsAAAAgY0hSTQAAeiUAAICDAAD5/wAAgOkAAHUwAADqYAAAOpgAABdvkl/FRgAAAT1JREFUeNq01rFKw1AYxfGfQTqoIG1BHNTBwc0HUKjgLirUVcHNSd/AQXyBioOzrnYQ3AUL+gBuDi4uorQiKEInlxsobWpTkp71fucfOMn9TsY2N7el0ATmMIVvvOJ3kGl8wPkMtrCCeUziJ8AfcYP3YeHTOMEBCn1m9nGOCxzjq3sgSjBV8ILDf8CxCmHuJfj+hW/gHiXDqRR8G/3gy6jLpnrg9MBrKWKQIqZaN7yKdfloHTud8D35ajeGl5PedEZVUI6whGLO8CKWIswajWYjI1SEtxGx3yI84zNn8CeeIzTRyBneQDPO/DJn+FXnJarjLifwHa67d8sR2hnB7cDpWVxPYcdkUTVwEvf5LdbQGhLaCr7bQU3UwCLOUsTUDnOLSV9cvw79CtmdhoJexUL4C4gL+iEU9Ee/J/8NAFwkOeqbBxPWAAAAAElFTkSuQmCC), crosshair";
+	ms_shadow.getElementById("ms_page_cover").style.display = "inline";
+	ms_shadow.getElementById("ms_middleclick_cursor").style.top = (window.event.y-27)+"px"; // 32 (half the size of the pic) - 5 (cursor dot target isn't middle)
+	ms_shadow.getElementById("ms_middleclick_cursor").style.left = (window.event.x-27)+"px";
+	ms_shadow.getElementById("ms_middleclick_cursor").style.display = "inline";
 
 	var x = window.pageXOffset;
 	var x_start = window.event.x;
@@ -1271,9 +1280,9 @@ function middlebuttonscroll()
 
 		window.cancelAnimationFrame( scroll_timeout_id_middlebutton ); scroll_timeout_id_middlebutton = null;
 
-		document.getElementById("ms_middleclick_cursor").style.display = null;
-		document.getElementById("ms_page_cover").style.display = "none";
-		document.getElementById("ms_page_cover").style.cursor = "default";
+		ms_shadow.getElementById("ms_middleclick_cursor").style.display = null;
+		ms_shadow.getElementById("ms_page_cover").style.display = "none";
+		ms_shadow.getElementById("ms_page_cover").style.cursor = "default";
 	}
 	window.addEventListener("mousemove", getmousepos, false);
 	function getmousepos(e)
@@ -1281,7 +1290,7 @@ function middlebuttonscroll()
 		x_delta = e.x - x_start;
 		y_delta = e.y - y_start;
 		var rad = -Math.atan2(x_delta, y_delta);
-		document.getElementById("ms_middleclick_cursor").style.transform = document.getElementById("ms_middleclick_cursor").style.webkitTransform = "rotate("+rad+"rad)";
+		ms_shadow.getElementById("ms_middleclick_cursor").style.transform = ms_shadow.getElementById("ms_middleclick_cursor").style.webkitTransform = "rotate("+rad+"rad)";
 	}
 	
 	scroll_timeout_id_middlebutton = window.requestAnimationFrame( function(){ middlebuttonscroll_inner( Date.now()-1 ); } );
