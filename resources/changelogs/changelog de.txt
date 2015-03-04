@@ -1,6 +1,8 @@
-﻿v 3.0.7
+﻿v 3.1
 ---------
+neu: bessere Trennung von Erweiterung und Seite durch Shadow DOM
 neu: modernere flexible Einstellungen
+fix: keine Bildlaufleisten für manche Kombinationen von overflow für html und body
 
 v 3.0.6
 ---------

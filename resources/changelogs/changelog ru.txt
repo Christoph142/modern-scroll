@@ -1,8 +1,10 @@
-﻿v 3.0.7
+﻿v 3.1
 ---------
-new: modernized responsive options page
+new: better separation of extension from page by using Shadow DOM
+новое: улучшен внешний вид страницы настроек
+fix: no scrollbars for certain combinations of overflow on html and body
 
-v 3.0.6
+версия 3.0.6
 ---------
 исправлено: страницы с overflow:hidden (к примеру jsfiddle, Transifex) могут прокручиваться (спасибо Maciej за информацию)
 исправлено: полосы прокрутки отображались при печати и сохранении в PDF
@@ -16,7 +18,7 @@ v 3.0.6
 
 версия 3.0.4
 ---------
-new: optionally end mouse wheel click scrolling by turning the wheel
+новое: возможность прокрутки при нажатии колёсика мышки
 новое: интерфейс независит (частино) от масштабирования страницы
 новое: поддержка полноэкранного режима, используя HTML5 API
 исправлено: открытие ссылок по нажатию колёсика мышки
@@ -35,7 +37,7 @@ new: optionally end mouse wheel click scrolling by turning the wheel
 
 версия 3.0.1
 ---------
-new: keeping the mouse down on background bars will scroll page to mouse position
+новое: страница прокручивается до курсора при длительном нажатии левой кнопки мышки на полосе прокрутки
 новое: скрытие всех полос прокрутки пока элементы не наведены и не в фокусе
 новое: вьетнамский перевод (спасибо ppanhh)
 исправлено: некорректное расположение полос прокрутки во время процесса прокрутки в Chrome 27+ и Opera
@@ -44,7 +46,7 @@ new: keeping the mouse down on background bars will scroll page to mouse positio
 ---------
 новое: полная совместимость с Chromium (Chrome & Opera 15)
 новое: автоматическое скрытие стандартных полос прокрутки
-new: styling of page element's scroll bars (e.g. textareas)
+новое: стилизация полос прокрутки у элементов страницы (к примеру, textarea)
 новое: синхронизация настроек доступна на любых устройствах
 new: live mini page behind superbar
 новое: улучшена обработка значений  по умолчанию и восстановление сохранённых настроек
@@ -62,25 +64,25 @@ new: modern scroll also takes over scrolling by pressing the space bar (thx kaps
 fix: scrolling of pictures @ vk.com (thx Maxim for reporting)
 upd: various translations (thx to all translators)
 
-v 2.4.3
+версия 2.4.3
 ---------
 fix: interface stays invisible when switching tabs during loading
 fix: bars have a white rectangular background @ www.testberichte.de
 
-v 2.4.2
+версия 2.4.2
 ---------
-new: improved rendering
+новое: улучшена отрисовка
 fix: interface is invisible when another tab gets closed
 fix: restore cleanPages extension compatibility (thx QuHno)
 fix: flickering scroll bars during touchpad/mouse scrolling
 
-v 2.4.1
+версия 2.4.1
 ---------
 new: border settings affect scroll buttons, too (thx Dimitri for reporting)
 fix: modern scroll doesn't work on some websites (thx André, jonastheroman & orhano for reporting)
 fix: scroll bar momentarily jumps to top/bottom during scrolling (thx Cryio, André & orhano for reporting)
 
-v 2.4
+версия 2.4
 ---------
 new: adjustable time before hiding bars
 new: modern scroll is only active in current tab, not in all opened ones anymore

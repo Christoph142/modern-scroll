@@ -1,6 +1,8 @@
-﻿v 3.0.7
+﻿v 3.1
 ---------
-new: modernized responsive options page
+new: better separation of extension from page by using Shadow DOM
+novo: modernizada página de opções responsiva
+fix: no scrollbars for certain combinations of overflow on html and body
 
 v 3.0.6
 ---------
