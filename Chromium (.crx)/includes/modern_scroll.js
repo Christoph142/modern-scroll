@@ -46,7 +46,7 @@ function add_ms()
 	
 	var ms_container = document.createElement("div");
 	ms_container.id = "modern_scroll";
-	ms_shadow = ms_container.createShadowRoot();
+	ms_shadow = ( ms_container.createShadowRoot ? ms_container.createShadowRoot() : ms_container.webkitCreateShadowRoot() );
 	try{ document.documentElement.appendChild(ms_container); }catch(e){ document.body.appendChild(ms_container); }
 	
 	chrome.runtime.sendMessage({data:"settings"}, function(response){ // get settings (filled with default values) from background.js
