@@ -1,8 +1,8 @@
-﻿v 3.1
+версия 3.1
 ---------
-new: better separation of extension from page by using Shadow DOM
+новое: улучшено разделение кода расширения от содержимого страницы используя "Shadow DOM"
 новое: улучшен внешний вид страницы настроек
-fix: no scrollbars for certain combinations of overflow on html and body
+исправлено: отсутствие полос прокрутки для некоторых значениях overflow для тегов html и body
 
 версия 3.0.6
 ---------
