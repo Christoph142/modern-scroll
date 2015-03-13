@@ -4,7 +4,7 @@
         "description": ""
     },
     "use_custom_functions": {
-        "message": "Utilise des fonctions de défilement personnalisées",
+        "message": "Utiliser des fonctions de défilement personnalisées",
         "description": ""
     },
     "tooltip_save": {
@@ -12,19 +12,19 @@
         "description": ""
     },
     "only_over": {
-        "message": "Seulement lorsque planait avec la souris",
+        "message": "Seulement lors du survol du curseur de la souris",
         "description": ""
     },
     "keyscroll_velocity": {
-        "message": "Vitesse de défilement avec les touches fléchées",
+        "message": "Vitesse de défilement avec les flèches du clavier",
         "description": ""
     },
     "show_superbar_minipage": {
-        "message": "Afficher une mini-version du site web en arrière-plan lorsque vous faites glisser la barre des tâches",
+        "message": "Afficher un aperçu du site web en arrière-plan lorsque vous faites glisser la barre omnidirectionnelle",
         "description": ""
     },
     "default_delete_impossible": {
-        "message": "Tu ne peux pas supprimer la configuration par défaut!",
+        "message": "Vous ne pouvez pas supprimer la configuration par défaut !",
         "description": ""
     },
     "endMiddlescrollByTurningWheel": {
@@ -32,11 +32,11 @@
         "description": ""
     },
     "confirm_delete": {
-        "message": "Veux-tu vraiment supprimer cette configuration de façon irréversible?",
+        "message": "Souhaitez-vous vraiment supprimer définitivement cette configuration ?",
         "description": ""
     },
     "container2": {
-        "message": "px à la frontière",
+        "message": "pixels du bord",
         "description": ""
     },
     "buttons": {
@@ -56,7 +56,7 @@
         "description": ""
     },
     "move_bars_during_scroll": {
-        "message": "Animer les barres de défilement lors du défilement avec la molette/le clavier",
+        "message": "Animer les barres de défilement lors du défilement à la molette ou au clavier",
         "description": ""
     },
     "border": {
@@ -72,7 +72,7 @@
         "description": ""
     },
     "explanation_trigger_area": {
-        "message": "Élargit l'étendue de la zone accordée aux barres de défilement.",
+        "message": "Étend la zone accordée aux barres de défilement.",
         "description": ""
     },
     "confirm_overwrite": {
@@ -84,11 +84,11 @@
         "description": ""
     },
     "normal": {
-        "message": "Sur le vol stationnaire, tandis que le défilement et les changements de position ou la taille",
+        "message": "Au survol du curseur de la souris, durant le défilement et les changements de position ou de taille de la page",
         "description": ""
     },
     "middlescroll_velocity": {
-        "message": "Vitesse de défilement en cliquant sur la roulette de la souris",
+        "message": "Vitesse de défilement en agissant sur la molette de la souris",
         "description": ""
     },
     "button_width": {
@@ -96,11 +96,11 @@
         "description": ""
     },
     "show_when": {
-        "message": "Quand veux-tu les barres de se présenter?",
+        "message": "Quand souhaitez-vous voir apparaitre les barres de défilement ?",
         "description": ""
     },
     "superbar": {
-        "message": "Superbar",
+        "message": "Barre omnidirectionnelle",
         "description": ""
     },
     "border_radius": {
@@ -124,11 +124,11 @@
         "description": ""
     },
     "superbar_opacity": {
-        "message": "Opacité de la barre des tâches lorsque la souris passe au-dessus",
+        "message": "Opacité de la barre omnidirectionnelle au survol du curseur de souris",
         "description": ""
     },
     "contextmenu_over_only": {
-        "message": "Lorsque je clique-droit, l'interface de modern scroll",
+        "message": "Lors d'un clic-droit sur l'interface de modern scroll",
         "description": ""
     },
     "border_color": {
@@ -136,7 +136,7 @@
         "description": ""
     },
     "show_superbar": {
-        "message": "Afficher la \"barre des tâches\"",
+        "message": "Afficher la barre omnidirectionnelle",
         "description": ""
     },
     "load_or_delete_set": {
@@ -144,11 +144,11 @@
         "description": ""
     },
     "explanation_animate_scroll": {
-        "message": "Si vous sélectionnez cette option, la page ne s'affichera pas directement à la position désirée, mais y défilera automatiquement de façon progressive.<br>Cela s'applique aux boutons de défilement, les clics aux barres d'arrière-plan ainsi que le défilement avec le clavier (si \"Utilise des fonctions de défilement personnalisées pour le clavier\" est activée).",
+        "message": "Si vous sélectionnez cette option, la page ne se positionnera pas directement à la position désirée, mais y défilera automatiquement de façon fluide.<br>Cela s'applique aux boutons de défilement, aux clics sur le fond des barres ainsi qu'au défilement avec le clavier (si \"Utilise des fonctions de défilement personnalisées pour le clavier\" est activée).",
         "description": ""
     },
     "default_change_impossible": {
-        "message": "Vous ne pouvez pas changer la configuration par défaut ! Choisissez un autre nom s'il vous plaît.",
+        "message": "Impossible de changer la configuration par défaut ! Merci de choisir un autre nom.",
         "description": ""
     },
     "page": {
@@ -156,7 +156,7 @@
         "description": ""
     },
     "bg_special_ends": {
-        "message": "En cliquant sur ​​les extrémités de la barre de défilement, faire défiler la page complètement vers le haut ou le bas (et respectivement la gauche ou la droite) au lieu d'un défilement page par page",
+        "message": "Cliquer sur ​​les extrémités des barres de défilement permet de déplacer la page directement vers le haut ou le bas (et respectivement la gauche ou la droite) au lieu de la faire défiler page par page",
         "description": ""
     },
     "vbar_at_left": {
@@ -172,19 +172,19 @@
         "description": ""
     },
     "mousescroll_distance": {
-        "message": "Distance parcourue lors du défilement à chaque rotation faite avec la molette de la souris",
+        "message": "Étendue du défilement à chaque rotation faite avec la molette de la souris",
         "description": ""
     },
     "color_bg": {
-        "message": "Couleur des barres d'arrière-plan",
+        "message": "Couleur du fond des barres",
         "description": ""
     },
     "drag_buttons": {
-        "message": "Vous pouvez déplacer les boutons sur chacune des positions, ici, dans les options. Cette position deviendra celle par défaut pour tous les sites web. Si ces sites couvrent un élément sur ​​certaines pages, vous pourrez toujours les déplacer en dehors de ce qui est prévu ici",
+        "message": "Vous pouvez déplacer les boutons à votre guise, ici, depuis cette page d'options. Cette position deviendra celle par défaut pour tous les sites web. Si ces boutons recouvrent un élément sur ​​certaines pages, vous pourrez ponctuellement les déplacer ailleurs.",
         "description": ""
     },
     "color": {
-        "message": "Couleur des barres de défilements, de la barre des tâches et des boutons de défilement",
+        "message": "Couleur des barres de défilement, de la barre omnidirectionnelle et des boutons de défilement",
         "description": ""
     },
     "button_opacity": {
@@ -196,7 +196,7 @@
         "description": ""
     },
     "footer": {
-        "message": "Merci d'avoir installé cette extension. Vous pouvez toujours me contacter pour me soumettre des commentaires et me poser des questions.",
+        "message": "Merci d'avoir installé cette extension. N'hésitez pas à me contacter pour me soumettre vos commentaires et me poser des questions.",
         "description": ""
     },
     "tooltip_load": {
@@ -208,11 +208,11 @@
         "description": ""
     },
     "explanation_custom_functions": {
-        "message": "L'expérience de défilement standard d'Opera est parfois un peu saccadé et lent. En activant cettes options, l'extension reprend également le défilement respectif, ce qui devrait se traduire par un gain de performance notable.",
+        "message": "Opera offre parfois des sensations de défilement de page un peu saccadé et lent. En activant cette option, l'extension outre-passe la méthode de défilement native, afin d'offrir un gain de performance visible.",
         "description": ""
     },
     "hover_size": {
-        "message": "Largeur (et respectivement Hauteur de barres horizontales) lorsque vous faite survoler la souris au-dessus",
+        "message": "Largeur/Hauteur des barre de défilement lors du survol du curseur de la souris",
         "description": ""
     },
     "behavior": {
@@ -224,7 +224,7 @@
         "description": ""
     },
     "fullscreen_only": {
-        "message": "Afficher les barres seulement en mode plein écran",
+        "message": "Afficher les barres uniquement en mode plein écran",
         "description": ""
     },
     "never": {
@@ -236,15 +236,15 @@
         "description": ""
     },
     "contextmenu_hide": {
-        "message": "Cache modern scroll",
+        "message": "Cacher modern scroll",
         "description": ""
     },
     "external_interface": {
-        "message": "Fournie une interface pour un accès externe",
+        "message": "Fournit une interface pour un accès externe",
         "description": ""
     },
     "save_set_as": {
-        "message": "Enregistrer la configuration actuelle comme",
+        "message": "Enregistrer la configuration actuelle sous...",
         "description": ""
     },
     "contextmenu": {
@@ -252,15 +252,15 @@
         "description": ""
     },
     "explanation_superbar": {
-        "message": "La \"barre des tâches\" est une bare combinant celles de défilement horizontal et vertical.<br>Elle devient ainsi visible lorsque les deux barres sont nécessairement affichées.<br> Sa position est alignée avec les barres de défilement horizontal et vertical.",
+        "message": "La \"barre omnidirectionnelle\" permet de combiner en une action le défilement horizontal et vertical.<br>Elle deviendra visible lorsque les deux barres devront être affichées.<br> Sa position est alignée avec les barres de défilement horizontal et vertical.",
         "description": ""
     },
     "disable_standard_bars": {
-        "message": "Les barres de défilement standards d'Opera doivent être désactivés pour éviter doubles barres.<br>Donc ouvre <strong>Opera → Réglages → Préférences... (Ctrl+F12) → Avancé → Navigation</strong> et désactive \"Afficher les barres de défilement\"",
+        "message": "Si vous n'utilisez pas exclusivement modern scroll en mode plein écran, les barres de défilement standard d'Opera doivent être désactivées pour éviter l'affichage de doubles barres.<br>Pour ce faire, cliquez <strong>Opera → Réglages → Préférences... (Ctrl+F12) → Avancé → Navigation</strong> et décochez \"Afficher les barres de défilement\"",
         "description": ""
     },
     "use_custom_functions_middle": {
-        "message": "pour les clics de roulette de la souris",
+        "message": "pour les clics sur la molette de la souris",
         "description": ""
     },
     "external_interface_headline": {
@@ -268,7 +268,7 @@
         "description": ""
     },
     "show_contextmenu_when": {
-        "message": "Quand voulez-vous une option dans le menu contextuel pour cacher Modern scroll ?",
+        "message": "Quand souhaitez-vous afficher une option dans le menu contextuel pour cacher modern scroll ?",
         "description": ""
     },
     "button_height": {
@@ -292,7 +292,7 @@
         "description": ""
     },
     "how_to": {
-        "message": "Comment puis-je utiliser cette extension?",
+        "message": "Comment puis-je utiliser cette extension ?",
         "description": ""
     },
     "contextmenu_show": {
@@ -308,7 +308,7 @@
         "description": ""
     },
     "show_how_long": {
-        "message": "Combien de temps voulez-vous que les barres restent visibles ?",
+        "message": "Combien de temps souhaitez-vous que les barres restent visibles ?",
         "description": ""
     },
     "default": {
@@ -316,15 +316,15 @@
         "description": ""
     },
     "explanation_external_interface": {
-        "message": "En cochant cette option, modern scroll fournira certaines de ses caractéristiques essentielles pour l'utilisation par des tierces-parties-extensions, sites web ou tu. Tu peux alors par exemple créer des gestes de souris personnalisés.<br><a href='https://christoph142.wordpress.com/2013/02/20/modern-scroll-documentation' target='_blank'>Visite la documentation pour en savoir plus à ce sujet.</a>",
+        "message": "En cochant cette option, modern scroll fournira certaines de ses fonctionnalités à des extensions tierces, certains sites web ou à vous même. Vous pourrez alors, par exemple, créer des gestes de souris personnalisés.<br><a href='https://christoph142.wordpress.com/2013/02/20/modern-scroll-documentation' target='_blank'>Consultez la documentation pour en savoir plus à ce sujet.</a>",
         "description": ""
     },
     "size": {
-        "message": "Largeur (et respectivement la Hauteur pour les barres horizontales) à l'état normal",
+        "message": "Largeur/Hauteur des barres de défilement à l'état normal",
         "description": ""
     },
     "show_bg_bars_when": {
-        "message": "Et les barres d'arrière-plan ?",
+        "message": "Et le fond des barre de défilement ?",
         "description": ""
     },
     "animate_scroll": {
