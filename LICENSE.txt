@@ -1,1 +1,4 @@
-This software is provided under creative commons Attribution-NonCommercial 3.0 Unported license (http://creativecommons.org/licenses/by-nc/3.0)
+You are free to fork and change modern scroll at will for your own personal use.
+Distribution however is prohibited unless
+- there is a substantial difference from the original version and
+- you obtained my personal approval to do so
