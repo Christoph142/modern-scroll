@@ -37,9 +37,6 @@ function initialize()
 	else										document.addEventListener("webkitvisibilitychange", add_or_remove_ms, false);
 	
 	add_ms();
-	if(document.URL.substr(0,19) === "chrome-extension://") chrome.runtime.onMessage.addListener( function(request){
-		if(request.data === "update_optionspage") update_ms();
-	});
 }
 
 function add_ms()
@@ -51,6 +48,7 @@ function add_ms()
 	ms_shadow = ( ms_container.createShadowRoot ? ms_container.createShadowRoot() : ms_container.webkitCreateShadowRoot() );
 	try{ document.documentElement.appendChild(ms_container); }catch(e){ document.body.appendChild(ms_container); }
 	
+	chrome.runtime.onMessage.addListener(handleRuntimeMessage);
 	chrome.runtime.sendMessage({data:"settings"}, function(response){ // get settings (filled with default values) from background.js
 		w = response;
 		continue_add_ms();
@@ -76,6 +74,8 @@ function remove_ms()
 {
 	if(!document.getElementById("modern_scroll")) return;
 	
+	chrome.runtime.onMessage.removeListener(handleRuntimeMessage);
+
 	document.removeEventListener("resize", adjust_ui_fullscreen_change, false);
 	document.removeEventListener("fullscreenchange", handleFullscreenAPI, false);
 	document.removeEventListener("webkitfullscreenchange", handleFullscreenAPI, false);
@@ -318,17 +318,19 @@ function add_scrollingfunctions()
 
 function add_contextmenu()
 {	
-	if(w.contextmenu_show_when !== "1") // if contextmenu is not set to "never show up":
-	{
-		chrome.runtime.onMessage.addListener( function(request){ if(request.data === "ms_toggle_visibility") contextmenu_click(); });
-		show_ui();
-	}
-	else chrome.runtime.sendMessage({data:"hide_contextmenu"});
+	if(w.contextmenu_show_when !== "1")	show_ui(); // if contextmenu is not set to "never show up":
+	else 								chrome.runtime.sendMessage({data:"hide_contextmenu"});
 }
 function contextmenu_click()
 {
 	if(document.getElementById("modern_scroll").style.display === "none")	show_ui();
 	else																	hide_ui();
+}
+
+function handleRuntimeMessage(msg)
+{
+	if 		(msg.data === "ms_toggle_visibility") 														contextmenu_click();
+	else if (msg.data === "update_optionspage" && document.URL.substr(0,19) === "chrome-extension://")	update_ms();
 }
 
 function add_external_interface()
