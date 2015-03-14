@@ -62,8 +62,8 @@ function save_new_value(key, value)
 }
 
 function save_buttonposition(){
-	if(document.getElementsByClassName("dragged_button")[0])
-		save_new_value("buttonposition", (100 * document.getElementsByClassName("dragged_button")[0].offsetLeft / window.innerWidth));
+	if(document.querySelector(".dragged_button"))
+		save_new_value("buttonposition", (100 * document.querySelector(".dragged_button").offsetLeft / window.innerWidth));
 }
 
 function restoreprefs()
@@ -72,7 +72,7 @@ function restoreprefs()
 	chrome.storage.sync.get("saved_sets", function(s){
 		storage.saved_sets = s.saved_sets;
 		
-		var selects = document.getElementsByTagName("select");
+		var selects = document.querySelectorAll("select");
 		for(var i=0; i<selects.length; i++){
 			if(!storage[selects[i].id]) continue;
 			if(selects[i].id === "saved_sets")
@@ -85,15 +85,15 @@ function restoreprefs()
 				}
 				else continue;
 			}
-			else document.getElementsByTagName("select")[i].value = storage[selects[i].id];
+			else selects[i].value = storage[selects[i].id];
 		}
 	});
 	
-	var inputs = document.getElementsByTagName("input");	
+	var inputs = document.querySelectorAll("input");	
 	for(var i=0; i<inputs.length; i++){
 		if(!storage[inputs[i].id]) continue;
-		if(inputs[i].type==="checkbox")	document.getElementsByTagName("input")[i].checked = (storage[inputs[i].id] === "0" ? false : true);
-		else							document.getElementsByTagName("input")[i].value = storage[inputs[i].id];
+		if(inputs[i].type==="checkbox")	inputs[i].checked = (storage[inputs[i].id] === "0" ? false : true);
+		else							inputs[i].value = storage[inputs[i].id];
 	}
 	
 	if(document.getElementById("show_buttons").value !== "1")				document.getElementById("button_container").style.height				= "auto";
@@ -104,11 +104,12 @@ function restoreprefs()
 	
 	document.getElementById("border_radius").max = Math.round(Math.max(document.getElementById("size").value, document.getElementById("hover_size").value)/2);
 	
-	for(var i = 0; i < document.getElementsByClassName("slider_values").length; i++) // display slider values:
+	var sliders = document.querySelectorAll(".slider_values");
+	for(var i = 0; i < sliders.length; i++) // display slider values:
 	{
-		var which_value = document.getElementsByClassName("slider_values")[i].id.split(".")[1];
+		var which_value = sliders[i].id.split(".")[1];
 		var raw_value = (storage[which_value] ? storage[which_value] : document.getElementById(which_value).value);
-		document.getElementsByClassName("slider_values")[i].innerHTML = (document.getElementById(which_value).dataset.defaultvalue ? Math.round(100*raw_value/document.getElementById(which_value).dataset.defaultvalue) : raw_value);
+		sliders[i].innerHTML = (document.getElementById(which_value).dataset.defaultvalue ? Math.round(100*raw_value/document.getElementById(which_value).dataset.defaultvalue) : raw_value);
 	}	
 	
 	add_page_handling(storage);
@@ -204,7 +205,7 @@ function add_page_handling(storage)
 	}, false);
 	
 	
-	var info_bubbles = document.getElementsByClassName("i"); // info bubbles:
+	var info_bubbles = document.querySelectorAll(".i"); // info bubbles:
 	
 	for(var i=0; i<info_bubbles.length; i++) // position top/bottom:
 	{
@@ -216,23 +217,14 @@ function add_page_handling(storage)
 			bubble_setback = window.setTimeout(function(){this.lastChild.style.marginTop= null;}.bind(this),500);
 		}, false);
 	}
-
-	//help:
-	document.getElementById("help").addEventListener("click", function(){
-		window.open("https://christoph142.wordpress.com/2013/06/27/help/");
-	}, false);
-	document.getElementById("close_help").addEventListener("click", function(e){
-		e.stopPropagation();
-		document.getElementById("help").style.display = "none";
-	}, false);
 }
 
 function localize()
 {
-	var strings = document.getElementsByClassName("i18n");
+	var strings = document.querySelectorAll("[data-i18n]");
 	for(var i = 0; i < strings.length; i++)
 	{
-		if(strings[i].tagName === "IMG")	strings[i].title = chrome.i18n.getMessage(strings[i].title); // tooltips
+		if(strings[i].tagName === "IMG")	strings[i].title = chrome.i18n.getMessage(strings[i].dataset.i18n); // tooltips
 		else								strings[i].innerHTML += chrome.i18n.getMessage(strings[i].dataset.i18n);
 	}
 }

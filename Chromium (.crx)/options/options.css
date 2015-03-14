@@ -1,13 +1,15 @@
 html		{ width:100%; background:#DDD; }
 body		{ font:13px/24px "helvetica neue",arial,sans-serif; cursor:default; max-width:800px; overflow-x:hidden;
   			  background:#FFF; color:#1e3853; margin:15px auto; padding:0 50px; box-shadow:0 0 10px #98b0c9; direction: __MSG_@@bidi_dir__; }
-header		{ display:block; text-align:center; padding:25px 0 10px 0;
+header		{ display:block; text-align:center; margin-bottom:2em; padding:3em 0 1em 0;
 			  border-bottom:0.2rem solid #1e3853; box-shadow:0 1px #fff; }
 section 	{ display:block; padding:0; }
-fieldset	{ border:none; border-top:0.2rem solid #1e3853; background:#F5F5F5; border-radius:2px; padding:1px 20px 15px 20px; }
-footer		{ display:block; text-align:center; margin-top:30px;
-			  border-top:1px solid #fff; box-shadow:0 -1px rgba(0,0,0,0.15); }
+fieldset	{ border:none; border-top:0.2rem solid #1e3853; background:#F5F5F5; border-radius:2px; padding:1px 20px 15px 20px; margin-bottom:2em; }
+footer		{ display:block; text-align:center; margin-top:30px; padding:1em 0 2em 0; border-top:1px solid #fff; box-shadow:0 -1px rgba(0,0,0,0.15); }
 a			{ text-decoration:none; color:#001; }
+a.button	{ background:#F5F5F5; border:.2em #1e3853 solid; padding:1em; border-radius:.5em; transition-duration:200ms; }
+a.button:hover{ background:#FFF; }
+#twitter:hover{ background:#55ACEE; border:.2em #3b88c3 solid; color:#FFF; }
 h1			{ margin:0px; margin-bottom:-10px; font-size:24px; }
 h3			{ margin-bottom:5px; }
 table		{ width:100%; }
@@ -19,16 +21,11 @@ input[type=number]{ width:40px; }
 div.toggle-container{ overflow:hidden; height:0; }
 input.toggle:checked ~ div.toggle-container{ height:auto; }
 
-#help		{ position:fixed; top:20px; right:20px; width:auto; height:auto; box-shadow:0 0 10px #F00; background:#FFF; padding:10px; text-align:center; cursor:pointer; }
-#close_help	{ position:fixed; top:25px; right:25px; height:13px; width:13px; border-radius:4px; border:1px solid #BBB; cursor:default; transition:200ms; }
-#close_help:hover{background:#DDD;}
-#close_help > p{ position:fixed; top:5px; right:30px; }
-#close_help > p::before{ content:"x"; font-size:xx-small; }
-
 #save_set_img, #delete_set_img, #load_set_img{ height:17px; cursor:pointer; }	
 #save_set	{ cursor:text; }
 
 .i			{ background:#FFF; display:inline; border-radius:10px; border:1px solid #1e3853; font-weight:bold; padding:2px 8px; margin:0 0.1em 0 0.2em; transition:opacity 0.5s; }
+.i a 		{ text-decoration:underline; }
 .i:hover	{ background:#DDD; transition:opacity 0.2s; text-shadow:0 0 3px #FFF; color:#000; }
 .i:hover > .i_text{ display:inline; opacity:1; }
 .i_text		{ display:none; position:absolute; margin:13px 5px 0 3px; padding:10px 15px; z-index:99; opacity:0; max-width:500px; font-weight:normal;
