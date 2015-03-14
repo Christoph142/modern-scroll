@@ -46,7 +46,7 @@ function update_settings(){ chrome.storage.sync.get( null, function(storage){
 
 	"contextmenu_show_when":(!storage["contextmenu_show_when"]	? "2" : storage["contextmenu_show_when"]), // 1 = never, 2 = only over interface, 3 = always
 	
-	"external_interface" :	(!storage["external_interface"]		? "1" : storage["external_interface"]),
+	"external_interface" :	(!storage["external_interface"]		? "0" : storage["external_interface"]),
 
 	"baseDevicePixelRatio" : window.devicePixelRatio // for scaling
 	};
@@ -69,10 +69,12 @@ if(chrome.tabs.onZoomChange) chrome.tabs.onZoomChange.addListener( function(zoom
 });
 
 var contextmenu = false;
+/* dynamical context menu doesn't work anymore: https://code.google.com/p/chromium/issues/detail?id=467315 */
 function show_contextmenu(s)
 {
 	if (!contextmenu)	chrome.contextMenus.create({ "id" : "ms_contextmenu",
 													 "title" : chrome.i18n.getMessage("contextmenu_"+s),
+													 "contexts" : "all",
 													 "onclick" : contextmenu_click});
 	else				chrome.contextMenus.update("ms_contextmenu", {"title" : chrome.i18n.getMessage("contextmenu_"+s)});
 	contextmenu = true;
