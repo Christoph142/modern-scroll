@@ -50,6 +50,8 @@ function add_ms()
 	
 	chrome.runtime.onMessage.addListener(handleRuntimeMessage);
 	chrome.runtime.sendMessage({data:"settings"}, function(response){ // get settings (filled with default values) from background.js
+		if(response === false) return; // no valid license
+
 		w = response;
 		continue_add_ms();
 	});
@@ -161,10 +163,17 @@ function inject_css()
 		 // hide in print preview and printouts:
 		 "@media print{ :host{ display:none !important; } }\
 		 body{ background:#F00 !important;}";
+	
+	var style = document.createElement("style");
+	style.setAttribute("type","text/css");
+	style.innerHTML = ms_style;
+	ms_shadow.appendChild(style);
 
-	/* hide all scrollbars inside of body when not hovered or focused if bars are not set to "show always": */
+	/* style all scrollbars within the page (optionally autohide when not hovered or focused): */
+	if(w.style_element_bars === "0") return;
+	
 	var global_ms_style = 
-		(w.show_when !== "3" ? "body *:not(:hover):not(:focus)::-webkit-scrollbar{ display:none !important; width:0 !important; height:0 !important; }\n" : "")+
+		(w.autohide_element_bars === "1" ? "body *:not(:hover):not(:focus)::-webkit-scrollbar{ display:none !important; width:0 !important; height:0 !important; }\n" : "")+
 		"body *::-webkit-scrollbar{ width:"+w.size+"px; height:"+w.size+"px; }\n\
 		 body *::-webkit-scrollbar-button{ display:none; }\n\
 		 body *::-webkit-scrollbar-track { background:"+w.color_bg+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" !important; border-radius:"+w.border_radius+"px; }\n\
@@ -181,11 +190,6 @@ function inject_css()
 		global_style.innerHTML = global_ms_style;
 		document.querySelector("head").appendChild(global_style);
 	}
-	
-	var style = document.createElement("style");
-	style.setAttribute("type","text/css");
-	style.innerHTML = ms_style;
-	ms_shadow.appendChild(style);
 }
 
 function add_bars()
@@ -263,8 +267,8 @@ function add_functionality_2_bars(){
 	window.addEventListener("scroll", reposition_bars, false);
 }
 
-var DOM_observer = ( window.MutationObserver ? new MutationObserver(check_dimensions) : new WebKitMutationObserver(check_dimensions) );
-var height_observer = ( window.MutationObserver ? new MutationObserver(check_dimensions) : new WebKitMutationObserver(check_dimensions) ); //Disqus
+var DOM_observer = new MutationObserver(check_dimensions);
+var height_observer = new MutationObserver(check_dimensions); //Disqus
 function add_dimension_checkers()
 {
 	if(document.readyState !== "complete")
