@@ -1,8 +1,14 @@
-window.addEventListener("DOMContentLoaded", restoreprefs, false);
-window.addEventListener("DOMContentLoaded", localize, false);
-window.addEventListener("mouseup", save_buttonposition, false);
+window.addEventListener("DOMContentLoaded", populateOptions, false);
+window.addEventListener("msButtonPositionChange", saveButtonPosition, true);
+window.addEventListener("change", savePrefs, false);
 
-window.addEventListener("change", function(e) // save preferences:
+function populateOptions(){
+	localize();
+	checkLicensing();
+	restorePrefs();
+}
+
+function savePrefs(e) // save preferences:
 {
 	if(e.target.id === "save_set" || e.target.id === "saved_sets") return; // handled via onclick funtions
 	if(!e.target.validity.valid) // correct out-of-range inputs
@@ -49,7 +55,7 @@ window.addEventListener("change", function(e) // save preferences:
 	if(e.target.id === "middlescroll_velocity")	document.getElementById("storage.middlescroll_velocity").innerHTML	= Math.round(100*e.target.value);
 	if(e.target.id === "scroll_velocity")		document.getElementById("storage.scroll_velocity").innerHTML		= Math.round(100*e.target.value/5);
 	
-},false);
+}
 
 function save_new_value(key, value)
 {
@@ -61,12 +67,9 @@ function save_new_value(key, value)
 	chrome.extension.sendMessage({data:"update_optionspage"});
 }
 
-function save_buttonposition(){
-	if(document.querySelector(".dragged_button"))
-		save_new_value("buttonposition", (100 * document.querySelector(".dragged_button").offsetLeft / window.innerWidth));
-}
+function saveButtonPosition(e){ save_new_value("buttonposition", e.detail); }
 
-function restoreprefs()
+function restorePrefs()
 {
 	var storage = chrome.extension.getBackgroundPage().w;
 	chrome.storage.sync.get("saved_sets", function(s){
@@ -124,7 +127,11 @@ function add_page_handling(storage)
 	document.getElementById("save_set").addEventListener("blur",function(){
 		if(this.innerHTML === "") this.innerHTML = chrome.i18n.getMessage("new_set_name");
 	},false);*/
-	
+
+	// ##############################
+	// ##### settings profiles: #####
+	// ##############################
+
 	document.getElementById("save_set_img").addEventListener("click", function(){ // save set:
 		if(document.getElementById("save_set").innerHTML === "Default"){ alert(chrome.i18n.getMessage("default_change_impossible")); return; }
 		
@@ -175,7 +182,7 @@ function add_page_handling(storage)
 			if(msg.data === "update_optionspage")
 			{
 				chrome.extension.onMessage.removeListener(arguments.callee);
-				restoreprefs();
+				restorePrefs();
 			}
 		});
 	
@@ -204,8 +211,11 @@ function add_page_handling(storage)
 		}
 	}, false);
 	
-	
-	var info_bubbles = document.querySelectorAll(".i"); // info bubbles:
+	// #########################
+	// ##### info bubbles: #####
+	// #########################
+
+	var info_bubbles = document.querySelectorAll(".i");
 	
 	for(var i=0; i<info_bubbles.length; i++) // position top/bottom:
 	{
@@ -217,6 +227,13 @@ function add_page_handling(storage)
 			bubble_setback = window.setTimeout(function(){this.lastChild.style.marginTop= null;}.bind(this),500);
 		}, false);
 	}
+
+	// ################
+	// ### dialogs: ###
+	// ################
+
+	var dialog_close_buttons = document.querySelectorAll("dialog .close, dialog .hide_dialog");
+	for(var i = 0; i < dialog_close_buttons.length; i++) dialog_close_buttons[i].addEventListener("click", hideDialog, false);
 }
 
 function localize()

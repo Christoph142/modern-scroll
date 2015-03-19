@@ -872,18 +872,18 @@ function handle_button(whichone)
 		
 		document.removeEventListener("mouseup", handle_button_click, true);
 		document.addEventListener("mouseup", handle_button_drag_end, false);
-
-		if(document.URL.substr(0,19) !== "chrome-extension://") return;
-		// fire custom event for options page saving button pos
 	}
 	function handle_button_drag_end()
 	{
-		console.log("move end");
 		document.removeEventListener("mousemove", handle_button_drag, true);
 		document.removeEventListener("mouseup", handle_button_drag_end, false);
 
 		button.className = null;
 		otherbutton.style.opacity = null;
+
+		// fire custom event for saving button position in options page:
+		if(document.URL.substr(0,19) === "chrome-extension://")
+			this.dispatchEvent(	new CustomEvent("msButtonPositionChange", {	detail : 100 * button.offsetLeft / window.innerWidth })	);
 	}
 }
 
