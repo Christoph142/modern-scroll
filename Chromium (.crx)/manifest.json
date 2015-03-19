@@ -21,6 +21,11 @@
 	"options_ui"				: { "page" : "options/options.html", "chrome_style" : false, "open_in_tab" : true },
 	
 	"permissions"				: ["contextMenus", "storage", "identity", "https://www.googleapis.com/"],
+	"oauth2" :
+	{
+		"scopes"				: [	"https://www.googleapis.com/auth/chromewebstore.readonly" ]
+	},
+	
 	"offline_enabled"			: true,
 	"manifest_version"			: 2
 }
