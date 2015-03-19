@@ -234,7 +234,9 @@ function add_page_handling(storage)
 
 	var dialog_close_buttons = document.querySelectorAll("dialog .close, dialog .hide_dialog");
 	for(var i = 0; i < dialog_close_buttons.length; i++) dialog_close_buttons[i].addEventListener("click", hideDialog, false);
+	document.querySelector("#get_more").addEventListener("click", function(){ showDialog("iaps"); }, false);
 }
+var bubble_setback; // timeout for info bubbles
 
 function localize()
 {
@@ -246,4 +248,34 @@ function localize()
 	}
 }
 
-var bubble_setback; // timeout for info bubbles
+function showDialog(id)
+{
+	window.location.hash = id;
+	if(document.querySelector(window.location.hash).open) return;
+
+	document.querySelector(window.location.hash).showModal();
+	document.addEventListener("keydown", handleKeyboardEvents, false);
+}
+
+function hideDialog()
+{
+	if(window.location.hash.length < 2 || !document.querySelector(window.location.hash)) return;
+
+	document.querySelector(window.location.hash).className = "close";
+	document.removeEventListener("keydown", handleKeyboardEvents, false);
+
+	window.setTimeout( function(){
+		document.querySelector(window.location.hash).close();
+		window.location.hash = "";
+	}, 200);
+}
+
+function handleKeyboardEvents(e)
+{
+	if(!document.querySelector("dialog[open]")) return;
+
+	if(!document.querySelector("dialog[open]").querySelector(".close") && e.which === 27){
+		e.preventDefault();
+		e.stopPropagation();
+	}
+}
