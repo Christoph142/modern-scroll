@@ -146,6 +146,7 @@ function inject_css()
 		 #ms_upbutton, #ms_downbutton{ height:"+w.button_height*2+"px; width:"+w.button_width+"px; left:"+w.buttonposition+"%; opacity:"+w.button_opacity/100+"; background:"+w.color+"; border-radius:50px; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+"; transition:opacity 0.5s; }\n\
 		 #ms_upbutton{ top:-"+w.button_height+"px; }\n\
 		 #ms_downbutton{ bottom:-"+w.button_height+"px; }\n\
+		 #ms_upbutton.dragged_button, #ms_downbutton.dragged_button{ opacity:0.5; }\n\
 		\n\
 		 #ms_v_container:hover #ms_vbar_ui, #ms_v_container:hover #ms_vbar_bg_ui{ width:"+w.hover_size+"px; transition:width 0.1s; }\n\
 		 #ms_h_container:hover #ms_hbar_ui, #ms_h_container:hover #ms_hbar_bg_ui{ height:"+w.hover_size+"px; transition:height 0.1s; }\n\
@@ -169,16 +170,20 @@ function inject_css()
 	style.innerHTML = ms_style;
 	ms_shadow.appendChild(style);
 
-	/* style all scrollbars within the page (optionally autohide when not hovered or focused): */
-	if(w.style_element_bars === "0") return;
+	/* hide page's default bars and style all scrollbars within the page (optionally autohide when not hovered or focused): */
+	if(w.style_element_bars === "0" && w.fullscreen_only === "1") return;
 	
-	var global_ms_style = 
+	/* hide page's default scroll bars: */
+	var global_ms_style = (w.fullscreen_only === "0" ? "html::-webkit-scrollbar, body::-webkit-scrollbar{ display:none !important; width:0 !important; height:0 !important; }\n" : "");
+
+	if(w.style_element_bars === "1"){ global_ms_style +=
 		(w.autohide_element_bars === "1" ? "body *:not(:hover):not(:focus)::-webkit-scrollbar{ display:none !important; width:0 !important; height:0 !important; }\n" : "")+
 		"body *::-webkit-scrollbar{ width:"+w.size+"px; height:"+w.size+"px; }\n\
 		 body *::-webkit-scrollbar-button{ display:none; }\n\
 		 body *::-webkit-scrollbar-track { background:"+w.color_bg+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" !important; border-radius:"+w.border_radius+"px; }\n\
 		 body *::-webkit-scrollbar-thumb { background:"+w.color+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" !important; border-radius:"+w.border_radius+"px; }\n\
 		 body *::-webkit-scrollbar-thumb:hover { background:"+w.color+"; }";
+	}
 
 	if(document.getElementById("ms_style")){ // switched tabs -> update style (settings may have changed)
 		document.getElementById("ms_style").innerHTML = global_ms_style;
@@ -818,7 +823,7 @@ function add_buttons()
 	var upbutton = document.createElement("div");
 	upbutton.id = "ms_upbutton";
 	upbutton.addEventListener("mousedown", function(){ handle_button("up"); }, true);
-	
+
 	var downbutton = document.createElement("div");
 	downbutton.id = "ms_downbutton";
 	downbutton.addEventListener("mousedown", function(){ handle_button("down"); }, true);
@@ -839,41 +844,46 @@ function handle_button(whichone)
 	window.event.preventDefault();			// prevent focus-loss in site
 	if(window.event.which !== 1) return;	// if it's not the left mouse button
 	if(document.URL.substr(0,19) !== "chrome-extension://") window.event.stopPropagation(); // prevent bubbling (e.g. prevent drag being triggered on separately opened images); provide event in options page (to save dragged button position)
-		
+	
 	var button = ms_shadow.getElementById("ms_"+whichone+"button");
 	var otherbutton = ms_shadow.getElementById("ms_"+(whichone==="up"?"down":"up")+"button");
 	var x_start = window.event.clientX - Math.floor(button.style.left?parseInt(button.style.left):w.buttonposition/100*window.innerWidth);
 	
-	document.addEventListener("mousemove", handle_button_move, true);
-	function handle_button_move()
-	{
-		button.className = "dragged_button";
-		button.style.opacity = "0.5";
-		otherbutton.style.opacity = "0.5";
-		var posx = window.event.clientX;
-		button.style.left = ((posx - x_start)<=-50? -50 : ((posx - x_start)>=window.innerWidth+50-button.offsetWidth?window.innerWidth+50-button.offsetWidth : (posx - x_start))) + "px";
-		otherbutton.style.left = button.style.left;
-		
-		document.removeEventListener("mouseup", handle_button_end, true);
-		if(document.URL.substr(0,19) === "chrome-extension://") return;
-		document.addEventListener("mouseup", handle_button_move_end, false);
-		function handle_button_move_end()
-		{
-			document.removeEventListener("mousemove", handle_button_move, true);
-			document.removeEventListener("mouseup", handle_button_move_end, false);
-			button.className = null;
-			button.style.opacity = null;
-			otherbutton.style.opacity = null;
-		}
-	}
-	
-	document.addEventListener("mouseup", handle_button_end, true);
-	function handle_button_end()
+	document.addEventListener("mouseup", handle_button_click, true);
+	document.addEventListener("mousemove", handle_button_drag, true);
+
+	function handle_button_click()
 	{
 		if(whichone === "up")	scroll_Pos1();
 		else					scroll_End();
-		document.removeEventListener("mousemove", handle_button_move, true);
-		document.removeEventListener("mouseup", handle_button_end, true);
+		document.removeEventListener("mousemove", handle_button_drag, true);
+		document.removeEventListener("mouseup", handle_button_click, true);
+	}
+
+	function handle_button_drag()
+	{
+		var posx = window.event.clientX;
+		button.style.left = otherbutton.style.left = ((posx - x_start)<=-50? -50 : ((posx - x_start)>=window.innerWidth+50-button.offsetWidth?window.innerWidth+50-button.offsetWidth : (posx - x_start))) + "px";
+		
+		if(document.querySelector(".dragged_button")) return; // set up only once:
+
+		button.className = "dragged_button";
+		otherbutton.style.opacity = "0.5";
+		
+		document.removeEventListener("mouseup", handle_button_click, true);
+		document.addEventListener("mouseup", handle_button_drag_end, false);
+
+		if(document.URL.substr(0,19) !== "chrome-extension://") return;
+		// fire custom event for options page saving button pos
+	}
+	function handle_button_drag_end()
+	{
+		console.log("move end");
+		document.removeEventListener("mousemove", handle_button_drag, true);
+		document.removeEventListener("mouseup", handle_button_drag_end, false);
+
+		button.className = null;
+		otherbutton.style.opacity = null;
 	}
 }
 
