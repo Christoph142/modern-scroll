@@ -698,7 +698,7 @@ function reposition_bars()
 			ms_shadow.getElementById("ms_superbar").style.left = hbar.style.left;
 		}
 		else if(ms_shadow.getElementById("ms_superbar").style.opacity !== "1") //if superbar doesn't get dragged (minipage only -> no bars)
-			window.setTimeout(function(){ ms_shadow.getElementById("ms_superbar").style.display = null; }, eval(w.show_how_long));
+			window.setTimeout(function(){ ms_shadow.getElementById("ms_superbar").style.display = null; }, parseInt(w.show_how_long));
 	}
 	if(vbar_top_before !== vbar.style.top)		show_bar("v");
 	if(hbar_left_before !== hbar.style.left)	show_bar("h");
