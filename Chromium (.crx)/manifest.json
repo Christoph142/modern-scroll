@@ -11,11 +11,10 @@
 	
 	"content_scripts" :
 	[{
-		  "matches"				: ["<all_urls>"],
-		  "css"					: ["includes/hide_default_bars.css"],
-		  "js"					: ["includes/modern_scroll.js"],
-		  "run_at"				: "document_start",
-		  "all_frames"			: true
+		"matches"				: ["<all_urls>"],
+		"js"					: ["includes/modern_scroll.js"],
+		"run_at"				: "document_start",
+		"all_frames"			: true
 	}],
 	
 	"background"				: {"scripts": ["background.js"]},
