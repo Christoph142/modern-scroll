@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="options.css">
     <link rel="icon" type="image/png" href="../images/contextmenu.png">
     
+    <script type="text/javascript" src="IAP.js"></script>
     <script type="text/javascript" src="prefs.js"></script>
     <script type="text/javascript" src="../includes/modern_scroll.js"></script>
 </head>
@@ -149,7 +150,7 @@
     <div id="superbar_info" class="i">i<div id="superbar_info_text" class="i_text">
     	<span data-i18n="explanation_superbar"></span>
     </div></div>
-    <div id="superbar_container" class="toggle-container">
+    <div class="toggle-container">
     <input type="checkbox" id="show_superbar_minipage" name="show_superbar_minipage" checked="checked"> <label for="show_superbar_minipage" data-i18n="show_superbar_minipage"></label><br>
     <table><tr>
     <td style="text-align:left; vertical-align:top;"><label for="superbar_opacity" data-i18n="superbar_opacity"></label>: <label id="superbar_opacity_display"><span class="slider_values" id="storage.superbar_opacity"></span></label></td>
@@ -255,6 +256,7 @@
     <input type="checkbox" id="external_interface" name="external_interface"> <label for="external_interface" data-i18n="external_interface"></label><div id="external_interface_info" class="i">i<div id="external_interface_info_text" class="i_text"><span data-i18n="explanation_external_interface"></span></div></div>
     </fieldset>
     
+    <button id="get_more" class="button" data-i18n="get_more"></button>
     <a class="button" href="https://github.com/Christoph142/modern-scroll/issues/new" target="_blank" data-i18n="report_issue"></a>
     <a class="button" id="twitter" href="https://twitter.com/Christoph142" target="_blank" data-i18n="twitter"></a>
 </section>
@@ -262,6 +264,56 @@
 <footer>
     <span data-i18n="footer"></span> :)
 </footer>
+
+<dialog id="welcome">
+    <div class="content_area">
+        <h4>Thanks for installing modern scroll! :)</h4>
+        You need to log in to your Google account and grant modern scroll access to Chrome Web Store now in order to get your trial license.
+    </div>
+    <div class="action_area">
+        <button id="authorize">Log in and authorize</button>
+    </div>
+</dialog>
+
+<dialog id="trial">
+    <div class="close"></div>
+    <div class="content_area">
+        <h4>You're all set! :)</h4>
+        You can check modern scroll out unrestrictedly for seven days now.
+    </div>
+    <div class="action_area">
+        <button class="hide_dialog">OK</button>
+    </div>
+</dialog>
+
+<dialog id="trial_expired">
+    <div class="content_area">
+        Your trial period expired.<br>
+        I hope you love modern scroll as much as I do.<br>
+        If you do, get a license now.
+    </div>
+    <div class="action_area">
+        <button id="get_license">Get license</button>
+    </div>
+</dialog>
+
+<dialog id="iaps">
+    <div class="close"></div>
+    <div class="content_area">
+        <h4>modern scroll can do even more</h4>
+        Get the full version now. It offers additional UI and settings:
+        <ul>
+            <li>can boost your scrolling performance</li>
+            <li>scrolling speed and behavior is adjustable</li>
+            <li>unique "superbar" which makes it possible to scroll horizontally and vertically at the same time</li>
+            <li>buttons for scrolling to top and bottom of the page</li>
+            <li>Interface for custom mouse gestures / bookmarklets</li>
+        </ul>
+    </div>
+    <div class="action_area">
+        <button class="hide_dialog">Cancel</button>
+    </div>
+</dialog>
 
 </body>
 </html>
