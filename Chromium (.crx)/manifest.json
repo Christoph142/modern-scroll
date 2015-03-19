@@ -6,7 +6,7 @@
 	
 	"default_locale"			: "en",
 	"version"					: "3.1",
-	"minimum_chrome_version"	: "25",
+	"minimum_chrome_version"	: "29",
 	"icons"						: { "16": "images/contextmenu.png", "128": "images/icon@2x.png" },
 	
 	"content_scripts" :
@@ -16,13 +16,11 @@
 		"run_at"				: "document_start",
 		"all_frames"			: true
 	}],
-	
 	"background"				: {"scripts": ["background.js"]},
-  
-	"permissions"				: ["contextMenus", "storage"],
 	"options_page"				: "options/options.html",
 	"options_ui"				: { "page" : "options/options.html", "chrome_style" : false, "open_in_tab" : true },
 	
+	"permissions"				: ["contextMenus", "storage", "identity", "https://www.googleapis.com/"],
 	"offline_enabled"			: true,
 	"manifest_version"			: 2
 }
