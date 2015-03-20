@@ -5,12 +5,22 @@ header		{ display:block; text-align:center; margin-bottom:2em; padding:3em 0 1em
 			  border-bottom:0.2rem solid #1e3853; box-shadow:0 1px #fff; }
 section 	{ display:block; padding:0; }
 fieldset	{ border:none; border-top:0.2rem solid #1e3853; background:#F5F5F5; border-radius:2px; padding:1px 20px 15px 20px; margin-bottom:2em; }
-footer		{ display:block; text-align:center; margin-top:30px; padding:1em 0 2em 0; border-top:1px solid #fff; box-shadow:0 -1px rgba(0,0,0,0.15); }
+fieldset.full{ position:relative; }
+fieldset.locked{ height: 3.2em; overflow:hidden; }
+footer		{ display:block; text-align:center; margin-top:1em; padding:1em 0 2em 0; border-top:1px solid #fff; box-shadow:0 -1px rgba(0,0,0,0.15); }
 a			{ text-decoration:none; color:#001; }
-button, .button	{ background:#F5F5F5; border:.2em #1e3853 solid; padding:1em; border-radius:.5em; transition-duration:200ms; cursor:pointer; }
+button, .button	{ background:#F5F5F5; border:.2em #1e3853 solid; padding:1em; border-radius:.5em; transition-duration:200ms;
+				  cursor:pointer; font-size:12px; white-space:nowrap; }
+section button, section .button { margin-bottom:1em; }
 button:hover, .button:hover{ background:#FFF; }
+.lock		{ position:absolute; top:0.6em; right:0.2em; }
+.lock:hover { background-color:#DFB; }
+.lock:not(:hover){ border:.2em solid transparent; background:none; }
+.buy		{ min-width:12em; margin-right:0.5em; }
+.buy:hover	{ background-color:#DFB;}
 #twitter:hover{ background:#55ACEE; border-color:#3b88c3; color:#FFF; }
-h1			{ margin:0px; margin-bottom:-10px; font-size:24px; }
+#get_more:hover{ display:none; background-color:#DFB; }
+h1			{ margin:0; margin-bottom:-10px; font-size:24px; }
 h3			{ margin-bottom:5px; }
 table		{ width:100%; }
 table.c td	{ vertical-align:top; }
@@ -83,20 +93,21 @@ dialog .close {
 	color:#AAA;
 	font-weight:bold;
 	position: absolute;
-	right: 8px;
-	top: 8px;
-	height: 14px;
-	width: 14px;
-	border-radius:2px;
+	right: 0.7em;
+	top: 0.7em;
+	height: 1em;
+	width: 1em;
+	border-radius:0.1em;
 }
 dialog .close::before{
 	position:relative;
-	left:3.2px;
-	bottom:5.2px;
+	left:0.2em;
+	bottom:0.5em;
 	content:"x";
 }
+
 dialog .close:hover{
-	text-shadow:0 0 1px #333;
+	text-shadow:0 0 0.1em #333;
 	color:#FFF;
 	background:#AAA;	
 }
