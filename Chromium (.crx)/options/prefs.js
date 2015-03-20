@@ -52,15 +52,7 @@ function savePrefs(e) // save preferences:
 	
 }
 
-function save_new_value(key, value)
-{
-	var saveobject = {};
-	saveobject[key] = value;
-	chrome.storage.sync.set(saveobject);					// save it in Chrome's synced storage
-	chrome.extension.getBackgroundPage().w[key] = value;	// update settings in background.js
-	
-	chrome.extension.sendMessage({data:"update_optionspage"});
-}
+function save_new_value(key, value){ chrome.extension.getBackgroundPage().save_new_value(key, value); }
 
 function saveButtonPosition(e){ save_new_value("buttonposition", e.detail); }
 
