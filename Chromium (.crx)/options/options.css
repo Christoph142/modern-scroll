@@ -16,6 +16,7 @@ table		{ width:100%; }
 table.c td	{ vertical-align:top; }
 table.c td:first-child	{ width:20px; }
 input[type=number]{ width:40px; }
+input:invalid{ transition:500ms; box-shadow:#F00 0 0 10px 0; background:#FEE; outline-color:#F00; }
 .slider_values::after{ content:"%"; }
 
 div.toggle-container{ overflow:hidden; height:0; }
