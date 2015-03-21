@@ -53,7 +53,7 @@
         <td style="text-align:right;"><input type="number" max="5" min="0" id="gap" name="gap" value="2"></td>
     </tr><tr>
     	<td style="text-align:left; vertical-align:top;"><label for="opacity" data-i18n="opacity"></label>: <label id="opacity_display"><span class="slider_values" id="storage.opacity"></span></label></td>
-        <td style="text-align:right;"><input type="range" name="opacity" id="opacity" min="0" max="100" value="50" step="1" /></td>
+        <td style="text-align:right;"><input type="range" name="opacity" id="opacity" min="0" max="100" value="50" step="1"></td>
     </tr></table>
         
     <h4 data-i18n="border"></h4>
@@ -79,7 +79,7 @@
     <fieldset>
     <h4 data-i18n="behavior"></h4>
     <span data-i18n="show_when"></span><br>
-    <input type="range" name="show_when" id="show_when" min="1" max="3" value="2" step="1" style="width:100%;" />
+    <input type="range" name="show_when" id="show_when" min="1" max="3" value="2" step="1" style="width:100%;">
     <table>
     	<tr>
         	<td width="30%" style="text-align:left; padding-left:10px; vertical-align:top;"><span data-i18n="only_over"></span></td>
@@ -88,7 +88,7 @@
         </tr>
     </table><br>
     <span data-i18n="show_bg_bars_when"></span><br>
-    <input type="range" name="show_bg_bars_when" id="show_bg_bars_when" min="1" max="3" value="3" step="1" style="width:100%;" />
+    <input type="range" name="show_bg_bars_when" id="show_bg_bars_when" min="1" max="3" value="3" step="1" style="width:100%;">
     <table>
     	<tr>
         	<td width="30%" style="text-align:left; padding-left:10px; vertical-align:top;"><span data-i18n="never"></span></td>
@@ -120,7 +120,7 @@
     <fieldset>
     <h4 data-i18n="contextmenu"></h4>
     <span data-i18n="show_contextmenu_when"></span><br>
-    <input type="range" name="contextmenu_show_when" id="contextmenu_show_when" min="1" max="3" value="2" step="1" style="width:100%;" />
+    <input type="range" name="contextmenu_show_when" id="contextmenu_show_when" min="1" max="3" value="2" step="1" style="width:100%;">
     <table>
         <tr>
             <td width="30%" style="text-align:left; padding-left:10px; vertical-align:top;"><span data-i18n="never"></span></td>
@@ -154,7 +154,7 @@
     <input type="checkbox" id="show_superbar_minipage" name="show_superbar_minipage" checked="checked"> <label for="show_superbar_minipage" data-i18n="show_superbar_minipage"></label><br>
     <table><tr>
     <td style="text-align:left; vertical-align:top;"><label for="superbar_opacity" data-i18n="superbar_opacity"></label>: <label id="superbar_opacity_display"><span class="slider_values" id="storage.superbar_opacity"></span></label></td>
-        <td style="text-align:right;"><input type="range" name="superbar_opacity" id="superbar_opacity" min="0" max="100" value="70" step="1" /></td>
+        <td style="text-align:right;"><input type="range" name="superbar_opacity" id="superbar_opacity" min="0" max="100" value="70" step="1"></td>
     </tr></table>
     </div>
     </fieldset>
@@ -162,7 +162,7 @@
     <fieldset class="full">
     <h4 data-i18n="buttons"></h4>
     <span data-i18n="show_buttons"></span><br>
-    <input type="range" name="show_buttons" id="show_buttons" min="1" max="3" value="1" step="1" style="width:100%;" />
+    <input type="range" name="show_buttons" id="show_buttons" min="1" max="3" value="1" step="1" style="width:100%;">
     <table>
     	<tr>
         	<td width="20%" style="text-align:left; padding-left:10px; vertical-align:top;"><span data-i18n="never"></span></td>
@@ -179,7 +179,7 @@
         <input type="number" max="500" min="2" id="button_height" name="button_height" value="50">
         </td><td style="text-align:right;">
         <label for="button_opacity" data-i18n="button_opacity"></label>: 
-        <input type="range" name="button_opacity" id="button_opacity" min="0" max="100" value="10" step="1" /><label id="button_opacity_display"><span class="slider_values" id="storage.button_opacity"></span></label>
+        <input type="range" name="button_opacity" id="button_opacity" min="0" max="100" value="10" step="1"><label id="button_opacity_display"><span class="slider_values" id="storage.button_opacity"></span></label>
         </td></tr></table>
         <br>
         <span data-i18n="drag_buttons"></span>
@@ -312,10 +312,28 @@
 <dialog id="welcome">
     <div class="content_area">
         <h4>Thanks for installing modern scroll! :)</h4>
-        You need to log in to your Google account and grant modern scroll access to Chrome Web Store now in order to get your trial license.
+        You need to log in to your Google account and grant modern scroll access to Chrome Web Store now in order to get your trial license.<br>
     </div>
     <div class="action_area">
         <button id="authorize">Log in and authorize</button>
+    </div>
+</dialog>
+
+<dialog id="transfer_token">
+    <div class="content_area">
+        <h4>Oh, you're an adventurer! :)</h4>
+        There's a bit of extra effort needed to get modern scroll working in browsers other than Chrome. But we'll get there. ;)<br>
+        To use modern scroll in here, you need to transfer a license from Chrome That's what you need to do:
+        <ol>
+            <li>get a license in Chrome (trial license is fine, too)</li>
+            <li>open this page in Chrome (you can copy URL from address bar)</li>
+            <li>copy shown token</li>
+            <li>insert it in here</li>
+        </ol>
+        <input type="text" id="user_token" style="width:100%;">
+    </div>
+    <div class="action_area">
+        <button class="hide_dialog" data-i18n="cancel"></button>
     </div>
 </dialog>
 
