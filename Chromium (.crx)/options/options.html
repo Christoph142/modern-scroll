@@ -257,13 +257,57 @@
     </fieldset>
     
     <button id="get_more" class="button" data-i18n="get_more"></button>
-    <a class="button" href="https://github.com/Christoph142/modern-scroll/issues/new" target="_blank" data-i18n="report_issue"></a>
+    <a class="button" href="https://chrome.google.com/webstore/detail/modern-scroll/ejonaglbdpcfkgbcnidjlnjogfdgbofp/support" target="_blank" data-i18n="report_issue"></a>
+    <a class="button" href="https://chrome.google.com/webstore/detail/modern-scroll/ejonaglbdpcfkgbcnidjlnjogfdgbofp/reviews" target="_blank" data-i18n="rate"></a>
     <a class="button" id="twitter" href="https://twitter.com/Christoph142" target="_blank" data-i18n="twitter"></a>
 </section>
 
 <footer>
     <span data-i18n="footer"></span> :)
 </footer>
+
+<dialog id="default_change_impossible">
+    <div class="close"></div>
+    <div class="content_area" data-i18n="default_change_impossible"></div>
+    <div class="action_area">
+        <button class="hide_dialog" data-i18n="ok"></button>
+    </div>
+</dialog>
+
+<dialog id="default_delete_impossible">
+    <div class="close"></div>
+    <div class="content_area" data-i18n="default_delete_impossible"></div>
+    <div class="action_area">
+        <button class="hide_dialog" data-i18n="ok"></button>
+    </div>
+</dialog>
+
+<dialog id="confirm_overwrite">
+    <div class="close"></div>
+    <div class="content_area" data-i18n="confirm_overwrite"></div>
+    <div class="action_area">
+        <button id="confirm_overwrite_button" class="hide_dialog" data-i18n="ok"></button>
+        <button class="hide_dialog" data-i18n="cancel"></button>
+    </div>
+</dialog>
+
+<dialog id="confirm_delete">
+    <div class="close"></div>
+    <div class="content_area" data-i18n="confirm_delete"></div>
+    <div class="action_area">
+        <button id="confirm_delete_button" class="hide_dialog" data-i18n="ok"></button>
+        <button class="hide_dialog" data-i18n="cancel"></button>
+    </div>
+</dialog>
+
+<dialog id="confirm_load">
+    <div class="close"></div>
+    <div class="content_area" data-i18n="confirm_load"></div>
+    <div class="action_area">
+        <button id="confirm_load_button" class="hide_dialog" data-i18n="ok"></button>
+        <button class="hide_dialog" data-i18n="cancel"></button>
+    </div>
+</dialog>
 
 <dialog id="welcome">
     <div class="content_area">
@@ -282,7 +326,7 @@
         You can check modern scroll out unrestrictedly for seven days now.
     </div>
     <div class="action_area">
-        <button class="hide_dialog">OK</button>
+        <button class="hide_dialog" data-i18n="ok"></button>
     </div>
 </dialog>
 

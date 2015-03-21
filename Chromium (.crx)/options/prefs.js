@@ -49,7 +49,6 @@ function savePrefs(e) // save preferences:
 	if(e.target.id === "mousescroll_distance")	document.getElementById("storage.mousescroll_distance").innerHTML	= Math.round(100*e.target.value);
 	if(e.target.id === "middlescroll_velocity")	document.getElementById("storage.middlescroll_velocity").innerHTML	= Math.round(100*e.target.value);
 	if(e.target.id === "scroll_velocity")		document.getElementById("storage.scroll_velocity").innerHTML		= Math.round(100*e.target.value/5);
-	
 }
 
 function save_new_value(key, value){ chrome.extension.getBackgroundPage().save_new_value(key, value); }
@@ -102,100 +101,33 @@ function restorePrefs()
 		sliders[i].innerHTML = (document.getElementById(which_value).dataset.defaultvalue ? Math.round(100*raw_value/document.getElementById(which_value).dataset.defaultvalue) : raw_value);
 	}	
 	
-	add_page_handling(storage);
+	add_page_handling();
 }
 
-function add_page_handling(storage)
+function add_page_handling()
 {
 	/*################### use when Issue 247969 is fixed: ######################
 	document.getElementById("save_set").addEventListener("focus",function(){
-		if(this.innerHTML === chrome.i18n.getMessage("new_set_name")) this.innerHTML = "";
+		if(this.innerHTML === getString("new_set_name")) this.innerHTML = "";
 	},false);
 	document.getElementById("save_set").addEventListener("blur",function(){
-		if(this.innerHTML === "") this.innerHTML = chrome.i18n.getMessage("new_set_name");
+		if(this.innerHTML === "") this.innerHTML = getString("new_set_name");
 	},false);*/
 
 	// ##############################
 	// ##### settings profiles: #####
 	// ##############################
 
-	document.getElementById("save_set_img").addEventListener("click", function(){ // save set:
-		if(document.getElementById("save_set").innerHTML === "Default"){ alert(chrome.i18n.getMessage("default_change_impossible")); return; }
-		
-		for(var option = 0; option < document.getElementById("saved_sets").options.length; option++){
-			if(document.getElementById("saved_sets").options[option].value === document.getElementById("save_set").innerHTML){
-				var overwrite_confirmed = window.confirm(chrome.i18n.getMessage("confirm_overwrite"));
-				if(!overwrite_confirmed) return;
-				break;
-			}
-		}
-		
-		if(!storage.saved_sets) storage.saved_sets = {};
-		storage.saved_sets[document.getElementById("save_set").innerHTML] = {};
-		for(var setting in storage){
-			if(setting === "saved_sets") continue;
-			storage.saved_sets[document.getElementById("save_set").innerHTML][setting] = storage[setting];
-		}
-		
-		chrome.storage.sync.set(storage);
-		
-		if(overwrite_confirmed) return; // don't add a new option if one gets overwritten
-		document.getElementById("saved_sets").options[document.getElementById("saved_sets").options.length] =
-			new Option(document.getElementById("save_set").innerHTML, document.getElementById("save_set").innerHTML);
-	}, false);
-	
-	document.getElementById("delete_set_img").addEventListener("click", function(){ // delete set:
-		if(document.getElementById("saved_sets").value === "Default"){
-			alert(chrome.i18n.getMessage("default_delete_impossible"));
-			return;
-		}
-		var delete_confirmed = window.confirm(chrome.i18n.getMessage("confirm_delete"));
-		if (!delete_confirmed) return;
-		
-		delete storage.saved_sets[document.getElementById("saved_sets").value];
-		chrome.storage.sync.set( {"saved_sets" : storage.saved_sets} );
-		
-		for(var i in document.getElementById("saved_sets").options){
-			if(document.getElementById("saved_sets").options[i].value === document.getElementById("saved_sets").value)
-			{
-				document.getElementById("saved_sets").remove(i);
-				break;
-			}
-		}
-	}, false);
-	
-	document.getElementById("load_set_img").addEventListener("click", function(){ // load set
-		chrome.extension.onMessage.addListener(function(msg){
-			if(msg.data === "update_optionspage")
-			{
-				chrome.extension.onMessage.removeListener(arguments.callee);
-				restorePrefs();
-			}
-		});
-	
-		if(storage.saved_sets) var sets = storage.saved_sets;
-		if(document.getElementById("saved_sets").value === "Default")
-		{
-			chrome.storage.sync.clear(); // delete everything
-			if(sets) chrome.storage.sync.set( {"saved_sets" : sets} ); // restore saved sets (if any)
-		}
-		else
-		{
-			var temp_obj = {};
-			for(var setting in sets[document.getElementById("saved_sets").value]){
-				temp_obj[setting] = sets[document.getElementById("saved_sets").value][setting];
-			}
-			chrome.storage.sync.set(temp_obj);
-		}
-		chrome.extension.sendMessage({data:"update_settings"});
-	}, false);
+	document.getElementById("save_set_img").addEventListener("click", confirm_save_set, false);
+	document.getElementById("delete_set_img").addEventListener("click", confirm_delete_set, false);
+	document.getElementById("load_set_img").addEventListener("click", confirm_load_set, false);
 	
 	document.getElementById("save_set").addEventListener("keydown", function(){ // Enter -> save configuration
-		if(window.event.which === 13){
-			window.event.preventDefault();
-			window.event.target.blur();
-			document.getElementById("save_set_img").click();
-		}
+		if(window.event.which !== 13) return;
+
+		window.event.preventDefault();
+		window.event.target.blur();
+		document.getElementById("save_set_img").click();
 	}, false);
 	
 	// #########################
@@ -221,19 +153,115 @@ function add_page_handling(storage)
 
 	var dialog_close_buttons = document.querySelectorAll("dialog .close, dialog .hide_dialog");
 	for(var i = 0; i < dialog_close_buttons.length; i++) dialog_close_buttons[i].addEventListener("click", hideDialog, false);
+
+	document.querySelector("#confirm_overwrite_button").addEventListener("click", function(){ save_set(true); }, false);
+	document.querySelector("#confirm_delete_button").addEventListener("click", delete_set, false);
+	document.querySelector("#confirm_load_button").addEventListener("click", load_set, false);
+
+	document.querySelector("#authorize").addEventListener("click", function(){
+		chrome.runtime.getBackgroundPage( function(bg){ bg.updateLicense(true); } );
+	}, false);
 	document.querySelector("#get_more").addEventListener("click", function(){ showDialog("iaps"); }, false);
 }
 var bubble_setback; // timeout for info bubbles
+
+function confirm_save_set(){
+	if(document.getElementById("save_set").innerHTML === "Default"){
+		showDialog("default_change_impossible");
+		return;
+	}
+	
+	for(var option = 0; option < document.getElementById("saved_sets").options.length; option++){
+		if(document.getElementById("saved_sets").options[option].value === document.getElementById("save_set").innerHTML){
+			showDialog("confirm_overwrite");
+			return;
+		}
+	}
+
+	save_set(false);
+}
+function save_set(overwrite){
+	chrome.runtime.getBackgroundPage( function(bg){
+		if(!bg.w.saved_sets) bg.w.saved_sets = {};
+		bg.w.saved_sets[document.getElementById("save_set").innerHTML] = {};
+		
+		for(var setting in bg.w){
+			if(setting === "saved_sets") continue;
+			bg.w.saved_sets[document.getElementById("save_set").innerHTML][setting] = bg.w[setting];
+		}
+		
+		chrome.storage.sync.set(bg.w);
+		
+		if(!overwrite) // don't add a new option if one gets overwritten
+			document.getElementById("saved_sets").options[document.getElementById("saved_sets").options.length] =
+				new Option(document.getElementById("save_set").innerHTML, document.getElementById("save_set").innerHTML);
+
+		document.getElementById("saved_sets").value = document.getElementById("save_set").innerHTML; // select option
+	});
+}
+
+function confirm_delete_set(){
+	if(document.getElementById("saved_sets").value === "Default"){
+		showDialog("default_delete_impossible");
+		return;
+	}
+
+	showDialog("confirm_delete");
+}
+function delete_set(){
+	chrome.runtime.getBackgroundPage( function(bg){
+		delete bg.w.saved_sets[document.getElementById("saved_sets").value];
+		chrome.storage.sync.set( {"saved_sets" : bg.w.saved_sets} );
+		
+		for(var i in document.getElementById("saved_sets").options){
+			if(document.getElementById("saved_sets").options[i].value === document.getElementById("saved_sets").value)
+			{
+				document.getElementById("saved_sets").remove(i);
+				break;
+			}
+		}
+	});
+}
+
+function confirm_load_set(){ showDialog("confirm_load"); }
+function load_set(){
+	chrome.runtime.getBackgroundPage( function(bg){
+		chrome.extension.onMessage.addListener(function(msg){
+			if(msg.data === "update_optionspage")
+			{
+				chrome.extension.onMessage.removeListener(arguments.callee);
+				restorePrefs();
+			}
+		});
+
+		if(bg.w.saved_sets) var sets = bg.w.saved_sets;
+		if(document.getElementById("saved_sets").value === "Default")
+		{
+			chrome.storage.sync.clear(); // delete everything
+			if(sets) chrome.storage.sync.set( {"saved_sets" : sets} ); // restore saved sets (if any)
+		}
+		else
+		{
+			var temp_obj = {};
+			for(var setting in sets[document.getElementById("saved_sets").value]){
+				temp_obj[setting] = sets[document.getElementById("saved_sets").value][setting];
+			}
+			chrome.storage.sync.set(temp_obj);
+		}
+		chrome.extension.sendMessage({data:"update_settings"});
+	});
+}
 
 function localize()
 {
 	var strings = document.querySelectorAll("[data-i18n]");
 	for(var i = 0; i < strings.length; i++)
 	{
-		if(strings[i].tagName === "IMG")	strings[i].title = chrome.i18n.getMessage(strings[i].dataset.i18n); // tooltips
-		else								strings[i].innerHTML += chrome.i18n.getMessage(strings[i].dataset.i18n);
+		if(strings[i].tagName === "IMG")	strings[i].title	  = getString(strings[i].dataset.i18n); // tooltips
+		else								strings[i].innerHTML += getString(strings[i].dataset.i18n);
 	}
 }
+function getString(string){	return chrome.i18n.getMessage(string).split("\n").join("<br>"); }
 
 function showDialog(id)
 {
