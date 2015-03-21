@@ -82,7 +82,7 @@ function show_contextmenu(s)
 {
 	if (!contextmenu)	chrome.contextMenus.create({ "id" : "ms_contextmenu",
 													 "title" : chrome.i18n.getMessage("contextmenu_"+s),
-													 "contexts" : "all",
+													 "contexts" : ["all"],
 													 "onclick" : contextmenu_click});
 	else				chrome.contextMenus.update("ms_contextmenu", {"title" : chrome.i18n.getMessage("contextmenu_"+s)});
 	contextmenu = true;
