@@ -63,6 +63,16 @@ function update_settings(){ chrome.storage.sync.get( null, function(storage){
 }); }
 update_settings();
 
+
+function save_new_value(key, value)
+{
+	var saveobject = {};
+	saveobject[key] = value;
+	chrome.storage.sync.set(saveobject);					// save it in Chrome's synced storage
+	chrome.extension.getBackgroundPage().w[key] = value;	// update settings in background.js
+	
+	chrome.extension.sendMessage({data:"update_optionspage"});
+}
 chrome.runtime.onMessage.addListener( function(request, sender, sendResponse){
 	if		(request.data === "settings") 			sendResponse(w);
 	else if (request.data === "update_settings") 	update_settings(); // will request options page update when finished
