@@ -49,13 +49,14 @@ dialog					{ position:fixed; cursor:default; min-width:400px; max-width:90%; pad
 						  animation:show_moved 200ms; -webkit-animation:show_moved 200ms; }
 dialog::backdrop		{ transition-duration:200ms; position:fixed; top:0;	left:0;	right:0; bottom:0; background-color:rgba(0, 0, 0, 0.3);
 						  animation:show 200ms;	-webkit-animation:show 200ms; }
-dialog .close			{ color:#AAA; font-weight:bold;	position:absolute; right:1em; top:1em; height:1em; width:1em; border-radius:0.1em; }
-dialog .close::before	{ position:relative; left:0.2em; bottom:0.5em;	content:"x"; }
+dialog .close			{ color:#AAA; font-weight:bold;	position:absolute; right:1em; top:1em; height:1em; width:1em; border-radius:0.1em; transition:200ms; }
+dialog .close::before	{ position:relative; left:0.2em; bottom:0.45em;	content:"x"; }
 dialog .close:hover		{ text-shadow:0 0 0.1em #333; color:#FFF; background:#AAA; }
-dialog .content_area	{ margin:26px 0 0 0; padding:1em 2em 2em 2em; }
-dialog .action_area 	{ text-align:right;	background:rgb(247, 247, 247); border-top:1px solid rgb(222, 222, 222);	border-radius:0 0 4px 4px; padding: 0.5em 1em; }
+dialog .content_area	{ margin:26px 0 0 0; padding:0em 2em 2em 2em; }
+dialog .action_area 	{ padding: 0.7em 1em 0.5em 1em; text-align:right; background:#F8F8F8; border-top:1px solid #E0E0E0; border-radius:0 0 4px 4px; }
 dialog.close			{ animation:show_moved 200ms reverse; -webkit-animation:show_moved 200ms reverse; }
 dialog.close::backdrop	{ animation:show 200ms reverse;	-webkit-animation:show 200ms reverse; }
+dialog button			{ padding:0.5em 1em; }
 
 @keyframes show_moved			{ from { opacity:0; -webkit-transform:translateY(-20px); } to { opacity:1; -webkit-transform:translateY(0); } }
 @-webkit-keyframes show_moved	{ from { opacity:0; -webkit-transform:translateY(-20px); } to { opacity:1; -webkit-transform:translateY(0); } }
