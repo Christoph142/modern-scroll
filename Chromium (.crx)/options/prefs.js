@@ -280,17 +280,15 @@ function hideDialog()
 	document.removeEventListener("keydown", handleKeyboardEvents, false);
 
 	window.setTimeout( function(){
-		document.querySelector(window.location.hash).close();
+		if(document.querySelector(window.location.hash+"[open]")) document.querySelector(window.location.hash).close();
 		window.location.hash = "";
 	}, 200);
 }
 
 function handleKeyboardEvents(e)
 {
-	if(!document.querySelector("dialog[open]")) return;
+	if(!document.querySelector("dialog[open]") || e.which !== 27 /*Esc*/) return;
 
-	if(!document.querySelector("dialog[open]").querySelector(".close") && e.which === 27){
-		e.preventDefault();
-		e.stopPropagation();
-	}
+	if(document.querySelector("dialog[open]").querySelector(".close"))	hideDialog();
+	else {																e.preventDefault();	e.stopPropagation(); }
 }
