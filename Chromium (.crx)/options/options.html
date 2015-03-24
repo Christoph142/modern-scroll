@@ -323,18 +323,16 @@
     <div class="content_area">
         <h4>Oh, you're an adventurer! :)</h4>
         There's a bit of extra effort needed to get modern scroll working in browsers other than Chrome. But we'll get there. ;)<br>
-        To use modern scroll in here, you need to transfer a license from Chrome That's what you need to do:
+        To use modern scroll in here, you need to transfer a license from Chrome (trial license is fine, too). That's what you need to do:
         <ol>
-            <li>get a license in Chrome (trial license is fine, too)</li>
-            <li>open this page in Chrome (you can copy URL from address bar)</li>
+            <li>get a license in Chrome</li>
+            <li>open chrome-extension://ejonaglbdpcfkgbcnidjlnjogfdgbofp/options/options.html#show_token in Chrome</li>
             <li>copy shown token</li>
             <li>insert it in here</li>
         </ol>
-        <input type="text" id="user_token" style="width:100%;">
+        <input type="text" style="width:100%;">
     </div>
-    <div class="action_area">
-        <button class="hide_dialog" data-i18n="cancel"></button>
-    </div>
+    <div class="action_area"></div>
 </dialog>
 
 <dialog id="trial">
@@ -355,7 +353,36 @@
         If you do, get a license now.
     </div>
     <div class="action_area">
-        <button id="get_license">Get license</button>
+        <a href="https://chrome.google.com/webstore/detail/modern-scroll/ejonaglbdpcfkgbcnidjlnjogfdgbofp" class="button" target="_blank">Get license</a>
+    </div>
+</dialog>
+
+<dialog id="transferred_trial_expired">
+    <div class="content_area">
+        The trial period of the license you transferred expired.<br>
+        I hope you love modern scroll as much as I do.<br>
+        If you do, get a license now. You need to transfer this license from Chrome once again:
+        <ol>
+            <li>get a license in Chrome</li>
+            <li>open chrome-extension://ejonaglbdpcfkgbcnidjlnjogfdgbofp/options/options.html#show_token in Chrome</li>
+            <li>copy shown token</li>
+            <li>insert it in here</li>
+        </ol>
+        <input type="text" style="width:100%;">
+    </div>
+    <div class="action_area">
+        <button id="transfer_full_license">Transfer license</button>
+    </div>
+</dialog>
+
+<dialog id="show_token">
+    <div class="close"></div>
+    <div class="content_area">
+        Here's the token you need in order to transfer this license to other browsers:<br>
+        <input type="text" id="user_token" style="width:100%;" readonly>
+    </div>
+    <div class="action_area">
+        <button class="hide_dialog">Close</button>
     </div>
 </dialog>
 

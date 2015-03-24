@@ -159,7 +159,7 @@ function add_page_handling()
 	document.querySelector("#confirm_load_button").addEventListener("click", load_set, false);
 
 	document.querySelector("#authorize").addEventListener("click", function(){
-		chrome.runtime.getBackgroundPage( function(bg){ bg.updateLicense(true); } );
+		chrome.runtime.getBackgroundPage( function(bg){ bg.getLicense(true); } );
 	}, false);
 	document.querySelector("#get_more").addEventListener("click", function(){ showDialog("iaps"); }, false);
 }
