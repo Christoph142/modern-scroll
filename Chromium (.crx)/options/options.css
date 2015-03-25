@@ -1,5 +1,5 @@
 html			{ width:100%; background:#DDD; }
-body			{ font:13px/24px "helvetica neue",arial,sans-serif; cursor:default; max-width:800px; overflow-x:hidden;
+body			{ font:13px/24px "helvetica neue",arial,sans-serif; cursor:default; max-width:800px;
   				  background:#FFF; color:#1e3853; margin:15px auto; padding:0 50px; box-shadow:0 0 10px #98b0c9; direction: __MSG_@@bidi_dir__; }
 header			{ display:block; text-align:center; margin-bottom:2em; padding:3em 0 1em 0;
 				  border-bottom:0.2rem solid #1e3853; box-shadow:0 1px #fff; }
@@ -9,7 +9,7 @@ fieldset.full	{ position:relative; }
 fieldset.locked	{ height: 3.2em; overflow:hidden; }
 footer			{ display:block; text-align:center; margin-top:1em; padding:1em 0 2em 0; border-top:1px solid #fff; box-shadow:0 -1px rgba(0,0,0,0.15); }
 a				{ text-decoration:none; color:#001; }
-button, .button	{ background:#F5F5F5; border:.2em #1e3853 solid; padding:1em; border-radius:.5em; transition-duration:200ms;
+button, .button	{ background:#F5F5F5; border:.2em #1e3853 solid; padding:1em; border-radius:0.5em; transition-duration:200ms;
 				  cursor:pointer; font-size:12px; white-space:nowrap; }
 section button, section .button { margin-bottom:1em; }
 button:hover, .button:hover{ background:#FFF; }
@@ -56,6 +56,9 @@ dialog .content_area	{ margin:26px 0 0 0; padding:0em 2em 2em 2em; }
 dialog .action_area 	{ padding: 0.7em 1em 0.5em 1em; text-align:right; background:#F8F8F8; border-top:1px solid #E0E0E0; border-radius:0 0 4px 4px; }
 dialog.close			{ animation:show_moved 200ms reverse; -webkit-animation:show_moved 200ms reverse; }
 dialog.close::backdrop	{ animation:show 200ms reverse;	-webkit-animation:show 200ms reverse; }
+dialog h4				{ color:#AAA; font-size:20px; }
+dialog input			{ width:100%; }
+dialog ul 				{ margin-bottom:0.5em; }
 dialog button, dialog .button	{ padding:0.5em 1em; }
 
 @keyframes show_moved			{ from { opacity:0; -webkit-transform:translateY(-20px); } to { opacity:1; -webkit-transform:translateY(0); } }
