@@ -310,36 +310,33 @@
 </dialog>
 
 <dialog id="welcome">
-    <div class="content_area">
-        <h4>Thanks for installing modern scroll! :)</h4>
-        You need to log in to your Google account and grant modern scroll access to Chrome Web Store now in order to get your trial license.<br>
+    <div class="content_area" data-i18n="get_trial_license">
+        <h4 data-i18n="thanks_for_installing"></h4>
     </div>
     <div class="action_area">
-        <button id="authorize">Log in and authorize</button>
+        <button id="authorize" data-i18n="authorize"></button>
     </div>
 </dialog>
 
 <dialog id="transfer_token">
     <div class="content_area">
-        <h4>Oh, you're an adventurer! :)</h4>
-        There's a bit of extra effort needed to get modern scroll working in browsers other than Chrome. But we'll get there. ;)<br>
-        To use modern scroll in here, you need to transfer a license from Chrome (trial license is fine, too). That's what you need to do:
+        <h4 data-i18n="thanks_for_installing"></h4>
+        <span data-i18n="transfer_instructions"></span>
         <ol>
-            <li>get a license in Chrome</li>
-            <li>open chrome-extension://ejonaglbdpcfkgbcnidjlnjogfdgbofp/options/options.html#show_token in Chrome</li>
-            <li>copy shown token</li>
-            <li>insert it in here</li>
+            <li data-i18n="get_license_in_chrome"></li>
+            <li data-i18n="open_url_in_chrome"></li>
+            <li data-i18n="copy_token"></li>
+            <li data-i18n="insert_here"></li>
         </ol>
-        <input type="text" style="width:100%;">
+        <input type="text">
     </div>
-    <div class="action_area"></div>
+    <div class="action_area"><br></div>
 </dialog>
 
 <dialog id="trial">
     <div class="close"></div>
-    <div class="content_area">
-        <h4>You're all set! :)</h4>
-        You can check modern scroll out unrestrictedly for seven days now.
+    <div class="content_area" data-i18n="seven_days_trial">
+        <h4 data-i18n="all_set"></h4>
     </div>
     <div class="action_area">
         <button class="hide_dialog" data-i18n="ok"></button>
@@ -347,11 +344,7 @@
 </dialog>
 
 <dialog id="trial_expired">
-    <div class="content_area">
-        Your trial period expired.<br>
-        I hope you love modern scroll as much as I do.<br>
-        If you do, get a license now.
-    </div>
+    <div class="content_area" data-i18n="trial_expired"></div>
     <div class="action_area">
         <a href="https://chrome.google.com/webstore/detail/modern-scroll/ejonaglbdpcfkgbcnidjlnjogfdgbofp" class="button" target="_blank">Get license</a>
     </div>
@@ -359,51 +352,47 @@
 
 <dialog id="transferred_trial_expired">
     <div class="content_area">
-        The trial period of the license you transferred expired.<br>
-        I hope you love modern scroll as much as I do.<br>
-        If you do, get a license now. You need to transfer this license from Chrome once again:
+        <span data-i18n="transferred_trial_expired"></span>
         <ol>
-            <li>get a license in Chrome</li>
-            <li>open chrome-extension://ejonaglbdpcfkgbcnidjlnjogfdgbofp/options/options.html#show_token in Chrome</li>
-            <li>copy shown token</li>
-            <li>insert it in here</li>
+            <li data-i18n="get_license_in_chrome"></li>
+            <li data-i18n="open_url_in_chrome"></li>
+            <li data-i18n="copy_token"></li>
+            <li data-i18n="insert_here"></li>
         </ol>
-        <input type="text" style="width:100%;">
+        <input type="text">
     </div>
-    <div class="action_area">
-        <button id="transfer_full_license">Transfer license</button>
-    </div>
+    <div class="action_area"><br></div>
 </dialog>
 
 <dialog id="show_token">
     <div class="close"></div>
     <div class="content_area">
-        Here's the token you need in order to transfer this license to other browsers:<br>
-        <input type="text" id="user_token" style="width:100%;" readonly>
+        <span data-i18n="token"></span><br>
+        <input type="text" id="user_token" readonly>
     </div>
     <div class="action_area">
-        <button class="hide_dialog">Close</button>
+        <button data-i18n="close" class="hide_dialog"></button>
     </div>
 </dialog>
 
 <dialog id="iaps">
     <div class="close"></div>
     <div class="content_area">
-        <h4>modern scroll can do even more</h4>
-        Get the full version now. It offers additional UI and settings:
+        <h4 data-i18n="ms_can_do_more"></h4>
+        <span data-i18n="get_full_version"></span>
         <ul>
-            <li>can boost your scrolling performance</li>
-            <li>scrolling speed and behavior is adjustable</li>
-            <li>style all bars within the page (e.g. textareas)</li>
-            <li>unique "superbar" which makes it possible to scroll horizontally and vertically at the same time</li>
-            <li>buttons for scrolling to top and bottom of the page</li>
-            <li>Interface for custom mouse gestures / bookmarklets</li>
-            <li>save and restore multiple configurations</li>
-            <li>all future updates and features included</li>
+            <li data-i18n="boost_scrolling"></li>
+            <li data-i18n="adjustable_scrolling"></li>
+            <li data-i18n="style_bars_in_page"></li>
+            <li data-i18n="feature_superbar"></li>
+            <li data-i18n="feature_buttons"></li>
+            <li data-i18n="feature_interface"></li>
+            <li data-i18n="feature_sets"></li>
+            <li data-i18n="future_updates"></li>
         </ul>
     </div>
     <div class="action_area">
-        <button class="hide_dialog">Cancel</button>
+        <button class="hide_dialog" data-i18n="cancel"></button>
     </div>
 </dialog>
 
