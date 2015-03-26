@@ -2,8 +2,8 @@ modern scroll is an extension for Opera and Chromium-based browsers that takes s
 
 What's awesome about modern scroll?
 
-Basic version
-=============
+Standard version
+================
 Usage of modern scroll bars and corresponding settings
 ------------------------------------------------------
 + its scroll bars don't take up any space so the whole screen width can be used to display what a browser is made for: websites
