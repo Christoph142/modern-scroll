@@ -56,7 +56,7 @@ dialog .content_area	{ margin:26px 0 0 0; padding:0em 2em 2em 2em; }
 dialog .action_area 	{ padding: 0.7em 1em 0.5em 1em; text-align:right; background:#F8F8F8; border-top:1px solid #E0E0E0; border-radius:0 0 4px 4px; }
 dialog.close			{ animation:show_moved 200ms reverse; -webkit-animation:show_moved 200ms reverse; }
 dialog.close::backdrop	{ animation:show 200ms reverse;	-webkit-animation:show 200ms reverse; }
-dialog h4				{ color:#AAA; font-size:20px; }
+dialog h4				{ color:#BBB; font-weight:normal; font-size:20px; }
 dialog input			{ width:100%; }
 dialog ul 				{ margin-bottom:0.5em; }
 dialog button, dialog .button	{ padding:0.5em 1em; }
