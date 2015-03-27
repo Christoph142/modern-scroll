@@ -310,8 +310,9 @@
 </dialog>
 
 <dialog id="welcome">
-    <div class="content_area" data-i18n="get_trial_license">
+    <div class="content_area">
         <h4 data-i18n="thanks_for_installing"></h4>
+        <span data-i18n="get_trial_license"></span>
     </div>
     <div class="action_area">
         <button id="authorize" data-i18n="authorize"></button>
@@ -331,16 +332,6 @@
         <input type="text">
     </div>
     <div class="action_area"><br></div>
-</dialog>
-
-<dialog id="trial">
-    <div class="close"></div>
-    <div class="content_area" data-i18n="seven_days_trial">
-        <h4 data-i18n="all_set"></h4>
-    </div>
-    <div class="action_area">
-        <button class="hide_dialog" data-i18n="ok"></button>
-    </div>
 </dialog>
 
 <dialog id="trial_expired">
@@ -372,6 +363,17 @@
     </div>
     <div class="action_area">
         <button data-i18n="close" class="hide_dialog"></button>
+    </div>
+</dialog>
+
+<dialog id="all_set">
+    <div class="close"></div>
+    <div class="content_area">
+        <h4 data-i18n="all_set"></h4>
+        <span data-i18n="seven_days_trial"></span>
+    </div>
+    <div class="action_area">
+        <button class="hide_dialog" data-i18n="ok"></button>
     </div>
 </dialog>
 
