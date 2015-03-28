@@ -12,6 +12,7 @@
 	"content_scripts" :
 	[{
 		"matches"				: ["<all_urls>"],
+		"match_about_blank"		: true,
 		"js"					: ["includes/modern_scroll.js"],
 		"run_at"				: "document_start",
 		"all_frames"			: true
