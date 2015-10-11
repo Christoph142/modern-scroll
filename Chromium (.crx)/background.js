@@ -4,6 +4,7 @@ function update_settings(){ chrome.storage.sync.get( null, function(storage){
 	// standard settings:
 	"color" :				(!storage["color"]					? "#000000"	: storage["color"]),
 	"color_bg" :			(!storage["color_bg"]				? "#999999"	: storage["color_bg"]),
+	"auto_coloring" :		(!storage["auto_coloring"]			? "1"		: storage["auto_coloring"]),
 	"size" :				(!storage["size"]					? "8"		: storage["size"]),
 	"hover_size" :			(!storage["hover_size"]				? "12"		: storage["hover_size"]),
 	"border_radius" :		(!storage["border_radius"]			? "6"		: storage["border_radius"]),
