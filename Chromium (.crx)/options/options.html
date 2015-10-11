@@ -6,7 +6,6 @@
     <link rel="stylesheet" type="text/css" href="options.css">
     <link rel="icon" type="image/png" href="../images/contextmenu.png">
     
-    <script type="text/javascript" src="IAP.js"></script>
     <script type="text/javascript" src="prefs.js"></script>
     <script type="text/javascript" src="../includes/modern_scroll.js"></script>
 </head>
@@ -20,7 +19,7 @@
 </header>
 
 <section>
-	<fieldset class="full">
+	<fieldset>
     <h4 data-i18n="saved_sets_headline"></h4>
     <table><tr>
     	<td style="text-align:left;"><span data-i18n="save_set_as"></span> "<b contenteditable="true" id="save_set" data-i18n="new_set_name"></b>":<div id="save_set_info" class="i">i<div id="save_set_info_text" class="i_text"><span data-i18n="explanation_save_set"></span></div></div></td>
@@ -37,7 +36,7 @@
     	<td style="text-align:left;"><label for="color" data-i18n="color"></label>:</td>
         <td style="text-align:right;"><input type="color" id="color" name="color"></td>
     </tr><tr>
-    	<td style="text-align:left;"><label for="color_bg" data-i18n="color_bg"></label>:</td>
+        <td style="text-align:left;"><label for="color_bg" data-i18n="color_bg"></label>:</td>
         <td style="text-align:right;"><input type="color" id="color_bg" name="color_bg" value="#999999"></td>
     </tr><tr>
     	<td style="text-align:left;"><label for="size" data-i18n="size"></label>:</td>
@@ -130,7 +129,7 @@
     </table>
     </fieldset>
 
-    <fieldset class="full">
+    <fieldset>
     <h4 data-i18n="element_bars"></h4>
     <input type="checkbox" class="toggle" id="style_element_bars" name="style_element_bars" checked="checked"> <label for="style_element_bars" data-i18n="style_element_bars"></label>
     <div id="element_bars_info" class="i">i<div id="element_bars_info_text" class="i_text">
@@ -144,7 +143,7 @@
     </div>
     </fieldset>
 
-    <fieldset class="full">
+    <fieldset>
     <h4 data-i18n="superbar"></h4>
     <input type="checkbox" class="toggle" id="show_superbar" name="show_superbar"> <label for="show_superbar" data-i18n="show_superbar"></label>
     <div id="superbar_info" class="i">i<div id="superbar_info_text" class="i_text">
@@ -159,7 +158,7 @@
     </div>
     </fieldset>
     
-    <fieldset class="full">
+    <fieldset>
     <h4 data-i18n="buttons"></h4>
     <span data-i18n="show_buttons"></span><br>
     <input type="range" name="show_buttons" id="show_buttons" min="1" max="3" value="1" step="1" style="width:100%;">
@@ -186,7 +185,7 @@
     </div>
     </fieldset>
     
-    <fieldset class="full">
+    <fieldset>
     <h4 data-i18n="custom_scroll_functions"></h4>
     <span data-i18n="use_custom_functions"></span><div id="own_functions_info" class="i">i<div id="own_functions_info_text" class="i_text"><span data-i18n="explanation_custom_functions"></span></div></div>
     <table class="c"><tr>
@@ -251,12 +250,11 @@
     </tr></table>
     </fieldset>
     
-    <fieldset class="full">
+    <fieldset>
     <h4 data-i18n="external_interface_headline"></h4>
     <input type="checkbox" id="external_interface" name="external_interface"> <label for="external_interface" data-i18n="external_interface"></label><div id="external_interface_info" class="i">i<div id="external_interface_info_text" class="i_text"><span data-i18n="explanation_external_interface"></span></div></div>
     </fieldset>
     
-    <button id="get_more" class="button" data-i18n="get_more"></button>
     <a class="button" href="https://chrome.google.com/webstore/detail/modern-scroll/ejonaglbdpcfkgbcnidjlnjogfdgbofp/support" target="_blank" data-i18n="report_issue"></a>
     <a class="button" href="https://chrome.google.com/webstore/detail/modern-scroll/ejonaglbdpcfkgbcnidjlnjogfdgbofp/reviews" target="_blank" data-i18n="rate"></a>
     <a class="button" id="twitter" href="https://twitter.com/Christoph142" target="_blank" data-i18n="twitter"></a>
@@ -374,27 +372,6 @@
     </div>
     <div class="action_area">
         <button class="hide_dialog" data-i18n="ok"></button>
-    </div>
-</dialog>
-
-<dialog id="iaps">
-    <div class="close"></div>
-    <div class="content_area">
-        <h4 data-i18n="ms_can_do_more"></h4>
-        <span data-i18n="get_full_version"></span>
-        <ul>
-            <li data-i18n="boost_scrolling"></li>
-            <li data-i18n="adjustable_scrolling"></li>
-            <li data-i18n="style_bars_in_page"></li>
-            <li data-i18n="feature_superbar"></li>
-            <li data-i18n="feature_buttons"></li>
-            <li data-i18n="feature_interface"></li>
-            <li data-i18n="feature_sets"></li>
-            <li data-i18n="future_updates"></li>
-        </ul>
-    </div>
-    <div class="action_area">
-        <button class="hide_dialog" data-i18n="cancel"></button>
     </div>
 </dialog>
 

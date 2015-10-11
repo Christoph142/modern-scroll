@@ -26,7 +26,6 @@ function update_settings(){ chrome.storage.sync.get( null, function(storage){
 	
 	"contextmenu_show_when":(!storage["contextmenu_show_when"]	? "2"		: storage["contextmenu_show_when"]), // 1 = never, 2 = only over interface, 3 = always
 	
-	// full version's additional settings:
 	"style_element_bars" :				(!storage["style_element_bars"]				? "1"	: storage["style_element_bars"]),
 	"autohide_element_bars" :			(!storage["autohide_element_bars"]			? "0"	: storage["autohide_element_bars"]), // largely broken in Blink
 	
