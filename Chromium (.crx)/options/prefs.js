@@ -257,9 +257,16 @@ function localize()
 	var strings = document.querySelectorAll("[data-i18n]");
 	for(var i = 0; i < strings.length; i++)
 	{
-		if(strings[i].tagName === "IMG")	strings[i].title	  = getString(strings[i].dataset.i18n); // tooltips
-		else								strings[i].innerHTML += getString(strings[i].dataset.i18n);
+		if 		(strings[i].dataset.i18n === "open_url_in_chrome")	strings[i].innerHTML  = getString(strings[i].dataset.i18n).replace("@@extension_id", getString("@@extension_id"));
+		else if (strings[i].tagName === "IMG")						strings[i].title	  = getString(strings[i].dataset.i18n); // tooltips
+		else														strings[i].innerHTML += getString(strings[i].dataset.i18n);
 	}
+
+	// insert extension id in Chrome Web Store URLs:
+	var webstorelinks = document.querySelectorAll("a[href*='@@extension_id']");
+	for (var i = webstorelinks.length - 1; i >= 0; i--) {
+		webstorelinks[i].href = webstorelinks[i].href.replace("@@extension_id", getString("@@extension_id"));
+	};
 }
 function getString(string){	return chrome.i18n.getMessage(string).split("\n").join("<br>"); }
 
