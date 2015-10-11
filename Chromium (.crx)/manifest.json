@@ -1,11 +1,10 @@
 {	
 	"name"						: "modern scroll",
 	"description"				: "__MSG_description__",
-	"developer"					: {"name" : "Christoph142", "url" : "https://twitter.com/Christoph142"},
 	"homepage_url"				: "https://github.com/Christoph142/modern-scroll",
 	
 	"default_locale"			: "en",
-	"version"					: "3.1",
+	"version"					: "3.1.4",
 	"minimum_chrome_version"	: "37",
 	"icons"						: { "16": "images/contextmenu.png", "32": "images/contextmenu@2x.png", "64": "images/icon.png", "128": "images/icon@2x.png" },
 	
@@ -22,8 +21,10 @@
 	"options_ui"				: { "page" : "options/options.html", "chrome_style" : false, "open_in_tab" : true },
 	
 	"permissions"				: ["contextMenus", "storage", "identity", "https://www.googleapis.com/"],
+	"key"						: "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAovi8oH+tZED817nrM1BHg75ev9Q6ks42o4YWiqafaHwu65pmHXzkXMocuxwz+rMjsN6b7745Vs5ugdt4SRaW2vt7N5CK7NdxaO5TZyL6K1J3HJW+Bfc5EnenPuR0YqRNa+pps4eSQXfIgi9q8a3jt38bZwe4JltVCrc9G9b+FPwTaU2kvXdWeceN9jPFqrqjqxLjm/LL5nVlcgHnnu/rJn77z2TIWJEIlOVHx/CNsJzZ2deP48iZw20/2eXToCFO9XLME2Dll7PmmI5Q2I1tohEVKIJ/GRxyrmJC2+V6huWFezoMcj3YsVDVMRTqxoWJ8ofymgjxMwYtrsY8P8tGEwIDAQAB",
 	"oauth2" :
 	{
+		"client_id"				: "613678704092-m0fhsfl28mcdfqh99kp3bcujnobi33fa.apps.googleusercontent.com",
 		"scopes"				: [	"https://www.googleapis.com/auth/chromewebstore.readonly" ]
 	},
 	

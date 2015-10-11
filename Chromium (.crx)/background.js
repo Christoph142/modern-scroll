@@ -57,12 +57,101 @@ function update_settings(){ chrome.storage.sync.get( null, function(storage){
 	// general stuff:
 	"baseDevicePixelRatio" : 			window.devicePixelRatio, // for scaling
 
+	"user_token" : 						(!storage["user_token"]						? ""	: storage["user_token"]),
+	"license" : 						(!storage["license"]						? "none": storage["license"])
 	};
-	
+
+	getLicense(false);
+
 	chrome.extension.sendMessage( {"data" : "update_optionspage"} );
 }); }
 update_settings();
 
+function getLicense(interactive, token)
+{
+	if(!token){
+		getCurrentUserToken(interactive);
+		return;
+	}
+
+	var req = new XMLHttpRequest();
+	req.open("GET", "https://www.googleapis.com/chromewebstore/v1.1/userlicenses/" + chrome.runtime.id);
+	req.setRequestHeader("Authorization", "Bearer " + token);
+	req.onreadystatechange = function(){
+		if (req.readyState === 4){
+			if (req.status === 200){
+				verifyAndSaveLicense( JSON.parse(req.responseText) );
+				save_new_value("user_token", token); // token works -> cache it
+			}
+			else{
+				console.log("Didn't get valid license from server:", JSON.parse(req.responseText));
+				
+				if (interactive)  // transfer token: interactive + token -> options page is already open & no need to check stored license
+					chrome.extension.sendMessage( {"data" : "invalid_token"} );
+				else if (w.license !== "none"){
+					verifyAndSaveLicense( w.license );
+					console.log("Checking stored one instead.");
+				}
+				else console.log("No stored one either.");
+			}
+		}
+	}
+	req.send();
+}
+
+function getCurrentUserToken(interactive)
+{
+	 chrome.identity.getAuthToken({ "interactive": interactive }, function(token){
+		if (token) {
+			save_new_value("user_token", token);
+			chrome.extension.sendMessage( {"data" : "new_token", "token" : token} );
+			getLicense(false, token);
+		}
+		else {
+			var error = chrome.runtime.lastError;
+			console.log("Failed getting user token "+(interactive ? "interactively" : "silently")+":", error);
+
+			if (!isChrome()){
+				if(w.user_token === "")
+					chrome.tabs.create({ url : "options/options.html#transfer_token" }); // show dialog to make user transfer token from Chrome
+				else{
+					console.log("Using manually transferred user token instead.");
+					getLicense(false, w.user_token);
+				}
+			}
+			else if (!interactive) chrome.tabs.create({ url : "options/options.html#welcome" }); // show dialog to make user authorize modern scroll for Store
+		}
+	});
+}
+
+function verifyAndSaveLicense(license)
+{
+	var oldLicenseState = w.license.accessLevel;
+	
+	if (license.result && license.accessLevel === "FULL"){
+		console.log("Fully paid & properly licensed.");
+		save_new_value("license", license);
+	}
+	else if (license.result && license.accessLevel === "FREE_TRIAL"){
+		var licenseAge = Date.now() - parseInt(license.createdTime, 10);
+		if (licenseAge <= 7 * 1000*60*60*24 /*days*/) {
+			console.log("Free trial:", licenseAge/1000/60/60/24, "of 7 days");
+			save_new_value("license", license);
+		}
+		else{
+			console.log("Trial expired. License issued", licenseAge/1000/60/60/24, "days ago.");
+			license.accessLevel = "TRIAL_EXPIRED";
+			save_new_value("license", license);
+			chrome.tabs.create({ url : "options/options.html#trial_expired" });
+		}
+	}
+	else if (license.result && license.accessLevel === "TRIAL_EXPIRED"){
+		console.log("Trial expired. License issued", licenseAge/1000/60/60/24, "days ago.");
+		chrome.tabs.create({ url : "options/options.html#trial_expired" });
+	}
+
+	if(w.license.accessLevel !== oldLicenseState) chrome.extension.sendMessage( {"data" : "update_licensing"} );
+}
 
 function save_new_value(key, value)
 {
@@ -73,14 +162,20 @@ function save_new_value(key, value)
 	
 	chrome.extension.sendMessage({data:"update_optionspage"});
 }
-chrome.runtime.onMessage.addListener( function(request, sender, sendResponse){
-	if		(request.data === "settings") 			sendResponse(w);
+
+chrome.runtime.onMessage.addListener( function(request, sender, sendResponse)
+{
+	if (request.data === "settings")
+	{
+		if (w.license !== "none" && w.license.accessLevel !== "TRIAL_EXPIRED")	sendResponse(w);
+		else																	sendResponse(false);
+	}
 	else if (request.data === "update_settings") 	update_settings(); // will request options page update when finished
 	else if	(request.data === "show_contextmenu") 	show_contextmenu(request.string);
 	else if	(request.data === "hide_contextmenu") 	hide_contextmenu();
 });
 
-// zoom API currently only available in Dev channel:
+// Zoom API = Chrome 38+
 if(chrome.tabs.onZoomChange) chrome.tabs.onZoomChange.addListener( function(zoomInfo){
 	w.baseDevicePixelRatio = window.devicePixelRatio;
 	//chrome.tabs.sendMessage(zoomInfo.tabId, { "data" : "zoomed", "zoom" : zoomInfo.newZoomFactor });
@@ -106,4 +201,10 @@ function hide_contextmenu()
 {
 	if(!contextmenu) return;
 	chrome.contextMenus.remove("ms_contextmenu"); contextmenu = false;
+}
+
+function isChrome()
+{
+	if (navigator.appVersion.indexOf("OPR") > 0 || navigator.appVersion.indexOf("Vivaldi") > 0 || navigator.vendor === "Yandex")	return false;
+	else																															return true;
 }
