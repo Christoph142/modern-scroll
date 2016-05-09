@@ -57,18 +57,18 @@ function saveButtonPosition(e){ save_new_value("buttonposition", e.detail); }
 
 function restorePrefs()
 {
-	var storage = chrome.extension.getBackgroundPage().w;
+	let storage = chrome.extension.getBackgroundPage().w;
 	chrome.storage.sync.get("saved_sets", function(s){
 		storage.saved_sets = s.saved_sets;
 		
-		var selects = document.querySelectorAll("select");
-		for(var i=0; i<selects.length; i++){
+		let selects = document.querySelectorAll("select");
+		for(let i=0; i<selects.length; i++){
 			if(!storage[selects[i].id]) continue;
 			if(selects[i].id === "saved_sets")
 			{
 				if(selects[i].options.length === 1) // prevent attaching sets multiple times on update
 				{
-					for(var option in storage.saved_sets){
+					for(let option in storage.saved_sets){
 						selects[i].options[selects[i].options.length] = new Option(option, option); // Option(name, value)
 					}
 				}
@@ -78,8 +78,8 @@ function restorePrefs()
 		}
 	});
 	
-	var inputs = document.querySelectorAll("input");	
-	for(var i=0; i<inputs.length; i++){
+	let inputs = document.querySelectorAll("input");	
+	for(let i=0; i<inputs.length; i++){
 		if(!storage[inputs[i].id]) continue;
 		if(inputs[i].type==="checkbox")	inputs[i].checked = (storage[inputs[i].id] === "0" ? false : true);
 		else							inputs[i].value = storage[inputs[i].id];
@@ -93,11 +93,11 @@ function restorePrefs()
 	
 	document.querySelector("#border_radius").max = Math.round(Math.max(document.querySelector("#size").value, document.querySelector("#hover_size").value)/2);
 	
-	var sliders = document.querySelectorAll(".slider_values");
-	for(var i = 0; i < sliders.length; i++) // display slider values:
+	let sliders = document.querySelectorAll(".slider_values");
+	for(let i = 0; i < sliders.length; i++) // display slider values:
 	{
-		var which_value = sliders[i].id.split(".")[1];
-		var raw_value = (storage[which_value] ? storage[which_value] : document.getElementById(which_value).value);
+		let which_value = sliders[i].id.split(".")[1];
+		let raw_value = (storage[which_value] ? storage[which_value] : document.getElementById(which_value).value);
 		sliders[i].innerHTML = (document.getElementById(which_value).dataset.defaultvalue ? Math.round(100*raw_value/document.getElementById(which_value).dataset.defaultvalue) : raw_value);
 	}	
 	
@@ -134,9 +134,9 @@ function add_page_handling()
 	// ##### info bubbles: #####
 	// #########################
 
-	var info_bubbles = document.querySelectorAll(".i");
+	let info_bubbles = document.querySelectorAll(".i");
 	
-	for(var i=0; i<info_bubbles.length; i++) // position top/bottom:
+	for(let i=0; i<info_bubbles.length; i++) // position top/bottom:
 	{
 		info_bubbles[i].addEventListener("mouseover", function(){
 			window.clearTimeout(bubble_setback);
@@ -151,8 +151,8 @@ function add_page_handling()
 	// ### dialogs: ###
 	// ################
 
-	var dialog_close_buttons = document.querySelectorAll("dialog .close, dialog .hide_dialog");
-	for(var i = 0; i < dialog_close_buttons.length; i++) dialog_close_buttons[i].addEventListener("click", hideDialog, false);
+	let dialog_close_buttons = document.querySelectorAll("dialog .close, dialog .hide_dialog");
+	for(let i = 0; i < dialog_close_buttons.length; i++) dialog_close_buttons[i].addEventListener("click", hideDialog, false);
 
 	document.querySelector("#confirm_overwrite_button").addEventListener("click", function(){ save_set(true); }, false);
 	document.querySelector("#confirm_delete_button").addEventListener("click", delete_set, false);
@@ -165,15 +165,15 @@ function add_page_handling()
 	// token transferring:
 	if(isChrome()) return;
 
-	var transfer_fields = document.querySelectorAll("#transfer_token input, #transferred_trial_expired input");
-	for (var i = 0; i < transfer_fields.length; i++){
+	let transfer_fields = document.querySelectorAll("#transfer_token input, #transferred_trial_expired input");
+	for (let i = 0; i < transfer_fields.length; i++){
 		transfer_fields[i].addEventListener("change", try_to_transfer_license, false);
 		transfer_fields[i].addEventListener("keyup", try_to_transfer_license, false);
 	}
 }
-var bubble_setback; // timeout for info bubbles
+let bubble_setback; // timeout for info bubbles
 
-var last_token; // remember token to prevent multiple requests for same one
+let last_token; // remember token to prevent multiple requests for same one
 function try_to_transfer_license(){
 	chrome.runtime.getBackgroundPage( function(bg){
 		if(document.querySelector("dialog[open] input").value.length < 10 || document.querySelector("dialog[open] input").value === last_token) return;
@@ -187,7 +187,7 @@ function confirm_save_set(){
 		return;
 	}
 	
-	for(var option = 0; option < document.querySelector("#saved_sets").options.length; option++){
+	for(let option = 0; option < document.querySelector("#saved_sets").options.length; option++){
 		if(document.querySelector("#saved_sets").options[option].value === document.querySelector("#save_set").innerHTML){
 			showDialog("confirm_overwrite");
 			return;
@@ -201,7 +201,7 @@ function save_set(overwrite){
 		if(!bg.w.saved_sets) bg.w.saved_sets = {};
 		bg.w.saved_sets[document.querySelector("#save_set").innerHTML] = {};
 		
-		for(var setting in bg.w){
+		for(let setting in bg.w){
 			if(setting === "saved_sets") continue;
 			bg.w.saved_sets[document.querySelector("#save_set").innerHTML][setting] = bg.w[setting];
 		}
@@ -229,7 +229,7 @@ function delete_set(){
 		delete bg.w.saved_sets[document.querySelector("#saved_sets").value];
 		chrome.storage.sync.set( {"saved_sets" : bg.w.saved_sets} );
 		
-		for(var i in document.querySelector("#saved_sets").options){
+		for(let i in document.querySelector("#saved_sets").options){
 			if(document.querySelector("#saved_sets").options[i].value === document.querySelector("#saved_sets").value)
 			{
 				document.querySelector("#saved_sets").remove(i);
@@ -258,8 +258,8 @@ function load_set(){
 		}
 		else
 		{
-			var temp_obj = {};
-			for(var setting in sets[document.querySelector("#saved_sets").value]){
+			let temp_obj = {};
+			for(let setting in sets[document.querySelector("#saved_sets").value]){
 				temp_obj[setting] = sets[document.querySelector("#saved_sets").value][setting];
 			}
 			chrome.storage.sync.set(temp_obj);
@@ -270,8 +270,8 @@ function load_set(){
 
 function localize()
 {
-	var strings = document.querySelectorAll("[data-i18n]");
-	for(var i = 0; i < strings.length; i++)
+	let strings = document.querySelectorAll("[data-i18n]");
+	for(let i = 0; i < strings.length; i++)
 	{
 		if 		(strings[i].dataset.i18n === "open_url_in_chrome")	strings[i].innerHTML  = getString(strings[i].dataset.i18n).replace("@@extension_id", getString("@@extension_id"));
 		else if (strings[i].tagName === "IMG")						strings[i].title	  = getString(strings[i].dataset.i18n); // tooltips
@@ -279,8 +279,8 @@ function localize()
 	}
 
 	// insert extension id in Chrome Web Store URLs:
-	var webstorelinks = document.querySelectorAll("a[href*='@@extension_id']");
-	for (var i = webstorelinks.length - 1; i >= 0; i--) {
+	let webstorelinks = document.querySelectorAll("a[href*='@@extension_id']");
+	for (let i = webstorelinks.length - 1; i >= 0; i--) {
 		webstorelinks[i].href = webstorelinks[i].href.replace("@@extension_id", getString("@@extension_id"));
 	};
 }
@@ -296,7 +296,7 @@ chrome.extension.onMessage.addListener(function(msg){
 		adjustUIAccordingToLicense();
 	}
 	else if(msg.data === "invalid_token"){
-		var token_field = document.querySelector("#transfer_token[open] input, #transferred_trial_expired[open] input");
+		let token_field = document.querySelector("#transfer_token[open] input, #transferred_trial_expired[open] input");
 		token_field.placeholder = getString("invalid_token");
 		token_field.value = "";
 		token_field.required = true;

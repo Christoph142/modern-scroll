@@ -2,12 +2,12 @@
 
 "use strict";
 
-var timeout;				// scrolling animation
-var w = {};					// settings -> updated when tab gets activated
-var vbar;					// \ pass by reference!
-var hbar;					// /
-var ms_shadow;				// shadow DOM root
-//var winHeight;
+let timeout;				// scrolling animation
+let w = {};					// settings -> updated when tab gets activated
+let vbar;					// \ pass by reference!
+let hbar;					// /
+let ms_shadow;				// shadow DOM root
+//let winHeight;
 
 (function check_if_tab_needs_bars()
 {
@@ -44,7 +44,7 @@ function add_ms()
 {
 	if(document.getElementById("modern_scroll")) return;
 	
-	var ms_container = document.createElement("div");
+	let ms_container = document.createElement("div");
 	ms_container.id = "modern_scroll";
 	ms_shadow = ( ms_container.createShadowRoot ? ms_container.createShadowRoot() : ms_container.webkitCreateShadowRoot() );
 	try{ document.documentElement.appendChild(ms_container); }catch(e){ document.body.appendChild(ms_container); }
@@ -115,14 +115,14 @@ function remove_ms()
 
 function update_ms(){ remove_ms(); add_ms(); }
 function add_or_remove_ms(){
-	var hidden = document.hidden || document.webkitHidden;
+	let hidden = document.hidden || document.webkitHidden;
 	if(hidden) 	remove_ms();
 	else 		add_ms();
 }
 
 function inject_css()
 {
-	var ms_style = 
+	let ms_style = 
 		":host, #ms_v_container, #ms_h_container, #ms_vbar_bg, #ms_hbar_bg, #ms_vbar, #ms_hbar, #ms_superbar, #ms_page_cover, #ms_upbutton, #ms_downbutton, #ms_middleclick_cursor{ position:fixed; z-index:2147483647; border:none; padding:0; margin:0; display:none; background:none; }\n\n"+
 		
 		/* set values (most general first - can be overwritten by following rules): */
@@ -171,7 +171,7 @@ function inject_css()
 	
 	if(ms_shadow.querySelector("style")) ms_shadow.querySelector("style").innerHTML = ms_style;
 	else{
-		var style = document.createElement("style");
+		let style = document.createElement("style");
 		style.setAttribute("type","text/css");
 		style.innerHTML = ms_style;
 		ms_shadow.appendChild(style);
@@ -181,7 +181,7 @@ function inject_css()
 	if(w.style_element_bars === "0" && w.fullscreen_only === "1") return;
 	
 	/* hide page's default scroll bars: */
-	var global_ms_style = (w.fullscreen_only === "0" ? "html::-webkit-scrollbar, body::-webkit-scrollbar{ display:none !important; width:0 !important; height:0 !important; }\n" : "");
+	let global_ms_style = (w.fullscreen_only === "0" ? "html::-webkit-scrollbar, body::-webkit-scrollbar{ display:none !important; width:0 !important; height:0 !important; }\n" : "");
 
 	if(w.style_element_bars === "1"){ global_ms_style +=
 		(w.autohide_element_bars === "1" ? "body *:not(:hover):not(:focus)::-webkit-scrollbar{ display:none !important; width:0 !important; height:0 !important; }\n" : "")+
@@ -196,7 +196,7 @@ function inject_css()
 		document.getElementById("ms_style").innerHTML = global_ms_style;
 	}
 	else{ // when website is initially loaded
-		var global_style = document.createElement("style");
+		let global_style = document.createElement("style");
 		global_style.setAttribute("type","text/css");
 		global_style.id = "ms_style";
 		global_style.innerHTML = global_ms_style;
@@ -206,7 +206,7 @@ function inject_css()
 
 function add_bars()
 {
-	var bars_container = document.createElement("div");
+	let bars_container = document.createElement("div");
 	bars_container.id = "modern_scroll_bars";
 	bars_container.innerHTML =
 		"<div id='ms_page_cover'></div>\n\
@@ -279,8 +279,8 @@ function add_functionality_2_bars(){
 	window.addEventListener("scroll", reposition_bars, false);
 }
 
-var DOM_observer = new MutationObserver(check_dimensions);
-var height_observer = new MutationObserver(check_dimensions); // Disqus
+let DOM_observer = new MutationObserver(check_dimensions);
+let height_observer = new MutationObserver(check_dimensions); // Disqus
 function add_dimension_checkers()
 {
 	if(document.readyState !== "complete")
@@ -306,7 +306,7 @@ function add_dimension_checkers()
 	check_dimensions();
 }
 
-var dimension_check_timeout;
+let dimension_check_timeout;
 function check_dimensions_after_click()
 {
 	if(window.event.target.id.substr(0,3) === "ms_") return;
@@ -399,11 +399,11 @@ function send_contextmenu_show_msg_to_bg(){ chrome.runtime.sendMessage({data:"sh
 function send_contextmenu_hide_msg_to_bg(){ chrome.runtime.sendMessage({data:"hide_contextmenu"}); }
 
 function check_if_element_is_scrollable(){	last_clicked_element_is_scrollable = is_scrollable(window.event.target, 2) ? true : false; }
-var isFullscreen;
+let isFullscreen;
 function check_dimensions()
 {
-	var scrollMaxX_old = window.scrollMaxX;
-	var scrollMaxY_old = window.scrollMaxY;
+	let scrollMaxX_old = window.scrollMaxX;
+	let scrollMaxY_old = window.scrollMaxY;
 	
 	set_new_scrollMax_values();
 	
@@ -414,8 +414,8 @@ function check_dimensions()
 }
 function set_new_scrollMax_values()
 {
-	var new_scrollWidth = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth);
-	var new_scrollHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+	let new_scrollWidth = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth);
+	let new_scrollHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
 	
 	window.scrollMaxX = (new_scrollWidth > window.innerWidth+1 &&
 						 window.getComputedStyle(document.documentElement).overflowX !== "hidden" &&
@@ -429,7 +429,7 @@ function set_new_scrollMax_values()
 
 function scaleUI(){
 	window.devicePixelRatio_old = window.devicePixelRatio;
-	var scaleFactor = w.baseDevicePixelRatio / window.devicePixelRatio;
+	let scaleFactor = w.baseDevicePixelRatio / window.devicePixelRatio;
 	//ms_shadow.getElementById("ms_vbar_bg").style.height = "calc("+100/scaleFactor+"% - "+2*parseInt(w.gap)+"px)";
 	//ms_shadow.getElementById("ms_hbar_bg").style.width = "calc("+100/scaleFactor+"% - "+(2*parseInt(w.gap)+parseInt(w.hover_size))+"px)";
 	ms_shadow.getElementById("ms_v_container").style.transform = ms_shadow.getElementById("ms_v_container").style.webkitTransform = "scale("+scaleFactor+",1)";
@@ -486,8 +486,8 @@ function resize_vbar()
 		return;
 	}
 
-	var vbar_height_before = vbar.style.height;
-	var vbar_new_height = Math.max(Math.round(window.innerHeight/(Math.max(document.documentElement.scrollHeight,document.body.scrollHeight)/window.innerHeight)), 30+2*w.gap);
+	let vbar_height_before = vbar.style.height;
+	let vbar_new_height = Math.max(Math.round(window.innerHeight/(Math.max(document.documentElement.scrollHeight,document.body.scrollHeight)/window.innerHeight)), 30+2*w.gap);
 	vbar.style.height = vbar_new_height+"px";
 	
 	if(vbar.style.display !== "inline"){
@@ -512,8 +512,8 @@ function resize_hbar()
 			ms_shadow.getElementById("ms_h_container").style.display = ms_shadow.getElementById("ms_hbar_bg").style.display = hbar.style.display = null;
 		return;
 	}
-	var hbar_width_before = hbar.style.width;
-	var hbar_new_width = Math.max(Math.round(window.innerWidth/(Math.max(document.documentElement.scrollWidth,document.body.scrollWidth)/window.innerWidth)), 30+2*w.gap);
+	let hbar_width_before = hbar.style.width;
+	let hbar_new_width = Math.max(Math.round(window.innerWidth/(Math.max(document.documentElement.scrollWidth,document.body.scrollWidth)/window.innerWidth)), 30+2*w.gap);
 	hbar.style.width = hbar_new_width+"px";
 	
 	if(hbar.style.display !== "inline"){
@@ -565,13 +565,13 @@ function drag_v()
 	window.event.stopPropagation();			// prevent bubbling (e.g. prevent drag being triggered on separately opened images)
 	
 	drag_mode("v_container");
-	var dragy = window.event.clientY - parseInt(vbar.style.top);
+	let dragy = window.event.clientY - parseInt(vbar.style.top);
 	
 	document.addEventListener("mousemove", drag_v_move, true);
 	function drag_v_move()
 	{
-		var posy = window.event.clientY;
-		var new_top = Math.round((posy - dragy)<=0? 0 : ((posy - dragy)>=window.innerHeight-vbar.offsetHeight?window.innerHeight-vbar.offsetHeight : (posy - dragy)));
+		let posy = window.event.clientY;
+		let new_top = Math.round((posy - dragy)<=0? 0 : ((posy - dragy)>=window.innerHeight-vbar.offsetHeight?window.innerHeight-vbar.offsetHeight : (posy - dragy)));
 		vbar.style.top = new_top+"px";
 		window.scroll(window.pageXOffset, Math.round(new_top/(window.innerHeight-vbar.offsetHeight)*window.scrollMaxY));
 	}
@@ -591,18 +591,18 @@ function drag_h()
 	window.event.stopPropagation();			// prevent bubbling (e.g. prevent drag being triggered on separately opened images)
 	
 	drag_mode("h_container");
-	var dragx = window.event.clientX - parseInt(hbar.style.left);
+	let dragx = window.event.clientX - parseInt(hbar.style.left);
 	
 	document.addEventListener("mousemove", drag_h_move, true);
 	function drag_h_move()
 	{
-		var posx = window.event.clientX;
+		let posx = window.event.clientX;
 		
 		if(w.vbar_at_left=="0"){
-			var new_left = Math.round((posx - dragx)<=0 ? 0 : ((posx - dragx)>=window.innerWidth-hbar.offsetWidth-w.hover_size ? window.innerWidth-hbar.offsetWidth-w.hover_size : posx-dragx));
+			let new_left = Math.round((posx - dragx)<=0 ? 0 : ((posx - dragx)>=window.innerWidth-hbar.offsetWidth-w.hover_size ? window.innerWidth-hbar.offsetWidth-w.hover_size : posx-dragx));
 			hbar.style.left = new_left+"px";
 		}else{
-			var new_left = Math.round((posx - dragx)<=parseInt(w.hover_size) ? 0 : ((posx - dragx)>=window.innerWidth-hbar.offsetWidth ? window.innerWidth-hbar.offsetWidth-w.hover_size : posx-dragx-w.hover_size));
+			let new_left = Math.round((posx - dragx)<=parseInt(w.hover_size) ? 0 : ((posx - dragx)>=window.innerWidth-hbar.offsetWidth ? window.innerWidth-hbar.offsetWidth-w.hover_size : posx-dragx-w.hover_size));
 			hbar.style.left = new_left+parseInt(w.hover_size)+"px";
 		}
 		window.scroll(Math.round((new_left/(window.innerWidth-hbar.offsetWidth-w.hover_size)*window.scrollMaxX)), window.pageYOffset);
@@ -626,26 +626,26 @@ function drag_super()
 	else show_bars();
 	
 	drag_mode("superbar");
-	var superbar = ms_shadow.getElementById("ms_superbar");
-	var dragy = window.event.clientY - parseInt(superbar.style.top);
-	var dragx = window.event.clientX - parseInt(superbar.style.left);
+	let superbar = ms_shadow.getElementById("ms_superbar");
+	let dragy = window.event.clientY - parseInt(superbar.style.top);
+	let dragx = window.event.clientX - parseInt(superbar.style.left);
 	
 	document.addEventListener("mousemove", drag_super_move, true);
 	function drag_super_move()
 	{
 		superbar.style.display = "inline";
-		var posx = window.event.clientX;
-		var posy = window.event.clientY;
+		let posx = window.event.clientX;
+		let posy = window.event.clientY;
 		
-		var new_top = Math.round((posy - dragy)<=0? 0 : ((posy - dragy)>=window.innerHeight-superbar.offsetHeight?window.innerHeight-superbar.offsetHeight : (posy - dragy)));
+		let new_top = Math.round((posy - dragy)<=0? 0 : ((posy - dragy)>=window.innerHeight-superbar.offsetHeight?window.innerHeight-superbar.offsetHeight : (posy - dragy)));
 		superbar.style.top =  new_top+"px";
 		
 		if(w.show_superbar_minipage === "0"){
 			if(w.vbar_at_left === "0"){
-				var new_left = Math.round(((posx - dragx)<=0 ? 0 : ((posx - dragx)>=window.innerWidth-superbar.offsetWidth-w.hover_size ? window.innerWidth-superbar.offsetWidth-w.hover_size : posx-dragx)));
+				let new_left = Math.round(((posx - dragx)<=0 ? 0 : ((posx - dragx)>=window.innerWidth-superbar.offsetWidth-w.hover_size ? window.innerWidth-superbar.offsetWidth-w.hover_size : posx-dragx)));
 				superbar.style.left = new_left+"px";
 			}else{
-				var new_left = Math.round((posx - dragx)<=parseInt(w.hover_size) ? 0 : ((posx - dragx)>=window.innerWidth-superbar.offsetWidth ? window.innerWidth-superbar.offsetWidth-w.hover_size : posx-dragx-w.hover_size));
+				let new_left = Math.round((posx - dragx)<=parseInt(w.hover_size) ? 0 : ((posx - dragx)>=window.innerWidth-superbar.offsetWidth ? window.innerWidth-superbar.offsetWidth-w.hover_size : posx-dragx-w.hover_size));
 				superbar.style.left = new_left+parseInt(w.hover_size)+"px";
 			}
 			window.scroll(new_left/(window.innerWidth-superbar.offsetWidth-w.hover_size)*window.scrollMaxX, parseInt(superbar.style.top)/(window.innerHeight-superbar.offsetHeight)*window.scrollMaxY);
@@ -678,14 +678,14 @@ function drag_super()
 
 function reposition_bars()
 {
-	var vbar_top_before = vbar.style.top;
-	var hbar_left_before = hbar.style.left;
+	let vbar_top_before = vbar.style.top;
+	let hbar_left_before = hbar.style.left;
 	
 	if(vbar.style.display === "inline")
 		vbar.style.top = Math.round(window.pageYOffset/window.scrollMaxY*(window.innerHeight-vbar.offsetHeight))+"px";
 	if(hbar.style.display === "inline")
 	{
-		var left = Math.round(window.pageXOffset/window.scrollMaxX*(window.innerWidth-w.hover_size-hbar.offsetWidth));
+		let left = Math.round(window.pageXOffset/window.scrollMaxX*(window.innerWidth-w.hover_size-hbar.offsetWidth));
 		hbar.style.left = left+(w.vbar_at_left === "1" ? parseInt(w.hover_size) : 0)+"px";
 	}
 	
@@ -705,7 +705,7 @@ function reposition_bars()
 	hide_bars();
 }
 
-var t; // timeout
+let t; // timeout
 function scroll_bg_v()
 {
 	window.event.preventDefault();		// prevent focus-loss in site
@@ -781,7 +781,7 @@ function show_bar(whichone)
 	ms_shadow.getElementById("ms_"+whichone+"bar").style.transition = "opacity 0s 0s";
 	ms_shadow.getElementById("ms_"+whichone+"bar").style.opacity = w.opacity/100;
 }
-var hide_timeout;
+let hide_timeout;
 function hide_bar(whichone)
 {
 	hide_timeout = window.setTimeout(function(){ // set timeout to prevent bar from not showing up at all
@@ -812,15 +812,15 @@ function add_buttons()
 {
 	if(w.show_buttons === "1") return;
 	
-	var upbutton = document.createElement("div");
+	let upbutton = document.createElement("div");
 	upbutton.id = "ms_upbutton";
 	upbutton.addEventListener("mousedown", function(){ handle_button("up"); }, true);
 
-	var downbutton = document.createElement("div");
+	let downbutton = document.createElement("div");
 	downbutton.id = "ms_downbutton";
 	downbutton.addEventListener("mousedown", function(){ handle_button("down"); }, true);
 	
-	var button_container = document.createElement("div");
+	let button_container = document.createElement("div");
 	button_container.id = "modern_scroll_buttons";
 	
 	button_container.appendChild(upbutton);
@@ -837,9 +837,9 @@ function handle_button(whichone)
 	if(window.event.which !== 1) return;	// if it's not the left mouse button
 	if(document.URL.substr(0,19) !== "chrome-extension://") window.event.stopPropagation(); // prevent bubbling (e.g. prevent drag being triggered on separately opened images); provide event in options page (to save dragged button position)
 	
-	var button = ms_shadow.getElementById("ms_"+whichone+"button");
-	var otherbutton = ms_shadow.getElementById("ms_"+(whichone==="up"?"down":"up")+"button");
-	var x_start = window.event.clientX - Math.floor(button.style.left?parseInt(button.style.left):w.buttonposition/100*window.innerWidth);
+	let button = ms_shadow.getElementById("ms_"+whichone+"button");
+	let otherbutton = ms_shadow.getElementById("ms_"+(whichone==="up"?"down":"up")+"button");
+	let x_start = window.event.clientX - Math.floor(button.style.left?parseInt(button.style.left):w.buttonposition/100*window.innerWidth);
 	
 	document.addEventListener("mouseup", handle_button_click, true);
 	document.addEventListener("mousemove", handle_button_drag, true);
@@ -854,7 +854,7 @@ function handle_button(whichone)
 
 	function handle_button_drag()
 	{
-		var posx = window.event.clientX;
+		let posx = window.event.clientX;
 		button.style.left = otherbutton.style.left = ((posx - x_start)<=-50? -50 : ((posx - x_start)>=window.innerWidth+50-button.offsetWidth?window.innerWidth+50-button.offsetWidth : (posx - x_start))) + "px";
 		
 		if(document.querySelector(".dragged_button")) return; // set up only once:
@@ -879,7 +879,7 @@ function handle_button(whichone)
 	}
 }
 
-var button_timeout;
+let button_timeout;
 function show_or_hide_buttons()
 {
 	window.clearTimeout(button_timeout);
@@ -898,9 +898,9 @@ function show_or_hide_buttons()
 // ######## scrolling functions: ########
 // ######################################
 
-var scroll_velocity;
-var scroll_timeout_id_x; var by_x = 0;
-var scroll_timeout_id_y; var by_y = 0;
+let scroll_velocity;
+let scroll_timeout_id_x; let by_x = 0;
+let scroll_timeout_id_y; let by_y = 0;
 
 /*function ms_scrollTo(x, y){
 	x = x - window.pageXOffset;
@@ -994,8 +994,8 @@ function ms_scroll_start_x()
 	ms_scroll_inner_x(Date.now());
 	function ms_scroll_inner_x(lastTick)
 	{
-		var curTick = Date.now();
-		var scrollamount = (curTick - lastTick) * scroll_velocity;
+		let curTick = Date.now();
+		let scrollamount = (curTick - lastTick) * scroll_velocity;
 		
 		if(by_x < 0){ scrollamount = -scrollamount; if(scrollamount < by_x) scrollamount = by_x; }
 		else		{								if(scrollamount > by_x) scrollamount = by_x; }
@@ -1024,8 +1024,8 @@ function ms_scroll_start_y()
 	ms_scroll_inner_y(Date.now());
 	function ms_scroll_inner_y(lastTick)
 	{
-		var curTick = Date.now();
-		var scrollamount = (curTick - lastTick) * scroll_velocity;
+		let curTick = Date.now();
+		let scrollamount = (curTick - lastTick) * scroll_velocity;
 		
 		if(by_y < 0){ scrollamount = -scrollamount; if(scrollamount < by_y) scrollamount = by_y; }
 		else		{								if(scrollamount > by_y) scrollamount = by_y; }
@@ -1053,9 +1053,9 @@ function ms_scroll_end(direction)
 	window.addEventListener("scroll", reposition_bars, false);
 }
 
-var last_clicked_element_is_scrollable;
-//var scroll_start_time;
-//var test = 0;
+let last_clicked_element_is_scrollable;
+//let scroll_start_time;
+//let test = 0;
 function arrowkeyscroll(e)
 {
 	if(e.which < 37 || e.which > 40 || modifierkey_pressed(e) || target_is_input(e)) return;
@@ -1121,7 +1121,7 @@ function arrowkeyscroll(e)
 		// CSS scrolling:
 		/*if(test === 1)
 		{
-			var scrollamount = (Date.now()-scroll_start_time)*w.keyscroll_velocity;
+			let scrollamount = (Date.now()-scroll_start_time)*w.keyscroll_velocity;
 			document.body.style.marginTop = null;
 			window.scrollBy(0,(e.which===40?scrollamount:-scrollamount));
 			document.body.style.transition = null;
@@ -1146,28 +1146,28 @@ function arrowkeyscroll(e)
 	
 	function arrowkeyscroll_down(lastTick)
 	{
-		var curTick = Date.now();
+		let curTick = Date.now();
 		window.scrollBy(0, (curTick - lastTick)*w.keyscroll_velocity);
 		vbar.style.top = (window.pageYOffset/window.scrollMaxY*(window.innerHeight-parseInt(vbar.style.height)))+"px";
 		scroll_timeout_id_y = window.requestAnimationFrame( function(){ arrowkeyscroll_down(curTick); } );
 	}
 	function arrowkeyscroll_up(lastTick)
 	{
-		var curTick = Date.now();
+		let curTick = Date.now();
 		window.scrollBy(0, (lastTick - curTick)*w.keyscroll_velocity);
 		vbar.style.top = (window.pageYOffset/window.scrollMaxY*(window.innerHeight-parseInt(vbar.style.height)))+"px";
 		scroll_timeout_id_y = window.requestAnimationFrame( function(){ arrowkeyscroll_up(curTick); } );
 	}
 	function arrowkeyscroll_right(lastTick)
 	{
-		var curTick = Date.now();
+		let curTick = Date.now();
 		window.scrollBy((curTick - lastTick)*w.keyscroll_velocity, 0);
 		hbar.style.left = window.pageXOffset/window.scrollMaxX*(window.innerWidth-w.hover_size-parseInt(hbar.style.width))+(w.vbar_at_left === "1" ? parseInt(w.hover_size) : 0)+"px";
 		scroll_timeout_id_x = window.requestAnimationFrame( function(){ arrowkeyscroll_right(curTick); } );
 	}
 	function arrowkeyscroll_left(lastTick)
 	{
-		var curTick = Date.now();
+		let curTick = Date.now();
 		window.scrollBy((lastTick - curTick)*w.keyscroll_velocity, 0);
 		hbar.style.left = window.pageXOffset/window.scrollMaxX*(window.innerWidth-w.hover_size-parseInt(hbar.style.width))+(w.vbar_at_left === "1" ? parseInt(w.hover_size) : 0)+"px";
 		scroll_timeout_id_x = window.requestAnimationFrame( function(){ arrowkeyscroll_left(curTick); } );
@@ -1176,7 +1176,7 @@ function arrowkeyscroll(e)
 
 function otherkeyscroll()
 {
-	var e = window.event;
+	let e = window.event;
 	if(e.which > 32 && e.which < 37 && !modifierkey_pressed(e) && !target_is_input(e))
 	{
 		stopEvent();
@@ -1223,7 +1223,7 @@ function mousescroll_x(){
 }*/
 
 function mousescroll_y(){
-	var e = window.event;
+	let e = window.event;
 	if(e.wheelDeltaY === 0 || is_scrollable(e.target, (e.wheelDeltaY < 0 ? 1 : 0)) || modifierkey_pressed(e)) return;
 	stopEvent();
 	
@@ -1232,13 +1232,13 @@ function mousescroll_y(){
 	//element.scrollTop -= window.event.wheelDeltaY;
 }
 /*function mousescroll_y_direct(){
-	var e = window.event;
+	let e = window.event;
 	if(e.wheelDeltaY === 0 || is_scrollable(e.target, (e.wheelDeltaY < 0 ? 1 : 0)) || modifierkey_pressed(e)) return;
 	stopEvent();
 	window.scrollBy(0,-(e.wheelDeltaY > 120 ? 120 : (e.wheelDeltaY < -120 ? -120 : e.wheelDeltaY)));
 }*/
 
-var scroll_timeout_id_middlebutton = null;
+let scroll_timeout_id_middlebutton = null;
 function middlebuttonscroll()
 {
 	if(window.event.button !== 1 || isLink(window.event.target)) return; // only scroll wheel / middle button clicks
@@ -1250,14 +1250,14 @@ function middlebuttonscroll()
 	ms_shadow.getElementById("ms_middleclick_cursor").style.left = (window.event.x-27)+"px";
 	ms_shadow.getElementById("ms_middleclick_cursor").style.display = "inline";
 
-	var x = window.pageXOffset;
-	var x_start = window.event.x;
-	var x_delta = 0;
-	var x_max 	= window.innerWidth;
-	var y = window.pageYOffset;
-	var y_start = window.event.y;
-	var y_delta = 0;
-	var y_max 	= window.innerHeight;
+	let x = window.pageXOffset;
+	let x_start = window.event.x;
+	let x_delta = 0;
+	let x_max 	= window.innerWidth;
+	let y = window.pageYOffset;
+	let y_start = window.event.y;
+	let y_delta = 0;
+	let y_max 	= window.innerHeight;
 
 	// determine scrolling mode:
 	window.addEventListener("mousemove", determineMiddleButtonScrollingMode, true);
@@ -1297,15 +1297,15 @@ function middlebuttonscroll()
 	{
 		x_delta = e.x - x_start;
 		y_delta = e.y - y_start;
-		var rad = -Math.atan2(x_delta, y_delta);
+		let rad = -Math.atan2(x_delta, y_delta);
 		ms_shadow.getElementById("ms_middleclick_cursor").style.transform = ms_shadow.getElementById("ms_middleclick_cursor").style.webkitTransform = "rotate("+rad+"rad)";
 	}
 	
 	scroll_timeout_id_middlebutton = window.requestAnimationFrame( function(){ middlebuttonscroll_inner( Date.now()-1 ); } );
 	function middlebuttonscroll_inner(lastTick)
 	{
-		var curTick = Date.now();
-		var amount = w.middlescroll_velocity * (curTick - lastTick) / 20000;
+		let curTick = Date.now();
+		let amount = w.middlescroll_velocity * (curTick - lastTick) / 20000;
 		x += x_delta*amount*Math.abs(x_delta);  // abs deltas -> fine grained control for small movements & fast for bigger ones
 		y += y_delta*amount*Math.abs(y_delta);
 		if(x < 0) x = 0; else if (x > window.scrollMaxX) x = window.scrollMaxX;
@@ -1321,7 +1321,7 @@ function is_scrollable(element, direction) // direction: 0 = up, 1 = down, 2 = a
 	if(!element.parentNode || element.tagName === "BODY") return false;
 	else if((window.getComputedStyle(element, null).overflow === "scroll" || window.getComputedStyle(element, null).overflow === "auto" || window.getComputedStyle(element, null).overflow === "" || element.tagName === "TEXTAREA") && element.offsetHeight < element.scrollHeight)
 	{
-		var max_scrollTop = element.scrollHeight /*+ parseInt(window.getComputedStyle(element, null).borderTopWidth) + parseInt(window.getComputedStyle(element, null).borderBottomWidth)*/ - element.offsetHeight; //+(element.offsetWidth < element.scrollWidth?0:0)
+		let max_scrollTop = element.scrollHeight /*+ parseInt(window.getComputedStyle(element, null).borderTopWidth) + parseInt(window.getComputedStyle(element, null).borderBottomWidth)*/ - element.offsetHeight; //+(element.offsetWidth < element.scrollWidth?0:0)
 		if((direction === 0 && element.scrollTop > 0) || (direction === 1 && element.scrollTop < max_scrollTop) || direction === 2)
 			return true;
 		else return is_scrollable(element.parentNode, direction);

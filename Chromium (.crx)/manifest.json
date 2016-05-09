@@ -4,8 +4,8 @@
 	"homepage_url"				: "https://github.com/Christoph142/modern-scroll",
 	
 	"default_locale"			: "en",
-	"version"					: "3.2",
-	"minimum_chrome_version"	: "37",
+	"version"					: "3.3",
+	"minimum_chrome_version"	: "49",
 	"icons"						: { "16": "images/contextmenu.png", "32": "images/contextmenu@2x.png", "64": "images/icon.png", "128": "images/icon@2x.png" },
 	
 	"content_scripts" :

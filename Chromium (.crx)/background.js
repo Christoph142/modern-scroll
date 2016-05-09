@@ -74,7 +74,7 @@ function getLicense(interactive, token)
 		return;
 	}
 
-	var req = new XMLHttpRequest();
+	let req = new XMLHttpRequest();
 	req.open("GET", "https://www.googleapis.com/chromewebstore/v1.1/userlicenses/" + chrome.runtime.id);
 	req.setRequestHeader("Authorization", "Bearer " + token);
 	req.onreadystatechange = function(){
@@ -108,7 +108,7 @@ function getCurrentUserToken(interactive)
 			getLicense(false, token);
 		}
 		else {
-			var error = chrome.runtime.lastError;
+			let error = chrome.runtime.lastError;
 			console.log("Failed getting user token "+(interactive ? "interactively" : "silently")+":", error);
 
 			if (!isChrome()){
@@ -126,14 +126,14 @@ function getCurrentUserToken(interactive)
 
 function verifyAndSaveLicense(license)
 {
-	var oldLicenseState = w.license.accessLevel;
+	let oldLicenseState = w.license.accessLevel;
 	
 	if (license.result && license.accessLevel === "FULL"){
 		console.log("Fully paid & properly licensed.");
 		save_new_value("license", license);
 	}
 	else if (license.result && license.accessLevel === "FREE_TRIAL"){
-		var licenseAge = Date.now() - parseInt(license.createdTime, 10);
+		let licenseAge = Date.now() - parseInt(license.createdTime, 10);
 		if (licenseAge <= 7 * 1000*60*60*24 /*days*/) {
 			console.log("Free trial:", licenseAge/1000/60/60/24, "of 7 days");
 			save_new_value("license", license);
@@ -155,7 +155,7 @@ function verifyAndSaveLicense(license)
 
 function save_new_value(key, value)
 {
-	var saveobject = {};
+	let saveobject = {};
 	saveobject[key] = value;
 	chrome.storage.sync.set(saveobject);					// save it in Chrome's synced storage
 	chrome.extension.getBackgroundPage().w[key] = value;	// update settings in background.js
@@ -181,7 +181,7 @@ if(chrome.tabs.onZoomChange) chrome.tabs.onZoomChange.addListener( function(zoom
 	//chrome.tabs.sendMessage(zoomInfo.tabId, { "data" : "zoomed", "zoom" : zoomInfo.newZoomFactor });
 });
 
-var contextmenu = false;
+let contextmenu = false;
 /* dynamical context menu doesn't work anymore: https://code.google.com/p/chromium/issues/detail?id=467315 */
 function show_contextmenu(s)
 {
