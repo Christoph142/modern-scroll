@@ -24,7 +24,6 @@ let ms_shadow;				// shadow DOM root
 	(function check_if_tab_is_ready()
 	{
 		if		(document.hidden)		document.addEventListener("visibilitychange", initialize, false);
-		else if (document.webkitHidden)	document.addEventListener("webkitvisibilitychange", initialize, false);
 		else if (document.body)			initialize();
 		else							window.setTimeout(check_if_tab_is_ready, 50);
 	}());
@@ -32,10 +31,8 @@ let ms_shadow;				// shadow DOM root
 
 function initialize()
 {
-	document.removeEventListener("webkitvisibilitychange", initialize, false);
 	document.removeEventListener("visibilitychange", initialize, false);
-	if(typeof document.hidden !== "undefined")	document.addEventListener("visibilitychange", add_or_remove_ms, false);
-	else										document.addEventListener("webkitvisibilitychange", add_or_remove_ms, false);
+	document.addEventListener("visibilitychange", add_or_remove_ms, false);
 	
 	add_ms();
 }
@@ -46,7 +43,7 @@ function add_ms()
 	
 	let ms_container = document.createElement("div");
 	ms_container.id = "modern_scroll";
-	ms_shadow = ( ms_container.createShadowRoot ? ms_container.createShadowRoot() : ms_container.webkitCreateShadowRoot() );
+	ms_shadow = ms_container.createShadowRoot();
 	try{ document.documentElement.appendChild(ms_container); }catch(e){ document.body.appendChild(ms_container); }
 	
 	chrome.runtime.onMessage.addListener(handleRuntimeMessage);
@@ -115,9 +112,8 @@ function remove_ms()
 
 function update_ms(){ remove_ms(); add_ms(); }
 function add_or_remove_ms(){
-	let hidden = document.hidden || document.webkitHidden;
-	if(hidden) 	remove_ms();
-	else 		add_ms();
+	if(document.hidden) 	remove_ms();
+	else 					add_ms();
 }
 
 function inject_css()
@@ -127,8 +123,8 @@ function inject_css()
 		
 		/* set values (most general first - can be overwritten by following rules): */
 		":host, #modern_scroll_bars, #modern_scroll_buttons{ display:inline; }\n\
-		 #ms_v_container{ height:100%; width:"+(w.container==="1"?w.container_size:"1")+"px; "+(w.vbar_at_left=="1"?"left":"right")+":0px; top:0px; background:rgba(0,0,0,0); transform-origin:100% 0 0; -webkit-transform-origin:100% 0 0; }\n\
-		 #ms_h_container{ height:"+(w.container==="1"?w.container_size:"1")+"px; width:100%; left:0px; "+(w.hbar_at_top==="1"?"top":"bottom")+":0px; background:rgba(0,0,0,0); transform-origin:0 100% 0; -webkit-transform-origin:0 100% 0; }\n\
+		 #ms_v_container{ height:100%; width:"+(w.container==="1"?w.container_size:"1")+"px; "+(w.vbar_at_left=="1"?"left":"right")+":0px; top:0px; background:rgba(0,0,0,0); transform-origin:100% 0 0; }\n\
+		 #ms_h_container{ height:"+(w.container==="1"?w.container_size:"1")+"px; width:100%; left:0px; "+(w.hbar_at_top==="1"?"top":"bottom")+":0px; background:rgba(0,0,0,0); transform-origin:0 100% 0; }\n\
 		 #ms_vbar_bg, #ms_hbar_bg{ opacity:"+((w.show_when==="3" && w.show_bg_bars_when==="3")?(w.opacity/100):"0")+"; transition:opacity 0.5s "+w.show_how_long+"ms; }\n\
 		 #ms_vbar_bg{ top:"+w.gap+"px; bottom:"+w.gap+"px; height:calc(100% - 2*"+w.gap+"px); width:auto; "+(w.vbar_at_left==="1"?"left":"right")+":0px; "+(w.vbar_at_left==="0"?"left":"right")+":auto; }\n\
 		 #ms_hbar_bg{ "+(w.vbar_at_left==="0"?"left":"right")+":0px; "+(w.vbar_at_left==="1"?"left":"right")+":"+(parseInt(w.hover_size)+parseInt(w.gap))+"px; "+(w.vbar_at_left==="0"?"left":"right")+":"+w.gap+"px; width:calc(100% - "+(2*parseInt(w.gap)+parseInt(w.hover_size))+"px); height:auto; "+(w.hbar_at_top==="1"?"top":"bottom")+":0px; "+(w.hbar_at_top==="0"?"top":"bottom")+":auto; }\n\
@@ -432,8 +428,8 @@ function scaleUI(){
 	let scaleFactor = w.baseDevicePixelRatio / window.devicePixelRatio;
 	//ms_shadow.getElementById("ms_vbar_bg").style.height = "calc("+100/scaleFactor+"% - "+2*parseInt(w.gap)+"px)";
 	//ms_shadow.getElementById("ms_hbar_bg").style.width = "calc("+100/scaleFactor+"% - "+(2*parseInt(w.gap)+parseInt(w.hover_size))+"px)";
-	ms_shadow.getElementById("ms_v_container").style.transform = ms_shadow.getElementById("ms_v_container").style.webkitTransform = "scale("+scaleFactor+",1)";
-	ms_shadow.getElementById("ms_h_container").style.transform = ms_shadow.getElementById("ms_h_container").style.webkitTransform = "scale(1,"+scaleFactor+")";
+	ms_shadow.getElementById("ms_v_container").style.transform = "scale("+scaleFactor+",1)";
+	ms_shadow.getElementById("ms_h_container").style.transform = "scale(1,"+scaleFactor+")";
 	//console.log(scaleFactor, ms_shadow.getElementById("ms_vbar_bg").style.height);
 	//console.log(window.innerHeight, window.screen.height);
 	//winHeight = window.innerHeight/scaleFactor;
@@ -538,7 +534,7 @@ function resize_superbar()
 		ms_shadow.getElementById("ms_superbar").style.width = hbar.style.width;
 		
 		if(w.show_superbar_minipage === "0")
-			ms_shadow.getElementById("ms_superbar").style.transform = ms_shadow.getElementById("ms_superbar").style.webkitTransform = "scale("+(window.innerWidth/10)/parseInt(ms_shadow.getElementById("ms_superbar").style.width)+","+(window.innerHeight/10)/parseInt(ms_shadow.getElementById("ms_superbar").style.height)+")";
+			ms_shadow.getElementById("ms_superbar").style.transform = "scale("+(window.innerWidth/10)/parseInt(ms_shadow.getElementById("ms_superbar").style.width)+","+(window.innerHeight/10)/parseInt(ms_shadow.getElementById("ms_superbar").style.height)+")";
 		
 		ms_shadow.getElementById("ms_superbar").style.display = "inline";
 	}
@@ -661,8 +657,8 @@ function drag_super()
 	function drag_super_end()
 	{
 		if(w.show_superbar_minipage === "1"){
-			document.body.style.transform = document.body.style.webkitTransform = null;
-			document.body.style.transformOrigin = document.body.style.webkitTransformOrigin = null;
+			document.body.style.transform = null;
+			document.body.style.transformOrigin = null;
 			window.scroll(parseInt(superbar.style.left)/(window.innerWidth-superbar.offsetWidth)*window.scrollMaxX, parseInt(superbar.style.top)/(window.innerHeight-superbar.offsetHeight)*window.scrollMaxY);
 			
 			ms_shadow.getElementById("ms_vbar_bg").style.display = ms_shadow.getElementById("ms_hbar_bg").style.display = "inline";
@@ -797,8 +793,8 @@ function show_minipage()
 	if(ms_shadow.getElementById("ms_upbutton"))
 		ms_shadow.getElementById("ms_upbutton").style.display = ms_shadow.getElementById("ms_downbutton").style.display = null;
 	
-	document.body.style.transformOrigin = document.body.style.webkitTransformOrigin = "0% 0%";
-	document.body.style.transform = document.body.style.webkitTransform = "scale("+(window.innerWidth/Math.max(document.documentElement.scrollWidth,window.innerWidth))+","+(window.innerHeight/Math.max(document.documentElement.scrollHeight,window.innerHeight))+")";
+	document.body.style.transformOrigin = "0% 0%";
+	document.body.style.transform = "scale("+(window.innerWidth/Math.max(document.documentElement.scrollWidth,window.innerWidth))+","+(window.innerHeight/Math.max(document.documentElement.scrollHeight,window.innerHeight))+")";
 	window.scrollBy(-window.pageXOffset, -window.pageYOffset);
 }
 
@@ -1298,7 +1294,7 @@ function middlebuttonscroll()
 		x_delta = e.x - x_start;
 		y_delta = e.y - y_start;
 		let rad = -Math.atan2(x_delta, y_delta);
-		ms_shadow.getElementById("ms_middleclick_cursor").style.transform = ms_shadow.getElementById("ms_middleclick_cursor").style.webkitTransform = "rotate("+rad+"rad)";
+		ms_shadow.getElementById("ms_middleclick_cursor").style.transform = "rotate("+rad+"rad)";
 	}
 	
 	scroll_timeout_id_middlebutton = window.requestAnimationFrame( function(){ middlebuttonscroll_inner( Date.now()-1 ); } );
