@@ -366,6 +366,6 @@ function handleKeyboardEvents(e)
 
 function isChrome()
 {
-	if (navigator.appVersion.indexOf("OPR") > 0 || navigator.appVersion.indexOf("Vivaldi") > 0 || navigator.vendor === "Yandex")	return false;
-	else																															return true;
+	if (navigator.appVersion.split("Gecko)")[1].split("/").length === 3)	return true;
+	else																	return false;
 }
