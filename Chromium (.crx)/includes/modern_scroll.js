@@ -80,10 +80,15 @@ function remove_ms()
 	document.removeEventListener("fullscreenchange", handleFullscreenAPI, false);
 	document.removeEventListener("webkitfullscreenchange", handleFullscreenAPI, false);
 	document.removeEventListener("readystatechange", add_dimension_checkers, false);
-	DOM_observer.disconnect();
-	height_observer.disconnect();
+
+	if (resize_observer) resize_observer.disconnect();
+	else
+	{
+		DOM_observer.disconnect();
+		height_observer.disconnect();
+		document.body.removeEventListener("transitionend", check_dimensions, false);
+	}
  	
-	document.body.removeEventListener("transitionend", check_dimensions, false);
 	window.removeEventListener("load", check_dimensions, false);
 	window.removeEventListener("resize", check_dimensions, false);
 	window.removeEventListener("mouseup", check_dimensions_after_click, false);
@@ -275,8 +280,9 @@ function add_functionality_2_bars(){
 	window.addEventListener("scroll", reposition_bars, false);
 }
 
-let DOM_observer = new MutationObserver(check_dimensions);
-let height_observer = new MutationObserver(check_dimensions); // Disqus
+let resize_observer = window.ResizeObserver ? new ResizeObserver(check_dimensions) : null;
+let DOM_observer = resize_observer ? null : new MutationObserver(check_dimensions);
+let height_observer = resize_observer ? null : new MutationObserver(check_dimensions); // Disqus
 function add_dimension_checkers()
 {
 	if(document.readyState !== "complete")
@@ -291,11 +297,16 @@ function add_dimension_checkers()
 		document.addEventListener("fullscreenchange", handleFullscreenAPI, false);
 		document.addEventListener("webkitfullscreenchange", handleFullscreenAPI, false);
 		
-		document.body.addEventListener("transitionend", check_dimensions, false);
-		document.body.addEventListener("overflowchanged", check_dimensions, false); // ##### deprecated
-		
-		DOM_observer.observe(document.body, { childList:true, subtree:true });
-		height_observer.observe(document.body, { subtree:true, attributes:true, attributeFilter:["height", "style"] });
+		if (resize_observer)
+		{
+		    resize_observer.observe(document.body);
+		}
+		else
+		{
+			document.body.addEventListener("transitionend", check_dimensions, false);
+			DOM_observer.observe(document.body, { childList:true, subtree:true });
+			height_observer.observe(document.body, { subtree:true, attributes:true, attributeFilter:["height", "style"] });
+		}
 	}
 	window.addEventListener("mouseup", check_dimensions_after_click, false);
 
