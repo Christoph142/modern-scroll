@@ -14,7 +14,7 @@ let ms_shadow;				// shadow DOM root
 	if(window.matchMedia("all and (view-mode: minimized)").matches) return; // stop if it's a speed dial
 	if(window.self !== window.top){ // only treat main & iframes
 		try{
-			if(window.self.frameElement.tagName === "IFRAME" /*&& window.self.frameElement.scrolling !== "no"*/){
+			if(window.self.frameElement && window.self.frameElement.tagName === "IFRAME"){
 				if(!document.URL.match("//translate.google.")) window.self.frameElement.scrolling = "no";
 			}
 			else return;
