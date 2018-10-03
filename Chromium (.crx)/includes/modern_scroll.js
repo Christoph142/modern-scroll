@@ -7,6 +7,7 @@ let w = {};					// settings -> updated when tab gets activated
 let vbar;					// \ pass by reference!
 let hbar;					// /
 let ms_shadow;				// shadow DOM root
+let isFullscreen = true;
 
 (function check_if_tab_needs_bars()
 {
@@ -65,8 +66,6 @@ function continue_add_ms()
 	add_external_interface();
 	add_dimension_checkers();
 	add_contextmenu();
-	
-	if(document.URL.substr(0,19) !== "chrome-extension://") document.addEventListener("resize", adjust_ui_fullscreen_change, false);
 }
 
 function remove_ms()
@@ -75,9 +74,8 @@ function remove_ms()
 	
 	chrome.runtime.onMessage.removeListener(handleRuntimeMessage);
 
-	document.removeEventListener("resize", adjust_ui_fullscreen_change, false);
-	document.removeEventListener("fullscreenchange", handleFullscreenAPI, false);
-	document.removeEventListener("webkitfullscreenchange", handleFullscreenAPI, false);
+	window.removeEventListener("resize", adjust_ui_fullscreen_change, false);
+	document.removeEventListener( document.fullscreenEnabled !== null ? "fullscreenchange" : "webkitfullscreenchange", adjust_ui_fullscreen_change, false);
 	document.removeEventListener("readystatechange", add_dimension_checkers, false);
 
 	if (resize_observer) resize_observer.disconnect();
@@ -183,7 +181,7 @@ function inject_css()
 		(w.autohide_element_bars === "1" ? "body *:not(:hover):not(:focus)::-webkit-scrollbar{ display:none !important; width:0 !important; height:0 !important; }\n" : "")+
 		"body *::-webkit-scrollbar{ width:"+w.size+"px; height:"+w.size+"px; }\n\
 		 body *::-webkit-scrollbar-button{ display:none; }\n\
-		 body *::-webkit-scrollbar-track { background:"+color_bg+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" !important; border-radius:"+w.border_radius+"px; }\n\
+		 body *::-webkit-scrollbar-track { background:none; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" !important; border-radius:"+w.border_radius+"px; }\n\
 		 body *::-webkit-scrollbar-thumb { background:"+color+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" !important; border-radius:"+w.border_radius+"px; }\n\
 		 body *::-webkit-scrollbar-thumb:hover { background:"+color+"; }";
 	}
@@ -288,9 +286,8 @@ function add_dimension_checkers()
 	else // add listeners after page has finished loading to avoid slowdown of page loading
 	{
 		window.addEventListener("resize", check_dimensions, false);
-		
-		document.addEventListener("fullscreenchange", handleFullscreenAPI, false);
-		document.addEventListener("webkitfullscreenchange", handleFullscreenAPI, false);
+		if(document.URL.substr(0,19) !== "chrome-extension://") window.addEventListener("resize", adjust_ui_fullscreen_change, false);
+		document.addEventListener( document.fullscreenEnabled !== null ? "fullscreenchange" : "webkitfullscreenchange", adjust_ui_fullscreen_change, false);
 		
 		if (resize_observer) resize_observer.observe(document.body);
 		document.body.addEventListener("transitionend", check_dimensions, false);
@@ -300,6 +297,7 @@ function add_dimension_checkers()
 	window.addEventListener("mouseup", check_dimensions_after_click, false);
 
 	check_dimensions();
+	adjust_ui_fullscreen_change();
 }
 
 let dimension_check_timeout;
@@ -395,7 +393,7 @@ function send_contextmenu_show_msg_to_bg(){ chrome.runtime.sendMessage({data:"sh
 function send_contextmenu_hide_msg_to_bg(){ chrome.runtime.sendMessage({data:"hide_contextmenu"}); }
 
 function check_if_element_is_scrollable(e){ last_clicked_element_is_scrollable = is_scrollable(e.target, 2) ? true : false; }
-let isFullscreen;
+
 function check_dimensions()
 {
 	let scrollMaxX_old = window.scrollMaxX;
@@ -426,11 +424,8 @@ function set_new_scrollMax_values()
 function scaleUI(){
 	window.devicePixelRatio_old = window.devicePixelRatio;
 	let scaleFactor = w.baseDevicePixelRatio / window.devicePixelRatio;
-	//ms_shadow.getElementById("ms_vbar_bg").style.height = "calc("+100/scaleFactor+"% - "+2*parseInt(w.gap)+"px)";
-	//ms_shadow.getElementById("ms_hbar_bg").style.width = "calc("+100/scaleFactor+"% - "+(2*parseInt(w.gap)+parseInt(w.hover_size))+"px)";
 	ms_shadow.getElementById("ms_v_container").style.transform = "scale("+scaleFactor+",1)";
 	ms_shadow.getElementById("ms_h_container").style.transform = "scale(1,"+scaleFactor+")";
-	//console.log(scaleFactor, ms_shadow.getElementById("ms_vbar_bg").style.height);
 }
 
 function adjust_ui_new_size()
@@ -440,25 +435,12 @@ function adjust_ui_new_size()
 }
 function adjust_ui_fullscreen_change()
 {
-	if(window.innerWidth === window.screen.width && window.innerHeight === window.screen.height && isFullscreen !== 1) isFullscreen = 1;
-	else if((window.innerWidth !== window.screen.width || window.innerHeight !== window.screen.height) && isFullscreen!==0) isFullscreen = 0;
+	if(window.innerWidth === window.screen.width && window.innerHeight === window.screen.height && !isFullscreen) isFullscreen = true;
+	else if((window.innerWidth !== window.screen.width || window.innerHeight !== window.screen.height) && isFullscreen) isFullscreen = false;
 	else return;
 	
-	if(w.fullscreen_only === "1")
-	{
-		if(isFullscreen === 0)	ms_shadow.getElementById("modern_scroll_bars").style.display = "none";
-		else					ms_shadow.getElementById("modern_scroll_bars").style.display = null;
-	}
-	if(w.show_buttons === "2")
-	{
-		if(isFullscreen === 0)	ms_shadow.getElementById("modern_scroll_buttons").style.display = "none";
-		else					ms_shadow.getElementById("modern_scroll_buttons").style.display = null;
-	}
-}
-
-function handleFullscreenAPI(){
-	if( (document.fullscreenElement || document.webkitFullscreenElement) !== null )	hide_ui(); // element in fullscreen
-	else																			show_ui();
+	ms_shadow.getElementById("modern_scroll_bars").style.display = w.fullscreen_only === "1" && !isFullscreen ? "none" : null;
+	ms_shadow.getElementById("modern_scroll_buttons").style.display = w.show_buttons === "2" && !isFullscreen ? "none" : null;
 }
 
 function resize_bars()
