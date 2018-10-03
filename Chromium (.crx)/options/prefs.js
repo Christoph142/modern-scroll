@@ -41,14 +41,14 @@ function savePrefs(e) // save preferences:
 	if(e.target.id === "animate_scroll")				 document.querySelector("#scroll_container").style.display=(e.target.checked?null:"none");
 	
 	// update slider values:
-	if(e.target.id === "opacity")				document.querySelector("#storage.opacity").innerHTML				= e.target.value;
-	if(e.target.id === "superbar_opacity")		document.querySelector("#storage.superbar_opacity").innerHTML		= e.target.value;
-	if(e.target.id === "button_opacity")		document.querySelector("#storage.button_opacity").innerHTML			= e.target.value;
-	if(e.target.id === "keyscroll_velocity")	document.querySelector("#storage.keyscroll_velocity").innerHTML		= Math.round(100*e.target.value/2);
-	if(e.target.id === "mousescroll_velocity")	document.querySelector("#storage.mousescroll_velocity").innerHTML	= Math.round(100*e.target.value/3);
-	if(e.target.id === "mousescroll_distance")	document.querySelector("#storage.mousescroll_distance").innerHTML	= Math.round(100*e.target.value);
-	if(e.target.id === "middlescroll_velocity")	document.querySelector("#storage.middlescroll_velocity").innerHTML	= Math.round(100*e.target.value);
-	if(e.target.id === "scroll_velocity")		document.querySelector("#storage.scroll_velocity").innerHTML		= Math.round(100*e.target.value/5);
+	if(e.target.id === "opacity")				document.getElementById("storage.opacity").innerHTML				= e.target.value;
+	if(e.target.id === "superbar_opacity")		document.getElementById("storage.superbar_opacity").innerHTML		= e.target.value;
+	if(e.target.id === "button_opacity")		document.getElementById("storage.button_opacity").innerHTML			= e.target.value;
+	if(e.target.id === "keyscroll_velocity")	document.getElementById("storage.keyscroll_velocity").innerHTML		= Math.round(100*e.target.value/2);
+	if(e.target.id === "mousescroll_velocity")	document.getElementById("storage.mousescroll_velocity").innerHTML	= Math.round(100*e.target.value/3);
+	if(e.target.id === "mousescroll_distance")	document.getElementById("storage.mousescroll_distance").innerHTML	= Math.round(100*e.target.value);
+	if(e.target.id === "middlescroll_velocity")	document.getElementById("storage.middlescroll_velocity").innerHTML	= Math.round(100*e.target.value);
+	if(e.target.id === "scroll_velocity")		document.getElementById("storage.scroll_velocity").innerHTML		= Math.round(100*e.target.value/5);
 }
 
 function save_new_value(key, value){ chrome.extension.getBackgroundPage().save_new_value(key, value); }
