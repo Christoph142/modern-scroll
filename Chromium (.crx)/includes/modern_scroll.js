@@ -440,7 +440,7 @@ function adjust_ui_fullscreen_change()
 	else return;
 	
 	ms_shadow.getElementById("modern_scroll_bars").style.display = w.fullscreen_only === "1" && !isFullscreen ? "none" : null;
-	ms_shadow.getElementById("modern_scroll_buttons").style.display = w.show_buttons === "2" && !isFullscreen ? "none" : null;
+	if(ms_shadow.getElementById("modern_scroll_buttons")) ms_shadow.getElementById("modern_scroll_buttons").style.display = w.show_buttons === "2" && !isFullscreen ? "none" : null;
 }
 
 function resize_bars()
