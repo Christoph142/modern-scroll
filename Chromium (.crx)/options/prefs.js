@@ -163,14 +163,17 @@ function add_page_handling()
 	}, false);
 
 	// token transferring:
-	if(isChrome()) return;
+	canAuthenticate().then( result => {
+		if (result) return;
 
-	let transfer_fields = document.querySelectorAll("#transfer_token input, #transferred_trial_expired input");
-	for (let i = 0; i < transfer_fields.length; i++){
-		transfer_fields[i].addEventListener("change", try_to_transfer_license, false);
-		transfer_fields[i].addEventListener("keyup", try_to_transfer_license, false);
-	}
+		let transfer_fields = document.querySelectorAll("#transfer_token input, #transferred_trial_expired input");
+		for (let i = 0; i < transfer_fields.length; i++){
+			transfer_fields[i].addEventListener("change", try_to_transfer_license, false);
+			transfer_fields[i].addEventListener("keyup", try_to_transfer_license, false);
+		}
+	});
 }
+
 let bubble_setback; // timeout for info bubbles
 
 let last_token; // remember token to prevent multiple requests for same one
@@ -311,12 +314,16 @@ function adjustUIAccordingToLicense()
 	{
 		// show dialogs:
 		if (bg.w.license === "none"){
-			if (isChrome())	showDialog("welcome");
-			else 			showDialog("transfer_token");
+			canAuthenticate().then( result => {
+				if (result) showDialog("welcome");
+				else		showDialog("transfer_token");
+			});
 		}
 		else if (bg.w.license.accessLevel === "TRIAL_EXPIRED"){
-			if (isChrome())	showDialog("trial_expired");
-			else 			showDialog("transferred_trial_expired");
+			canAuthenticate().then( result => {
+				if (result) showDialog("trial_expired");
+				else		showDialog("transferred_trial_expired");
+			});
 		}
 		else if (window.location.hash && document.querySelector(window.location.hash).tagName === "DIALOG") showDialog(window.location.hash);
 
@@ -364,8 +371,7 @@ function handleKeyboardEvents(e)
 	else {																e.preventDefault();	e.stopPropagation(); }
 }
 
-function isChrome()
+function canAuthenticate()
 {
-	if (navigator.appVersion.split("Gecko)")[1].split("/").length === 3)	return true;
-	else																	return false;
+	return fetch('https://accounts.google.com/signin/chrome/sync/identifier').then(r => { return r.ok; });
 }

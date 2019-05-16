@@ -111,15 +111,17 @@ function getCurrentUserToken(interactive)
 			let error = chrome.runtime.lastError;
 			console.log("Failed getting user token "+(interactive ? "interactively" : "silently")+":", error);
 
-			if (!isChrome()){
-				if(w.user_token === "")
-					chrome.tabs.create({ url : "options/options.html#transfer_token" }); // show dialog to make user transfer token from Chrome
-				else{
-					console.log("Using manually transferred user token instead.");
-					getLicense(false, w.user_token);
+			canAuthenticate().then(canAuthenticate => {
+				if (!canAuthenticate) {
+					if(w.user_token === "")
+						chrome.tabs.create({ url : "options/options.html#transfer_token" }); // show dialog to make user transfer token from Chrome
+					else{
+						console.log("Using manually transferred user token instead.");
+						getLicense(false, w.user_token);
+					}
 				}
-			}
-			else if (!interactive) chrome.tabs.create({ url : "options/options.html#welcome" }); // show dialog to make user authorize modern scroll for Store
+				else if (!interactive) chrome.tabs.create({ url : "options/options.html#welcome" }); // show dialog to make user authorize modern scroll for Store
+			});
 		}
 	});
 }
@@ -203,8 +205,7 @@ function hide_contextmenu()
 	chrome.contextMenus.remove("ms_contextmenu"); contextmenu = false;
 }
 
-function isChrome()
+function canAuthenticate()
 {
-	if (navigator.appVersion.split("Gecko)")[1].split("/").length === 3)	return true;
-	else																	return false;
+	return fetch('https://accounts.google.com/signin/chrome/sync/identifier').then(r => { return r.ok; });
 }
