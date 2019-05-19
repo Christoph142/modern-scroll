@@ -85,12 +85,12 @@ function remove_ms()
 	 	
 	window.removeEventListener("load", check_dimensions, false);
 	window.removeEventListener("resize", check_dimensions, false);
-	window.removeEventListener("mouseup", check_dimensions_after_click, false);
+	window.removeEventListener("pointerup", check_dimensions_after_click, false);
 	
 	window.removeEventListener("keydown", arrowkeyscroll, false);
 	window.removeEventListener("keydown", otherkeyscroll, false);
-	window.removeEventListener("mousewheel", mousescroll_y, false);
-	window.removeEventListener("mousedown", middlebuttonscroll, true);
+	window.removeEventListener("mousewheel", mousescroll_y, { passive : false, capture : false });
+	window.removeEventListener("pointerdown", middlebuttonscroll, true);
 	window.removeEventListener("click", check_if_element_is_scrollable, false);
 	
 	window.removeEventListener("scroll", show_or_hide_buttons, false);
@@ -224,47 +224,47 @@ function add_bars()
 }
 
 function add_functionality_2_bars(){
-	ms_shadow.getElementById("ms_vbar_bg").addEventListener("mousedown", scroll_bg_v, true);
-	ms_shadow.getElementById("ms_hbar_bg").addEventListener("mousedown", scroll_bg_h, true);
+	ms_shadow.getElementById("ms_vbar_bg").addEventListener("pointerdown", scroll_bg_v, true);
+	ms_shadow.getElementById("ms_hbar_bg").addEventListener("pointerdown", scroll_bg_h, true);
 	
-	ms_shadow.getElementById("ms_superbar").addEventListener("mousedown", drag_super, true);
-	vbar.addEventListener("mousedown", drag_v, true);
-	hbar.addEventListener("mousedown", drag_h, true);
+	ms_shadow.getElementById("ms_superbar").addEventListener("pointerdown", drag_super, true);
+	vbar.addEventListener("pointerdown", drag_v, true);
+	hbar.addEventListener("pointerdown", drag_h, true);
 	
-	ms_shadow.getElementById("ms_h_container").addEventListener("mousewheel", mousescroll_x, true);
-	ms_shadow.getElementById("ms_hbar_bg").addEventListener("mousewheel", mousescroll_x, true);
-	hbar.addEventListener("mousewheel", mousescroll_x, true);
+	ms_shadow.getElementById("ms_h_container").addEventListener("mousewheel", mousescroll_x, { passive : false, capture : true });
+	ms_shadow.getElementById("ms_hbar_bg").addEventListener("mousewheel", mousescroll_x, { passive : false, capture : true });
+	hbar.addEventListener("mousewheel", mousescroll_x, { passive : false, capture : true });
 	
 	if(w.container === "1"){
-		ms_shadow.getElementById("ms_v_container").addEventListener("mouseenter", function(e){
+		ms_shadow.getElementById("ms_v_container").addEventListener("pointerenter", function(e){
 			ms_shadow.getElementById("ms_v_container").style.width = "1px";
 			ms_shadow.getElementById("ms_vbar_ui").style.width = w.hover_size+"px";
 			ms_shadow.getElementById("ms_vbar_bg_ui").style.width = w.hover_size+"px";
 			show_bar("v");
-			window.addEventListener("mousemove", restore_v_trigger_area, false);
+			window.addEventListener("pointermove", restore_v_trigger_area, false);
 			function restore_v_trigger_area(){
 				if(window.innerWidth-e.clientX > w.container_size){
 					hide_bar("v");
 					ms_shadow.getElementById("ms_vbar_ui").style.width = null;
 					ms_shadow.getElementById("ms_vbar_bg_ui").style.width = null;
 					ms_shadow.getElementById("ms_v_container").style.width = null;
-					window.removeEventListener("mousemove", restore_v_trigger_area, false);
+					window.removeEventListener("pointermove", restore_v_trigger_area, false);
 				}
 			}
 		}, false);
-		ms_shadow.getElementById("ms_h_container").addEventListener("mouseenter", function(e){
+		ms_shadow.getElementById("ms_h_container").addEventListener("pointerenter", function(e){
 			ms_shadow.getElementById("ms_h_container").style.height = "1px";
 			ms_shadow.getElementById("ms_hbar_ui").style.height = w.hover_size+"px";
 			ms_shadow.getElementById("ms_hbar_bg_ui").style.height = w.hover_size+"px";
 			show_bar("h");
-			window.addEventListener("mousemove", restore_h_trigger_area, false);
+			window.addEventListener("pointermove", restore_h_trigger_area, false);
 			function restore_h_trigger_area(){
 				if(window.innerHeight-e.clientY > w.container_size){
 					hide_bar("h");
 					ms_shadow.getElementById("ms_hbar_ui").style.height = null;
 					ms_shadow.getElementById("ms_hbar_bg_ui").style.height = null;
 					ms_shadow.getElementById("ms_h_container").style.height = null;
-					window.removeEventListener("mousemove", restore_h_trigger_area, false);
+					window.removeEventListener("pointermove", restore_h_trigger_area, false);
 				}
 			}
 		}, false);
@@ -294,7 +294,7 @@ function add_dimension_checkers()
 		DOM_observer.observe(document.body, { childList:true, subtree:true });
 		height_observer.observe(document.body, { subtree:true, attributes:true, attributeFilter:["height", "style"] });
 	}
-	window.addEventListener("mouseup", check_dimensions_after_click, false);
+	window.addEventListener("pointerup", check_dimensions_after_click, false);
 
 	check_dimensions();
 	adjust_ui_fullscreen_change();
@@ -320,7 +320,7 @@ function add_scrollingfunctions()
 	
 	if(w.own_scroll_functions_middle === "1")
 	{
-		window.addEventListener("mousedown", middlebuttonscroll, true);
+		window.addEventListener("pointerdown", middlebuttonscroll, true);
 	}
 
 	//window.addEventListener("mousewheel", mousescroll_y, false); // -> set in resize_vbar()
@@ -374,8 +374,8 @@ function show_ui()
 	if(w.contextmenu_show_when === "2") // only over interface:
 	{
 		send_contextmenu_hide_msg_to_bg();
-		document.getElementById("modern_scroll").addEventListener("mouseover", send_contextmenu_show_msg_to_bg, false);
-		document.getElementById("modern_scroll").addEventListener("mouseout", send_contextmenu_hide_msg_to_bg, false);
+		document.getElementById("modern_scroll").addEventListener("pointerover", send_contextmenu_show_msg_to_bg, false);
+		document.getElementById("modern_scroll").addEventListener("pointerout", send_contextmenu_hide_msg_to_bg, false);
 	}
 	else if(w.contextmenu_show_when === "3") send_contextmenu_show_msg_to_bg();
 	
@@ -386,8 +386,8 @@ function hide_ui()
 {
 	document.getElementById("modern_scroll").style.display = "none";
 	if(w.contextmenu_show_when !== "1") chrome.runtime.sendMessage({data:"show_contextmenu", string:"show"});
-	document.getElementById("modern_scroll").removeEventListener("mouseover", send_contextmenu_show_msg_to_bg, false);
-	document.getElementById("modern_scroll").removeEventListener("mouseout", send_contextmenu_hide_msg_to_bg, false);
+	document.getElementById("modern_scroll").removeEventListener("pointerover", send_contextmenu_show_msg_to_bg, false);
+	document.getElementById("modern_scroll").removeEventListener("pointerout", send_contextmenu_hide_msg_to_bg, false);
 }
 function send_contextmenu_show_msg_to_bg(){ chrome.runtime.sendMessage({data:"show_contextmenu", string:"hide"}); }
 function send_contextmenu_hide_msg_to_bg(){ chrome.runtime.sendMessage({data:"hide_contextmenu"}); }
@@ -457,7 +457,7 @@ function resize_vbar()
 	{
 		if(vbar.style.display === "inline"){
 			ms_shadow.getElementById("ms_v_container").style.display = ms_shadow.getElementById("ms_vbar_bg").style.display = vbar.style.display = null;
-			window.removeEventListener("mousewheel", mousescroll_y, false);
+			window.removeEventListener("mousewheel", mousescroll_y, { passive : false, capture : false });
 		}
 		return;
 	}
@@ -472,7 +472,7 @@ function resize_vbar()
 		show_bar("v");
 		chrome.runtime.sendMessage({data:"reset_contextmenu"});
 		
-		if(window.self.frameElement || w.use_own_scroll_functions_mouse === "1") window.addEventListener("mousewheel", mousescroll_y, false);
+		if(window.self.frameElement || w.use_own_scroll_functions_mouse === "1") window.addEventListener("mousewheel", mousescroll_y, { passive : false, capture : false });
 	}
 	else if(vbar_height_before !== vbar_new_height+"px"){
 		ms_shadow.getElementById("ms_vbar_ui").style.height = vbar_new_height-2*w.gap+"px";
@@ -539,11 +539,12 @@ function drag_v(e)
 	e.preventDefault();			// prevent focus-loss in site
 	if(e.which !== 1) return;	// if it's not the left mouse button
 	e.stopPropagation();		// prevent bubbling (e.g. prevent drag being triggered on separately opened images)
-	
+	vbar.setPointerCapture(e.pointerId); // keep getting the events even when moving outside the containing page's scope
+
 	drag_mode("v_container");
 	let dragy = e.clientY - parseInt(vbar.style.top);
 	
-	document.addEventListener("mousemove", drag_v_move, true);
+	document.addEventListener("pointermove", drag_v_move, true);
 	function drag_v_move(e)
 	{
 		let posy = e.clientY;
@@ -552,12 +553,11 @@ function drag_v(e)
 		window.scroll(window.pageXOffset, Math.round(new_top/(window.innerHeight-vbar.offsetHeight)*window.scrollMaxY));
 	}
 	
-	document.addEventListener("mouseup", drag_v_end, true);
-	function drag_v_end(){
+	document.addEventListener("pointerup", function (e){
 		drag_mode(0);
-		document.removeEventListener("mousemove", drag_v_move, true);
-		document.removeEventListener("mouseup", drag_v_end, true);
-	}
+		vbar.releasePointerCapture(e.pointerId);
+		document.removeEventListener("pointermove", drag_v_move, true);
+	}, { once: true, passive: true, capture: true });
 }
 
 function drag_h(e)
@@ -565,11 +565,12 @@ function drag_h(e)
 	e.preventDefault();			// prevent focus-loss in site
 	if(e.which !== 1) return;	// if it's not the left mouse button
 	e.stopPropagation();		// prevent bubbling (e.g. prevent drag being triggered on separately opened images)
-	
+	hbar.setPointerCapture(e.pointerId);
+
 	drag_mode("h_container");
 	let dragx = e.clientX - parseInt(hbar.style.left);
 	
-	document.addEventListener("mousemove", drag_h_move, true);
+	document.addEventListener("pointermove", drag_h_move, true);
 	function drag_h_move(e)
 	{
 		let posx = e.clientX;
@@ -585,12 +586,11 @@ function drag_h(e)
 		window.scroll(Math.round((new_left/(window.innerWidth-hbar.offsetWidth-w.hover_size)*window.scrollMaxX)), window.pageYOffset);
 	}
 	
-	document.addEventListener("mouseup", drag_h_end, true);
-	function drag_h_end(){
+	document.addEventListener("pointerup", function (e){
 		drag_mode(0);
-		document.removeEventListener("mousemove", drag_h_move, true);
-		document.removeEventListener("mouseup", drag_h_end, true);
-	}
+		hbar.releasePointerCapture(e.pointerId);	
+		document.removeEventListener("pointermove", drag_h_move, true);
+	}, { once: true, passive: true, capture: true });
 }
 
 function drag_super(e)
@@ -604,10 +604,12 @@ function drag_super(e)
 	
 	drag_mode("superbar");
 	let superbar = ms_shadow.getElementById("ms_superbar");
+	superbar.setPointerCapture(e.pointerId);
+
 	let dragy = e.clientY - parseInt(superbar.style.top);
 	let dragx = e.clientX - parseInt(superbar.style.left);
 	
-	document.addEventListener("mousemove", drag_super_move, true);
+	document.addEventListener("pointermove", drag_super_move, true);
 	function drag_super_move()
 	{
 		superbar.style.display = "inline";
@@ -635,7 +637,7 @@ function drag_super(e)
 			superbar.style.left = ((posx - dragx)<=0? 0 : ((posx - dragx)>=window.innerWidth-superbar.offsetWidth?window.innerWidth-superbar.offsetWidth : (posx - dragx))) + "px";		
 	}
 	
-	document.addEventListener("mouseup", drag_super_end, true);
+	document.addEventListener("pointerup", drag_super_end, { once: true, capture: true });
 	function drag_super_end()
 	{
 		if(w.show_superbar_minipage === "1"){
@@ -647,10 +649,10 @@ function drag_super(e)
 			vbar.style.display = hbar.style.display = "inline";
 		}
 		
+		superbar.releasePointerCapture(e.pointerId);
 		drag_mode(0);
 		reposition_bars();
-		document.removeEventListener("mousemove", drag_super_move, true);
-		document.removeEventListener("mouseup", drag_super_end, true);
+		document.removeEventListener("pointermove", drag_super_move, true);
 	}
 }
 
@@ -694,7 +696,7 @@ function scroll_bg_v(e)
 	else if	((window.innerHeight-e.clientY) < 50 && w.bg_special_ends === "1")	scroll_End();
 	else // scroll one more page until mouse position is reached if mouse is kept pressed:
 	{
-		window.addEventListener("mouseup", () => window.clearTimeout(t), {capture: true, once: true});
+		window.addEventListener("pointerup", () => window.clearTimeout(t), {capture: true, once: true});
 		scroll_bg_v_inner(e.clientY, parseInt(vbar.style.top), Math.round(window.innerHeight/w.scroll_velocity));
 	}
 }
@@ -789,11 +791,11 @@ function add_buttons()
 	
 	let upbutton = document.createElement("div");
 	upbutton.id = "ms_upbutton";
-	upbutton.addEventListener("mousedown", function(e){ handle_button("up", e); }, true);
+	upbutton.addEventListener("pointerdown", function(e){ handle_button("up", e); }, true);
 
 	let downbutton = document.createElement("div");
 	downbutton.id = "ms_downbutton";
-	downbutton.addEventListener("mousedown", function(e){ handle_button("down", e); }, true);
+	downbutton.addEventListener("pointerdown", function(e){ handle_button("down", e); }, true);
 	
 	let button_container = document.createElement("div");
 	button_container.id = "modern_scroll_buttons";
@@ -816,15 +818,15 @@ function handle_button(whichone, e)
 	let otherbutton = ms_shadow.getElementById("ms_"+(whichone==="up"?"down":"up")+"button");
 	let x_start = e.clientX - Math.floor(button.style.left?parseInt(button.style.left):w.buttonposition/100*window.innerWidth);
 	
-	document.addEventListener("mouseup", handle_button_click, true);
-	document.addEventListener("mousemove", handle_button_drag, true);
+	document.addEventListener("pointerup", handle_button_click, true);
+	document.addEventListener("pointermove", handle_button_drag, true);
 
 	function handle_button_click()
 	{
 		if(whichone === "up")	scroll_Pos1();
 		else					scroll_End();
-		document.removeEventListener("mousemove", handle_button_drag, true);
-		document.removeEventListener("mouseup", handle_button_click, true);
+		document.removeEventListener("pointermove", handle_button_drag, true);
+		document.removeEventListener("pointerup", handle_button_click, true);
 	}
 
 	function handle_button_drag(e)
@@ -837,13 +839,13 @@ function handle_button(whichone, e)
 		button.className = "dragged_button";
 		otherbutton.style.opacity = "0.5";
 		
-		document.removeEventListener("mouseup", handle_button_click, true);
-		document.addEventListener("mouseup", handle_button_drag_end, false);
+		document.removeEventListener("pointerup", handle_button_click, true);
+		document.addEventListener("pointerup", handle_button_drag_end, false);
 	}
 	function handle_button_drag_end()
 	{
-		document.removeEventListener("mousemove", handle_button_drag, true);
-		document.removeEventListener("mouseup", handle_button_drag_end, false);
+		document.removeEventListener("pointermove", handle_button_drag, true);
+		document.removeEventListener("pointerup", handle_button_drag_end, false);
 
 		button.className = null;
 		otherbutton.style.opacity = null;
@@ -1219,19 +1221,19 @@ function middlebuttonscroll(e)
 	let y_max 	= window.innerHeight;
 
 	// determine scrolling mode:
-	window.addEventListener("mousemove", determineMiddleButtonScrollingMode, true);
-	window.addEventListener("mouseup", determineMiddleButtonScrollingMode, true);
+	window.addEventListener("pointermove", determineMiddleButtonScrollingMode, true);
+	window.addEventListener("pointerup", determineMiddleButtonScrollingMode, true);
 	function determineMiddleButtonScrollingMode(e){
-		window.removeEventListener("mousemove", determineMiddleButtonScrollingMode, true);
-		window.removeEventListener("mouseup", determineMiddleButtonScrollingMode, true);
+		window.removeEventListener("pointermove", determineMiddleButtonScrollingMode, true);
+		window.removeEventListener("pointerup", determineMiddleButtonScrollingMode, true);
 
-		if(e.type === "mouseup"){
-			window.removeEventListener("mousedown", middlebuttonscroll, true);
-			window.addEventListener("mousedown", middlebuttonscrollend, true);
+		if(e.type === "pointerup"){
+			window.removeEventListener("pointerdown", middlebuttonscroll, true);
+			window.addEventListener("pointerdown", middlebuttonscrollend, true);
 			if( w.endMiddlescrollByTurningWheel === "1" ) window.addEventListener("mousewheel", middlebuttonscrollend, true);
 		}
-		else{ //mousemove
-			window.addEventListener("mouseup", middlebuttonscrollend, true);
+		else{ //pointermove
+			window.addEventListener("pointerup", middlebuttonscrollend, true);
 		}
 	}
 
@@ -1239,11 +1241,11 @@ function middlebuttonscroll(e)
 	{
 		e.preventDefault();
 
-		window.removeEventListener("mousemove", getmousepos, false);
-		window.removeEventListener("mousedown", middlebuttonscrollend, true);
+		window.removeEventListener("pointermove", getmousepos, false);
+		window.removeEventListener("pointerdown", middlebuttonscrollend, true);
 		window.removeEventListener("mousewheel", middlebuttonscrollend, true);
-		window.removeEventListener("mouseup", middlebuttonscrollend, true);
-		window.addEventListener("mousedown", middlebuttonscroll, true);
+		window.removeEventListener("pointerup", middlebuttonscrollend, true);
+		window.addEventListener("pointerdown", middlebuttonscroll, true);
 
 		window.cancelAnimationFrame( scroll_timeout_id_middlebutton ); scroll_timeout_id_middlebutton = null;
 
@@ -1251,7 +1253,7 @@ function middlebuttonscroll(e)
 		ms_shadow.getElementById("ms_page_cover").style.display = "none";
 		ms_shadow.getElementById("ms_page_cover").style.cursor = "default";
 	}
-	window.addEventListener("mousemove", getmousepos, false);
+	window.addEventListener("pointermove", getmousepos, false);
 	function getmousepos(e)
 	{
 		x_delta = e.x - x_start;

@@ -138,11 +138,11 @@ function add_page_handling()
 	
 	for(let i=0; i<info_bubbles.length; i++) // position top/bottom:
 	{
-		info_bubbles[i].addEventListener("mouseover", function(){
+		info_bubbles[i].addEventListener("pointerover", function(){
 			window.clearTimeout(bubble_setback);
 			if(this.offsetTop>window.scrollY+window.innerHeight/2) this.lastChild.style.marginTop = (-this.lastChild.offsetHeight+8)+"px";
 		}, false);
-		info_bubbles[i].addEventListener("mouseout", function(){
+		info_bubbles[i].addEventListener("pointerout", function(){
 			bubble_setback = window.setTimeout(function(){this.lastChild.style.marginTop= null;}.bind(this),500);
 		}, false);
 	}
