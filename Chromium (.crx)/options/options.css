@@ -38,7 +38,7 @@ input.toggle:checked ~ div.toggle-container{ height:auto; }
 dialog					{ position:fixed; cursor:default; min-width:400px; max-width:90%; padding:0;
 						  color:#333; background:#FFF; border:1px solid rgba(0, 0, 0, 0.3);	border-radius:4px; box-shadow:0 0 20px rgba(0, 0, 0, 0.3);
 						  animation:show_moved 200ms; -webkit-animation:show_moved 200ms; }
-dialog::backdrop		{ transition-duration:200ms; position:fixed; top:0;	left:0;	right:0; bottom:0; background-color:rgba(0, 0, 0, 0.3);
+dialog::backdrop		{ transition-duration:200ms; position:fixed; top:0;	left:0;	right:0; bottom:0; background-color:rgba(0, 0, 0, 0.3); backdrop-filter: blur(5px);
 						  animation:show 200ms;	-webkit-animation:show 200ms; }
 dialog .close			{ color:#AAA; font-weight:bold;	position:absolute; right:1em; top:1em; height:1em; width:1em; border-radius:0.1em; transition:200ms; }
 dialog .close::before	{ position:relative; left:0.2em; bottom:0.45em;	content:"x"; }

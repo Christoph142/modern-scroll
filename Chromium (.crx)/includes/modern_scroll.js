@@ -133,10 +133,10 @@ function inject_css()
 		 #ms_vbar_bg_ui, #ms_hbar_bg_ui{ background:"+color_bg+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" !important; border-radius:"+w.border_radius+"px; }\n\
 		 #ms_vbar_bg_ui{ margin-"+(w.vbar_at_left==="1"?"left":"right")+":"+(w.gap)+"px; height:100%; width:"+w.size+"px; transition:width 0.25s; }\n\
 		 #ms_hbar_bg_ui{ margin-"+(w.hbar_at_top==="1"?"top":"bottom")+":"+(w.gap)+"px; width:100%; height:"+w.size+"px; transition:height 0.25s; }\n\
-		 #ms_vbar, #ms_hbar{ opacity:"+((w.show_when==="3")?(w.opacity/100):"0")+"; transition:opacity 0.5s "+w.show_how_long+"ms; }\n\
+		 #ms_vbar, #ms_hbar, .bookmarkIndicator{ opacity:"+((w.show_when==="3")?(w.opacity/100):"0")+"; transition:opacity 0.5s "+w.show_how_long+"ms; }\n\
 		 #ms_vbar{ top:0px; height:"+(30+2*w.gap)+"px; min-height:"+(30+2*w.gap)+"px; width:auto; "+(w.vbar_at_left==="1"?"left":"right")+":0px; "+(w.vbar_at_left==="0"?"left":"right")+":auto; }\n\
 		 #ms_hbar{ left:0px; width:"+(30+2*w.gap)+"px; min-width:"+(30+2*w.gap)+"px; height:auto; "+(w.hbar_at_top==="1"?"top":"bottom")+":0px; "+(w.hbar_at_top==="0"?"top":"bottom")+":auto; }\n\
-		 #ms_vbar_ui, #ms_hbar_ui{ background:"+color+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" !important; border-radius:"+w.border_radius+"px; }\n\
+		 #ms_vbar_ui, #ms_hbar_ui, .bookmarkIndicator{ background:"+color+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" !important; border-radius:"+w.border_radius+"px; }\n\
 		 #ms_vbar_ui{ height:30px; min-height:30px; width:"+w.size+"px; margin-top:"+w.gap+"px; margin-bottom:"+w.gap+"px; margin-"+(w.vbar_at_left=="1"?"left":"right")+":"+w.gap+"px; transition:width 0.25s; }\n\
 		 #ms_hbar_ui{ width:30px; min-width:30px; height:"+w.size+"px; margin-left:"+w.gap+"px; margin-right:"+w.gap+"px; margin-"+(w.hbar_at_top=="1"?"top":"bottom")+":"+(w.gap)+"px; transition:height 0.25s; }\n\
 		 #ms_superbar{ width:100px; background:"+(w.show_superbar_minipage==="0"?color:"rgba(0,0,0,0)")+"; opacity:"+((w.show_when==="3")?"0.5":"0")+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" "+(w.show_superbar_minipage==="1"?", 0 0 200px 10px #999":"")+" !important; border-radius:"+w.border_radius+"px; transition:opacity 0.5s "+w.show_how_long+"ms; min-width:30px; min-height:30px; }\n\
@@ -149,10 +149,17 @@ function inject_css()
 		\n\
 		 #ms_v_container:hover #ms_vbar_ui, #ms_v_container:hover #ms_vbar_bg_ui{ width:"+w.hover_size+"px; transition:width 0.1s; }\n\
 		 #ms_h_container:hover #ms_hbar_ui, #ms_h_container:hover #ms_hbar_bg_ui{ height:"+w.hover_size+"px; transition:height 0.1s; }\n\
-		 #ms_v_container:hover #ms_vbar, #ms_h_container:hover #ms_hbar{ opacity:"+(w.opacity/100)+"; transition:opacity 0.1s 0s; }\n\
+		 #ms_v_container:hover #ms_vbar, #ms_h_container:hover #ms_hbar, #ms_v_container:hover .bookmarkIndicator{ opacity:"+(w.opacity/100)+"; transition:opacity 0.1s 0s; }\n\
 		 #ms_v_container:hover #ms_vbar_bg, #ms_h_container:hover #ms_hbar_bg{ opacity:"+(w.show_bg_bars_when==="1"?"0":(w.opacity/100))+"; transition:opacity 0.1s 0s; }\n\
-		 #ms_v_container #ms_vbar:hover, #ms_h_container #ms_hbar:hover, #ms_upbutton:hover, #ms_downbutton:hover{ opacity:"+((parseInt(w.opacity)+20)/100)+"; transition:opacity 0.1s 0s; }\n\
+		 #ms_v_container #ms_vbar:hover, #ms_h_container #ms_hbar:hover, #ms_upbutton:hover, #ms_downbutton:hover, #ms_v_container .bookmarkIndicator:hover{ opacity:"+((parseInt(w.opacity)+20)/100)+"; transition:opacity 0.1s 0s; }\n\
 		 #ms_superbar:hover{ opacity:"+w.superbar_opacity/100+"; transition:opacity 0.25s 0s; }\n\
+		\n\
+		 .bookmarkIndicator { line-height:20px; height: 20px; color: white; position: absolute; "+(w.vbar_at_left==="1"?"left:":"right:")+(parseInt(w.hover_size)+5)+"px; padding: 3px 5px; display: block; text-decoration:none; }\n\
+		 .bookmarkIndicator > span { white-space: nowrap; max-width: 20em; overflow: hidden; text-overflow: ellipsis; display: block; }\n\
+		 .bookmarkIndicator::after { content: ''; position: absolute; "+(w.vbar_at_left==="1"?"left":"right")+":-4px; top: 6px; border-top: 5px solid transparent; border-"+(w.vbar_at_left==="1"?"right":"left")+": 5px solid "+color+"; border-bottom: 5px solid transparent; }\n\
+		 .bookmarkIndicator:hover { z-index: 1; }\n\
+		 #ms_v_container #ms_bookmarks{ opacity: 0; transition:opacity 0.5s "+w.show_how_long+"ms; }\n\
+		 #ms_v_container:hover #ms_bookmarks{ opacity: 1; transition: opacity 0.1s; }\n\
 		\n\
 		 .dragged #ms_vbar_bg, .dragged #ms_hbar_bg{ opacity:"+(w.show_bg_bars_when==="1"?"0":(w.opacity/100))+"; }\n\
 		 .dragged #ms_vbar, .dragged #ms_hbar{ opacity:"+(w.opacity>80?"1":((parseInt(w.opacity)+20)/100))+"; }\n\
@@ -213,6 +220,7 @@ function add_bars()
 		<div id='ms_v_container'>\n"+ // last in DOM gets displayed top
 			"<div id='ms_vbar_bg'><div id='ms_vbar_bg_ui'></div></div>\n\
 			<div id='ms_vbar'><div id='ms_vbar_ui'></div></div>\n\
+			<div id='ms_bookmarks' />\n\
 		</div>";
 		
 	if(!ms_shadow.querySelector("#modern_scroll_bars")) ms_shadow.appendChild(bars_container);
@@ -270,6 +278,18 @@ function add_functionality_2_bars(){
 		}, false);
 	}
 	
+	if (w.show_bookmarks !== "1") {
+		ms_shadow.addEventListener("mouseover", function(e) {
+			window.clearTimeout(bookmarks_timeout);
+			ms_shadow.getElementById("ms_bookmarks").style.display = null;
+		}, false);
+		ms_shadow.addEventListener("mouseout", function(e) {
+			bookmarks_timeout = window.setTimeout(function() {
+				ms_shadow.getElementById("ms_bookmarks").style.display = "none";
+			}, parseInt(w.show_how_long) + 200);
+		}, false);
+	}
+
 	window.addEventListener("scroll", reposition_bars, false);
 }
 
@@ -431,6 +451,7 @@ function scaleUI(){
 function adjust_ui_new_size()
 {
 	resize_bars();
+	update_bookmarks();
 	if(ms_shadow.getElementById("modern_scroll_buttons")) show_or_hide_buttons();
 }
 function adjust_ui_fullscreen_change()
@@ -449,6 +470,29 @@ function resize_bars()
 	resize_hbar();
 	resize_superbar();
 	reposition_bars();
+}
+
+let bookmarks_timeout;
+async function update_bookmarks()
+{
+	if (w.show_bookmarks === "1") return;
+
+	let bookmarks = ms_shadow.getElementById("ms_bookmarks");
+	ms_shadow.getElementById("ms_v_container").replaceChild(bookmarks.cloneNode(false), bookmarks); // remove all children
+	document.querySelectorAll(w.show_bookmarks === "2" ? "h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]" : "h1, h2, h3, h4, h5, h6").forEach(bookmark => {
+		if (bookmark.innerText === "") return;
+		let bounds = bookmark.getBoundingClientRect();
+		if (bounds.height === 0 || bounds.width === 0) return;
+
+		let bookmarkIndicator = bookmark.hasAttribute("id") ? document.createElement("a") : document.createElement("div");
+		let bookmarkTitle = document.createElement("span");
+		bookmarkIndicator.href = "#" + bookmark.id;
+		bookmarkIndicator.className = "bookmarkIndicator";
+		bookmarkIndicator.style.top = "calc(" + ((bounds.top + window.scrollY) / document.body.getBoundingClientRect().height * 100) + "vh - 13px)";
+		bookmarkTitle.innerText = bookmark.innerText;
+		bookmarkIndicator.appendChild(bookmarkTitle);
+		ms_shadow.getElementById("ms_bookmarks").appendChild(bookmarkIndicator);
+	});
 }
 
 function resize_vbar()
