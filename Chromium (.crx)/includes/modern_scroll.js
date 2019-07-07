@@ -489,7 +489,7 @@ async function update_bookmarks()
 		bookmarkIndicator.href = "#" + bookmark.id;
 		bookmarkIndicator.className = "bookmarkIndicator";
 		bookmarkIndicator.style.top = "calc(" + ((bounds.top + window.scrollY) / document.body.getBoundingClientRect().height * 100) + "vh - 13px)";
-		bookmarkTitle.innerText = bookmark.innerText;
+		bookmarkTitle.innerText = bookmark.innerText.replace("\n", "");
 		bookmarkIndicator.appendChild(bookmarkTitle);
 		ms_shadow.getElementById("ms_bookmarks").appendChild(bookmarkIndicator);
 	});
