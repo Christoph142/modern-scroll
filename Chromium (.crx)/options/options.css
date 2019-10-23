@@ -5,7 +5,7 @@ header			{ display:block; text-align:center; margin-bottom:2em; padding:3em 0 1e
 				  border-bottom:0.2rem solid #1e3853; }
 section 		{ display:block; padding:0; }
 fieldset		{ border:none; border-top:0.2rem solid #1e3853; background:#F5F5F5; border-radius:2px; padding:1px 20px 15px 20px; margin-bottom:2em; }
-footer			{ display:block; text-align:center; margin-top:1em; padding:1em 0 2em 0; border-top:1px solid #fff; box-shadow:0 -1px rgba(0,0,0,0.15); }
+footer			{ display:block; text-align:center; margin-top:1em; padding:1em 0 2em 0; border-top:1px solid #fff; }
 a				{ text-decoration:none; color:#001; }
 button, .button	{ background:#F5F5F5; border:.2em #1e3853 solid; padding:1em; border-radius:0.5em; transition-duration:200ms;
 				  cursor:pointer; font-size:12px; white-space:nowrap; }
@@ -89,6 +89,9 @@ dialog button, dialog .button	{ padding:0.5em 1em; }
 	header {
 		border-bottom: 0.2rem solid #222;
 	}
+	footer {
+		border-top: 0.2rem solid #222;
+	}
 	h1, h2, h3 {
 		color: #888;
 	}
@@ -125,4 +128,12 @@ dialog button, dialog .button	{ padding:0.5em 1em; }
     	color: #fff;
     	padding: 0.2rem;
 	}
+	input:invalid {
+		background: #2c0000;
+		outline-color: #a00;
+		box-shadow:#C00 0 0 10px 0;
+	}
+
+	dialog 				{ background: #333; color: #eee; }
+	dialog .action_area { background: #2c2c2c; border-top: 1px solid #222; }
 }
