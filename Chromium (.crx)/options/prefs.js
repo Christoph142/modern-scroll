@@ -205,7 +205,7 @@ function save_set(overwrite){
 		bg.w.saved_sets[document.querySelector("#save_set").innerHTML] = {};
 		
 		for(let setting in bg.w){
-			if(setting === "saved_sets") continue;
+			if(setting === "saved_sets" || setting === "baseDevicePixelRatio" || setting === "user_token" || setting === "license") continue;
 			bg.w.saved_sets[document.querySelector("#save_set").innerHTML][setting] = bg.w[setting];
 		}
 		
@@ -254,15 +254,20 @@ function load_set(){
 		});
 
 		if(bg.w.saved_sets) var sets = bg.w.saved_sets;
+		if(bg.w.user_token) var user_token = bg.w.user_token;
+		if(bg.w.license) var license = bg.w.license;
 		if(document.querySelector("#saved_sets").value === "Default")
 		{
 			chrome.storage.sync.clear(); // delete everything
-			if(sets) chrome.storage.sync.set( {"saved_sets" : sets} ); // restore saved sets (if any)
+			if(sets) 		chrome.storage.sync.set( {"saved_sets" : sets} ); // restore saved sets (if any)
+			if(user_token) 	chrome.storage.sync.set( {"user_token" : user_token} );
+			if(license) 	chrome.storage.sync.set( {"license" : license} );
 		}
 		else
 		{
 			let temp_obj = {};
 			for(let setting in sets[document.querySelector("#saved_sets").value]){
+				if(setting === "user_token" || setting === "license") continue; // ignore accidentally copied stuff caused by modern scroll up to 3.5.2
 				temp_obj[setting] = sets[document.querySelector("#saved_sets").value][setting];
 			}
 			chrome.storage.sync.set(temp_obj);
@@ -327,7 +332,7 @@ function adjustUIAccordingToLicense()
 		}
 		else if (window.location.hash && document.querySelector(window.location.hash).tagName === "DIALOG") showDialog(window.location.hash);
 
-		if(window.location.hash === "#show_token") bg.getCurrentUserToken(false); // update token for transfer
+		if(window.location.hash === "#show_token") bg.getCurrentUserToken(true); // update token for transfer
 	});
 }
 
