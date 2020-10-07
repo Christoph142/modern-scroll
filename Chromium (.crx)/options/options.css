@@ -28,6 +28,8 @@ div.toggle-container{ overflow:hidden; height:0; }
 input.toggle:checked ~ div.toggle-container{ height:auto; }
 
 #save_set_img, #delete_set_img, #load_set_img{ height:17px; cursor:pointer; }
+#save_set_img:hover, #delete_set_img:hover, #load_set_img:hover{ filter: brightness(0.0); }
+
 #save_set		{ cursor:text; }
 
 .i				{ display:inline; padding:2px 8px; margin:0 0.1em 0 0.2em; font-weight:bold;
@@ -125,6 +127,7 @@ dialog button, dialog .button	{ padding:0.5em 1em; }
 		color: #fff;
 	}
 	#save_set_img, #delete_set_img, #load_set_img{ filter: invert(); }
+	#save_set_img:hover, #delete_set_img:hover, #load_set_img:hover{ filter: invert() brightness(2.0); }
 	input, select, range {
 		background: #2c2c2c;
     	border: none;
