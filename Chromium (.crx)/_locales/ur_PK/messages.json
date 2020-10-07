@@ -1,0 +1,474 @@
+{
+    "by": {
+        "message": "by",
+        "description": ""
+    },
+    "saved_sets_headline": {
+        "message": "Saved configurations",
+        "description": ""
+    },
+    "save_set_as": {
+        "message": "Save the current configuration as",
+        "description": ""
+    },
+    "new_set_name": {
+        "message": "Name",
+        "description": ""
+    },
+    "load_or_delete_set": {
+        "message": "Load or delete",
+        "description": ""
+    },
+    "default": {
+        "message": "Default",
+        "description": ""
+    },
+    "default_change_impossible": {
+        "message": "You cannot alter the default configuration! Please choose another name.",
+        "description": ""
+    },
+    "default_delete_impossible": {
+        "message": "You cannot delete the default configuration!",
+        "description": ""
+    },
+    "confirm_overwrite": {
+        "message": "A configuration with that name already exists.\nDo you want to replace it?",
+        "description": ""
+    },
+    "confirm_delete": {
+        "message": "Do you really want to irreversibly delete this configuration?",
+        "description": ""
+    },
+    "confirm_load": {
+        "message": "Do you really want to load this configuration now?\nIt will replace your current setup.",
+        "description": ""
+    },
+    "tooltip_save": {
+        "message": "Save",
+        "description": ""
+    },
+    "tooltip_load": {
+        "message": "Load",
+        "description": ""
+    },
+    "tooltip_delete": {
+        "message": "خارج کر دیں.",
+        "description": ""
+    },
+    "look": {
+        "message": "Look",
+        "description": ""
+    },
+    "color": {
+        "message": "scroll bars, the superbar اور the scroll buttons کا رنگ:",
+        "description": ""
+    },
+    "color_bg": {
+        "message": "Color of the background bars",
+        "description": ""
+    },
+    "auto_coloring": {
+        "message": "Color UI matching the page instead if possible",
+        "description": ""
+    },
+    "size": {
+        "message": "چوڑائی(افقی scroll bars کے لیے بالترتیب اونچائی) عام حالت میں.",
+        "description": ""
+    },
+    "hover_size": {
+        "message": "Width (respectively height for horizontal bars) when hovered with the mouse",
+        "description": ""
+    },
+    "border_radius": {
+        "message": "بارڈر منحنہ لمبائ۔",
+        "description": ""
+    },
+    "gap": {
+        "message": "Distance to the border of the window",
+        "description": ""
+    },
+    "opacity": {
+        "message": "Opacity of the scroll bars",
+        "description": ""
+    },
+    "border": {
+        "message": "سرحد",
+        "description": ""
+    },
+    "border_width": {
+        "message": "چوڑائی",
+        "description": ""
+    },
+    "border_color": {
+        "message": "Color",
+        "description": ""
+    },
+    "border_blur": {
+        "message": "Blur",
+        "description": ""
+    },
+    "vbar_at_left": {
+        "message": "vertical scroll bar دائیں کے بجائے بائیں طرف دکھائیں۔",
+        "description": ""
+    },
+    "hbar_at_top": {
+        "message": "Display the horizontal scroll bar at the top instead of bottom",
+        "description": ""
+    },
+    "behavior": {
+        "message": "Behavior",
+        "description": ""
+    },
+    "show_when": {
+        "message": "When do you want the bars to show up?",
+        "description": ""
+    },
+    "only_over": {
+        "message": "Only when hovered with the mouse",
+        "description": ""
+    },
+    "normal": {
+        "message": "Upon hovering, while scrolling and at changes of position or size",
+        "description": ""
+    },
+    "always": {
+        "message": "Always",
+        "description": ""
+    },
+    "show_bg_bars_when": {
+        "message": "اور پس منظرbars؟",
+        "description": ""
+    },
+    "like_bars": {
+        "message": "Like the scroll bars",
+        "description": ""
+    },
+    "show_how_long": {
+        "message": "How long do you want the bars to stay visible?",
+        "description": ""
+    },
+    "fullscreen_only": {
+        "message": "scroll bars پورے اسکرین کے موڈ میں استعمال کے قابل ہیں.",
+        "description": ""
+    },
+    "fullscreen_only_short": {
+        "message": "Only in fullscreen mode",
+        "description": ""
+    },
+    "move_bars_during_scroll": {
+        "message": "Animate the scroll bars during scrolling with the mouse wheel / keyboard",
+        "description": ""
+    },
+    "bg_special_ends": {
+        "message": "background bars scrolls کے کونے پے Click کرنے سے صفحے کے کے آخر پے چلے جاۓ.",
+        "description": ""
+    },
+    "container1": {
+        "message": "Trigger modern scroll within a distance of",
+        "description": ""
+    },
+    "container2": {
+        "message": "px to the border",
+        "description": ""
+    },
+    "element_bars": {
+        "message": "Scrollbars within the page",
+        "description": ""
+    },
+    "style_element_bars": {
+        "message": "Style all scroll bars",
+        "description": ""
+    },
+    "explanation_element_bars": {
+        "message": "Activate this to make modern scroll also style all scrollbars within the page, e.g. those of textareas.",
+        "description": ""
+    },
+    "autohide_element_bars": {
+        "message": "Autohide scrollbars within the page",
+        "description": ""
+    },
+    "explanation_autohide_element_bars": {
+        "message": "This unfortunately doesn't work properly because of rendering bugs. You can enable it, but scroll bars may not always show up correctly.",
+        "description": ""
+    },
+    "superbar": {
+        "message": "Superbar",
+        "description": ""
+    },
+    "show_superbar": {
+        "message": "\"superbar\" دکھاۓ",
+        "description": ""
+    },
+    "show_superbar_minipage": {
+        "message": "ایک mini-version دکھائیں ویب سائٹ کے پس منظر میں جب super bar کو گھسیٹنے.",
+        "description": ""
+    },
+    "superbar_opacity": {
+        "message": "Opacity of the superbar on hover",
+        "description": ""
+    },
+    "bookmarks": {
+        "message": "Bookmarks",
+        "description": ""
+    },
+    "show_bookmarks": {
+        "message": "Show bookmarks within the page for scrolling to the specified locations",
+        "description": ""
+    },
+    "no_bookmarks": {
+        "message": "Off",
+        "description": ""
+    },
+    "bookmarks_only": {
+        "message": "Show bookmarks",
+        "description": ""
+    },
+    "all_headings": {
+        "message": "Bookmarks and Headings",
+        "description": ""
+    },
+    "buttons": {
+        "message": "Scroll buttons",
+        "description": ""
+    },
+    "show_buttons": {
+        "message": "Show buttons for scrolling to the top/bottom of the page",
+        "description": ""
+    },
+    "button_width": {
+        "message": "چوڑائی",
+        "description": ""
+    },
+    "button_height": {
+        "message": "Height",
+        "description": ""
+    },
+    "button_opacity": {
+        "message": "Opacity",
+        "description": ""
+    },
+    "drag_buttons": {
+        "message": "You can drag the buttons to any position here in the options. This position will become the default for all websites. If they cover an element on some pages, you still will be able to drag them out of the way there",
+        "description": ""
+    },
+    "contextmenu": {
+        "message": "Context menu",
+        "description": ""
+    },
+    "show_contextmenu_when": {
+        "message": "When do you want an option in the context menu for hiding modern scroll?",
+        "description": ""
+    },
+    "never": {
+        "message": "Never",
+        "description": ""
+    },
+    "contextmenu_over_only": {
+        "message": "جب میں دایاں-click کروں modern scroll کی شکل پر:",
+        "description": ""
+    },
+    "custom_scroll_functions": {
+        "message": "Scrolling functions",
+        "description": ""
+    },
+    "use_custom_functions": {
+        "message": "Use custom scrolling functions",
+        "description": ""
+    },
+    "use_custom_functions_keyboard": {
+        "message": "for the keyboard",
+        "description": ""
+    },
+    "use_custom_functions_mouse": {
+        "message": "for the mouse",
+        "description": ""
+    },
+    "use_custom_functions_middle": {
+        "message": "for mouse wheel clicks",
+        "description": ""
+    },
+    "endMiddlescrollByTurningWheel": {
+        "message": "End as well by turning the mouse wheel",
+        "description": ""
+    },
+    "animate_scroll": {
+        "message": "scrolling حرکت انداز کریں.",
+        "description": ""
+    },
+    "animate_up_to": {
+        "message": "اتنی لمبائ تک:",
+        "description": ""
+    },
+    "infinite": {
+        "message": "infinite",
+        "description": ""
+    },
+    "page": {
+        "message": "page",
+        "description": ""
+    },
+    "pages": {
+        "message": "pages",
+        "description": ""
+    },
+    "keyscroll_velocity": {
+        "message": "Velocity of scrolling via the arrow keys",
+        "description": ""
+    },
+    "mousescroll_velocity": {
+        "message": "Velocity of scrolling by mouse wheel and trackpad",
+        "description": ""
+    },
+    "mousescroll_distance": {
+        "message": "Distance scrolled per mouse wheel rotation",
+        "description": ""
+    },
+    "middlescroll_velocity": {
+        "message": "Velocity of scrolling by mouse wheel clicking",
+        "description": ""
+    },
+    "animatedscroll_velocity": {
+        "message": "animated scrolling کی رفتار۔",
+        "description": ""
+    },
+    "external_interface_headline": {
+        "message": "External Interface",
+        "description": ""
+    },
+    "external_interface": {
+        "message": "Provide an interface for external access",
+        "description": ""
+    },
+    "footer": {
+        "message": "استعمال کرنے کا شکریا،سوال پوچھنے کے لیے آپ کسی بھی وقت مجھ سے رابطہ کر سکتے ھین۔",
+        "description": ""
+    },
+    "contextmenu_show": {
+        "message": "modern scroll دکھاءيں:",
+        "description": ""
+    },
+    "contextmenu_hide": {
+        "message": "Hide modern scroll",
+        "description": ""
+    },
+    "explanation_save_set": {
+        "message": "You can save your current configuration here.\nJust enter a name and click the save-button.\nIf you choose a name that already exists, this entry will be replaced.",
+        "description": ""
+    },
+    "explanation_move_bars_during_scroll": {
+        "message": "Deactivate this option if you encounter performance problems.<br>The scroll bars' positions will only be updated when scrolling has finished.",
+        "description": ""
+    },
+    "explanation_trigger_area": {
+        "message": "Enlarges the bars accessing area.",
+        "description": ""
+    },
+    "explanation_superbar": {
+        "message": "The \"superbar\" is a combination of a horizontal and a vertical scroll bar.<br>Thus, it only gets visible when both bars are necessary.<br>Its position is aligned with the vertical and horizontal scroll bars.",
+        "description": ""
+    },
+    "explanation_custom_functions": {
+        "message": "Standard scrolling experience is sometimes a bit jerky and slow. By activating these options the extension also takes over the corresponding scrolling, which should result in a noticeable performance boost.",
+        "description": ""
+    },
+    "explanation_animate_scroll": {
+        "message": "اگر آپ یہ اختیار منتخب کریں، صفحہ فوری طور پر مطلوبہ پوزیشن پر نھیں جاۓ گا، لیکن خود بخود ایک سایڈست کی شرح کے ساتھ وہاں scroll کر جاۓ گا۔<br/>یۂ scroll buttons، background bars، keyboard کی scrolling پر بھی لاگو ھوتا ھے(اگر \"کی بورڈ کے لئے اپنی مرضی کے مطابق سکرولانگ افعال استعمال کریں\" زیر عمل ہے)۔",
+        "description": ""
+    },
+    "explanation_external_interface": {
+        "message": "By checking this option, modern scroll will provide some of its key features for usage by third-party-extensions, websites or you. You can then e.g. create custom mouse gestures.<br><a href='https://christoph142.wordpress.com/2013/02/20/modern-scroll-documentation' target='_blank'>Visit the documentation to learn more about it.</a>",
+        "description": ""
+    },
+    "report_issue": {
+        "message": "Report an issue",
+        "description": ""
+    },
+    "rate": {
+        "message": "Rate modern scroll",
+        "description": ""
+    },
+    "twitter": {
+        "message": "Follow me on Twitter",
+        "description": ""
+    },
+    "get_more": {
+        "message": "Get more out of modern scroll",
+        "description": ""
+    },
+    "ok": {
+        "message": "OK",
+        "description": ""
+    },
+    "cancel": {
+        "message": "Cancel",
+        "description": ""
+    },
+    "close": {
+        "message": "Close",
+        "description": ""
+    },
+    "token": {
+        "message": "Here's the token you need in order to transfer this license to other browsers:",
+        "description": ""
+    },
+    "trial_expired": {
+        "message": "Your trial period expired.\nI hope you love modern scroll as much as I do.\nIf you do, get a license now.",
+        "description": ""
+    },
+    "all_set": {
+        "message": "You're all set! :)",
+        "description": ""
+    },
+    "seven_days_trial": {
+        "message": "You can check modern scroll out unrestrictedly for seven days now.",
+        "description": ""
+    },
+    "thanks_for_installing": {
+        "message": "Thanks for installing modern scroll! :)",
+        "description": ""
+    },
+    "get_trial_license": {
+        "message": "You need to log in to your Google account and grant modern scroll access to Chrome Web Store now in order to get your (trial) license.",
+        "description": ""
+    },
+    "authorize": {
+        "message": "Log in and authorize",
+        "description": ""
+    },
+    "transferred_trial_expired": {
+        "message": "The trial period of the license you transferred expired.\nI hope you love modern scroll as much as I do.\nIf you do, get a license now. You need to transfer this license from Chrome once again:",
+        "description": ""
+    },
+    "transfer_successful": {
+        "message": "Have fun using modern scroll.",
+        "description": ""
+    },
+    "get_license_in_chrome": {
+        "message": "install modern scroll in Chrome and get a license there",
+        "description": ""
+    },
+    "open_url_in_chrome": {
+        "message": "open chrome-extension://@@extension_id/options/options.html#show_token in Chrome",
+        "description": ""
+    },
+    "copy_token": {
+        "message": "copy shown token",
+        "description": ""
+    },
+    "insert_here": {
+        "message": "insert it in here",
+        "description": ""
+    },
+    "transfer_instructions": {
+        "message": "To use it in here, you need to transfer a license from Chrome (trial license is fine, too). That's what you need to do:",
+        "description": ""
+    },
+    "invalid_token": {
+        "message": "The token you entered is invalid or expired",
+        "description": ""
+    },
+    "description": {
+        "message": "Takes scrolling to a whole new level",
+        "description": ""
+    }
+}

@@ -1,0 +1,474 @@
+{
+    "by": {
+        "message": "av",
+        "description": ""
+    },
+    "saved_sets_headline": {
+        "message": "Saved configurations",
+        "description": ""
+    },
+    "save_set_as": {
+        "message": "Lagre det nåværende oppsettet som",
+        "description": ""
+    },
+    "new_set_name": {
+        "message": "Navn",
+        "description": ""
+    },
+    "load_or_delete_set": {
+        "message": "Last inn eller slett",
+        "description": ""
+    },
+    "default": {
+        "message": "Forvalgt",
+        "description": ""
+    },
+    "default_change_impossible": {
+        "message": "Du kan ikke endre standardoppsettet! Velg et annet navn.",
+        "description": ""
+    },
+    "default_delete_impossible": {
+        "message": "Du kan ikke slette standardoppsettet!",
+        "description": ""
+    },
+    "confirm_overwrite": {
+        "message": "A configuration with that name already exists.\nDo you want to replace it?",
+        "description": ""
+    },
+    "confirm_delete": {
+        "message": "Vil du slettet dette oppsettet? Slettingen kan ikke angres.",
+        "description": ""
+    },
+    "confirm_load": {
+        "message": "Do you really want to load this configuration now?\nIt will replace your current setup.",
+        "description": ""
+    },
+    "tooltip_save": {
+        "message": "Lagre",
+        "description": ""
+    },
+    "tooltip_load": {
+        "message": "Last inn",
+        "description": ""
+    },
+    "tooltip_delete": {
+        "message": "Slett",
+        "description": ""
+    },
+    "look": {
+        "message": "Lås",
+        "description": ""
+    },
+    "color": {
+        "message": "Fargen til rullefeltet, superlinjen, og rulleknappene",
+        "description": ""
+    },
+    "color_bg": {
+        "message": "Fargen til rullesjakten",
+        "description": ""
+    },
+    "auto_coloring": {
+        "message": "Color UI matching the page instead if possible",
+        "description": ""
+    },
+    "size": {
+        "message": "Bredden (og høyden for horisontale rullelinjer) i normal tilstand",
+        "description": ""
+    },
+    "hover_size": {
+        "message": "Bredden (og høyden for horisontale rullelinjer) når rullefeltet er fokusert med musen",
+        "description": ""
+    },
+    "border_radius": {
+        "message": "Rammekrumningsradius",
+        "description": ""
+    },
+    "gap": {
+        "message": "Avstand fra vindusrammen",
+        "description": ""
+    },
+    "opacity": {
+        "message": "Gjennomsiktighetsgrad for rullefeltet",
+        "description": ""
+    },
+    "border": {
+        "message": "Ramme",
+        "description": ""
+    },
+    "border_width": {
+        "message": "Bredde",
+        "description": ""
+    },
+    "border_color": {
+        "message": "Farge",
+        "description": ""
+    },
+    "border_blur": {
+        "message": "Uskarphet",
+        "description": ""
+    },
+    "vbar_at_left": {
+        "message": "Vis det vertikale rullefeltet til venstre istedenfor til høyre",
+        "description": ""
+    },
+    "hbar_at_top": {
+        "message": "Vis det horisontale rullefeltet på toppen istedenfor på bunnen",
+        "description": ""
+    },
+    "behavior": {
+        "message": "Oppførsel",
+        "description": ""
+    },
+    "show_when": {
+        "message": "Når vil du se rullefeltet?",
+        "description": ""
+    },
+    "only_over": {
+        "message": "Bare når de fokuseres med musen",
+        "description": ""
+    },
+    "normal": {
+        "message": "Når de fokuseres eller siden rulles",
+        "description": ""
+    },
+    "always": {
+        "message": "Hele tiden",
+        "description": ""
+    },
+    "show_bg_bars_when": {
+        "message": "—og rullelinjene?",
+        "description": ""
+    },
+    "like_bars": {
+        "message": "Samme som rullefeltene",
+        "description": ""
+    },
+    "show_how_long": {
+        "message": "How long do you want the bars to stay visible?",
+        "description": ""
+    },
+    "fullscreen_only": {
+        "message": "Show the bars in fullscreen mode only",
+        "description": ""
+    },
+    "fullscreen_only_short": {
+        "message": "Only in fullscreen mode",
+        "description": ""
+    },
+    "move_bars_during_scroll": {
+        "message": "Animer feltene mens siden rulles med musen eller tastaturet",
+        "description": ""
+    },
+    "bg_special_ends": {
+        "message": "Når øverste eller nederste del av rullelinjen klikkes, rull til toppen eller bunnen av siden istedenfor en skjerm opp eller ned",
+        "description": ""
+    },
+    "container1": {
+        "message": "Vis modern scroll når musen er nærmere enn",
+        "description": ""
+    },
+    "container2": {
+        "message": "px fra vindusrammen",
+        "description": ""
+    },
+    "element_bars": {
+        "message": "Scrollbars within the page",
+        "description": ""
+    },
+    "style_element_bars": {
+        "message": "Style all scroll bars",
+        "description": ""
+    },
+    "explanation_element_bars": {
+        "message": "Activate this to make modern scroll also style all scrollbars within the page, e.g. those of textareas.",
+        "description": ""
+    },
+    "autohide_element_bars": {
+        "message": "Autohide scrollbars within the page",
+        "description": ""
+    },
+    "explanation_autohide_element_bars": {
+        "message": "This unfortunately doesn't work properly because of rendering bugs. You can enable it, but scroll bars may not always show up correctly.",
+        "description": ""
+    },
+    "superbar": {
+        "message": "Superlinjen",
+        "description": ""
+    },
+    "show_superbar": {
+        "message": "Vis «superlinjen»",
+        "description": ""
+    },
+    "show_superbar_minipage": {
+        "message": "Vis en miniatirvisning av siden i bakgrunnen mens superlinjen trekkes",
+        "description": ""
+    },
+    "superbar_opacity": {
+        "message": "Gjennomsiktighetsgrad når fokusert med musen",
+        "description": ""
+    },
+    "bookmarks": {
+        "message": "Bookmarks",
+        "description": ""
+    },
+    "show_bookmarks": {
+        "message": "Show bookmarks within the page for scrolling to the specified locations",
+        "description": ""
+    },
+    "no_bookmarks": {
+        "message": "Off",
+        "description": ""
+    },
+    "bookmarks_only": {
+        "message": "Show bookmarks",
+        "description": ""
+    },
+    "all_headings": {
+        "message": "Bookmarks and Headings",
+        "description": ""
+    },
+    "buttons": {
+        "message": "Rulleknapper",
+        "description": ""
+    },
+    "show_buttons": {
+        "message": "Vis rulleknapper på toppen og bunnen av sider",
+        "description": ""
+    },
+    "button_width": {
+        "message": "Bredde",
+        "description": ""
+    },
+    "button_height": {
+        "message": "Høyde",
+        "description": ""
+    },
+    "button_opacity": {
+        "message": "Gjennomsiktighetsgrad",
+        "description": ""
+    },
+    "drag_buttons": {
+        "message": "Du kan trekke knappene rundt til possisjonen du ønsker her i instillingsdialogen. Posisjonen du velger blir brukt for alle nettsider. Du kan trekke knappene rundt på andre nettsider midlertidig også, men standardpossisjonen blir ikke endret",
+        "description": ""
+    },
+    "contextmenu": {
+        "message": "Kontekstmeny (høyre–klikk)",
+        "description": ""
+    },
+    "show_contextmenu_when": {
+        "message": "Når ønsker du valget for å skjule modern scroll i kontekstmenyer?",
+        "description": ""
+    },
+    "never": {
+        "message": "Aldri",
+        "description": ""
+    },
+    "contextmenu_over_only": {
+        "message": "Når jeg høyre–klikker på rullefeltet",
+        "description": ""
+    },
+    "custom_scroll_functions": {
+        "message": "Rullefunksjoner",
+        "description": ""
+    },
+    "use_custom_functions": {
+        "message": "Bruk egne rullefunksjoner",
+        "description": ""
+    },
+    "use_custom_functions_keyboard": {
+        "message": "for tastaturet",
+        "description": ""
+    },
+    "use_custom_functions_mouse": {
+        "message": "for musen",
+        "description": ""
+    },
+    "use_custom_functions_middle": {
+        "message": "for mouse wheel clicks",
+        "description": ""
+    },
+    "endMiddlescrollByTurningWheel": {
+        "message": "End as well by turning the mouse wheel",
+        "description": ""
+    },
+    "animate_scroll": {
+        "message": "Animer rulling",
+        "description": ""
+    },
+    "animate_up_to": {
+        "message": "opptil en lengde av",
+        "description": ""
+    },
+    "infinite": {
+        "message": "uendelig",
+        "description": ""
+    },
+    "page": {
+        "message": "side",
+        "description": ""
+    },
+    "pages": {
+        "message": "sider",
+        "description": ""
+    },
+    "keyscroll_velocity": {
+        "message": "Rullehastighet fra piltastene",
+        "description": ""
+    },
+    "mousescroll_velocity": {
+        "message": "Rullehastighet fra musehjul og berøringsenheter",
+        "description": ""
+    },
+    "mousescroll_distance": {
+        "message": "Rulleavstand per musehjulrotasjon",
+        "description": ""
+    },
+    "middlescroll_velocity": {
+        "message": "Velocity of scrolling by mouse wheel clicking",
+        "description": ""
+    },
+    "animatedscroll_velocity": {
+        "message": "Rulleanimasjonshastighet",
+        "description": ""
+    },
+    "external_interface_headline": {
+        "message": "External Interface",
+        "description": ""
+    },
+    "external_interface": {
+        "message": "Provide an interface for external access",
+        "description": ""
+    },
+    "footer": {
+        "message": "Takk for at du installerte denne utvidelsen. Du kan kontakte meg (på engelsk) når som helst for å gi tilbakemelding og stille spørsmål.",
+        "description": ""
+    },
+    "contextmenu_show": {
+        "message": "Vis modern scroll",
+        "description": ""
+    },
+    "contextmenu_hide": {
+        "message": "Skjul modern scroll",
+        "description": ""
+    },
+    "explanation_save_set": {
+        "message": "You can save your current configuration here.\nJust enter a name and click the save-button.\nIf you choose a name that already exists, this entry will be replaced.",
+        "description": ""
+    },
+    "explanation_move_bars_during_scroll": {
+        "message": "Skru av dette valget om du opplever hastighetsproblemer.<br>Rullefeltets posisjon blir bare oppdatert når endeposisjonen for rullingen er nådd.",
+        "description": ""
+    },
+    "explanation_trigger_area": {
+        "message": "Gjør område feltene er tilgjengelig i større.",
+        "description": ""
+    },
+    "explanation_superbar": {
+        "message": "The \"superbar\" is a combination of a horizontal and a vertical scroll bar.<br>Thus, it only gets visible when both bars are necessary.<br>Its position is aligned with the vertical and horizontal scroll bars.",
+        "description": ""
+    },
+    "explanation_custom_functions": {
+        "message": "Standard scrolling experience is sometimes a bit jerky and slow. By activating these options the extension also takes over the corresponding scrolling, which should result in a noticeable performance boost.",
+        "description": ""
+    },
+    "explanation_animate_scroll": {
+        "message": "Om du bruker dette valget vil ikke sider lengre hoppe øyeblikkelig til det angitte området. De vil i steden rulle dit med den angitte hastigheten. Dette gjelder rulleknappene, klikk på rullelinjen, samt rulling med tastaturet om valget «Bruk egne rullefunksjoner for tastaturet» er i bruk.",
+        "description": ""
+    },
+    "explanation_external_interface": {
+        "message": "By checking this option, modern scroll will provide some of its key features for usage by third-party-extensions, websites or you. You can then e.g. create custom mouse gestures.<br><a href='https://christoph142.wordpress.com/2013/02/20/modern-scroll-documentation' target='_blank'>Visit the documentation to learn more about it.</a>",
+        "description": ""
+    },
+    "report_issue": {
+        "message": "Report an issue",
+        "description": ""
+    },
+    "rate": {
+        "message": "Rate modern scroll",
+        "description": ""
+    },
+    "twitter": {
+        "message": "Follow me on Twitter",
+        "description": ""
+    },
+    "get_more": {
+        "message": "Get more out of modern scroll",
+        "description": ""
+    },
+    "ok": {
+        "message": "OK",
+        "description": ""
+    },
+    "cancel": {
+        "message": "Cancel",
+        "description": ""
+    },
+    "close": {
+        "message": "Close",
+        "description": ""
+    },
+    "token": {
+        "message": "Here's the token you need in order to transfer this license to other browsers:",
+        "description": ""
+    },
+    "trial_expired": {
+        "message": "Your trial period expired.\nI hope you love modern scroll as much as I do.\nIf you do, get a license now.",
+        "description": ""
+    },
+    "all_set": {
+        "message": "You're all set! :)",
+        "description": ""
+    },
+    "seven_days_trial": {
+        "message": "You can check modern scroll out unrestrictedly for seven days now.",
+        "description": ""
+    },
+    "thanks_for_installing": {
+        "message": "Thanks for installing modern scroll! :)",
+        "description": ""
+    },
+    "get_trial_license": {
+        "message": "You need to log in to your Google account and grant modern scroll access to Chrome Web Store now in order to get your (trial) license.",
+        "description": ""
+    },
+    "authorize": {
+        "message": "Log in and authorize",
+        "description": ""
+    },
+    "transferred_trial_expired": {
+        "message": "The trial period of the license you transferred expired.\nI hope you love modern scroll as much as I do.\nIf you do, get a license now. You need to transfer this license from Chrome once again:",
+        "description": ""
+    },
+    "transfer_successful": {
+        "message": "Have fun using modern scroll.",
+        "description": ""
+    },
+    "get_license_in_chrome": {
+        "message": "install modern scroll in Chrome and get a license there",
+        "description": ""
+    },
+    "open_url_in_chrome": {
+        "message": "open chrome-extension://@@extension_id/options/options.html#show_token in Chrome",
+        "description": ""
+    },
+    "copy_token": {
+        "message": "copy shown token",
+        "description": ""
+    },
+    "insert_here": {
+        "message": "insert it in here",
+        "description": ""
+    },
+    "transfer_instructions": {
+        "message": "To use it in here, you need to transfer a license from Chrome (trial license is fine, too). That's what you need to do:",
+        "description": ""
+    },
+    "invalid_token": {
+        "message": "The token you entered is invalid or expired",
+        "description": ""
+    },
+    "description": {
+        "message": "Tar rulleopplevelsen opp til neste nivå",
+        "description": ""
+    }
+}

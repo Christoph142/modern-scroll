@@ -1,0 +1,474 @@
+{
+    "by": {
+        "message": "من طرف",
+        "description": ""
+    },
+    "saved_sets_headline": {
+        "message": "الاعدادات المحفوظة",
+        "description": ""
+    },
+    "save_set_as": {
+        "message": "حفظ الإعدادات الحالية تحت إسم ",
+        "description": ""
+    },
+    "new_set_name": {
+        "message": "إسم",
+        "description": ""
+    },
+    "load_or_delete_set": {
+        "message": "تحميل أو حذف",
+        "description": ""
+    },
+    "default": {
+        "message": "إفتراضي",
+        "description": ""
+    },
+    "default_change_impossible": {
+        "message": "لا يمكنك تغيير الإعدادات الافتراضية، من فضلك إختر إسم آخر",
+        "description": ""
+    },
+    "default_delete_impossible": {
+        "message": "لا يمكنك حذف الإعدادات الإفتراضية",
+        "description": ""
+    },
+    "confirm_overwrite": {
+        "message": "إعدادات بنفس الاسم موجود مسبقا.\nهل تريد استبداله؟",
+        "description": ""
+    },
+    "confirm_delete": {
+        "message": "هل حقا تريد حذف هذه الإعدات نهائيا و دون رجعة؟",
+        "description": ""
+    },
+    "confirm_load": {
+        "message": "هل تريد حقاً ان تحمل هذه الاعدادات الان؟\nسوف تستبدل الإعدادات الحالية.",
+        "description": ""
+    },
+    "tooltip_save": {
+        "message": "حفظ",
+        "description": ""
+    },
+    "tooltip_load": {
+        "message": "تحميل",
+        "description": ""
+    },
+    "tooltip_delete": {
+        "message": "حذف",
+        "description": ""
+    },
+    "look": {
+        "message": "المظهر",
+        "description": ""
+    },
+    "color": {
+        "message": "لون أشرطة التمرير، الشريط الخارق أو سوبر بار و أزرار التمرير ",
+        "description": ""
+    },
+    "color_bg": {
+        "message": "لون الأشرطة الخلفية ",
+        "description": ""
+    },
+    "auto_coloring": {
+        "message": "Color UI matching the page instead if possible",
+        "description": ""
+    },
+    "size": {
+        "message": "عرض (و أيضا إرتفاع الأشرطة الأفقية) في الحالة الطبيعية",
+        "description": ""
+    },
+    "hover_size": {
+        "message": "عرض (و أيضا ارتفاع الأشرطة الأفقية) عند الحومان فوقها بالفأرة",
+        "description": ""
+    },
+    "border_radius": {
+        "message": "نصف قطر إنحناء الحافة ",
+        "description": ""
+    },
+    "gap": {
+        "message": "البعد على حافة النافذة",
+        "description": ""
+    },
+    "opacity": {
+        "message": "شفافية أشرطة التمرير ",
+        "description": ""
+    },
+    "border": {
+        "message": "حافة",
+        "description": ""
+    },
+    "border_width": {
+        "message": "عرض",
+        "description": ""
+    },
+    "border_color": {
+        "message": "لون",
+        "description": ""
+    },
+    "border_blur": {
+        "message": "ضبابية ",
+        "description": ""
+    },
+    "vbar_at_left": {
+        "message": "إظهار أشرطة التمرير على اليسار بدل اليمين ",
+        "description": ""
+    },
+    "hbar_at_top": {
+        "message": "إظهار أشرطة التمرير في الأعلى بدل الأسفل ",
+        "description": ""
+    },
+    "behavior": {
+        "message": "سلوك",
+        "description": ""
+    },
+    "show_when": {
+        "message": "متى تريد للأشرطة أن تظهر",
+        "description": ""
+    },
+    "only_over": {
+        "message": "فقط عند الحومان بالفأرة",
+        "description": ""
+    },
+    "normal": {
+        "message": "عند الحومان، التمرير و تغيير المكان و الحجم",
+        "description": ""
+    },
+    "always": {
+        "message": "دائما",
+        "description": ""
+    },
+    "show_bg_bars_when": {
+        "message": "و الأشرطة الخلفية ؟",
+        "description": ""
+    },
+    "like_bars": {
+        "message": "مثل أشرطة التمرير",
+        "description": ""
+    },
+    "show_how_long": {
+        "message": "كم المدة التي تبقى فيها الأشرطة ظاهرة قبل أن تختفي",
+        "description": ""
+    },
+    "fullscreen_only": {
+        "message": "إظهار الأشرطة فقط في نمط ملء الشاشة ",
+        "description": ""
+    },
+    "fullscreen_only_short": {
+        "message": "فقط في نمط ملء الشاشة ",
+        "description": ""
+    },
+    "move_bars_during_scroll": {
+        "message": "تحريك أشرطة التمرير عند التصفح باستعمال عجلة الفأرة أو لوحة المفاتيح.",
+        "description": ""
+    },
+    "bg_special_ends": {
+        "message": "النقر على نهاية أشرطة التمرير الخلفية يؤدي إلى الانتقال الى أعلى/أسفل ( و أيضا يمين/يسار) الموقع بدل التصفح صفحة بصفحة ",
+        "description": ""
+    },
+    "container1": {
+        "message": "مسافة تفعيل \"ModernScroll\" ضمن",
+        "description": ""
+    },
+    "container2": {
+        "message": "بكسل الى الحافة",
+        "description": ""
+    },
+    "element_bars": {
+        "message": "شريط تمرير فى داخل الصفحة",
+        "description": ""
+    },
+    "style_element_bars": {
+        "message": "جَمل كل اشرطة التمرير",
+        "description": ""
+    },
+    "explanation_element_bars": {
+        "message": "Activate this to make modern scroll also style all scrollbars within the page, e.g. those of textareas.",
+        "description": ""
+    },
+    "autohide_element_bars": {
+        "message": "Autohide scrollbars within the page",
+        "description": ""
+    },
+    "explanation_autohide_element_bars": {
+        "message": "This unfortunately doesn't work properly because of rendering bugs. You can enable it, but scroll bars may not always show up correctly.",
+        "description": ""
+    },
+    "superbar": {
+        "message": "الشريط الخارق",
+        "description": ""
+    },
+    "show_superbar": {
+        "message": "إظهارالشريط الخارق ",
+        "description": ""
+    },
+    "show_superbar_minipage": {
+        "message": "إظهار نسخة مصغرة من الموقع في الخلفية عند تحريك الشريط الخارق",
+        "description": ""
+    },
+    "superbar_opacity": {
+        "message": "شفافية الشريط الخارق عند الحومان عليه بالفأرة ",
+        "description": ""
+    },
+    "bookmarks": {
+        "message": "Bookmarks",
+        "description": ""
+    },
+    "show_bookmarks": {
+        "message": "Show bookmarks within the page for scrolling to the specified locations",
+        "description": ""
+    },
+    "no_bookmarks": {
+        "message": "Off",
+        "description": ""
+    },
+    "bookmarks_only": {
+        "message": "Show bookmarks",
+        "description": ""
+    },
+    "all_headings": {
+        "message": "Bookmarks and Headings",
+        "description": ""
+    },
+    "buttons": {
+        "message": "أزرار التمرير ",
+        "description": ""
+    },
+    "show_buttons": {
+        "message": "إظهار أزرار التمرير أعلى و أسفل الصفحة",
+        "description": ""
+    },
+    "button_width": {
+        "message": "عرض",
+        "description": ""
+    },
+    "button_height": {
+        "message": "إرتفاع",
+        "description": ""
+    },
+    "button_opacity": {
+        "message": "شفافية",
+        "description": ""
+    },
+    "drag_buttons": {
+        "message": "يمكنكم جر الأزرار الى أي موضع تريدونه في هذه الصفحة ليصبح الإعداد الإفتراضي لجميع المواقع. لكن إن اعترضت الأزرار طريقك عند تصفح موقع ما يمكنكم دائما جرها لأي موضع تريده على ذات الصفحة.",
+        "description": ""
+    },
+    "contextmenu": {
+        "message": "قائمة السياق",
+        "description": ""
+    },
+    "show_contextmenu_when": {
+        "message": "متى تريد أن يظهر خيار إخفاء \"ModernScroll\" في قائمة السياق ؟",
+        "description": ""
+    },
+    "never": {
+        "message": "أبدا",
+        "description": ""
+    },
+    "contextmenu_over_only": {
+        "message": "عند الضغط بزر الفأرة الأيمن على أشرطة تمرير \"ModernScroll\"",
+        "description": ""
+    },
+    "custom_scroll_functions": {
+        "message": "وظائف التمرير الإضافية",
+        "description": ""
+    },
+    "use_custom_functions": {
+        "message": "إستعمال وظائف التمرير الإضافية",
+        "description": ""
+    },
+    "use_custom_functions_keyboard": {
+        "message": "لــلوحة المفاتيح",
+        "description": ""
+    },
+    "use_custom_functions_mouse": {
+        "message": "لــلفأرة",
+        "description": ""
+    },
+    "use_custom_functions_middle": {
+        "message": "من اجل ضغط لفة الماوس",
+        "description": ""
+    },
+    "endMiddlescrollByTurningWheel": {
+        "message": "اغلق أيضا بتحريك لفة الماوس",
+        "description": ""
+    },
+    "animate_scroll": {
+        "message": "تحريك التمرير ",
+        "description": ""
+    },
+    "animate_up_to": {
+        "message": "إلى طول يصل إلى ",
+        "description": ""
+    },
+    "infinite": {
+        "message": "غير محدود",
+        "description": ""
+    },
+    "page": {
+        "message": "صفحة",
+        "description": ""
+    },
+    "pages": {
+        "message": "صفحات",
+        "description": ""
+    },
+    "keyscroll_velocity": {
+        "message": "سرعة التمرير باستعمال أسهم لوحة المفاتيح",
+        "description": ""
+    },
+    "mousescroll_velocity": {
+        "message": "سرعة التمرير باستعمال عجلة الفأرة و \"التراكباد\"",
+        "description": ""
+    },
+    "mousescroll_distance": {
+        "message": "المسافة المجتازة عند كل دورة لعجلة الفأرة",
+        "description": ""
+    },
+    "middlescroll_velocity": {
+        "message": "سرعة التمرير باستخدام عجلة الفارة",
+        "description": ""
+    },
+    "animatedscroll_velocity": {
+        "message": "سرعة التمرير المتحرك ",
+        "description": ""
+    },
+    "external_interface_headline": {
+        "message": "الوسيط الخارجي",
+        "description": ""
+    },
+    "external_interface": {
+        "message": "توفير وسيط للولوج الخارجي",
+        "description": ""
+    },
+    "footer": {
+        "message": "أشكركم على تثبيت هذه الإضافة. يمكنكم الإتصال بي وقتما شئتم لإبداء أرائكم أو طرح تساؤلاتكم",
+        "description": ""
+    },
+    "contextmenu_show": {
+        "message": "إظهار أشرطة \" ModernScroll\"",
+        "description": ""
+    },
+    "contextmenu_hide": {
+        "message": "إخفاء \"ModernScroll\"",
+        "description": ""
+    },
+    "explanation_save_set": {
+        "message": "يمكنك حفظ إعدادتك الحالية هنا.\nفقط اكتب اسم الملف واضغط على زر الحفظ.\nإذا اخترت اسم موجود مسبقا، سوف يتم استبدال الملف القديم بالجديد.",
+        "description": ""
+    },
+    "explanation_move_bars_during_scroll": {
+        "message": "يمكنك إبطال هذا الخيار إذا واجهتك مشاكل في الأداء. عندها موضع أشرطة التمرير سيحدًث فقط عند الإنتهاء من التمرير.",
+        "description": ""
+    },
+    "explanation_trigger_area": {
+        "message": "توسيع مجال الوصول للأشرطة",
+        "description": ""
+    },
+    "explanation_superbar": {
+        "message": "الشريط الخارق يستعمل للتصفح العمودي و الأفقي معا.لذا فهو لا يظهر إلا عند الحاجة للأشرطة العمودية و الأفقية، مكانه هو مركز الشريط العمودي عموديا و مركزالشريط الأفقي أفقيا",
+        "description": ""
+    },
+    "explanation_custom_functions": {
+        "message": "التمرير العادي في العادة سيء و بطيء. عند تفعيل هذا الخيار، هذه الإضافة ستتولى أمر التمرير مما يترجم بتحسن ملحوظ في الأداء",
+        "description": ""
+    },
+    "explanation_animate_scroll": {
+        "message": "إذا حددت هذا الخيار، الصفحة لن تقفزمباشرة للمكان المراد لكنها ستتحرك إلى هناك آليا بمقدار محدد.هذا ساري المفعول أيضا بالنسبة لأزرار التمرير، الضغط على نهايات أشرطة التمرير الخلفية و التصفح باستعمال لوحة التحكم (في حالة ما إذا كنت تستعمل وظائف التمرير الإضافية لــلوحة التحكم).",
+        "description": ""
+    },
+    "explanation_external_interface": {
+        "message": "بالنقر على هذه الخاصية، ستوفر هذه الإضافة بعض من وظائفها الأساسية للاستغلال عن طريق إضافات أخرى، مواقع أو 'المستعمل'. يمكنك مثلا تخصيص إختصار لإماءات الفأرة .<br><a href='https://christoph142.wordpress.com/2013/02/20/modern-scroll-documentation' target='_blank'>للمزيد من المعلومات يرجى الإطلاع على الوثائق و الشروحات المعنية.</a>\"",
+        "description": ""
+    },
+    "report_issue": {
+        "message": "ابلغ عن خطأ",
+        "description": ""
+    },
+    "rate": {
+        "message": "قّيم \"modern scroll\"",
+        "description": ""
+    },
+    "twitter": {
+        "message": "اتبعنى على تويتر",
+        "description": ""
+    },
+    "get_more": {
+        "message": "احصل أكثر من \"modern scroll\"",
+        "description": ""
+    },
+    "ok": {
+        "message": "حسناً",
+        "description": ""
+    },
+    "cancel": {
+        "message": "الغاء",
+        "description": ""
+    },
+    "close": {
+        "message": "اغلاق",
+        "description": ""
+    },
+    "token": {
+        "message": "Here's the token you need in order to transfer this license to other browsers:",
+        "description": ""
+    },
+    "trial_expired": {
+        "message": "Your trial period expired.\nI hope you love modern scroll as much as I do.\nIf you do, get a license now.",
+        "description": ""
+    },
+    "all_set": {
+        "message": "You're all set! :)",
+        "description": ""
+    },
+    "seven_days_trial": {
+        "message": "You can check modern scroll out unrestrictedly for seven days now.",
+        "description": ""
+    },
+    "thanks_for_installing": {
+        "message": "Thanks for installing modern scroll! :)",
+        "description": ""
+    },
+    "get_trial_license": {
+        "message": "You need to log in to your Google account and grant modern scroll access to Chrome Web Store now in order to get your (trial) license.",
+        "description": ""
+    },
+    "authorize": {
+        "message": "Log in and authorize",
+        "description": ""
+    },
+    "transferred_trial_expired": {
+        "message": "The trial period of the license you transferred expired.\nI hope you love modern scroll as much as I do.\nIf you do, get a license now. You need to transfer this license from Chrome once again:",
+        "description": ""
+    },
+    "transfer_successful": {
+        "message": "Have fun using modern scroll.",
+        "description": ""
+    },
+    "get_license_in_chrome": {
+        "message": "install modern scroll in Chrome and get a license there",
+        "description": ""
+    },
+    "open_url_in_chrome": {
+        "message": "open chrome-extension://@@extension_id/options/options.html#show_token in Chrome",
+        "description": ""
+    },
+    "copy_token": {
+        "message": "copy shown token",
+        "description": ""
+    },
+    "insert_here": {
+        "message": "insert it in here",
+        "description": ""
+    },
+    "transfer_instructions": {
+        "message": "To use it in here, you need to transfer a license from Chrome (trial license is fine, too). That's what you need to do:",
+        "description": ""
+    },
+    "invalid_token": {
+        "message": "The token you entered is invalid or expired",
+        "description": ""
+    },
+    "description": {
+        "message": "الإرتقاء بالتصفح و التمرير لمستوى آخر",
+        "description": ""
+    }
+}

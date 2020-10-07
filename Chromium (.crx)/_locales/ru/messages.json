@@ -1,0 +1,474 @@
+{
+    "by": {
+        "message": "от",
+        "description": ""
+    },
+    "saved_sets_headline": {
+        "message": "Сохранённые конфигурации",
+        "description": ""
+    },
+    "save_set_as": {
+        "message": "Сохранить текущую конфигурацию как",
+        "description": ""
+    },
+    "new_set_name": {
+        "message": "Имя",
+        "description": ""
+    },
+    "load_or_delete_set": {
+        "message": "Загрузить или удалить",
+        "description": ""
+    },
+    "default": {
+        "message": "По умолчанию",
+        "description": ""
+    },
+    "default_change_impossible": {
+        "message": "Невозможно изменить конфигурацию по умолчанию! Выберите другое имя.",
+        "description": ""
+    },
+    "default_delete_impossible": {
+        "message": "Вы не можете удалить конфигурацию по умолчанию!",
+        "description": ""
+    },
+    "confirm_overwrite": {
+        "message": "Конфигурация с таким именем уже существует.\nХотите перезаписать её?",
+        "description": ""
+    },
+    "confirm_delete": {
+        "message": "Вы хотите безвозвратно удалить эту конфигурацию?",
+        "description": ""
+    },
+    "confirm_load": {
+        "message": "Вы уверены, что хотите загрузить эту конфигурацию?\nТекущие настройки будут перезаписаны.",
+        "description": ""
+    },
+    "tooltip_save": {
+        "message": "Сохранить",
+        "description": ""
+    },
+    "tooltip_load": {
+        "message": "Загрузить",
+        "description": ""
+    },
+    "tooltip_delete": {
+        "message": "Удалить",
+        "description": ""
+    },
+    "look": {
+        "message": "Внешний вид",
+        "description": ""
+    },
+    "color": {
+        "message": "Цвет полос прокрутки, \"супер панели\" и кнопок прокрутки",
+        "description": ""
+    },
+    "color_bg": {
+        "message": "Цвет фона полосы прокрутки",
+        "description": ""
+    },
+    "auto_coloring": {
+        "message": "Color UI matching the page instead if possible",
+        "description": ""
+    },
+    "size": {
+        "message": "Ширина (соответственно высота для горизонтальных полос) в нормальном состоянии",
+        "description": ""
+    },
+    "hover_size": {
+        "message": "Ширина (т.е. высота для горизонтальных полос) при наведении курсора",
+        "description": ""
+    },
+    "border_radius": {
+        "message": "Закругление концов полосы прокрутки",
+        "description": ""
+    },
+    "gap": {
+        "message": "Расстояние от границ окна",
+        "description": ""
+    },
+    "opacity": {
+        "message": "Непрозрачность полосы прокрутки",
+        "description": ""
+    },
+    "border": {
+        "message": "Граница",
+        "description": ""
+    },
+    "border_width": {
+        "message": "Ширина",
+        "description": ""
+    },
+    "border_color": {
+        "message": "Цвет",
+        "description": ""
+    },
+    "border_blur": {
+        "message": "Размытие",
+        "description": ""
+    },
+    "vbar_at_left": {
+        "message": "Отображать вертикальную полосу прокрутки слева, а не справа",
+        "description": ""
+    },
+    "hbar_at_top": {
+        "message": "Отображать горизонтальную полосу прокрутки сверху, а не снизу",
+        "description": ""
+    },
+    "behavior": {
+        "message": "Поведение",
+        "description": ""
+    },
+    "show_when": {
+        "message": "Отображение полосы прокрутки",
+        "description": ""
+    },
+    "only_over": {
+        "message": "Только при наведении курсора",
+        "description": ""
+    },
+    "normal": {
+        "message": "При наведении курсора, во время прокрутки и изменение размера или позиции",
+        "description": ""
+    },
+    "always": {
+        "message": "Всегда",
+        "description": ""
+    },
+    "show_bg_bars_when": {
+        "message": "Отображение фона полосы прокрутки",
+        "description": ""
+    },
+    "like_bars": {
+        "message": "Как и полосы прокрутки",
+        "description": ""
+    },
+    "show_how_long": {
+        "message": "Длительность отображения полос прокрутки",
+        "description": ""
+    },
+    "fullscreen_only": {
+        "message": "Только в полноэкранном режиме",
+        "description": ""
+    },
+    "fullscreen_only_short": {
+        "message": "Только в полноэкранном режиме",
+        "description": ""
+    },
+    "move_bars_during_scroll": {
+        "message": "Анимировать полосы прокрутки с помощью колёсика мышки / клавиатуры",
+        "description": ""
+    },
+    "bg_special_ends": {
+        "message": "При нажатии на фоне полосы прокрутки",
+        "description": ""
+    },
+    "container1": {
+        "message": "Появление полосы прокрутки на расстоянии",
+        "description": ""
+    },
+    "container2": {
+        "message": "пикселей от границ окна",
+        "description": ""
+    },
+    "element_bars": {
+        "message": "Полосы прокрутки на самой странице",
+        "description": ""
+    },
+    "style_element_bars": {
+        "message": "Стилизовать все полосы прокрутки",
+        "description": ""
+    },
+    "explanation_element_bars": {
+        "message": "Активирует стилизацию полос прокрутки внутри самой страницы (к примеру, для HTML-тега textarea).",
+        "description": ""
+    },
+    "autohide_element_bars": {
+        "message": "Скрывать полосы прокрутки внутри страницы",
+        "description": ""
+    },
+    "explanation_autohide_element_bars": {
+        "message": "К сожалению, это не всегда работает должным образом ввиду некоторых багов. Вы всё же можете включить эту опцию, но корректное поведение этой опции не гарантируется.",
+        "description": ""
+    },
+    "superbar": {
+        "message": "\"Супер панель\"",
+        "description": ""
+    },
+    "show_superbar": {
+        "message": "Отображать \"супер панель\"",
+        "description": ""
+    },
+    "show_superbar_minipage": {
+        "message": "Показать мини-версию веб-сайта в фоновом режиме при перетаскивании в \"супер панель\"",
+        "description": ""
+    },
+    "superbar_opacity": {
+        "message": "Непрозрачность \"супер панели\" при наведении курсора мышки",
+        "description": ""
+    },
+    "bookmarks": {
+        "message": "Bookmarks",
+        "description": ""
+    },
+    "show_bookmarks": {
+        "message": "Show bookmarks within the page for scrolling to the specified locations",
+        "description": ""
+    },
+    "no_bookmarks": {
+        "message": "Off",
+        "description": ""
+    },
+    "bookmarks_only": {
+        "message": "Show bookmarks",
+        "description": ""
+    },
+    "all_headings": {
+        "message": "Bookmarks and Headings",
+        "description": ""
+    },
+    "buttons": {
+        "message": "Кнопки прокрутки",
+        "description": ""
+    },
+    "show_buttons": {
+        "message": "Отображение кнопок для быстрого перехода к верхней/нижней части страницы",
+        "description": ""
+    },
+    "button_width": {
+        "message": "Ширина",
+        "description": ""
+    },
+    "button_height": {
+        "message": "Высота",
+        "description": ""
+    },
+    "button_opacity": {
+        "message": "Непрозрачность",
+        "description": ""
+    },
+    "drag_buttons": {
+        "message": "Кнопки можно перетащить здесь в опциях в любое место. Эта позиция станет значением по умолчанию для всех веб-сайтов. Если они закрывают элементы на некоторых страницах, вы имете возможность перетащить их.",
+        "description": ""
+    },
+    "contextmenu": {
+        "message": "Контекстное меню",
+        "description": ""
+    },
+    "show_contextmenu_when": {
+        "message": "Опция сокрытия modern scroll в контекстном меню",
+        "description": ""
+    },
+    "never": {
+        "message": "Никогда",
+        "description": ""
+    },
+    "contextmenu_over_only": {
+        "message": "При нажтии правой кнопкой мышки на интерфейсе modern scroll",
+        "description": ""
+    },
+    "custom_scroll_functions": {
+        "message": "Функции прокрутки",
+        "description": ""
+    },
+    "use_custom_functions": {
+        "message": "Использовать следующие функции прокрутки",
+        "description": ""
+    },
+    "use_custom_functions_keyboard": {
+        "message": "для клавиатуры",
+        "description": ""
+    },
+    "use_custom_functions_mouse": {
+        "message": "для мышки",
+        "description": ""
+    },
+    "use_custom_functions_middle": {
+        "message": "для нажатий колёсика мышки",
+        "description": ""
+    },
+    "endMiddlescrollByTurningWheel": {
+        "message": "Остановить при повторном нажатии колёсика мышки",
+        "description": ""
+    },
+    "animate_scroll": {
+        "message": "Шаг прокрутки",
+        "description": ""
+    },
+    "animate_up_to": {
+        "message": " относительно длинны",
+        "description": ""
+    },
+    "infinite": {
+        "message": "не ограничено",
+        "description": ""
+    },
+    "page": {
+        "message": "страница",
+        "description": ""
+    },
+    "pages": {
+        "message": "строки",
+        "description": ""
+    },
+    "keyscroll_velocity": {
+        "message": "Скорость прокрутки с помощью клавиш клавиатуры (стрелочки)",
+        "description": ""
+    },
+    "mousescroll_velocity": {
+        "message": "Скорость прокрутки для колёсика мышки и трекпада",
+        "description": ""
+    },
+    "mousescroll_distance": {
+        "message": "Расстояние перемещения при повороте колёсика мышки",
+        "description": ""
+    },
+    "middlescroll_velocity": {
+        "message": "Скорость прокрутки при нажатии на колёсика мышки",
+        "description": ""
+    },
+    "animatedscroll_velocity": {
+        "message": "Скорость анимированной прокрутки",
+        "description": ""
+    },
+    "external_interface_headline": {
+        "message": "Внешний интерфейс",
+        "description": ""
+    },
+    "external_interface": {
+        "message": "Предоставить интерфейс для внешнего доступа",
+        "description": ""
+    },
+    "footer": {
+        "message": "Спасибо за установку этого расширения. Вы можете связаться со мной в любое время для отзывов и вопросов.",
+        "description": ""
+    },
+    "contextmenu_show": {
+        "message": "Показать modern scroll",
+        "description": ""
+    },
+    "contextmenu_hide": {
+        "message": "Скрыть modern scroll",
+        "description": ""
+    },
+    "explanation_save_set": {
+        "message": "Здесь можно сохранить текущую конфигурацию.\nПросто введите имя и нажмите кнопку Сохранить.\nЕсли вы выберите имя, которое уже существует, то эта запись будет перезаписана.",
+        "description": ""
+    },
+    "explanation_move_bars_during_scroll": {
+        "message": "Отключите эту опцию, если вы сталкиваетесь с проблемами производительности.<br> Позиция полос прокрутки будет обновляться только при завершении прокрутки.",
+        "description": ""
+    },
+    "explanation_trigger_area": {
+        "message": "Растояние от границы окна, при нахождении в котором курсора отображается полоса прокрутки.",
+        "description": ""
+    },
+    "explanation_superbar": {
+        "message": "\"Супер панель\" - комбинация горизонтальной и вертикальной прокрутки.<br> Становится видимой, когда обе полосы прокрутки доступны.<br>Выравнивается положение для горизонтальной и вертикальной прокрутки.",
+        "description": ""
+    },
+    "explanation_custom_functions": {
+        "message": "Стандартная прокрутка порой бывает весьма медленной и рывкообразной. Настройка этих параметров позволяет добиться заметного прироста производительности и комфортности.",
+        "description": ""
+    },
+    "explanation_animate_scroll": {
+        "message": "Если выбрать этот параметр, то переход по странице осуществляется не мгновенно, а с регулируемой скоростью.<br>Это относится к кнопкам прокрутки, нажатиям на фоне полосы прокрутки, а также для прокрутки с помощью клавиатуры (если активирован режим прокрутки для клавиатуры).",
+        "description": ""
+    },
+    "explanation_external_interface": {
+        "message": "Если включена эта опция, то modern scroll позволит использовать некоторые из его ключевых функций сторонними расширениями и веб-сайтами. После этого можно, например, создавать собственные жесты мышки.<br><a href='https://christoph142.wordpress.com/2013/02/20/modern-scroll-documentation' target='_blank'>Посмотрите документацию, чтобы узнать больше.</a>",
+        "description": ""
+    },
+    "report_issue": {
+        "message": "Сообщить о проблеме",
+        "description": ""
+    },
+    "rate": {
+        "message": "Оцените modern scroll",
+        "description": ""
+    },
+    "twitter": {
+        "message": "Подписаться на мой Twitter",
+        "description": ""
+    },
+    "get_more": {
+        "message": "Узнать больше о modern scroll",
+        "description": ""
+    },
+    "ok": {
+        "message": "Ок",
+        "description": ""
+    },
+    "cancel": {
+        "message": "Отмена",
+        "description": ""
+    },
+    "close": {
+        "message": "Закрыть",
+        "description": ""
+    },
+    "token": {
+        "message": "Этот ключ вам понадобиться при подключения лицензии в других браузерах:",
+        "description": ""
+    },
+    "trial_expired": {
+        "message": "Ваш пробный период истёк.\nНадеюсь, вам понравилось расширение moder scroll так же, как и мне.\nЕсли да, то скорей приобретайте лицензию.",
+        "description": ""
+    },
+    "all_set": {
+        "message": "Теперь всё готово к работе! :)",
+        "description": ""
+    },
+    "seven_days_trial": {
+        "message": "Пробный период доступен в течении семи дней без каких-либо ограничений.",
+        "description": ""
+    },
+    "thanks_for_installing": {
+        "message": "Спасибо за установку расширения modern scroll! :)",
+        "description": ""
+    },
+    "get_trial_license": {
+        "message": "Если вы хотите получить лицензию (пробную в том числе), то Вам нужно зайти в Вашу учётную запись Гугл и дать доступ расширению moder scroll к Chrome Web Store.",
+        "description": ""
+    },
+    "authorize": {
+        "message": "Войдите и авторизуйтесь",
+        "description": ""
+    },
+    "transferred_trial_expired": {
+        "message": "Ваш пробный период истёк.\nНадеюсь, вам понравилось расширение moder scroll так же, как и мне.\nЕсли да, то скорей приобретайте лицензию. Для этого Вам нужно снова получить её Хроме.",
+        "description": ""
+    },
+    "transfer_successful": {
+        "message": "Наслаждайтесь используя modern scroll.",
+        "description": ""
+    },
+    "get_license_in_chrome": {
+        "message": "установите расширение modern scroll в браузере Chrome для получения лецензии",
+        "description": ""
+    },
+    "open_url_in_chrome": {
+        "message": "откройте в Хроме: chrome-extension://@@extension_id/options/options.html#show_token",
+        "description": ""
+    },
+    "copy_token": {
+        "message": "скопируйте указанный ключ",
+        "description": ""
+    },
+    "insert_here": {
+        "message": "вставьте ключ в это поле",
+        "description": ""
+    },
+    "transfer_instructions": {
+        "message": "Чтобы использовать расширение в этом браузере Вы должны сначала получить лицензию в Хроме (пробная тоже подходит). Вот что Вам необходимо сделать:",
+        "description": ""
+    },
+    "invalid_token": {
+        "message": "Введённый ключ является недействительным либо просроченным",
+        "description": ""
+    },
+    "description": {
+        "message": "Поднимает возможности прокрутки на совершенно новый уровень",
+        "description": ""
+    }
+}

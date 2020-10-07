@@ -1,0 +1,474 @@
+{
+    "by": {
+        "message": "autorstwa",
+        "description": ""
+    },
+    "saved_sets_headline": {
+        "message": "Saved configurations",
+        "description": ""
+    },
+    "save_set_as": {
+        "message": "Zapisz obecny zestaw pod nazwą",
+        "description": ""
+    },
+    "new_set_name": {
+        "message": "Nazwa",
+        "description": ""
+    },
+    "load_or_delete_set": {
+        "message": "Wczytaj albo usuń",
+        "description": ""
+    },
+    "default": {
+        "message": "Fabryczny",
+        "description": ""
+    },
+    "default_change_impossible": {
+        "message": "Nie można nadpisać fabrycznego zestawu! Prosze wybrać inną nazwę.",
+        "description": ""
+    },
+    "default_delete_impossible": {
+        "message": "Nie można usunąć fabrycznego zestawu!",
+        "description": ""
+    },
+    "confirm_overwrite": {
+        "message": "A configuration with that name already exists.\nDo you want to replace it?",
+        "description": ""
+    },
+    "confirm_delete": {
+        "message": "Na pewno chcesz nieodwracalnie usunąć ten zestaw?",
+        "description": ""
+    },
+    "confirm_load": {
+        "message": "Do you really want to load this configuration now?\nIt will replace your current setup.",
+        "description": ""
+    },
+    "tooltip_save": {
+        "message": "Zapisz",
+        "description": ""
+    },
+    "tooltip_load": {
+        "message": "Wczytaj",
+        "description": ""
+    },
+    "tooltip_delete": {
+        "message": "Usuń",
+        "description": ""
+    },
+    "look": {
+        "message": "Wygląd",
+        "description": ""
+    },
+    "color": {
+        "message": "Kolor kolor pasków, arkusza i przycisków przewijania",
+        "description": ""
+    },
+    "color_bg": {
+        "message": "Kolor szyn",
+        "description": ""
+    },
+    "auto_coloring": {
+        "message": "Color UI matching the page instead if possible",
+        "description": ""
+    },
+    "size": {
+        "message": "Szerokość (względnie wysokość poziomego paska) w spoczynku",
+        "description": ""
+    },
+    "hover_size": {
+        "message": "Szerokość (względnie wysokość poziomego paska) pod kursorem",
+        "description": ""
+    },
+    "border_radius": {
+        "message": "Promień zaokrąglenia rogów paska",
+        "description": ""
+    },
+    "gap": {
+        "message": "Odstęp od brzegów okna",
+        "description": ""
+    },
+    "opacity": {
+        "message": "Widoczność pasków",
+        "description": ""
+    },
+    "border": {
+        "message": "Obrys",
+        "description": ""
+    },
+    "border_width": {
+        "message": "Szerokość",
+        "description": ""
+    },
+    "border_color": {
+        "message": "Kolor",
+        "description": ""
+    },
+    "border_blur": {
+        "message": "Rozmycie",
+        "description": ""
+    },
+    "vbar_at_left": {
+        "message": "Umieść pasek przewijania w pionie po lewej, a nie prawej stronie",
+        "description": ""
+    },
+    "hbar_at_top": {
+        "message": "Umieść pasek przewijania w poziomie u góry, a nie u dołu strony",
+        "description": ""
+    },
+    "behavior": {
+        "message": "Zachowanie",
+        "description": ""
+    },
+    "show_when": {
+        "message": "Kiedy pasek ma być widoczny?",
+        "description": ""
+    },
+    "only_over": {
+        "message": "Tylko po najechaniu kursorem",
+        "description": ""
+    },
+    "normal": {
+        "message": "Po najechaniu kursorem i podczas przewijania lub zmiany rozmiaru",
+        "description": ""
+    },
+    "always": {
+        "message": "Zawsze",
+        "description": ""
+    },
+    "show_bg_bars_when": {
+        "message": "Co z szynami?",
+        "description": ""
+    },
+    "like_bars": {
+        "message": "Wtedy, kiedy i paski",
+        "description": ""
+    },
+    "show_how_long": {
+        "message": "Przez jaki czas paski mają pozostać widocznymi?",
+        "description": ""
+    },
+    "fullscreen_only": {
+        "message": "Wyświetlaj tylko na pełnym ekranie",
+        "description": ""
+    },
+    "fullscreen_only_short": {
+        "message": "Tylko na pełnym ekranie",
+        "description": ""
+    },
+    "move_bars_during_scroll": {
+        "message": "Animuj paski przewijania podczas przewijania myszą i klawiaturą",
+        "description": ""
+    },
+    "bg_special_ends": {
+        "message": "Kliknięcie na samym końcu szyny przenosi na kraniec strony (górny, dolny, prawy albo lewy), a nie przewija o jedną stronę",
+        "description": ""
+    },
+    "container1": {
+        "message": "Przywołuj paski z odległości",
+        "description": ""
+    },
+    "container2": {
+        "message": "px od krawędzi",
+        "description": ""
+    },
+    "element_bars": {
+        "message": "Scrollbars within the page",
+        "description": ""
+    },
+    "style_element_bars": {
+        "message": "Style all scroll bars",
+        "description": ""
+    },
+    "explanation_element_bars": {
+        "message": "Activate this to make modern scroll also style all scrollbars within the page, e.g. those of textareas.",
+        "description": ""
+    },
+    "autohide_element_bars": {
+        "message": "Autohide scrollbars within the page",
+        "description": ""
+    },
+    "explanation_autohide_element_bars": {
+        "message": "This unfortunately doesn't work properly because of rendering bugs. You can enable it, but scroll bars may not always show up correctly.",
+        "description": ""
+    },
+    "superbar": {
+        "message": "Arkusz przewijania",
+        "description": ""
+    },
+    "show_superbar": {
+        "message": "Wyświetlaj arkusz przewijania",
+        "description": ""
+    },
+    "show_superbar_minipage": {
+        "message": "Oddal stronę na czas przewijania arkuszem",
+        "description": ""
+    },
+    "superbar_opacity": {
+        "message": "Widoczność arkusza przy wskazaniu",
+        "description": ""
+    },
+    "bookmarks": {
+        "message": "Bookmarks",
+        "description": ""
+    },
+    "show_bookmarks": {
+        "message": "Show bookmarks within the page for scrolling to the specified locations",
+        "description": ""
+    },
+    "no_bookmarks": {
+        "message": "Off",
+        "description": ""
+    },
+    "bookmarks_only": {
+        "message": "Show bookmarks",
+        "description": ""
+    },
+    "all_headings": {
+        "message": "Bookmarks and Headings",
+        "description": ""
+    },
+    "buttons": {
+        "message": "Przyciski skoku",
+        "description": ""
+    },
+    "show_buttons": {
+        "message": "Wyświetlanie przycisków skoku na górę i spód strony",
+        "description": ""
+    },
+    "button_width": {
+        "message": "Szerokość",
+        "description": ""
+    },
+    "button_height": {
+        "message": "Wysokość",
+        "description": ""
+    },
+    "button_opacity": {
+        "message": "Widoczność",
+        "description": ""
+    },
+    "drag_buttons": {
+        "message": "Ta strona daje Ci możliwość przesunięcia guzików w dowolne miejsce. Będzie ono domyślnym na wszystkich stronach. Gdyby coś jednak przysłoniły, możesz odsunąć je zawsze, na każdej stronie.",
+        "description": ""
+    },
+    "contextmenu": {
+        "message": "Menu podręczne",
+        "description": ""
+    },
+    "show_contextmenu_when": {
+        "message": "Kiedy menu podręczne ma zawierać opcję ukrycia modern scroll?",
+        "description": ""
+    },
+    "never": {
+        "message": "Nigdy",
+        "description": ""
+    },
+    "contextmenu_over_only": {
+        "message": "Kiedy jest wywołane znad pasków modern scroll",
+        "description": ""
+    },
+    "custom_scroll_functions": {
+        "message": "Kontrola przewijania",
+        "description": ""
+    },
+    "use_custom_functions": {
+        "message": "Pozwól rozszerzeniu kontrolować przewijanie",
+        "description": ""
+    },
+    "use_custom_functions_keyboard": {
+        "message": "klawiaturą",
+        "description": ""
+    },
+    "use_custom_functions_mouse": {
+        "message": "myszą",
+        "description": ""
+    },
+    "use_custom_functions_middle": {
+        "message": "for mouse wheel clicks",
+        "description": ""
+    },
+    "endMiddlescrollByTurningWheel": {
+        "message": "End as well by turning the mouse wheel",
+        "description": ""
+    },
+    "animate_scroll": {
+        "message": "Animowane przewijanie",
+        "description": ""
+    },
+    "animate_up_to": {
+        "message": "co najwyżej na długości",
+        "description": ""
+    },
+    "infinite": {
+        "message": "nieskończonej",
+        "description": ""
+    },
+    "page": {
+        "message": "strony",
+        "description": ""
+    },
+    "pages": {
+        "message": "stron",
+        "description": ""
+    },
+    "keyscroll_velocity": {
+        "message": "Prędkość przewijania strzałkami na klawiaturze",
+        "description": ""
+    },
+    "mousescroll_velocity": {
+        "message": "Prędkość przewijania kółkiem myszy i gładzikiem",
+        "description": ""
+    },
+    "mousescroll_distance": {
+        "message": "Długość przewinięcia kółkiem myszy",
+        "description": ""
+    },
+    "middlescroll_velocity": {
+        "message": "Velocity of scrolling by mouse wheel clicking",
+        "description": ""
+    },
+    "animatedscroll_velocity": {
+        "message": "Prędkość przewijania z animacją",
+        "description": ""
+    },
+    "external_interface_headline": {
+        "message": "Sterowanie z zewnątrz",
+        "description": ""
+    },
+    "external_interface": {
+        "message": "Udostępnij możliwość sterowania z zewnątrz",
+        "description": ""
+    },
+    "footer": {
+        "message": "Dzięki, że zainstalowałaś(-eś) to rozszerzenie. Nie wahaj się wysyłać mi opinii ani pytań",
+        "description": ""
+    },
+    "contextmenu_show": {
+        "message": "Pokaż modern scroll",
+        "description": ""
+    },
+    "contextmenu_hide": {
+        "message": "Ukryj modern scroll",
+        "description": ""
+    },
+    "explanation_save_set": {
+        "message": "You can save your current configuration here.\nJust enter a name and click the save-button.\nIf you choose a name that already exists, this entry will be replaced.",
+        "description": ""
+    },
+    "explanation_move_bars_during_scroll": {
+        "message": "Zrezygnuj z tej opcji, jeśli doświadczasz problemów z wydajnością.<br>Położenie pasków przewijania zostanie ustalone wraz ze skończeniem przewijania.",
+        "description": ""
+    },
+    "explanation_trigger_area": {
+        "message": "Powiększa obszar dostępu do pasków.",
+        "description": ""
+    },
+    "explanation_superbar": {
+        "message": "Arkusz łączy w sobie oba paski przewijania.<br>W związku z tym jest dostępny, gdy strona nie mieści się na ekranie w obu kierunkach.<br>Jego położenie odpowiada położeniu pionowego i poziomego paska.",
+        "description": ""
+    },
+    "explanation_custom_functions": {
+        "message": "Standard scrolling experience is sometimes a bit jerky and slow. By activating these options the extension also takes over the corresponding scrolling, which should result in a noticeable performance boost.",
+        "description": ""
+    },
+    "explanation_animate_scroll": {
+        "message": "Kiedy włączysz tę funkcję, strona nie będzie od razu przeskakiwać w docelowe miejsce, ale przewinie się w określonym tempie.<br>Powyższe dotyczy przycisków przewijania, kliknięć na szynach oraz przewijania klawiaturą (o ile zaznaczono pole Pozwól rozszerzeniu kontrolować przewijanie klawiaturą).",
+        "description": ""
+    },
+    "explanation_external_interface": {
+        "message": "Kiedy ta opcja jest wybrana, modern scroll udostępnia kilka najważniejszych funkcji pozostałym rozszerzeniom, witrynom i tobie. Dzięki temu możesz np. przypisać własne gesty myszy.<br><a href='https://christoph142.wordpress.com/2013/02/20/modern-scroll-documentation' target='_blank'>Po bardziej szczegółowe informacje zapraszam do dokumentacji (ang.).</a>",
+        "description": ""
+    },
+    "report_issue": {
+        "message": "Report an issue",
+        "description": ""
+    },
+    "rate": {
+        "message": "Rate modern scroll",
+        "description": ""
+    },
+    "twitter": {
+        "message": "Follow me on Twitter",
+        "description": ""
+    },
+    "get_more": {
+        "message": "Get more out of modern scroll",
+        "description": ""
+    },
+    "ok": {
+        "message": "OK",
+        "description": ""
+    },
+    "cancel": {
+        "message": "Cancel",
+        "description": ""
+    },
+    "close": {
+        "message": "Close",
+        "description": ""
+    },
+    "token": {
+        "message": "Here's the token you need in order to transfer this license to other browsers:",
+        "description": ""
+    },
+    "trial_expired": {
+        "message": "Your trial period expired.\nI hope you love modern scroll as much as I do.\nIf you do, get a license now.",
+        "description": ""
+    },
+    "all_set": {
+        "message": "You're all set! :)",
+        "description": ""
+    },
+    "seven_days_trial": {
+        "message": "You can check modern scroll out unrestrictedly for seven days now.",
+        "description": ""
+    },
+    "thanks_for_installing": {
+        "message": "Thanks for installing modern scroll! :)",
+        "description": ""
+    },
+    "get_trial_license": {
+        "message": "You need to log in to your Google account and grant modern scroll access to Chrome Web Store now in order to get your (trial) license.",
+        "description": ""
+    },
+    "authorize": {
+        "message": "Log in and authorize",
+        "description": ""
+    },
+    "transferred_trial_expired": {
+        "message": "The trial period of the license you transferred expired.\nI hope you love modern scroll as much as I do.\nIf you do, get a license now. You need to transfer this license from Chrome once again:",
+        "description": ""
+    },
+    "transfer_successful": {
+        "message": "Have fun using modern scroll.",
+        "description": ""
+    },
+    "get_license_in_chrome": {
+        "message": "install modern scroll in Chrome and get a license there",
+        "description": ""
+    },
+    "open_url_in_chrome": {
+        "message": "open chrome-extension://@@extension_id/options/options.html#show_token in Chrome",
+        "description": ""
+    },
+    "copy_token": {
+        "message": "copy shown token",
+        "description": ""
+    },
+    "insert_here": {
+        "message": "insert it in here",
+        "description": ""
+    },
+    "transfer_instructions": {
+        "message": "To use it in here, you need to transfer a license from Chrome (trial license is fine, too). That's what you need to do:",
+        "description": ""
+    },
+    "invalid_token": {
+        "message": "The token you entered is invalid or expired",
+        "description": ""
+    },
+    "description": {
+        "message": "Przeniesienie przewijania na całkowicie nowy poziom",
+        "description": ""
+    }
+}
