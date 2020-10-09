@@ -9,7 +9,6 @@ What's so awesome about it?
 مواد تبدیلیوں اور scroll bars کے ضروری ہو جب + عناصر یا پورے صفحات کچھ پکسلز کی طرف سے منتقل نہیں کرتے
 scroll bars پورے اسکرین کے موڈ میں استعمال کے قابل ہیں.
 جب ضرورت نہیں scroll bars خود کار طریقے سے چھپانے ہے.
-
 + رویے اور ظاہری شکل کو مکمل طور پر مرضی کے مطابق ہے.
 + can boost your scrolling performance
 + scrolling speed and behavior is adjustable
