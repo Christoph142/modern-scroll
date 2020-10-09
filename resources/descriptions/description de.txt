@@ -1,0 +1,17 @@
+Eine von Operas beliebtesten und höchstbewertetsten Erweiterungen aller Zeiten ist endlich hier verfügbar!
+Probier es aus und erlebe die Eleganz und Einfachheit selbst. :)
+
+modern scroll bringt das Scrollen auf ein ganz neues Niveau.
+
+Was ist so genial daran?
+
++ die Bildlaufleisten nehmen keinen eigenen Platz ein; so kann die gesamte Breite des Bildschirms das anzeigen, wofür ein Browser gemacht wurde: Webseiten
++ Layout von Webseiten bleibt unberührt, wenn der Inhalt sich ändert und Bildlaufleisten (un)nötig werden
++ Bildlaufleisten sind auch im Vollbild-Modus verfügbar
++ Bildlaufleisten werden automatisch ausgeblendet, wenn sie nicht benötigt werden
++ Verhalten und Aussehen ist vollständig anpassbar
++ kann das Scrollen beschleunigen
++ anpassbare Scroll-Geschwindigkeit und -Verhalten
++ einzigartige "Superbar", die es ermöglicht, gleichzeitig horizontal und vertikal zu scrollen
++ Buttons um zum Seitenanfang oder -Ende zu scrollen
++ JavaScript-Schnittstelle für eigene Mausgesten / Bookmarklets

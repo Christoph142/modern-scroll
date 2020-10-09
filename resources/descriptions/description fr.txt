@@ -1,0 +1,17 @@
+Une des extensions les plus populaires et les mieux notées de tous les temps est enfin disponible ici!
+Découvrez-le et découvrez sa beauté et sa simplicité par vous-même. :)
+
+Modern scroll porte le défilement à l'écran à un tout nouveau niveau
+
+Qu'est-ce qu'il y a de si génial?
+
++ Les barres de défilement ne prennent plus de place inutile aussi la surface totale de l’écran est dédiée à ce qu’un navigateur doit faire : afficher des sites Web
++ les éléments ou les pages entières ne bougent pas d'un pixel lorsque le contenu des pages Web change ou que les barres deviennent inutiles
++ les barres de défilement sont également utilisables en mode plein-écran
++ les barres de défilement disparaissent automatiquement lorsqu'elles ne sont pas nécessaires
++ le comportement et l'apparence de la barre sont totalement personnalisables
++ peut améliorer les performances de défilement
++ le comportement et la vitesse de défilement sont personnalisables
++ une barre omnidirectionnelle exclusive, rendant possible le défilement horizontal et vertical simultané
++ bouton de défilement rapide en haut et bas de page
++ Interface Javascript pour raccourcis gestuels à la souris / bookmarklets

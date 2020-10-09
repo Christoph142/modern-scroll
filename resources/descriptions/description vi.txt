@@ -1,0 +1,17 @@
+﻿One of Opera's most popular and highest-rated extensions of all times is finally available here!
+Check it out and experience its beauty and simplicity for yourself. :)
+
+modern scroll takes scrolling to a whole new level.
+
+What's so awesome about it?
+
++ scroll bars don't take up any space so the whole screen width can be used to display what a browser is made for: websites
++ các đối tượng hoặc toàn bộ trang sẽ không chuyển dịch bởi các điểm ảnh khi nội dung thay đổi và thanh trượt trở nên (không)cần thiết
++ thanh trượt cũng có thể được sử dụng trong chế độ toàn màn hình
++ thanh trượt tự động ẩn khi không cần thiết
++ thao tác và giao diện hoàn toàn có thể được tùy chỉnh
++ can boost your scrolling performance
++ scrolling speed and behavior is adjustable
++ thanh tác vụ độc đáo sẽ giúp bạn trượt theo chiều ngang lẫn chiều dọc vào bất cứ thời điểm nào
++ buttons for scrolling to top and bottom of the page
++ JavaScript interface for custom mouse gestures / bookmarklets

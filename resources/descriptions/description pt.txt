@@ -1,0 +1,17 @@
+Uma das extensões do Opera mais populares e melhor pontuadas de todos os tempos está finalmente disponível aqui!
+Dê uma olhada e experimente sua beleza e simplicidade. :)
+
+O modern scroll leva a rolagem à um nível completamente novo.
+
+O que tem de tão incrível nele?
+
++ as barras não usam qualquer espaço da tela, assim toda a sua tela pode ser utilizada para o que um browser é feito para exibir: websites
++ elementos ou toda a página não deslocam alguns pixels quando o conteúdo muda e as barras são exibidas/ocultadas
++ barras de rolagem também disponíveis em tela cheia
++ barras de rolagem ocultam automaticamente quando não são necessárias
++ comportamento e aparência totalmente customizável
++ melhora a performance da rolagem
++ comportamento e velocidade da rolagem ajustáveis
++ "superbar", recurso único que possibilita a rolagem na horizontal e vertical ao mesmo tempo
++ botões para rolar ao topo e fundo da página
++ interface JavaScript para controlar com gestos de mouse / marcadores

@@ -1,0 +1,17 @@
+﻿One of Opera's most popular and highest-rated extensions of all times is finally available here!
+Check it out and experience its beauty and simplicity for yourself. :)
+
+modern scroll takes scrolling to a whole new level.
+
+What's so awesome about it?
+
++ scroll bars don't take up any space so the whole screen width can be used to display what a browser is made for: websites
++ části nebo celé stránky se neposouvají o několik pixelů, když se obsah změní a posuvníky se stávají (ne)potřebné
++ rolovací posuvníky jsou také použitelné v režimu celé obrazovky
++ rolovací posuvníky se automaticky skryjí když nejsou potřeba
++ chování a vzhled jsou zcela přizpůsobitelné
++ může zrychlit vaše rolování
++ rolovací rychlost a chování jsou přizpůsobitelné
++ unikátní "superbar", který umožní rolovat horizontálně i vertikálně ve stejný okamžik
++ tlačítka pro rolování úplně nahoru či úplně dolů
++ JavaScript interface for custom mouse gestures / bookmarklets
