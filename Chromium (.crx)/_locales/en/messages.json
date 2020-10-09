@@ -102,7 +102,20 @@
 	"ok" :								{ "message" : "OK"},
 	"cancel" :							{ "message" : "Cancel"},
 	"close" :							{ "message" : "Close"},
-	"trial_expired" :					{ "message" : "I hope you love modern scroll as much as I do.\nIf you do, get a license now."},
+	"trial_expired" :					{ "message" : "Your trial period expired.\nI hope you love modern scroll as much as I do.\nIf you do, get a license now."},
 	"thanks_for_installing" :			{ "message" : "Thanks for installing modern scroll! 🙂"},
-	"have_fun" :						{ "message" : "Have fun using the extension.\nI'm gonna check in with you in a few weeks to see how you like it. 🍻"}
+	"thanks_for_using" :				{ "message" : "Thanks for using modern scroll! 🙂"},
+    "get_trial_license": 				{ "message" : "You need to log in to your Google account and grant modern scroll access to Chrome Web Store now in order to get your (trial) license."},
+    "authorize":						{ "message" : "Log in and authorize"},
+    "transferred_trial_expired": 		{ "message" : "The trial period of the license you transferred expired.\nI hope you love modern scroll as much as I do.\nIf you do, get a license now. You need to transfer this license from Chrome once again:"},
+    "transfer_successful": 				{ "message" : "Have fun using modern scroll."},
+    "get_license_in_chrome": 			{ "message" : "install modern scroll in Chrome and get a license there"},
+    "open_url_in_chrome": 				{ "message" : "open chrome-extension://@@extension_id/options/options.html#show_token in Chrome"},
+    "copy_token": 						{ "message" : "copy shown token"},
+    "insert_here": 						{ "message" : "insert it in here"},
+    "transfer_instructions": 			{ "message" : "To use it in here, you need to transfer a license from Chrome (trial license is fine, too). That's what you need to do:"},
+    "invalid_token": 					{ "message" : "The token you entered is invalid or expired"},
+	"have_fun" :						{ "message" : "Have fun using the extension.\nI'm gonna check in with you in a few weeks to see how you like it. 🍻"},
+	"hello_again" :						{ "message" : "Hello again! 🙂"},
+	"like_it" :							{ "message" : "It's been a few weeks since you installed modern scroll.\nHow do you like it so far?"}
 }
