@@ -73,7 +73,7 @@ function update_settings(){ chrome.storage.sync.get( null, function(storage){
 		console.log("First dialog ever shown " + (Date.now() - first_dialog_time)/1000/60 + " minutes ago");
 		console.log("Last dialog has been shown " + (Date.now() - w.last_dialog_time)/1000/60 + " minutes ago");
 
-		if (Date.now() - w.last_dialog_time > 1000 * 60 * 60 * 1.35) { // 2h
+		if (Date.now() - w.last_dialog_time > 1000 * 60 * 60 * 24 * 7 * 6) { // 6 weeks
 			if (w.last_dialog_time === first_dialog_time) 	chrome.tabs.create({ url : "options/options.html#hello_again" });
 			else 											chrome.tabs.create({ url : "options/options.html#thanks_for_using" });
 		}
