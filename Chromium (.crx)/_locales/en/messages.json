@@ -110,5 +110,5 @@
 	"so_so" :							{ "message" : "So-so"},
 	"that_is_great" :					{ "message" : "Awesome!\nWould you mind supporting me in order to continue improving modern scroll? 🍻"},
 	"im_sorry_to_hear" :				{ "message" : "I'm sorry to hear you're not 100% convinced yet.\nIf there's anything you'd like to see improved, please let me know."},
-	"continued_support" :				{ "message" : "I'd really appreciate your continued support in order to keep improving the extension!\nIf you haven't done so yet, now's a great time to start! 🍻"}
+	"continued_support" :				{ "message" : "I'd really appreciate your continued support in order to keep improving the extension.\nIf you haven't done so yet, now's a great time to start! 🍻"}
 }
