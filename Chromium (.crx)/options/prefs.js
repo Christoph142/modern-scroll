@@ -4,8 +4,8 @@ window.addEventListener("change", savePrefs, false);
 
 function populateOptions(){
 	localize();
-	adjustUIAccordingToLicense();
 	restorePrefs();
+	if (window.location.hash && document.querySelector(window.location.hash).tagName === "DIALOG") showDialog(window.location.hash);
 }
 
 function savePrefs(e) // save preferences:
@@ -101,7 +101,7 @@ function restorePrefs()
 		sliders[i].innerHTML = (document.getElementById(which_value).dataset.defaultvalue ? Math.round(100*raw_value/document.getElementById(which_value).dataset.defaultvalue) : raw_value);
 	}	
 	
-	add_page_handling();
+	//add_page_handling();
 }
 
 function add_page_handling()
@@ -157,33 +157,10 @@ function add_page_handling()
 	document.querySelector("#confirm_overwrite_button").addEventListener("click", function(){ save_set(true); }, false);
 	document.querySelector("#confirm_delete_button").addEventListener("click", delete_set, false);
 	document.querySelector("#confirm_load_button").addEventListener("click", load_set, false);
-
-	document.querySelector("#authorize").addEventListener("click", function(){
-		chrome.runtime.getBackgroundPage( function(bg){ bg.getLicense(true); } );
-	}, false);
-
-	// token transferring:
-	canAuthenticate().then( result => {
-		if (result) return;
-
-		let transfer_fields = document.querySelectorAll("#transfer_token input, #transferred_trial_expired input");
-		for (let i = 0; i < transfer_fields.length; i++){
-			transfer_fields[i].addEventListener("change", try_to_transfer_license, false);
-			transfer_fields[i].addEventListener("keyup", try_to_transfer_license, false);
-		}
-	});
 }
 
 let bubble_setback; // timeout for info bubbles
 
-let last_token; // remember token to prevent multiple requests for same one
-function try_to_transfer_license(){
-	chrome.runtime.getBackgroundPage( function(bg){
-		if(document.querySelector("dialog[open] input").value.length < 10 || document.querySelector("dialog[open] input").value === last_token) return;
-		last_token = document.querySelector("dialog[open] input").value;
-		bg.getLicense(true, last_token);
-	});
-}
 function confirm_save_set(){
 	if(document.querySelector("#save_set").innerHTML === "Default"){
 		showDialog("default_change_impossible");
@@ -205,7 +182,7 @@ function save_set(overwrite){
 		bg.w.saved_sets[document.querySelector("#save_set").innerHTML] = {};
 		
 		for(let setting in bg.w){
-			if(setting === "saved_sets" || setting === "baseDevicePixelRatio" || setting === "user_token" || setting === "license") continue;
+			if(setting === "saved_sets" || setting === "baseDevicePixelRatio" || setting === "last_dialog_time" || setting === "dialogs_shown") continue;
 			bg.w.saved_sets[document.querySelector("#save_set").innerHTML][setting] = bg.w[setting];
 		}
 		
@@ -254,20 +231,15 @@ function load_set(){
 		});
 
 		if(bg.w.saved_sets) var sets = bg.w.saved_sets;
-		if(bg.w.user_token) var user_token = bg.w.user_token;
-		if(bg.w.license) var license = bg.w.license;
 		if(document.querySelector("#saved_sets").value === "Default")
 		{
 			chrome.storage.sync.clear(); // delete everything
 			if(sets) 		chrome.storage.sync.set( {"saved_sets" : sets} ); // restore saved sets (if any)
-			if(user_token) 	chrome.storage.sync.set( {"user_token" : user_token} );
-			if(license) 	chrome.storage.sync.set( {"license" : license} );
 		}
 		else
 		{
 			let temp_obj = {};
 			for(let setting in sets[document.querySelector("#saved_sets").value]){
-				if(setting === "user_token" || setting === "license") continue; // ignore accidentally copied stuff caused by modern scroll up to 3.5.2
 				temp_obj[setting] = sets[document.querySelector("#saved_sets").value][setting];
 			}
 			chrome.storage.sync.set(temp_obj);
@@ -281,9 +253,8 @@ function localize()
 	let strings = document.querySelectorAll("[data-i18n]");
 	for(let i = 0; i < strings.length; i++)
 	{
-		if 		(strings[i].dataset.i18n === "open_url_in_chrome")	strings[i].innerHTML  = getString(strings[i].dataset.i18n).replace("@@extension_id", getString("@@extension_id"));
-		else if (strings[i].tagName === "IMG")						strings[i].title	  = getString(strings[i].dataset.i18n); // tooltips
-		else														strings[i].innerHTML += getString(strings[i].dataset.i18n);
+		if (strings[i].tagName === "IMG")	strings[i].title	  = getString(strings[i].dataset.i18n); // tooltips
+		else								strings[i].innerHTML += getString(strings[i].dataset.i18n);
 	}
 
 	// insert extension id in Chrome Web Store URLs:
@@ -294,53 +265,11 @@ function localize()
 }
 function getString(string){	return chrome.i18n.getMessage(string).split("\n").join("<br>"); }
 
-// ############################
-// ##### Licensing stuff: #####
-// ############################
-chrome.extension.onMessage.addListener(function(msg){
-	if(msg.data === "update_licensing"){
-		if(["#welcome", "#transfer_token", "#transferred_trial_expired", "#all_set"].indexOf(window.location.hash) > -1) showDialog("all_set");
-		else hideDialog();
-		adjustUIAccordingToLicense();
-	}
-	else if(msg.data === "invalid_token"){
-		let token_field = document.querySelector("#transfer_token[open] input, #transferred_trial_expired[open] input");
-		token_field.placeholder = getString("invalid_token");
-		token_field.value = "";
-		token_field.required = true;
-	}
-	else if(msg.data === "new_token")
-		document.querySelector("#user_token").value = msg.token;
-});
-
-function adjustUIAccordingToLicense()
-{
-	chrome.runtime.getBackgroundPage( function(bg)
-	{
-		// show dialogs:
-		if (bg.w.license === "none"){
-			canAuthenticate().then( result => {
-				if (result) showDialog("welcome");
-				else		showDialog("transfer_token");
-			});
-		}
-		else if (bg.w.license.accessLevel === "TRIAL_EXPIRED"){
-			canAuthenticate().then( result => {
-				if (result) showDialog("trial_expired");
-				else		showDialog("transferred_trial_expired");
-			});
-		}
-		else if (window.location.hash && document.querySelector(window.location.hash).tagName === "DIALOG") showDialog(window.location.hash);
-
-		if(window.location.hash === "#show_token") bg.getCurrentUserToken(true); // update token for transfer
-	});
-}
-
 function showDialog(id)
 {
 	window.location.hash = id;
 	
-	if(window.location.hash === "#all_set" && document.querySelector("dialog[open]")){ // newly fetched license
+	if(window.location.hash === "#all_set" && document.querySelector("dialog[open]")){
 		document.querySelector("dialog[open]").close();
 		document.removeEventListener("keydown", handleKeyboardEvents, false);
 	}
@@ -351,6 +280,12 @@ function showDialog(id)
 
 	document.querySelector(window.location.hash).showModal();
 	document.addEventListener("keydown", handleKeyboardEvents, false);
+
+	let now = Date.now();
+	let dialogs_shown = chrome.extension.getBackgroundPage().w.dialogs_shown;
+	dialogs_shown[now] = id;
+	save_new_value("dialogs_shown", dialogs_shown);
+	save_new_value("last_dialog_time", now);
 }
 
 function hideDialog()
@@ -374,9 +309,4 @@ function handleKeyboardEvents(e)
 
 	if(document.querySelector("dialog[open]").querySelector(".close"))	hideDialog();
 	else {																e.preventDefault();	e.stopPropagation(); }
-}
-
-function canAuthenticate()
-{
-	return fetch('https://accounts.google.com/signin/chrome/sync/identifier').then(r => { return r.ok; });
 }

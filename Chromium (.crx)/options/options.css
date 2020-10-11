@@ -12,9 +12,9 @@ button, .button	{ background:#F5F5F5; border:.2em #1e3853 solid; padding:1em; bo
 				  cursor:pointer; font-size:12px; white-space:nowrap; flex-grow: 1; margin:.2em; text-align: center; }
 button:hover, .button:hover{ background:#FFF; }
 #twitter:hover	{ background:#55ACEE; border-color:#3b88c3; color:#FFF; }
-#buymeacoffee	{ padding: 1em; font-weight: normal; border-width:.2em; border-radius:.5em; margin:.2em; }
-#buymeacoffee::before	{ content: "🍣"; font-size:1.5em; vertical-align: bottom; padding-right:.3em; }
-#buymeacoffee:hover { background: #79D6B5; border-color: #C9F6D5; color:#FFF }
+.buymeacoffee	{ padding: 1em; font-weight: normal; border-width:.2em; border-radius:.5em; margin:.2em; }
+.buymeacoffee::before	{ content: "🍣"; font-size:1.5em; vertical-align: bottom; padding-right:.3em; }
+button.buymeacoffee:hover, .button.buymeacoffee:hover { background: #79D6B5; border-color: #C9F6D5; color:#FFF }
 h1				{ margin:0 0 -0.5em 0; font-size:24px; }
 h3				{ margin-bottom:0.5em; }
 table			{ width:100%; }
@@ -143,4 +143,5 @@ dialog button, dialog .button	{ padding:0.5em 1em; }
 
 	dialog 				{ background: #333; color: #eee; }
 	dialog .action_area { background: #2c2c2c; border-top: 1px solid #222; }
+	dialog .close:hover	{ background: #2c2c2c; }
 }

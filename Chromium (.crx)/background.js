@@ -58,104 +58,30 @@ function update_settings(){ chrome.storage.sync.get( null, function(storage){
 
 	// general stuff:
 	"baseDevicePixelRatio" : 			window.devicePixelRatio, // for scaling
-
-	"user_token" : 						(!storage["user_token"]						? ""	: storage["user_token"]),
-	"license" : 						(!storage["license"]						? "none": storage["license"])
+	"last_dialog_time" :				(!storage["last_dialog_time"]				? 0		: storage["last_dialog_time"]),
+	"dialogs_shown" :					(!storage["dialogs_shown"]					? {}	: storage["dialogs_shown"]), // time : type
 	};
+	
+	console.log("last_dialog_time: " + w.last_dialog_time);
+	if (w.last_dialog_time === 0) {
+		chrome.tabs.create({ url : "options/options.html#welcome" }); // First run -> Show welcome page
+		save_new_value("last_dialog_time", Date.now());
+		console.log("No dialog ever shown. Setting last_dialog_time to " + w.last_dialog_time);
+	}
+	else {
+		let first_dialog_time = Object.keys(w.dialogs_shown)[0];
+		console.log("First dialog ever shown " + (Date.now() - first_dialog_time)/1000/60 + " minutes ago");
+		console.log("Last dialog has been shown " + (Date.now() - w.last_dialog_time)/1000/60 + " minutes ago");
 
-	getLicense(false);
+		if (Date.now() - w.last_dialog_time > 1000 * 60 * 60 * 1.35) { // 2h
+			if (w.last_dialog_time === first_dialog_time) 	chrome.tabs.create({ url : "options/options.html#hello_again" });
+			else 											chrome.tabs.create({ url : "options/options.html#thanks_for_using" });
+		}
+	}
 
 	chrome.extension.sendMessage( {"data" : "update_optionspage"} );
 }); }
 update_settings();
-
-function getLicense(interactive, token)
-{
-	if(!token){
-		getCurrentUserToken(interactive);
-		return;
-	}
-
-	let req = new XMLHttpRequest();
-	req.open("GET", "https://www.googleapis.com/chromewebstore/v1.1/userlicenses/" + chrome.runtime.id);
-	req.setRequestHeader("Authorization", "Bearer " + token);
-	req.onreadystatechange = function(){
-		if (req.readyState === 4){
-			if (req.status === 200){
-				verifyAndSaveLicense( JSON.parse(req.responseText) );
-				save_new_value("user_token", token); // token works -> cache it
-			}
-			else{
-				console.log("Didn't get valid license from server:", JSON.parse(req.responseText));
-				
-				if (interactive)  // transfer token: interactive + token -> options page is already open & no need to check stored license
-					chrome.extension.sendMessage( {"data" : "invalid_token"} );
-				else if (w.license !== "none"){
-					verifyAndSaveLicense( w.license );
-					console.log("Checking stored one instead.");
-				}
-				else console.log("No stored one either.");
-			}
-		}
-	}
-	req.send();
-}
-
-function getCurrentUserToken(interactive)
-{
-	 chrome.identity.getAuthToken({ "interactive": interactive }, function(token){
-		if (token) {
-			save_new_value("user_token", token);
-			chrome.extension.sendMessage( {"data" : "new_token", "token" : token} );
-			getLicense(false, token);
-		}
-		else {
-			let error = chrome.runtime.lastError;
-			console.log("Failed getting user token "+(interactive ? "interactively" : "silently")+":", error);
-
-			canAuthenticate().then(canAuthenticate => {
-				if (!canAuthenticate) {
-					if(w.user_token === "")
-						chrome.tabs.create({ url : "options/options.html#transfer_token" }); // show dialog to make user transfer token from Chrome
-					else{
-						console.log("Using manually transferred user token instead.");
-						getLicense(false, w.user_token);
-					}
-				}
-				else if (!interactive) chrome.tabs.create({ url : "options/options.html#welcome" }); // show dialog to make user authorize modern scroll for Store
-			});
-		}
-	});
-}
-
-function verifyAndSaveLicense(license)
-{
-	let oldLicenseState = w.license.accessLevel;
-	
-	if (license.result && license.accessLevel === "FULL"){
-		console.log("Fully paid & properly licensed.");
-		save_new_value("license", license);
-	}
-	else if (license.result && license.accessLevel === "FREE_TRIAL"){
-		let licenseAge = Date.now() - parseInt(license.createdTime, 10);
-		if (licenseAge <= 7 * 1000*60*60*24 /*days*/) {
-			console.log("Free trial:", licenseAge/1000/60/60/24, "of 7 days");
-			save_new_value("license", license);
-		}
-		else{
-			console.log("Trial expired. License issued", licenseAge/1000/60/60/24, "days ago.");
-			license.accessLevel = "TRIAL_EXPIRED";
-			save_new_value("license", license);
-			chrome.tabs.create({ url : "options/options.html#trial_expired" });
-		}
-	}
-	else if (license.result && license.accessLevel === "TRIAL_EXPIRED"){
-		console.log("Trial expired. License issued", licenseAge/1000/60/60/24, "days ago.");
-		chrome.tabs.create({ url : "options/options.html#trial_expired" });
-	}
-
-	if(w.license.accessLevel !== oldLicenseState) chrome.extension.sendMessage( {"data" : "update_licensing"} );
-}
 
 function save_new_value(key, value)
 {
@@ -169,11 +95,7 @@ function save_new_value(key, value)
 
 chrome.runtime.onMessage.addListener( function(request, sender, sendResponse)
 {
-	if (request.data === "settings")
-	{
-		if (w.license !== "none" && w.license.accessLevel !== "TRIAL_EXPIRED")	sendResponse(w);
-		else																	sendResponse(false);
-	}
+	if 		(request.data === "settings")			sendResponse(w);
 	else if (request.data === "update_settings") 	update_settings(); // will request options page update when finished
 	else if	(request.data === "show_contextmenu") 	show_contextmenu(request.string);
 	else if	(request.data === "hide_contextmenu") 	hide_contextmenu();
@@ -205,9 +127,4 @@ function hide_contextmenu()
 {
 	if(!contextmenu) return;
 	chrome.contextMenus.remove("ms_contextmenu"); contextmenu = false;
-}
-
-function canAuthenticate()
-{
-	return fetch('https://accounts.google.com/signin/chrome/sync/identifier').then(r => { return r.ok; });
 }

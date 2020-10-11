@@ -274,13 +274,15 @@
         <a class="button" href="https://chrome.google.com/webstore/detail/@@extension_id/support" target="_blank" data-i18n="report_issue"></a>
         <a class="button" href="https://chrome.google.com/webstore/detail/@@extension_id/reviews" target="_blank" data-i18n="rate"></a>
         <a class="button" id="twitter" href="https://twitter.com/Christoph142" target="_blank" data-i18n="twitter"></a>
-        <a class="button" id="buymeacoffee" href="https://buymeacoffee.com/Christoph142" target="_blank" data-i18n="buymeacoffee"><div id="buymeacoffee_info_text" class="i_text"><span data-i18n="explanation_buymeacoffee"></span></div></a>
+        <a class="button buymeacoffee" href="https://buymeacoffee.com/Christoph142" target="_blank" data-i18n="buymeacoffee"></a>
     </span>
 </section>
 
 <footer>
     <span data-i18n="footer"></span> 🙂
 </footer>
+
+<!-- DIALOGS -->
 
 <dialog id="default_change_impossible">
     <div class="close"></div>
@@ -325,71 +327,62 @@
     </div>
 </dialog>
 
+
 <dialog id="welcome">
-    <div class="content_area">
-        <h4 data-i18n="thanks_for_installing"></h4>
-        <span data-i18n="get_trial_license"></span>
-    </div>
-    <div class="action_area">
-        <button id="authorize" data-i18n="authorize"></button>
-    </div>
-</dialog>
-
-<dialog id="transfer_token">
-    <div class="content_area">
-        <h4 data-i18n="thanks_for_installing"></h4>
-        <span data-i18n="transfer_instructions"></span>
-        <ol>
-            <li data-i18n="get_license_in_chrome"></li>
-            <li data-i18n="open_url_in_chrome"></li>
-            <li data-i18n="copy_token"></li>
-            <li data-i18n="insert_here"></li>
-        </ol>
-        <input type="text">
-    </div>
-    <div class="action_area"><br></div>
-</dialog>
-
-<dialog id="trial_expired">
-    <div class="content_area" data-i18n="trial_expired"></div>
-    <div class="action_area">
-        <a href="https://chrome.google.com/webstore/detail/@@extension_id" class="button" target="_blank">Get license</a>
-    </div>
-</dialog>
-
-<dialog id="transferred_trial_expired">
-    <div class="content_area">
-        <span data-i18n="transferred_trial_expired"></span>
-        <ol>
-            <li data-i18n="get_license_in_chrome"></li>
-            <li data-i18n="open_url_in_chrome"></li>
-            <li data-i18n="copy_token"></li>
-            <li data-i18n="insert_here"></li>
-        </ol>
-        <input type="text">
-    </div>
-    <div class="action_area"><br></div>
-</dialog>
-
-<dialog id="show_token">
     <div class="close"></div>
     <div class="content_area">
-        <span data-i18n="token"></span><br>
-        <input type="text" id="user_token" readonly>
+        <h4 data-i18n="thanks_for_installing"></h4>
+        <span data-i18n="have_fun"></span>
     </div>
     <div class="action_area">
-        <button data-i18n="close" class="hide_dialog"></button>
+        <button data-i18n="ok" class="hide_dialog"></button>
     </div>
 </dialog>
 
-<dialog id="all_set">
-    <div class="close"></div>
+<dialog id="hello_again">
     <div class="content_area">
-        <h4 data-i18n="all_set"></h4>
-        <span data-i18n="seven_days_trial"></span>
+        <h4 data-i18n="thanks_for_using"></h4>
+        <span data-i18n="like_it"></span>
     </div>
     <div class="action_area">
-        <button class="hide_dialog" data-i18n="ok"></button>
+        <button data-i18n="so-so" class="hide_dialog" onclick="showDialog('so_so')"></button>
+        <button data-i18n="great" class="hide_dialog" onclick="showDialog('great')"></button>
+    </div>
+</dialog>
+
+<dialog id="so_so">
+    <div class="close"></div>
+    <div class="content_area">
+        <h4 data-i18n="thanks_for_using"></h4>
+        <span data-i18n="im_sorry_to_hear"></span>
+    </div>
+    <div class="action_area">
+        <a class="button" href="https://chrome.google.com/webstore/detail/@@extension_id/support" target="_blank" data-i18n="report_issue"></a>
+    </div>
+</dialog>
+
+<dialog id="great">
+    <div class="close"></div>
+    <div class="content_area">
+        <h4 data-i18n="thanks_for_using"></h4>
+        <span data-i18n="that_is_great"></span>
+    </div>
+    <div class="action_area">
+        <a class="button" href="https://chrome.google.com/webstore/detail/@@extension_id/reviews" target="_blank" data-i18n="rate"></a>
+        <a class="button buymeacoffee" href="https://buymeacoffee.com/Christoph142" target="_blank" data-i18n="buymeacoffee"></a>
+    </div>
+</dialog>
+
+<dialog id="thanks_for_using">
+    <div class="close"></div>
+    <div class="content_area">
+        <h4 data-i18n="thanks_for_using"></h4>
+        <span data-i18n="continued_support"></span>
+    </div>
+    <div class="action_area">
+        <a class="button" href="https://chrome.google.com/webstore/detail/@@extension_id/support" target="_blank" data-i18n="report_issue"></a>
+        <a class="button" href="https://chrome.google.com/webstore/detail/@@extension_id/reviews" target="_blank" data-i18n="rate"></a>
+        <a class="button buymeacoffee" href="https://buymeacoffee.com/Christoph142" target="_blank" data-i18n="buymeacoffee"></a>
     </div>
 </dialog>
 
