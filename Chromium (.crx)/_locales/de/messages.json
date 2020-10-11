@@ -102,7 +102,13 @@
 	"ok" :								{ "message" : "OK"},
 	"cancel" :							{ "message" : "Abbrechen"},
 	"close" :							{ "message" : "Schließen"},
-	"trial_expired" :					{ "message" : "Deine Testphase ist abgelaufen.\nIch hoffe, du magst modern scroll genauso gerne wie ich.\nWenn dem so ist, hol dir jetzt eine Lizenz."},
 	"thanks_for_installing" :			{ "message" : "Danke, dass du modern scroll installiert hast! :)"},
-	"have_fun" :						{ "message" : "Viel Spaß mit der Erweiterung.\nIch werde in ein paar Wochen nachfragen, wie sie dir gefällt. 🍻"}
+	"thanks_for_using" :				{ "message" : "Danke, dass du modern scroll nutzt! 🙂"},
+    "have_fun" :						{ "message" : "Viel Spaß mit der Erweiterung.\nIch werde in ein paar Wochen nachfragen, wie sie dir gefällt. 🍻"},
+	"like_it" :							{ "message" : "Hallo nochmal!\nEs ist nun ein paar Wochen her, seit du modern scroll installiert hast.\nWie gefällt es dir bis jetzt?"},
+	"great" :							{ "message" : "Sehr"},
+	"so_so" :							{ "message" : "Geht so"},
+	"that_is_great" :					{ "message" : "Großartig!\nWürdest du mich unterstützen, damit ich modern scroll weiter verbessern kann? 🍻"},
+	"im_sorry_to_hear" :				{ "message" : "Schade, dass du bisher noch nicht 100% überzeugt bist.\nWenn es irgendetwas gibt, dass verbessert werden soll, sag mir bitte Bescheid."},
+	"continued_support" :				{ "message" : "Ich würde mich über deine kontinuierliche Unterstützung wirklich freuen, damit ich die Erweiterung weiter verbessern kann.\nWenn du es noch nicht getan hast, ist jetzt ein super Zeitpunkt, um damit anzufangen! 🍻"}
 }
