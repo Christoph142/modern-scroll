@@ -1,474 +1,114 @@
 {
-    "by": {
-        "message": "通过",
-        "description": ""
-    },
-    "saved_sets_headline": {
-        "message": "Saved configurations",
-        "description": ""
-    },
-    "save_set_as": {
-        "message": "把当前配置保存为",
-        "description": ""
-    },
-    "new_set_name": {
-        "message": "名称",
-        "description": ""
-    },
-    "load_or_delete_set": {
-        "message": "载入或删除",
-        "description": ""
-    },
-    "default": {
-        "message": "默认",
-        "description": ""
-    },
-    "default_change_impossible": {
-        "message": "默认配置不可编辑！请更换另一名称。",
-        "description": ""
-    },
-    "default_delete_impossible": {
-        "message": "默认配置不可删除！",
-        "description": ""
-    },
-    "confirm_overwrite": {
-        "message": "A configuration with that name already exists.\nDo you want to replace it?",
-        "description": ""
-    },
-    "confirm_delete": {
-        "message": "确定要删除此配置吗（将不可逆！）？",
-        "description": ""
-    },
-    "confirm_load": {
-        "message": "Do you really want to load this configuration now?\nIt will replace your current setup.",
-        "description": ""
-    },
-    "tooltip_save": {
-        "message": "保存",
-        "description": ""
-    },
-    "tooltip_load": {
-        "message": "载入",
-        "description": ""
-    },
-    "tooltip_delete": {
-        "message": "删除",
-        "description": ""
-    },
-    "look": {
-        "message": "外观",
-        "description": ""
-    },
-    "color": {
-        "message": "滚动条、超级滚动条和滚动按钮的颜色",
-        "description": ""
-    },
-    "color_bg": {
-        "message": "背景条的颜色",
-        "description": ""
-    },
-    "auto_coloring": {
-        "message": "Color UI matching the page instead if possible",
-        "description": ""
-    },
-    "size": {
-        "message": "正常状态时的宽度（水平滚动条的高度）",
-        "description": ""
-    },
-    "hover_size": {
-        "message": "鼠标悬停时的宽度（水平滚动条的高度）",
-        "description": ""
-    },
-    "border_radius": {
-        "message": "边缘曲率半径",
-        "description": ""
-    },
-    "gap": {
-        "message": "边缘距窗口的距离",
-        "description": ""
-    },
-    "opacity": {
-        "message": "滚动条的透明度",
-        "description": ""
-    },
-    "border": {
-        "message": "边缘",
-        "description": ""
-    },
-    "border_width": {
-        "message": "宽度",
-        "description": ""
-    },
-    "border_color": {
-        "message": "颜色",
-        "description": ""
-    },
-    "border_blur": {
-        "message": "模糊",
-        "description": ""
-    },
-    "vbar_at_left": {
-        "message": "在左侧显示垂直滚动条，而不是右侧",
-        "description": ""
-    },
-    "hbar_at_top": {
-        "message": "在页面顶端显示水平滚动条，而不是底部",
-        "description": ""
-    },
-    "behavior": {
-        "message": "行为",
-        "description": ""
-    },
-    "show_when": {
-        "message": "你想显示滚动条吗?",
-        "description": ""
-    },
-    "only_over": {
-        "message": "只在鼠标悬停时",
-        "description": ""
-    },
-    "normal": {
-        "message": "在悬停，滚动，位置或大小改变时",
-        "description": ""
-    },
-    "always": {
-        "message": "一直",
-        "description": ""
-    },
-    "show_bg_bars_when": {
-        "message": "背景条",
-        "description": ""
-    },
-    "like_bars": {
-        "message": "像滚动条",
-        "description": ""
-    },
-    "show_how_long": {
-        "message": "你想使滚动条保持显示的时间？",
-        "description": ""
-    },
-    "fullscreen_only": {
-        "message": "只在全屏模式下显示滚动条",
-        "description": ""
-    },
-    "fullscreen_only_short": {
-        "message": "只在全屏模式时",
-        "description": ""
-    },
-    "move_bars_during_scroll": {
-        "message": "用鼠标滚轮或键盘滚动是添加滚动条的动画效果",
-        "description": ""
-    },
-    "bg_special_ends": {
-        "message": "点击背景条末端时滚动至顶部/底部（左/右），而不是滚动一页",
-        "description": ""
-    },
-    "container1": {
-        "message": "触发modern scroll的距离",
-        "description": ""
-    },
-    "container2": {
-        "message": "距离边缘的像素数",
-        "description": ""
-    },
-    "element_bars": {
-        "message": "Scrollbars within the page",
-        "description": ""
-    },
-    "style_element_bars": {
-        "message": "Style all scroll bars",
-        "description": ""
-    },
-    "explanation_element_bars": {
-        "message": "Activate this to make modern scroll also style all scrollbars within the page, e.g. those of textareas.",
-        "description": ""
-    },
-    "autohide_element_bars": {
-        "message": "Autohide scrollbars within the page",
-        "description": ""
-    },
-    "explanation_autohide_element_bars": {
-        "message": "This unfortunately doesn't work properly because of rendering bugs. You can enable it, but scroll bars may not always show up correctly.",
-        "description": ""
-    },
-    "superbar": {
-        "message": "超级滚动条",
-        "description": ""
-    },
-    "show_superbar": {
-        "message": "显示超级滚动条",
-        "description": ""
-    },
-    "show_superbar_minipage": {
-        "message": "当拖拽超级滚动条时，背景显示迷你版网页",
-        "description": ""
-    },
-    "superbar_opacity": {
-        "message": "超级滚动条悬停时的透明度",
-        "description": ""
-    },
-    "bookmarks": {
-        "message": "Bookmarks",
-        "description": ""
-    },
-    "show_bookmarks": {
-        "message": "Show bookmarks within the page for scrolling to the specified locations",
-        "description": ""
-    },
-    "no_bookmarks": {
-        "message": "Off",
-        "description": ""
-    },
-    "bookmarks_only": {
-        "message": "Show bookmarks",
-        "description": ""
-    },
-    "all_headings": {
-        "message": "Bookmarks and Headings",
-        "description": ""
-    },
-    "buttons": {
-        "message": "滚动按钮",
-        "description": ""
-    },
-    "show_buttons": {
-        "message": "显示滚动至页面顶端/底部的按钮",
-        "description": ""
-    },
-    "button_width": {
-        "message": "宽度",
-        "description": ""
-    },
-    "button_height": {
-        "message": "高度",
-        "description": ""
-    },
-    "button_opacity": {
-        "message": "透明度",
-        "description": ""
-    },
-    "drag_buttons": {
-        "message": "在此选项中，你可以把按钮移动至任何位置。这个位置将应用于所有网站。如果它遮挡了页面的某些元素，你仍可拖拽。",
-        "description": ""
-    },
-    "contextmenu": {
-        "message": "右键菜单",
-        "description": ""
-    },
-    "show_contextmenu_when": {
-        "message": "何时在菜单中给出隐藏modern scroll选项?",
-        "description": ""
-    },
-    "never": {
-        "message": "从不",
-        "description": ""
-    },
-    "contextmenu_over_only": {
-        "message": "右键点击滚动界面时",
-        "description": ""
-    },
-    "custom_scroll_functions": {
-        "message": "滚动功能",
-        "description": ""
-    },
-    "use_custom_functions": {
-        "message": "使用自定义滚动功能",
-        "description": ""
-    },
-    "use_custom_functions_keyboard": {
-        "message": "键盘用",
-        "description": ""
-    },
-    "use_custom_functions_mouse": {
-        "message": "鼠标用",
-        "description": ""
-    },
-    "use_custom_functions_middle": {
-        "message": "for mouse wheel clicks",
-        "description": ""
-    },
-    "endMiddlescrollByTurningWheel": {
-        "message": "End as well by turning the mouse wheel",
-        "description": ""
-    },
-    "animate_scroll": {
-        "message": "动画效果滚动",
-        "description": ""
-    },
-    "animate_up_to": {
-        "message": "长度",
-        "description": ""
-    },
-    "infinite": {
-        "message": "无限",
-        "description": ""
-    },
-    "page": {
-        "message": "页面",
-        "description": ""
-    },
-    "pages": {
-        "message": "页面",
-        "description": ""
-    },
-    "keyscroll_velocity": {
-        "message": "使用方向键滚动时的速度",
-        "description": ""
-    },
-    "mousescroll_velocity": {
-        "message": "通过鼠标滚轮和触控板滚动的速度",
-        "description": ""
-    },
-    "mousescroll_distance": {
-        "message": "鼠标滚轮每次滚动使得滚动距离",
-        "description": ""
-    },
-    "middlescroll_velocity": {
-        "message": "Velocity of scrolling by mouse wheel clicking",
-        "description": ""
-    },
-    "animatedscroll_velocity": {
-        "message": "动画效果滚动速度",
-        "description": ""
-    },
-    "external_interface_headline": {
-        "message": "外部界面",
-        "description": ""
-    },
-    "external_interface": {
-        "message": "为外部使用提供界面",
-        "description": ""
-    },
-    "footer": {
-        "message": "感谢您安装此扩展.欢迎随时联系,以反馈与交流.",
-        "description": ""
-    },
-    "contextmenu_show": {
-        "message": "显示modern scroll",
-        "description": ""
-    },
-    "contextmenu_hide": {
-        "message": "隐藏modern scroll",
-        "description": ""
-    },
-    "explanation_save_set": {
-        "message": "You can save your current configuration here.\nJust enter a name and click the save-button.\nIf you choose a name that already exists, this entry will be replaced.",
-        "description": ""
-    },
-    "explanation_move_bars_during_scroll": {
-        "message": "滚动体验有问题时，请勿勾选此项。<br>只当滚动结束时，才更新滚动条位置。",
-        "description": ""
-    },
-    "explanation_trigger_area": {
-        "message": "扩展可达滚动条的区域。",
-        "description": ""
-    },
-    "explanation_superbar": {
-        "message": "超级滚动条是水平和竖直滚动条的结合。 只有水平及竖直滚动条需要时，它才可见。 它的位置与水平及竖直滚动条对齐。",
-        "description": ""
-    },
-    "explanation_custom_functions": {
-        "message": "Standard scrolling experience is sometimes a bit jerky and slow. By activating these options the extension also takes over the corresponding scrolling, which should result in a noticeable performance boost.",
-        "description": ""
-    },
-    "explanation_animate_scroll": {
-        "message": "如果选择此项，页面将不会直接跳至期待位置，而是以一个可调节的速率自动滚动到目标位置。\n这适用于滚动按钮，点击背景条，用键盘滚动时（当“使用键盘自定义滚动”启用时）。",
-        "description": ""
-    },
-    "explanation_external_interface": {
-        "message": "选择此项，modern scroll将提供一些关键特性供第三方扩展、网站或你使用，例如创建自定义的鼠标手势。访问 <a href='https://christoph142.wordpress.com/2013/02/20/modern-scroll-documentation' target='_blank'> 以了解更多。</a>",
-        "description": ""
-    },
-    "report_issue": {
-        "message": "Report an issue",
-        "description": ""
-    },
-    "rate": {
-        "message": "Rate modern scroll",
-        "description": ""
-    },
-    "twitter": {
-        "message": "Follow me on Twitter",
-        "description": ""
-    },
-    "get_more": {
-        "message": "Get more out of modern scroll",
-        "description": ""
-    },
-    "ok": {
-        "message": "OK",
-        "description": ""
-    },
-    "cancel": {
-        "message": "Cancel",
-        "description": ""
-    },
-    "close": {
-        "message": "Close",
-        "description": ""
-    },
-    "token": {
-        "message": "Here's the token you need in order to transfer this license to other browsers:",
-        "description": ""
-    },
-    "trial_expired": {
-        "message": "Your trial period expired.\nI hope you love modern scroll as much as I do.\nIf you do, get a license now.",
-        "description": ""
-    },
-    "all_set": {
-        "message": "You're all set! :)",
-        "description": ""
-    },
-    "seven_days_trial": {
-        "message": "You can check modern scroll out unrestrictedly for seven days now.",
-        "description": ""
-    },
-    "thanks_for_installing": {
-        "message": "Thanks for installing modern scroll! :)",
-        "description": ""
-    },
-    "get_trial_license": {
-        "message": "You need to log in to your Google account and grant modern scroll access to Chrome Web Store now in order to get your (trial) license.",
-        "description": ""
-    },
-    "authorize": {
-        "message": "Log in and authorize",
-        "description": ""
-    },
-    "transferred_trial_expired": {
-        "message": "The trial period of the license you transferred expired.\nI hope you love modern scroll as much as I do.\nIf you do, get a license now. You need to transfer this license from Chrome once again:",
-        "description": ""
-    },
-    "transfer_successful": {
-        "message": "Have fun using modern scroll.",
-        "description": ""
-    },
-    "get_license_in_chrome": {
-        "message": "install modern scroll in Chrome and get a license there",
-        "description": ""
-    },
-    "open_url_in_chrome": {
-        "message": "open chrome-extension://@@extension_id/options/options.html#show_token in Chrome",
-        "description": ""
-    },
-    "copy_token": {
-        "message": "copy shown token",
-        "description": ""
-    },
-    "insert_here": {
-        "message": "insert it in here",
-        "description": ""
-    },
-    "transfer_instructions": {
-        "message": "To use it in here, you need to transfer a license from Chrome (trial license is fine, too). That's what you need to do:",
-        "description": ""
-    },
-    "invalid_token": {
-        "message": "The token you entered is invalid or expired",
-        "description": ""
-    },
-    "description": {
-        "message": "将滚动提升至全新水平",
-        "description": ""
-    }
+	"description" :						{ "message" : "将滚动提升至全新水平" },
+	"by" :								{ "message" : "作者：" },
+	"saved_sets_headline" :				{ "message" : "已保存的配置" },
+	"save_set_as" :						{ "message" : "把当前配置保存为" },
+	"new_set_name" :					{ "message" : "名称" },
+	"load_or_delete_set" : 				{ "message" : "载入或删除" },
+	"default" : 						{ "message" : "默认" },
+	"default_change_impossible" : 		{ "message" : "默认配置不可编辑！请更换另一名称。" },
+	"default_delete_impossible" : 		{ "message" : "默认配置不可删除！" },
+	"confirm_overwrite" : 				{ "message" : "该配置名称已存在，是否替换？" },
+	"confirm_delete" : 					{ "message" : "确定要删除此配置吗（将不可逆！）？" },
+	"confirm_load" : 					{ "message" : "确定载入此配置吗？\n当前配置会被替换" },
+	"tooltip_save" : 					{ "message" : "保存" },
+	"tooltip_load" : 					{ "message" : "载入" },
+	"tooltip_delete" : 					{ "message" : "删除" },	
+	"look" : 							{ "message" : "外观" },
+	"color" : 							{ "message" : "滚动条、超级滚动条和滚动按钮的颜色" },
+	"color_bg" : 						{ "message" : "背景条的颜色" },
+	"auto_coloring" :					{ "message" : "自动适配网页颜色" },
+	"size" : 							{ "message" : "正常状态时的宽度（水平滚动条的高度）" },
+	"hover_size" : 						{ "message" : "鼠标悬停时的宽度（水平滚动条的高度）" },
+	"border_radius" : 					{ "message" : "边缘曲率半径" },
+	"gap" : 							{ "message" : "边缘距窗口的距离" },
+	"opacity" : 						{ "message" : "滚动条的透明度" },
+	"border" : 							{ "message" : "边缘" },
+	"border_width" : 					{ "message" : "宽度" },
+	"border_color" : 					{ "message" : "颜色" },
+	"border_blur" : 					{ "message" : "模糊" },
+	"vbar_at_left" : 					{ "message" : "在左侧显示垂直滚动条，而不是右侧" },
+	"hbar_at_top" : 					{ "message" : "在页面顶端显示水平滚动条，而不是底部" },
+	"behavior" : 						{ "message" : "行为" },
+	"show_when" : 						{ "message" : "你想显示滚动条吗?" },
+	"only_over" : 						{ "message" : "只在鼠标悬停时" },
+	"normal" : 							{ "message" : "在悬停，滚动，位置或大小改变时" },
+	"always" : 							{ "message" : "一直" },
+	"show_bg_bars_when" : 				{ "message" : "背景条" },
+	"like_bars" : 						{ "message" : "像滚动条" },
+	"show_how_long" : 					{ "message" : "你想使滚动条保持显示的时间？" },
+	"fullscreen_only" : 				{ "message" : "只在全屏模式下显示滚动条" },
+	"fullscreen_only_short" : 			{ "message" : "只在全屏模式时" },
+	"move_bars_during_scroll" : 		{ "message" : "用鼠标滚轮或键盘滚动是添加滚动条的动画效果" },
+	"bg_special_ends" : 				{ "message" : "点击背景条末端时滚动至顶部/底部（左/右），而不是滚动一页" },
+	"container1" : 						{ "message" : "触发modern scroll的距离" },
+	"container2" : 						{ "message" : "距离边缘的像素数" },
+	"element_bars" :					{ "message" : "页面内部滚动条" },
+	"style_element_bars" : 				{ "message" : "样式对所有滚动条生效" },
+	"explanation_element_bars" : 		{ "message" : "选中以对页面内所有滚动条生效，如文本框" },
+	"autohide_element_bars" : 			{ "message" : "自动隐藏页面内滚动条" },
+	"explanation_autohide_element_bars":{ "message" : "可能由于渲染bug而无法正常生效，因此启用后偶尔可能无法正常显示进度条" },
+	"superbar" : 						{ "message" : "超级滚动条" },
+	"show_superbar" : 					{ "message" : "显示超级滚动条" },
+	"show_superbar_minipage" : 			{ "message" : "当拖拽超级滚动条时，背景显示迷你版网页" },
+	"superbar_opacity" : 				{ "message" : "超级滚动条悬停时的透明度" },
+	"bookmarks" : 						{ "message" : "书签" },
+	"show_bookmarks" : 					{ "message" : "在滚动条上显示书签以快速滚动到目标位置" },
+	"no_bookmarks" : 					{ "message" : "关闭" },
+	"bookmarks_only" : 					{ "message" : "显示书签" },
+	"all_headings" : 					{ "message" : "显示书签和标题" },
+	"buttons" : 						{ "message" : "滚动按钮" },
+	"show_buttons" : 					{ "message" : "显示滚动至页面顶端/底部的按钮" },
+	"button_width" : 					{ "message" : "宽度" },
+	"button_height" : 					{ "message" : "高度" },
+	"button_opacity" : 					{ "message" : "透明度" },
+	"drag_buttons" : 					{ "message" : "在此选项中，你可以把按钮移动至任何位置。这个位置将应用于所有网站。如果它遮挡了页面的某些元素，你仍可拖拽。" },
+	"contextmenu" : 					{ "message" : "右键菜单" },
+	"show_contextmenu_when" : 			{ "message" : "何时在菜单中给出隐藏modern scroll选项?" },
+	"never" : 							{ "message" : "从不" },
+	"contextmenu_over_only" : 			{ "message" : "右键点击滚动界面时" },
+	"custom_scroll_functions" : 		{ "message" : "滚动功能" },
+	"use_custom_functions" : 			{ "message" : "使用自定义滚动功能" },
+	"use_custom_functions_keyboard" : 	{ "message" : "使用键盘时" },
+	"use_custom_functions_mouse" : 		{ "message" : "使用鼠标时" },
+	"use_custom_functions_middle" :		{ "message" : "按下鼠标滚轮时" },
+	"endMiddlescrollByTurningWheel" :	{ "message" : "End as well by turning the mouse wheel" },
+	"animate_scroll" : 					{ "message" : "动画效果滚动" },
+	"animate_up_to" : 					{ "message" : "长度" },
+	"infinite" : 						{ "message" : "无限" },
+	"page" : 							{ "message" : "页面" },
+	"pages" : 							{ "message" : "页面" },
+	"keyscroll_velocity" : 				{ "message" : "使用方向键滚动时的速度" },
+	"mousescroll_velocity" : 			{ "message" : "通过鼠标滚轮和触控板滚动的速度" },
+	"mousescroll_distance" : 			{ "message" : "鼠标滚轮每次滚动使得滚动距离" },
+	"middlescroll_velocity" : 			{ "message" : "使用鼠标滚轮触发时的速度" },
+	"animatedscroll_velocity" : 		{ "message" : "动画效果滚动速度" },
+	"external_interface_headline" : 	{ "message" : "外部界面" },
+	"external_interface" : 				{ "message" : "为外部使用提供界面" },
+	"footer" : 							{ "message" : "感谢您安装此扩展.欢迎随时联系,以反馈与交流." },
+	"contextmenu_show" : 				{ "message" : "显示modern scroll" },
+	"contextmenu_hide" : 				{ "message" : "隐藏modern scroll" },
+	"explanation_save_set" : 			{ "message" : "你可以在此保存设定\n输入设定名称然后点击保存按钮\n如果设定名称已存在，原设定会被覆盖" },
+	"explanation_move_bars_during_scroll" : { "message" : "滚动体验有问题时，请勿勾选此项。<br>只当滚动结束时，才更新滚动条位置。" },
+	"explanation_trigger_area" : 		{ "message" : "扩展可达滚动条的区域。" },
+	"explanation_superbar" : 			{ "message" : "超级滚动条是水平和竖直滚动条的结合。 只有需要水平及竖直滚动条时，它才可见。 它的位置与水平及竖直滚动条对齐。" },
+	"explanation_custom_functions" : 	{ "message" : "Standard scrolling experience is sometimes a bit jerky and slow. By activating these options the extension also takes over the corresponding scrolling, which should result in a noticeable performance boost." },
+	"explanation_animate_scroll" : 		{ "message" : "如果选择此项，页面将不会直接跳至期待位置，而是以一个可调节的速率自动滚动到目标位置。\n这适用于滚动按钮，点击背景条，用键盘滚动时（当“使用键盘自定义滚动”启用时）。" },
+	"explanation_external_interface" : 	{ "message" : "选择此项，modern scroll将提供一些关键特性供第三方扩展、网站或你使用，例如创建自定义的鼠标手势。访问 <a href='https://christoph142.wordpress.com/2013/02/20/modern-scroll-documentation' target='_blank'> 以了解更多。</a>" },
+	"report_issue" : 					{ "message" : "反馈故障"},
+	"rate" :		 					{ "message" : "评分"},
+	"twitter" :							{ "message" : "在Twitter关注我"},
+	"buymeacoffee" :					{ "message" : "请我吃寿司"},
+	"ok" :								{ "message" : "确认"},
+	"cancel" :							{ "message" : "取消"},
+	"close" :							{ "message" : "关闭"},
+	"thanks_for_installing" :			{ "message" : "感谢安装modern scroll！🙂"},
+	"thanks_for_using" :				{ "message" : "感谢使用modern scroll！🙂"},
+    "have_fun" :						{ "message" : "请尽情使用本插件。\n我会在几周内联系你征求你的反馈 🍻"},
+	"like_it" :							{ "message" : "你好呀！\n几周过去了\n你喜欢这个插件吗？"},
+	"great" :							{ "message" : "很好"},
+	"so_so" :							{ "message" : "一般般"},
+	"that_is_great" :					{ "message" : "太棒了！\n你介意支持我继续改进Modern Scroll吗？🍻"},
+	"im_sorry_to_hear" :				{ "message" : "没有让你100%满意真是遗憾\n如果你觉得哪里需要改进，请记得告诉我哦"},
+	"continued_support" :				{ "message" : "非常感谢你的支持！\n还没赞助吗？心动不如行动！🍻"}
 }
