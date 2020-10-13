@@ -102,7 +102,13 @@
 	"ok" :								{ "message" : "Oké"},
 	"cancel" :							{ "message" : "Annuleren"},
 	"close" :							{ "message" : "Sluiten"},
-	"trial_expired" :					{ "message" : "Je proefperiode is afgelopen.\nIk hoop dat je modern scrollen net zo graag gebruikt als ik.\nAls dat zo is, schaf dan een licentie aan."},
 	"thanks_for_installing" :			{ "message" : "Bedankt voor het installeren van modern scrollen! 🙂"},
-	"have_fun" :						{ "message" : "Veel gebruiksplezier toegewenst!\nOver een paar weken neem ik contact met je op om ze vragen wat je er van vindt. 🍻"}
+	"thanks_for_using" :				{ "message" : "Bedankt voor het gebruiken van modern scrollen! 🙂"},
+    "have_fun" :						{ "message" : "Veel gebruiksplezier toegewenst!\nOver een paar weken neem ik contact met je op om ze vragen wat je er van vindt. 🍻"},
+	"like_it" :							{ "message" : "Hallo!\nJe hebt een paar weken geleden modern scrollen geïnstalleerd.\nHoe bevalt het tot nu toe?"},
+	"great" :							{ "message" : "Erg goed"},
+	"so_so" :							{ "message" : "Redelijk"},
+	"that_is_great" :					{ "message" : "Geweldig!\nZou je me willen ondersteunen zodat ik de extensie kan blijven verbeteren? 🍻"},
+	"im_sorry_to_hear" :				{ "message" : "Wat jammer dat je nog niet 100% tevreden bent.\nAls er iets is wat ik kan verbeteren, dan hoor ik dat graag."},
+	"continued_support" :				{ "message" : "Ik zou het erg op prijs stellen als je me blijft ondersteunen zodat ik de extensie kan blijven verbeteren.\nAls je dat nog niet gedaan hebt, grijp dan dit moment aan! 🍻"}
 }
