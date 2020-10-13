@@ -1,9 +1,9 @@
-﻿One of Opera's most popular and highest-rated extensions of all times is finally available here!
-Check it out and experience its beauty and simplicity for yourself. :)
+Opera浏览器全时段评分最高的插件之一现在完美移植到了Chrome！
+敬请探索它的简和美。
 
-modern scroll takes scrolling to a whole new level.
+Modern Scroll把滚动体验提升到了新高度。
 
-What's so awesome about it?
+它到底有多强？
 
 + scroll bars don't take up any space so the whole screen width can be used to display what a browser is made for: websites
 当内容改变、滚动条非必需时，页面元素或者全部页面不会发生数个像素的移动
