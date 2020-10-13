@@ -1,8 +1,13 @@
-﻿v 3.5.4
+﻿
+v 3.5.5
+---------
+upd: Dutch translation (thx Heimen)
+upd: Chinese translation (thx xyu)
+
+v 3.5.4
 ---------
 upd: Smaller adjustments of the settings page
 upd: paid licensing removed - thanks for supporting me at https://www.buymeacoffee.com/Christoph142 instead! 🍻
-upd: Dutch translation (thx Heimen)
 
 v 3.5.3
 ---------
