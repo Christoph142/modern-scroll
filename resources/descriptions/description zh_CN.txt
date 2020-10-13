@@ -1,17 +1,17 @@
-﻿One of Opera's most popular and highest-rated extensions of all times is finally available here!
-Check it out and experience its beauty and simplicity for yourself. :)
+Opera浏览器全时段评分最高的插件之一现在完美移植到了Chrome！
+敬请探索它的简和美。
 
-modern scroll takes scrolling to a whole new level.
+modern scroll把滚动体验提升到了新高度。
 
-What's so awesome about it?
+它到底有多强？
 
-+ scroll bars don't take up any space so the whole screen width can be used to display what a browser is made for: websites
+滚动条不占用空间，这就给了网页整个屏幕的宽度来展现内容。
 当内容改变、滚动条非必需时，页面元素或者全部页面不会发生数个像素的移动
 全屏模式下也可使用滚动条
 滚动条时在不需要时将自动隐藏
 行为和外观完全可定制
-+ can boost your scrolling performance
-+ scrolling speed and behavior is adjustable
+可以提升滚动性能
+滚动速度和行为都可定制
 独特的超级滚动条可以实现同时水平及竖直滚动
-+ buttons for scrolling to top and bottom of the page
-+ JavaScript interface for custom mouse gestures / bookmarklets
+滚动至顶/至底按钮
+供定制手势/书签的JavaScript 接口
