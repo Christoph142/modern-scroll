@@ -1,474 +1,114 @@
 {
-    "by": {
-        "message": "por",
-        "description": ""
-    },
-    "saved_sets_headline": {
-        "message": "Configurações salvas",
-        "description": ""
-    },
-    "save_set_as": {
-        "message": "Salvar a configuração atual como",
-        "description": ""
-    },
-    "new_set_name": {
-        "message": "Nome",
-        "description": ""
-    },
-    "load_or_delete_set": {
-        "message": "Carregar ou excluir",
-        "description": ""
-    },
-    "default": {
-        "message": "Padrão",
-        "description": ""
-    },
-    "default_change_impossible": {
-        "message": "Você não pode modificar a configuração padrão! Por favor, escolha outro nome.",
-        "description": ""
-    },
-    "default_delete_impossible": {
-        "message": "Você não pode excluir a configuração padrão!",
-        "description": ""
-    },
-    "confirm_overwrite": {
-        "message": "Uma configuração com este nome já existe.\nDeseja sobrescrever?",
-        "description": ""
-    },
-    "confirm_delete": {
-        "message": "Você realmente quer excluir esta configuração?",
-        "description": ""
-    },
-    "confirm_load": {
-        "message": "Quer realmente carregar esta configuração agora?\nEla irá sobrescrever suas configurações atuais.",
-        "description": ""
-    },
-    "tooltip_save": {
-        "message": "Salvar",
-        "description": ""
-    },
-    "tooltip_load": {
-        "message": "Carregar",
-        "description": ""
-    },
-    "tooltip_delete": {
-        "message": "Excluir",
-        "description": ""
-    },
-    "look": {
-        "message": "Aparência",
-        "description": ""
-    },
-    "color": {
-        "message": "Cor das barras de rolagem, da 'superbar' e dos botões de rolagem",
-        "description": ""
-    },
-    "color_bg": {
-        "message": "Cor das barras de fundo",
-        "description": ""
-    },
-    "auto_coloring": {
-        "message": "Color UI matching the page instead if possible",
-        "description": ""
-    },
-    "size": {
-        "message": "Largura normal (altura para a barra horizontal)",
-        "description": ""
-    },
-    "hover_size": {
-        "message": "Largura com o mouse sobre a barra (altura para a barra horizontal)",
-        "description": ""
-    },
-    "border_radius": {
-        "message": "Raio de curvatura da borda",
-        "description": ""
-    },
-    "gap": {
-        "message": "Distância da borda da janela",
-        "description": ""
-    },
-    "opacity": {
-        "message": "Opacidade das barras de rolagem",
-        "description": ""
-    },
-    "border": {
-        "message": "Borda",
-        "description": ""
-    },
-    "border_width": {
-        "message": "Largura",
-        "description": ""
-    },
-    "border_color": {
-        "message": "Cor",
-        "description": ""
-    },
-    "border_blur": {
-        "message": "Desfoque",
-        "description": ""
-    },
-    "vbar_at_left": {
-        "message": "Colocar a barra vertical na esquerda ao invés da direita",
-        "description": ""
-    },
-    "hbar_at_top": {
-        "message": "Colocar a barra horizontal no topo ao invés do fundo",
-        "description": ""
-    },
-    "behavior": {
-        "message": "Comportamento",
-        "description": ""
-    },
-    "show_when": {
-        "message": "Quando você quer que as barras de rolagem apareçam?",
-        "description": ""
-    },
-    "only_over": {
-        "message": "Ao passar com o mouse sobre",
-        "description": ""
-    },
-    "normal": {
-        "message": "Ao passar com o mouse sobre, ao rolar e à mudanças de posição ou tamanho",
-        "description": ""
-    },
-    "always": {
-        "message": "Sempre",
-        "description": ""
-    },
-    "show_bg_bars_when": {
-        "message": "Quando você quer que as barras do fundo apareçam?",
-        "description": ""
-    },
-    "like_bars": {
-        "message": "Igual as barras de rolagem",
-        "description": ""
-    },
-    "show_how_long": {
-        "message": "Quanto tempo as barras ficam visíveis?",
-        "description": ""
-    },
-    "fullscreen_only": {
-        "message": "Exibir barras de rolagem apenas em tela cheia",
-        "description": ""
-    },
-    "fullscreen_only_short": {
-        "message": "Apenas em tela cheia",
-        "description": ""
-    },
-    "move_bars_during_scroll": {
-        "message": "Animar as barras de rolagem ao rolar com a roda do mouse/teclado",
-        "description": ""
-    },
-    "bg_special_ends": {
-        "message": "Clicar nas pontas das barras de fundo rolam para o topo/fundo (esquerda/direita respectivamente) ao invés de uma página",
-        "description": ""
-    },
-    "container1": {
-        "message": "Utilizar modern scroll a uma distância de",
-        "description": ""
-    },
-    "container2": {
-        "message": "px da borda",
-        "description": ""
-    },
-    "element_bars": {
-        "message": "Barras dentro das páginas",
-        "description": ""
-    },
-    "style_element_bars": {
-        "message": "Personalizar todas as barras",
-        "description": ""
-    },
-    "explanation_element_bars": {
-        "message": "Ative para o modern scroll também personalizar as barras dentro das páginas, ex.: caixas de texto",
-        "description": ""
-    },
-    "autohide_element_bars": {
-        "message": "Auto-ocultar barras dentro das páginas",
-        "description": ""
-    },
-    "explanation_autohide_element_bars": {
-        "message": "Infelizmente esta opção não está funcionando corretamente devido a erros de renderização do navegador. Você pode habilitar, mas as barras podem não ser exibidas corretamente.",
-        "description": ""
-    },
-    "superbar": {
-        "message": "Superbar",
-        "description": ""
-    },
-    "show_superbar": {
-        "message": "Exibir a 'superbar'",
-        "description": ""
-    },
-    "show_superbar_minipage": {
-        "message": "Exibir uma mini-versão do website no fundo quando arrastar a 'superbar'",
-        "description": ""
-    },
-    "superbar_opacity": {
-        "message": "Opacidade da 'superbar' ao passar o mouse sobre",
-        "description": ""
-    },
-    "bookmarks": {
-        "message": "Bookmarks",
-        "description": ""
-    },
-    "show_bookmarks": {
-        "message": "Show bookmarks within the page for scrolling to the specified locations",
-        "description": ""
-    },
-    "no_bookmarks": {
-        "message": "Off",
-        "description": ""
-    },
-    "bookmarks_only": {
-        "message": "Show bookmarks",
-        "description": ""
-    },
-    "all_headings": {
-        "message": "Bookmarks and Headings",
-        "description": ""
-    },
-    "buttons": {
-        "message": "Botões de rolagem",
-        "description": ""
-    },
-    "show_buttons": {
-        "message": "Exibir botões para rolar ao topo/fundo da página",
-        "description": ""
-    },
-    "button_width": {
-        "message": "Largura",
-        "description": ""
-    },
-    "button_height": {
-        "message": "Altura",
-        "description": ""
-    },
-    "button_opacity": {
-        "message": "Opacidade",
-        "description": ""
-    },
-    "drag_buttons": {
-        "message": "Você pode arrastar os botões para qualquer posição aqui nas preferências. Esta posição será a padrão para todos os websites. Você poderá movê-las nas páginas caso ficarem sobre algum elemento, mas não modificará o padrão.",
-        "description": ""
-    },
-    "contextmenu": {
-        "message": "Menu de contexto",
-        "description": ""
-    },
-    "show_contextmenu_when": {
-        "message": "Quando você quer que apareça uma opção para ocultar o modern scroll no menu de contexto?",
-        "description": ""
-    },
-    "never": {
-        "message": "Nunca",
-        "description": ""
-    },
-    "contextmenu_over_only": {
-        "message": "Ao clicar com o botão direito sobre a interface do modern scroll",
-        "description": ""
-    },
-    "custom_scroll_functions": {
-        "message": "Controle da rolagem",
-        "description": ""
-    },
-    "use_custom_functions": {
-        "message": "Ativar controle de rolagem personalizado",
-        "description": ""
-    },
-    "use_custom_functions_keyboard": {
-        "message": "Para o teclado",
-        "description": ""
-    },
-    "use_custom_functions_mouse": {
-        "message": "Para o mouse",
-        "description": ""
-    },
-    "use_custom_functions_middle": {
-        "message": "Para clique com botão do meio",
-        "description": ""
-    },
-    "endMiddlescrollByTurningWheel": {
-        "message": "Parar ao rolar a roda do mouse",
-        "description": ""
-    },
-    "animate_scroll": {
-        "message": "Animar rolagem",
-        "description": ""
-    },
-    "animate_up_to": {
-        "message": "com distância de até",
-        "description": ""
-    },
-    "infinite": {
-        "message": "Infinita",
-        "description": ""
-    },
-    "page": {
-        "message": "página",
-        "description": ""
-    },
-    "pages": {
-        "message": "páginas",
-        "description": ""
-    },
-    "keyscroll_velocity": {
-        "message": "Velocidade da rolagem com as teclas de direção",
-        "description": ""
-    },
-    "mousescroll_velocity": {
-        "message": "Velocidade da rolagem com a roda do mouse e trackpad",
-        "description": ""
-    },
-    "mousescroll_distance": {
-        "message": "Distância rolada pela roda do mouse e pelo trackpad",
-        "description": ""
-    },
-    "middlescroll_velocity": {
-        "message": "Velocidade da rolagem com o clique do botão do meio",
-        "description": ""
-    },
-    "animatedscroll_velocity": {
-        "message": "Velocidade da rolagem animada",
-        "description": ""
-    },
-    "external_interface_headline": {
-        "message": "Interface Externa",
-        "description": ""
-    },
-    "external_interface": {
-        "message": "Habilitar interface para acesso externo",
-        "description": ""
-    },
-    "footer": {
-        "message": "Obrigado por instalar esta extensão. Para comentários e perguntas não hesite em me contatar.",
-        "description": ""
-    },
-    "contextmenu_show": {
-        "message": "Exibir modern scroll",
-        "description": ""
-    },
-    "contextmenu_hide": {
-        "message": "Ocultar modern scroll",
-        "description": ""
-    },
-    "explanation_save_set": {
-        "message": "Você pode salvar sua configuração atual aqui.\nApenas escreva um nome e clique em salvar.\nSe você escolher um nome existente, ele será sobrescrito.",
-        "description": ""
-    },
-    "explanation_move_bars_during_scroll": {
-        "message": "Desative esta opção caso encontre problemas de performance.<br>A posição da barra será atualizada ao terminar a rolagem.",
-        "description": ""
-    },
-    "explanation_trigger_area": {
-        "message": "Aumenta a área de utilização das barras.",
-        "description": ""
-    },
-    "explanation_superbar": {
-        "message": "A 'superbar' é uma versão combinada das barras vertical e horizontal.<br>Logo, só fica disponível quando ambas as barras são necessárias.<br>Sua posição é alinhada com as barras de rolagem vertical e horizontal.",
-        "description": ""
-    },
-    "explanation_custom_functions": {
-        "message": "A rolagem padrão às vezes é ruim e devagar. Ao ativar estas opções a extensão também vai controlar a rolagem, o que pode resultar em uma melhora na performance.",
-        "description": ""
-    },
-    "explanation_animate_scroll": {
-        "message": "Com esta opção a página não irá pular direto para a posição, mas irá rolar automaticamente até a posição em uma velocidade ajustável.<br>Se aplica aos 'botões de rolagem', cliques nas barras de fundo, assim como pelo teclado com as teclas Home/End e PageUp/PageDown (caso o \"controle da rolagem para o teclado\" esteja ativo).",
-        "description": ""
-    },
-    "explanation_external_interface": {
-        "message": "Marcando esta opção permitirá que algumas funções do modern scroll fiquem acessíveis para extensões de terceiros, websites e você. Por exemplo, você pode criar um gesto do mouse para controlar o modern scroll.<br><a href='https://christoph142.wordpress.com/2013/02/20/modern-scroll-documentation' target='_blank'>Veja a documentação para mais detalhes.</a>",
-        "description": ""
-    },
-    "report_issue": {
-        "message": "Relatar um problema",
-        "description": ""
-    },
-    "rate": {
-        "message": "Avalie o modern scroll",
-        "description": ""
-    },
-    "twitter": {
-        "message": "Siga-me no Twitter",
-        "description": ""
-    },
-    "get_more": {
-        "message": "Obtenha mais com o modern scroll",
-        "description": ""
-    },
-    "ok": {
-        "message": "OK",
-        "description": ""
-    },
-    "cancel": {
-        "message": "Cancelar",
-        "description": ""
-    },
-    "close": {
-        "message": "Fechar",
-        "description": ""
-    },
-    "token": {
-        "message": "Esta é a chave necessária para transferir sua licença a outros navegadores:",
-        "description": ""
-    },
-    "trial_expired": {
-        "message": "Seu período de testes terminou.\nEspero que você tenha amado o modern scroll tanto como eu.\nSe você realmente gostou, compre uma licença agora.",
-        "description": ""
-    },
-    "all_set": {
-        "message": "Está tudo pronto! :)",
-        "description": ""
-    },
-    "seven_days_trial": {
-        "message": "Agora você pode testar o modern scroll sem restrições por sete dias.",
-        "description": ""
-    },
-    "thanks_for_installing": {
-        "message": "Obrigado por instalar o modern scroll! :)",
-        "description": ""
-    },
-    "get_trial_license": {
-        "message": "Você precisa entrar em sua conta da Google e dar ao modern scroll acesso à Chrome Web Store para obter sua licença (teste).",
-        "description": ""
-    },
-    "authorize": {
-        "message": "Entrar e autorizar",
-        "description": ""
-    },
-    "transferred_trial_expired": {
-        "message": "O período da licença que você transferiu expirou.\nEspero que você tenha amado o modern scroll tanto como eu.\nSe você realmente gostou, compre uma licença agora. Você vai precisar transferir ela novamente do Chrome:",
-        "description": ""
-    },
-    "transfer_successful": {
-        "message": "Divirta-se usando o modern scroll",
-        "description": ""
-    },
-    "get_license_in_chrome": {
-        "message": "instale o modern scroll no Chrome e compre uma licença nele",
-        "description": ""
-    },
-    "open_url_in_chrome": {
-        "message": "abra no Chrome: chrome-extension://@@extension_id/options/options.html#show_token",
-        "description": ""
-    },
-    "copy_token": {
-        "message": "copie a chave que aparecer",
-        "description": ""
-    },
-    "insert_here": {
-        "message": "cole a chave aqui",
-        "description": ""
-    },
-    "transfer_instructions": {
-        "message": "Para usar aqui você precisa transferir uma licença do Chrome (licença de teste funciona). Para fazer isso você precisa:",
-        "description": ""
-    },
-    "invalid_token": {
-        "message": "A chave utilizada é invadida ou expirou",
-        "description": ""
-    },
-    "description": {
-        "message": "Leva a rolagem à um novo nível",
-        "description": ""
-    }
+	"description" :						{ "message" : "Leva a rolagem à um novo nível" },
+	"by" :								{ "message" : "por" },
+	"saved_sets_headline" :				{ "message" : "Configurações salvas" },
+	"save_set_as" :						{ "message" : "Salvar a configuração atual como" },
+	"new_set_name" :					{ "message" : "Nome" },
+	"load_or_delete_set" : 				{ "message" : "Carregar ou excluir" },
+	"default" : 						{ "message" : "Padrão" },
+	"default_change_impossible" : 		{ "message" : "Você não pode modificar a configuração padrão! Por favor, escolha outro nome." },
+	"default_delete_impossible" : 		{ "message" : "Você não pode excluir a configuração padrão!" },
+	"confirm_overwrite" : 				{ "message" : "Uma configuração com este nome já existe.\nDeseja sobrescrever?" },
+	"confirm_delete" : 					{ "message" : "Você realmente quer excluir esta configuração?" },
+	"confirm_load" : 					{ "message" : "Quer realmente carregar esta configuração agora?\nEla irá sobrescrever suas configurações atuais." },
+	"tooltip_save" : 					{ "message" : "Salvar" },
+	"tooltip_load" : 					{ "message" : "Carregar" },
+	"tooltip_delete" : 					{ "message" : "Excluir" },	
+	"look" : 							{ "message" : "Aparência" },
+	"color" : 							{ "message" : "Cor das barras de rolagem, da 'superbar' e dos botões de rolagem" },
+	"color_bg" : 						{ "message" : "Cor das barras de fundo" },
+	"auto_coloring" :					{ "message" : "Color UI matching the page instead if possible" },
+	"size" : 							{ "message" : "Largura normal (altura para a barra horizontal)" },
+	"hover_size" : 						{ "message" : "Largura com o mouse sobre a barra (altura para a barra horizontal)" },
+	"border_radius" : 					{ "message" : "Raio de curvatura da borda" },
+	"gap" : 							{ "message" : "Distância da borda da janela" },
+	"opacity" : 						{ "message" : "Opacidade das barras de rolagem" },
+	"border" : 							{ "message" : "Borda" },
+	"border_width" : 					{ "message" : "Largura" },
+	"border_color" : 					{ "message" : "Cor" },
+	"border_blur" : 					{ "message" : "Desfoque" },
+	"vbar_at_left" : 					{ "message" : "Colocar a barra vertical na esquerda ao invés da direita" },
+	"hbar_at_top" : 					{ "message" : "Colocar a barra horizontal no topo ao invés do fundo" },
+	"behavior" : 						{ "message" : "Comportamento" },
+	"show_when" : 						{ "message" : "Quando você quer que as barras de rolagem apareçam?" },
+	"only_over" : 						{ "message" : "Ao passar com o mouse sobre" },
+	"normal" : 							{ "message" : "Ao passar com o mouse sobre, ao rolar e à mudanças de posição ou tamanho" },
+	"always" : 							{ "message" : "Sempre" },
+	"show_bg_bars_when" : 				{ "message" : "Quando você quer que as barras do fundo apareçam?" },
+	"like_bars" : 						{ "message" : "Igual as barras de rolagem" },
+	"show_how_long" : 					{ "message" : "Quanto tempo as barras ficam visíveis?" },
+	"fullscreen_only" : 				{ "message" : "Exibir barras de rolagem apenas em tela cheia" },
+	"fullscreen_only_short" : 			{ "message" : "Apenas em tela cheia" },
+	"move_bars_during_scroll" : 		{ "message" : "Animar as barras de rolagem ao rolar com a roda do mouse/teclado" },
+	"bg_special_ends" : 				{ "message" : "Clicar nas pontas das barras de fundo rolam para o topo/fundo (esquerda/direita respectivamente) ao invés de uma página" },
+	"container1" : 						{ "message" : "Utilizar modern scroll a uma distância de" },
+	"container2" : 						{ "message" : "px da borda" },
+	"element_bars" :					{ "message" : "Barras dentro das páginas" },
+	"style_element_bars" : 				{ "message" : "Personalizar todas as barras" },
+	"explanation_element_bars" : 		{ "message" : "Ative para o modern scroll também personalizar as barras dentro das páginas, ex.: caixas de texto" },
+	"autohide_element_bars" : 			{ "message" : "Auto-ocultar barras dentro das páginas" },
+	"explanation_autohide_element_bars":{ "message" : "Infelizmente esta opção não está funcionando corretamente devido a erros de renderização do navegador. Você pode habilitar, mas as barras podem não ser exibidas corretamente." },
+	"superbar" : 						{ "message" : "Superbar" },
+	"show_superbar" : 					{ "message" : "Exibir a 'superbar'" },
+	"show_superbar_minipage" : 			{ "message" : "Exibir uma mini-versão do website no fundo quando arrastar a 'superbar'" },
+	"superbar_opacity" : 				{ "message" : "Opacidade da 'superbar' ao passar o mouse sobre" },
+	"bookmarks" : 						{ "message" : "Bookmarks" },
+	"show_bookmarks" : 					{ "message" : "Show bookmarks within the page for scrolling to the specified locations" },
+	"no_bookmarks" : 					{ "message" : "Off" },
+	"bookmarks_only" : 					{ "message" : "Show bookmarks" },
+	"all_headings" : 					{ "message" : "Bookmarks and Headings" },
+	"buttons" : 						{ "message" : "Botões de rolagem" },
+	"show_buttons" : 					{ "message" : "Exibir botões para rolar ao topo/fundo da página" },
+	"button_width" : 					{ "message" : "Largura" },
+	"button_height" : 					{ "message" : "Altura" },
+	"button_opacity" : 					{ "message" : "Opacidade" },
+	"drag_buttons" : 					{ "message" : "Você pode arrastar os botões para qualquer posição aqui nas preferências. Esta posição será a padrão para todos os websites. Você poderá movê-las nas páginas caso ficarem sobre algum elemento, mas não modificará o padrão." },
+	"contextmenu" : 					{ "message" : "Menu de contexto" },
+	"show_contextmenu_when" : 			{ "message" : "Quando você quer que apareça uma opção para ocultar o modern scroll no menu de contexto?" },
+	"never" : 							{ "message" : "Nunca" },
+	"contextmenu_over_only" : 			{ "message" : "Ao clicar com o botão direito sobre a interface do modern scroll" },
+	"custom_scroll_functions" : 		{ "message" : "Controle da rolagem" },
+	"use_custom_functions" : 			{ "message" : "Ativar controle de rolagem personalizado" },
+	"use_custom_functions_keyboard" : 	{ "message" : "Para o teclado" },
+	"use_custom_functions_mouse" : 		{ "message" : "Para o mouse" },
+	"use_custom_functions_middle" :		{ "message" : "Para clique com botão do meio" },
+	"endMiddlescrollByTurningWheel" :	{ "message" : "Parar ao rolar a roda do mouse" },
+	"animate_scroll" : 					{ "message" : "Animar rolagem" },
+	"animate_up_to" : 					{ "message" : "com distância de até" },
+	"infinite" : 						{ "message" : "Infinita" },
+	"page" : 							{ "message" : "página" },
+	"pages" : 							{ "message" : "páginas" },
+	"keyscroll_velocity" : 				{ "message" : "Velocidade da rolagem com as teclas de direção" },
+	"mousescroll_velocity" : 			{ "message" : "Velocidade da rolagem com a roda do mouse e trackpad" },
+	"mousescroll_distance" : 			{ "message" : "Distância rolada pela roda do mouse e pelo trackpad" },
+	"middlescroll_velocity" : 			{ "message" : "Velocidade da rolagem com o clique do botão do meio" },
+	"animatedscroll_velocity" : 		{ "message" : "Velocidade da rolagem animada" },
+	"external_interface_headline" : 	{ "message" : "Interface Externa" },
+	"external_interface" : 				{ "message" : "Habilitar interface para acesso externo" },
+	"footer" : 							{ "message" : "Obrigado por instalar esta extensão. Para comentários e perguntas não hesite em me contatar." },
+	"contextmenu_show" : 				{ "message" : "Exibir modern scroll" },
+	"contextmenu_hide" : 				{ "message" : "Ocultar modern scroll" },
+	"explanation_save_set" : 			{ "message" : "Você pode salvar sua configuração atual aqui.\nApenas escreva um nome e clique em salvar.\nSe você escolher um nome existente, ele será sobrescrito." },
+	"explanation_move_bars_during_scroll" : { "message" : "Desative esta opção caso encontre problemas de performance.<br>A posição da barra será atualizada ao terminar a rolagem." },
+	"explanation_trigger_area" : 		{ "message" : "Aumenta a área de utilização das barras." },
+	"explanation_superbar" : 			{ "message" : "A 'superbar' é uma versão combinada das barras vertical e horizontal.<br>Logo, só fica disponível quando ambas as barras são necessárias.<br>Sua posição é alinhada com as barras de rolagem vertical e horizontal." },
+	"explanation_custom_functions" : 	{ "message" : "A rolagem padrão às vezes é ruim e devagar. Ao ativar estas opções a extensão também vai controlar a rolagem, o que pode resultar em uma melhora na performance." },
+	"explanation_animate_scroll" : 		{ "message" : "Com esta opção a página não irá pular direto para a posição, mas irá rolar automaticamente até a posição em uma velocidade ajustável.<br>Se aplica aos 'botões de rolagem', cliques nas barras de fundo, assim como pelo teclado com as teclas Home/End e PageUp/PageDown (caso o \"controle da rolagem para o teclado\" esteja ativo)." },
+	"explanation_external_interface" : 	{ "message" : "Marcando esta opção permitirá que algumas funções do modern scroll fiquem acessíveis para extensões de terceiros, websites e você. Por exemplo, você pode criar um gesto do mouse para controlar o modern scroll.<br><a href='https://christoph142.wordpress.com/2013/02/20/modern-scroll-documentation' target='_blank'>Veja a documentação para mais detalhes.</a>" },
+	"report_issue" : 					{ "message" : "Relatar um problema"},
+	"rate" :		 					{ "message" : "Avalie o modern scroll"},
+	"twitter" :							{ "message" : "Siga-me no Twitter"},
+	"buymeacoffee" :					{ "message" : "Compre um sushi para mim"},
+	"ok" :								{ "message" : "OK"},
+	"cancel" :							{ "message" : "Cancelar"},
+	"close" :							{ "message" : "Fechar"},
+	"thanks_for_installing" :			{ "message" : "Obrigado por instalar o modern scroll! :)"},
+	"thanks_for_using" :				{ "message" : "Obrigado por usar o modern scroll! 🙂"},
+    "have_fun" :						{ "message" : "Divirta-se usando a extensão.\nVou checar com você dentro de algumas semanas para saber se está gostando. 🍻"},
+	"like_it" :							{ "message" : "Olá de novo!\nFaz alguns semanas desde que você instalou o modern scroll.\nEstá gostando dele até agora?"},
+	"great" :							{ "message" : "Muito"},
+	"so_so" :							{ "message" : "Mais ou menos"},
+	"that_is_great" :					{ "message" : "Demais!\nVocê se importaria de me dar suporte para continuar melhorando o modern scroll? 🍻"},
+	"im_sorry_to_hear" :				{ "message" : "Que pena ouvir que você não está 100% convencido ainda.\nSe houver algo para melhorar me mande uma mensagem."},
+	"continued_support" :				{ "message" : "Eu realmente agradeceria seu suporte para continuar melhorando a extensão.\nSe você ainda não o fez, agora é uma ótima hora para começar! 🍻"}
 }
