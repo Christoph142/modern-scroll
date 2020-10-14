@@ -3,6 +3,7 @@ v 3.5.5
 ---------
 upd: Dutch translation (thx Heimen)
 upd: Chinese translation (thx xyu)
+upd: Portuguese translation (thx André)
 
 v 3.5.4
 ---------
