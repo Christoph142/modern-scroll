@@ -1,0 +1,257 @@
+﻿v 3.5
+---------
+new: display bookmarks next to the vertical scroll bar
+обновлено: множество переводов (спасибо всем переводчикам)
+
+v 3.4
+---------
+fix: can't drag scroll bars outside frames / browser window
+fix: console warnings about passive events
+upd: switched from mouse to newer pointer events API
+
+v 3.3.1
+---------
+fix: console errors when toggling fullscreen with buttons disabled
+fix: impossible to use modern scroll in Chromium Browser (thx Rus for reporting)
+
+v 3.3
+---------
+new: use page's theme color for all UI elements if applicable
+fix: UI always showing although set to fullscreen only
+fix: slider values not updated in options page
+
+v 3.2.1
+---------
+fix: modern scroll is unusable in latest Yandex.Browser
+upd: improved browser distinction mechanism
+
+v 3.2
+---------
+новое: автоматический цвет полос прокрутки соответствующий цетовой гамме страницы
+обновлено: больше нет IAP'ов - один платёж, полный доступ. Яху!
+обновлено: множество переводов (спасибо всем переводчикам)
+
+версия 3.1
+---------
+новое: улучшено разделение кода расширения от содержимого страницы используя "Shadow DOM"
+новое: улучшен внешний вид страницы настроек
+новое: настройки стилизации полос прокрутки внутри страниц для полной версии программы
+исправлено: не работала пользовательская прокрутка с помощью клавиатуры после нажатия на некоторых элементах
+исправлено: отсутствие полос прокрутки для некоторых значениях overflow для тегов html и body
+исправлено: если установлена опция "только в полноэкранном режиме", то стандартные полосы прокрутки скрываются для обычного окна
+обновлено: множество переводов (спасибо всем переводчикам)
+
+версия 3.0.6
+---------
+исправлено: страницы с overflow:hidden (к примеру jsfiddle, Transifex) могут прокручиваться (спасибо Maciej за информацию)
+исправлено: полосы прокрутки отображались при печати и сохранении в PDF
+исправлено: ссылка на документацию
+обновлено: русский перевод (спасибо Mykhailo)
+
+версия 3.0.5
+---------
+новое: дополнительный способ прокрутки (зажмите колёсико мышки -> перетащите указатель куда-нибудь -> отпустите колёсико)
+новое: использование нового API масштабирования
+
+версия 3.0.4
+---------
+новое: возможность прокрутки при нажатии колёсика мышки
+новое: интерфейс независит (частино) от масштабирования страницы
+новое: поддержка полноэкранного режима, используя HTML5 API
+исправлено: открытие ссылок по нажатию колёсика мышки
+обновлено: французский перевод (спасибо Bozz65)
+
+версия 3.0.3
+---------
+новое: нестандартная прокрутка по нажатию колёсика мышки
+обновлено: нестандартная прокрутка по нажатию колёсика мышки отключена по умолчанию
+
+версия 3.0.2
+---------
+новое: дополнительная проверка размеров для большой совместимости с любыми сайтами
+исправлено: некорректное отображение полос прокрутки на страницах, использующих Disqus
+обновлено: партугальский перевод (спасибо André)
+
+версия 3.0.1
+---------
+новое: страница прокручивается до курсора при длительном нажатии левой кнопки мышки на полосе прокрутки
+новое: скрытие всех полос прокрутки пока элементы не наведены и не в фокусе
+новое: вьетнамский перевод (спасибо ppanhh)
+исправлено: некорректное расположение полос прокрутки во время процесса прокрутки в Chrome 27+ и Opera
+
+версия 3.0
+---------
+новое: полная совместимость с Chromium (Chrome & Opera 15)
+новое: автоматическое скрытие стандартных полос прокрутки
+новое: стилизация полос прокрутки у элементов страницы (к примеру, textarea)
+новое: синхронизация настроек доступна на любых устройствах
+new: live mini page behind superbar
+новое: улучшена обработка значений  по умолчанию и восстановление сохранённых настроек
+
+версия 2.4.5
+---------
+исправлено: прокрутка при нажатии пробела (спасибо André)
+обновлено: различные переводы (спасибо всем участникам)
+обновлено: ссылки на новый блог
+
+версия 2.4.4
+---------
+новое: отображение "супер панели" можно переключать с помощью пользовательских жестов мышки
+новое: modern scroll реагирует на нажатие пробела (спс kapsi за наводку)
+исправлено: прокрутка картинок @ vk.com (спасибо Maxim за наводку)
+обновлено: множество переводов (спасибо всем переводчикам)
+
+версия 2.4.3
+---------
+исправлено: интерфейс ичезал при переключении между вкладками во время загрузки
+исправлено: полосы прокрутки имели белый прямоугольный фон @ www.testberichte.de
+
+версия 2.4.2
+---------
+новое: улучшена отрисовка
+исправлено: интерфейс исчезал при закрытии неактивных вкладок
+исправлено: восстановлена совместимость с расширением cleanPages (спс QuHno)
+исправлено: мегающие полосы прокрутки при пролистывания с помощью тачпада/мышки
+
+версия 2.4.1
+---------
+new: border settings affect scroll buttons, too (thx Dimitri for reporting)
+исправлено: modern scroll не работал на некоторых сайтах (спс André, jonastheroman и orhano за наводку)
+исправлено: ползунок прокрутки дёргался вверх/вниз во время прокрутки (спс Cryio, André и orhano за наводку)
+
+версия 2.4
+---------
+новое: возможность менять время после которого полосы прокрутки скрываются
+новое: расширение активно (запущено) только в текущей вкладке, а не во всех открытых
+new: explanation fields in options page show up to the top if they are below middle of the screen
+обновлено: партугальский перевод (спасибо André)
+upd: background bars are only visible when you hover them with your mouse now by default
+обновлено: улучшена производительности и внутрення структура расширения
+
+версия 2.3.1
+---------
+исправлено: ingdirect.fr (спс terdale за наводку)
+fix: Bootstrap's modal popups not appearing (thx Johnny for reporting; semi-fixed only)
+обновлено: чешский и арабский переводы (спс Ahoj1234 и Netmain)
+upd: minimal overall performance improvements
+
+версия 2.3
+---------
+новое: modern scroll можно использовать для пользовательских жестов мышкой (внешний интерфейс)
+новое: компоненты расширения независимы друг от друга
+новое: перевод на румынский (спс Cryio)
+fix: hiding the UI also disables the scrolling functions
+fix: page's dimensions aren't updated after long transitions/animations (thx aiwork & arkenighte for reporting)
+исправлено: lastpass.com (спс Netmain за наводку)
+исправлено: несовместимость с ExtJS фреймвёрком (спс Alexander за наводку)
+fix: position of bars is slightly incorrect for very long pages
+fix: horizontal bar is misplaced if distance to the borders of the window is not 0
+fix: keyboard navigation in contenteditable sections (thx Henryk for reporting)
+
+версия 2.2.1
+---------
+новое: перевод на норвежский (спс Daniel)
+новое: перевод на арабский (спс netmain)
+новое: перевод на чешский (спс Ahoj1234)
+fix: fullscreen mode only use (thx aboutblank6 for reporting)
+fix: modern scroll blocks scrolling with the arrow keys when no interface is present (e.g. MyOpera Mail, Google Docs)
+обновлено: польский перевод (спс Piotr)
+
+верия 2.2
+---------
+new: scrolling with mouse and trackpad is configurable
+новое: все виды прокрутки стали ещё более плавными
+исправлено: определение элементов, содержимое в которых можно прокручивать (спс Ahoj1234 за наводку)
+fix: arrow keys in search-input fields (thx Cryio for reporting)
+fix: PgUp/PgDwn/Home/End keys in select fields (thx André for reporting)
+исправлено: milliyet.com.tr (спс Magruf за наводку)
+обновлено: турецкий перевод (спс metude)
+
+версия 2.1.3
+---------
+исправлено: горизонтальное прокручивание мышкой (спс kimmy8624 за наводку)
+fix: mouse scrolling over select elements (thx Vincent for your support)
+обновлено: включена анимация прокручивания по умолчанию
+
+версия 2.1.2
+---------
+new: pressing Enter in configuration's name field in options page saves it
+fix: insanely fast mouse scrolling on Mac (thx Lauren & ayni for reporting)
+fix: options page in installations that were not updated from version 2.0
+
+версия 2.1.1
+---------
+fix: keyboard shortcuts with command key ? (thx ayni for reporting)
+обновлено: партугальский перевод (спасибо André)
+
+версия 2.1
+---------
+new: interface is present as soon as possible during site loading
+new: enhanced visibility setting of the background bars
+new: setting for maximum length of animations
+новое: поддержка расширения cleanPages 
+new: trigger area doesn't prevent covered part of page from being clicked anymore
+fix: keyboard commands using Ctrl/Alt/Shift + PgUp/PgDwn/Home/End (thx zablociak for reporting)
+исправлено: Microsoft Bing, outlook.com, Facebook (спс André, netmain и ahoj1234 за наводку)
+fix: number input fields in options page may make themselves independent when clicking their arrows (thx Sally for reporting)
+fix: megalab.it (not excluded anymore)
+
+версия 2.0
+---------
+new: modern scroll speeds up scrolling!
+новое: конфигурации можно сохранять и загружать
+new: horizontal bar shortened to prevent overlapping
+новое: возможность анимировать прокрутку
+new: additional explanations for some settings
+новое: поддержка HTML-тегов iframe
+fix: clicking a background bar may result in vertical and horizontal scrolling at the same time
+исправлено: различные мелкие баги
+upd: improved overall performance
+
+версия 1.3.1
+---------
+fix: bars cover the whole page (e.g. anidb.net; thx Luke for reporting)
+исправлено: иногда кнопки на странице настроек сдвигаются к левому краю экрана
+
+версия 1.3
+---------
+new: optionally set an area to trigger hover mode for easier access
+new: bar moved inwards from the border (adjustable)
+новое: настройка прозрачности для полос прокрутки
+новое: перевод на португальский (спс André)
+fix: mini page is incorrect on separately opened images
+fix: button position isn't saved anymore (thx ura & mubaidr for reporting)
+обновлено: анимация прокрутки мышкой/клавиатурой включена по умолчанию
+обновлено: "супер панель" сменила внешний вид и поведение
+
+версия 1.2.1
+---------
+fix: context menu entry doesn't show up anymore
+fix: interface gets inadvertently visible again after hiding it
+исправлено: различные ошибки в консоле браузера
+обновлено: "супер панель" отключёна по умолчанию
+
+версия 1.2
+---------
+новое: возможность включать modern scroll только для полноэкранного режима
+new: enhanced possibilities to adjust the interface (colors, transparency, border)
+new: interface gets updated when page content is expanded / contracted on click
+fix: area next to scroll bars isn't clickable (thx Aleksey for reporting)
+fix: background bars show up although they are disabled (thx laurenbacall for reporting)
+fix: local files are not supported (thx TerDale for reporting)
+fix: bars get visible every time new content is loaded even if the dimensions of the page do not change (thx Rizky for reporting)
+
+версия 1.1
+---------
+new: top- and bottommost part of the background bar can be used to scroll to top / bottom
+новое: полосы прокрутки можно расположить на левой границы экрана
+new: optional animation of bar during scrolling by mouse wheel / keyboard
+new: contextmenu entry only shows up if you right-click the modern scroll interface (adjustable)
+новое: возможность изменять ширину и высоту кнопок прокрутки
+fix: scrollbar position not updated, when superbar is dragged to top left corner (thx Daniel for reporting)
+исправлено: полосы прокрутки не имели рамки на некоторых сайтах (к примеру на iphoneforums.net)
+исправлено: страница настроек расширения не показывала текст, если не поддерживаемый язык был выбран в настройках Оперы (спс Piotr за наводку)
+
+версия 1.0
+---------
+Первая версия

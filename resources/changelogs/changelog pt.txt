@@ -1,0 +1,257 @@
+﻿v 3.5
+---------
+new: display bookmarks next to the vertical scroll bar
+atualizado: várias traduções (obg a todos os tradutores)
+
+v 3.4
+---------
+fix: can't drag scroll bars outside frames / browser window
+fix: console warnings about passive events
+upd: switched from mouse to newer pointer events API
+
+v 3.3.1
+---------
+fix: console errors when toggling fullscreen with buttons disabled
+fix: impossible to use modern scroll in Chromium Browser (thx Rus for reporting)
+
+v 3.3
+---------
+new: use page's theme color for all UI elements if applicable
+fix: UI always showing although set to fullscreen only
+fix: slider values not updated in options page
+
+v 3.2.1
+---------
+fix: modern scroll is unusable in latest Yandex.Browser
+upd: improved browser distinction mechanism
+
+v 3.2
+---------
+novo: auto-colorir barras com a cor da página
+atualizado: sem IAPs - um pagamento, acesso completo. Uhu!
+atualizado: várias traduções (obg a todos os tradutores)
+
+v 3.1
+---------
+novo: melhor separação da extensão com a página usando Shadow DOM
+novo: modernizada página de opções responsiva
+novo: opções em versão completa para ajustar as barras dentro de páginas
+corrigido: rolagem personalisada por teclado para de funcionar após clicar em certos elementos.
+correção: sem barras em certas combinações de overflow no html ou body
+corrigido: barras padrões ocultas em janelas normais quando o modern scroll está como apenas em tela cheia
+atualizado: várias traduções (obg a todos os tradutores)
+
+v 3.0.6
+---------
+correção: páginas com overflow:hidden (ex.: jsfiddle, Transifex) são roláveis (obg Maciej por reportar)
+correção: barras de rolagem são salvas em PDF e impressões em papel
+correção: links da documentação corrigidos
+atualizado: tradução Russa (obg Mykhailo)
+
+v 3.0.5
+---------
+novo: modo de rolagem adicional (pressione botão do meio -> arraste -> solte o botão)
+novo: utilização da nova API de zoom
+
+v 3.0.4
+---------
+novo: opção de terminar rolagem com clique do botão do meio rolando a roda do mouse
+novo: interface (parcialmente) independente do zoom da página
+novo: suporte para API de tela cheia (fullscreen) do HTML5
+correção: abrir links com o botão do meio
+atualizado: tradução Francesa (obg Bozz65)
+
+v 3.0.3
+---------
+novo: rolagem personalizada com clique no botão do meio
+atualizado: rolagem personalizada desabilitada por padrão
+
+v 3.0.2
+---------
+novo: verificações adicionais das dimensões para melhor compatibilidade com todos os sites
+correção: tamanho das barra errado em páginas com o Disqus
+atualizado: tradução Portuguesa (obg André)
+
+v 3.0.1
+---------
+novo: manter o mouse pressionado nas barras de fundo rola a página até a posição do cursor
+novo: esconde todas as barras quando elementos não estão focados ou com o mouse sobre
+novo: tradução Vietnamita (obg ppanhh)
+correção: posições das barras incorretas durante rolagem no Chrome 27+ & Opera
+
+v 3.0
+---------
+novo: compatibilidade total no Chromium (Chrome & Opera 15)
+novo: oculta as barras padrão automaticamente
+novo: modifica barras de rolagem de elementos da página (ex.: áreas de texto)
+novo: configurações são sincronizadas entre seus dispositivos
+novo: mini página ao vivo na 'superbar'
+novo: melhores valores iniciais e obtenção das configurações salvas
+
+v 2.4.5
+---------
+correção: avançar rapidamente com barra de espaço (obg André)
+correção: várias traduções (obg a todos os contribuidores)
+atualizado: links para o novo blog
+
+v 2.4.4
+---------
+novo: visibilidade da 'superbar' pode ser alternada com gestos do mouse
+novo: modern scroll também assume a rolagem da barra de espaço (obg kapsi por reportar)
+correção: rolagem de imagens @vk.com (obg Maxim por reportar)
+atualizado: várias traduções (obg a todos os tradutores)
+
+v 2.4.3
+---------
+correção: interface invisível ao alternar guias durante carregamento
+correção: barras tem um fundo retangular branco @ www.testberichte.de
+
+v 2.4.2
+---------
+novo: melhor renderização
+correção: interface fica invisível quando uma guia fecha
+correção: restaurada compatibilidade com a extensão cleanPages (obg QuHno)
+correção: barras de rolagem tremulantes durante rolagem com touchpad/mouse
+
+v 2.4.1
+---------
+novo: preferências das bordas afetam os botões de rolagem também (obg Dimitri por reportar)
+correção: modern scroll não funciona em alguns websites (obg André, jonastheroman & orhano por reportar)
+correção: barra de rolagem momentaneamente pula ao topo/fundo durante rolagem (obg Cryio, André & orhano por reportar)
+
+v 2.4
+---------
+novo: tempo para ocultar barras ajustável
+novo: modern scroll é ativado apenas na guia ativa, não em todas as abertas
+novo: campos de explicação na página de configurações são exibidas no topo se estão abaixo da metade da tela
+atualizado: tradução Portuguesa (obg André)
+atualizado: barras de fundo visíveis apenas quando passar sobre elas com o mouse por padrão agora
+atualizado: reestruturação e melhoras de performance
+
+v 2.3.1
+---------
+correção: ingdirect.fr (obg terdale por reportar)
+correção: popups de modal Bootstrap não aparecendo (obg Johnny por reportar; apenas semi-corrigido)
+atualizado: traduções Tcheca & Árabe (obg Ahoj1234 & Netmain)
+atualizado: melhoras mínimas na performance geral
+
+v 2.3
+---------
+novo: modern scroll pode ser utilizado com gestos de mouse personalizados (interface externa)
+novo: componentes estão disponíveis independentemente
+novo: tradução Romena (obg Cryio)
+correção: ocultando a UI também desabilita as funções de rolagem
+correção: dimensões da página não são atualizadas após longas transições/animações (obg aiwork & arkenighte por reportar)
+correção: lastpass.com (obg Netmain por reportar)
+correção: incompatibilidade com o framework ExtJS (obg Alexander por reportar)
+correção: posição das barras levemente incorretas em páginas bem longas
+correção: barra horizontal deslocada se a distância da borda da janela não é 0
+correção: navegação com teclado em seções contenteditable (obg Henryk por reportar)
+
+v 2.2.1
+---------
+novo: tradução Norueguesa (obg Daniel)
+novo: tradução Árabe (obg netmain)
+novo: tradução Tcheca (obg Ahoj1234)
+correção: apenas em modo tela cheia (obg aboutblank6 por reportar)
+correção: modern scroll bloqueia rolagem com as teclas de direção quando a interface não está presente (ex.: MyOpera Mail, Google Docs)
+atualizado: tradução Polonêsa (obg Piotr)
+
+v 2.2
+---------
+novo: rolagem com o mouse e touchpad é configurável
+novo: todos os tipos de rolagem ainda mais suáveis
+correção: detecção dos elementos de rolagem (obg Ahoj1234 por reportar)
+correção: teclas de direção em campos de busca/input (obg Cryio por reportar)
+correção: teclas PgUp/PgDwn/Home/End em elementos select (obg André por reportar)
+correção: milliyet.com.tr (obg Magruf por reportar)
+atualizado: tradução Turca (obg metude)
+
+v 2.1.3
+---------
+correção: rolagem horizontal com o mouse (obg kimmy8624 por reportar)
+correção: rolagem com o mouse sobre elementos select (obg Vicent pelo seu suporte)
+atualizado: rolagem animada por padrão
+
+v 2.1.2
+---------
+novo: pressionando Enter no campo do nome da configuração na página de opções salva ela
+correção: rolagem com o mouse extremamente rápida no Mac (obg Lauren & ayni por reportar)
+correção: página de opções em instalações que não foram atualizadas da versão 2.0
+
+v 2.1.1
+---------
+correção: atalhos de teclado com tecla de comando ? (obg ayni por reportar)
+atualizado: tradução Portuguesa (obg André)
+
+v 2.1
+---------
+novo: interface presente o mais cedo possível durante carregamento da página
+novo: melhores opções de visualização das barras de fundo
+novo: opções para distância máxima das animações
+novo: suporte para a extensão cleanPages
+novo: área de utilização não previne que parte coberta da página seja clicada
+correção: comandos de teclado utilizando Ctrl/Alt/Shift + PgUp/PgDwn/Home/End (obg zablociak por reportar)
+correção: Microsoft Bing, outlook.com, Facebook (obg André, netmain & ahoj1234 por reportar)
+correção: campos de números na página de opções podem tornar-se independentes ao clicar em suas flechas (obg Sally por reportar)
+correção: megalab.it (não mais exluído)
+
+v 2.0
+---------
+novo: modern scroll acelera a rolagem!
+novo: configurações podem ser salvas e carregadas
+novo: barra horizontal reduzida para prevenir sobreposição
+novo: opcionalmente animar rolagem
+novo: explicações adicionais para algumas opções
+novo: suporte para iframes
+correção: clicar no fundo de uma barra pode resultar em rolagem vertical e horizontal ao mesmo tempo
+correção: vários bugs menores
+atualizado: melhorada performance geral
+
+v 1.3.1
+---------
+correção: barras sobrepondo toda a página (ex.: anidb.net; obg Luke por reportart)
+correção: botões ás vezes pulam para o lado esquerdo na página de opções
+
+v 1.3
+---------
+novo: opcionalmente definir a área para utilizar o modern scroll
+novo: barras com distância das bordas (ajustável)
+novo: opção da transparência das barras de rolagem
+novo: tradução Portuguesa (obg André)
+correção: mini página incorreta em imagem abertas separadamente
+correção: posição do botão não é mais salva (obg ura & mubaidr)
+atualizado: rolagem animada com o mouse/teclado por padrão
+atualizado: modificado comportamento e aparência da superbar
+
+v 1.2.1
+---------
+correção: menu de contexto do modern scroll não aparece
+correção: interface inadvertidamente fica visível novamente após ocultá-la
+correção: vários erros de console
+atualizado: superbar desabilitada por padrão
+
+v 1.2
+---------
+novo: modern scroll pode ser exibido apenas em tela cheia
+novo: mais possibilidades para ajustar a interface (cores, transparência, borda)
+novo: interface é atualizada quando o conteúdo da página é expandido/contraído ao clicar
+correção: área próximo as barras de rolagem não é clicável (obg Aleksey por reportar)
+correção: barras de fundo exibidas, mesmo desabilitadas (obg laurenbacall por reportar)
+correção: arquivos locais não suportados (obg TerDale por reportar)
+correção: barras ficam invisíveis toda vez que um novo conteúdo é carregado, mesmo que as dimensões da página não alteraram (obg Rizky por reportar)
+
+v 1.1
+---------
+novo: topo e fundo da barra de fundo podem ser usados para rolar ao topo/fundo da página
+novo: barras de fundo podem ser colocadas no lado oposto da tela
+novo: animação opcional das barras durante a rolagem com o mouse / teclado
+novo: menu de contexto só exibido ao clicar sobre a interface do modern scroll (ajustável)
+novo: largura e altura dos botões de rolagem ajustável
+correção: posição das barras de rolagem não atualizam quando a superbar é arrastada ao canto esquerdo superior (obg Daniel por reportar)
+correção: barras de rolagem não exibem a borda em alguns websites (ex.: iphoneforums.net)
+correção: página de opções não exibe textos se nenhum idioma suportado pela extensão é o idioma do Opera (obg Piotr por reportar)
+
+v 1.0
+---------
+versão inicial

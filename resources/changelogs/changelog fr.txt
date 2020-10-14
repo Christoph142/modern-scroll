@@ -1,0 +1,257 @@
+﻿v 3.5
+---------
+new: display bookmarks next to the vertical scroll bar
+mis à jour : plusieurs traductions (merci à tous les traducteurs)
+
+v 3.4
+---------
+fix: can't drag scroll bars outside frames / browser window
+fix: console warnings about passive events
+upd: switched from mouse to newer pointer events API
+
+v 3.3.1
+---------
+fix: console errors when toggling fullscreen with buttons disabled
+fix: impossible to use modern scroll in Chromium Browser (thx Rus for reporting)
+
+v 3.3
+---------
+new: use page's theme color for all UI elements if applicable
+fix: UI always showing although set to fullscreen only
+fix: slider values not updated in options page
+
+v 3.2.1
+---------
+fix: modern scroll is unusable in latest Yandex.Browser
+upd: improved browser distinction mechanism
+
+v 3.2
+---------
+nouveau: barres de défilement auto-couleur correspondant au thème de la page Web
+mis a jour: plus de PAI - un paiement, accès complet. Yay!
+mis à jour : plusieurs traductions (merci à tous les traducteurs)
+
+v 3.1
+---------
+nouveau : meilleure séparation de l’extension par rapport à la page en utilisant Shadow DOM
+nouveau : modernisation en "responsive design" de la page d’options
+nouveau : paramètres dans la version complète pour restyler les barres de défilement internes aux pages
+correction : Le défilement personnalisé au clavier ne fonctionne plus après avoir cliqué sur certaines éléments
+correction : plus de barres de défilement avec certaines combinaisons d’overflow dans html et body
+correction : barres de défilement standard cachées dans des fenêtres normales, lorsque modern scroll n'est activé qu'en plein écran
+mis à jour : plusieurs traductions (merci à tous les traducteurs)
+
+v 3.0.6
+---------
+correction : il est possible de faire défiler les pages avec des overflow:hidden (par exemple : jsfiddle ou Transifex) - Merci à Maciej de l’avoir signalé
+correction : les barres de défilement restent stockées dans les documents PDF et sont imprimées sur papier
+correction : lien corrigé dans la documentation
+mis à jour : Traduction en russe (merci Mykhailo)
+
+v 3.0.5
+---------
+nouveau : nouvelle façon de faire défiler la page en pressant la molette 
+nouveau : un nouveau zoom API est possible d'utilisation
+
+v 3.0.4
+---------
+nouveau : faire terminer le défilement par le clic sur la molette de la souris aussi en tournant la molette
+nouveau : L’interface utilisateur (IU) est (partiellement) indépendante du zoom de la page
+nouveau: support de l'API HTML 5 fullscreen
+corrigé : ouvrir les liens par des clics avec la molette de la souris
+mis à jour : traductions françaises (merci à Bozz65 et Pierre)
+
+v 3.0.3
+---------
+nouveau : clic de défilement avec la molette personnalisé
+mis à jour : le défilement personnalisé avec la souris est désactivé par défaut
+
+v 3.0.2
+---------
+nouveau: contrôles de dimensions supplémentaires pour une meilleure compatibilité avec tous les sites web
+fixé: tailles des barres sont incorrectes aux pages avec Disqus
+mis à jour : traduction portugaises (merci à André)
+
+v 3.0.1
+---------
+nouveau: garder la souris appuyé sur les barres de fond permet de défiler la page à la position de la souris
+nouveau: cache toutes les barres de défilement lorsque les éléments ne sont pas plané ou concentrés
+nouveau: Traduction en vietnamien (merci ppanhh)
+fixé: les positions des barres sont incorrects pendant le défilement dans Chrome 27+ & Opera
+
+v 3.0
+---------
+nouveau : entièrement compatible avec Chromium (Chrome et Opera 15)
+nouveau : cache les barres de défilement originelles automatiquement
+nouveau : personnalisation des barres de défilement (ex : les zones de texte)
+nouveau : les réglages sont synchronisés sur tous vos appareils
+nouveau : mini page en direct derrière la barre des tâches
+nouveau : meilleure configuration des valeurs choisies par défaut et de la récupération des configurations enregistrées
+
+v 2.4.5
+---------
+corrigé : le défilement était trop rapide avec la barre d'espace
+mis à jour : diverses traductions (merci à tous les contributeurs)
+mis à jour : liens vers le nouveau blog
+
+v 2.4.4
+---------
+nouveau: visibilité de la superbar peut être changée via les gestes de souris personnalisés
+nouveau: modern scroll se charge également du défilement en appuyant sur la barre d'espace (merci kapsi pour rapporter)
+fixé: défilement de pictures @ vk.com (merci Maxim pour rapporter)
+mis à jour : plusieurs traductions (merci à tous les traducteurs)
+
+v 2.4.3
+---------
+corrigé : l'interface restait invisible lorsque les onglets étaient déplacés lors de leur chargement
+corrigé : les barres avaient un fond rectangulaire blanc @ www.testberichte.de
+
+v 2.4.2
+---------
+nouveau : rendu amélioré
+corrigé : l'interface pouvait devenir invisible lorsqu'un onglet était fermé
+corrigé : restauration de la compatibilité avec l'extension cleanPages (merci à QuHno)
+corrigé : les barres de défilement clignotantes clignotaient lorsqu'elles étaient défilées avec la souris ou le pavé tactile
+
+v 2.4.1
+---------
+nouveau : les paramètres ?? affectent maintenant les boutons de défilement (merci à Dimitri  de l'avoir signalé)
+corrigé : Moderne scroll ne fonctionnait pas sur certains sites web (merci à André, jonastheroman & orhano de l'avoir signalé)
+corrigé : la barre de défilement allait directement par moments en haut/en bas lors du défilement (merci à Cryio, André & orhano de l'avoir signalé)
+
+v 2.4
+---------
+nouveau : il est possible d'ajuster un temps avant que les barres ne se masquent
+nouveau : Modern scroll peut n'être actif que sur des onglets précis, et non obligatoirement sur tous
+nouveau : des bulles explicatives dans les pages d'option s'affichent dans le haut des pages si elles sont en-dessous du milieu de l'écran
+mis à jour : traduction portugaises (merci à André)
+mis à jour : par défaut, les barres de fond ne sont visibles que lorsque vous passez la souris au-dessus
+mis à jour : améliorations des performances et dans la disposition de l'interface
+
+v 2.3.1
+---------
+corrigé : ingdirect.fr (merci à terdale de l'avoir signalé)
+corrigé : les popups modèles de Bootsrap n'apparaîtront plus (merci à Johnny de l'avoir signalé; partiellement corrigé)
+mis à jour : traductions arabes et tchèques (merci à Ahoj1234 & Netmain)
+mis à jour : améliorations minimales apportées aux performances en général
+
+v 2.3
+---------
+nouveau : Modern scroll peut être utilisé pour personnaliser les mouvements de souris (interface externe)
+nouveau : les composants sont disponibles indépendamment d'entre eux
+nouveau : traductions roumaines (merci à Cryio)
+corrigé : masquer l'interface utilisateur désactivait les fonctions de défilement
+corrigé : les dimensions des pages n'étaient pas mises à jour à la suite de trop longues traductions/animations (merci à aiwork & arkenighte de l'avoir signalé)
+corrigé : lastpass.com (merci à Netmain de l'avoir signalé)
+corrigé : Modern scroll était incompatible avec ExtJS framework (merci à Alexander de l'avoir signalé)
+corrigé : la position des barres était légèrement incorrecte pour les pages trop longues 
+corrigé : la barre horizontale était remplacée si la distance avec les bords de la fenêtre n'étaient pas mis sur 0
+corrigé : la navigation avec le clavier n'était pas possible dans le contenu éditable (merci à Henryk  de l'avoir signalé)
+
+v 2.2.1
+---------
+nouveau : traduction norvégienne (merci à Daniel)
+nouveau  : traduction en arabe (merci à netmain)
+nouveau : traduction en tchèque (merci à Ahoj1234)
+corrigé : la fonction permettant de n'afficher les barres seulement qu'en plein écran est réparée (merci à aboutblank6 de l'avoir signalé)
+corrigé : Modern scroll bloquait le défilement au moyen des touches fléchées lorsque l'interface n'était pas apparente (ex : MyOpera Mail, Google Docs)
+mis à jour : traduction polonaise (merci à Piotr)
+
+v 2.2
+---------
+nouveau : le défilement avec la souris comme le pavé tactile est configurable
+nouveau : tous les types de défilement sont maintenant plus fluides
+corrigé : certains éléments pour lesquels il était possible de faire défiler l'écran n'étaient pourtant pas toujours détectés (merci à Ahoj1234 de l'avoir signalé)
+corrigé : les touches fléchées ??? dans les zones de recherches (merci à Cryio de l'avoir signalé)
+corrigé: touches PgUp/PgDwn/Home/End dans les champs sélectionnés (merci André pour les rapports)
+corrigé : milliyet.com.tr (merci à Magruf de l'avoir signalé)
+mis à jour : traduction en turc (merci à metude)
+
+v 2.1.3
+---------
+correction : défilement horizontal à la souris (merci à kimmy8624 de l’avoir signalé)
+correction : défilement à la souris au dessus d’élements sélectionnés (Merci à Vincent pour ton support)
+mis à jour : l’animation du défilement est choisie par défaut
+
+v 2.1.2
+---------
+nouveau : presser la touche Entrée dans le champ nom de la configuration permet de la sauvegarder
+correction : le défilement pouvait être extrêmement rapide sur Mac (merci à Lauren & ayni de l’avoir signalé)
+corrigé : les pages d'options pouvaient ne pas s'être mises à jour depuis la version 2.0
+
+v 2.1.1
+---------
+corrigé : les raccourcis clavier comportant une commande avec ? pouvaient ne pas fonctionner (merci à ayni de l'avoir signalé)
+mis à jour : traduction portugaises (merci à André)
+
+v 2.1
+---------
+nouveau : l’interface est présente dès que possible durant le chargement du site
+nouveau: réglage de la visibilité améliorée des barres d’arrière-plan
+nouveau: réglage de la longueur maximale des animations
+nouveau: support de l'extension cleanPages
+nouveau: la zone de déclenchement n'empêche plus que l'utilisateur clique sur la partie couverte de la page
+corrigé: commandes au clavier avec Ctrl/Alt/Shift + PgUp/PgDwn/Home/End (merci à zablociak pour les rapports)
+corrigé: Microsoft Bing, outlook.com, Facebook (merci André, netmain et ahoj1234 pour la création de rapports)
+corrigé: le nombre de champs de saisie dans la page des options peut devenir indépendant en cliquant sur leurs flèches (merci à Sally pour les rapports)
+corrigé: megalab.it (plus exclu)
+
+v 2.0
+---------
+nouveau : Moderne scroll voit grandement sa vitesse de défilement améliorée !
+nouveau : les configurations peuvent être sauvegardées et améliorées
+nouveau : la barre de défilement horizontale a été réduite pour éviter le chevauchement avec celle verticale
+nouveau : le défilement peut être paramétré pour devenir animé
+nouveau : explications supplémentaires ajoutées pour expliquer certains paramêtres
+nouveau: support pour les iframes
+corrigé : cliquer sur une barre en arrière-plan pouvait entrainer un défilement vertical et horizontal en même temps
+corrigé : plusieurs bogues mineurs
+mis à jour : amélioration des performances générales
+
+v 1.3.1
+---------
+corrigé: les barres couvrent toute la page (par exemple, anidb.net; merci à Luke pour les rapports)
+corrigé: les boutons sautent parfois au bord gauche de l'écran dans les options
+
+v 1.3
+---------
+nouveau: définissez éventuellement une zone pour déclencher le mode survol pour un accès plus facile
+nouveau: barre déplacée vers l'intérieur depuis la frontière (réglable)
+nouveau: réglage de la transparence des barres de défilement
+nouveau: traduction portugaise (merci André)
+corrigé: la mini page est incorrecte sur les images ouvertes séparément
+corrigé: la position du bouton n'est plus enregistrée (merci ura & mubaidr pour les rapports)
+mis a jour: animer le défilement par souris / clavier par défaut
+mis a jour: modification du comportement et de l'apparence de la superbar
+
+v 1.2.1
+---------
+corrigé: l'entrée de menu contextuel ne s'affiche plus
+corrigé: l'interface est à nouveau visible par inadvertance après l'avoir cachée
+corrigé: diverses erreurs de console
+mis a jour: la superbar est désactivée par défaut
+
+v 1.2
+---------
+nouveau: le défilement moderne peut également être affiché en mode plein écran uniquement
+nouveau: possibilités améliorées d'ajuster l'interface (couleurs, transparence, bordures)
+nouveau: l'interface est mise à jour lorsque le contenu de la page est développé / contracté au clic
+corrigé: la zone à côté des barres de défilement n'est pas cliquable (merci à Aleksey pour les rapports)
+corrigé: des barres d'arrière-plan apparaissent même si elles sont désactivées (merci laurenbacall pour les rapports)
+corrigé: les fichiers locaux ne sont pas supportés (merci TerDale pour les rapports)
+corrigé: les barres deviennent visibles à chaque fois que du nouveau contenu est chargé, même si les dimensions de la page ne changent pas (merci Rizky pour la création de rapports)
+
+v 1.1
+---------
+nouveau: les parties supérieure et inférieure de la barre d’arrière-plan peuvent être utilisées pour faire défiler vers le haut / le bas
+nouveau: des barres de défilement peuvent être attachées au côté opposé de l'écran
+nouveauté: animation facultative de la barre lors du défilement par molette / clavier
+new: l'entrée du menu contextuel ne s'affiche que si vous cliquez avec le bouton droit de la souris sur l'interface de défilement moderne (réglable)
+nouveau: bouton de défilement réglable en largeur et en hauteur
+corrigé: la position de la barre de défilement n'est pas mise à jour, lorsque la super barre est déplacée dans le coin supérieur gauche (merci Daniel pour les rapports)
+corrigé: les barres de défilement n'ont pas de bordure sur certains sites Web (par exemple, iphoneforums.net)
+corrigé: la page des options n'affiche aucun texte si aucune langue prise en charge n'est choisie dans Opera (merci à Piotr pour les rapports)
+
+v 1.0
+---------
+Première version
