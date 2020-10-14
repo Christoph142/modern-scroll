@@ -101,7 +101,7 @@ function restorePrefs()
 		sliders[i].innerHTML = (document.getElementById(which_value).dataset.defaultvalue ? Math.round(100*raw_value/document.getElementById(which_value).dataset.defaultvalue) : raw_value);
 	}	
 	
-	//add_page_handling();
+	add_page_handling();
 }
 
 function add_page_handling()
@@ -268,16 +268,9 @@ function getString(string){	return chrome.i18n.getMessage(string).split("\n").jo
 function showDialog(id)
 {
 	window.location.hash = id;
-	
-	if(window.location.hash === "#all_set" && document.querySelector("dialog[open]")){
-		document.querySelector("dialog[open]").close();
-		document.removeEventListener("keydown", handleKeyboardEvents, false);
-	}
 
 	if(document.querySelector(window.location.hash+"[open]")) return;
-	if(window.location.hash === "#all_set" && chrome.extension.getBackgroundPage().w.license.accessLevel === "FULL")
-		document.querySelector("#all_set span").innerHTML = getString("transfer_successful");
-
+	
 	document.querySelector(window.location.hash).showModal();
 	document.addEventListener("keydown", handleKeyboardEvents, false);
 
@@ -299,8 +292,14 @@ function hideDialog()
 		if(document.querySelector(window.location.hash+"[open]")) document.querySelector(window.location.hash).close();
 		window.location.hash = "";
 	}, 200);
-	
-	if (window.location.hash === "#all_set") window.setTimeout( function(){ window.location.reload(); }, 300); // reload to (un)lock features
+}
+
+function switchDialog(id)
+{
+	hideDialog();
+	window.setTimeout( function() {
+		showDialog(id);
+	}, 300);
 }
 
 function handleKeyboardEvents(e)
