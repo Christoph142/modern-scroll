@@ -1,6 +1,7 @@
 ﻿
 v 3.5.5
 ---------
+fix: several smaller glitches in options page
 upd: Dutch translation (thx Heimen)
 upd: Chinese translation (thx xyu)
 upd: Portuguese translation (thx André)
