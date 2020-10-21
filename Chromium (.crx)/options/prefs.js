@@ -41,14 +41,14 @@ function savePrefs(e) // save preferences:
 	if(e.target.id === "animate_scroll")				 document.querySelector("#scroll_container").style.display=(e.target.checked?null:"none");
 	
 	// update slider values:
-	if(e.target.id === "opacity")				document.getElementById("storage.opacity").innerHTML				= e.target.value;
-	if(e.target.id === "superbar_opacity")		document.getElementById("storage.superbar_opacity").innerHTML		= e.target.value;
-	if(e.target.id === "button_opacity")		document.getElementById("storage.button_opacity").innerHTML			= e.target.value;
-	if(e.target.id === "keyscroll_velocity")	document.getElementById("storage.keyscroll_velocity").innerHTML		= Math.round(100*e.target.value/2);
-	if(e.target.id === "mousescroll_velocity")	document.getElementById("storage.mousescroll_velocity").innerHTML	= Math.round(100*e.target.value/3);
-	if(e.target.id === "mousescroll_distance")	document.getElementById("storage.mousescroll_distance").innerHTML	= Math.round(100*e.target.value);
-	if(e.target.id === "middlescroll_velocity")	document.getElementById("storage.middlescroll_velocity").innerHTML	= Math.round(100*e.target.value);
-	if(e.target.id === "scroll_velocity")		document.getElementById("storage.scroll_velocity").innerHTML		= Math.round(100*e.target.value/5);
+	if(e.target.id === "opacity")				document.getElementById("storage.opacity").textContent				= e.target.value;
+	if(e.target.id === "superbar_opacity")		document.getElementById("storage.superbar_opacity").textContent		= e.target.value;
+	if(e.target.id === "button_opacity")		document.getElementById("storage.button_opacity").textContent		= e.target.value;
+	if(e.target.id === "keyscroll_velocity")	document.getElementById("storage.keyscroll_velocity").textContent	= Math.round(100*e.target.value/2);
+	if(e.target.id === "mousescroll_velocity")	document.getElementById("storage.mousescroll_velocity").textContent	= Math.round(100*e.target.value/3);
+	if(e.target.id === "mousescroll_distance")	document.getElementById("storage.mousescroll_distance").textContent	= Math.round(100*e.target.value);
+	if(e.target.id === "middlescroll_velocity")	document.getElementById("storage.middlescroll_velocity").textContent= Math.round(100*e.target.value);
+	if(e.target.id === "scroll_velocity")		document.getElementById("storage.scroll_velocity").textContent		= Math.round(100*e.target.value/5);
 }
 
 function save_new_value(key, value){ chrome.extension.getBackgroundPage().save_new_value(key, value); }
@@ -98,7 +98,7 @@ function restorePrefs()
 	{
 		let which_value = sliders[i].id.split(".")[1];
 		let raw_value = (storage[which_value] ? storage[which_value] : document.getElementById(which_value).value);
-		sliders[i].innerHTML = (document.getElementById(which_value).dataset.defaultvalue ? Math.round(100*raw_value/document.getElementById(which_value).dataset.defaultvalue) : raw_value);
+		sliders[i].textContent = (document.getElementById(which_value).dataset.defaultvalue ? Math.round(100*raw_value/document.getElementById(which_value).dataset.defaultvalue) : raw_value);
 	}	
 	
 	add_page_handling();
@@ -106,13 +106,20 @@ function restorePrefs()
 
 function add_page_handling()
 {
-	/*################### use when Issue 247969 is fixed: ######################
 	document.querySelector("#save_set").addEventListener("focus",function(){
-		if(this.innerHTML === getString("new_set_name")) this.innerHTML = "";
+		if(this.textContent !== getString("new_set_name")) return;
+
+	    let range = document.createRange();
+	    let selection = window.getSelection();
+	    
+	    range.selectNodeContents(this);
+	    
+	    selection.removeAllRanges();
+	    selection.addRange(range);
 	},false);
 	document.querySelector("#save_set").addEventListener("blur",function(){
-		if(this.innerHTML === "") this.innerHTML = getString("new_set_name");
-	},false);*/
+		if(this.textContent === "") this.textContent = getString("new_set_name");
+	},false);
 
 	// ##############################
 	// ##### settings profiles: #####
@@ -162,13 +169,13 @@ function add_page_handling()
 let bubble_setback; // timeout for info bubbles
 
 function confirm_save_set(){
-	if(document.querySelector("#save_set").innerHTML === "Default"){
+	if(document.querySelector("#save_set").textContent === "Default"){
 		showDialog("default_change_impossible");
 		return;
 	}
 	
 	for(let option = 0; option < document.querySelector("#saved_sets").options.length; option++){
-		if(document.querySelector("#saved_sets").options[option].value === document.querySelector("#save_set").innerHTML){
+		if(document.querySelector("#saved_sets").options[option].value === document.querySelector("#save_set").textContent){
 			showDialog("confirm_overwrite");
 			return;
 		}
@@ -179,20 +186,20 @@ function confirm_save_set(){
 function save_set(overwrite){
 	chrome.runtime.getBackgroundPage( function(bg){
 		if(!bg.w.saved_sets) bg.w.saved_sets = {};
-		bg.w.saved_sets[document.querySelector("#save_set").innerHTML] = {};
+		bg.w.saved_sets[document.querySelector("#save_set").textContent] = {};
 		
 		for(let setting in bg.w){
 			if(setting === "saved_sets" || setting === "baseDevicePixelRatio" || setting === "last_dialog_time" || setting === "dialogs_shown") continue;
-			bg.w.saved_sets[document.querySelector("#save_set").innerHTML][setting] = bg.w[setting];
+			bg.w.saved_sets[document.querySelector("#save_set").textContent][setting] = bg.w[setting];
 		}
 		
 		chrome.storage.sync.set(bg.w);
 		
 		if(!overwrite) // don't add a new option if one gets overwritten
 			document.querySelector("#saved_sets").options[document.querySelector("#saved_sets").options.length] =
-				new Option(document.querySelector("#save_set").innerHTML, document.querySelector("#save_set").innerHTML);
+				new Option(document.querySelector("#save_set").textContent, document.querySelector("#save_set").textContent);
 
-		document.querySelector("#saved_sets").value = document.querySelector("#save_set").innerHTML; // select option
+		document.querySelector("#saved_sets").value = document.querySelector("#save_set").textContent; // select option
 	});
 }
 
@@ -230,17 +237,21 @@ function load_set(){
 			}
 		});
 
-		if(bg.w.saved_sets) var sets = bg.w.saved_sets;
+		let temp_prefs = {
+			"saved_sets" 		: bg.w.saved_sets,
+			"last_dialog_time" 	: bg.w.last_dialog_time,
+			"dialogs_shown" 	: bg.w.dialogs_shown
+		};
 		if(document.querySelector("#saved_sets").value === "Default")
 		{
 			chrome.storage.sync.clear(); // delete everything
-			if(sets) 		chrome.storage.sync.set( {"saved_sets" : sets} ); // restore saved sets (if any)
+			chrome.storage.sync.set( temp_prefs ); // restore prefs that are not saved per set
 		}
 		else
 		{
 			let temp_obj = {};
-			for(let setting in sets[document.querySelector("#saved_sets").value]){
-				temp_obj[setting] = sets[document.querySelector("#saved_sets").value][setting];
+			for(let setting in temp_prefs.saved_sets[document.querySelector("#saved_sets").value]){
+				temp_obj[setting] = temp_prefs.saved_sets[document.querySelector("#saved_sets").value][setting];
 			}
 			chrome.storage.sync.set(temp_obj);
 		}
@@ -254,7 +265,7 @@ function localize()
 	for(let i = 0; i < strings.length; i++)
 	{
 		if (strings[i].tagName === "IMG")	strings[i].title	  = getString(strings[i].dataset.i18n); // tooltips
-		else								strings[i].innerHTML += getString(strings[i].dataset.i18n);
+		else								strings[i].innerHTML += getString(strings[i].dataset.i18n); // innerHTML because of links and linebreaks
 	}
 
 	// insert extension id in Chrome Web Store URLs:
