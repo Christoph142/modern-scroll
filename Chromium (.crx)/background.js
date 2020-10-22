@@ -125,6 +125,8 @@ function hide_contextmenu()
 {
 	if(!contextmenu) return;
 	chrome.contextMenus.remove("ms_contextmenu"); contextmenu = false;
+}
+
 function send_update_request() {
 	chrome.runtime.sendMessage( {"data" : "update_ms"} );
 	chrome.tabs.query({discarded: false}, function(tabs) {
