@@ -1,6 +1,7 @@
 ﻿
 v 4.0 backlog
 ---------
+new: support of new scrollbar CSS style spec
 new: options page available as popup
 
 v 3.5.6

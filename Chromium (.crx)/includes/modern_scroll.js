@@ -182,7 +182,8 @@ function inject_css()
 	if(w.style_element_bars === "0" && w.fullscreen_only === "1") return;
 	
 	/* hide page's default scroll bars: */
-	let global_ms_style = (w.fullscreen_only === "0" ? "html::-webkit-scrollbar, body::-webkit-scrollbar{ display:none !important; width:0 !important; height:0 !important; }\n" : "");
+	let global_ms_style = (w.fullscreen_only === "0" ? "html, body { scrollbar-width: none !important; }\n\
+		html::-webkit-scrollbar, body::-webkit-scrollbar{ display:none !important; width:0 !important; height:0 !important; }\n" : "");
 
 	if(w.style_element_bars === "1"){ global_ms_style +=
 		(w.autohide_element_bars === "1" ? "body *:not(:hover):not(:focus)::-webkit-scrollbar{ display:none !important; width:0 !important; height:0 !important; }\n" : "")+
