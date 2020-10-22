@@ -1,4 +1,8 @@
 ﻿
+v 4.0 backlog
+---------
+new: options page available as popup
+
 v 3.5.6
 ---------
 new: separate URLs for each extension store (Opera, Edge, Chrome)

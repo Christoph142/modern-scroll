@@ -79,7 +79,7 @@ function update_settings(){ chrome.storage.sync.get( null, function(storage){
 		}
 	}
 
-	chrome.extension.sendMessage( {"data" : "update_optionspage"} );
+	send_update_request();
 }); }
 update_settings();
 
@@ -90,7 +90,7 @@ function save_new_value(key, value)
 	chrome.storage.sync.set(saveobject);					// save it in Chrome's synced storage
 	chrome.extension.getBackgroundPage().w[key] = value;	// update settings in background.js
 	
-	chrome.extension.sendMessage({data:"update_optionspage"});
+	send_update_request();
 }
 
 chrome.runtime.onMessage.addListener( function(request, sender, sendResponse)
@@ -101,10 +101,8 @@ chrome.runtime.onMessage.addListener( function(request, sender, sendResponse)
 	else if	(request.data === "hide_contextmenu") 	hide_contextmenu();
 });
 
-// Zoom API = Chrome 38+
-if(chrome.tabs.onZoomChange) chrome.tabs.onZoomChange.addListener( function(zoomInfo){
+chrome.tabs.onZoomChange.addListener( function(zoomInfo){
 	w.baseDevicePixelRatio = window.devicePixelRatio;
-	//chrome.tabs.sendMessage(zoomInfo.tabId, { "data" : "zoomed", "zoom" : zoomInfo.newZoomFactor });
 });
 
 let contextmenu = false;
@@ -127,4 +125,11 @@ function hide_contextmenu()
 {
 	if(!contextmenu) return;
 	chrome.contextMenus.remove("ms_contextmenu"); contextmenu = false;
+function send_update_request() {
+	chrome.runtime.sendMessage( {"data" : "update_ms"} );
+	chrome.tabs.query({discarded: false}, function(tabs) {
+		for (let tab of tabs) { // send to all tabs & let them decide whether they need to refresh
+	  		chrome.tabs.sendMessage(tab.id, {"data" : "update_ms"});
+		}
+	});
 }

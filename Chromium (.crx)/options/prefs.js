@@ -30,8 +30,8 @@ function savePrefs(e) // save preferences:
 		}
 	}
 	
-	if(e.target.id === "contextmenu_show_when") chrome.extension.sendMessage({data:"update_contextmenu_show_when"});
-	else										chrome.extension.sendMessage({data:"update_optionspage"});
+	if(e.target.id === "contextmenu_show_when") chrome.runtime.sendMessage({data:"update_contextmenu_show_when"});
+	else										chrome.runtime.sendMessage({data:"update_ms"});
 	
 	// show/hide containers:
 	if(e.target.id === "show_buttons")					 document.querySelector("#button_container").style.height=(e.target.value==="1"?"0":"auto");
@@ -229,10 +229,10 @@ function delete_set(){
 function confirm_load_set(){ showDialog("confirm_load"); }
 function load_set(){
 	chrome.runtime.getBackgroundPage( function(bg){
-		chrome.extension.onMessage.addListener(function(msg){
-			if(msg.data === "update_optionspage")
+		chrome.runtime.onMessage.addListener(function(msg){
+			if(msg.data === "update_ms")
 			{
-				chrome.extension.onMessage.removeListener(arguments.callee);
+				chrome.runtime.onMessage.removeListener(arguments.callee);
 				restorePrefs();
 			}
 		});
@@ -255,7 +255,7 @@ function load_set(){
 			}
 			chrome.storage.sync.set(temp_obj);
 		}
-		chrome.extension.sendMessage({data:"update_settings"});
+		chrome.runtime.sendMessage({data:"update_settings"});
 	});
 }
 

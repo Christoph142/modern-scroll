@@ -359,8 +359,8 @@ function contextmenu_click()
 
 function handleRuntimeMessage(msg)
 {
-	if 		(msg.data === "ms_toggle_visibility") 														contextmenu_click();
-	else if (msg.data === "update_optionspage" && document.URL.substr(0,19) === "chrome-extension://")	update_ms();
+	if 		(msg.data === "ms_toggle_visibility") 			contextmenu_click();
+	else if (msg.data === "update_ms" && !document.hidden)	update_ms();
 }
 
 function add_external_interface()
