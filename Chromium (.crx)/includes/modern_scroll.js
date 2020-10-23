@@ -47,9 +47,13 @@ function add_ms()
 	try{ document.documentElement.appendChild(ms_container); }catch(e){ document.body.appendChild(ms_container); }
 	
 	chrome.runtime.onMessage.addListener(handleRuntimeMessage);
-	chrome.runtime.sendMessage({data:"settings"}, function(response){ // get settings (filled with default values) from background.js
-		if(response === false) return; // no valid license
-
+	chrome.runtime.sendMessage({data : "settings", domain : window.location.hostname}, function(response){ // get settings (filled with default values) from background.js
+		if(response === false) { // blacklisted page
+			if (document.querySelector("#ms_style"))
+				document.querySelector("head").removeChild(document.querySelector("#ms_style"));
+			chrome.runtime.sendMessage({data:"show_contextmenu", string:"enable"});
+			return;
+		}
 		w = response;
 		continue_add_ms();
 	});

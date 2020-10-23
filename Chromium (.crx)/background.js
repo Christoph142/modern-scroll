@@ -62,6 +62,9 @@ function update_settings(){ chrome.storage.sync.get( null, function(storage){
 	"dialogs_shown" :					(!storage["dialogs_shown"]					? {}	: storage["dialogs_shown"]), // time : type
 	};
 	
+	saved_sets = 						(!storage["saved_sets"]					? {}	: storage["saved_sets"]);
+	custom_domains =					(!storage["custom_domains"]				? {}	: storage["custom_domains"]);
+
 	console.log("last_dialog_time: " + w.last_dialog_time);
 	if (w.last_dialog_time === 0) {
 		chrome.tabs.create({ url : "options/options.html#welcome" }); // First run -> Show welcome page
@@ -95,7 +98,24 @@ function save_new_value(key, value)
 
 chrome.runtime.onMessage.addListener( function(request, sender, sendResponse)
 {
-	if 		(request.data === "settings")			sendResponse(w);
+	if (request.data === "settings")
+	{
+		if (request.domain)
+		{ 
+			if (custom_domains.hasOwnProperty(request.domain))
+			{
+				let set_name = custom_domains[request.domain];
+				if (set_name === false) sendResponse(false); // blacklisted pages
+				else if (saved_sets[set_name]) sendResponse(saved_sets[custom_domains[request.domain]]);
+				else {
+					console.warn("Custom set '" + set_name + "' for domain '"+request.domain+"' not found." );
+					sendResponse(w);
+				}
+			}
+			else { sendResponse(w); }
+		}
+		else { sendResponse(w); }
+	}
 	else if (request.data === "update_settings") 	update_settings(); // will request options page update when finished
 	else if	(request.data === "show_contextmenu") 	show_contextmenu(request.string);
 	else if	(request.data === "hide_contextmenu") 	hide_contextmenu();
@@ -106,25 +126,124 @@ chrome.tabs.onZoomChange.addListener( function(zoomInfo){
 });
 
 let contextmenu = false;
-/* dynamical context menu doesn't work anymore: https://code.google.com/p/chromium/issues/detail?id=467315 */
-function show_contextmenu(s)
+
+function create_contextmenus()
 {
-	if (!contextmenu)	chrome.contextMenus.create({ "id" : "ms_contextmenu",
-													 "title" : chrome.i18n.getMessage("contextmenu_"+s),
-													 "contexts" : ["all"],
-													 "onclick" : contextmenu_click});
-	else				chrome.contextMenus.update("ms_contextmenu", {"title" : chrome.i18n.getMessage("contextmenu_"+s)});
+	if (contextmenu) return;
+
+	chrome.contextMenus.create({ "id" : "ms_contextmenu_enable",
+								 "title" : chrome.i18n.getMessage("contextmenu_enable"),
+								 "contexts" : ["all"],
+								 "visible" : false});
+	chrome.contextMenus.create({ "id" : "ms_contextmenu_show",
+								 "title" : chrome.i18n.getMessage("contextmenu_show"),
+								 "contexts" : ["all"],
+								 "visible" : false});
+	chrome.contextMenus.create({ "id" : "ms_contextmenu_hide",
+								 "title" : chrome.i18n.getMessage("contextmenu_hide"),
+								 "contexts" : ["all"],
+								 "visible" : false});
+	chrome.contextMenus.create({ "id" : "ms_contextmenu_customize",
+								 "title" : chrome.i18n.getMessage("contextmenu_customize"),
+								 "contexts" : ["all"],
+								 "visible" : false});
+	
+	//customization submenu items:
+	chrome.contextMenus.create({ "id" : "ms_contextmenu_customize_current_set",
+								 "parentId" : "ms_contextmenu_customize",
+								 //"type" : "radio",
+								 "title" : chrome.i18n.getMessage("contextmenu_customize_current_set"),
+								 "contexts" : ["all"],
+								 "visible" : true});
+	chrome.contextMenus.create({ "id" : "ms_contextmenu_disable",
+								 "parentId" : "ms_contextmenu_customize",
+								 //"type" : "radio",
+								 "title" : chrome.i18n.getMessage("contextmenu_disable"),
+								 "contexts" : ["all"],
+								 "visible" : true});
+	chrome.contextMenus.create({ "id" : "ms_contextmenu_customize_separator_list_begin",
+								 "parentId" : "ms_contextmenu_customize",
+								 "type" : "separator",
+								 "contexts" : ["all"],
+								 "visible" : true});
+	for (const set in saved_sets) {
+		chrome.contextMenus.create({ "id" : "ms_contextmenu_customize_set_" + set,
+									 "parentId" : "ms_contextmenu_customize",
+								 	 //"type" : "radio",
+									 "title" : set,
+									 "contexts" : ["all"],
+									 "visible" : true});
+	}
+	chrome.contextMenus.create({ "id" : "ms_contextmenu_customize_separator_list_end",
+								 "parentId" : "ms_contextmenu_customize",
+								 "type" : "separator",
+								 "contexts" : ["all"],
+								 "visible" : true});
+	chrome.contextMenus.create({ "id" : "ms_contextmenu_customize_new_set",
+								 "parentId" : "ms_contextmenu_customize",
+								 "title" : chrome.i18n.getMessage("contextmenu_new_set"),
+								 "contexts" : ["all"],
+								 "visible" : true});
+
+	chrome.contextMenus.onClicked.addListener( function(info, tab) {
+		if (info.menuItemId === "ms_contextmenu_customize_new_set")
+		{
+			chrome.runtime.openOptionsPage();
+			//chrome.tabs.create({ url : "options/options.html?domain=" + get_domain(info.pageUrl) });
+		}
+		else if (info.menuItemId === "ms_contextmenu_enable" || info.menuItemId === "ms_contextmenu_customize_current_set")
+		{
+			delete custom_domains[get_domain(info.pageUrl)];
+			chrome.storage.sync.set( { "custom_domains" : custom_domains });
+			console.log(get_domain(info.pageUrl) + " now UNSET.");
+			send_update_request();
+		}
+		else if (info.menuItemId.indexOf("ms_contextmenu_customize_set_") > -1)
+		{
+			custom_domains[get_domain(info.pageUrl)] = info.menuItemId.split("ms_contextmenu_customize_set_")[1];
+			chrome.storage.sync.set( { "custom_domains" : custom_domains });
+			console.log(get_domain(info.pageUrl) + " now set to " + custom_domains[get_domain(info.pageUrl)]);
+			send_update_request();
+		}
+		else if (info.menuItemId === "ms_contextmenu_disable")
+		{
+			custom_domains[get_domain(info.pageUrl)] = false;
+			chrome.storage.sync.set( { "custom_domains" : custom_domains });
+			console.log(get_domain(info.pageUrl) + " now not using modern scroll");
+			send_update_request();
+		}
+		else
+		{
+			console.log(get_domain(info.pageUrl) + " in tab " + tab.id + " is now " + (info.menuItemId === "ms_contextmenu_hide" ? "invisible" : "visible"));
+			chrome.tabs.sendMessage(tab.id, { "data" : "ms_toggle_visibility" });
+		}
+	});
+
 	contextmenu = true;
 }
-function contextmenu_click(){
-	chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
-		chrome.tabs.sendMessage(tabs[0].id, { "data" : "ms_toggle_visibility" });
-	});
+
+function show_contextmenu(s)
+{
+	if (!contextmenu)	create_contextmenus();
+
+	chrome.contextMenus.update("ms_contextmenu_enable", {"visible" : s === "enable"});
+	chrome.contextMenus.update("ms_contextmenu_show", {"visible" : s === "show"});
+	chrome.contextMenus.update("ms_contextmenu_hide", {"visible" : s === "hide"});
+	chrome.contextMenus.update("ms_contextmenu_customize", {"visible" : s === "hide"});
 }
+
 function hide_contextmenu()
 {
 	if(!contextmenu) return;
-	chrome.contextMenus.remove("ms_contextmenu"); contextmenu = false;
+
+	chrome.contextMenus.update("ms_contextmenu_enable", {"visible" : false});
+	chrome.contextMenus.update("ms_contextmenu_show", {"visible" : false});
+	chrome.contextMenus.update("ms_contextmenu_hide", {"visible" : false});
+	chrome.contextMenus.update("ms_contextmenu_customize", {"visible" : false});
+}
+
+function get_domain(url) {
+	return url.split("?")[0].split("#")[0].split("/")[2];
 }
 
 function send_update_request() {

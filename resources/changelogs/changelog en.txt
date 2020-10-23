@@ -1,8 +1,11 @@
 ﻿
 v 4.0 backlog
 ---------
+new: per domain customization
+new: blacklisting domains
 new: support of new scrollbar CSS style spec
 new: options page available as popup
+upd: context menus
 
 v 3.5.6
 ---------

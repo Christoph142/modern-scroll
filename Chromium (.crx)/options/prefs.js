@@ -185,15 +185,15 @@ function confirm_save_set(){
 }
 function save_set(overwrite){
 	chrome.runtime.getBackgroundPage( function(bg){
-		if(!bg.w.saved_sets) bg.w.saved_sets = {};
-		bg.w.saved_sets[document.querySelector("#save_set").textContent] = {};
+		if(!bg.saved_sets) bg.saved_sets = {};
+		bg.saved_sets[document.querySelector("#save_set").textContent] = {};
 		
 		for(let setting in bg.w){
 			if(setting === "saved_sets" || setting === "baseDevicePixelRatio" || setting === "last_dialog_time" || setting === "dialogs_shown") continue;
-			bg.w.saved_sets[document.querySelector("#save_set").textContent][setting] = bg.w[setting];
+			bg.saved_sets[document.querySelector("#save_set").textContent][setting] = bg.w[setting];
 		}
 		
-		chrome.storage.sync.set(bg.w);
+		chrome.storage.sync.set({ "saved_sets" : bg.saved_sets });
 		
 		if(!overwrite) // don't add a new option if one gets overwritten
 			document.querySelector("#saved_sets").options[document.querySelector("#saved_sets").options.length] =
@@ -213,8 +213,8 @@ function confirm_delete_set(){
 }
 function delete_set(){
 	chrome.runtime.getBackgroundPage( function(bg){
-		delete bg.w.saved_sets[document.querySelector("#saved_sets").value];
-		chrome.storage.sync.set( {"saved_sets" : bg.w.saved_sets} );
+		delete bg.saved_sets[document.querySelector("#saved_sets").value];
+		chrome.storage.sync.set( {"saved_sets" : bg.saved_sets} );
 		
 		for(let i in document.querySelector("#saved_sets").options){
 			if(document.querySelector("#saved_sets").options[i].value === document.querySelector("#saved_sets").value)
@@ -238,7 +238,7 @@ function load_set(){
 		});
 
 		let temp_prefs = {
-			"saved_sets" 		: bg.w.saved_sets,
+			"saved_sets" 		: bg.saved_sets,
 			"last_dialog_time" 	: bg.w.last_dialog_time,
 			"dialogs_shown" 	: bg.w.dialogs_shown
 		};
