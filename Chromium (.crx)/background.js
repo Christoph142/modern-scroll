@@ -82,6 +82,7 @@ function update_settings(){ chrome.storage.sync.get( null, function(storage){
 		}
 	}
 
+	recreate_contextmenus();
 	send_update_request();
 }); }
 update_settings();
@@ -125,11 +126,9 @@ chrome.tabs.onZoomChange.addListener( function(zoomInfo){
 	w.baseDevicePixelRatio = window.devicePixelRatio;
 });
 
-let contextmenu = false;
-
-function create_contextmenus()
+function recreate_contextmenus()
 {
-	if (contextmenu) return;
+	chrome.contextMenus.removeAll(() => {
 
 	chrome.contextMenus.create({ "id" : "ms_contextmenu_enable",
 								 "title" : chrome.i18n.getMessage("contextmenu_enable"),
@@ -219,13 +218,21 @@ function create_contextmenus()
 		}
 	});
 
-	contextmenu = true;
+	}); // end of removeAll
+}
+
+function add_contextmenu_set(set)
+{
+	recreate_contextmenus(); // need to recreate because API doesn't let you insert items in between
+}
+
+function remove_contextmenu_set(set)
+{
+	chrome.contextMenus.remove("ms_contextmenu_customize_set_" + set);
 }
 
 function show_contextmenu(s)
 {
-	if (!contextmenu)	create_contextmenus();
-
 	chrome.contextMenus.update("ms_contextmenu_enable", {"visible" : s === "enable"});
 	chrome.contextMenus.update("ms_contextmenu_show", {"visible" : s === "show"});
 	chrome.contextMenus.update("ms_contextmenu_hide", {"visible" : s === "hide"});
@@ -234,8 +241,6 @@ function show_contextmenu(s)
 
 function hide_contextmenu()
 {
-	if(!contextmenu) return;
-
 	chrome.contextMenus.update("ms_contextmenu_enable", {"visible" : false});
 	chrome.contextMenus.update("ms_contextmenu_show", {"visible" : false});
 	chrome.contextMenus.update("ms_contextmenu_hide", {"visible" : false});

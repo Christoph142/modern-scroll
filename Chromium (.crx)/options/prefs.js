@@ -174,8 +174,8 @@ function confirm_save_set(){
 		return;
 	}
 	
-	for(let option = 0; option < document.querySelector("#saved_sets").options.length; option++){
-		if(document.querySelector("#saved_sets").options[option].value === document.querySelector("#save_set").textContent){
+	for(let option of document.querySelector("#saved_sets").options){
+		if(option.value === document.querySelector("#save_set").textContent){
 			showDialog("confirm_overwrite");
 			return;
 		}
@@ -195,9 +195,11 @@ function save_set(overwrite){
 		
 		chrome.storage.sync.set({ "saved_sets" : bg.saved_sets });
 		
-		if(!overwrite) // don't add a new option if one gets overwritten
-			document.querySelector("#saved_sets").options[document.querySelector("#saved_sets").options.length] =
-				new Option(document.querySelector("#save_set").textContent, document.querySelector("#save_set").textContent);
+		if(!overwrite) { // don't add a new option if one gets overwritten
+			let set_name = document.querySelector("#save_set").textContent;
+			document.querySelector("#saved_sets").options[document.querySelector("#saved_sets").options.length] = new Option(set_name, set_name);
+			bg.add_contextmenu_set(set_name);
+		}
 
 		document.querySelector("#saved_sets").value = document.querySelector("#save_set").textContent; // select option
 	});
@@ -213,11 +215,14 @@ function confirm_delete_set(){
 }
 function delete_set(){
 	chrome.runtime.getBackgroundPage( function(bg){
-		delete bg.saved_sets[document.querySelector("#saved_sets").value];
-		chrome.storage.sync.set( {"saved_sets" : bg.saved_sets} );
+		let set_name = document.querySelector("#saved_sets").value;
 		
+		delete bg.saved_sets[set_name];
+		chrome.storage.sync.set( {"saved_sets" : bg.saved_sets} );
+		bg.remove_contextmenu_set(set_name);
+
 		for(let i in document.querySelector("#saved_sets").options){
-			if(document.querySelector("#saved_sets").options[i].value === document.querySelector("#saved_sets").value)
+			if(document.querySelector("#saved_sets").options[i].value === set_name)
 			{
 				document.querySelector("#saved_sets").remove(i);
 				break;
