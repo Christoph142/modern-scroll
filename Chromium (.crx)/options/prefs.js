@@ -5,7 +5,7 @@ window.addEventListener("change", savePrefs, false);
 function populateOptions(){
 	localize();
 	restorePrefs();
-	if (window.location.hash && document.querySelector(window.location.hash).tagName === "DIALOG") showDialog(window.location.hash);
+	if (window.location.hash && document.querySelector(window.location.hash.split("?")[0]).tagName === "DIALOG") showDialog(window.location.hash.split("?")[0]);
 }
 
 function savePrefs(e) // save preferences:
@@ -62,27 +62,27 @@ function restorePrefs()
 		storage.saved_sets = s.saved_sets;
 		
 		let selects = document.querySelectorAll("select");
-		for(let i=0; i<selects.length; i++){
-			if(!storage[selects[i].id]) continue;
-			if(selects[i].id === "saved_sets")
+		for(let select of selects){
+			if(!storage[select.id]) continue;
+			if(select.id === "saved_sets")
 			{
-				if(selects[i].options.length === 1) // prevent attaching sets multiple times on update
+				if(select.options.length === 1) // prevent attaching sets multiple times on update
 				{
 					for(let option in storage.saved_sets){
-						selects[i].options[selects[i].options.length] = new Option(option, option); // Option(name, value)
+						select.options[select.options.length] = new Option(option, option); // Option(name, value)
 					}
 				}
 				else continue;
 			}
-			else selects[i].value = storage[selects[i].id];
+			else select.value = storage[select.id];
 		}
 	});
 	
 	let inputs = document.querySelectorAll("input");	
-	for(let i=0; i<inputs.length; i++){
-		if(!storage[inputs[i].id]) continue;
-		if(inputs[i].type==="checkbox")	inputs[i].checked = (storage[inputs[i].id] === "0" ? false : true);
-		else							inputs[i].value = storage[inputs[i].id];
+	for(let input of inputs){
+		if(!storage[input.id]) continue;
+		if(input.type==="checkbox")	input.checked = (storage[input.id] === "0" ? false : true);
+		else						input.value = storage[input.id];
 	}
 	
 	if(document.querySelector("#show_buttons").value !== "1")				document.querySelector("#button_container").style.height				= "auto";
@@ -94,11 +94,11 @@ function restorePrefs()
 	document.querySelector("#border_radius").max = Math.round(Math.max(document.querySelector("#size").value, document.querySelector("#hover_size").value)/2);
 	
 	let sliders = document.querySelectorAll(".slider_values");
-	for(let i = 0; i < sliders.length; i++) // display slider values:
+	for(let slider of sliders) // display slider values:
 	{
-		let which_value = sliders[i].id.split(".")[1];
+		let which_value = slider.id.split(".")[1];
 		let raw_value = (storage[which_value] ? storage[which_value] : document.getElementById(which_value).value);
-		sliders[i].textContent = (document.getElementById(which_value).dataset.defaultvalue ? Math.round(100*raw_value/document.getElementById(which_value).dataset.defaultvalue) : raw_value);
+		slider.textContent = (document.getElementById(which_value).dataset.defaultvalue ? Math.round(100*raw_value/document.getElementById(which_value).dataset.defaultvalue) : raw_value);
 	}	
 	
 	add_page_handling();
@@ -143,13 +143,13 @@ function add_page_handling()
 
 	let info_bubbles = document.querySelectorAll(".i");
 	
-	for(let i=0; i<info_bubbles.length; i++) // position top/bottom:
+	for(let info_bubble of info_bubbles) // position top/bottom:
 	{
-		info_bubbles[i].addEventListener("pointerover", function(){
+		info_bubble.addEventListener("pointerover", function(){
 			window.clearTimeout(bubble_setback);
 			if(this.offsetTop>window.scrollY+window.innerHeight/2) this.lastChild.style.marginTop = (-this.lastChild.offsetHeight+8)+"px";
 		}, false);
-		info_bubbles[i].addEventListener("pointerout", function(){
+		info_bubble.addEventListener("pointerout", function(){
 			bubble_setback = window.setTimeout(function(){this.lastChild.style.marginTop= null;}.bind(this),500);
 		}, false);
 	}
@@ -159,7 +159,7 @@ function add_page_handling()
 	// ################
 
 	let dialog_close_buttons = document.querySelectorAll("dialog .close, dialog .hide_dialog");
-	for(let i = 0; i < dialog_close_buttons.length; i++) dialog_close_buttons[i].addEventListener("click", hideDialog, false);
+	for(let dcb of dialog_close_buttons) dcb.addEventListener("click", hideDialog, false);
 
 	document.querySelector("#confirm_overwrite_button").addEventListener("click", function(){ save_set(true); }, false);
 	document.querySelector("#confirm_delete_button").addEventListener("click", delete_set, false);
@@ -216,15 +216,15 @@ function confirm_delete_set(){
 function delete_set(){
 	chrome.runtime.getBackgroundPage( function(bg){
 		let set_name = document.querySelector("#saved_sets").value;
-		
+
 		delete bg.saved_sets[set_name];
 		chrome.storage.sync.set( {"saved_sets" : bg.saved_sets} );
 		bg.remove_contextmenu_set(set_name);
 
-		for(let i in document.querySelector("#saved_sets").options){
-			if(document.querySelector("#saved_sets").options[i].value === set_name)
+		for(let option in document.querySelector("#saved_sets").options){
+			if(document.querySelector("#saved_sets").options[option].value === set_name)
 			{
-				document.querySelector("#saved_sets").remove(i);
+				document.querySelector("#saved_sets").remove(option);
 				break;
 			}
 		}
@@ -267,26 +267,34 @@ function load_set(){
 function localize()
 {
 	let strings = document.querySelectorAll("[data-i18n]");
-	for(let i = 0; i < strings.length; i++)
+	for(let string of strings)
 	{
-		if (strings[i].tagName === "IMG")	strings[i].title	  = getString(strings[i].dataset.i18n); // tooltips
-		else								strings[i].innerHTML += getString(strings[i].dataset.i18n); // innerHTML because of links and linebreaks
+		if (string.tagName === "IMG")	string.title	  = getString(string.dataset.i18n); // tooltips
+		else							string.innerHTML += getString(string.dataset.i18n); // innerHTML because of links and linebreaks
 	}
 
-	// insert extension id in Chrome Web Store URLs:
+	// insert extension id in Web Store URLs:
 	let webstorelinks = document.querySelectorAll("a[href*='@@extension_id']");
-	for (let i = webstorelinks.length - 1; i >= 0; i--) {
-		webstorelinks[i].href = webstorelinks[i].href.replace("@@extension_id", getString("@@extension_id"));
+	for (let link of webstorelinks) {
+		link.href = link.href.replace("@@extension_id", getString("@@extension_id"));
 	};
 }
-function getString(string){	return chrome.i18n.getMessage(string).split("\n").join("<br>"); }
+function getString(string){					return chrome.i18n.getMessage(string).split("\n").join("<br>"); }
+function getString(string, substitutes){	return chrome.i18n.getMessage(string, substitutes).split("\n").join("<br>"); }
 
 function showDialog(id)
 {
+	let substitutes = window.location.hash.split("?")[1]?.split(",");
 	window.location.hash = id;
 
 	if(document.querySelector(window.location.hash+"[open]")) return;
 	
+	let stringsWithSubstitutions = document.querySelectorAll(window.location.hash + " [data-substitutions]");
+	for (let string of stringsWithSubstitutions)
+	{
+		string.innerHTML = getString(string.dataset.i18n, substitutes);
+	}
+
 	document.querySelector(window.location.hash).showModal();
 	document.addEventListener("keydown", handleKeyboardEvents, false);
 

@@ -210,6 +210,7 @@ function recreate_contextmenus()
 			chrome.storage.sync.set( { "custom_domains" : custom_domains });
 			console.log(get_domain(info.pageUrl) + " now not using modern scroll");
 			send_update_request();
+			chrome.tabs.create({ url : "options/options.html#disabled?" + get_domain(info.pageUrl) });
 		}
 		else
 		{
