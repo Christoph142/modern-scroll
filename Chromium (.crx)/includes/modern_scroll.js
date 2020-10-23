@@ -290,7 +290,8 @@ function add_functionality_2_bars(){
 		}, false);
 		ms_shadow.addEventListener("mouseout", function(e) {
 			bookmarks_timeout = window.setTimeout(function() {
-				ms_shadow.getElementById("ms_bookmarks").style.display = "none";
+				if (ms_shadow.getElementById("ms_bookmarks") !== null) // ms may have been removed via context menu
+					ms_shadow.getElementById("ms_bookmarks").style.display = "none";
 			}, parseInt(w.show_how_long) + 200);
 		}, false);
 	}
