@@ -5,6 +5,7 @@ new: per domain customization
 new: blacklisting domains
 new: support of new scrollbar CSS style spec
 new: options page available as popup
+new: color setting for bookmarks' text
 upd: context menus
 
 v 3.5.6

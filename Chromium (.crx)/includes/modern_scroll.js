@@ -158,7 +158,7 @@ function inject_css()
 		 #ms_v_container #ms_vbar:hover, #ms_h_container #ms_hbar:hover, #ms_upbutton:hover, #ms_downbutton:hover, #ms_v_container .bookmarkIndicator:hover{ opacity:"+((parseInt(w.opacity)+20)/100)+"; transition:opacity 0.1s 0s; }\n\
 		 #ms_superbar:hover{ opacity:"+w.superbar_opacity/100+"; transition:opacity 0.25s 0s; }\n\
 		\n\
-		 .bookmarkIndicator { line-height:20px; height: 20px; color: white; position: absolute; "+(w.vbar_at_left==="1"?"left:":"right:")+(parseInt(w.hover_size)+5)+"px; padding: 3px 5px; display: block; text-decoration:none; }\n\
+		 .bookmarkIndicator { line-height:20px; height: 20px; color: "+w.bookmark_text_color+"; position: absolute; "+(w.vbar_at_left==="1"?"left:":"right:")+(parseInt(w.hover_size)+5)+"px; padding: 3px 5px; display: block; text-decoration:none; }\n\
 		 .bookmarkIndicator > span { white-space: nowrap; max-width: 20em; overflow: hidden; text-overflow: ellipsis; display: block; }\n\
 		 .bookmarkIndicator::after { content: ''; position: absolute; "+(w.vbar_at_left==="1"?"left":"right")+":-4px; top: 6px; border-top: 5px solid transparent; border-"+(w.vbar_at_left==="1"?"right":"left")+": 5px solid "+color+"; border-bottom: 5px solid transparent; }\n\
 		 .bookmarkIndicator:hover { z-index: 1; }\n\
