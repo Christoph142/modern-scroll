@@ -40,15 +40,19 @@ function savePrefs(e) // save preferences:
 	if(e.target.id === "own_scroll_functions_middle")	 document.querySelector("#middlescroll_container").style.display=(e.target.checked?"inline":"none");
 	if(e.target.id === "animate_scroll")				 document.querySelector("#scroll_container").style.display=(e.target.checked?null:"none");
 	
-	// update slider values:
-	if(e.target.id === "opacity")				document.getElementById("storage.opacity").textContent				= e.target.value;
-	if(e.target.id === "superbar_opacity")		document.getElementById("storage.superbar_opacity").textContent		= e.target.value;
-	if(e.target.id === "button_opacity")		document.getElementById("storage.button_opacity").textContent		= e.target.value;
-	if(e.target.id === "keyscroll_velocity")	document.getElementById("storage.keyscroll_velocity").textContent	= Math.round(100*e.target.value/2);
-	if(e.target.id === "mousescroll_velocity")	document.getElementById("storage.mousescroll_velocity").textContent	= Math.round(100*e.target.value/3);
-	if(e.target.id === "mousescroll_distance")	document.getElementById("storage.mousescroll_distance").textContent	= Math.round(100*e.target.value);
-	if(e.target.id === "middlescroll_velocity")	document.getElementById("storage.middlescroll_velocity").textContent= Math.round(100*e.target.value);
-	if(e.target.id === "scroll_velocity")		document.getElementById("storage.scroll_velocity").textContent		= Math.round(100*e.target.value/5);
+	update_slider_value(e.target);
+}
+
+function update_slider_value(target)
+{
+	if(target.id === "opacity")					document.getElementById("storage.opacity").textContent				= target.value;
+	if(target.id === "superbar_opacity")		document.getElementById("storage.superbar_opacity").textContent		= target.value;
+	if(target.id === "button_opacity")			document.getElementById("storage.button_opacity").textContent		= target.value;
+	if(target.id === "keyscroll_velocity")		document.getElementById("storage.keyscroll_velocity").textContent	= Math.round(100*target.value/2);
+	if(target.id === "mousescroll_velocity")	document.getElementById("storage.mousescroll_velocity").textContent	= Math.round(100*target.value/3);
+	if(target.id === "mousescroll_distance")	document.getElementById("storage.mousescroll_distance").textContent	= Math.round(100*target.value);
+	if(target.id === "middlescroll_velocity")	document.getElementById("storage.middlescroll_velocity").textContent= Math.round(100*target.value);
+	if(target.id === "scroll_velocity")			document.getElementById("storage.scroll_velocity").textContent		= Math.round(100*target.value/5);
 }
 
 function save_new_value(key, value){ chrome.extension.getBackgroundPage().save_new_value(key, value); }
@@ -106,7 +110,7 @@ function restorePrefs()
 
 function add_page_handling()
 {
-	document.querySelector("#save_set").addEventListener("focus",function(){
+	document.querySelector("#save_set").addEventListener("focus", () => {
 		if(this.textContent !== getString("new_set_name")) return;
 
 	    let range = document.createRange();
@@ -117,7 +121,7 @@ function add_page_handling()
 	    selection.removeAllRanges();
 	    selection.addRange(range);
 	},false);
-	document.querySelector("#save_set").addEventListener("blur",function(){
+	document.querySelector("#save_set").addEventListener("blur", () => {
 		if(this.textContent === "") this.textContent = getString("new_set_name");
 	},false);
 
@@ -129,7 +133,7 @@ function add_page_handling()
 	document.querySelector("#delete_set_img").addEventListener("click", confirm_delete_set, false);
 	document.querySelector("#load_set_img").addEventListener("click", confirm_load_set, false);
 	
-	document.querySelector("#save_set").addEventListener("keydown", function(){ // Enter -> save configuration
+	document.querySelector("#save_set").addEventListener("keydown", () => { // Enter -> save configuration
 		if(window.event.which !== 13) return;
 
 		window.event.preventDefault();
@@ -145,11 +149,11 @@ function add_page_handling()
 	
 	for(let info_bubble of info_bubbles) // position top/bottom:
 	{
-		info_bubble.addEventListener("pointerover", function(){
+		info_bubble.addEventListener("pointerover", () => {
 			window.clearTimeout(bubble_setback);
 			if(this.offsetTop>window.scrollY+window.innerHeight/2) this.lastChild.style.marginTop = (-this.lastChild.offsetHeight+8)+"px";
 		}, false);
-		info_bubble.addEventListener("pointerout", function(){
+		info_bubble.addEventListener("pointerout", () => {
 			bubble_setback = window.setTimeout(function(){this.lastChild.style.marginTop= null;}.bind(this),500);
 		}, false);
 	}
@@ -161,9 +165,17 @@ function add_page_handling()
 	let dialog_close_buttons = document.querySelectorAll("dialog .close, dialog .hide_dialog");
 	for(let dcb of dialog_close_buttons) dcb.addEventListener("click", hideDialog, false);
 
-	document.querySelector("#confirm_overwrite_button").addEventListener("click", function(){ save_set(true); }, false);
+	document.querySelector("#confirm_overwrite_button").addEventListener("click", () => save_set(true), false);
 	document.querySelector("#confirm_delete_button").addEventListener("click", delete_set, false);
 	document.querySelector("#confirm_load_button").addEventListener("click", load_set, false);
+
+	// make sliders update during drag:
+	let sliders = document.querySelectorAll("input[type=range]");
+	for (let slider of sliders)
+	{
+		if (document.getElementById("storage." + slider.id))
+			slider.addEventListener("input", () => update_slider_value(slider), false);
+	}
 }
 
 let bubble_setback; // timeout for info bubbles
@@ -312,7 +324,7 @@ function hideDialog()
 	document.querySelector(window.location.hash).className = "close";
 	document.removeEventListener("keydown", handleKeyboardEvents, false);
 
-	window.setTimeout( function(){
+	window.setTimeout(() => {
 		if(document.querySelector(window.location.hash+"[open]")) document.querySelector(window.location.hash).close();
 		window.location.hash = "";
 	}, 200);
@@ -321,9 +333,7 @@ function hideDialog()
 function switchDialog(id)
 {
 	hideDialog();
-	window.setTimeout( function() {
-		showDialog(id);
-	}, 300);
+	window.setTimeout(() => showDialog(id), 300);
 }
 
 function handleKeyboardEvents(e)

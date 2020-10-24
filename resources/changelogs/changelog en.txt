@@ -7,6 +7,7 @@ new: support of new scrollbar CSS style spec
 new: options page available as popup
 new: color setting for bookmarks' text
 upd: context menus
+upd: several smaller adjustments of options page
 
 v 3.5.6
 ---------
