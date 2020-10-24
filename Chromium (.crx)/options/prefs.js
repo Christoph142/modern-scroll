@@ -149,11 +149,11 @@ function add_page_handling()
 	
 	for(let info_bubble of info_bubbles) // position top/bottom:
 	{
-		info_bubble.addEventListener("pointerover", () => {
+		info_bubble.addEventListener("pointerover", function(){
 			window.clearTimeout(bubble_setback);
 			if(this.offsetTop>window.scrollY+window.innerHeight/2) this.lastChild.style.marginTop = (-this.lastChild.offsetHeight+8)+"px";
 		}, false);
-		info_bubble.addEventListener("pointerout", () => {
+		info_bubble.addEventListener("pointerout", function(){
 			bubble_setback = window.setTimeout(function(){this.lastChild.style.marginTop= null;}.bind(this),500);
 		}, false);
 	}

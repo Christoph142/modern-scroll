@@ -910,7 +910,9 @@ let button_timeout;
 function show_or_hide_buttons()
 {
 	window.clearTimeout(button_timeout);
-	button_timeout = window.setTimeout(function(){
+	button_timeout = window.setTimeout(() => {
+		if (!ms_shadow.getElementById("ms_upbutton")) return;
+
 		if(window.pageYOffset > 0)					ms_shadow.getElementById("ms_upbutton").style.display = "inline";
 		else										ms_shadow.getElementById("ms_upbutton").style.display = null;
 		
