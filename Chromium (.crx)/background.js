@@ -10,7 +10,7 @@ function update_settings(){ chrome.storage.sync.get( null, function(storage){
 	"border_radius" :		(!storage["border_radius"]			? "6"		: storage["border_radius"]),
 	"gap" :					(!storage["gap"]					? "2"		: storage["gap"]),
 	"opacity" :				(!storage["opacity"]				? "50"		: storage["opacity"]),
-	"border_width" :		(!storage["border_width"]			? "2"		: storage["border_width"]),
+	"border_width" :		(!storage["border_width"]			? "1"		: storage["border_width"]),
 	"border_blur" :			(!storage["border_blur"]			? "0"		: storage["border_blur"]),
 	"border_color" :		(!storage["border_color"]			? "#FFFFFF"	: storage["border_color"]),
 	"border_color_rgba" :	(!storage["border_color_rgba"]		? "rgba(255,255,255,0.5)" : storage["border_color_rgba"]),
