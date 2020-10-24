@@ -34,7 +34,7 @@ function update_settings(){ chrome.storage.sync.get( null, function(storage){
 	"show_superbar_minipage" : 			(!storage["show_superbar_minipage"] 		? "1"	: storage["show_superbar_minipage"]),
 	"superbar_opacity" :				(!storage["superbar_opacity"]				? "70"	: storage["superbar_opacity"]),
 
-	"bookmark_text_color" :				(!storage["bookmark_text_color"]			? "#FFF": storage["bookmark_text_color"]),
+	"bookmark_text_color" :				(!storage["bookmark_text_color"]			? "#FFFFFF": storage["bookmark_text_color"]),
 	"show_bookmarks" :					(!storage["show_bookmarks"]					? "2"	: storage["show_bookmarks"]), // 1 = none, 2 = bookmarks, 3 = all headings
 
 	"show_buttons" :					(!storage["show_buttons"]					? "1"	: storage["show_buttons"]), // 1 = no, 2 = only fullscreen, 3 = yes
