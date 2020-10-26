@@ -6,6 +6,7 @@ new: blacklisting domains
 new: support of new scrollbar CSS style spec
 new: options page available as popup
 new: color setting for bookmarks' text
+fix: bookmarks sometimes disappear while hovering
 fix: inadvertently triggering bookmarks after page load
 upd: context menus
 upd: several smaller adjustments of options page

@@ -100,12 +100,16 @@ function remove_ms()
 	window.removeEventListener("scroll", show_or_hide_buttons, false);
 	window.removeEventListener("scroll", reposition_bars, { passive: false });
 	
+	ms_shadow.removeEventListener("mouseover", show_bookmarks, false);
+	ms_shadow.removeEventListener("mouseout", hide_bookmarks, false);
+	
 	window.clearTimeout(timeout);					timeout = null;
 	window.clearTimeout(hide_timeout);				hide_timeout = null;
 	window.clearTimeout(dimension_check_timeout);	dimension_check_timeout = null;
-	
+	window.clearTimeout(bookmarks_timeout);			bookmarks_timeout = null;
+	window.clearTimeout(button_timeout);			button_timeout = null;
 	delete window.modernscroll;
-	
+
 	try		 { document.documentElement.removeChild(document.getElementById("modern_scroll"));
 	}catch(e){ document.body.removeChild(document.getElementById("modern_scroll")); }
 	
@@ -282,22 +286,28 @@ function add_functionality_2_bars(){
 			}
 		}, false);
 	}
-	
+
 	ms_shadow.getElementById("ms_bookmarks").style.display = "none";
 	if (w.show_bookmarks !== "1") {
-		ms_shadow.addEventListener("mouseover", function(e) {
-			window.clearTimeout(bookmarks_timeout);
-			ms_shadow.getElementById("ms_bookmarks").style.display = null;
-		}, false);
-		ms_shadow.addEventListener("mouseout", function(e) {
-			bookmarks_timeout = window.setTimeout(function() {
-				if (ms_shadow.getElementById("ms_bookmarks") !== null) // ms may have been removed via context menu
-					ms_shadow.getElementById("ms_bookmarks").style.display = "none";
-			}, parseInt(w.show_how_long) + 200);
-		}, false);
+		ms_shadow.addEventListener("mouseover", show_bookmarks, false);
+		ms_shadow.addEventListener("mouseout", hide_bookmarks, false);
 	}
 
 	window.addEventListener("scroll", reposition_bars, { passive: false });
+}
+
+function show_bookmarks()
+{
+	window.clearTimeout(bookmarks_timeout);
+	ms_shadow.getElementById("ms_bookmarks").style.display = null;
+}
+
+function hide_bookmarks()
+{
+	bookmarks_timeout = window.setTimeout(function() {
+		if (ms_shadow.getElementById("ms_bookmarks") !== null) // ms may have been removed via context menu
+			ms_shadow.getElementById("ms_bookmarks").style.display = "none";
+	}, parseInt(w.show_how_long) + 200);
 }
 
 let resize_observer = window.ResizeObserver ? new ResizeObserver(check_dimensions) : null;
