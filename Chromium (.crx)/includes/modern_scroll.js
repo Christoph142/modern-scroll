@@ -283,6 +283,7 @@ function add_functionality_2_bars(){
 		}, false);
 	}
 	
+	ms_shadow.getElementById("ms_bookmarks").style.display = "none";
 	if (w.show_bookmarks !== "1") {
 		ms_shadow.addEventListener("mouseover", function(e) {
 			window.clearTimeout(bookmarks_timeout);
