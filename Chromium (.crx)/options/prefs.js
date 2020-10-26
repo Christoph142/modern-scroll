@@ -55,7 +55,7 @@ function update_slider_value(target)
 	if(target.id === "scroll_velocity")			document.getElementById("storage.scroll_velocity").textContent		= Math.round(100*target.value/5);
 }
 
-function save_new_value(key, value){ chrome.extension.getBackgroundPage().save_new_value(key, value); }
+function save_new_value(key, value){ chrome.runtime.getBackgroundPage( (bg) => bg.save_new_value(key, value) ); }
 
 function saveButtonPosition(e){ save_new_value("buttonposition", e.detail); }
 
@@ -214,6 +214,8 @@ function save_set(overwrite){
 		}
 
 		document.querySelector("#saved_sets").value = document.querySelector("#save_set").textContent; // select option
+
+		chrome.runtime.getBackgroundPage( (bg) => bg.send_update_request() );
 	});
 }
 

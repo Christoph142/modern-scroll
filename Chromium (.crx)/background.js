@@ -74,13 +74,14 @@ function update_settings(){ chrome.storage.sync.get( null, function(storage){
 	}
 	else {
 		let first_dialog_time = Object.keys(w.dialogs_shown)[0];
-		console.log("First dialog ever shown " + (Date.now() - first_dialog_time)/1000/60 + " minutes ago");
-		console.log("Last dialog has been shown " + (Date.now() - w.last_dialog_time)/1000/60 + " minutes ago");
+		console.log("First dialog ever shown " + (Date.now() - first_dialog_time)/1000/60/60/24 + " days ago");
+		console.log("Last dialog has been shown " + (Date.now() - w.last_dialog_time)/1000/60/60/24 + " days ago");
 
-		if (Date.now() - w.last_dialog_time > 1000 * 60 * 60 * 24 * 7 * 6) { // 6 weeks
-			if (w.last_dialog_time === first_dialog_time) 	chrome.tabs.create({ url : "options/options.html#hello_again" });
-			else 											chrome.tabs.create({ url : "options/options.html#thanks_for_using" });
-		}
+		if (Date.now() - first_dialog_time > 1000 * 60 * 60 * 24 * 30 && // 30 days after installation (once)
+			Object.values(w.dialogs_shown).indexOf("#hello_again") === -1)
+			chrome.tabs.create({ url : "options/options.html#hello_again" });
+		else if (Date.now() - w.last_dialog_time > 1000 * 60 * 60 * 24 * 7 * 6) // 6 weeks after last dialog (recurring)
+			chrome.tabs.create({ url : "options/options.html#thanks_for_using" });
 	}
 
 	recreate_contextmenus();
