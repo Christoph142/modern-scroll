@@ -93,8 +93,8 @@ function save_new_value(key, value)
 {
 	let saveobject = {};
 	saveobject[key] = value;
-	chrome.storage.sync.set(saveobject);					// save it in Chrome's synced storage
-	chrome.extension.getBackgroundPage().w[key] = value;	// update settings in background.js
+	chrome.storage.sync.set(saveobject);							// save it in Chrome's synced storage
+	chrome.runtime.getBackgroundPage( (bg) => bg.w[key] = value );	// update settings in background.js
 	
 	send_update_request();
 }
@@ -125,7 +125,7 @@ chrome.runtime.onMessage.addListener( function(request, sender, sendResponse)
 });
 
 chrome.tabs.onZoomChange.addListener( function(zoomInfo){
-	w.baseDevicePixelRatio = window.devicePixelRatio;
+	chrome.runtime.getBackgroundPage( (bg) => bg.w.baseDevicePixelRatio = window.devicePixelRatio );
 });
 
 function recreate_contextmenus()

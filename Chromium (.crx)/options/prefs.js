@@ -13,7 +13,7 @@ function savePrefs(e) // save preferences:
 	if(e.target.id === "save_set" || e.target.id === "saved_sets") return; // handled via onclick functions
 	if(!e.target.validity.valid) // correct out-of-range inputs
 	{
-		e.target.value = chrome.extension.getBackgroundPage().w[e.target.id];
+		chrome.runtime.getBackgroundPage( (bg) => e.target.value = bg.w[e.target.id] );
 		return;
 	}
 	
@@ -59,9 +59,8 @@ function save_new_value(key, value){ chrome.runtime.getBackgroundPage( (bg) => b
 
 function saveButtonPosition(e){ save_new_value("buttonposition", e.detail); }
 
-function restorePrefs()
-{
-	let storage = chrome.extension.getBackgroundPage().w;
+function restorePrefs(){ chrome.runtime.getBackgroundPage( (bg) => restorePrefsFrom(bg.w) ); }
+function restorePrefsFrom(storage) {
 	chrome.storage.sync.get("saved_sets", function(s){
 		storage.saved_sets = s.saved_sets;
 		
@@ -313,10 +312,12 @@ function showDialog(id)
 	document.addEventListener("keydown", handleKeyboardEvents, false);
 
 	let now = Date.now();
-	let dialogs_shown = chrome.extension.getBackgroundPage().w.dialogs_shown;
-	dialogs_shown[now] = id;
-	save_new_value("dialogs_shown", dialogs_shown);
-	save_new_value("last_dialog_time", now);
+	chrome.runtime.getBackgroundPage( (bg) => {
+		let dialogs_shown = bg.w.dialogs_shown;
+		dialogs_shown[now] = id;
+		save_new_value("dialogs_shown", dialogs_shown);
+		save_new_value("last_dialog_time", now);
+	} );
 }
 
 function hideDialog()
