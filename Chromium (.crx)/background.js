@@ -103,21 +103,20 @@ chrome.runtime.onMessage.addListener( function(request, sender, sendResponse)
 {
 	if (request.data === "settings")
 	{
-		if (request.domain)
-		{ 
-			if (custom_domains.hasOwnProperty(request.domain))
-			{
-				let set_name = custom_domains[request.domain];
-				if (set_name === false) sendResponse(false); // blacklisted pages
-				else if (saved_sets[set_name]) sendResponse(saved_sets[custom_domains[request.domain]]);
-				else {
-					console.warn("Custom set '" + set_name + "' for domain '"+request.domain+"' not found." );
-					sendResponse(w);
-				}
-			}
-			else { sendResponse(w); }
+		if (!request.domain) { sendResponse(w); return; }
+
+		if (!custom_domains.hasOwnProperty(request.domain)) { sendResponse(w); return; }
+
+		let domain_props = custom_domains[request.domain];
+		if (!domain_props.hasOwnProperty("set")) { sendResponse(w); return; }
+
+		let set_name = domain_props.set;
+		if (set_name === false) sendResponse(false); // blacklisted pages
+		else if (saved_sets[set_name]) sendResponse(saved_sets[set_name]);
+		else {
+			console.warn("Custom set '" + set_name + "' for domain '" + request.domain + "' not found." );
+			sendResponse(w);
 		}
-		else { sendResponse(w); }
 	}
 	else if (request.data === "update_settings") 	update_settings(); // will request options page update when finished
 	else if	(request.data === "show_contextmenu") 	show_contextmenu(request.string);
@@ -194,29 +193,33 @@ function recreate_contextmenus()
 		}
 		else if (info.menuItemId === "ms_contextmenu_enable" || info.menuItemId === "ms_contextmenu_customize_current_set")
 		{
-			delete custom_domains[get_domain(info.pageUrl)];
+			delete custom_domains[get_domain(info.pageUrl)]["set"];
 			chrome.storage.sync.set( { "custom_domains" : custom_domains });
-			console.log(get_domain(info.pageUrl) + " now UNSET.");
+			//console.log(get_domain(info.pageUrl) + " now UNSET.");
 			send_update_request();
 		}
 		else if (info.menuItemId.indexOf("ms_contextmenu_customize_set_") > -1)
 		{
-			custom_domains[get_domain(info.pageUrl)] = info.menuItemId.split("ms_contextmenu_customize_set_")[1];
+			let domain = get_domain(info.pageUrl);
+			if (!custom_domains.hasOwnProperty(domain)) custom_domains[domain] = {};
+			custom_domains[domain]["set"] = info.menuItemId.split("ms_contextmenu_customize_set_")[1];
 			chrome.storage.sync.set( { "custom_domains" : custom_domains });
-			console.log(get_domain(info.pageUrl) + " now set to " + custom_domains[get_domain(info.pageUrl)]);
+			//console.log(get_domain(info.pageUrl) + " now set to " + custom_domains[get_domain(info.pageUrl)]["set"]);
 			send_update_request();
 		}
 		else if (info.menuItemId === "ms_contextmenu_disable")
 		{
-			custom_domains[get_domain(info.pageUrl)] = false;
+			let domain = get_domain(info.pageUrl);
+			if (!custom_domains.hasOwnProperty(domain)) custom_domains[domain] = {};
+			custom_domains[domain]["set"] = false;
 			chrome.storage.sync.set( { "custom_domains" : custom_domains });
-			console.log(get_domain(info.pageUrl) + " now not using modern scroll");
+			//console.log(get_domain(info.pageUrl) + " now not using modern scroll");
 			send_update_request();
 			chrome.tabs.create({ url : "options/options.html#disabled?" + get_domain(info.pageUrl) });
 		}
 		else
 		{
-			console.log(get_domain(info.pageUrl) + " in tab " + tab.id + " is now " + (info.menuItemId === "ms_contextmenu_hide" ? "invisible" : "visible"));
+			//console.log(get_domain(info.pageUrl) + " in tab " + tab.id + " is now " + (info.menuItemId === "ms_contextmenu_hide" ? "invisible" : "visible"));
 			chrome.tabs.sendMessage(tab.id, { "data" : "ms_toggle_visibility" });
 		}
 	});
