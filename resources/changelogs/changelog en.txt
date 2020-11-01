@@ -10,6 +10,7 @@ fix: bookmarks sometimes disappear while hovering
 fix: inadvertently triggering bookmarks after page load
 upd: context menus
 upd: several smaller adjustments of options page
+upd: Dutch translation (thx Heimen)
 
 v 3.5.6
 ---------
