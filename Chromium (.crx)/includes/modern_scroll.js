@@ -18,7 +18,7 @@ let isFullscreen = true;
 				if(!document.URL.match("//translate.google.")) window.self.frameElement.scrolling = "no";
 			}
 			else return;
-		}catch(e){ console.log("Error thrown trying to access frame:", e); return; /* window.self.frameElement == protected variable */ }
+		}catch(e){ console.warn("Error thrown trying to access frame:", e); return; /* window.self.frameElement == protected variable */ }
 	}
 
 	(function check_if_tab_is_ready()
@@ -93,7 +93,7 @@ function remove_ms()
 	
 	window.removeEventListener("keydown", arrowkeyscroll, false);
 	window.removeEventListener("keydown", otherkeyscroll, false);
-	window.removeEventListener("mousewheel", mousescroll_y, { passive : false, capture : false });
+	window.removeEventListener("wheel", mousescroll_y, { passive : false, capture : false });
 	window.removeEventListener("pointerdown", middlebuttonscroll, true);
 	window.removeEventListener("click", check_if_element_is_scrollable, false);
 	
@@ -251,9 +251,9 @@ function add_functionality_2_bars(){
 	vbar.addEventListener("pointerdown", drag_v, true);
 	hbar.addEventListener("pointerdown", drag_h, true);
 	
-	ms_shadow.getElementById("ms_h_container").addEventListener("mousewheel", mousescroll_x, { passive : false, capture : true });
-	ms_shadow.getElementById("ms_hbar_bg").addEventListener("mousewheel", mousescroll_x, { passive : false, capture : true });
-	hbar.addEventListener("mousewheel", mousescroll_x, { passive : false, capture : true });
+	ms_shadow.getElementById("ms_h_container").addEventListener("wheel", mousescroll_x, { passive : false, capture : true });
+	ms_shadow.getElementById("ms_hbar_bg").addEventListener("wheel", mousescroll_x, { passive : false, capture : true });
+	hbar.addEventListener("wheel", mousescroll_x, { passive : false, capture : true });
 	
 	if(w.container === "1"){
 		ms_shadow.getElementById("ms_v_container").addEventListener("pointerenter", function(e){
@@ -363,7 +363,7 @@ function add_scrollingfunctions()
 		window.addEventListener("pointerdown", middlebuttonscroll, true);
 	}
 
-	//window.addEventListener("mousewheel", mousescroll_y, false); // -> set in resize_vbar()
+	//window.addEventListener("wheel", mousescroll_y, false); // -> set in resize_vbar()
 }
 
 function add_contextmenu()
@@ -521,7 +521,7 @@ function resize_vbar()
 	{
 		if(vbar.style.display === "inline"){
 			ms_shadow.getElementById("ms_v_container").style.display = ms_shadow.getElementById("ms_vbar_bg").style.display = vbar.style.display = null;
-			window.removeEventListener("mousewheel", mousescroll_y, { passive : false, capture : false });
+			window.removeEventListener("wheel", mousescroll_y, { passive : false, capture : false });
 		}
 		return;
 	}
@@ -536,7 +536,7 @@ function resize_vbar()
 		show_bar("v");
 		chrome.runtime.sendMessage({data:"reset_contextmenu"});
 		
-		if(window.self.frameElement || w.use_own_scroll_functions_mouse === "1") window.addEventListener("mousewheel", mousescroll_y, { passive : false, capture : false });
+		if(window.self.frameElement || w.use_own_scroll_functions_mouse === "1") window.addEventListener("wheel", mousescroll_y, { passive : false, capture : false });
 	}
 	else if(vbar_height_before !== vbar_new_height+"px"){
 		ms_shadow.getElementById("ms_vbar_ui").style.height = vbar_new_height-2*w.gap+"px";
@@ -1256,13 +1256,13 @@ function scroll_End(){
 function mousescroll_x(e){
 	if(modifierkey_pressed(e)) return;
 	stopEvent(e);
-	ms_scrollBy_x_mouse(-e.wheelDelta);
+	ms_scrollBy_x_mouse(e.deltaX);
 }
 
 function mousescroll_y(e){
-	if(e.wheelDeltaY === 0 || is_scrollable(e.target, (e.wheelDeltaY < 0 ? 1 : 0)) || modifierkey_pressed(e)) return;
+	if(e.deltaY === 0 || is_scrollable(e.target, (e.deltaY > 0 ? 1 : 0)) || modifierkey_pressed(e)) return;
 	stopEvent(e);
-	ms_scrollBy_y_mouse(-e.wheelDeltaY);
+	ms_scrollBy_y_mouse(e.deltaY);
 }
 
 let scroll_timeout_id_middlebutton = null;
@@ -1296,7 +1296,7 @@ function middlebuttonscroll(e)
 		if(e.type === "pointerup"){
 			window.removeEventListener("pointerdown", middlebuttonscroll, true);
 			window.addEventListener("pointerdown", middlebuttonscrollend, true);
-			if( w.endMiddlescrollByTurningWheel === "1" ) window.addEventListener("mousewheel", middlebuttonscrollend, true);
+			if( w.endMiddlescrollByTurningWheel === "1" ) window.addEventListener("wheel", middlebuttonscrollend, true);
 		}
 		else{ //pointermove
 			window.addEventListener("pointerup", middlebuttonscrollend, true);
@@ -1309,7 +1309,7 @@ function middlebuttonscroll(e)
 
 		window.removeEventListener("pointermove", getmousepos, false);
 		window.removeEventListener("pointerdown", middlebuttonscrollend, true);
-		window.removeEventListener("mousewheel", middlebuttonscrollend, true);
+		window.removeEventListener("wheel", middlebuttonscrollend, true);
 		window.removeEventListener("pointerup", middlebuttonscrollend, true);
 		window.addEventListener("pointerdown", middlebuttonscroll, true);
 
@@ -1365,7 +1365,7 @@ function element_finished_scrolling(){
 }
 function preventScrolling(e){ stopEvent(e); window.removeEventListener("keydown", preventScrolling, false); }
 
-function modifierkey_pressed(e){ return (e.ctrlKey || e.shiftKey || e.altKey || e.metaKey) ? true : false; }
+function modifierkey_pressed(e){ return (e.ctrlKey || e.shiftKey || e.altKey || e.metaKey); }
 
 function target_is_input(e){
 	if( e.target.tagName === "TEXTAREA" || e.target.tagName === "SELECT" ||

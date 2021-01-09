@@ -2,6 +2,8 @@
 v 4.0.1
 ---------
 fix: modern scroll doesn't show up at www.nidirect.gov.uk
+upd: several smaller adjustments of the background script
+
 v 4.0
 ---------
 new: per domain customization
