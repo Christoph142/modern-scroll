@@ -129,7 +129,8 @@ function inject_css()
 	let color = themecolor !== null && w.auto_coloring === "1" ? themecolor.content : w.color;
 	let color_bg = themecolor !== null && w.auto_coloring === "1" ? themecolor.content : w.color_bg;
 	let ms_style = 
-		":host, #ms_v_container, #ms_h_container, #ms_vbar_bg, #ms_hbar_bg, #ms_vbar, #ms_hbar, #ms_superbar, #ms_page_cover, #ms_upbutton, #ms_downbutton, #ms_middleclick_cursor{ position:fixed; z-index:2147483647; border:none; padding:0; margin:0; display:none; background:none; }\n\n"+
+		":host { all: initial; }\n\
+		 :host, #ms_v_container, #ms_h_container, #ms_vbar_bg, #ms_hbar_bg, #ms_vbar, #ms_hbar, #ms_superbar, #ms_page_cover, #ms_upbutton, #ms_downbutton, #ms_middleclick_cursor{ position:fixed; z-index:2147483647; border:none; padding:0; margin:0; display:none; background:none; }\n\n"+
 		
 		/* set values (most general first - can be overwritten by following rules): */
 		":host, #modern_scroll_bars, #modern_scroll_buttons{ display:inline; }\n\
@@ -190,8 +191,10 @@ function inject_css()
 	if(w.style_element_bars === "0" && w.fullscreen_only === "1") return;
 	
 	/* hide page's default scroll bars: */
-	let global_ms_style = (w.fullscreen_only === "0" ? "html, body { scrollbar-width: none !important; }\n\
-		html::-webkit-scrollbar, body::-webkit-scrollbar{ display:none !important; width:0 !important; height:0 !important; }\n" : "");
+	let global_ms_style = "#modern_scroll { all: initial !important; }\n\n";
+
+	if(w.fullscreen_only === "0") global_ms_style += "html, body { scrollbar-width: none !important; }\n\
+		html::-webkit-scrollbar, body::-webkit-scrollbar{ display:none !important; width:0 !important; height:0 !important; }\n";
 
 	if(w.style_element_bars === "1"){ global_ms_style +=
 		(w.autohide_element_bars === "1" ? "body *:not(:hover):not(:focus)::-webkit-scrollbar{ display:none !important; width:0 !important; height:0 !important; }\n" : "")+
