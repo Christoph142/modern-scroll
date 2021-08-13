@@ -102,9 +102,11 @@ chrome.runtime.onMessage.addListener( function(request, sender, sendResponse)
 {
 	if (request.data === "settings")
 	{
-		chrome.tabs.getZoom(sender.tab.id, zoomFactor =>
-			chrome.tabs.sendMessage(sender.tab.id, { "zoomFactor" : zoomFactor })
-		);
+		if(sender.tab) {
+			chrome.tabs.getZoom(sender.tab.id, zoomFactor => 
+				chrome.tabs.sendMessage(sender.tab.id, { "zoomFactor" : zoomFactor })
+			);
+		}
 
 		if (!request.domain) { sendResponse(w); return; }
 
