@@ -13,7 +13,7 @@ function savePrefs(e) // save preferences:
 	if(e.target.id === "save_set" || e.target.id === "saved_sets") return; // handled via onclick functions
 	if(!e.target.validity.valid) // correct out-of-range inputs
 	{
-		chrome.runtime.getBackgroundPage( (bg) => e.target.value = bg.w[e.target.id] );
+		chrome.runtime.getBackgroundPage( bg => e.target.value = bg.w[e.target.id] );
 		return;
 	}
 	
@@ -55,11 +55,11 @@ function update_slider_value(target)
 	if(target.id === "scroll_velocity")			document.getElementById("storage.scroll_velocity").textContent		= Math.round(100*target.value/5);
 }
 
-function save_new_value(key, value){ chrome.runtime.getBackgroundPage( (bg) => bg.save_new_value(key, value) ); }
+function save_new_value(key, value){ chrome.runtime.getBackgroundPage( bg => bg.save_new_value(key, value) ); }
 
 function saveButtonPosition(e){ save_new_value("buttonposition", e.detail); }
 
-function restorePrefs(){ chrome.runtime.getBackgroundPage( (bg) => restorePrefsFrom(bg.w) ); }
+function restorePrefs(){ chrome.runtime.getBackgroundPage( bg => restorePrefsFrom(bg.w) ); }
 function restorePrefsFrom(storage) {
 	chrome.storage.sync.get("saved_sets", function(s){
 		storage.saved_sets = s.saved_sets;
@@ -195,7 +195,7 @@ function confirm_save_set(){
 	save_set(false);
 }
 function save_set(overwrite){
-	chrome.runtime.getBackgroundPage( function(bg){
+	chrome.runtime.getBackgroundPage( bg => {
 		if(!bg.saved_sets) bg.saved_sets = {};
 		bg.saved_sets[document.querySelector("#save_set").textContent] = {};
 		
@@ -214,7 +214,7 @@ function save_set(overwrite){
 
 		document.querySelector("#saved_sets").value = document.querySelector("#save_set").textContent; // select option
 
-		chrome.runtime.getBackgroundPage( (bg) => bg.send_update_request() );
+		chrome.runtime.getBackgroundPage( bg => bg.send_update_request() );
 	});
 }
 
@@ -227,7 +227,7 @@ function confirm_delete_set(){
 	showDialog("confirm_delete");
 }
 function delete_set(){
-	chrome.runtime.getBackgroundPage( function(bg){
+	chrome.runtime.getBackgroundPage( bg => {
 		let set_name = document.querySelector("#saved_sets").value;
 
 		delete bg.saved_sets[set_name];
@@ -246,7 +246,7 @@ function delete_set(){
 
 function confirm_load_set(){ showDialog("confirm_load"); }
 function load_set(){
-	chrome.runtime.getBackgroundPage( function(bg){
+	chrome.runtime.getBackgroundPage( bg => {
 		chrome.runtime.onMessage.addListener(function(msg){
 			if(msg.data === "update_ms")
 			{
@@ -312,7 +312,7 @@ function showDialog(id)
 	document.addEventListener("keydown", handleKeyboardEvents, false);
 
 	let now = Date.now();
-	chrome.runtime.getBackgroundPage( (bg) => {
+	chrome.runtime.getBackgroundPage( bg => {
 		let dialogs_shown = bg.w.dialogs_shown;
 		dialogs_shown[now] = id;
 		save_new_value("dialogs_shown", dialogs_shown);

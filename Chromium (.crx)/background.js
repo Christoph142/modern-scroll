@@ -93,7 +93,7 @@ function save_new_value(key, value)
 	let saveobject = {};
 	saveobject[key] = value;
 	chrome.storage.sync.set(saveobject);							// save it in Chrome's synced storage
-	chrome.runtime.getBackgroundPage( (bg) => bg.w[key] = value );	// update settings in background.js
+	chrome.runtime.getBackgroundPage( bg => bg.w[key] = value );	// update settings in background.js
 	
 	send_update_request();
 }
