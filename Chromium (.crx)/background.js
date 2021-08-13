@@ -102,6 +102,7 @@ chrome.runtime.onMessage.addListener( function(request, sender, sendResponse)
 {
 	if (request.data === "settings")
 	{
+		chrome.tabs.getZoom(sender.tab.id, zoomFactor =>
 			chrome.tabs.sendMessage(sender.tab.id, { "zoomFactor" : zoomFactor })
 		);
 
@@ -125,7 +126,6 @@ chrome.runtime.onMessage.addListener( function(request, sender, sendResponse)
 	else if	(request.data === "hide_contextmenu") 	hide_contextmenu();
 });
 
-chrome.tabs.onZoomChange.addListener( function(zoomInfo){
 chrome.tabs.onZoomChange.addListener( zoomInfo =>
 	chrome.tabs.sendMessage(zoomInfo.tabId, { "zoomFactor" : zoomInfo.newZoomFactor })
 );
