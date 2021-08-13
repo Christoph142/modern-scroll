@@ -113,7 +113,7 @@ function remove_ms()
 	try		 { document.documentElement.removeChild(document.getElementById("modern_scroll"));
 	}catch(e){ document.body.removeChild(document.getElementById("modern_scroll")); }
 	
-	delete window.scrollMaxX; delete window.scrollMaxY; delete window.devicePixelRatio_old;
+	delete window.scrollMaxX; delete window.scrollMaxY
 	isFullscreen = null;
 }
 
@@ -381,6 +381,7 @@ function handleRuntimeMessage(msg)
 {
 	if 		(msg.data === "ms_toggle_visibility") 			contextmenu_click();
 	else if (msg.data === "update_ms" && !document.hidden)	update_ms();
+	else if (msg.zoomFactor)								scaleUI(1/msg.zoomFactor);
 }
 
 function add_external_interface()
@@ -442,9 +443,6 @@ function check_dimensions()
 	set_new_scrollMax_values();
 	
 	if(scrollMaxX_old !== window.scrollMaxX || scrollMaxY_old !== window.scrollMaxY) adjust_ui_new_size();
-
-	// zoomed:
-	if(window.devicePixelRatio_old !== window.devicePixelRatio) scaleUI();
 }
 function set_new_scrollMax_values()
 {
@@ -461,11 +459,9 @@ function set_new_scrollMax_values()
 						  window.getComputedStyle(document.documentElement).overflowY !== "visible") ? new_scrollHeight-window.innerHeight : 0);
 }
 
-function scaleUI(){
-	window.devicePixelRatio_old = window.devicePixelRatio;
-	let scaleFactor = w.baseDevicePixelRatio / window.devicePixelRatio;
-	ms_shadow.getElementById("ms_v_container").style.transform = "scale("+scaleFactor+",1)";
-	ms_shadow.getElementById("ms_h_container").style.transform = "scale(1,"+scaleFactor+")";
+function scaleUI(factor){
+	ms_shadow.getElementById("ms_v_container").style.transform = "scale("+factor+",1)";
+	ms_shadow.getElementById("ms_h_container").style.transform = "scale(1,"+factor+")";
 }
 
 function adjust_ui_new_size()

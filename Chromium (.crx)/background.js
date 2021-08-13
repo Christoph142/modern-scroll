@@ -58,7 +58,6 @@ function update_settings(){ chrome.storage.sync.get( null, function(storage){
 	"external_interface" :				(!storage["external_interface"]				? "0"	: storage["external_interface"]),
 
 	// general stuff:
-	"baseDevicePixelRatio" : 			window.devicePixelRatio, // for scaling
 	"last_dialog_time" :				(!storage["last_dialog_time"]				? 0		: storage["last_dialog_time"]),
 	"dialogs_shown" :					(!storage["dialogs_shown"]					? {}	: storage["dialogs_shown"]), // time : type
 	};
@@ -103,6 +102,9 @@ chrome.runtime.onMessage.addListener( function(request, sender, sendResponse)
 {
 	if (request.data === "settings")
 	{
+			chrome.tabs.sendMessage(sender.tab.id, { "zoomFactor" : zoomFactor })
+		);
+
 		if (!request.domain) { sendResponse(w); return; }
 
 		if (!custom_domains.hasOwnProperty(request.domain)) { sendResponse(w); return; }
@@ -124,8 +126,9 @@ chrome.runtime.onMessage.addListener( function(request, sender, sendResponse)
 });
 
 chrome.tabs.onZoomChange.addListener( function(zoomInfo){
-	chrome.runtime.getBackgroundPage( (bg) => bg.w.baseDevicePixelRatio = window.devicePixelRatio );
-});
+chrome.tabs.onZoomChange.addListener( zoomInfo =>
+	chrome.tabs.sendMessage(zoomInfo.tabId, { "zoomFactor" : zoomInfo.newZoomFactor })
+);
 
 function recreate_contextmenus()
 {
