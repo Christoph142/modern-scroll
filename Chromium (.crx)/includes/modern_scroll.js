@@ -123,13 +123,34 @@ function add_or_remove_ms(){
 	else 					add_ms();
 }
 
+function get_themecolor_style()
+{
+	const themecolor = document.querySelector("meta[name='theme-color']");
+	if (!themecolor) return "";
+
+	return ":host .pagetheme {\n\
+		 --color: "+themecolor.content+";\n\
+		 --color_bg: "+ themecolor.content +";\n\
+		 --border_color: "+ (is_white(themecolor.content) ? "rgb(0,0,0)" : w.border_color_rgba) +";\n\
+		 --bookmark_text_color: "+ (is_white(themecolor.content) ? "rgb(0,0,0)" : w.bookmark_text_color) +";\n\
+		 }\n";
+}
+function is_white(color)
+{
+	const c = color.toLowerCase().replaceAll(" ", "");
+	return ["#ffffffff", "#ffffff", "#ffff", "#fff", "white"].includes(c) || c.includes("(255,255,255") || c.includes("100%)");
+}
+
 function inject_css()
 {
-	let themecolor = document.querySelector("meta[name='theme-color']");
-	let color = themecolor !== null && w.auto_coloring === "1" ? themecolor.content : w.color;
-	let color_bg = themecolor !== null && w.auto_coloring === "1" ? themecolor.content : w.color_bg;
 	let ms_style = 
-		":host { all: initial; }\n\
+		":host { all: initial;\n\
+		 --color: "+ w.color +";\n\
+		 --color_bg: "+ w.color_bg +";\n\
+		 --border_color: "+ w.border_color_rgba +";\n\
+		 --bookmark_text_color: "+ w.bookmark_text_color +";\n\
+		 }\n\
+		 "+get_themecolor_style()+"\
 		 :host, #ms_v_container, #ms_h_container, #ms_vbar_bg, #ms_hbar_bg, #ms_vbar, #ms_hbar, #ms_superbar, #ms_page_cover, #ms_upbutton, #ms_downbutton, #ms_middleclick_cursor{ position:fixed; z-index:2147483647; border:none; padding:0; margin:0; display:none; background:none; }\n\n"+
 		
 		/* set values (most general first - can be overwritten by following rules): */
@@ -139,19 +160,19 @@ function inject_css()
 		 #ms_vbar_bg, #ms_hbar_bg{ opacity:"+((w.show_when==="3" && w.show_bg_bars_when==="3")?(w.opacity/100):"0")+"; transition:opacity 0.5s "+w.show_how_long+"ms; }\n\
 		 #ms_vbar_bg{ top:"+w.gap+"px; bottom:"+w.gap+"px; height:calc(100% - 2*"+w.gap+"px); width:auto; "+(w.vbar_at_left==="1"?"left":"right")+":0px; "+(w.vbar_at_left==="0"?"left":"right")+":auto; }\n\
 		 #ms_hbar_bg{ "+(w.vbar_at_left==="0"?"left":"right")+":0px; "+(w.vbar_at_left==="1"?"left":"right")+":"+(parseInt(w.hover_size)+parseInt(w.gap))+"px; "+(w.vbar_at_left==="0"?"left":"right")+":"+w.gap+"px; width:calc(100% - "+(2*parseInt(w.gap)+parseInt(w.hover_size))+"px); height:auto; "+(w.hbar_at_top==="1"?"top":"bottom")+":0px; "+(w.hbar_at_top==="0"?"top":"bottom")+":auto; }\n\
-		 #ms_vbar_bg_ui, #ms_hbar_bg_ui{ background:"+color_bg+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" !important; border-radius:"+w.border_radius+"px; }\n\
+		 #ms_vbar_bg_ui, #ms_hbar_bg_ui{ background:var(--color_bg); box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px var(--border_color) !important; border-radius:"+w.border_radius+"px; }\n\
 		 #ms_vbar_bg_ui{ margin-"+(w.vbar_at_left==="1"?"left":"right")+":"+(w.gap)+"px; height:100%; width:"+w.size+"px; transition:width 0.25s; }\n\
 		 #ms_hbar_bg_ui{ margin-"+(w.hbar_at_top==="1"?"top":"bottom")+":"+(w.gap)+"px; width:100%; height:"+w.size+"px; transition:height 0.25s; }\n\
 		 #ms_vbar, #ms_hbar, .bookmarkIndicator{ opacity:"+((w.show_when==="3")?(w.opacity/100):"0")+"; transition:opacity 0.5s "+w.show_how_long+"ms; }\n\
-		 #ms_vbar{ top:0px; height:"+(30+2*w.gap)+"px; min-height:"+(30+2*w.gap)+"px; width:auto; "+(w.vbar_at_left==="1"?"left":"right")+":0px; "+(w.vbar_at_left==="0"?"left":"right")+":auto; }\n\
-		 #ms_hbar{ left:0px; width:"+(30+2*w.gap)+"px; min-width:"+(30+2*w.gap)+"px; height:auto; "+(w.hbar_at_top==="1"?"top":"bottom")+":0px; "+(w.hbar_at_top==="0"?"top":"bottom")+":auto; }\n\
-		 #ms_vbar_ui, #ms_hbar_ui, .bookmarkIndicator{ background:"+color+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" !important; border-radius:"+w.border_radius+"px; }\n\
-		 #ms_superbar{ width:100px; background:"+(w.show_superbar_minipage==="0"?color:"rgba(0,0,0,0)")+"; opacity:"+((w.show_when==="3")?"0.5":"0")+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" "+(w.show_superbar_minipage==="1"?", 0 0 200px 10px #999":"")+" !important; border-radius:"+w.border_radius+"px; transition:opacity 0.5s "+w.show_how_long+"ms; min-width:30px; min-height:30px; }\n\
+		 #ms_vbar{ top:0; height:var(--vbar-height); min-height:"+(30+2*w.gap)+"px; width:auto; "+(w.vbar_at_left==="1"?"left":"right")+":0px; "+(w.vbar_at_left==="0"?"left":"right")+":auto; }\n\
+		 #ms_hbar{ left:0; width:var(--hbar-width); min-width:"+(30+2*w.gap)+"px; height:auto; "+(w.hbar_at_top==="1"?"top":"bottom")+":0px; "+(w.hbar_at_top==="0"?"top":"bottom")+":auto; }\n\
+		 #ms_vbar_ui, #ms_hbar_ui, .bookmarkIndicator{ background:var(--color); box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px var(--border_color) !important; border-radius:"+w.border_radius+"px; }\n\
 		 #ms_vbar_ui{ height:calc(100% - "+(2*w.gap)+"px); min-height:30px; width:"+w.size+"px; margin-top:"+w.gap+"px; margin-bottom:"+w.gap+"px; margin-"+(w.vbar_at_left=="1"?"left":"right")+":"+w.gap+"px; transition:width 0.25s; }\n\
 		 #ms_hbar_ui{ width:calc(100% - "+(2*w.gap)+"px); min-width:30px; height:"+w.size+"px; margin-left:"+w.gap+"px; margin-right:"+w.gap+"px; margin-"+(w.hbar_at_top=="1"?"top":"bottom")+":"+(w.gap)+"px; transition:height 0.25s; }\n\
+		 #ms_superbar{ top:0; left:0; height:var(--vbar-height); width:var(--hbar-width); background:"+(w.show_superbar_minipage==="0"?"var(--color)":"rgba(0,0,0,0)")+"; opacity:"+((w.show_when==="3")?"0.5":"0")+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px var(--border_color) "+(w.show_superbar_minipage==="1"?", 0 0 200px 10px #999":"")+" !important; border-radius:"+w.border_radius+"px; transition:opacity 0.5s "+w.show_how_long+"ms; min-width:30px; min-height:30px; }\n\
 		 #ms_page_cover{ left:0px; top:0px; width:100%; height:100%; background:rgba(0,0,0,0); padding:0px; margin:0px; }\n\
 		\n\
-		 #ms_upbutton, #ms_downbutton{ height:"+w.button_height*2+"px; width:"+w.button_width+"px; left:"+w.buttonposition+"%; opacity:"+w.button_opacity/100+"; background:"+color+"; border-radius:50px; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+"; transition:opacity 0.5s; }\n\
+		 #ms_upbutton, #ms_downbutton{ height:"+w.button_height*2+"px; width:"+w.button_width+"px; left:"+w.buttonposition+"%; opacity:"+w.button_opacity/100+"; background:var(--color); border-radius:50px; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px var(--border_color); transition:opacity 0.5s; }\n\
 		 #ms_upbutton{ top:-"+w.button_height+"px; }\n\
 		 #ms_downbutton{ bottom:-"+w.button_height+"px; }\n\
 		 #ms_upbutton.dragged_button, #ms_downbutton.dragged_button{ opacity:0.5; }\n\
@@ -163,9 +184,11 @@ function inject_css()
 		 #ms_v_container #ms_vbar:hover, #ms_h_container #ms_hbar:hover, #ms_upbutton:hover, #ms_downbutton:hover, #ms_v_container .bookmarkIndicator:hover{ opacity:"+((parseInt(w.opacity)+20)/100)+"; transition:opacity 0.1s 0s; }\n\
 		 #ms_superbar:hover{ opacity:"+w.superbar_opacity/100+"; transition:opacity 0.25s 0s; }\n\
 		\n\
-		 .bookmarkIndicator { line-height:20px; height: 20px; color: "+w.bookmark_text_color+"; position: absolute; "+(w.vbar_at_left==="1"?"left:":"right:")+(parseInt(w.hover_size)+5)+"px; padding: 3px 5px; display: block; text-decoration:none; }\n\
+		 .bookmarkIndicator { line-height:20px; height: 20px; color: var(--bookmark_text_color); position: absolute; "+(w.vbar_at_left==="1"?"left:":"right:")+(parseInt(w.hover_size)+7)+"px; padding: 3px 5px; display: block; text-decoration:none; }\n\
 		 .bookmarkIndicator > span { white-space: nowrap; max-width: 20em; overflow: hidden; text-overflow: ellipsis; display: block; }\n\
-		 .bookmarkIndicator::after { content: ''; position: absolute; "+(w.vbar_at_left==="1"?"left":"right")+":-4px; top: 6px; border-top: 5px solid transparent; border-"+(w.vbar_at_left==="1"?"right":"left")+": 5px solid "+color+"; border-bottom: 5px solid transparent; }\n\
+		 .bookmarkIndicator::before, .bookmarkIndicator::after { content: ''; position: absolute; border-style: solid; }\n\
+		 .bookmarkIndicator::before { "+(w.vbar_at_left==="1"?"right":"left")+":100%; top: 6px; border-top: 6px solid transparent; border-"+(w.vbar_at_left==="1"?"right":"left")+": 6px solid var(--border_color); border-bottom: 6px solid transparent; border-"+(w.vbar_at_left==="1"?"left":"right")+": none; }\n\
+		 .bookmarkIndicator::after { "+(w.vbar_at_left==="1"?"right":"left")+":calc(100% - "+w.border_width+"px); top: 6px; border-top: 6px solid transparent; border-"+(w.vbar_at_left==="1"?"right":"left")+": 6px solid var(--color); border-bottom: 6px solid transparent; border-"+(w.vbar_at_left==="1"?"left":"right")+": none; }\n\
 		 .bookmarkIndicator:hover { z-index: 1; }\n\
 		 #ms_v_container #ms_bookmarks{ opacity: 0; transition:opacity 0.5s "+w.show_how_long+"ms; }\n\
 		 #ms_v_container:hover #ms_bookmarks{ opacity: 1; transition: opacity 0.1s; }\n\
@@ -200,9 +223,9 @@ function inject_css()
 		(w.autohide_element_bars === "1" ? "body *:not(:hover):not(:focus)::-webkit-scrollbar{ display:none !important; width:0 !important; height:0 !important; }\n" : "")+
 		"body *::-webkit-scrollbar{ width:"+w.size+"px; height:"+w.size+"px; }\n\
 		 body *::-webkit-scrollbar-button{ display:none; }\n\
-		 body *::-webkit-scrollbar-track { background:none; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" !important; border-radius:"+w.border_radius+"px; }\n\
-		 body *::-webkit-scrollbar-thumb { background:"+color+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px "+w.border_color_rgba+" !important; border-radius:"+w.border_radius+"px; }\n\
-		 body *::-webkit-scrollbar-thumb:hover { background:"+color+"; }";
+		 body *::-webkit-scrollbar-track { background:none; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px var(--border_color) !important; border-radius:"+w.border_radius+"px; }\n\
+		 body *::-webkit-scrollbar-thumb { background:var(--color); box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px var(--border_color) !important; border-radius:"+w.border_radius+"px; }\n\
+		 body *::-webkit-scrollbar-thumb:hover { background:var(--color); }";
 	}
 
 	if(document.getElementById("ms_style")){ // switched tabs -> update style (settings may have changed)
@@ -234,7 +257,10 @@ function add_bars()
 			<div id='ms_vbar'><div id='ms_vbar_ui'></div></div>\n\
 			<div id='ms_bookmarks' />\n\
 		</div>";
-		
+	
+	if (w.auto_coloring === "1")	bars_container.classList.add("pagetheme");
+	else							bars_container.classList.remove("pagetheme");
+
 	if(!ms_shadow.querySelector("#modern_scroll_bars")) ms_shadow.appendChild(bars_container);
 	
 	vbar = ms_shadow.getElementById("ms_vbar");
@@ -316,6 +342,8 @@ function hide_bookmarks()
 let resize_observer = window.ResizeObserver ? new ResizeObserver(check_dimensions) : null;
 let DOM_observer = new MutationObserver(check_dimensions);
 let height_observer = new MutationObserver(check_dimensions); // Disqus
+let theme_observer = new MutationObserver(inject_css);
+
 function add_dimension_checkers()
 {
 	if(document.readyState !== "complete")
@@ -333,6 +361,10 @@ function add_dimension_checkers()
 		document.body.addEventListener("transitionend", check_dimensions, false);
 		DOM_observer.observe(document.body, { childList:true, subtree:true });
 		height_observer.observe(document.body, { subtree:true, attributes:true, attributeFilter:["height", "style"] });
+		
+		let themetag = document.querySelector("meta[name='theme-color']");
+		if(themetag)
+			theme_observer.observe(themetag, { attributes:true });
 	}
 	window.addEventListener("pointerup", check_dimensions_after_click, false);
 
@@ -598,8 +630,8 @@ function drag_v(e)
 	vbar.setPointerCapture(e.pointerId); // keep getting the events even when moving outside the containing page's scope
 
 	drag_mode("v_container");
-	let dragy = e.clientY - parseInt(vbar.style.top);
-	
+	let dragy = e.clientY - vbar.offsetTop;
+
 	document.addEventListener("pointermove", drag_v_move, true);
 	function drag_v_move(e)
 	{
@@ -624,7 +656,7 @@ function drag_h(e)
 	hbar.setPointerCapture(e.pointerId);
 
 	drag_mode("h_container");
-	let dragx = e.clientX - parseInt(hbar.style.left);
+	let dragx = e.clientX - hbar.offsetLeft;
 	
 	document.addEventListener("pointermove", drag_h_move, true);
 	function drag_h_move(e)
@@ -659,7 +691,7 @@ function drag_super(e)
 	else show_bars();
 	
 	drag_mode("superbar");
-	let superbar = ms_shadow.getElementById("ms_superbar");
+	const superbar = ms_shadow.getElementById("ms_superbar");
 	superbar.setPointerCapture(e.pointerId);
 
 	let dragy = e.clientY - parseInt(superbar.style.top);
@@ -787,7 +819,7 @@ function scroll_bg_h(e){
 		if(w.animate_scroll === "1") ms_scrollBy_x(window.scrollMaxX-window.pageXOffset);
 		else window.scrollBy(window.scrollMaxX-window.pageXOffset, 0);
 	}
-	else if(e.clientX > parseInt(hbar.style.left)){
+	else if(e.clientX > hbar.offsetLeft){
 		if(w.animate_scroll === "1") ms_scrollBy_x(window.innerWidth);
 		else window.scrollBy(window.innerWidth, 0);
 	}
@@ -1105,47 +1137,18 @@ function arrowkeyscroll(e)
 		stopEvent(e);
 		window.removeEventListener("scroll", reposition_bars, { passive: false });
 		
-		//if(test ===0){
 		if		(e.which === 40) scroll_timeout_id_y = window.requestAnimationFrame( function(){ arrowkeyscroll_down(Date.now()); } );
 		else if	(e.which === 38) scroll_timeout_id_y = window.requestAnimationFrame( function(){ arrowkeyscroll_up(Date.now()); } );
 		else if	(e.which === 39) scroll_timeout_id_x = window.requestAnimationFrame( function(){ arrowkeyscroll_right(Date.now()); } );
 		else					 scroll_timeout_id_x = window.requestAnimationFrame( function(){ arrowkeyscroll_left(Date.now()); } );
-		//}
+
 		if(ms_shadow.getElementById("modern_scroll_bars"))
 		{
-			if(e.which === 40){
-				show_bar("v");/*
-				vbar.style.transition = "top "+(window.scrollMaxY-window.pageYOffset)/w.keyscroll_velocity+"ms linear";
-				vbar.style.top = window.innerHeight-parseInt(vbar.style.height)+"px";
-				
-				if(test === 1)
-				{
-					scroll_start_time = Date.now();
-					document.body.style.transition = "all "+(window.scrollMaxY-window.pageYOffset)/w.keyscroll_velocity+"ms linear";
-					document.body.style.marginTop = window.pageYOffset-window.scrollMaxY+"px";
-				}*/
-			}
-			else if(e.which === 38){
+			if(e.which === 40 || e.which === 38){
 				show_bar("v");
-				/*vbar.style.transition = "top "+window.pageYOffset/w.keyscroll_velocity+"ms linear";
-				vbar.style.top = "0px";
-				
-				if(test === 1)
-				{
-					scroll_start_time = Date.now();
-					document.body.style.transition = "margin-top "+window.pageYOffset/w.keyscroll_velocity+"ms linear";
-					document.body.style.marginTop = window.pageYOffset+"px";
-				}*/
 			}
-			else if(e.which === 39){
+			else if(e.which === 39 || e.which === 37){
 				show_bar("h");
-				/*hbar.style.transition = "left "+(window.scrollMaxX-window.pageXOffset)/w.keyscroll_velocity+"ms linear";
-				hbar.style.left = window.innerWidth-parseInt(hbar.style.width)-(w.vbar_at_left === "0" ? w.hover_size : 0)+"px";*/
-			}
-			else if(e.which === 37){
-				show_bar("h");
-				/*hbar.style.transition = "left "+window.pageXOffset/w.keyscroll_velocity+"ms linear";
-				hbar.style.left = (w.vbar_at_left === "1" ? w.hover_size : 0)+"px";*/
 			}
 		}
 	}
@@ -1153,16 +1156,6 @@ function arrowkeyscroll(e)
 	window.addEventListener("keyup", arrowkeyscroll_end, false);
 	function arrowkeyscroll_end()
 	{
-		// CSS scrolling:
-		/*if(test === 1)
-		{
-			let scrollamount = (Date.now()-scroll_start_time)*w.keyscroll_velocity;
-			document.body.style.marginTop = null;
-			window.scrollBy(0,(e.which===40?scrollamount:-scrollamount));
-			document.body.style.transition = null;
-		}
-		*/
-		// JS scrolling:
 		if(scroll_timeout_id_x){ window.cancelAnimationFrame(scroll_timeout_id_x); scroll_timeout_id_x = null; }
 		window.cancelAnimationFrame(scroll_timeout_id_y); scroll_timeout_id_y = null;
 		
