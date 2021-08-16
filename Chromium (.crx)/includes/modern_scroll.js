@@ -322,7 +322,8 @@ function add_functionality_2_bars(){
 		ms_shadow.addEventListener("mouseout", hide_bookmarks, false);
 	}
 
-	window.addEventListener("scroll", reposition_bars, { passive: false });
+	window.addEventListener("scroll", reposition_bars, false);
+	window.addEventListener("wheel", squeeze_bars, { passive: false });
 }
 
 function show_bookmarks()
@@ -959,7 +960,69 @@ function show_or_hide_buttons()
 	}, 200);
 }
 
+let last_delta = 0;
+let squeeze_timeout;
+function squeeze_bars(e)
+{
+	if (Math.abs(e.deltaX) > last_delta)
+	{
+		if (window.pageXOffset === 0 && e.deltaX < 0)
+		{
+			hbar.style.transformOrigin = "0 0";
+			hbar.animate({
+				transform: ["scaleX(1)", "scaleX("+(0.25+0.75/-e.deltaX)+")", "scaleX(1)"],
+				//opacity: [0.5, 1, 0.5],
+				easing: ["ease-out", "ease-in"]
+			}, 200);
+			last_delta = -e.deltaX;
+		}
+		else if (window.pageXOffset === window.scrollMaxX && e.deltaX > 0)
+		{
+			hbar.style.transformOrigin = "100% 100%";
+			hbar.animate({
+				transform: ["scaleX(1)", "scaleX("+(0.25+0.75/e.deltaX)+")", "scaleX(1)"],
+				//opacity: [0.5, 1, 0.5],
+				easing: ["ease-out", "ease-in"]
+			}, 200);
+			last_delta = e.deltaX;
+		}
+	}
+	if (e.deltaX !== 0) set_squeeze_timeout(hbar);
 
+	if (Math.abs(e.deltaY) > last_delta)
+	{
+		if (window.pageYOffset === 0 && e.deltaY < 0)
+		{
+			vbar.style.transformOrigin = "0 0";
+			vbar.animate({
+				transform: ["scaleY(1)", "scaleY("+(0.25+0.75/-e.deltaY)+")", "scaleY(1)"],
+				//opacity: [0.5, 1, 0.5],
+				easing: ["ease-out", "ease-in"]
+			}, 200);
+			last_delta = -e.deltaY;
+		}
+		else if (window.pageYOffset === window.scrollMaxY && e.deltaY > 0)
+		{
+			vbar.style.transformOrigin = "100% 100%";
+			vbar.animate({
+				transform: ["scaleY(1)", "scaleY("+(0.25+0.75/e.deltaY)+")", "scaleY(1)"],
+				//opacity: [0.5, 1, 0.5],
+				easing: ["ease-out", "ease-in"]
+			}, 200);
+			last_delta = e.deltaY;
+		}
+	}
+	if (e.deltaY !== 0) set_squeeze_timeout(vbar);
+}
+
+function set_squeeze_timeout(bar)
+{
+	window.clearTimeout(squeeze_timeout);
+	squeeze_timeout = window.setTimeout(() => {
+		bar.style.transformOrigin = null;
+		last_delta = 0;
+	}, 500);
+}
 
 // ######################################
 // ######## scrolling functions: ########
