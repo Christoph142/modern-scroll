@@ -6,7 +6,7 @@ let prefs = null;
 
 async function populateOptions(){
 	localize();
-	restorePrefs();
+	await restorePrefs();
 	if (window.location.hash && document.querySelector(window.location.hash.split("?")[0]).tagName === "DIALOG")
 		showDialog(window.location.hash.split("?")[0]);
 }
@@ -65,6 +65,7 @@ async function save_new_value(key, value)
 function saveButtonPosition(e){ save_new_value("buttonposition", e.detail); }
 
 async function restorePrefs() {
+	return new Promise((resolve, reject) =>
 	chrome.storage.sync.get({// default settings:
 		color:					"#000000",
 		color_bg:				"#999999",
@@ -128,6 +129,7 @@ async function restorePrefs() {
 		custom_domains :				{}
 		}, storage => {
 			prefs = storage;
+			resolve();
 
 			let selects = document.querySelectorAll("select");
 			for(let select of selects){
@@ -170,7 +172,7 @@ async function restorePrefs() {
 			
 			add_page_handling();
 		}
-	);
+	));
 }
 
 function add_page_handling()
