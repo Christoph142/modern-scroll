@@ -2,10 +2,13 @@ window.addEventListener("DOMContentLoaded", populateOptions, false);
 window.addEventListener("msButtonPositionChange", saveButtonPosition, true);
 window.addEventListener("change", savePrefs, false);
 
-function populateOptions(){
+let prefs = null;
+
+async function populateOptions(){
 	localize();
 	restorePrefs();
-	if (window.location.hash && document.querySelector(window.location.hash.split("?")[0]).tagName === "DIALOG") showDialog(window.location.hash.split("?")[0]);
+	if (window.location.hash && document.querySelector(window.location.hash.split("?")[0]).tagName === "DIALOG")
+		showDialog(window.location.hash.split("?")[0]);
 }
 
 function savePrefs(e) // save preferences:
@@ -13,7 +16,7 @@ function savePrefs(e) // save preferences:
 	if(e.target.id === "save_set" || e.target.id === "saved_sets") return; // handled via onclick functions
 	if(!e.target.validity.valid) // correct out-of-range inputs
 	{
-		chrome.runtime.getBackgroundPage( bg => e.target.value = bg.w[e.target.id] );
+		e.target.value = prefs[e.target.id];
 		return;
 	}
 	
@@ -29,10 +32,7 @@ function savePrefs(e) // save preferences:
 			save_new_value("border_radius", document.querySelector("#border_radius").max);
 		}
 	}
-	
-	if(e.target.id === "contextmenu_show_when") chrome.runtime.sendMessage({data:"update_contextmenu_show_when"});
-	else										chrome.runtime.sendMessage({data:"update_ms"});
-	
+		
 	// show/hide containers:
 	if(e.target.id === "show_buttons")					 document.querySelector("#button_container").style.height=(e.target.value==="1"?"0":"auto");
 	if(e.target.id === "use_own_scroll_functions")		 document.querySelector("#keyscroll_velocity_container").style.display=(e.target.checked?null:"none");
@@ -55,56 +55,122 @@ function update_slider_value(target)
 	if(target.id === "scroll_velocity")			document.getElementById("storage.scroll_velocity").textContent		= Math.round(100*target.value/5);
 }
 
-function save_new_value(key, value){ chrome.runtime.getBackgroundPage( bg => bg.save_new_value(key, value) ); }
+async function save_new_value(key, value)
+{
+	let saveobject = {};
+	saveobject[key] = value;
+	chrome.storage.sync.set(saveobject);
+}
 
 function saveButtonPosition(e){ save_new_value("buttonposition", e.detail); }
 
-function restorePrefs(){ chrome.runtime.getBackgroundPage( bg => restorePrefsFrom(bg.w) ); }
-function restorePrefsFrom(storage) {
-	chrome.storage.sync.get("saved_sets", function(s){
-		storage.saved_sets = s.saved_sets;
+async function restorePrefs() {
+	chrome.storage.sync.get({// default settings:
+		color:					"#000000",
+		color_bg:				"#999999",
+		auto_coloring:			"1",
+		size:					"8",
+		hover_size:				"12",
+		border_radius:			"6",
+		gap:					"2",
+		opacity:				"50",
+		border_width:			"1",
+		border_blur:			"0",
+		border_color:			"#FFFFFF",
+		border_color_rgba:		"rgba(255,255,255,0.5)",
+		vbar_at_left:			"0",
+		hbar_at_top:			"0",
+
+		show_when:				"2", // 1 = onmouseover only, 2 = normal, 3 = always
+		show_bg_bars_when:		"2", // 1 = never, 2 = onmouseover only, 3 = like bars
+		show_how_long:			"1000",
+		fullscreen_only:		"0",
+		bg_special_ends:		"1",
+		container:				"0",
+		container_size:			"30",
 		
-		let selects = document.querySelectorAll("select");
-		for(let select of selects){
-			if(!storage[select.id]) continue;
-			if(select.id === "saved_sets")
-			{
-				if(select.options.length === 1) // prevent attaching sets multiple times on update
+		contextmenu_show_when:	"2", // 1 = never, 2 = only over interface, 3 = always
+		
+		style_element_bars:		"1",
+		autohide_element_bars:	"0", // largely broken in Blink
+		
+		show_superbar:			"0",
+		show_superbar_minipage: "1",
+		superbar_opacity:		"70",
+
+		bookmark_text_color:	"#FFFFFF",
+		show_bookmarks:			"2", // 1 = none, 2 = bookmarks, 3 = all headings
+
+		show_buttons:			"1", // 1 = no, 2 = only fullscreen, 3 = yes
+		button_height:			"50",
+		button_width:			"100",
+		button_opacity:			"10",
+		buttonposition:			"48",
+		
+		use_own_scroll_functions:		"1",
+		use_own_scroll_functions_mouse:	"0",
+		own_scroll_functions_middle:	"0",
+		scroll_velocity:				"5",
+		keyscroll_velocity:				"2",
+		mousescroll_velocity:			"3",
+		mousescroll_distance:			"1",
+		middlescroll_velocity:			"1",
+		endMiddlescrollByTurningWheel:	"0",
+		animate_scroll:					"1",
+		animate_scroll_max:				"2",
+
+		external_interface:				"0",
+
+		// general stuff:
+		last_dialog_time:				0,
+		dialogs_shown:					{}, // time : type
+		saved_sets : 					{},
+		custom_domains :				{}
+		}, storage => {
+			prefs = storage;
+
+			let selects = document.querySelectorAll("select");
+			for(let select of selects){
+				if(!prefs[select.id]) continue;
+				if(select.id === "saved_sets")
 				{
-					for(let option in storage.saved_sets){
-						select.options[select.options.length] = new Option(option, option); // Option(name, value)
+					if(select.options.length === 1) // prevent attaching sets multiple times on update
+					{
+						for(let option in prefs.saved_sets){
+							select.options[select.options.length] = new Option(option, option); // Option(name, value)
+						}
 					}
+					else continue;
 				}
-				else continue;
+				else select.value = prefs[select.id];
 			}
-			else select.value = storage[select.id];
+
+			let inputs = document.querySelectorAll("input");	
+			for(let input of inputs){
+				if(!prefs[input.id]) continue;
+				if(input.type==="checkbox")	input.checked = (prefs[input.id] === "0" ? false : true);
+				else						input.value = prefs[input.id];
+			}
+			
+			if(document.querySelector("#show_buttons").value !== "1")				document.querySelector("#button_container").style.height				= "auto";
+			if(!document.querySelector("#use_own_scroll_functions").checked)		document.querySelector("#keyscroll_velocity_container").style.display	= "none";
+			if(document.querySelector("#use_own_scroll_functions_mouse").checked)	document.querySelector("#mousescroll_container").style.display			= "inline";
+			if(document.querySelector("#own_scroll_functions_middle").checked)		document.querySelector("#middlescroll_container").style.display			= "inline";
+			if(!document.querySelector("#animate_scroll").checked)					document.querySelector("#scroll_container").style.display				= "none";
+			
+			document.querySelector("#border_radius").max = Math.round(Math.max(document.querySelector("#size").value, document.querySelector("#hover_size").value)/2);
+			
+			let sliders = document.querySelectorAll(".slider_values");
+			for(let slider of sliders) // display slider values:
+			{
+				let which_value = slider.id.split(".")[1];
+				let raw_value = (prefs[which_value] ? prefs[which_value] : document.getElementById(which_value).value);
+				slider.textContent = (document.getElementById(which_value).dataset.defaultvalue ? Math.round(100*raw_value/document.getElementById(which_value).dataset.defaultvalue) : raw_value);
+			}	
+			
+			add_page_handling();
 		}
-	});
-	
-	let inputs = document.querySelectorAll("input");	
-	for(let input of inputs){
-		if(!storage[input.id]) continue;
-		if(input.type==="checkbox")	input.checked = (storage[input.id] === "0" ? false : true);
-		else						input.value = storage[input.id];
-	}
-	
-	if(document.querySelector("#show_buttons").value !== "1")				document.querySelector("#button_container").style.height				= "auto";
-	if(!document.querySelector("#use_own_scroll_functions").checked)		document.querySelector("#keyscroll_velocity_container").style.display	= "none";
-	if(document.querySelector("#use_own_scroll_functions_mouse").checked)	document.querySelector("#mousescroll_container").style.display			= "inline";
-	if(document.querySelector("#own_scroll_functions_middle").checked)		document.querySelector("#middlescroll_container").style.display			= "inline";
-	if(!document.querySelector("#animate_scroll").checked)					document.querySelector("#scroll_container").style.display				= "none";
-	
-	document.querySelector("#border_radius").max = Math.round(Math.max(document.querySelector("#size").value, document.querySelector("#hover_size").value)/2);
-	
-	let sliders = document.querySelectorAll(".slider_values");
-	for(let slider of sliders) // display slider values:
-	{
-		let which_value = slider.id.split(".")[1];
-		let raw_value = (storage[which_value] ? storage[which_value] : document.getElementById(which_value).value);
-		slider.textContent = (document.getElementById(which_value).dataset.defaultvalue ? Math.round(100*raw_value/document.getElementById(which_value).dataset.defaultvalue) : raw_value);
-	}	
-	
-	add_page_handling();
+	);
 }
 
 function add_page_handling()
@@ -195,27 +261,22 @@ function confirm_save_set(){
 	save_set(false);
 }
 function save_set(overwrite){
-	chrome.runtime.getBackgroundPage( bg => {
-		if(!bg.saved_sets) bg.saved_sets = {};
-		bg.saved_sets[document.querySelector("#save_set").textContent] = {};
-		
-		for(let setting in bg.w){
-			if(setting === "saved_sets" || setting === "baseDevicePixelRatio" || setting === "last_dialog_time" || setting === "dialogs_shown") continue;
-			bg.saved_sets[document.querySelector("#save_set").textContent][setting] = bg.w[setting];
-		}
-		
-		chrome.storage.sync.set({ "saved_sets" : bg.saved_sets });
-		
-		if(!overwrite) { // don't add a new option if one gets overwritten
-			let set_name = document.querySelector("#save_set").textContent;
-			document.querySelector("#saved_sets").options[document.querySelector("#saved_sets").options.length] = new Option(set_name, set_name);
-			bg.add_contextmenu_set(set_name);
-		}
+	if(!prefs.saved_sets) prefs.saved_sets = {};
+	prefs.saved_sets[document.querySelector("#save_set").textContent] = {};
+	
+	for(let setting in prefs){
+		if(["saved_sets", "custom_domains", "baseDevicePixelRatio", "last_dialog_time", "dialogs_shown"].includes(setting)) continue;
+		bg.saved_sets[document.querySelector("#save_set").textContent][setting] = prefs[setting];
+	}
+	
+	chrome.storage.sync.set({ "saved_sets" : bg.saved_sets });
+	
+	if(!overwrite) { // don't add a new option if one gets overwritten
+		let set_name = document.querySelector("#save_set").textContent;
+		document.querySelector("#saved_sets").options[document.querySelector("#saved_sets").options.length] = new Option(set_name, set_name);
+	}
 
-		document.querySelector("#saved_sets").value = document.querySelector("#save_set").textContent; // select option
-
-		chrome.runtime.getBackgroundPage( bg => bg.send_update_request() );
-	});
+	document.querySelector("#saved_sets").value = document.querySelector("#save_set").textContent; // select option	
 }
 
 function confirm_delete_set(){
@@ -227,54 +288,33 @@ function confirm_delete_set(){
 	showDialog("confirm_delete");
 }
 function delete_set(){
-	chrome.runtime.getBackgroundPage( bg => {
-		let set_name = document.querySelector("#saved_sets").value;
+	let set_name = document.querySelector("#saved_sets").value;
 
-		delete bg.saved_sets[set_name];
-		chrome.storage.sync.set( {"saved_sets" : bg.saved_sets} );
-		bg.remove_contextmenu_set(set_name);
+	delete prefs.saved_sets[set_name];
+	chrome.storage.sync.set({ "saved_sets": prefs.saved_sets });
 
-		for(let option in document.querySelector("#saved_sets").options){
-			if(document.querySelector("#saved_sets").options[option].value === set_name)
-			{
-				document.querySelector("#saved_sets").remove(option);
-				break;
-			}
+	for(let option in document.querySelector("#saved_sets").options){
+		if(document.querySelector("#saved_sets").options[option].value === set_name)
+		{
+			document.querySelector("#saved_sets").remove(option);
+			break;
 		}
-	});
+	}
 }
 
 function confirm_load_set(){ showDialog("confirm_load"); }
 function load_set(){
-	chrome.runtime.getBackgroundPage( bg => {
-		chrome.runtime.onMessage.addListener(function(msg){
-			if(msg.data === "update_ms")
-			{
-				chrome.runtime.onMessage.removeListener(arguments.callee);
-				restorePrefs();
-			}
-		});
+	if(document.querySelector("#saved_sets").value === "Default")
+	{
+		let prefsToBeDeleted = Object.keys(prefs).filter(pref => !["saved_sets", "custom_domains", "last_dialog_time", "dialogs_shown"].includes(pref));
+		chrome.storage.sync.remove( prefsToBeDeleted );
+	}
+	else
+	{
+		chrome.storage.sync.set(prefs.saved_sets[document.querySelector("#saved_sets").value]);
+	}
 
-		let temp_prefs = {
-			"saved_sets" 		: bg.saved_sets,
-			"last_dialog_time" 	: bg.w.last_dialog_time,
-			"dialogs_shown" 	: bg.w.dialogs_shown
-		};
-		if(document.querySelector("#saved_sets").value === "Default")
-		{
-			chrome.storage.sync.clear(); // delete everything
-			chrome.storage.sync.set( temp_prefs ); // restore prefs that are not saved per set
-		}
-		else
-		{
-			let temp_obj = {};
-			for(let setting in temp_prefs.saved_sets[document.querySelector("#saved_sets").value]){
-				temp_obj[setting] = temp_prefs.saved_sets[document.querySelector("#saved_sets").value][setting];
-			}
-			chrome.storage.sync.set(temp_obj);
-		}
-		chrome.runtime.sendMessage({data:"update_settings"});
-	});
+	restorePrefs();
 }
 
 function localize()
@@ -312,12 +352,9 @@ function showDialog(id)
 	document.addEventListener("keydown", handleKeyboardEvents, false);
 
 	let now = Date.now();
-	chrome.runtime.getBackgroundPage( bg => {
-		let dialogs_shown = bg.w.dialogs_shown;
-		dialogs_shown[now] = id;
-		save_new_value("dialogs_shown", dialogs_shown);
-		save_new_value("last_dialog_time", now);
-	} );
+	prefs.dialogs_shown[now] = id;
+	save_new_value("dialogs_shown", prefs.dialogs_shown);
+	save_new_value("last_dialog_time", now);
 }
 
 function hideDialog()

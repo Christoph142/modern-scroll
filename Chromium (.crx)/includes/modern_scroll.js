@@ -37,29 +37,122 @@ function initialize()
 	add_ms();
 }
 
-function add_ms()
+async function load_prefs() {
+	return new Promise((resolve, reject) =>
+	chrome.storage.sync.get( {// default settings:
+		color:					"#000000",
+		color_bg:				"#999999",
+		auto_coloring:			"1",
+		size:					"8",
+		hover_size:				"12",
+		border_radius:			"6",
+		gap:					"2",
+		opacity:				"50",
+		border_width:			"1",
+		border_blur:			"0",
+		border_color:			"#FFFFFF",
+		border_color_rgba:		"rgba(255,255,255,0.5)",
+		vbar_at_left:			"0",
+		hbar_at_top:			"0",
+
+		show_when:				"2", // 1 = onmouseover only, 2 = normal, 3 = always
+		show_bg_bars_when:		"2", // 1 = never, 2 = onmouseover only, 3 = like bars
+		show_how_long:			"1000",
+		fullscreen_only:		"0",
+		bg_special_ends:		"1",
+		container:				"0",
+		container_size:			"30",
+		
+		contextmenu_show_when:	"2", // 1 = never, 2 = only over interface, 3 = always
+		
+		style_element_bars:		"1",
+		autohide_element_bars:	"0", // largely broken in Blink
+		
+		show_superbar:			"0",
+		show_superbar_minipage: "1",
+		superbar_opacity:		"70",
+
+		bookmark_text_color:	"#FFFFFF",
+		show_bookmarks:			"2", // 1 = none, 2 = bookmarks, 3 = all headings
+
+		show_buttons:			"1", // 1 = no, 2 = only fullscreen, 3 = yes
+		button_height:			"50",
+		button_width:			"100",
+		button_opacity:			"10",
+		buttonposition:			"48",
+		
+		use_own_scroll_functions:		"1",
+		use_own_scroll_functions_mouse:	"0",
+		own_scroll_functions_middle:	"0",
+		scroll_velocity:				"5",
+		keyscroll_velocity:				"2",
+		mousescroll_velocity:			"3",
+		mousescroll_distance:			"1",
+		middlescroll_velocity:			"1",
+		endMiddlescrollByTurningWheel:	"0",
+		animate_scroll:					"1",
+		animate_scroll_max:				"2",
+
+		external_interface:				"0",
+
+		// general stuff:
+		last_dialog_time:				0,
+		dialogs_shown:					{}, // time : type
+		saved_sets : 					{},
+		custom_domains :				{}
+		}, storage => {
+			w = storage;
+
+			const domain = get_domain(window.location.hostname);
+			if (!w.custom_domains.hasOwnProperty(domain)) { resolve(); return; }
+
+			let domain_props = w.custom_domains[domain];
+			if (!domain_props.hasOwnProperty("set")) { resolve(); return; }
+
+			let set_name = domain_props.set;
+			if (set_name === false) w = false; // blacklisted page
+			else if (w.saved_sets[set_name]) Object.assign(w, w.saved_sets[set_name]);
+			else {
+				console.warn("Custom set '" + set_name + "' for domain '" + domain + "' not found." );
+			}
+			resolve();
+		}
+	));
+}
+
+function get_domain(url) {
+	return url.split("?")[0].split("#")[0].split("/")[2];
+}
+
+async function add_ms()
 {
 	if(document.getElementById("modern_scroll")) return;
-	
+
 	let ms_container = document.createElement("div");
 	ms_container.id = "modern_scroll";
 	ms_shadow = typeof ms_container.attachShadow == "function" ? ms_container.attachShadow({mode: "open"}) : ms_container.createShadowRoot();
 	try{ document.documentElement.appendChild(ms_container); }catch(e){ document.body.appendChild(ms_container); }
 	
-	chrome.runtime.onMessage.addListener(handleRuntimeMessage);
-	chrome.runtime.sendMessage({data : "settings", domain : window.location.hostname}, function(response){ // get settings (filled with default values) from background.js
-		if(response === false) { // blacklisted page
-			if (document.querySelector("#ms_style"))
-				document.querySelector("head").removeChild(document.querySelector("#ms_style"));
-			chrome.runtime.sendMessage({data:"show_contextmenu", string:"enable"});
-			return;
-		}
-		w = response;
-		continue_add_ms();
+	chrome.storage.onChanged.addListener((changes, area) => {
+		if (area !== "sync") return;
+
+		Object.assign(w, ...Object.entries(changes).map(([k, v]) => ({[k]: v.newValue})));
+
+		if (!document.hidden)	update_ms();
 	});
-}
-function continue_add_ms()
-{
+
+	await load_prefs();
+
+	chrome.runtime.onMessage.addListener(handleRuntimeMessage);
+	chrome.runtime.sendMessage({ data: "get_zoom" });
+		
+	if(w === false) { // blacklisted page
+		if (document.querySelector("#ms_style"))
+			document.querySelector("head").removeChild(document.querySelector("#ms_style"));
+		chrome.runtime.sendMessage({data:"show_contextmenu", string:"enable"});
+		return;
+	}
+
 	inject_css();
 	
 	add_bars();
@@ -190,8 +283,28 @@ function inject_css()
 		 .bookmarkIndicator::before { "+(w.vbar_at_left==="1"?"right":"left")+":100%; top: 6px; border-top: 6px solid transparent; border-"+(w.vbar_at_left==="1"?"right":"left")+": 6px solid var(--border_color); border-bottom: 6px solid transparent; border-"+(w.vbar_at_left==="1"?"left":"right")+": none; }\n\
 		 .bookmarkIndicator::after { "+(w.vbar_at_left==="1"?"right":"left")+":calc(100% - "+w.border_width+"px); top: 6px; border-top: 6px solid transparent; border-"+(w.vbar_at_left==="1"?"right":"left")+": 6px solid var(--color); border-bottom: 6px solid transparent; border-"+(w.vbar_at_left==="1"?"left":"right")+": none; }\n\
 		 .bookmarkIndicator:hover { z-index: 1; }\n\
+		 .custom.bookmarkIndicator { cursor: pointer; }\n\
 		 #ms_v_container #ms_bookmarks{ opacity: 0; transition:opacity 0.5s "+w.show_how_long+"ms; }\n\
 		 #ms_v_container:hover #ms_bookmarks{ opacity: 1; transition: opacity 0.1s; }\n\
+		\n\
+		 @keyframes scrolldown {\n\
+		    to { top: var(--max-top); }\n\
+		 }\n\
+		 #ms_vbar {\n\
+		    animation: 1s linear forwards scrolldown;\n\
+			animation-timeline: vertical-scroll-timeline;\n\
+		 }\n\
+		 @keyframes scrollright {\n\
+		    to { left: var(--max-left); }\n\
+		 }\n\
+		 #ms_hbar {\n\
+		    animation: 1s linear forwards scrollright;\n\
+			animation-timeline: horizontal-scroll-timeline;\n\
+		 }\n\
+		 #ms_superbar {\n\
+		    animation: 1s linear forwards scrolldown, 1s linear forwards scrollright;\n\
+			animation-timeline: vertical-scroll-timeline, horizontal-scroll-timeline;\n\
+		 }\n\
 		\n\
 		 .dragged #ms_vbar_bg, .dragged #ms_hbar_bg{ opacity:"+(w.show_bg_bars_when==="1"?"0":(w.opacity/100))+"; }\n\
 		 .dragged #ms_vbar, .dragged #ms_hbar{ opacity:"+(w.opacity>80?"1":((parseInt(w.opacity)+20)/100))+"; }\n\
@@ -200,7 +313,12 @@ function inject_css()
 		 #ms_superbar.dragged{ opacity:"+(w.show_superbar_minipage === "1" ? 1 : (w.superbar_opacity/100))+"; }\n\
 		 #ms_middleclick_cursor{ width:64px; height:64px; cursor:none; background:url(data:image/png;base64,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); }\n\n"+
 		// hide in print preview and printouts:
-		"@media print{ :host{ display:none !important; } }";
+		"@media print{ :host{ display:none !important; } }\n\
+		\n\
+		:host { --max-top: calc(100vh - var(--vbar-height)); --max-left: calc(100vw - var(--hbar-width) - "+w.hover_size+"px); }\n\
+		:host { --vbar-height: 30px; }\n\
+		:host { --hbar-width: 30px; }\
+		";
 
 	if(ms_shadow.querySelector("style")) ms_shadow.querySelector("style").innerHTML = ms_style;
 	else{
@@ -214,7 +332,9 @@ function inject_css()
 	if(w.style_element_bars === "0" && w.fullscreen_only === "1") return;
 	
 	/* hide page's default scroll bars: */
-	let global_ms_style = "#modern_scroll { all: initial !important; }\n\n";
+	let global_ms_style = "#modern_scroll { all: initial !important; }\n\n\
+		@scroll-timeline vertical-scroll-timeline { orientation: vertical; time-range: 1s; }\n\
+		@scroll-timeline horizontal-scroll-timeline { orientation: horizontal; time-range: 1s; }\n\n";
 
 	if(w.fullscreen_only === "0") global_ms_style += "html, body { scrollbar-width: none !important; }\n\
 		html::-webkit-scrollbar, body::-webkit-scrollbar{ display:none !important; width:0 !important; height:0 !important; }\n";
@@ -413,7 +533,6 @@ function contextmenu_click()
 function handleRuntimeMessage(msg)
 {
 	if 		(msg.data === "ms_toggle_visibility") 			contextmenu_click();
-	else if (msg.data === "update_ms" && !document.hidden)	update_ms();
 	else if (msg.zoomFactor)								scaleUI(1/msg.zoomFactor);
 }
 
@@ -528,6 +647,8 @@ async function update_bookmarks()
 
 	let bookmarks = ms_shadow.getElementById("ms_bookmarks");
 	ms_shadow.getElementById("ms_v_container").replaceChild(bookmarks.cloneNode(false), bookmarks); // remove all children
+	
+	// page's bookmarks
 	document.querySelectorAll(w.show_bookmarks === "2" ? "h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]" : "h1, h2, h3, h4, h5, h6").forEach(bookmark => {
 		if (bookmark.innerText === "") return;
 		let bounds = bookmark.getBoundingClientRect();
@@ -537,11 +658,25 @@ async function update_bookmarks()
 		let bookmarkTitle = document.createElement("span");
 		bookmarkIndicator.href = "#" + bookmark.id;
 		bookmarkIndicator.className = "bookmarkIndicator";
-		bookmarkIndicator.style.top = "calc(" + ((bounds.top + window.scrollY) / document.body.getBoundingClientRect().height * 100) + "vh - 13px)";
+		bookmarkIndicator.style.top = "calc(" + ((bounds.top + window.scrollY) / document.body.getBoundingClientRect().height * 100) + "vh - 10px)";
 		bookmarkTitle.innerText = bookmark.innerText.replace("\n", "");
 		bookmarkIndicator.appendChild(bookmarkTitle);
 		ms_shadow.getElementById("ms_bookmarks").appendChild(bookmarkIndicator);
 	});
+
+	// custom bookmarks
+	chrome.runtime.sendMessage({data : "bookmarks", domain : window.location.hostname}, (bookmarks) => {
+		for (let bookmark of bookmarks) {
+			let bookmarkIndicator = document.createElement("div");
+			let bookmarkTitle = document.createElement("span");
+			bookmarkIndicator.className = "custom bookmarkIndicator";
+			bookmarkIndicator.style.top = "calc("+bookmark.pos+"vh - 10px)";
+			bookmarkTitle.innerText = bookmark.text + " @ "+bookmark.pos+"%"; //TODO remove pos
+			bookmarkIndicator.appendChild(bookmarkTitle);
+			bookmarkIndicator.addEventListener("click", (e) => ms_scrollTo(0, bookmark.pos/100*document.body.getBoundingClientRect().height), false);
+			ms_shadow.getElementById("ms_bookmarks").appendChild(bookmarkIndicator);
+		}
+	} );
 }
 
 function resize_vbar()
@@ -555,19 +690,21 @@ function resize_vbar()
 		return;
 	}
 
-	let vbar_height_before = vbar.style.height;
-	let vbar_new_height = Math.max(Math.round(window.innerHeight/(Math.max(document.documentElement.scrollHeight,document.body.scrollHeight)/window.innerHeight)), 30+2*w.gap);
-	vbar.style.height = vbar_new_height+"px";
+	const vbar_new_height = Math.max(Math.round(window.innerHeight/(Math.max(document.documentElement.scrollHeight,document.body.scrollHeight)/window.innerHeight)), 30+2*w.gap);
 	
+	if(vbar.offsetHeight !== vbar_new_height){
+		ms_shadow.styleSheets[0].removeRule(ms_shadow.styleSheets[0].cssRules.length-2);
+		ms_shadow.styleSheets[0].addRule(":host", "--vbar-height: " + vbar_new_height + "px;", ms_shadow.styleSheets[0].cssRules.length-1);
+
+		show_bar("v");
+	}
+
 	if(vbar.style.display !== "inline"){
 		ms_shadow.getElementById("ms_v_container").style.display = ms_shadow.getElementById("ms_vbar_bg").style.display = vbar.style.display = "inline";
 		show_bar("v");
 		chrome.runtime.sendMessage({data:"reset_contextmenu"});
 		
 		if(window.self.frameElement || w.use_own_scroll_functions_mouse === "1") window.addEventListener("wheel", mousescroll_y, { passive : false, capture : false });
-	}
-	else if(vbar_height_before !== vbar_new_height+"px"){
-		show_bar("v");
 	}
 }
 
@@ -579,17 +716,20 @@ function resize_hbar()
 			ms_shadow.getElementById("ms_h_container").style.display = ms_shadow.getElementById("ms_hbar_bg").style.display = hbar.style.display = null;
 		return;
 	}
-	let hbar_width_before = hbar.style.width;
-	let hbar_new_width = Math.max(Math.round(window.innerWidth/(Math.max(document.documentElement.scrollWidth,document.body.scrollWidth)/window.innerWidth)), 30+2*w.gap);
-	hbar.style.width = hbar_new_width+"px";
+
+	const hbar_new_width = Math.max(Math.round(window.innerWidth/(Math.max(document.documentElement.scrollWidth,document.body.scrollWidth)/window.innerWidth)), 30+2*w.gap);
 	
+	if(hbar.offsetWidth !== hbar_new_width){
+		ms_shadow.styleSheets[0].removeRule(ms_shadow.styleSheets[0].cssRules.length-1);
+		ms_shadow.styleSheets[0].addRule(":host", "--hbar-width: " + hbar_new_width + "px;");
+
+		show_bar("h");
+	}
+
 	if(hbar.style.display !== "inline"){
 		ms_shadow.getElementById("ms_h_container").style.display = ms_shadow.getElementById("ms_hbar_bg").style.display = hbar.style.display = "inline";
 		show_bar("h");
 		chrome.runtime.sendMessage({data:"reset_contextmenu"});
-	}
-	else if(hbar_width_before !== hbar_new_width+"px"){
-		show_bar("h");
 	}
 }
 
@@ -598,10 +738,7 @@ function resize_superbar()
 	if(w.show_superbar === "0") return;
 	
 	if(vbar.style.display === "inline" && hbar.style.display === "inline")
-	{
-		ms_shadow.getElementById("ms_superbar").style.height = vbar.style.height;
-		ms_shadow.getElementById("ms_superbar").style.width = hbar.style.width;
-		
+	{		
 		if(w.show_superbar_minipage === "0")
 			ms_shadow.getElementById("ms_superbar").style.transform = "scale("+(window.innerWidth/10)/parseInt(ms_shadow.getElementById("ms_superbar").style.width)+","+(window.innerHeight/10)/parseInt(ms_shadow.getElementById("ms_superbar").style.height)+")";
 		
@@ -638,7 +775,6 @@ function drag_v(e)
 	{
 		let posy = e.clientY;
 		let new_top = Math.round((posy - dragy)<=0? 0 : ((posy - dragy)>=window.innerHeight-vbar.offsetHeight?window.innerHeight-vbar.offsetHeight : (posy - dragy)));
-		vbar.style.top = new_top+"px";
 		window.scroll(window.pageXOffset, Math.round(new_top/(window.innerHeight-vbar.offsetHeight)*window.scrollMaxY));
 	}
 	
@@ -667,10 +803,8 @@ function drag_h(e)
 
 		if(w.vbar_at_left=="0"){
 			new_left = Math.round((posx - dragx)<=0 ? 0 : ((posx - dragx)>=window.innerWidth-hbar.offsetWidth-w.hover_size ? window.innerWidth-hbar.offsetWidth-w.hover_size : posx-dragx));
-			hbar.style.left = new_left+"px";
 		}else{
 			new_left = Math.round((posx - dragx)<=parseInt(w.hover_size) ? 0 : ((posx - dragx)>=window.innerWidth-hbar.offsetWidth ? window.innerWidth-hbar.offsetWidth-w.hover_size : posx-dragx-w.hover_size));
-			hbar.style.left = new_left+parseInt(w.hover_size)+"px";
 		}
 		window.scroll(Math.round((new_left/(window.innerWidth-hbar.offsetWidth-w.hover_size)*window.scrollMaxX)), window.pageYOffset);
 	}
@@ -695,35 +829,35 @@ function drag_super(e)
 	const superbar = ms_shadow.getElementById("ms_superbar");
 	superbar.setPointerCapture(e.pointerId);
 
-	let dragy = e.clientY - parseInt(superbar.style.top);
-	let dragx = e.clientX - parseInt(superbar.style.left);
-	
+	const dragy = e.clientY - superbar.offsetTop;
+	const dragx = e.clientX - superbar.offsetLeft;
+	if(w.show_superbar_minipage === "1") { // superbar gets moved on overlay; scrolling only takes place after releasing the mouse
+		superbar.style.top = superbar.offsetTop + "px";
+		superbar.style.left = superbar.offsetLeft + "px";
+		superbar.style.animation = "none";
+	}
+
 	document.addEventListener("pointermove", drag_super_move, true);
-	function drag_super_move()
+	function drag_super_move(e)
 	{
 		superbar.style.display = "inline";
-		let posx = e.clientX;
-		let posy = e.clientY;
-		
-		let new_top = Math.round((posy - dragy)<=0? 0 : ((posy - dragy)>=window.innerHeight-superbar.offsetHeight?window.innerHeight-superbar.offsetHeight : (posy - dragy)));
-		superbar.style.top =  new_top+"px";
-		
+		const posx = e.clientX;
+		const posy = e.clientY;
+		const new_top = Math.round((posy - dragy)<=0? 0 : ((posy - dragy)>=window.innerHeight-superbar.offsetHeight?window.innerHeight-superbar.offsetHeight : (posy - dragy)));
+
 		if(w.show_superbar_minipage === "0"){
 			let new_left;
 			if(w.vbar_at_left === "0"){
 				new_left = Math.round(((posx - dragx)<=0 ? 0 : ((posx - dragx)>=window.innerWidth-superbar.offsetWidth-w.hover_size ? window.innerWidth-superbar.offsetWidth-w.hover_size : posx-dragx)));
-				superbar.style.left = new_left+"px";
 			}else{
 				new_left = Math.round((posx - dragx)<=parseInt(w.hover_size) ? 0 : ((posx - dragx)>=window.innerWidth-superbar.offsetWidth ? window.innerWidth-superbar.offsetWidth-w.hover_size : posx-dragx-w.hover_size));
-				superbar.style.left = new_left+parseInt(w.hover_size)+"px";
 			}
-			window.scroll(new_left/(window.innerWidth-superbar.offsetWidth-w.hover_size)*window.scrollMaxX, parseInt(superbar.style.top)/(window.innerHeight-superbar.offsetHeight)*window.scrollMaxY);
-			
-			vbar.style.top = superbar.style.top;
-			hbar.style.left = superbar.style.left;
+			window.scroll(new_left/(window.innerWidth-superbar.offsetWidth-w.hover_size)*window.scrollMaxX, new_top/(window.innerHeight-superbar.offsetHeight)*window.scrollMaxY);
 		}
-		else
+		else{
+			superbar.style.top = new_top+"px";
 			superbar.style.left = ((posx - dragx)<=0? 0 : ((posx - dragx)>=window.innerWidth-superbar.offsetWidth?window.innerWidth-superbar.offsetWidth : (posx - dragx))) + "px";		
+		}
 	}
 	
 	document.addEventListener("pointerup", drag_super_end, { once: true, capture: true });
@@ -733,7 +867,7 @@ function drag_super(e)
 			document.body.style.transform = null;
 			document.body.style.transformOrigin = null;
 			window.scroll(parseInt(superbar.style.left)/(window.innerWidth-superbar.offsetWidth)*window.scrollMaxX, parseInt(superbar.style.top)/(window.innerHeight-superbar.offsetHeight)*window.scrollMaxY);
-			
+			superbar.style.animation = superbar.style.left = superbar.style.top = null;
 			ms_shadow.getElementById("ms_vbar_bg").style.display = ms_shadow.getElementById("ms_hbar_bg").style.display = "inline";
 			vbar.style.display = hbar.style.display = "inline";
 		}
@@ -745,31 +879,20 @@ function drag_super(e)
 	}
 }
 
+let vbar_top_before = -1;
+let hbar_left_before = -1;
 function reposition_bars()
 {
-	let vbar_top_before = vbar.style.top;
-	let hbar_left_before = hbar.style.left;
-	
-	if(vbar.style.display === "inline")
-		vbar.style.top = Math.round(window.pageYOffset/window.scrollMaxY*(window.innerHeight-vbar.offsetHeight))+"px";
-	if(hbar.style.display === "inline")
-	{
-		let left = Math.round(window.pageXOffset/window.scrollMaxX*(window.innerWidth-w.hover_size-hbar.offsetWidth));
-		hbar.style.left = left+(w.vbar_at_left === "1" ? parseInt(w.hover_size) : 0)+"px";
-	}
-	
 	if(w.show_superbar === "1")
 	{
 		if(vbar.style.display === "inline" && hbar.style.display === "inline")
 		{
-			ms_shadow.getElementById("ms_superbar").style.top = vbar.style.top;
-			ms_shadow.getElementById("ms_superbar").style.left = hbar.style.left;
 		}
 		else if(ms_shadow.getElementById("ms_superbar").style.opacity !== "1") //if superbar doesn't get dragged (minipage only -> no bars)
 			window.setTimeout(function(){ ms_shadow.getElementById("ms_superbar").style.display = null; }, parseInt(w.show_how_long));
 	}
-	if(vbar_top_before !== vbar.style.top)		show_bar("v");
-	if(hbar_left_before !== hbar.style.left)	show_bar("h");
+	if(vbar_top_before !== vbar.offsetTop) 		{ show_bar("v"); vbar_top_before = vbar.offsetTop; }
+	if(hbar_left_before !== hbar.offsetLeft) 	{ show_bar("h"); hbar_left_before = hbar.offsetLeft; }
 	
 	hide_bars();
 }
@@ -785,14 +908,15 @@ function scroll_bg_v(e)
 	else if	((window.innerHeight-e.clientY) < 50 && w.bg_special_ends === "1")	scroll_End();
 	else // scroll one more page until mouse position is reached if mouse is kept pressed:
 	{
-		window.addEventListener("pointerup", () => window.clearTimeout(t), {capture: true, once: true});
-		scroll_bg_v_inner(e.clientY, parseInt(vbar.style.top), Math.round(window.innerHeight/w.scroll_velocity));
+		console.log("bg starting");
+		window.addEventListener("pointerup", () => {console.log("clearing", t); window.clearTimeout(t)}, {capture: true, passive: false, once: true});
+		scroll_bg_v_inner(e.clientY, vbar.offsetTop, Math.round(window.innerHeight/w.scroll_velocity));
 	}
 }
 function scroll_bg_v_inner(mouse, vbar_top, timeout)
 {
-	let vbar_height = parseInt(vbar.style.height);
-
+	let vbar_height = vbar.offsetHeight;
+	console.log("bg scrolling inner", mouse, vbar_top, timeout);
 	if(mouse > vbar_top + vbar_height)
 	{
 		scroll_PageDown();
@@ -805,6 +929,7 @@ function scroll_bg_v_inner(mouse, vbar_top, timeout)
 	}
 	
 	t = window.setTimeout(scroll_bg_v_inner, timeout, mouse, vbar_top, timeout);
+	console.log("set timeout", t);
 }
 
 function scroll_bg_h(e){
@@ -1032,11 +1157,11 @@ let scroll_velocity;
 let scroll_timeout_id_x; let by_x = 0;
 let scroll_timeout_id_y; let by_y = 0;
 
-/*function ms_scrollTo(x, y){
+function ms_scrollTo(x, y){
 	x = x - window.pageXOffset;
 	y = y - window.pageYOffset;
 	ms_scrollBy(x, y);
-}*/
+}
 function ms_scrollBy(x, y){ if(x !== 0) ms_scrollBy_x(x);	if(y !== 0) ms_scrollBy_y(y); }
 
 function ms_scrollBy_x_mouse(x)
@@ -1113,14 +1238,7 @@ function ms_scroll_start_x()
 	window.removeEventListener("scroll", reposition_bars, false);
 	
 	show_bar("h");
-	if(by_x <0){
-		hbar.style.transition = "left "+window.pageXOffset/scroll_velocity+"ms linear";
-		hbar.style.left = "0px";
-	}
-	else{
-		hbar.style.transition = "left "+(window.scrollMaxX-window.pageXOffset)/scroll_velocity+"ms linear";
-		hbar.style.left = window.innerWidth-parseInt(hbar.style.width)-(w.vbar_at_left==="0"?parseInt(w.gap)+parseInt(w.hover_size):0)+"px";
-	}
+	
 	ms_scroll_inner_x(Date.now());
 	function ms_scroll_inner_x(lastTick)
 	{
@@ -1143,14 +1261,7 @@ function ms_scroll_start_y()
 	window.removeEventListener("scroll", reposition_bars, false);
 	
 	show_bar("v");
-	if(by_y < 0){
-		vbar.style.transition = "top "+window.pageYOffset/scroll_velocity+"ms linear";
-		vbar.style.top = "0px";
-	}
-	else{
-		vbar.style.transition = "top "+(window.scrollMaxY-window.pageYOffset)/scroll_velocity+"ms linear";
-		vbar.style.top = window.innerHeight-parseInt(vbar.style.height)+"px";
-	}
+	
 	ms_scroll_inner_y(Date.now());
 	function ms_scroll_inner_y(lastTick)
 	{
@@ -1239,28 +1350,24 @@ function arrowkeyscroll(e)
 	{
 		let curTick = Date.now();
 		window.scrollBy(0, (curTick - lastTick)*w.keyscroll_velocity);
-		vbar.style.top = (window.pageYOffset/window.scrollMaxY*(window.innerHeight-parseInt(vbar.style.height)))+"px";
 		scroll_timeout_id_y = window.requestAnimationFrame( function(){ arrowkeyscroll_down(curTick); } );
 	}
 	function arrowkeyscroll_up(lastTick)
 	{
 		let curTick = Date.now();
 		window.scrollBy(0, (lastTick - curTick)*w.keyscroll_velocity);
-		vbar.style.top = (window.pageYOffset/window.scrollMaxY*(window.innerHeight-parseInt(vbar.style.height)))+"px";
 		scroll_timeout_id_y = window.requestAnimationFrame( function(){ arrowkeyscroll_up(curTick); } );
 	}
 	function arrowkeyscroll_right(lastTick)
 	{
 		let curTick = Date.now();
 		window.scrollBy((curTick - lastTick)*w.keyscroll_velocity, 0);
-		hbar.style.left = window.pageXOffset/window.scrollMaxX*(window.innerWidth-w.hover_size-parseInt(hbar.style.width))+(w.vbar_at_left === "1" ? parseInt(w.hover_size) : 0)+"px";
 		scroll_timeout_id_x = window.requestAnimationFrame( function(){ arrowkeyscroll_right(curTick); } );
 	}
 	function arrowkeyscroll_left(lastTick)
 	{
 		let curTick = Date.now();
 		window.scrollBy((lastTick - curTick)*w.keyscroll_velocity, 0);
-		hbar.style.left = window.pageXOffset/window.scrollMaxX*(window.innerWidth-w.hover_size-parseInt(hbar.style.width))+(w.vbar_at_left === "1" ? parseInt(w.hover_size) : 0)+"px";
 		scroll_timeout_id_x = window.requestAnimationFrame( function(){ arrowkeyscroll_left(curTick); } );
 	}
 }

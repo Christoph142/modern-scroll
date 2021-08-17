@@ -1,7 +1,18 @@
 ﻿
-v 4.0.1
+v 4.1 backlog
 ---------
+new: add own bookmarks (click at bar, save pos)
+new: separate dark mode / incognito profile for web pages
+upd: various translations (thx to all translators)
+
+v 4.1
+---------
+new: let browser determine and update scroll bar positions
+new: allow for pages' dynamical theme color changes
 fix: modern scroll doesn't show up at www.nidirect.gov.uk
+fix: Space bar scrolls and plays / pauses videos at the same time on YouTube
+fix: superbar not working
+fix: clicking the background bars sometimes scrolls by two pages at once
 upd: several smaller adjustments of the background script
 
 v 4.0
