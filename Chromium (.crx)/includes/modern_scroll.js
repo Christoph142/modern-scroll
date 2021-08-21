@@ -131,7 +131,7 @@ async function add_ms()
 	let ms_container = document.createElement("div");
 	ms_container.id = "modern_scroll";
 	ms_shadow = typeof ms_container.attachShadow == "function" ? ms_container.attachShadow({mode: "open"}) : ms_container.createShadowRoot();
-	try{ document.documentElement.appendChild(ms_container); }catch(e){ document.body.appendChild(ms_container); }
+	try{ document.documentElement.appendChild(ms_container); }catch(e){ document.body?.appendChild(ms_container); }
 	
 	chrome.storage.onChanged.addListener((changes, area) => {
 		if (area !== "sync") return;
@@ -172,13 +172,13 @@ function remove_ms()
 	chrome.runtime.onMessage.removeListener(handleRuntimeMessage);
 
 	window.removeEventListener("resize", adjust_ui_fullscreen_change, false);
-	document.removeEventListener( document.fullscreenEnabled !== null ? "fullscreenchange" : "webkitfullscreenchange", adjust_ui_fullscreen_change, false);
+	document.removeEventListener("fullscreenchange", adjust_ui_fullscreen_change, false);
 	document.removeEventListener("readystatechange", add_dimension_checkers, false);
 
 	if (resize_observer) resize_observer.disconnect();
 	DOM_observer.disconnect();
 	height_observer.disconnect();
-	document.body.removeEventListener("transitionend", check_dimensions, false);
+	document.body?.removeEventListener("transitionend", check_dimensions, false);
 	 	
 	window.removeEventListener("load", check_dimensions, false);
 	window.removeEventListener("resize", check_dimensions, false);
@@ -204,7 +204,7 @@ function remove_ms()
 	delete window.modernscroll;
 
 	try		 { document.documentElement.removeChild(document.getElementById("modern_scroll"));
-	}catch(e){ document.body.removeChild(document.getElementById("modern_scroll")); }
+	}catch(e){ document.body?.removeChild(document.getElementById("modern_scroll")); }
 	
 	delete window.scrollMaxX; delete window.scrollMaxY
 	isFullscreen = null;
@@ -476,12 +476,14 @@ function add_dimension_checkers()
 	{
 		window.addEventListener("resize", check_dimensions, false);
 		if(document.URL.substr(0,19) !== "chrome-extension://") window.addEventListener("resize", adjust_ui_fullscreen_change, false);
-		document.addEventListener( document.fullscreenEnabled !== null ? "fullscreenchange" : "webkitfullscreenchange", adjust_ui_fullscreen_change, false);
+		document.addEventListener("fullscreenchange", adjust_ui_fullscreen_change, false);
 		
-		if (resize_observer) resize_observer.observe(document.body);
-		document.body.addEventListener("transitionend", check_dimensions, false);
-		DOM_observer.observe(document.body, { childList:true, subtree:true });
-		height_observer.observe(document.body, { subtree:true, attributes:true, attributeFilter:["height", "style"] });
+		if(document.body) {
+			if (resize_observer) resize_observer.observe(document.body);
+			document.body.addEventListener("transitionend", check_dimensions, false);
+			DOM_observer.observe(document.body, { childList:true, subtree:true });
+			height_observer.observe(document.body, { subtree:true, attributes:true, attributeFilter:["height", "style"] });
+		}
 		
 		let themetag = document.querySelector("meta[name='theme-color']");
 		if(themetag)
