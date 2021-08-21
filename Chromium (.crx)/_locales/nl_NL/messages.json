@@ -49,7 +49,7 @@
 	"autohide_element_bars" : 			{ "message" : "Paginascrollbalken automatisch verbergen" },
 	"explanation_autohide_element_bars":{ "message" : "Dit werkt helaas niet goed wegens weergaveproblemen. Je kunt de optie inschakelen, maar scrollbalken worden dan niet altijd getoond." },
 	"superbar" : 						{ "message" : "Superbalk" },
-	"show_superbar" : 					{ "message" : "'Superbalk' tonen" },
+	"show_superbar" : 					{ "message" : "‘Superbalk’ tonen" },
 	"show_superbar_minipage" : 			{ "message" : "Miniversie van website tonen op de achtergrond als je sleept met de superbalk" },
 	"superbar_opacity" : 				{ "message" : "Superbalkdoorzichtigheid bij eroverheen zweven" },
 	"bookmarks" : 						{ "message" : "Bladwijzers" },
