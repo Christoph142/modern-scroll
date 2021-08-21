@@ -336,7 +336,7 @@ function inject_css()
 		@scroll-timeline vertical-scroll-timeline { orientation: vertical; time-range: 1s; }\n\
 		@scroll-timeline horizontal-scroll-timeline { orientation: horizontal; time-range: 1s; }\n\n";
 
-	if(w.fullscreen_only === "0") global_ms_style += "html, body { scrollbar-width: none !important; }\n\
+	if(w.fullscreen_only === "0") global_ms_style += "html, body { scrollbar-width: none !important; scroll-behavior: auto !important; }\n\
 		html::-webkit-scrollbar, body::-webkit-scrollbar{ display:none !important; width:0 !important; height:0 !important; }\n";
 
 	if(w.style_element_bars === "1"){ global_ms_style +=
@@ -356,7 +356,7 @@ function inject_css()
 		global_style.setAttribute("type","text/css");
 		global_style.id = "ms_style";
 		global_style.innerHTML = global_ms_style;
-		document.querySelector("head").appendChild(global_style);
+		document.querySelector("head")?.appendChild(global_style);
 	}
 }
 
