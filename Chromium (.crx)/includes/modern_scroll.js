@@ -600,8 +600,8 @@ function check_dimensions()
 }
 function set_new_scrollMax_values()
 {
-	let new_scrollWidth = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth);
-	let new_scrollHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+	let new_scrollWidth = Math.max(document.documentElement?.scrollWidth || 0, document.body?.scrollWidth || 0);
+	let new_scrollHeight = Math.max(document.documentElement?.scrollHeight || 0, document.body?.scrollHeight || 0);
 	
 	window.scrollMaxX = (new_scrollWidth > window.innerWidth+1 &&
 						 window.getComputedStyle(document.documentElement).overflowX !== "hidden" &&

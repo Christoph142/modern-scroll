@@ -13,7 +13,8 @@ fix: modern scroll doesn't show up at www.nidirect.gov.uk
 fix: Space bar scrolls and plays / pauses videos at the same time on YouTube
 fix: superbar not working
 fix: clicking the background bars sometimes scrolls by two pages at once
-upd: several smaller adjustments of the background script
+fix: lots of console errors on various pages
+upd: async rewrite of the extension's core structure
 
 v 4.0
 ---------
