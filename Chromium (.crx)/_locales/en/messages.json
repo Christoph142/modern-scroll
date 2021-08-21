@@ -105,7 +105,6 @@
 	"disabled" :						{ "message" : "modern scroll has been disabled on $DOMAIN$", "placeholders" : {"domain" : { "content" : "$1", "example" : "example.org" }}},
 	"report_domain" :					{ "message" : "If there's an issue with the page, please report it so it can get fixed for everybody."},
 	"rate" :		 					{ "message" : "Rate modern scroll"},
-	"twitter" :							{ "message" : "Follow me on Twitter"},
 	"buymeacoffee" :					{ "message" : "Buy me some sushi"},
 	"ok" :								{ "message" : "OK"},
 	"cancel" :							{ "message" : "Cancel"},
