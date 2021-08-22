@@ -268,10 +268,10 @@ function save_set(overwrite){
 	
 	for(let setting in prefs){
 		if(["saved_sets", "custom_domains", "baseDevicePixelRatio", "last_dialog_time", "dialogs_shown"].includes(setting)) continue;
-		bg.saved_sets[document.querySelector("#save_set").textContent][setting] = prefs[setting];
+		prefs.saved_sets[document.querySelector("#save_set").textContent][setting] = prefs[setting];
 	}
 	
-	chrome.storage.sync.set({ "saved_sets" : bg.saved_sets });
+	chrome.storage.sync.set({ "saved_sets" : prefs.saved_sets });
 	
 	if(!overwrite) { // don't add a new option if one gets overwritten
 		let set_name = document.querySelector("#save_set").textContent;
