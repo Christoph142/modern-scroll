@@ -34,12 +34,12 @@ chrome.tabs.onZoomChange.addListener( zoomInfo =>
 	chrome.tabs.sendMessage(zoomInfo.tabId, { "zoomFactor" : zoomInfo.newZoomFactor })
 );
 
-chrome.runtime.onInstalled.addListener(recreate_contextmenus);
+chrome.runtime.onInstalled.addListener(create_contextmenus);
+async function create_contextmenus() {
+	chrome.storage.sync.get( { "saved_sets" : {} }, storage => recreate_contextmenus(storage.saved_sets));
+}
 async function recreate_contextmenus(saved_sets = {})
 {
-	//TODO
-	custom_domains = {};
-
 	chrome.contextMenus.removeAll(() => {
 
 	chrome.contextMenus.create({ "id" : "ms_contextmenu_enable",
@@ -108,34 +108,48 @@ async function recreate_contextmenus(saved_sets = {})
 								 "title" : "DELETE BOOKMARK", //TODO: chrome.i18n.getMessage("contextmenu_customize"),
 								 "contexts" : ["all"],
 								 "visible" : false});
+	}); // end of removeAll
+}
 
-	chrome.contextMenus.onClicked.addListener( function(info, tab) {
-		if (info.menuItemId === "ms_contextmenu_customize_new_set")
-		{
-			chrome.runtime.openOptionsPage();
-		}
-		else if (info.menuItemId === "ms_contextmenu_enable" || info.menuItemId === "ms_contextmenu_customize_current_set")
-		{
+chrome.contextMenus.onClicked.addListener(handle_contextmenu_click);
+async function handle_contextmenu_click(info, tab) {
+	if (info.menuItemId === "ms_contextmenu_customize_new_set")
+	{
+		chrome.runtime.openOptionsPage();
+	}
+	else if (info.menuItemId === "ms_contextmenu_enable" || info.menuItemId === "ms_contextmenu_customize_current_set")
+	{
+		chrome.storage.sync.get( { "custom_domains" : {} }, storage => {
+			let custom_domains = storage.custom_domains;
 			delete custom_domains[get_domain(info.pageUrl)]["set"];
 			chrome.storage.sync.set( { "custom_domains" : custom_domains });
-		}
-		else if (info.menuItemId.includes("ms_contextmenu_customize_set_"))
-		{
+		});
+	}
+	else if (info.menuItemId.includes("ms_contextmenu_customize_set_"))
+	{
+		chrome.storage.sync.get( { "custom_domains" : {} }, storage => {
+			let custom_domains = storage.custom_domains;
 			let domain = get_domain(info.pageUrl);
 			if (!custom_domains.hasOwnProperty(domain)) custom_domains[domain] = {};
 			custom_domains[domain]["set"] = info.menuItemId.split("ms_contextmenu_customize_set_")[1];
 			chrome.storage.sync.set( { "custom_domains" : custom_domains });
-		}
-		else if (info.menuItemId === "ms_contextmenu_disable")
-		{
+		});
+	}
+	else if (info.menuItemId === "ms_contextmenu_disable")
+	{
+		chrome.storage.sync.get( { "custom_domains" : {} }, storage => {
+			let custom_domains = storage.custom_domains;
 			let domain = get_domain(info.pageUrl);
 			if (!custom_domains.hasOwnProperty(domain)) custom_domains[domain] = {};
 			custom_domains[domain]["set"] = false;
 			chrome.storage.sync.set( { "custom_domains" : custom_domains });
 			chrome.tabs.create({ url : "options/options.html#disabled?" + get_domain(info.pageUrl) });
-		}
-		else if (info.menuItemId === "ms_contextmenu_bookmark_create")
-		{
+		});
+	}
+	else if (info.menuItemId === "ms_contextmenu_bookmark_create")
+	{
+		chrome.storage.sync.get( { "custom_domains" : {} }, storage => {
+			let custom_domains = storage.custom_domains;
 			//TODO get current scroll pos from page
 			let domain = get_domain(info.pageUrl);
 			if (!custom_domains.hasOwnProperty(domain)) custom_domains[domain] = {};
@@ -146,19 +160,16 @@ async function recreate_contextmenus(saved_sets = {})
 			chrome.storage.sync.set( { "custom_domains" : custom_domains });
 			
 			console.log("New bookmark at " + domain + " (pos = " + new_bookmark.pos);
-		}
-		else if (info.menuItemId === "ms_contextmenu_bookmark_edit" || info.menuItemId === "ms_contextmenu_bookmark_delete")
-		{
-			console.log(info.menuItemId + " at " + get_domain(info.pageUrl)); //TODO
-		}
-		else
-		{
-			//console.log(get_domain(info.pageUrl) + " in tab " + tab.id + " is now " + (info.menuItemId === "ms_contextmenu_hide" ? "invisible" : "visible"));
-			chrome.tabs.sendMessage(tab.id, { "data" : "ms_toggle_visibility" });
-		}
-	});
-
-	}); // end of removeAll
+		});
+	}
+	else if (info.menuItemId === "ms_contextmenu_bookmark_edit" || info.menuItemId === "ms_contextmenu_bookmark_delete")
+	{
+		console.log(info.menuItemId + " at " + get_domain(info.pageUrl)); //TODO
+	}
+	else
+	{
+		chrome.tabs.sendMessage(tab.id, { "data" : "ms_toggle_visibility" });
+	}
 }
 
 async function add_contextmenu_set(set)

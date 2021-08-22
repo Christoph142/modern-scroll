@@ -102,8 +102,8 @@ async function load_prefs() {
 		custom_domains :				{}
 		}, storage => {
 			w = storage;
-
-			const domain = get_domain(window.location.hostname);
+			
+			const domain = window.location.hostname;
 			if (!w.custom_domains.hasOwnProperty(domain)) { resolve(); return; }
 
 			let domain_props = w.custom_domains[domain];
@@ -120,10 +120,6 @@ async function load_prefs() {
 	));
 }
 
-function get_domain(url) {
-	return url.split("?")[0].split("#")[0].split("/")[2];
-}
-
 async function add_ms()
 {
 	if(document.getElementById("modern_scroll")) return;
@@ -133,16 +129,9 @@ async function add_ms()
 	ms_shadow = typeof ms_container.attachShadow == "function" ? ms_container.attachShadow({mode: "open"}) : ms_container.createShadowRoot();
 	try{ document.documentElement.appendChild(ms_container); }catch(e){ document.body?.appendChild(ms_container); }
 	
-	chrome.storage.onChanged.addListener((changes, area) => {
-		if (area !== "sync") return;
-
-		Object.assign(w, ...Object.entries(changes).map(([k, v]) => ({[k]: v.newValue})));
-
-		if (!document.hidden)	update_ms();
-	});
-
 	await load_prefs();
 
+	chrome.storage.onChanged.addListener(update_prefs);
 	chrome.runtime.onMessage.addListener(handleRuntimeMessage);
 	chrome.runtime.sendMessage({ data: "get_zoom" });
 		
@@ -165,10 +154,18 @@ async function add_ms()
 	add_contextmenu();
 }
 
+async function update_prefs(changes, area) {
+	if (area !== "sync") return;
+
+	Object.assign(w, ...Object.entries(changes).map(([k, v]) => ({[k]: v.newValue})));
+	if (!document.hidden)	update_ms();
+}
+
 function remove_ms()
 {
 	if(!document.getElementById("modern_scroll")) return;
 	
+	chrome.storage.onChanged.removeListener(update_prefs);
 	chrome.runtime.onMessage.removeListener(handleRuntimeMessage);
 
 	window.removeEventListener("resize", adjust_ui_fullscreen_change, false);
@@ -528,7 +525,7 @@ function add_contextmenu()
 }
 function contextmenu_click()
 {
-	if(document.getElementById("modern_scroll").style.display === "none")	show_ui();
+	if(document.querySelector("#modern_scroll").style.display === "none")	show_ui();
 	else																	hide_ui();
 }
 
@@ -551,7 +548,7 @@ function add_external_interface()
 		if(w.show_superbar === "1")
 		{
 			w.show_superbar = "0";
-			ms_shadow.getElementById("ms_superbar").style.display = null;
+			ms_shadow.querySelector("#ms_superbar").style.display = null;
 		}
 		else
 		{
@@ -579,10 +576,10 @@ function show_ui()
 }
 function hide_ui()
 {
-	document.getElementById("modern_scroll").style.display = "none";
+	document.querySelector("#modern_scroll").style.setProperty("display", "none", "important");
 	if(w.contextmenu_show_when !== "1") chrome.runtime.sendMessage({data:"show_contextmenu", string:"show"});
-	document.getElementById("modern_scroll").removeEventListener("pointerover", send_contextmenu_show_msg_to_bg, false);
-	document.getElementById("modern_scroll").removeEventListener("pointerout", send_contextmenu_hide_msg_to_bg, false);
+	document.querySelector("#modern_scroll").removeEventListener("pointerover", send_contextmenu_show_msg_to_bg, false);
+	document.querySelector("#modern_scroll").removeEventListener("pointerout", send_contextmenu_hide_msg_to_bg, false);
 }
 function send_contextmenu_show_msg_to_bg(){ chrome.runtime.sendMessage({data:"show_contextmenu", string:"hide"}); }
 function send_contextmenu_hide_msg_to_bg(){ chrome.runtime.sendMessage({data:"hide_contextmenu"}); }
