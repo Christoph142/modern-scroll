@@ -57,8 +57,11 @@ function update_slider_value(target)
 
 async function save_new_value(key, value)
 {
+	if (!prefs) return;
+
 	let saveobject = {};
 	saveobject[key] = value;
+	prefs[key] = value;
 	chrome.storage.sync.set(saveobject);
 }
 
