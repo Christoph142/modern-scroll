@@ -8,6 +8,7 @@ let vbar;					// \ pass by reference!
 let hbar;					// /
 let ms_shadow;				// shadow DOM root
 let isFullscreen = true;
+let js_repositioning = !CSS.supports("animation-timeline: works"); // let browser reposition bars automatically with CSS if available
 
 (function check_if_tab_needs_bars()
 {
@@ -284,6 +285,7 @@ function inject_css()
 		 #ms_v_container #ms_bookmarks{ opacity: 0; transition:opacity 0.5s "+w.show_how_long+"ms; }\n\
 		 #ms_v_container:hover #ms_bookmarks{ opacity: 1; transition: opacity 0.1s; }\n\
 		\n\
+		 @supports (animation-timeline: works) {\n\
 		 @keyframes scrolldown {\n\
 		    to { top: var(--max-top); }\n\
 		 }\n\
@@ -301,6 +303,7 @@ function inject_css()
 		 #ms_superbar {\n\
 		    animation: 1s linear forwards scrolldown, 1s linear forwards scrollright;\n\
 			animation-timeline: vertical-scroll-timeline, horizontal-scroll-timeline;\n\
+		 }\n\
 		 }\n\
 		\n\
 		 .dragged #ms_vbar_bg, .dragged #ms_hbar_bg{ opacity:"+(w.show_bg_bars_when==="1"?"0":(w.opacity/100))+"; }\n\
@@ -328,11 +331,14 @@ function inject_css()
 	/* hide page's default bars and style all scrollbars within the page (optionally autohide when not hovered or focused): */
 	if(w.style_element_bars === "0" && w.fullscreen_only === "1") return;
 	
-	/* hide page's default scroll bars: */
+	/* reset all properties on modern scroll and define scroll-timeline */
 	let global_ms_style = "#modern_scroll { all: initial !important; }\n\n\
+		@supports (animation-timeline: works) {\n\
 		@scroll-timeline vertical-scroll-timeline { orientation: vertical; time-range: 1s; }\n\
-		@scroll-timeline horizontal-scroll-timeline { orientation: horizontal; time-range: 1s; }\n\n";
+		@scroll-timeline horizontal-scroll-timeline { orientation: horizontal; time-range: 1s; }\n\
+		}\n\n";
 
+	/* hide page's default scroll bars: */
 	if(w.fullscreen_only === "0") global_ms_style += "html, body { scrollbar-width: none !important; scroll-behavior: auto !important; }\n\
 		html::-webkit-scrollbar, body::-webkit-scrollbar{ display:none !important; width:0 !important; height:0 !important; }\n";
 
@@ -767,13 +773,14 @@ function drag_v(e)
 	vbar.setPointerCapture(e.pointerId); // keep getting the events even when moving outside the containing page's scope
 
 	drag_mode("v_container");
-	let dragy = e.clientY - vbar.offsetTop;
+	const dragy = e.clientY - vbar.offsetTop;
 
 	document.addEventListener("pointermove", drag_v_move, true);
 	function drag_v_move(e)
 	{
-		let posy = e.clientY;
-		let new_top = Math.round((posy - dragy)<=0? 0 : ((posy - dragy)>=window.innerHeight-vbar.offsetHeight?window.innerHeight-vbar.offsetHeight : (posy - dragy)));
+		const posy = e.clientY;
+		const new_top = Math.round((posy - dragy)<=0? 0 : ((posy - dragy)>=window.innerHeight-vbar.offsetHeight?window.innerHeight-vbar.offsetHeight : (posy - dragy)));
+		if (js_repositioning) vbar.style.top = new_top + "px";
 		window.scroll(window.pageXOffset, Math.round(new_top/(window.innerHeight-vbar.offsetHeight)*window.scrollMaxY));
 	}
 	
@@ -792,18 +799,20 @@ function drag_h(e)
 	hbar.setPointerCapture(e.pointerId);
 
 	drag_mode("h_container");
-	let dragx = e.clientX - hbar.offsetLeft;
+	const dragx = e.clientX - hbar.offsetLeft;
 	
 	document.addEventListener("pointermove", drag_h_move, true);
 	function drag_h_move(e)
 	{
-		let posx = e.clientX;
+		const posx = e.clientX;
 		let new_left;
 
 		if(w.vbar_at_left=="0"){
 			new_left = Math.round((posx - dragx)<=0 ? 0 : ((posx - dragx)>=window.innerWidth-hbar.offsetWidth-w.hover_size ? window.innerWidth-hbar.offsetWidth-w.hover_size : posx-dragx));
+			if (js_repositioning) hbar.style.left = new_left + "px";
 		}else{
 			new_left = Math.round((posx - dragx)<=parseInt(w.hover_size) ? 0 : ((posx - dragx)>=window.innerWidth-hbar.offsetWidth ? window.innerWidth-hbar.offsetWidth-w.hover_size : posx-dragx-w.hover_size));
+			if (js_repositioning) hbar.style.left = new_left + parseInt(w.hover_size) + "px";
 		}
 		window.scroll(Math.round((new_left/(window.innerWidth-hbar.offsetWidth-w.hover_size)*window.scrollMaxX)), window.pageYOffset);
 	}
@@ -882,10 +891,26 @@ let vbar_top_before = -1;
 let hbar_left_before = -1;
 function reposition_bars()
 {
+	if (js_repositioning)
+	{
+		if(vbar.style.display === "inline")
+			vbar.style.top = Math.round(window.pageYOffset/window.scrollMaxY*(window.innerHeight-vbar.offsetHeight))+"px";
+		if(hbar.style.display === "inline")
+		{
+			let left = Math.round(window.pageXOffset/window.scrollMaxX*(window.innerWidth-w.hover_size-hbar.offsetWidth));
+			hbar.style.left = left+(w.vbar_at_left === "1" ? parseInt(w.hover_size) : 0)+"px";
+		}
+	}
+
 	if(w.show_superbar === "1")
 	{
 		if(vbar.style.display === "inline" && hbar.style.display === "inline")
 		{
+			if (js_repositioning)
+			{
+				ms_shadow.getElementById("ms_superbar").style.top = vbar.style.top;
+				ms_shadow.getElementById("ms_superbar").style.left = hbar.style.left;
+			}
 		}
 		else if(ms_shadow.getElementById("ms_superbar").style.opacity !== "1") //if superbar doesn't get dragged (minipage only -> no bars)
 			window.setTimeout(function(){ ms_shadow.getElementById("ms_superbar").style.display = null; }, parseInt(w.show_how_long));
@@ -1237,6 +1262,18 @@ function ms_scroll_start_x()
 	window.removeEventListener("scroll", reposition_bars, false);
 	
 	show_bar("h");
+
+	if (js_repositioning)
+	{
+		if(by_x < 0){
+			hbar.style.transition = "left "+window.pageXOffset/scroll_velocity+"ms linear";
+			hbar.style.left = "0px";
+		}
+		else{
+			hbar.style.transition = "left "+(window.scrollMaxX-window.pageXOffset)/scroll_velocity+"ms linear";
+			hbar.style.left = window.innerWidth-hbar.offsetWidth-(w.vbar_at_left==="0"?parseInt(w.gap)+parseInt(w.hover_size):0)+"px";
+		}
+	}
 	
 	ms_scroll_inner_x(Date.now());
 	function ms_scroll_inner_x(lastTick)
@@ -1261,6 +1298,18 @@ function ms_scroll_start_y()
 	
 	show_bar("v");
 	
+	if (js_repositioning)
+	{
+		if (by_y < 0) {
+			vbar.style.transition = "top "+window.pageYOffset/scroll_velocity+"ms linear";
+			vbar.style.top = "0px";
+		}
+		else {
+			vbar.style.transition = "top "+(window.scrollMaxY-window.pageYOffset)/scroll_velocity+"ms linear";
+			vbar.style.top = window.innerHeight-vbar.offsetHeight+"px";
+		}
+	}
+
 	ms_scroll_inner_y(Date.now());
 	function ms_scroll_inner_y(lastTick)
 	{
@@ -1349,24 +1398,28 @@ function arrowkeyscroll(e)
 	{
 		let curTick = Date.now();
 		window.scrollBy(0, (curTick - lastTick)*w.keyscroll_velocity);
+		if (js_repositioning) vbar.style.top = (window.pageYOffset/window.scrollMaxY*(window.innerHeight-vbar.offsetHeight))+"px";
 		scroll_timeout_id_y = window.requestAnimationFrame( function(){ arrowkeyscroll_down(curTick); } );
 	}
 	function arrowkeyscroll_up(lastTick)
 	{
 		let curTick = Date.now();
 		window.scrollBy(0, (lastTick - curTick)*w.keyscroll_velocity);
+		if (js_repositioning) vbar.style.top = (window.pageYOffset/window.scrollMaxY*(window.innerHeight-vbar.offsetHeight))+"px";
 		scroll_timeout_id_y = window.requestAnimationFrame( function(){ arrowkeyscroll_up(curTick); } );
 	}
 	function arrowkeyscroll_right(lastTick)
 	{
 		let curTick = Date.now();
 		window.scrollBy((curTick - lastTick)*w.keyscroll_velocity, 0);
+		if (js_repositioning) hbar.style.left = window.pageXOffset/window.scrollMaxX*(window.innerWidth-w.hover_size-hbar.offsetWidth)+(w.vbar_at_left === "1" ? parseInt(w.hover_size) : 0)+"px";
 		scroll_timeout_id_x = window.requestAnimationFrame( function(){ arrowkeyscroll_right(curTick); } );
 	}
 	function arrowkeyscroll_left(lastTick)
 	{
 		let curTick = Date.now();
 		window.scrollBy((lastTick - curTick)*w.keyscroll_velocity, 0);
+		if (js_repositioning) hbar.style.left = window.pageXOffset/window.scrollMaxX*(window.innerWidth-w.hover_size-hbar.offsetWidth)+(w.vbar_at_left === "1" ? parseInt(w.hover_size) : 0)+"px";
 		scroll_timeout_id_x = window.requestAnimationFrame( function(){ arrowkeyscroll_left(curTick); } );
 	}
 }
@@ -1384,7 +1437,7 @@ function otherkeyscroll(e)
 	}
 	else if(e.which === 32 && !e.altKey && !e.metaKey && !e.ctrlKey && !target_is_input(e)) // 32 = space bar
 	{
-		if(document.URL.includes("//www.youtube.com/watch")) return;
+		if(document.URL.includes("//www.youtube.com/watch")) return; // disable space on YouTube videos because it simultaneously plays / pauses the video (Issue #109)
 
 		stopEvent(e);
 		
