@@ -15,7 +15,7 @@ let isFullscreen = true;
 	if(window.self !== window.top){ // only treat main & iframes
 		try{
 			if(window.self.frameElement && window.self.frameElement.tagName === "IFRAME"){
-				if(!document.URL.match("//translate.google.")) window.self.frameElement.scrolling = "no";
+				if(!document.URL.includes("//translate.google.")) window.self.frameElement.scrolling = "no";
 			}
 			else return;
 		}catch(e){ console.warn("Error thrown trying to access frame:", e); return; /* window.self.frameElement == protected variable */ }
@@ -1384,6 +1384,8 @@ function otherkeyscroll(e)
 	}
 	else if(e.which === 32 && !e.altKey && !e.metaKey && !e.ctrlKey && !target_is_input(e)) // 32 = space bar
 	{
+		if(document.URL.includes("//www.youtube.com/watch")) return;
+
 		stopEvent(e);
 		
 		if		(!e.shiftKey)		scroll_PageDown();
