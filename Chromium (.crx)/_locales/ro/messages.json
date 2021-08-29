@@ -1,474 +1,121 @@
 {
-    "by": {
-        "message": "de",
-        "description": ""
-    },
-    "saved_sets_headline": {
-        "message": "Saved configurations",
-        "description": ""
-    },
-    "save_set_as": {
-        "message": "Salvează configuraţia curentă ca",
-        "description": ""
-    },
-    "new_set_name": {
-        "message": "Nume",
-        "description": ""
-    },
-    "load_or_delete_set": {
-        "message": "Incarcă sau şterge",
-        "description": ""
-    },
-    "default": {
-        "message": "Prestabilite",
-        "description": ""
-    },
-    "default_change_impossible": {
-        "message": "Setările prestabilite nu pot fi modificate! Te rog alege un alt nume.",
-        "description": ""
-    },
-    "default_delete_impossible": {
-        "message": "Setările prestabilite nu pot fi şterse!",
-        "description": ""
-    },
-    "confirm_overwrite": {
-        "message": "A configuration with that name already exists.\nDo you want to replace it?",
-        "description": ""
-    },
-    "confirm_delete": {
-        "message": "Chiar doreşti să ştergi definitiv aceste configuraţii?",
-        "description": ""
-    },
-    "confirm_load": {
-        "message": "Do you really want to load this configuration now?\nIt will replace your current setup.",
-        "description": ""
-    },
-    "tooltip_save": {
-        "message": "Salvează",
-        "description": ""
-    },
-    "tooltip_load": {
-        "message": "Incarcă",
-        "description": ""
-    },
-    "tooltip_delete": {
-        "message": "Şterge",
-        "description": ""
-    },
-    "look": {
-        "message": "Aspect",
-        "description": ""
-    },
-    "color": {
-        "message": "Culoarea barelor de navigare, a superbarei şi a butoanelor de derulare",
-        "description": ""
-    },
-    "color_bg": {
-        "message": "Culoarea barelor de fundal",
-        "description": ""
-    },
-    "auto_coloring": {
-        "message": "Color UI matching the page instead if possible",
-        "description": ""
-    },
-    "size": {
-        "message": "Lăţimea (respectiv înălţimea pentru barele orizontale) în stare normală",
-        "description": ""
-    },
-    "hover_size": {
-        "message": " Lăţimea (respectiv înălţimea pentru barele orizontale) când cursorul este poziţionat deasupra",
-        "description": ""
-    },
-    "border_radius": {
-        "message": "Rata rotunjirii marginii",
-        "description": ""
-    },
-    "gap": {
-        "message": "Distanţa până la marginea ferestrei",
-        "description": ""
-    },
-    "opacity": {
-        "message": "Opacitatea barelor de navigare",
-        "description": ""
-    },
-    "border": {
-        "message": "Margine",
-        "description": ""
-    },
-    "border_width": {
-        "message": "Lăţime",
-        "description": ""
-    },
-    "border_color": {
-        "message": "Culoare",
-        "description": ""
-    },
-    "border_blur": {
-        "message": "Blur",
-        "description": ""
-    },
-    "vbar_at_left": {
-        "message": "Afişează bara verticală de navigare la stânga în loc de dreapta",
-        "description": ""
-    },
-    "hbar_at_top": {
-        "message": "Afişează bara orizontală în susul paginii în loc de baza paginii",
-        "description": ""
-    },
-    "behavior": {
-        "message": "Comportament",
-        "description": ""
-    },
-    "show_when": {
-        "message": "Când doreşti ca barele de navigare să apară?",
-        "description": ""
-    },
-    "only_over": {
-        "message": "Numai când cursorul este poziţionat deasupra lor",
-        "description": ""
-    },
-    "normal": {
-        "message": "Când cursorul este poziţionat deasupra , când derulezi şi la schimbarea poziţiei sau a mărimii",
-        "description": ""
-    },
-    "always": {
-        "message": "Intotdeuna",
-        "description": ""
-    },
-    "show_bg_bars_when": {
-        "message": "Şi barele de fundal?",
-        "description": ""
-    },
-    "like_bars": {
-        "message": "La fel ca barele de navigare",
-        "description": ""
-    },
-    "show_how_long": {
-        "message": "How long do you want the bars to stay visible?",
-        "description": ""
-    },
-    "fullscreen_only": {
-        "message": "Show the bars in fullscreen mode only",
-        "description": ""
-    },
-    "fullscreen_only_short": {
-        "message": "Only in fullscreen mode",
-        "description": ""
-    },
-    "move_bars_during_scroll": {
-        "message": "Animează barele de navigare în timpul derulării cu rotiţa cursorului/săgeţile tastaturii",
-        "description": ""
-    },
-    "bg_special_ends": {
-        "message": "Făcând click la capetele barei de fundal se va face o derulare completă până în vârful/la baza paginii (respectiv stânga/dreapta) în loc de o derulare de o singură pagină",
-        "description": ""
-    },
-    "container1": {
-        "message": "Activează Modern Scroll până în raza a ",
-        "description": ""
-    },
-    "container2": {
-        "message": "px până la margine",
-        "description": ""
-    },
-    "element_bars": {
-        "message": "Scrollbars within the page",
-        "description": ""
-    },
-    "style_element_bars": {
-        "message": "Style all scroll bars",
-        "description": ""
-    },
-    "explanation_element_bars": {
-        "message": "Activate this to make modern scroll also style all scrollbars within the page, e.g. those of textareas.",
-        "description": ""
-    },
-    "autohide_element_bars": {
-        "message": "Autohide scrollbars within the page",
-        "description": ""
-    },
-    "explanation_autohide_element_bars": {
-        "message": "This unfortunately doesn't work properly because of rendering bugs. You can enable it, but scroll bars may not always show up correctly.",
-        "description": ""
-    },
-    "superbar": {
-        "message": "Superbara",
-        "description": ""
-    },
-    "show_superbar": {
-        "message": "Afişează \"superbara\"",
-        "description": ""
-    },
-    "show_superbar_minipage": {
-        "message": "Afişează o versiune în miniatură a website-ului în fundal când deplasezi superbara",
-        "description": ""
-    },
-    "superbar_opacity": {
-        "message": "Opacitatea superbarei când cursorul este poziţionat deasupra",
-        "description": ""
-    },
-    "bookmarks": {
-        "message": "Bookmarks",
-        "description": ""
-    },
-    "show_bookmarks": {
-        "message": "Show bookmarks within the page for scrolling to the specified locations",
-        "description": ""
-    },
-    "no_bookmarks": {
-        "message": "Off",
-        "description": ""
-    },
-    "bookmarks_only": {
-        "message": "Show bookmarks",
-        "description": ""
-    },
-    "all_headings": {
-        "message": "Bookmarks and Headings",
-        "description": ""
-    },
-    "buttons": {
-        "message": "Butoane pentru derulare",
-        "description": ""
-    },
-    "show_buttons": {
-        "message": "Afişează butoanele de derulare în vârful/la baza paginii",
-        "description": ""
-    },
-    "button_width": {
-        "message": "Lăţime",
-        "description": ""
-    },
-    "button_height": {
-        "message": "Inălţime",
-        "description": ""
-    },
-    "button_opacity": {
-        "message": "Opacitate",
-        "description": ""
-    },
-    "drag_buttons": {
-        "message": "Poţi poziţiona butoanele în orice poziţie de aici din opţiuni. Această poziţie o să devină setarea prestabilită pentru toate website-urile. Dacă butoanele acoperă un element în unele pagini, ai posibilitatea de a le muta din calea elementului.",
-        "description": ""
-    },
-    "contextmenu": {
-        "message": "Meniu contextual",
-        "description": ""
-    },
-    "show_contextmenu_when": {
-        "message": "Când doreşti o opţiune în meniul contextual pentru a ascunde Modern Scroll?",
-        "description": ""
-    },
-    "never": {
-        "message": "Niciodată",
-        "description": ""
-    },
-    "contextmenu_over_only": {
-        "message": "Când apăs click-dreapta pe intefaţa de la Modern Scroll",
-        "description": ""
-    },
-    "custom_scroll_functions": {
-        "message": "Funcţii ale derulării",
-        "description": ""
-    },
-    "use_custom_functions": {
-        "message": "Foloseşte funcţii modificate pentru derulare",
-        "description": ""
-    },
-    "use_custom_functions_keyboard": {
-        "message": "Pentru tastatură",
-        "description": ""
-    },
-    "use_custom_functions_mouse": {
-        "message": "Pentru cursor",
-        "description": ""
-    },
-    "use_custom_functions_middle": {
-        "message": "for mouse wheel clicks",
-        "description": ""
-    },
-    "endMiddlescrollByTurningWheel": {
-        "message": "End as well by turning the mouse wheel",
-        "description": ""
-    },
-    "animate_scroll": {
-        "message": "Animează derularea",
-        "description": ""
-    },
-    "animate_up_to": {
-        "message": "Până la o lungime de",
-        "description": ""
-    },
-    "infinite": {
-        "message": "infinit",
-        "description": ""
-    },
-    "page": {
-        "message": "pagină",
-        "description": ""
-    },
-    "pages": {
-        "message": "pagini",
-        "description": ""
-    },
-    "keyscroll_velocity": {
-        "message": "Velocitatea derulării cu săgeţile",
-        "description": ""
-    },
-    "mousescroll_velocity": {
-        "message": "Velocitatea derulării cu rotiţa cursorului şi a trackpad-ului",
-        "description": ""
-    },
-    "mousescroll_distance": {
-        "message": "Distanţa derulată per rotire a rotiţei",
-        "description": ""
-    },
-    "middlescroll_velocity": {
-        "message": "Velocity of scrolling by mouse wheel clicking",
-        "description": ""
-    },
-    "animatedscroll_velocity": {
-        "message": "Velocitatea derulării animate",
-        "description": ""
-    },
-    "external_interface_headline": {
-        "message": "External Interface",
-        "description": ""
-    },
-    "external_interface": {
-        "message": "Provide an interface for external access",
-        "description": ""
-    },
-    "footer": {
-        "message": "Vă mulţumesc pentru instalarea acestei extensii. Mă puteţi contacta la orice oră pentru feedback şi întrebări.",
-        "description": ""
-    },
-    "contextmenu_show": {
-        "message": "Afişează Modern Scroll",
-        "description": ""
-    },
-    "contextmenu_hide": {
-        "message": "Ascunde Modern Scroll",
-        "description": ""
-    },
-    "explanation_save_set": {
-        "message": "You can save your current configuration here.\nJust enter a name and click the save-button.\nIf you choose a name that already exists, this entry will be replaced.",
-        "description": ""
-    },
-    "explanation_move_bars_during_scroll": {
-        "message": "Dezactivează această opţiune dacă întâlneşti probleme de performanţă.<br>Poziţia barelor de navigare o să fie actualizată când derularea s-a terminat.",
-        "description": ""
-    },
-    "explanation_trigger_area": {
-        "message": "Măreşte suprafaţa de acces a barelor de navigare.",
-        "description": ""
-    },
-    "explanation_superbar": {
-        "message": "\"Superbara\" este o combinaţie dintre bara de navigare orizontală şi cea verticală.<br>Astfel, devine vizibilă doar când ambele bare sunt necesare.<br>Poziţia sa este aliniată cu barele verticale si orizontale.",
-        "description": ""
-    },
-    "explanation_custom_functions": {
-        "message": "Standard scrolling experience is sometimes a bit jerky and slow. By activating these options the extension also takes over the corresponding scrolling, which should result in a noticeable performance boost.",
-        "description": ""
-    },
-    "explanation_animate_scroll": {
-        "message": "Dacă selectezi această opţiune, pagina nu o să mai sară la poziţia dorită, ci o să se deruleze automat până la acel punct cu o rată ajustabilă.<br>Aceasta se aplică butoanelor de derulare, click-urilor pe barele de fundal cât si navigării cu tastatura. (dacă \"Foloseşte funcţiile modificate pentru tastatură \" sunt activate).",
-        "description": ""
-    },
-    "explanation_external_interface": {
-        "message": "By checking this option, modern scroll will provide some of its key features for usage by third-party-extensions, websites or you. You can then e.g. create custom mouse gestures.<br><a href='https://christoph142.wordpress.com/2013/02/20/modern-scroll-documentation' target='_blank'>Visit the documentation to learn more about it.</a>",
-        "description": ""
-    },
-    "report_issue": {
-        "message": "Report an issue",
-        "description": ""
-    },
-    "rate": {
-        "message": "Rate modern scroll",
-        "description": ""
-    },
-    "twitter": {
-        "message": "Follow me on Twitter",
-        "description": ""
-    },
-    "get_more": {
-        "message": "Get more out of modern scroll",
-        "description": ""
-    },
-    "ok": {
-        "message": "OK",
-        "description": ""
-    },
-    "cancel": {
-        "message": "Cancel",
-        "description": ""
-    },
-    "close": {
-        "message": "Close",
-        "description": ""
-    },
-    "token": {
-        "message": "Here's the token you need in order to transfer this license to other browsers:",
-        "description": ""
-    },
-    "trial_expired": {
-        "message": "Your trial period expired.\nI hope you love modern scroll as much as I do.\nIf you do, get a license now.",
-        "description": ""
-    },
-    "all_set": {
-        "message": "You're all set! :)",
-        "description": ""
-    },
-    "seven_days_trial": {
-        "message": "You can check modern scroll out unrestrictedly for seven days now.",
-        "description": ""
-    },
-    "thanks_for_installing": {
-        "message": "Thanks for installing modern scroll! :)",
-        "description": ""
-    },
-    "get_trial_license": {
-        "message": "You need to log in to your Google account and grant modern scroll access to Chrome Web Store now in order to get your (trial) license.",
-        "description": ""
-    },
-    "authorize": {
-        "message": "Log in and authorize",
-        "description": ""
-    },
-    "transferred_trial_expired": {
-        "message": "The trial period of the license you transferred expired.\nI hope you love modern scroll as much as I do.\nIf you do, get a license now. You need to transfer this license from Chrome once again:",
-        "description": ""
-    },
-    "transfer_successful": {
-        "message": "Have fun using modern scroll.",
-        "description": ""
-    },
-    "get_license_in_chrome": {
-        "message": "install modern scroll in Chrome and get a license there",
-        "description": ""
-    },
-    "open_url_in_chrome": {
-        "message": "open chrome-extension://@@extension_id/options/options.html#show_token in Chrome",
-        "description": ""
-    },
-    "copy_token": {
-        "message": "copy shown token",
-        "description": ""
-    },
-    "insert_here": {
-        "message": "insert it in here",
-        "description": ""
-    },
-    "transfer_instructions": {
-        "message": "To use it in here, you need to transfer a license from Chrome (trial license is fine, too). That's what you need to do:",
-        "description": ""
-    },
-    "invalid_token": {
-        "message": "The token you entered is invalid or expired",
-        "description": ""
-    },
-    "description": {
-        "message": "Duce derularea la un complet nou nivel",
-        "description": ""
-    }
+	"description" :						{ "message" : "Duce derularea la un complet nou nivel" },
+	"by" :								{ "message" : "de" },
+	"saved_sets_headline" :				{ "message" : "Saved configurations" },
+	"save_set_as" :						{ "message" : "Salvează configuraţia curentă ca" },
+	"new_set_name" :					{ "message" : "Nume" },
+	"load_or_delete_set" : 				{ "message" : "Incarcă sau şterge" },
+	"default" : 						{ "message" : "Prestabilite" },
+	"default_change_impossible" : 		{ "message" : "Setările prestabilite nu pot fi modificate! Te rog alege un alt nume." },
+	"default_delete_impossible" : 		{ "message" : "Setările prestabilite nu pot fi şterse!" },
+	"confirm_overwrite" : 				{ "message" : "A configuration with that name already exists.\nDo you want to replace it?" },
+	"confirm_delete" : 					{ "message" : "Chiar doreşti să ştergi definitiv aceste configuraţii?" },
+	"confirm_load" : 					{ "message" : "Do you really want to load this configuration now?\nIt will replace your current setup." },
+	"tooltip_save" : 					{ "message" : "Salvează" },
+	"tooltip_load" : 					{ "message" : "Incarcă" },
+	"tooltip_delete" : 					{ "message" : "Şterge" },	
+	"look" : 							{ "message" : "Aspect" },
+	"color" : 							{ "message" : "Culoarea barelor de navigare, a superbarei şi a butoanelor de derulare" },
+	"color_bg" : 						{ "message" : "Culoarea barelor de fundal" },
+	"auto_coloring" :					{ "message" : "Color UI matching the page instead if possible" },
+	"size" : 							{ "message" : "Lăţimea (respectiv înălţimea pentru barele orizontale) în stare normală" },
+	"hover_size" : 						{ "message" : " Lăţimea (respectiv înălţimea pentru barele orizontale) când cursorul este poziţionat deasupra" },
+	"border_radius" : 					{ "message" : "Rata rotunjirii marginii" },
+	"gap" : 							{ "message" : "Distanţa până la marginea ferestrei" },
+	"opacity" : 						{ "message" : "Opacitatea barelor de navigare" },
+	"border" : 							{ "message" : "Margine" },
+	"border_width" : 					{ "message" : "Lăţime" },
+	"border_color" : 					{ "message" : "Culoare" },
+	"border_blur" : 					{ "message" : "Blur" },
+	"vbar_at_left" : 					{ "message" : "Afişează bara verticală de navigare la stânga în loc de dreapta" },
+	"hbar_at_top" : 					{ "message" : "Afişează bara orizontală în susul paginii în loc de baza paginii" },
+	"behavior" : 						{ "message" : "Comportament" },
+	"show_when" : 						{ "message" : "Când doreşti ca barele de navigare să apară?" },
+	"only_over" : 						{ "message" : "Numai când cursorul este poziţionat deasupra lor" },
+	"normal" : 							{ "message" : "Când cursorul este poziţionat deasupra , când derulezi şi la schimbarea poziţiei sau a mărimii" },
+	"always" : 							{ "message" : "Intotdeuna" },
+	"show_bg_bars_when" : 				{ "message" : "Şi barele de fundal?" },
+	"like_bars" : 						{ "message" : "La fel ca barele de navigare" },
+	"show_how_long" : 					{ "message" : "How long do you want the bars to stay visible?" },
+	"fullscreen_only" : 				{ "message" : "Show the bars in fullscreen mode only" },
+	"fullscreen_only_short" : 			{ "message" : "Only in fullscreen mode" },
+	"move_bars_during_scroll" : 		{ "message" : "Animează barele de navigare în timpul derulării cu rotiţa cursorului/săgeţile tastaturii" },
+	"bg_special_ends" : 				{ "message" : "Făcând click la capetele barei de fundal se va face o derulare completă până în vârful/la baza paginii (respectiv stânga/dreapta) în loc de o derulare de o singură pagină" },
+	"container1" : 						{ "message" : "Activează Modern Scroll până în raza a " },
+	"container2" : 						{ "message" : "px până la margine" },
+	"element_bars" :					{ "message" : "Scrollbars within the page" },
+	"style_element_bars" : 				{ "message" : "Style all scroll bars" },
+	"explanation_element_bars" : 		{ "message" : "Activate this to make modern scroll also style all scrollbars within the page, e.g. those of textareas." },
+	"autohide_element_bars" : 			{ "message" : "Autohide scrollbars within the page" },
+	"explanation_autohide_element_bars":{ "message" : "This unfortunately doesn't work properly because of rendering bugs. You can enable it, but scroll bars may not always show up correctly." },
+	"superbar" : 						{ "message" : "Superbara" },
+	"show_superbar" : 					{ "message" : "Afişează \"superbara\"" },
+	"show_superbar_minipage" : 			{ "message" : "Afişează o versiune în miniatură a website-ului în fundal când deplasezi superbara" },
+	"superbar_opacity" : 				{ "message" : "Opacitatea superbarei când cursorul este poziţionat deasupra" },
+	"bookmarks" : 						{ "message" : "Bookmarks" },
+	"show_bookmarks" : 					{ "message" : "Show bookmarks within the page for scrolling to the specified locations" },
+	"no_bookmarks" : 					{ "message" : "Off" },
+	"bookmarks_only" : 					{ "message" : "Show bookmarks" },
+	"all_headings" : 					{ "message" : "Bookmarks and Headings" },
+	"bookmark_text_color" :				{ "message" : "Text color" },
+	"buttons" : 						{ "message" : "Butoane pentru derulare" },
+	"show_buttons" : 					{ "message" : "Afişează butoanele de derulare în vârful/la baza paginii" },
+	"button_width" : 					{ "message" : "Lăţime" },
+	"button_height" : 					{ "message" : "Inălţime" },
+	"button_opacity" : 					{ "message" : "Opacitate" },
+	"drag_buttons" : 					{ "message" : "Poţi poziţiona butoanele în orice poziţie de aici din opţiuni. Această poziţie o să devină setarea prestabilită pentru toate website-urile. Dacă butoanele acoperă un element în unele pagini, ai posibilitatea de a le muta din calea elementului." },
+	"contextmenu" : 					{ "message" : "Meniu contextual" },
+	"show_contextmenu_when" : 			{ "message" : "Când doreşti o opţiune în meniul contextual pentru a ascunde Modern Scroll?" },
+	"never" : 							{ "message" : "Niciodată" },
+	"contextmenu_over_only" : 			{ "message" : "Când apăs click-dreapta pe intefaţa de la Modern Scroll" },
+	"custom_scroll_functions" : 		{ "message" : "Funcţii ale derulării" },
+	"use_custom_functions" : 			{ "message" : "Foloseşte funcţii modificate pentru derulare" },
+	"use_custom_functions_keyboard" : 	{ "message" : "Pentru tastatură" },
+	"use_custom_functions_mouse" : 		{ "message" : "Pentru cursor" },
+	"use_custom_functions_middle" :		{ "message" : "for mouse wheel clicks" },
+	"endMiddlescrollByTurningWheel" :	{ "message" : "End as well by turning the mouse wheel" },
+	"animate_scroll" : 					{ "message" : "Animează derularea" },
+	"animate_up_to" : 					{ "message" : "Până la o lungime de" },
+	"infinite" : 						{ "message" : "infinit" },
+	"page" : 							{ "message" : "pagină" },
+	"pages" : 							{ "message" : "pagini" },
+	"keyscroll_velocity" : 				{ "message" : "Velocitatea derulării cu săgeţile" },
+	"mousescroll_velocity" : 			{ "message" : "Velocitatea derulării cu rotiţa cursorului şi a trackpad-ului" },
+	"mousescroll_distance" : 			{ "message" : "Distanţa derulată per rotire a rotiţei" },
+	"middlescroll_velocity" : 			{ "message" : "Velocity of scrolling by mouse wheel clicking" },
+	"animatedscroll_velocity" : 		{ "message" : "Velocitatea derulării animate" },
+	"external_interface_headline" : 	{ "message" : "External Interface" },
+	"external_interface" : 				{ "message" : "Provide an interface for external access" },
+	"footer" : 							{ "message" : "Vă mulţumesc pentru instalarea acestei extensii. Mă puteţi contacta la orice oră pentru feedback şi întrebări." },
+	"contextmenu_enable" :				{ "message" : "Enable on this page" },
+	"contextmenu_disable" :				{ "message" : "Disable on this page" },
+	"contextmenu_show" : 				{ "message" : "Show again" },
+	"contextmenu_hide" : 				{ "message" : "Hide temporarily" },
+	"contextmenu_customize" :			{ "message" : "Customize on this page" },
+	"contextmenu_customize_current_set":{ "message" : "Use current configuration" },
+	"contextmenu_new_set" :				{ "message" : "Create a new set…" },
+	"explanation_save_set" : 			{ "message" : "You can save your current configuration here.\nJust enter a name and click the save-button.\nIf you choose a name that already exists, this entry will be replaced." },
+	"explanation_move_bars_during_scroll" : { "message" : "Dezactivează această opţiune dacă întâlneşti probleme de performanţă.<br>Poziţia barelor de navigare o să fie actualizată când derularea s-a terminat." },
+	"explanation_trigger_area" : 		{ "message" : "Măreşte suprafaţa de acces a barelor de navigare." },
+	"explanation_superbar" : 			{ "message" : "\"Superbara\" este o combinaţie dintre bara de navigare orizontală şi cea verticală.<br>Astfel, devine vizibilă doar când ambele bare sunt necesare.<br>Poziţia sa este aliniată cu barele verticale si orizontale." },
+	"explanation_custom_functions" : 	{ "message" : "Standard scrolling experience is sometimes a bit jerky and slow. By activating these options the extension also takes over the corresponding scrolling, which should result in a noticeable performance boost." },
+	"explanation_animate_scroll" : 		{ "message" : "Dacă selectezi această opţiune, pagina nu o să mai sară la poziţia dorită, ci o să se deruleze automat până la acel punct cu o rată ajustabilă.<br>Aceasta se aplică butoanelor de derulare, click-urilor pe barele de fundal cât si navigării cu tastatura. (dacă \"Foloseşte funcţiile modificate pentru tastatură \" sunt activate)." },
+	"explanation_external_interface" : 	{ "message" : "By checking this option, modern scroll will provide some of its key features for usage by third-party-extensions, websites or you. You can then e.g. create custom mouse gestures.<br><a href='https://christoph142.wordpress.com/2013/02/20/modern-scroll-documentation' target='_blank'>Visit the documentation to learn more about it.</a>" },
+	"report_issue" : 					{ "message" : "Report an issue"},
+	"disabled" :						{ "message" : "modern scroll has been disabled on $DOMAIN$", "placeholders" : {"domain" : { "content" : "$1", "example" : "example.org" }}},
+	"report_domain" :					{ "message" : "If there's an issue with the page, please report it so it can get fixed for everybody."},
+	"rate" :		 					{ "message" : "Rate modern scroll"},
+	"buymeacoffee" :					{ "message" : "Buy me some sushi"},
+	"ok" :								{ "message" : "OK"},
+	"cancel" :							{ "message" : "Cancel"},
+	"close" :							{ "message" : "Close"},
+	"thanks_for_installing" :			{ "message" : "Thanks for installing modern scroll! :)"},
+	"thanks_for_using" :				{ "message" : "Thanks for using modern scroll! 🙂"},
+    "have_fun" :						{ "message" : "Have fun using the extension.\nI'm gonna check in with you in a few weeks to see how you like it. 🍻"},
+	"like_it" :							{ "message" : "Hello again!\nIt's been a few weeks since you installed modern scroll.\nHow do you like it so far?"},
+	"great" :							{ "message" : "Very"},
+	"so_so" :							{ "message" : "So-so"},
+	"that_is_great" :					{ "message" : "Awesome!\nWould you mind supporting me in order to continue improving modern scroll? 🍻"},
+	"im_sorry_to_hear" :				{ "message" : "I'm sorry to hear you're not 100% convinced yet.\nIf there's anything you'd like to see improved, please let me know."},
+	"continued_support" :				{ "message" : "I'd really appreciate your continued support in order to keep improving the extension.\nIf you haven't done so yet, now's a great time to start! 🍻"}
 }
