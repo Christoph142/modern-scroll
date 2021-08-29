@@ -1,474 +1,121 @@
 {
-    "by": {
-        "message": "bởi",
-        "description": ""
-    },
-    "saved_sets_headline": {
-        "message": "Saved configurations",
-        "description": ""
-    },
-    "save_set_as": {
-        "message": "Lưu các thiết lập hiện tại dưới dạng",
-        "description": ""
-    },
-    "new_set_name": {
-        "message": "Tên",
-        "description": ""
-    },
-    "load_or_delete_set": {
-        "message": "Tải hoặc xóa",
-        "description": ""
-    },
-    "default": {
-        "message": "Mặc định",
-        "description": ""
-    },
-    "default_change_impossible": {
-        "message": "Bạn có thể hủy bỏ phần thiết lập mặc định! Vui lòng chọn một tên khác.",
-        "description": ""
-    },
-    "default_delete_impossible": {
-        "message": "Bạn không thể xóa thiết lập mặc định!",
-        "description": ""
-    },
-    "confirm_overwrite": {
-        "message": "A configuration with that name already exists.\nDo you want to replace it?",
-        "description": ""
-    },
-    "confirm_delete": {
-        "message": "Bạn có thực sự muốn xóa hẳn phần thiết lập này?",
-        "description": ""
-    },
-    "confirm_load": {
-        "message": "Do you really want to load this configuration now?\nIt will replace your current setup.",
-        "description": ""
-    },
-    "tooltip_save": {
-        "message": "Lưu",
-        "description": ""
-    },
-    "tooltip_load": {
-        "message": "Tải",
-        "description": ""
-    },
-    "tooltip_delete": {
-        "message": "Xóa",
-        "description": ""
-    },
-    "look": {
-        "message": "Giao diện",
-        "description": ""
-    },
-    "color": {
-        "message": "Màu sắc của thanh kéo, thanh công cụ và nút điều hướng kéo chuột",
-        "description": ""
-    },
-    "color_bg": {
-        "message": "Màu của thanh hiển thị trên hình nền",
-        "description": ""
-    },
-    "auto_coloring": {
-        "message": "Color UI matching the page instead if possible",
-        "description": ""
-    },
-    "size": {
-        "message": "Độ rộng (tuân theo chiều cao của thanh dọc) ở trạng thái bình thường",
-        "description": ""
-    },
-    "hover_size": {
-        "message": "Độ rộng (tuân theo chiều cao của thanh dọc) khi rê với chuột",
-        "description": ""
-    },
-    "border_radius": {
-        "message": "Độ cong bán kính viền",
-        "description": ""
-    },
-    "gap": {
-        "message": "Khoảng cách đến viền của màn hình",
-        "description": ""
-    },
-    "opacity": {
-        "message": "Độ mờ của thanh trượt",
-        "description": ""
-    },
-    "border": {
-        "message": "Đường viền",
-        "description": ""
-    },
-    "border_width": {
-        "message": "Độ rộng",
-        "description": ""
-    },
-    "border_color": {
-        "message": "Màu sắc",
-        "description": ""
-    },
-    "border_blur": {
-        "message": "Làm mờ",
-        "description": ""
-    },
-    "vbar_at_left": {
-        "message": "Hiển thị các thanh trượt theo chiều ngang bên trái thay vì bên phải",
-        "description": ""
-    },
-    "hbar_at_top": {
-        "message": "Hiển thị thanh cuộn theo chiều dọc ở trên cùng thay vì ở dưới cùng",
-        "description": ""
-    },
-    "behavior": {
-        "message": "Thao tác",
-        "description": ""
-    },
-    "show_when": {
-        "message": "Khi nào thì bạn muốn thanh được hiển thị?",
-        "description": ""
-    },
-    "only_over": {
-        "message": "Chỉ khi rê với chuột",
-        "description": ""
-    },
-    "normal": {
-        "message": "Khi rê sang phía trên, trong khi trượt và thay đổi vị trí hoặc kích thước",
-        "description": ""
-    },
-    "always": {
-        "message": "Luôn luô",
-        "description": ""
-    },
-    "show_bg_bars_when": {
-        "message": "Và kèm theo thanh nền?",
-        "description": ""
-    },
-    "like_bars": {
-        "message": "Giống như thanh cuộn",
-        "description": ""
-    },
-    "show_how_long": {
-        "message": "Bạn muốn thanh trượt được hiển thị trên màn hình trong bao lâu?",
-        "description": ""
-    },
-    "fullscreen_only": {
-        "message": "Hiển thị các thanh công cụ chỉ trong chế độ toàn màn hinh",
-        "description": ""
-    },
-    "fullscreen_only_short": {
-        "message": "Chỉ hiển thị trong chế độ toàn màn hình",
-        "description": ""
-    },
-    "move_bars_during_scroll": {
-        "message": "Hiệu ứng của thanh cuộn khi đang trượt dùng nút cuộn chuột / bàn phím",
-        "description": ""
-    },
-    "bg_special_ends": {
-        "message": "Click vào phần cuối của thanh kéo trên cùng/dưới cùng (theo hướng trái/phải) thay vì theo từng trang",
-        "description": ""
-    },
-    "container1": {
-        "message": "Bật chương trình trong khoảng cách",
-        "description": ""
-    },
-    "container2": {
-        "message": "điểm ảnh đến đường viền",
-        "description": ""
-    },
-    "element_bars": {
-        "message": "Scrollbars within the page",
-        "description": ""
-    },
-    "style_element_bars": {
-        "message": "Style all scroll bars",
-        "description": ""
-    },
-    "explanation_element_bars": {
-        "message": "Activate this to make modern scroll also style all scrollbars within the page, e.g. those of textareas.",
-        "description": ""
-    },
-    "autohide_element_bars": {
-        "message": "Autohide scrollbars within the page",
-        "description": ""
-    },
-    "explanation_autohide_element_bars": {
-        "message": "This unfortunately doesn't work properly because of rendering bugs. You can enable it, but scroll bars may not always show up correctly.",
-        "description": ""
-    },
-    "superbar": {
-        "message": "Thanh tác vụ",
-        "description": ""
-    },
-    "show_superbar": {
-        "message": "Hiển thị thanh \"tác vụ\"",
-        "description": ""
-    },
-    "show_superbar_minipage": {
-        "message": "Hiển thị mộtp hiên bản thu nhỏ của website ở hình nền khi đang rê chuột ở thanh tác vụ",
-        "description": ""
-    },
-    "superbar_opacity": {
-        "message": "Độ mờ của thanh tác vụ khi rê chuột sang",
-        "description": ""
-    },
-    "bookmarks": {
-        "message": "Bookmarks",
-        "description": ""
-    },
-    "show_bookmarks": {
-        "message": "Show bookmarks within the page for scrolling to the specified locations",
-        "description": ""
-    },
-    "no_bookmarks": {
-        "message": "Off",
-        "description": ""
-    },
-    "bookmarks_only": {
-        "message": "Show bookmarks",
-        "description": ""
-    },
-    "all_headings": {
-        "message": "Bookmarks and Headings",
-        "description": ""
-    },
-    "buttons": {
-        "message": "Nút trượt",
-        "description": ""
-    },
-    "show_buttons": {
-        "message": "Hiển thị nút để cuộn đến phần đầu/cuối của trang",
-        "description": ""
-    },
-    "button_width": {
-        "message": "Độ rộng",
-        "description": ""
-    },
-    "button_height": {
-        "message": "Chiều cao",
-        "description": ""
-    },
-    "button_opacity": {
-        "message": "Độ mờ",
-        "description": ""
-    },
-    "drag_buttons": {
-        "message": "Bạn có thể rê nút đến bất kỳ vị trí nào với tùy chọn này. Vị trí này sẽ trở thành mặc định đối với tất cả website. Nếu các web này được bao bọc bởi một đối tượng trên các trang khác, bạn cũng có thể rê chuột kéo các trang này theo hướng khác.",
-        "description": ""
-    },
-    "contextmenu": {
-        "message": "Menu ngữ cảnh",
-        "description": ""
-    },
-    "show_contextmenu_when": {
-        "message": "Khi bạn nào bạn muốn tùy chọn trong menu ngữ cảnh hiển thị để ẩn đi phần trượt?",
-        "description": ""
-    },
-    "never": {
-        "message": "Không bao giờ",
-        "description": ""
-    },
-    "contextmenu_over_only": {
-        "message": "Khi bạn click-chuột phải trên giao diện của chương trình",
-        "description": ""
-    },
-    "custom_scroll_functions": {
-        "message": "Chức năng trượt",
-        "description": ""
-    },
-    "use_custom_functions": {
-        "message": "Sử dụng chức năng cuộn tự chọn",
-        "description": ""
-    },
-    "use_custom_functions_keyboard": {
-        "message": "dành cho bàn phím",
-        "description": ""
-    },
-    "use_custom_functions_mouse": {
-        "message": "dành chuột",
-        "description": ""
-    },
-    "use_custom_functions_middle": {
-        "message": "for mouse wheel clicks",
-        "description": ""
-    },
-    "endMiddlescrollByTurningWheel": {
-        "message": "End as well by turning the mouse wheel",
-        "description": ""
-    },
-    "animate_scroll": {
-        "message": "Hiển thị hiệu ứng khi trượt",
-        "description": ""
-    },
-    "animate_up_to": {
-        "message": "tăng theo độ dài của",
-        "description": ""
-    },
-    "infinite": {
-        "message": "vô định",
-        "description": ""
-    },
-    "page": {
-        "message": "trang",
-        "description": ""
-    },
-    "pages": {
-        "message": "trang",
-        "description": ""
-    },
-    "keyscroll_velocity": {
-        "message": "Tốc độ khi cuộn bằng các phím mũi tên",
-        "description": ""
-    },
-    "mousescroll_velocity": {
-        "message": "Tốc độ trượt chuột bằng nút trượt hoặc trackpad",
-        "description": ""
-    },
-    "mousescroll_distance": {
-        "message": "Khoảng cách cuộn đối với việc xoay vòng nút trượt chuột",
-        "description": ""
-    },
-    "middlescroll_velocity": {
-        "message": "Velocity of scrolling by mouse wheel clicking",
-        "description": ""
-    },
-    "animatedscroll_velocity": {
-        "message": "Tốc độ của hiệu ứng khi kéo chuột",
-        "description": ""
-    },
-    "external_interface_headline": {
-        "message": "Giao diện bổ sung",
-        "description": ""
-    },
-    "external_interface": {
-        "message": "Cung cấp một giao diện cho phần truy cập bổ sung",
-        "description": ""
-    },
-    "footer": {
-        "message": "Xin cảm ơn bạn đã cài đặt phần tiện ích này. Bạn có thể liên hệ chúng tôi bất cứ khi nào để gửi các phản hồi cũng như các thắc mắc của các bạn.",
-        "description": ""
-    },
-    "contextmenu_show": {
-        "message": "Hiển thị chương trình",
-        "description": ""
-    },
-    "contextmenu_hide": {
-        "message": "Ẩn chương trình",
-        "description": ""
-    },
-    "explanation_save_set": {
-        "message": "You can save your current configuration here.\nJust enter a name and click the save-button.\nIf you choose a name that already exists, this entry will be replaced.",
-        "description": ""
-    },
-    "explanation_move_bars_during_scroll": {
-        "message": "Tắt tùy chọn này nếu bạn gặp phải vấn đề về giao diện.<br> Vị trí của thanh trượt chỉ được cập nhật khi việc trượt hoàn tất.",
-        "description": ""
-    },
-    "explanation_trigger_area": {
-        "message": "Phóng to khu vực truy cập của thanh",
-        "description": ""
-    },
-    "explanation_superbar": {
-        "message": "Thanh \"tác vụ\" là sự kết hợp giữa thanh cuộn theo chiều dọc và ngang.<br>Vì thế chỉ được hiển thị khi cả hai thanh được yêu cầu.<br>Phần vị trí được canh chỉnh dựa theo thanh cuộn dọc và ngang.",
-        "description": ""
-    },
-    "explanation_custom_functions": {
-        "message": "Standard scrolling experience is sometimes a bit jerky and slow. By activating these options the extension also takes over the corresponding scrolling, which should result in a noticeable performance boost.",
-        "description": ""
-    },
-    "explanation_animate_scroll": {
-        "message": "nếu lựa chọn này được bật, trang sẽ không chỉ ngay lập tức chuyển đến phần vị trí mong muốn, mà còn tự động kéo theo tỉ lệ được tự động điều chỉnh.<br>Phần này sẽ áp dụng cho các nút trược, click vào thanh giao diện cũng như trượt xuống cùng bàn phím (nếu \"Sử dụng chức năng trượt tùy chọn cho bàn phím\" được bật).",
-        "description": ""
-    },
-    "explanation_external_interface": {
-        "message": "Với việc chọn lựa chọn này, chương trình sẽ cung cấp một số tổ hợp phím chức năng dành cho các phần tiện ích được cung cấp bởi bên thứ ba. Bạn có thể sau đó ví dụ chọn cách thao tác với các động tác khác từ chuột.<br><a href='https://christoph142.wordpress.com/2013/02/20/modern-scroll-documentation' target='_blank'>Truy cập vào đây để tìm hiểu thêm.</a>",
-        "description": ""
-    },
-    "report_issue": {
-        "message": "Report an issue",
-        "description": ""
-    },
-    "rate": {
-        "message": "Rate modern scroll",
-        "description": ""
-    },
-    "twitter": {
-        "message": "Follow me on Twitter",
-        "description": ""
-    },
-    "get_more": {
-        "message": "Get more out of modern scroll",
-        "description": ""
-    },
-    "ok": {
-        "message": "OK",
-        "description": ""
-    },
-    "cancel": {
-        "message": "Cancel",
-        "description": ""
-    },
-    "close": {
-        "message": "Close",
-        "description": ""
-    },
-    "token": {
-        "message": "Here's the token you need in order to transfer this license to other browsers:",
-        "description": ""
-    },
-    "trial_expired": {
-        "message": "Your trial period expired.\nI hope you love modern scroll as much as I do.\nIf you do, get a license now.",
-        "description": ""
-    },
-    "all_set": {
-        "message": "You're all set! :)",
-        "description": ""
-    },
-    "seven_days_trial": {
-        "message": "You can check modern scroll out unrestrictedly for seven days now.",
-        "description": ""
-    },
-    "thanks_for_installing": {
-        "message": "Thanks for installing modern scroll! :)",
-        "description": ""
-    },
-    "get_trial_license": {
-        "message": "You need to log in to your Google account and grant modern scroll access to Chrome Web Store now in order to get your (trial) license.",
-        "description": ""
-    },
-    "authorize": {
-        "message": "Log in and authorize",
-        "description": ""
-    },
-    "transferred_trial_expired": {
-        "message": "The trial period of the license you transferred expired.\nI hope you love modern scroll as much as I do.\nIf you do, get a license now. You need to transfer this license from Chrome once again:",
-        "description": ""
-    },
-    "transfer_successful": {
-        "message": "Have fun using modern scroll.",
-        "description": ""
-    },
-    "get_license_in_chrome": {
-        "message": "install modern scroll in Chrome and get a license there",
-        "description": ""
-    },
-    "open_url_in_chrome": {
-        "message": "open chrome-extension://@@extension_id/options/options.html#show_token in Chrome",
-        "description": ""
-    },
-    "copy_token": {
-        "message": "copy shown token",
-        "description": ""
-    },
-    "insert_here": {
-        "message": "insert it in here",
-        "description": ""
-    },
-    "transfer_instructions": {
-        "message": "To use it in here, you need to transfer a license from Chrome (trial license is fine, too). That's what you need to do:",
-        "description": ""
-    },
-    "invalid_token": {
-        "message": "The token you entered is invalid or expired",
-        "description": ""
-    },
-    "description": {
-        "message": "Trượt toàn bộ sang một mức độ mới",
-        "description": ""
-    }
+	"description" :						{ "message" : "Trượt toàn bộ sang một mức độ mới" },
+	"by" :								{ "message" : "bởi" },
+	"saved_sets_headline" :				{ "message" : "Saved configurations" },
+	"save_set_as" :						{ "message" : "Lưu các thiết lập hiện tại dưới dạng" },
+	"new_set_name" :					{ "message" : "Tên" },
+	"load_or_delete_set" : 				{ "message" : "Tải hoặc xóa" },
+	"default" : 						{ "message" : "Mặc định" },
+	"default_change_impossible" : 		{ "message" : "Bạn có thể hủy bỏ phần thiết lập mặc định! Vui lòng chọn một tên khác." },
+	"default_delete_impossible" : 		{ "message" : "Bạn không thể xóa thiết lập mặc định!" },
+	"confirm_overwrite" : 				{ "message" : "A configuration with that name already exists.\nDo you want to replace it?" },
+	"confirm_delete" : 					{ "message" : "Bạn có thực sự muốn xóa hẳn phần thiết lập này?" },
+	"confirm_load" : 					{ "message" : "Do you really want to load this configuration now?\nIt will replace your current setup." },
+	"tooltip_save" : 					{ "message" : "Lưu" },
+	"tooltip_load" : 					{ "message" : "Tải" },
+	"tooltip_delete" : 					{ "message" : "Xóa" },	
+	"look" : 							{ "message" : "Giao diện" },
+	"color" : 							{ "message" : "Màu sắc của thanh kéo, thanh công cụ và nút điều hướng kéo chuột" },
+	"color_bg" : 						{ "message" : "Màu của thanh hiển thị trên hình nền" },
+	"auto_coloring" :					{ "message" : "Color UI matching the page instead if possible" },
+	"size" : 							{ "message" : "Độ rộng (tuân theo chiều cao của thanh dọc) ở trạng thái bình thường" },
+	"hover_size" : 						{ "message" : "Độ rộng (tuân theo chiều cao của thanh dọc) khi rê với chuột" },
+	"border_radius" : 					{ "message" : "Độ cong bán kính viền" },
+	"gap" : 							{ "message" : "Khoảng cách đến viền của màn hình" },
+	"opacity" : 						{ "message" : "Độ mờ của thanh trượt" },
+	"border" : 							{ "message" : "Đường viền" },
+	"border_width" : 					{ "message" : "Độ rộng" },
+	"border_color" : 					{ "message" : "Màu sắc" },
+	"border_blur" : 					{ "message" : "Làm mờ" },
+	"vbar_at_left" : 					{ "message" : "Hiển thị các thanh trượt theo chiều ngang bên trái thay vì bên phải" },
+	"hbar_at_top" : 					{ "message" : "Hiển thị thanh cuộn theo chiều dọc ở trên cùng thay vì ở dưới cùng" },
+	"behavior" : 						{ "message" : "Thao tác" },
+	"show_when" : 						{ "message" : "Khi nào thì bạn muốn thanh được hiển thị?" },
+	"only_over" : 						{ "message" : "Chỉ khi rê với chuột" },
+	"normal" : 							{ "message" : "Khi rê sang phía trên, trong khi trượt và thay đổi vị trí hoặc kích thước" },
+	"always" : 							{ "message" : "Luôn luô" },
+	"show_bg_bars_when" : 				{ "message" : "Và kèm theo thanh nền?" },
+	"like_bars" : 						{ "message" : "Giống như thanh cuộn" },
+	"show_how_long" : 					{ "message" : "Bạn muốn thanh trượt được hiển thị trên màn hình trong bao lâu?" },
+	"fullscreen_only" : 				{ "message" : "Hiển thị các thanh công cụ chỉ trong chế độ toàn màn hinh" },
+	"fullscreen_only_short" : 			{ "message" : "Chỉ hiển thị trong chế độ toàn màn hình" },
+	"move_bars_during_scroll" : 		{ "message" : "Hiệu ứng của thanh cuộn khi đang trượt dùng nút cuộn chuột / bàn phím" },
+	"bg_special_ends" : 				{ "message" : "Click vào phần cuối của thanh kéo trên cùng/dưới cùng (theo hướng trái/phải) thay vì theo từng trang" },
+	"container1" : 						{ "message" : "Bật chương trình trong khoảng cách" },
+	"container2" : 						{ "message" : "điểm ảnh đến đường viền" },
+	"element_bars" :					{ "message" : "Scrollbars within the page" },
+	"style_element_bars" : 				{ "message" : "Style all scroll bars" },
+	"explanation_element_bars" : 		{ "message" : "Activate this to make modern scroll also style all scrollbars within the page, e.g. those of textareas." },
+	"autohide_element_bars" : 			{ "message" : "Autohide scrollbars within the page" },
+	"explanation_autohide_element_bars":{ "message" : "This unfortunately doesn't work properly because of rendering bugs. You can enable it, but scroll bars may not always show up correctly." },
+	"superbar" : 						{ "message" : "Thanh tác vụ" },
+	"show_superbar" : 					{ "message" : "Hiển thị thanh \"tác vụ\"" },
+	"show_superbar_minipage" : 			{ "message" : "Hiển thị mộtp hiên bản thu nhỏ của website ở hình nền khi đang rê chuột ở thanh tác vụ" },
+	"superbar_opacity" : 				{ "message" : "Độ mờ của thanh tác vụ khi rê chuột sang" },
+	"bookmarks" : 						{ "message" : "Bookmarks" },
+	"show_bookmarks" : 					{ "message" : "Show bookmarks within the page for scrolling to the specified locations" },
+	"no_bookmarks" : 					{ "message" : "Off" },
+	"bookmarks_only" : 					{ "message" : "Show bookmarks" },
+	"all_headings" : 					{ "message" : "Bookmarks and Headings" },
+	"bookmark_text_color" :				{ "message" : "Text color" },
+	"buttons" : 						{ "message" : "Nút trượt" },
+	"show_buttons" : 					{ "message" : "Hiển thị nút để cuộn đến phần đầu/cuối của trang" },
+	"button_width" : 					{ "message" : "Độ rộng" },
+	"button_height" : 					{ "message" : "Chiều cao" },
+	"button_opacity" : 					{ "message" : "Độ mờ" },
+	"drag_buttons" : 					{ "message" : "Bạn có thể rê nút đến bất kỳ vị trí nào với tùy chọn này. Vị trí này sẽ trở thành mặc định đối với tất cả website. Nếu các web này được bao bọc bởi một đối tượng trên các trang khác, bạn cũng có thể rê chuột kéo các trang này theo hướng khác." },
+	"contextmenu" : 					{ "message" : "Menu ngữ cảnh" },
+	"show_contextmenu_when" : 			{ "message" : "Khi bạn nào bạn muốn tùy chọn trong menu ngữ cảnh hiển thị để ẩn đi phần trượt?" },
+	"never" : 							{ "message" : "Không bao giờ" },
+	"contextmenu_over_only" : 			{ "message" : "Khi bạn click-chuột phải trên giao diện của chương trình" },
+	"custom_scroll_functions" : 		{ "message" : "Chức năng trượt" },
+	"use_custom_functions" : 			{ "message" : "Sử dụng chức năng cuộn tự chọn" },
+	"use_custom_functions_keyboard" : 	{ "message" : "dành cho bàn phím" },
+	"use_custom_functions_mouse" : 		{ "message" : "dành chuột" },
+	"use_custom_functions_middle" :		{ "message" : "for mouse wheel clicks" },
+	"endMiddlescrollByTurningWheel" :	{ "message" : "End as well by turning the mouse wheel" },
+	"animate_scroll" : 					{ "message" : "Hiển thị hiệu ứng khi trượt" },
+	"animate_up_to" : 					{ "message" : "tăng theo độ dài của" },
+	"infinite" : 						{ "message" : "vô định" },
+	"page" : 							{ "message" : "trang" },
+	"pages" : 							{ "message" : "trang" },
+	"keyscroll_velocity" : 				{ "message" : "Tốc độ khi cuộn bằng các phím mũi tên" },
+	"mousescroll_velocity" : 			{ "message" : "Tốc độ trượt chuột bằng nút trượt hoặc trackpad" },
+	"mousescroll_distance" : 			{ "message" : "Khoảng cách cuộn đối với việc xoay vòng nút trượt chuột" },
+	"middlescroll_velocity" : 			{ "message" : "Velocity of scrolling by mouse wheel clicking" },
+	"animatedscroll_velocity" : 		{ "message" : "Tốc độ của hiệu ứng khi kéo chuột" },
+	"external_interface_headline" : 	{ "message" : "Giao diện bổ sung" },
+	"external_interface" : 				{ "message" : "Cung cấp một giao diện cho phần truy cập bổ sung" },
+	"footer" : 							{ "message" : "Xin cảm ơn bạn đã cài đặt phần tiện ích này. Bạn có thể liên hệ chúng tôi bất cứ khi nào để gửi các phản hồi cũng như các thắc mắc của các bạn." },
+	"contextmenu_enable" :				{ "message" : "Enable on this page" },
+	"contextmenu_disable" :				{ "message" : "Disable on this page" },
+	"contextmenu_show" : 				{ "message" : "Show again" },
+	"contextmenu_hide" : 				{ "message" : "Hide temporarily" },
+	"contextmenu_customize" :			{ "message" : "Customize on this page" },
+	"contextmenu_customize_current_set":{ "message" : "Use current configuration" },
+	"contextmenu_new_set" :				{ "message" : "Create a new set…" },
+	"explanation_save_set" : 			{ "message" : "You can save your current configuration here.\nJust enter a name and click the save-button.\nIf you choose a name that already exists, this entry will be replaced." },
+	"explanation_move_bars_during_scroll" : { "message" : "Tắt tùy chọn này nếu bạn gặp phải vấn đề về giao diện.<br> Vị trí của thanh trượt chỉ được cập nhật khi việc trượt hoàn tất." },
+	"explanation_trigger_area" : 		{ "message" : "Phóng to khu vực truy cập của thanh" },
+	"explanation_superbar" : 			{ "message" : "Thanh \"tác vụ\" là sự kết hợp giữa thanh cuộn theo chiều dọc và ngang.<br>Vì thế chỉ được hiển thị khi cả hai thanh được yêu cầu.<br>Phần vị trí được canh chỉnh dựa theo thanh cuộn dọc và ngang." },
+	"explanation_custom_functions" : 	{ "message" : "Standard scrolling experience is sometimes a bit jerky and slow. By activating these options the extension also takes over the corresponding scrolling, which should result in a noticeable performance boost." },
+	"explanation_animate_scroll" : 		{ "message" : "nếu lựa chọn này được bật, trang sẽ không chỉ ngay lập tức chuyển đến phần vị trí mong muốn, mà còn tự động kéo theo tỉ lệ được tự động điều chỉnh.<br>Phần này sẽ áp dụng cho các nút trược, click vào thanh giao diện cũng như trượt xuống cùng bàn phím (nếu \"Sử dụng chức năng trượt tùy chọn cho bàn phím\" được bật)." },
+	"explanation_external_interface" : 	{ "message" : "Với việc chọn lựa chọn này, chương trình sẽ cung cấp một số tổ hợp phím chức năng dành cho các phần tiện ích được cung cấp bởi bên thứ ba. Bạn có thể sau đó ví dụ chọn cách thao tác với các động tác khác từ chuột.<br><a href='https://christoph142.wordpress.com/2013/02/20/modern-scroll-documentation' target='_blank'>Truy cập vào đây để tìm hiểu thêm.</a>" },
+	"report_issue" : 					{ "message" : "Report an issue"},
+	"disabled" :						{ "message" : "modern scroll has been disabled on $DOMAIN$", "placeholders" : {"domain" : { "content" : "$1", "example" : "example.org" }}},
+	"report_domain" :					{ "message" : "If there's an issue with the page, please report it so it can get fixed for everybody."},
+	"rate" :		 					{ "message" : "Rate modern scroll"},
+	"buymeacoffee" :					{ "message" : "Buy me some sushi"},
+	"ok" :								{ "message" : "OK"},
+	"cancel" :							{ "message" : "Cancel"},
+	"close" :							{ "message" : "Close"},
+	"thanks_for_installing" :			{ "message" : "Thanks for installing modern scroll! :)"},
+	"thanks_for_using" :				{ "message" : "Thanks for using modern scroll! 🙂"},
+    "have_fun" :						{ "message" : "Have fun using the extension.\nI'm gonna check in with you in a few weeks to see how you like it. 🍻"},
+	"like_it" :							{ "message" : "Hello again!\nIt's been a few weeks since you installed modern scroll.\nHow do you like it so far?"},
+	"great" :							{ "message" : "Very"},
+	"so_so" :							{ "message" : "So-so"},
+	"that_is_great" :					{ "message" : "Awesome!\nWould you mind supporting me in order to continue improving modern scroll? 🍻"},
+	"im_sorry_to_hear" :				{ "message" : "I'm sorry to hear you're not 100% convinced yet.\nIf there's anything you'd like to see improved, please let me know."},
+	"continued_support" :				{ "message" : "I'd really appreciate your continued support in order to keep improving the extension.\nIf you haven't done so yet, now's a great time to start! 🍻"}
 }
