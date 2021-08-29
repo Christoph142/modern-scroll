@@ -1,474 +1,121 @@
 {
-    "by": {
-        "message": "da",
-        "description": ""
-    },
-    "saved_sets_headline": {
-        "message": "Configurazioni salvate",
-        "description": ""
-    },
-    "save_set_as": {
-        "message": "Salva la configurazione attuale come",
-        "description": ""
-    },
-    "new_set_name": {
-        "message": "Nome",
-        "description": ""
-    },
-    "load_or_delete_set": {
-        "message": "Carica o cancella",
-        "description": ""
-    },
-    "default": {
-        "message": "Predefinito",
-        "description": ""
-    },
-    "default_change_impossible": {
-        "message": "You cannot alter the default configuration! Please choose another name.",
-        "description": ""
-    },
-    "default_delete_impossible": {
-        "message": "You cannot delete the default configuration!",
-        "description": ""
-    },
-    "confirm_overwrite": {
-        "message": "A configuration with that name already exists.\nDo you want to replace it?",
-        "description": ""
-    },
-    "confirm_delete": {
-        "message": "Do you really want to irreversibly delete this configuration?",
-        "description": ""
-    },
-    "confirm_load": {
-        "message": "Voi veramente caricare questa configurazione?\nLe impostazioni correnti saranno sostituite.",
-        "description": ""
-    },
-    "tooltip_save": {
-        "message": "Salva",
-        "description": ""
-    },
-    "tooltip_load": {
-        "message": "Apri",
-        "description": ""
-    },
-    "tooltip_delete": {
-        "message": "Cancella",
-        "description": ""
-    },
-    "look": {
-        "message": "Aspetto",
-        "description": ""
-    },
-    "color": {
-        "message": "Colore delle barre di scorrimento, della superbar e dei pulsanti.",
-        "description": ""
-    },
-    "color_bg": {
-        "message": "Colore delle barre in secondo piano",
-        "description": ""
-    },
-    "auto_coloring": {
-        "message": "Color UI matching the page instead if possible",
-        "description": ""
-    },
-    "size": {
-        "message": "Width (respectively height for horizontal bars) in normal state",
-        "description": ""
-    },
-    "hover_size": {
-        "message": "Width (respectively height for horizontal bars) when hovered with the mouse",
-        "description": ""
-    },
-    "border_radius": {
-        "message": "Raggio di curvatura dei bordi",
-        "description": ""
-    },
-    "gap": {
-        "message": "Distance to the border of the window",
-        "description": ""
-    },
-    "opacity": {
-        "message": "Opacity of the scroll bars",
-        "description": ""
-    },
-    "border": {
-        "message": "Bordo",
-        "description": ""
-    },
-    "border_width": {
-        "message": "Larghezza",
-        "description": ""
-    },
-    "border_color": {
-        "message": "Colore",
-        "description": ""
-    },
-    "border_blur": {
-        "message": "Sfocatura",
-        "description": ""
-    },
-    "vbar_at_left": {
-        "message": "Mostra la barra di scorrimento a sinistra invece che a destra",
-        "description": ""
-    },
-    "hbar_at_top": {
-        "message": "Display the horizontal scroll bar at the top instead of bottom",
-        "description": ""
-    },
-    "behavior": {
-        "message": "Comportamento",
-        "description": ""
-    },
-    "show_when": {
-        "message": "When do you want the bars to show up?",
-        "description": ""
-    },
-    "only_over": {
-        "message": "Solo al passaggio del mouse",
-        "description": ""
-    },
-    "normal": {
-        "message": "Upon hovering, while scrolling and at changes of position or size",
-        "description": ""
-    },
-    "always": {
-        "message": "Sempre",
-        "description": ""
-    },
-    "show_bg_bars_when": {
-        "message": "E le barre in secondo piano?",
-        "description": ""
-    },
-    "like_bars": {
-        "message": "Come le barre di scorrimento",
-        "description": ""
-    },
-    "show_how_long": {
-        "message": "How long do you want the bars to stay visible?",
-        "description": ""
-    },
-    "fullscreen_only": {
-        "message": "Mostra le barre solo in modalità schermo intero",
-        "description": ""
-    },
-    "fullscreen_only_short": {
-        "message": "Solo in modalità schermo intero",
-        "description": ""
-    },
-    "move_bars_during_scroll": {
-        "message": "Animate the scroll bars during scrolling with the mouse wheel / keyboard",
-        "description": ""
-    },
-    "bg_special_ends": {
-        "message": "Il click alle estremità delle barre in secondo piano scorre all'inizio/fine al posto che di una pagina per volta.",
-        "description": ""
-    },
-    "container1": {
-        "message": "Trigger modern scroll within a distance of",
-        "description": ""
-    },
-    "container2": {
-        "message": "pixel dal bordo",
-        "description": ""
-    },
-    "element_bars": {
-        "message": "Barre di scorrimento nella pagina",
-        "description": ""
-    },
-    "style_element_bars": {
-        "message": "Applica lo stile a tutte le barre di scorrimento",
-        "description": ""
-    },
-    "explanation_element_bars": {
-        "message": "Activate this to make modern scroll also style all scrollbars within the page, e.g. those of textareas.",
-        "description": ""
-    },
-    "autohide_element_bars": {
-        "message": "Nascondi automaticamente le barre di scorrimento nella pagina",
-        "description": ""
-    },
-    "explanation_autohide_element_bars": {
-        "message": "Sfortunatamente questa impostazione non funziona affidabilmente a causa degli errori di rendering. Puoi abilitarla, ma le barre di scorrimento potrebbero non essere visualizzate correttamente",
-        "description": ""
-    },
-    "superbar": {
-        "message": "Superbar",
-        "description": ""
-    },
-    "show_superbar": {
-        "message": "Mostra la \"superbar\"",
-        "description": ""
-    },
-    "show_superbar_minipage": {
-        "message": "Show a mini-version of the website in the background when dragging the superbar",
-        "description": ""
-    },
-    "superbar_opacity": {
-        "message": "Opacità della superbar al passaggio del mouse",
-        "description": ""
-    },
-    "bookmarks": {
-        "message": "Bookmarks",
-        "description": ""
-    },
-    "show_bookmarks": {
-        "message": "Show bookmarks within the page for scrolling to the specified locations",
-        "description": ""
-    },
-    "no_bookmarks": {
-        "message": "Off",
-        "description": ""
-    },
-    "bookmarks_only": {
-        "message": "Show bookmarks",
-        "description": ""
-    },
-    "all_headings": {
-        "message": "Bookmarks and Headings",
-        "description": ""
-    },
-    "buttons": {
-        "message": "Pulsanti di scorrimento",
-        "description": ""
-    },
-    "show_buttons": {
-        "message": "Mostra i pulsanti per lo scorrimento ad inizio o fine pagina.",
-        "description": ""
-    },
-    "button_width": {
-        "message": "Larghezza",
-        "description": ""
-    },
-    "button_height": {
-        "message": "Altezza",
-        "description": ""
-    },
-    "button_opacity": {
-        "message": "Opacità",
-        "description": ""
-    },
-    "drag_buttons": {
-        "message": "You can drag the buttons to any position here in the options. This position will become the default for all websites. If they cover an element on some pages, you still will be able to drag them out of the way there",
-        "description": ""
-    },
-    "contextmenu": {
-        "message": "Context menu",
-        "description": ""
-    },
-    "show_contextmenu_when": {
-        "message": "When do you want an option in the context menu for hiding modern scroll?",
-        "description": ""
-    },
-    "never": {
-        "message": "Mai",
-        "description": ""
-    },
-    "contextmenu_over_only": {
-        "message": "Cliccando col tasto destro sulla interfaccia di modern scroll",
-        "description": ""
-    },
-    "custom_scroll_functions": {
-        "message": "Funzioni di scorrimento",
-        "description": ""
-    },
-    "use_custom_functions": {
-        "message": "Utilizza funzioni di scorrimento personalizzate",
-        "description": ""
-    },
-    "use_custom_functions_keyboard": {
-        "message": "per la tastiera",
-        "description": ""
-    },
-    "use_custom_functions_mouse": {
-        "message": "per il mouse",
-        "description": ""
-    },
-    "use_custom_functions_middle": {
-        "message": "per scatto della rotellina del mouse",
-        "description": ""
-    },
-    "endMiddlescrollByTurningWheel": {
-        "message": "End as well by turning the mouse wheel",
-        "description": ""
-    },
-    "animate_scroll": {
-        "message": "Scorrimento animato",
-        "description": ""
-    },
-    "animate_up_to": {
-        "message": "fino alla lunghezza di",
-        "description": ""
-    },
-    "infinite": {
-        "message": "infinito",
-        "description": ""
-    },
-    "page": {
-        "message": "pagina",
-        "description": ""
-    },
-    "pages": {
-        "message": "pagine",
-        "description": ""
-    },
-    "keyscroll_velocity": {
-        "message": "Velocity of scrolling via the arrow keys",
-        "description": ""
-    },
-    "mousescroll_velocity": {
-        "message": "Velocity of scrolling by mouse wheel and trackpad",
-        "description": ""
-    },
-    "mousescroll_distance": {
-        "message": "Distance scrolled per mouse wheel rotation",
-        "description": ""
-    },
-    "middlescroll_velocity": {
-        "message": "Velocità dello scorrimento tramite rotellina del mouse",
-        "description": ""
-    },
-    "animatedscroll_velocity": {
-        "message": "Velocità della animazione scorrimento.",
-        "description": ""
-    },
-    "external_interface_headline": {
-        "message": "Interfaccia esterna",
-        "description": ""
-    },
-    "external_interface": {
-        "message": "Provide an interface for external access",
-        "description": ""
-    },
-    "footer": {
-        "message": "Grazie per avere installato questa estensione. Mi potete contattare in ogni momento se avete domande o suggerimenti.",
-        "description": ""
-    },
-    "contextmenu_show": {
-        "message": "Mostra modern scroll",
-        "description": ""
-    },
-    "contextmenu_hide": {
-        "message": "Nascondi modern scroll",
-        "description": ""
-    },
-    "explanation_save_set": {
-        "message": "You can save your current configuration here.\nJust enter a name and click the save-button.\nIf you choose a name that already exists, this entry will be replaced.",
-        "description": ""
-    },
-    "explanation_move_bars_during_scroll": {
-        "message": "Deactivate this option if you encounter performance problems.<br>The scroll bars' positions will only be updated when scrolling has finished.",
-        "description": ""
-    },
-    "explanation_trigger_area": {
-        "message": "Enlarges the bars accessing area.",
-        "description": ""
-    },
-    "explanation_superbar": {
-        "message": "The \"superbar\" is a combination of a horizontal and a vertical scroll bar.<br>Thus, it only gets visible when both bars are necessary.<br>Its position is aligned with the vertical and horizontal scroll bars.",
-        "description": ""
-    },
-    "explanation_custom_functions": {
-        "message": "Standard scrolling experience is sometimes a bit jerky and slow. By activating these options the extension also takes over the corresponding scrolling, which should result in a noticeable performance boost.",
-        "description": ""
-    },
-    "explanation_animate_scroll": {
-        "message": "If you select this option, the page will not instantly jump to the desired position anymore, but automatically scroll there with an adjustable rate.<br>This applies to the scroll buttons, clicks at the background bars as well as scrolling with the keyboard (if \"Use custom scrolling functions for the keyboard\" is activated).",
-        "description": ""
-    },
-    "explanation_external_interface": {
-        "message": "By checking this option, modern scroll will provide some of its key features for usage by third-party-extensions, websites or you. You can then e.g. create custom mouse gestures.<br><a href='https://christoph142.wordpress.com/2013/02/20/modern-scroll-documentation' target='_blank'>Visit the documentation to learn more about it.</a>",
-        "description": ""
-    },
-    "report_issue": {
-        "message": "Segnala un problema",
-        "description": ""
-    },
-    "rate": {
-        "message": "Dai il tuo voto a modern scroll",
-        "description": ""
-    },
-    "twitter": {
-        "message": "Seguimi su Twitter",
-        "description": ""
-    },
-    "get_more": {
-        "message": "Ottieni di più da modern scroll",
-        "description": ""
-    },
-    "ok": {
-        "message": "OK",
-        "description": ""
-    },
-    "cancel": {
-        "message": "Annulla",
-        "description": ""
-    },
-    "close": {
-        "message": "Chiudi",
-        "description": ""
-    },
-    "token": {
-        "message": "Here's the token you need in order to transfer this license to other browsers:",
-        "description": ""
-    },
-    "trial_expired": {
-        "message": "Your trial period expired.\nI hope you love modern scroll as much as I do.\nIf you do, get a license now.",
-        "description": ""
-    },
-    "all_set": {
-        "message": "You're all set! :)",
-        "description": ""
-    },
-    "seven_days_trial": {
-        "message": "You can check modern scroll out unrestrictedly for seven days now.",
-        "description": ""
-    },
-    "thanks_for_installing": {
-        "message": "Thanks for installing modern scroll! :)",
-        "description": ""
-    },
-    "get_trial_license": {
-        "message": "You need to log in to your Google account and grant modern scroll access to Chrome Web Store now in order to get your (trial) license.",
-        "description": ""
-    },
-    "authorize": {
-        "message": "Log in and authorize",
-        "description": ""
-    },
-    "transferred_trial_expired": {
-        "message": "Il periodo di prova della licenza trasferita è concluso.\nSpero che modern scroll ti sia piaciuto quanto piace a me.\n",
-        "description": ""
-    },
-    "transfer_successful": {
-        "message": "Have fun using modern scroll.",
-        "description": ""
-    },
-    "get_license_in_chrome": {
-        "message": "installa modern scroll in Chrome ed ottieni una licenza lì",
-        "description": ""
-    },
-    "open_url_in_chrome": {
-        "message": "open chrome-extension://@@extension_id/options/options.html#show_token in Chrome",
-        "description": ""
-    },
-    "copy_token": {
-        "message": "copy shown token",
-        "description": ""
-    },
-    "insert_here": {
-        "message": "insert it in here",
-        "description": ""
-    },
-    "transfer_instructions": {
-        "message": "To use it in here, you need to transfer a license from Chrome (trial license is fine, too). That's what you need to do:",
-        "description": ""
-    },
-    "invalid_token": {
-        "message": "The token you entered is invalid or expired",
-        "description": ""
-    },
-    "description": {
-        "message": "Porta lo scrolling ad un livello completamente nuovo.",
-        "description": ""
-    }
+	"description" :						{ "message" : "Porta lo scrolling ad un livello completamente nuovo." },
+	"by" :								{ "message" : "da" },
+	"saved_sets_headline" :				{ "message" : "Configurazioni salvate" },
+	"save_set_as" :						{ "message" : "Salva la configurazione attuale come" },
+	"new_set_name" :					{ "message" : "Nome" },
+	"load_or_delete_set" : 				{ "message" : "Carica o cancella" },
+	"default" : 						{ "message" : "Predefinito" },
+	"default_change_impossible" : 		{ "message" : "You cannot alter the default configuration! Please choose another name." },
+	"default_delete_impossible" : 		{ "message" : "You cannot delete the default configuration!" },
+	"confirm_overwrite" : 				{ "message" : "A configuration with that name already exists.\nDo you want to replace it?" },
+	"confirm_delete" : 					{ "message" : "Do you really want to irreversibly delete this configuration?" },
+	"confirm_load" : 					{ "message" : "Voi veramente caricare questa configurazione?\nLe impostazioni correnti saranno sostituite." },
+	"tooltip_save" : 					{ "message" : "Salva" },
+	"tooltip_load" : 					{ "message" : "Apri" },
+	"tooltip_delete" : 					{ "message" : "Cancella" },	
+	"look" : 							{ "message" : "Aspetto" },
+	"color" : 							{ "message" : "Colore delle barre di scorrimento, della superbar e dei pulsanti." },
+	"color_bg" : 						{ "message" : "Colore delle barre in secondo piano" },
+	"auto_coloring" :					{ "message" : "Color UI matching the page instead if possible" },
+	"size" : 							{ "message" : "Width (respectively height for horizontal bars) in normal state" },
+	"hover_size" : 						{ "message" : "Width (respectively height for horizontal bars) when hovered with the mouse" },
+	"border_radius" : 					{ "message" : "Raggio di curvatura dei bordi" },
+	"gap" : 							{ "message" : "Distance to the border of the window" },
+	"opacity" : 						{ "message" : "Opacity of the scroll bars" },
+	"border" : 							{ "message" : "Bordo" },
+	"border_width" : 					{ "message" : "Larghezza" },
+	"border_color" : 					{ "message" : "Colore" },
+	"border_blur" : 					{ "message" : "Sfocatura" },
+	"vbar_at_left" : 					{ "message" : "Mostra la barra di scorrimento a sinistra invece che a destra" },
+	"hbar_at_top" : 					{ "message" : "Display the horizontal scroll bar at the top instead of bottom" },
+	"behavior" : 						{ "message" : "Comportamento" },
+	"show_when" : 						{ "message" : "When do you want the bars to show up?" },
+	"only_over" : 						{ "message" : "Solo al passaggio del mouse" },
+	"normal" : 							{ "message" : "Upon hovering, while scrolling and at changes of position or size" },
+	"always" : 							{ "message" : "Sempre" },
+	"show_bg_bars_when" : 				{ "message" : "E le barre in secondo piano?" },
+	"like_bars" : 						{ "message" : "Come le barre di scorrimento" },
+	"show_how_long" : 					{ "message" : "How long do you want the bars to stay visible?" },
+	"fullscreen_only" : 				{ "message" : "Mostra le barre solo in modalità schermo intero" },
+	"fullscreen_only_short" : 			{ "message" : "Solo in modalità schermo intero" },
+	"move_bars_during_scroll" : 		{ "message" : "Animate the scroll bars during scrolling with the mouse wheel / keyboard" },
+	"bg_special_ends" : 				{ "message" : "Il click alle estremità delle barre in secondo piano scorre all'inizio/fine al posto che di una pagina per volta." },
+	"container1" : 						{ "message" : "Trigger modern scroll within a distance of" },
+	"container2" : 						{ "message" : "pixel dal bordo" },
+	"element_bars" :					{ "message" : "Barre di scorrimento nella pagina" },
+	"style_element_bars" : 				{ "message" : "Applica lo stile a tutte le barre di scorrimento" },
+	"explanation_element_bars" : 		{ "message" : "Activate this to make modern scroll also style all scrollbars within the page, e.g. those of textareas." },
+	"autohide_element_bars" : 			{ "message" : "Nascondi automaticamente le barre di scorrimento nella pagina" },
+	"explanation_autohide_element_bars":{ "message" : "Sfortunatamente questa impostazione non funziona affidabilmente a causa degli errori di rendering. Puoi abilitarla, ma le barre di scorrimento potrebbero non essere visualizzate correttamente" },
+	"superbar" : 						{ "message" : "Superbar" },
+	"show_superbar" : 					{ "message" : "Mostra la \"superbar\"" },
+	"show_superbar_minipage" : 			{ "message" : "Show a mini-version of the website in the background when dragging the superbar" },
+	"superbar_opacity" : 				{ "message" : "Opacità della superbar al passaggio del mouse" },
+	"bookmarks" : 						{ "message" : "Bookmarks" },
+	"show_bookmarks" : 					{ "message" : "Show bookmarks within the page for scrolling to the specified locations" },
+	"no_bookmarks" : 					{ "message" : "Off" },
+	"bookmarks_only" : 					{ "message" : "Show bookmarks" },
+	"all_headings" : 					{ "message" : "Bookmarks and Headings" },
+	"bookmark_text_color" :				{ "message" : "Text color" },
+	"buttons" : 						{ "message" : "Pulsanti di scorrimento" },
+	"show_buttons" : 					{ "message" : "Mostra i pulsanti per lo scorrimento ad inizio o fine pagina." },
+	"button_width" : 					{ "message" : "Larghezza" },
+	"button_height" : 					{ "message" : "Altezza" },
+	"button_opacity" : 					{ "message" : "Opacità" },
+	"drag_buttons" : 					{ "message" : "You can drag the buttons to any position here in the options. This position will become the default for all websites. If they cover an element on some pages, you still will be able to drag them out of the way there" },
+	"contextmenu" : 					{ "message" : "Context menu" },
+	"show_contextmenu_when" : 			{ "message" : "When do you want an option in the context menu for hiding modern scroll?" },
+	"never" : 							{ "message" : "Mai" },
+	"contextmenu_over_only" : 			{ "message" : "Cliccando col tasto destro sulla interfaccia di modern scroll" },
+	"custom_scroll_functions" : 		{ "message" : "Funzioni di scorrimento" },
+	"use_custom_functions" : 			{ "message" : "Utilizza funzioni di scorrimento personalizzate" },
+	"use_custom_functions_keyboard" : 	{ "message" : "per la tastiera" },
+	"use_custom_functions_mouse" : 		{ "message" : "per il mouse" },
+	"use_custom_functions_middle" :		{ "message" : "per scatto della rotellina del mouse" },
+	"endMiddlescrollByTurningWheel" :	{ "message" : "End as well by turning the mouse wheel" },
+	"animate_scroll" : 					{ "message" : "Scorrimento animato" },
+	"animate_up_to" : 					{ "message" : "fino alla lunghezza di" },
+	"infinite" : 						{ "message" : "infinito" },
+	"page" : 							{ "message" : "pagina" },
+	"pages" : 							{ "message" : "pagine" },
+	"keyscroll_velocity" : 				{ "message" : "Velocity of scrolling via the arrow keys" },
+	"mousescroll_velocity" : 			{ "message" : "Velocity of scrolling by mouse wheel and trackpad" },
+	"mousescroll_distance" : 			{ "message" : "Distance scrolled per mouse wheel rotation" },
+	"middlescroll_velocity" : 			{ "message" : "Velocità dello scorrimento tramite rotellina del mouse" },
+	"animatedscroll_velocity" : 		{ "message" : "Velocità della animazione scorrimento." },
+	"external_interface_headline" : 	{ "message" : "Interfaccia esterna" },
+	"external_interface" : 				{ "message" : "Provide an interface for external access" },
+	"footer" : 							{ "message" : "Grazie per avere installato questa estensione. Mi potete contattare in ogni momento se avete domande o suggerimenti." },
+	"contextmenu_enable" :				{ "message" : "Enable on this page" },
+	"contextmenu_disable" :				{ "message" : "Disable on this page" },
+	"contextmenu_show" : 				{ "message" : "Show again" },
+	"contextmenu_hide" : 				{ "message" : "Hide temporarily" },
+	"contextmenu_customize" :			{ "message" : "Customize on this page" },
+	"contextmenu_customize_current_set":{ "message" : "Use current configuration" },
+	"contextmenu_new_set" :				{ "message" : "Create a new set…" },
+	"explanation_save_set" : 			{ "message" : "You can save your current configuration here.\nJust enter a name and click the save-button.\nIf you choose a name that already exists, this entry will be replaced." },
+	"explanation_move_bars_during_scroll" : { "message" : "Deactivate this option if you encounter performance problems.<br>The scroll bars' positions will only be updated when scrolling has finished." },
+	"explanation_trigger_area" : 		{ "message" : "Enlarges the bars accessing area." },
+	"explanation_superbar" : 			{ "message" : "The \"superbar\" is a combination of a horizontal and a vertical scroll bar.<br>Thus, it only gets visible when both bars are necessary.<br>Its position is aligned with the vertical and horizontal scroll bars." },
+	"explanation_custom_functions" : 	{ "message" : "Standard scrolling experience is sometimes a bit jerky and slow. By activating these options the extension also takes over the corresponding scrolling, which should result in a noticeable performance boost." },
+	"explanation_animate_scroll" : 		{ "message" : "If you select this option, the page will not instantly jump to the desired position anymore, but automatically scroll there with an adjustable rate.<br>This applies to the scroll buttons, clicks at the background bars as well as scrolling with the keyboard (if \"Use custom scrolling functions for the keyboard\" is activated)." },
+	"explanation_external_interface" : 	{ "message" : "By checking this option, modern scroll will provide some of its key features for usage by third-party-extensions, websites or you. You can then e.g. create custom mouse gestures.<br><a href='https://christoph142.wordpress.com/2013/02/20/modern-scroll-documentation' target='_blank'>Visit the documentation to learn more about it.</a>" },
+	"report_issue" : 					{ "message" : "Segnala un problema"},
+	"disabled" :						{ "message" : "modern scroll has been disabled on $DOMAIN$", "placeholders" : {"domain" : { "content" : "$1", "example" : "example.org" }}},
+	"report_domain" :					{ "message" : "If there's an issue with the page, please report it so it can get fixed for everybody."},
+	"rate" :		 					{ "message" : "Dai il tuo voto a modern scroll"},
+	"buymeacoffee" :					{ "message" : "Buy me some sushi"},
+	"ok" :								{ "message" : "OK"},
+	"cancel" :							{ "message" : "Annulla"},
+	"close" :							{ "message" : "Chiudi"},
+	"thanks_for_installing" :			{ "message" : "Thanks for installing modern scroll! :)"},
+	"thanks_for_using" :				{ "message" : "Thanks for using modern scroll! 🙂"},
+    "have_fun" :						{ "message" : "Have fun using the extension.\nI'm gonna check in with you in a few weeks to see how you like it. 🍻"},
+	"like_it" :							{ "message" : "Hello again!\nIt's been a few weeks since you installed modern scroll.\nHow do you like it so far?"},
+	"great" :							{ "message" : "Very"},
+	"so_so" :							{ "message" : "So-so"},
+	"that_is_great" :					{ "message" : "Awesome!\nWould you mind supporting me in order to continue improving modern scroll? 🍻"},
+	"im_sorry_to_hear" :				{ "message" : "I'm sorry to hear you're not 100% convinced yet.\nIf there's anything you'd like to see improved, please let me know."},
+	"continued_support" :				{ "message" : "I'd really appreciate your continued support in order to keep improving the extension.\nIf you haven't done so yet, now's a great time to start! 🍻"}
 }
