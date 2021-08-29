@@ -1,4 +1,65 @@
-﻿v 3.5
+﻿
+v 4.1 backlog
+---------
+new: add own bookmarks (click at bar, save pos)
+new: separate dark mode / incognito profile for web pages
+upd: verschiedene Übersetzungen (Danke an alle Übersetzer)
+
+v 4.1
+---------
+new: let browser determine and update scroll bar positions
+new: allow for pages' dynamical theme color changes
+fix: modern scroll doesn't show up at www.nidirect.gov.uk
+fix: Space bar scrolls and plays / pauses videos at the same time on YouTube
+fix: superbar not working
+fix: clicking the background bars sometimes scrolls by two pages at once
+fix: lots of console errors on various pages
+upd: async rewrite of the extension's core structure
+
+v 4.0
+---------
+new: per domain customization
+new: blacklisting domains
+new: support of new scrollbar CSS style spec
+new: options page available as popup
+new: color setting for bookmarks' text
+fix: bookmarks sometimes disappear while hovering
+fix: inadvertently triggering bookmarks after page load
+upd: context menus
+upd: several smaller adjustments of options page
+upd: Niederländische Übersetzung (danke Heimen)
+
+v 3.5.6
+---------
+new: separate URLs for each extension store (Opera, Edge, Chrome)
+fix: welcome dialog shown every time default set gets loaded
+
+v 3.5.5
+---------
+fix: several smaller glitches in options page
+upd: Niederländische Übersetzung (danke Heimen)
+upd: Chinese translation (thx xyu)
+upd: Portugiesische Übersetzung (Danke André)
+
+v 3.5.4
+---------
+upd: Kleinere Änderungen der Einstellungsseite
+upd: bezahlte Lizenzierung entfernt - danke für deine Unterstützung auf https://www.buymeacoffee.com/Christoph142! 🍻
+
+v 3.5.3
+---------
+fix: Übertragen der Lizenz aus Chrome funktioniert nicht zuverlässig (danke an alle Melder)
+fix: Lizenz durch Laden von Profilen gelöscht (danke hyperboraeer)
+
+v 3.5.2
+---------
+neu: Dark Mode für die Einstellungen
+
+v 3.5.1
+---------
+fix: Eingaben in eigenen Widgets geschluckt
+
+v 3.5
 ---------
 new: display bookmarks next to the vertical scroll bar
 upd: verschiedene Übersetzungen (Danke an alle Übersetzer)
