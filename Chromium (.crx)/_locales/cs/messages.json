@@ -1,474 +1,121 @@
 {
-    "by": {
-        "message": "od",
-        "description": ""
-    },
-    "saved_sets_headline": {
-        "message": "Uložená nastavení",
-        "description": ""
-    },
-    "save_set_as": {
-        "message": "Uložit aktuální konfiguraci jako",
-        "description": ""
-    },
-    "new_set_name": {
-        "message": "Název",
-        "description": ""
-    },
-    "load_or_delete_set": {
-        "message": "Načíst, nebo smazat",
-        "description": ""
-    },
-    "default": {
-        "message": "Výchozí",
-        "description": ""
-    },
-    "default_change_impossible": {
-        "message": "Nemůžete pozměnit výchozí konfiguraci! Prosím zvolte jiný název.",
-        "description": ""
-    },
-    "default_delete_impossible": {
-        "message": "Nemůžete vymazat výchozí konfiguraci!",
-        "description": ""
-    },
-    "confirm_overwrite": {
-        "message": "Konfigurace s tímto jménem již existuje.\nChcete ji nahradit?",
-        "description": ""
-    },
-    "confirm_delete": {
-        "message": "Opravdu chcete nenávratně vymazat tuto konfiguraci?",
-        "description": ""
-    },
-    "confirm_load": {
-        "message": "Opravdu chcete načíst tuto konfiguraci?\nToto nahradí vaše nynější nastavení.",
-        "description": ""
-    },
-    "tooltip_save": {
-        "message": "Uložit",
-        "description": ""
-    },
-    "tooltip_load": {
-        "message": "Načíst",
-        "description": ""
-    },
-    "tooltip_delete": {
-        "message": "Vymazat",
-        "description": ""
-    },
-    "look": {
-        "message": "Vzhled",
-        "description": ""
-    },
-    "color": {
-        "message": "Barva posuvníků, superbaru a posuvných tlačítek",
-        "description": ""
-    },
-    "color_bg": {
-        "message": "Barva lišt v pozadí posuvníků",
-        "description": ""
-    },
-    "auto_coloring": {
-        "message": "Color UI matching the page instead if possible",
-        "description": ""
-    },
-    "size": {
-        "message": "Šířka (respektive výška pro horizontální posuvníky) v normálním stavu",
-        "description": ""
-    },
-    "hover_size": {
-        "message": "Šířka (respektive výška pro horizontální posuvníky), když se pohybujete myší nad ním",
-        "description": ""
-    },
-    "border_radius": {
-        "message": "Hranice poloměru zakřivení",
-        "description": ""
-    },
-    "gap": {
-        "message": "Vzdálenost ke kraji okna",
-        "description": ""
-    },
-    "opacity": {
-        "message": "Neprůhlednost posuvníků",
-        "description": ""
-    },
-    "border": {
-        "message": "Okraj",
-        "description": ""
-    },
-    "border_width": {
-        "message": "Šířka",
-        "description": ""
-    },
-    "border_color": {
-        "message": "Barva",
-        "description": ""
-    },
-    "border_blur": {
-        "message": "Rozmazanost",
-        "description": ""
-    },
-    "vbar_at_left": {
-        "message": "Zobrazovat vertikální posuvník vlevo místo vpravo",
-        "description": ""
-    },
-    "hbar_at_top": {
-        "message": "Zobrazovat horizontální posuvník nahoře místo dole",
-        "description": ""
-    },
-    "behavior": {
-        "message": "Chování",
-        "description": ""
-    },
-    "show_when": {
-        "message": "Kdy chcete, aby se posuvníky zobrazovaly?",
-        "description": ""
-    },
-    "only_over": {
-        "message": "Jen při vznášení kurzoru myší nad nimi",
-        "description": ""
-    },
-    "normal": {
-        "message": "Při vznášení kurzoru myši nad nimi, během rolování a při změnách pozice nebo velikosti",
-        "description": ""
-    },
-    "always": {
-        "message": "Vždy",
-        "description": ""
-    },
-    "show_bg_bars_when": {
-        "message": "A lišty v pozadí posuvníků?",
-        "description": ""
-    },
-    "like_bars": {
-        "message": "Jako posuvníky",
-        "description": ""
-    },
-    "show_how_long": {
-        "message": "Jak dlouho chcete, aby posuvné lišty zůstávaly viditelné?",
-        "description": ""
-    },
-    "fullscreen_only": {
-        "message": "Zobrazovat posuvníky jen v režimu celé obrazovky",
-        "description": ""
-    },
-    "fullscreen_only_short": {
-        "message": "Pouze v celoobrazovkovém režimu",
-        "description": ""
-    },
-    "move_bars_during_scroll": {
-        "message": "Animovat rolovací posuvníky během rolování kolečkem na myši / klávesnicí",
-        "description": ""
-    },
-    "bg_special_ends": {
-        "message": "Kliknutí na konec lišty v pozadí posuvníků sroluje úplně nahoru/dolů (respektive doleva/doprava) místo o jednu stránku",
-        "description": ""
-    },
-    "container1": {
-        "message": "Spustit modern scroll ve vzdálenosti od",
-        "description": ""
-    },
-    "container2": {
-        "message": "px od okraje",
-        "description": ""
-    },
-    "element_bars": {
-        "message": "Posuvníky uvnitř stránky",
-        "description": ""
-    },
-    "style_element_bars": {
-        "message": "Stylizovat všechny posuvníky",
-        "description": ""
-    },
-    "explanation_element_bars": {
-        "message": "Toto aktivujte pro modern scroll styl všech posuvníků uvnitř stránky, např. textová pole",
-        "description": ""
-    },
-    "autohide_element_bars": {
-        "message": "Automaticky skrývat posuvníky uvnitř stránky",
-        "description": ""
-    },
-    "explanation_autohide_element_bars": {
-        "message": "Toto bohužel nefunguje správně díky vykreslovacím chybám. Můžete tuto funkci povolit, ovšem posuvníky se nemusí vždy zobrazit správně.",
-        "description": ""
-    },
-    "superbar": {
-        "message": "Superbar",
-        "description": ""
-    },
-    "show_superbar": {
-        "message": "Zobrazovat \"superbar\"",
-        "description": ""
-    },
-    "show_superbar_minipage": {
-        "message": "Zobrazovat zmenšenou verzi stránek v pozadí při přesouvání superbaru",
-        "description": ""
-    },
-    "superbar_opacity": {
-        "message": "Neprůhlednost superbaru při vznášení kurzoru myší nad ním",
-        "description": ""
-    },
-    "bookmarks": {
-        "message": "Bookmarks",
-        "description": ""
-    },
-    "show_bookmarks": {
-        "message": "Show bookmarks within the page for scrolling to the specified locations",
-        "description": ""
-    },
-    "no_bookmarks": {
-        "message": "Off",
-        "description": ""
-    },
-    "bookmarks_only": {
-        "message": "Show bookmarks",
-        "description": ""
-    },
-    "all_headings": {
-        "message": "Bookmarks and Headings",
-        "description": ""
-    },
-    "buttons": {
-        "message": "Rolovací tlačítka",
-        "description": ""
-    },
-    "show_buttons": {
-        "message": "Ukázat tlačítka pro rolování nahoře/na okraji stránky",
-        "description": ""
-    },
-    "button_width": {
-        "message": "Šířka",
-        "description": ""
-    },
-    "button_height": {
-        "message": "Výška",
-        "description": ""
-    },
-    "button_opacity": {
-        "message": "Průhlednost",
-        "description": ""
-    },
-    "drag_buttons": {
-        "message": "Zde v nastavení můžete přesouvat tlačítka na jakoukoli pozici. Tato pozice se stane výchozí pro všechny webové stránky. Pokud překryjí element na některých stránkách, tak stále je budete moci přesunout jinam",
-        "description": ""
-    },
-    "contextmenu": {
-        "message": "Kontextové menu",
-        "description": ""
-    },
-    "show_contextmenu_when": {
-        "message": "Kdy chcete mít možnost v kontextovém menu pro skrytí moderního rolování?",
-        "description": ""
-    },
-    "never": {
-        "message": "Nikdy",
-        "description": ""
-    },
-    "contextmenu_over_only": {
-        "message": "Když kliknu pravým tlačítkem (right-click) do prostředí modern scroll",
-        "description": ""
-    },
-    "custom_scroll_functions": {
-        "message": "Rolovací funkce",
-        "description": ""
-    },
-    "use_custom_functions": {
-        "message": "Využívat vlastní rolovací funkce",
-        "description": ""
-    },
-    "use_custom_functions_keyboard": {
-        "message": "pro klávesnici",
-        "description": ""
-    },
-    "use_custom_functions_mouse": {
-        "message": "pro myš",
-        "description": ""
-    },
-    "use_custom_functions_middle": {
-        "message": "pro kliknutí kolečkem myši",
-        "description": ""
-    },
-    "endMiddlescrollByTurningWheel": {
-        "message": "Přestat také při otočením kolečka myši",
-        "description": ""
-    },
-    "animate_scroll": {
-        "message": "Animované rolování",
-        "description": ""
-    },
-    "animate_up_to": {
-        "message": "až do délky",
-        "description": ""
-    },
-    "infinite": {
-        "message": "nekonečna",
-        "description": ""
-    },
-    "page": {
-        "message": "stránky",
-        "description": ""
-    },
-    "pages": {
-        "message": "stránek",
-        "description": ""
-    },
-    "keyscroll_velocity": {
-        "message": "Rychlost rolování pomocí šipek na klávesnici",
-        "description": ""
-    },
-    "mousescroll_velocity": {
-        "message": "Rychlost rolování pomocí kolečka myši a touchpadu",
-        "description": ""
-    },
-    "mousescroll_distance": {
-        "message": "Vzdálenost rolování na otočení kolečka myši",
-        "description": ""
-    },
-    "middlescroll_velocity": {
-        "message": "Rychlost rolování myší při kliknutí kolečkem myši",
-        "description": ""
-    },
-    "animatedscroll_velocity": {
-        "message": "Rychlost animovaného rolování",
-        "description": ""
-    },
-    "external_interface_headline": {
-        "message": "Externí rozhraní",
-        "description": ""
-    },
-    "external_interface": {
-        "message": "Poskytovat rozhraní pro externí přístup",
-        "description": ""
-    },
-    "footer": {
-        "message": "Díky za nainstalování tohoto rozšíření. Můžete mě kdykoli kontaktovat pro zpětnou vazbu a otázky.",
-        "description": ""
-    },
-    "contextmenu_show": {
-        "message": "Ukázat modern scroll",
-        "description": ""
-    },
-    "contextmenu_hide": {
-        "message": "Skrýt modern scroll",
-        "description": ""
-    },
-    "explanation_save_set": {
-        "message": "Zde můžete uložit vaši nynější konfiguraci.\nJen vložte jméno a klikněte na tlačítko uložit.\nPokud vyberete jméno, které již existuje, obsah bude nahrazen.",
-        "description": ""
-    },
-    "explanation_move_bars_during_scroll": {
-        "message": "Deaktivujte tuto možnost pokud jste narazili na výkonnostní problémy.<br>Pozice rolovacích posuvníků bude aktualizována až rolování bude dokončeno.",
-        "description": ""
-    },
-    "explanation_trigger_area": {
-        "message": "Zvětší posuvníky při dostání se do této oblasti.",
-        "description": ""
-    },
-    "explanation_superbar": {
-        "message": "\"Superbar\" je kombinací horizontálního a vertikálního rolovacího posuvníku.<br>A tím pádem se zobrazí, jen když jsou nezbytné oba posuvníky.<br>Jeho pozice je zarovnána s vertikálními a horizontálními rolovacími posuvníky.",
-        "description": ""
-    },
-    "explanation_custom_functions": {
-        "message": "Standardní rolovací zážitek je někdy trochu trhavý a pomalý. Aktivací těchto možností rozšíření také přebere zodpovědnost za rolování, což by mělo vést k patrnému nárůstu výkonu.",
-        "description": ""
-    },
-    "explanation_animate_scroll": {
-        "message": "Pokud vyberete tuto možnost, tak stránka víckrát hned nepřeskočí na požadovanou pozici, ale automaticky tam sroluje s nastavitelným tempem.<br>Toto se týká rolovacích tlačítek, kliknutí na lišty v pozadí a taktéž rolování pomocí klávesnice (pokud \"Využívat vlastní rolovací funkce pro klávesnici\" je aktivováno).",
-        "description": ""
-    },
-    "explanation_external_interface": {
-        "message": "Zatrhnutím této možnosti bude modern scroll poskytovat nějaké z vlastních klíčových vlastností pro užívání rozšíření třetích stran, webů nebo vaše. Můžete tedy například vytvořit vlastní pohybový příkaz pro myš.<br><a href='https://christoph142.wordpress.com/2013/02/20/modern-scroll-documentation' target='_blank'>Navštivte tuto dokumentaci pro zjištění více informací (psáno anglicky).</a>",
-        "description": ""
-    },
-    "report_issue": {
-        "message": "Nahlásit chybu",
-        "description": ""
-    },
-    "rate": {
-        "message": "Ohodnotit modern scroll",
-        "description": ""
-    },
-    "twitter": {
-        "message": "Sleduj mě na Twitteru",
-        "description": ""
-    },
-    "get_more": {
-        "message": "Získat z modern scroll více",
-        "description": ""
-    },
-    "ok": {
-        "message": "OK",
-        "description": ""
-    },
-    "cancel": {
-        "message": "Zrušit",
-        "description": ""
-    },
-    "close": {
-        "message": "Zavřít",
-        "description": ""
-    },
-    "token": {
-        "message": "Zde je token, který je potřeba pro přenesení licence pro jiný prohlížeč:",
-        "description": ""
-    },
-    "trial_expired": {
-        "message": "Vaše zkušební verze vypršel.\nDoufám, že jste si zamilovali modern scroll tak jako já.\nPokud ano, pořiďte si licenci.",
-        "description": ""
-    },
-    "all_set": {
-        "message": "Vše je nastaveno! :)",
-        "description": ""
-    },
-    "seven_days_trial": {
-        "message": "Nyní můžete neomezeně zkoušet modern scroll po dobu 7 dnů.",
-        "description": ""
-    },
-    "thanks_for_installing": {
-        "message": "Děkuji za instalaci modern scroll! :)",
-        "description": ""
-    },
-    "get_trial_license": {
-        "message": "Potřebujete se přihlásit na váš účet Googlu a povolit modern scrollu přístup k Internetovému obchodu Googlu, abyste získali (zkušební) licenci.",
-        "description": ""
-    },
-    "authorize": {
-        "message": "Přihlásit se a autorizovat",
-        "description": ""
-    },
-    "transferred_trial_expired": {
-        "message": "Zkušební doba licence, kterou jste přenesli, skončila.\nDoufám, že jste si zamilovali modern scroll tak jako já. Pokud ano, pořiďte si licenci. Ještě jednou potřebujete přenést licenci z Chromu:",
-        "description": ""
-    },
-    "transfer_successful": {
-        "message": "Užijte si zábavu s modern scroll.",
-        "description": ""
-    },
-    "get_license_in_chrome": {
-        "message": "instalovat modern scroll v Chromu a získat tam licenci",
-        "description": ""
-    },
-    "open_url_in_chrome": {
-        "message": "otevřít chrome-extension://@@extension_id/options/options.html#show_token v Chromu",
-        "description": ""
-    },
-    "copy_token": {
-        "message": "kopírovat zobrazený token",
-        "description": ""
-    },
-    "insert_here": {
-        "message": "vložit zde",
-        "description": ""
-    },
-    "transfer_instructions": {
-        "message": "K využití zde potřebujete přenést licenci z Chromu (klidně i zkušební licenci). To je to, co potřebujete udělat:",
-        "description": ""
-    },
-    "invalid_token": {
-        "message": "Token, který jste vložili, je nesprávný či prošlý",
-        "description": ""
-    },
-    "description": {
-        "message": "Přeneste rolování na úplně novou úroveň",
-        "description": ""
-    }
+	"description" :						{ "message" : "Přeneste rolování na úplně novou úroveň" },
+	"by" :								{ "message" : "od" },
+	"saved_sets_headline" :				{ "message" : "Uložená nastavení" },
+	"save_set_as" :						{ "message" : "Uložit aktuální konfiguraci jako" },
+	"new_set_name" :					{ "message" : "Název" },
+	"load_or_delete_set" : 				{ "message" : "Načíst, nebo smazat" },
+	"default" : 						{ "message" : "Výchozí" },
+	"default_change_impossible" : 		{ "message" : "Nemůžete pozměnit výchozí konfiguraci! Prosím zvolte jiný název." },
+	"default_delete_impossible" : 		{ "message" : "Nemůžete vymazat výchozí konfiguraci!" },
+	"confirm_overwrite" : 				{ "message" : "Konfigurace s tímto jménem již existuje.\nChcete ji nahradit?" },
+	"confirm_delete" : 					{ "message" : "Opravdu chcete nenávratně vymazat tuto konfiguraci?" },
+	"confirm_load" : 					{ "message" : "Opravdu chcete načíst tuto konfiguraci?\nToto nahradí vaše nynější nastavení." },
+	"tooltip_save" : 					{ "message" : "Uložit" },
+	"tooltip_load" : 					{ "message" : "Načíst" },
+	"tooltip_delete" : 					{ "message" : "Vymazat" },	
+	"look" : 							{ "message" : "Vzhled" },
+	"color" : 							{ "message" : "Barva posuvníků, superbaru a posuvných tlačítek" },
+	"color_bg" : 						{ "message" : "Barva lišt v pozadí posuvníků" },
+	"auto_coloring" :					{ "message" : "Color UI matching the page instead if possible" },
+	"size" : 							{ "message" : "Šířka (respektive výška pro horizontální posuvníky) v normálním stavu" },
+	"hover_size" : 						{ "message" : "Šířka (respektive výška pro horizontální posuvníky), když se pohybujete myší nad ním" },
+	"border_radius" : 					{ "message" : "Hranice poloměru zakřivení" },
+	"gap" : 							{ "message" : "Vzdálenost ke kraji okna" },
+	"opacity" : 						{ "message" : "Neprůhlednost posuvníků" },
+	"border" : 							{ "message" : "Okraj" },
+	"border_width" : 					{ "message" : "Šířka" },
+	"border_color" : 					{ "message" : "Barva" },
+	"border_blur" : 					{ "message" : "Rozmazanost" },
+	"vbar_at_left" : 					{ "message" : "Zobrazovat vertikální posuvník vlevo místo vpravo" },
+	"hbar_at_top" : 					{ "message" : "Zobrazovat horizontální posuvník nahoře místo dole" },
+	"behavior" : 						{ "message" : "Chování" },
+	"show_when" : 						{ "message" : "Kdy chcete, aby se posuvníky zobrazovaly?" },
+	"only_over" : 						{ "message" : "Jen při vznášení kurzoru myší nad nimi" },
+	"normal" : 							{ "message" : "Při vznášení kurzoru myši nad nimi, během rolování a při změnách pozice nebo velikosti" },
+	"always" : 							{ "message" : "Vždy" },
+	"show_bg_bars_when" : 				{ "message" : "A lišty v pozadí posuvníků?" },
+	"like_bars" : 						{ "message" : "Jako posuvníky" },
+	"show_how_long" : 					{ "message" : "Jak dlouho chcete, aby posuvné lišty zůstávaly viditelné?" },
+	"fullscreen_only" : 				{ "message" : "Zobrazovat posuvníky jen v režimu celé obrazovky" },
+	"fullscreen_only_short" : 			{ "message" : "Pouze v celoobrazovkovém režimu" },
+	"move_bars_during_scroll" : 		{ "message" : "Animovat rolovací posuvníky během rolování kolečkem na myši / klávesnicí" },
+	"bg_special_ends" : 				{ "message" : "Kliknutí na konec lišty v pozadí posuvníků sroluje úplně nahoru/dolů (respektive doleva/doprava) místo o jednu stránku" },
+	"container1" : 						{ "message" : "Spustit modern scroll ve vzdálenosti od" },
+	"container2" : 						{ "message" : "px od okraje" },
+	"element_bars" :					{ "message" : "Posuvníky uvnitř stránky" },
+	"style_element_bars" : 				{ "message" : "Stylizovat všechny posuvníky" },
+	"explanation_element_bars" : 		{ "message" : "Toto aktivujte pro modern scroll styl všech posuvníků uvnitř stránky, např. textová pole" },
+	"autohide_element_bars" : 			{ "message" : "Automaticky skrývat posuvníky uvnitř stránky" },
+	"explanation_autohide_element_bars":{ "message" : "Toto bohužel nefunguje správně díky vykreslovacím chybám. Můžete tuto funkci povolit, ovšem posuvníky se nemusí vždy zobrazit správně." },
+	"superbar" : 						{ "message" : "Superbar" },
+	"show_superbar" : 					{ "message" : "Zobrazovat \"superbar\"" },
+	"show_superbar_minipage" : 			{ "message" : "Zobrazovat zmenšenou verzi stránek v pozadí při přesouvání superbaru" },
+	"superbar_opacity" : 				{ "message" : "Neprůhlednost superbaru při vznášení kurzoru myší nad ním" },
+	"bookmarks" : 						{ "message" : "Bookmarks" },
+	"show_bookmarks" : 					{ "message" : "Show bookmarks within the page for scrolling to the specified locations" },
+	"no_bookmarks" : 					{ "message" : "Off" },
+	"bookmarks_only" : 					{ "message" : "Show bookmarks" },
+	"all_headings" : 					{ "message" : "Bookmarks and Headings" },
+	"bookmark_text_color" :				{ "message" : "Text color" },
+	"buttons" : 						{ "message" : "Rolovací tlačítka" },
+	"show_buttons" : 					{ "message" : "Ukázat tlačítka pro rolování nahoře/na okraji stránky" },
+	"button_width" : 					{ "message" : "Šířka" },
+	"button_height" : 					{ "message" : "Výška" },
+	"button_opacity" : 					{ "message" : "Průhlednost" },
+	"drag_buttons" : 					{ "message" : "Zde v nastavení můžete přesouvat tlačítka na jakoukoli pozici. Tato pozice se stane výchozí pro všechny webové stránky. Pokud překryjí element na některých stránkách, tak stále je budete moci přesunout jinam" },
+	"contextmenu" : 					{ "message" : "Kontextové menu" },
+	"show_contextmenu_when" : 			{ "message" : "Kdy chcete mít možnost v kontextovém menu pro skrytí moderního rolování?" },
+	"never" : 							{ "message" : "Nikdy" },
+	"contextmenu_over_only" : 			{ "message" : "Když kliknu pravým tlačítkem (right-click) do prostředí modern scroll" },
+	"custom_scroll_functions" : 		{ "message" : "Rolovací funkce" },
+	"use_custom_functions" : 			{ "message" : "Využívat vlastní rolovací funkce" },
+	"use_custom_functions_keyboard" : 	{ "message" : "pro klávesnici" },
+	"use_custom_functions_mouse" : 		{ "message" : "pro myš" },
+	"use_custom_functions_middle" :		{ "message" : "pro kliknutí kolečkem myši" },
+	"endMiddlescrollByTurningWheel" :	{ "message" : "Přestat také při otočením kolečka myši" },
+	"animate_scroll" : 					{ "message" : "Animované rolování" },
+	"animate_up_to" : 					{ "message" : "až do délky" },
+	"infinite" : 						{ "message" : "nekonečna" },
+	"page" : 							{ "message" : "stránky" },
+	"pages" : 							{ "message" : "stránek" },
+	"keyscroll_velocity" : 				{ "message" : "Rychlost rolování pomocí šipek na klávesnici" },
+	"mousescroll_velocity" : 			{ "message" : "Rychlost rolování pomocí kolečka myši a touchpadu" },
+	"mousescroll_distance" : 			{ "message" : "Vzdálenost rolování na otočení kolečka myši" },
+	"middlescroll_velocity" : 			{ "message" : "Rychlost rolování myší při kliknutí kolečkem myši" },
+	"animatedscroll_velocity" : 		{ "message" : "Rychlost animovaného rolování" },
+	"external_interface_headline" : 	{ "message" : "Externí rozhraní" },
+	"external_interface" : 				{ "message" : "Poskytovat rozhraní pro externí přístup" },
+	"footer" : 							{ "message" : "Díky za nainstalování tohoto rozšíření. Můžete mě kdykoli kontaktovat pro zpětnou vazbu a otázky." },
+	"contextmenu_enable" :				{ "message" : "Enable on this page" },
+	"contextmenu_disable" :				{ "message" : "Disable on this page" },
+	"contextmenu_show" : 				{ "message" : "Show again" },
+	"contextmenu_hide" : 				{ "message" : "Hide temporarily" },
+	"contextmenu_customize" :			{ "message" : "Customize on this page" },
+	"contextmenu_customize_current_set":{ "message" : "Use current configuration" },
+	"contextmenu_new_set" :				{ "message" : "Create a new set…" },
+	"explanation_save_set" : 			{ "message" : "Zde můžete uložit vaši nynější konfiguraci.\nJen vložte jméno a klikněte na tlačítko uložit.\nPokud vyberete jméno, které již existuje, obsah bude nahrazen." },
+	"explanation_move_bars_during_scroll" : { "message" : "Deaktivujte tuto možnost pokud jste narazili na výkonnostní problémy.<br>Pozice rolovacích posuvníků bude aktualizována až rolování bude dokončeno." },
+	"explanation_trigger_area" : 		{ "message" : "Zvětší posuvníky při dostání se do této oblasti." },
+	"explanation_superbar" : 			{ "message" : "\"Superbar\" je kombinací horizontálního a vertikálního rolovacího posuvníku.<br>A tím pádem se zobrazí, jen když jsou nezbytné oba posuvníky.<br>Jeho pozice je zarovnána s vertikálními a horizontálními rolovacími posuvníky." },
+	"explanation_custom_functions" : 	{ "message" : "Standardní rolovací zážitek je někdy trochu trhavý a pomalý. Aktivací těchto možností rozšíření také přebere zodpovědnost za rolování, což by mělo vést k patrnému nárůstu výkonu." },
+	"explanation_animate_scroll" : 		{ "message" : "Pokud vyberete tuto možnost, tak stránka víckrát hned nepřeskočí na požadovanou pozici, ale automaticky tam sroluje s nastavitelným tempem.<br>Toto se týká rolovacích tlačítek, kliknutí na lišty v pozadí a taktéž rolování pomocí klávesnice (pokud \"Využívat vlastní rolovací funkce pro klávesnici\" je aktivováno)." },
+	"explanation_external_interface" : 	{ "message" : "Zatrhnutím této možnosti bude modern scroll poskytovat nějaké z vlastních klíčových vlastností pro užívání rozšíření třetích stran, webů nebo vaše. Můžete tedy například vytvořit vlastní pohybový příkaz pro myš.<br><a href='https://christoph142.wordpress.com/2013/02/20/modern-scroll-documentation' target='_blank'>Navštivte tuto dokumentaci pro zjištění více informací (psáno anglicky).</a>" },
+	"report_issue" : 					{ "message" : "Nahlásit chybu"},
+	"disabled" :						{ "message" : "modern scroll has been disabled on $DOMAIN$", "placeholders" : {"domain" : { "content" : "$1", "example" : "example.org" }}},
+	"report_domain" :					{ "message" : "If there's an issue with the page, please report it so it can get fixed for everybody."},
+	"rate" :		 					{ "message" : "Ohodnotit modern scroll"},
+	"buymeacoffee" :					{ "message" : "Buy me some sushi"},
+	"ok" :								{ "message" : "OK"},
+	"cancel" :							{ "message" : "Zrušit"},
+	"close" :							{ "message" : "Zavřít"},
+	"thanks_for_installing" :			{ "message" : "Děkuji za instalaci modern scroll! :)"},
+	"thanks_for_using" :				{ "message" : "Thanks for using modern scroll! 🙂"},
+    "have_fun" :						{ "message" : "Have fun using the extension.\nI'm gonna check in with you in a few weeks to see how you like it. 🍻"},
+	"like_it" :							{ "message" : "Hello again!\nIt's been a few weeks since you installed modern scroll.\nHow do you like it so far?"},
+	"great" :							{ "message" : "Very"},
+	"so_so" :							{ "message" : "So-so"},
+	"that_is_great" :					{ "message" : "Awesome!\nWould you mind supporting me in order to continue improving modern scroll? 🍻"},
+	"im_sorry_to_hear" :				{ "message" : "I'm sorry to hear you're not 100% convinced yet.\nIf there's anything you'd like to see improved, please let me know."},
+	"continued_support" :				{ "message" : "I'd really appreciate your continued support in order to keep improving the extension.\nIf you haven't done so yet, now's a great time to start! 🍻"}
 }
