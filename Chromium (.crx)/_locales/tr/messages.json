@@ -1,474 +1,121 @@
 {
-    "by": {
-        "message": "by",
-        "description": ""
-    },
-    "saved_sets_headline": {
-        "message": "Saved configurations",
-        "description": ""
-    },
-    "save_set_as": {
-        "message": "Varolan ayarları şöyle kaydet:",
-        "description": ""
-    },
-    "new_set_name": {
-        "message": "İsim",
-        "description": ""
-    },
-    "load_or_delete_set": {
-        "message": "Yükle veya sil",
-        "description": ""
-    },
-    "default": {
-        "message": "Varsayılan",
-        "description": ""
-    },
-    "default_change_impossible": {
-        "message": "Varsayılan ayarları değiştiremezsiniz! Başka bir isim seçin.",
-        "description": ""
-    },
-    "default_delete_impossible": {
-        "message": "Varsayılan ayarları silemezsiniz!",
-        "description": ""
-    },
-    "confirm_overwrite": {
-        "message": "A configuration with that name already exists.\nDo you want to replace it?",
-        "description": ""
-    },
-    "confirm_delete": {
-        "message": "Ayarları kesin olarak geri alınmaz şekilde silmek istediğinize emin misiniz?",
-        "description": ""
-    },
-    "confirm_load": {
-        "message": "Do you really want to load this configuration now?\nIt will replace your current setup.",
-        "description": ""
-    },
-    "tooltip_save": {
-        "message": "Kaydet",
-        "description": ""
-    },
-    "tooltip_load": {
-        "message": "Yükle",
-        "description": ""
-    },
-    "tooltip_delete": {
-        "message": "Sil",
-        "description": ""
-    },
-    "look": {
-        "message": "Görünüm",
-        "description": ""
-    },
-    "color": {
-        "message": "Kaydırma çubuklarının, superbarın ve kaydırma düğmelerinin rengi",
-        "description": ""
-    },
-    "color_bg": {
-        "message": "Arkaplan çubuklarının rengi",
-        "description": ""
-    },
-    "auto_coloring": {
-        "message": "Color UI matching the page instead if possible",
-        "description": ""
-    },
-    "size": {
-        "message": "Genişlik (ayrıca yatay çubukların yüksekliği) normal durumdaki",
-        "description": ""
-    },
-    "hover_size": {
-        "message": "Genişlik (ayrıca yatay çubukların yüksekliği) fare ile üzerine gelindiğinde",
-        "description": ""
-    },
-    "border_radius": {
-        "message": "Kenarın kıvrılma durumu",
-        "description": ""
-    },
-    "gap": {
-        "message": "Pencerenin kenarına olan uzaklık",
-        "description": ""
-    },
-    "opacity": {
-        "message": "Kaydırma çubuklarının saydamlığı",
-        "description": ""
-    },
-    "border": {
-        "message": "Kenar",
-        "description": ""
-    },
-    "border_width": {
-        "message": "Genişlik",
-        "description": ""
-    },
-    "border_color": {
-        "message": "Renk",
-        "description": ""
-    },
-    "border_blur": {
-        "message": "Bulanıklık",
-        "description": ""
-    },
-    "vbar_at_left": {
-        "message": "Dikey kaydırma çubuğunu sağ yerine sol tarafta göster",
-        "description": ""
-    },
-    "hbar_at_top": {
-        "message": "Yatay kaydırma çubuğunu sol yerine sağ tarafta göster",
-        "description": ""
-    },
-    "behavior": {
-        "message": "Davranış",
-        "description": ""
-    },
-    "show_when": {
-        "message": "Çubukların ne zaman görünmesini istiyorsunuz?",
-        "description": ""
-    },
-    "only_over": {
-        "message": "Fare ile üzerine gelince",
-        "description": ""
-    },
-    "normal": {
-        "message": "Üzerine gelince, kaydırırken ve konum veya boyutunu değiştirirken",
-        "description": ""
-    },
-    "always": {
-        "message": "Her zaman",
-        "description": ""
-    },
-    "show_bg_bars_when": {
-        "message": "Ve arkaplan çubukları?",
-        "description": ""
-    },
-    "like_bars": {
-        "message": "Kaydırma çubukları gibi",
-        "description": ""
-    },
-    "show_how_long": {
-        "message": "Kaydırma çubuklarının ne kadar süre görünür kalmasını istiyorsunuz?",
-        "description": ""
-    },
-    "fullscreen_only": {
-        "message": "Çubukları sadece tam ekran modunda göster",
-        "description": ""
-    },
-    "fullscreen_only_short": {
-        "message": "Sadece tam ekran modunda",
-        "description": ""
-    },
-    "move_bars_during_scroll": {
-        "message": "Fare tekerleği veya klavye ile kaydırırken kaydırma çubuklarını animasyonla",
-        "description": ""
-    },
-    "bg_special_ends": {
-        "message": "Arkaplan çubuklarının sonlarına tıklamak bir sayfa atlamak yerine sayfanın sonuna/başına gider.",
-        "description": ""
-    },
-    "container1": {
-        "message": "modern scroll'u şu mesafede tetikle",
-        "description": ""
-    },
-    "container2": {
-        "message": "px (kenara)",
-        "description": ""
-    },
-    "element_bars": {
-        "message": "Scrollbars within the page",
-        "description": ""
-    },
-    "style_element_bars": {
-        "message": "Style all scroll bars",
-        "description": ""
-    },
-    "explanation_element_bars": {
-        "message": "Activate this to make modern scroll also style all scrollbars within the page, e.g. those of textareas.",
-        "description": ""
-    },
-    "autohide_element_bars": {
-        "message": "Autohide scrollbars within the page",
-        "description": ""
-    },
-    "explanation_autohide_element_bars": {
-        "message": "This unfortunately doesn't work properly because of rendering bugs. You can enable it, but scroll bars may not always show up correctly.",
-        "description": ""
-    },
-    "superbar": {
-        "message": "Superbar",
-        "description": ""
-    },
-    "show_superbar": {
-        "message": "\"superbar\"ı göster",
-        "description": ""
-    },
-    "show_superbar_minipage": {
-        "message": "superbarı kaydırırken web sitesinin mini-versiyonunu arkaplanda göster",
-        "description": ""
-    },
-    "superbar_opacity": {
-        "message": "Üzerine gelince superbarın saydamlığı",
-        "description": ""
-    },
-    "bookmarks": {
-        "message": "Bookmarks",
-        "description": ""
-    },
-    "show_bookmarks": {
-        "message": "Show bookmarks within the page for scrolling to the specified locations",
-        "description": ""
-    },
-    "no_bookmarks": {
-        "message": "Off",
-        "description": ""
-    },
-    "bookmarks_only": {
-        "message": "Show bookmarks",
-        "description": ""
-    },
-    "all_headings": {
-        "message": "Bookmarks and Headings",
-        "description": ""
-    },
-    "buttons": {
-        "message": "Kaydırma çubukları",
-        "description": ""
-    },
-    "show_buttons": {
-        "message": "Sayfada en başa/en sona gitmek için düğmeleri göster",
-        "description": ""
-    },
-    "button_width": {
-        "message": "Genişlik",
-        "description": ""
-    },
-    "button_height": {
-        "message": "Yükseklik",
-        "description": ""
-    },
-    "button_opacity": {
-        "message": "Opacity",
-        "description": ""
-    },
-    "drag_buttons": {
-        "message": "Buradaki düğmeleri istediğiniz konuma sürükleyebilirsiniz. Bu konum tüm web siteleri için varsayılan olacaktır. Eğer bir sayfada bir öğenin üstünü kapatıyorsa, orada yerini değiştirebilirsiniz.",
-        "description": ""
-    },
-    "contextmenu": {
-        "message": "İçerik menüsü",
-        "description": ""
-    },
-    "show_contextmenu_when": {
-        "message": "modern scroll'u gizlemek ne zaman içerik menüsünde seçenek istersiniz?",
-        "description": ""
-    },
-    "never": {
-        "message": "Asla",
-        "description": ""
-    },
-    "contextmenu_over_only": {
-        "message": "modern scroll arayüzünde sağ tıkladığımda",
-        "description": ""
-    },
-    "custom_scroll_functions": {
-        "message": "Kaydırma fonksiyonları",
-        "description": ""
-    },
-    "use_custom_functions": {
-        "message": "Kişiselleştirilmiş kaydırma fonksiyonlarını kullan",
-        "description": ""
-    },
-    "use_custom_functions_keyboard": {
-        "message": "klayve için",
-        "description": ""
-    },
-    "use_custom_functions_mouse": {
-        "message": "fare tekerleği için",
-        "description": ""
-    },
-    "use_custom_functions_middle": {
-        "message": "for mouse wheel clicks",
-        "description": ""
-    },
-    "endMiddlescrollByTurningWheel": {
-        "message": "End as well by turning the mouse wheel",
-        "description": ""
-    },
-    "animate_scroll": {
-        "message": "Kaydırmayı animasyonla",
-        "description": ""
-    },
-    "animate_up_to": {
-        "message": "şu uzunluğa kadar",
-        "description": ""
-    },
-    "infinite": {
-        "message": "sınırsız",
-        "description": ""
-    },
-    "page": {
-        "message": "sayfa",
-        "description": ""
-    },
-    "pages": {
-        "message": "sayfalar",
-        "description": ""
-    },
-    "keyscroll_velocity": {
-        "message": "Ok tuşlarıyla kaydırmanın sürati",
-        "description": ""
-    },
-    "mousescroll_velocity": {
-        "message": "Fare tekerleğiyle kaydırma sürati and trackpad",
-        "description": ""
-    },
-    "mousescroll_distance": {
-        "message": "Her fare orta tuşu yuvarlandığındaki kaydırma mesafesi",
-        "description": ""
-    },
-    "middlescroll_velocity": {
-        "message": "Velocity of scrolling by mouse wheel clicking",
-        "description": ""
-    },
-    "animatedscroll_velocity": {
-        "message": "Otomatik kaydırma sürati",
-        "description": ""
-    },
-    "external_interface_headline": {
-        "message": "Harici arayüz",
-        "description": ""
-    },
-    "external_interface": {
-        "message": "Harici erişim için bir arayüz oluştur",
-        "description": ""
-    },
-    "footer": {
-        "message": "Bu eklentiyi kurduğunuz için teşekkürler. Geri bildirim ve yorumlar için benimle iletişime geçmekten çekinmeyin",
-        "description": ""
-    },
-    "contextmenu_show": {
-        "message": "modern scrollu göster",
-        "description": ""
-    },
-    "contextmenu_hide": {
-        "message": "modern scrollu gizle",
-        "description": ""
-    },
-    "explanation_save_set": {
-        "message": "You can save your current configuration here.\nJust enter a name and click the save-button.\nIf you choose a name that already exists, this entry will be replaced.",
-        "description": ""
-    },
-    "explanation_move_bars_during_scroll": {
-        "message": "Eğer performans sorunlarıyla karşılaştıysanız bu seçeneği pasifleştirin. <br> Kaydırma çubuklarının konumları kaydırma işlemi tamamlanınca güncellenecektir.",
-        "description": ""
-    },
-    "explanation_trigger_area": {
-        "message": "Çubukların erişebileceği alanı genişletir.",
-        "description": ""
-    },
-    "explanation_superbar": {
-        "message": "\"superbar\" yatay ve dikey kaydırma çubuklarının birleştirilmişidir. <br>Böylelikle, iki çubuk da ihtiyaç olduğunda görünür. Konumu dikey ve yatay çubuklarla ayarlanmıştır.",
-        "description": ""
-    },
-    "explanation_custom_functions": {
-        "message": "Standard scrolling experience is sometimes a bit jerky and slow. By activating these options the extension also takes over the corresponding scrolling, which should result in a noticeable performance boost.",
-        "description": ""
-    },
-    "explanation_animate_scroll": {
-        "message": "Eğer bu seçeneği seçtiyseniz, sayfa istenen konuma bir anda gitmeyecektir. Ama ayarlanabilir bir oranla otomatik olarak oraya kayacaktır. <br> Bu kaydırma çubuklarına, arkaplan çubuklarındaki tıklamalara ve klavye ile kaydırmaya uygulanacaktır. (eğer \"Kişiselleştirilmiş kaydırma fonksiyonlarını klavye için kullan\" aktif ise)",
-        "description": ""
-    },
-    "explanation_external_interface": {
-        "message": "Bu seçeneği işaretlediğinizde; modern scroll size üçüncü taraf eklentilerin, web sayfalarının ve sizin kullanabileceğiniz bazı ek özellikler sunacaktır. Daha sonra örneğin size özel fare hareketleri oluşturabilirsiniz. <br><a href='https://christoph142.wordpress.com/2013/02/20/modern-scroll-documentation' target='_blank'>Daha fazla bilgi için bu belgeyi inceleyebilirsiniz.(EN)</a>",
-        "description": ""
-    },
-    "report_issue": {
-        "message": "Report an issue",
-        "description": ""
-    },
-    "rate": {
-        "message": "Rate modern scroll",
-        "description": ""
-    },
-    "twitter": {
-        "message": "Follow me on Twitter",
-        "description": ""
-    },
-    "get_more": {
-        "message": "Get more out of modern scroll",
-        "description": ""
-    },
-    "ok": {
-        "message": "OK",
-        "description": ""
-    },
-    "cancel": {
-        "message": "Cancel",
-        "description": ""
-    },
-    "close": {
-        "message": "Close",
-        "description": ""
-    },
-    "token": {
-        "message": "Here's the token you need in order to transfer this license to other browsers:",
-        "description": ""
-    },
-    "trial_expired": {
-        "message": "Your trial period expired.\nI hope you love modern scroll as much as I do.\nIf you do, get a license now.",
-        "description": ""
-    },
-    "all_set": {
-        "message": "You're all set! :)",
-        "description": ""
-    },
-    "seven_days_trial": {
-        "message": "You can check modern scroll out unrestrictedly for seven days now.",
-        "description": ""
-    },
-    "thanks_for_installing": {
-        "message": "Thanks for installing modern scroll! :)",
-        "description": ""
-    },
-    "get_trial_license": {
-        "message": "You need to log in to your Google account and grant modern scroll access to Chrome Web Store now in order to get your (trial) license.",
-        "description": ""
-    },
-    "authorize": {
-        "message": "Log in and authorize",
-        "description": ""
-    },
-    "transferred_trial_expired": {
-        "message": "The trial period of the license you transferred expired.\nI hope you love modern scroll as much as I do.\nIf you do, get a license now. You need to transfer this license from Chrome once again:",
-        "description": ""
-    },
-    "transfer_successful": {
-        "message": "Have fun using modern scroll.",
-        "description": ""
-    },
-    "get_license_in_chrome": {
-        "message": "install modern scroll in Chrome and get a license there",
-        "description": ""
-    },
-    "open_url_in_chrome": {
-        "message": "open chrome-extension://@@extension_id/options/options.html#show_token in Chrome",
-        "description": ""
-    },
-    "copy_token": {
-        "message": "copy shown token",
-        "description": ""
-    },
-    "insert_here": {
-        "message": "insert it in here",
-        "description": ""
-    },
-    "transfer_instructions": {
-        "message": "To use it in here, you need to transfer a license from Chrome (trial license is fine, too). That's what you need to do:",
-        "description": ""
-    },
-    "invalid_token": {
-        "message": "The token you entered is invalid or expired",
-        "description": ""
-    },
-    "description": {
-        "message": "Kaydırma için yeni bir seviye",
-        "description": ""
-    }
+	"description" :						{ "message" : "Kaydırma için yeni bir seviye" },
+	"by" :								{ "message" : "by" },
+	"saved_sets_headline" :				{ "message" : "Saved configurations" },
+	"save_set_as" :						{ "message" : "Varolan ayarları şöyle kaydet:" },
+	"new_set_name" :					{ "message" : "İsim" },
+	"load_or_delete_set" : 				{ "message" : "Yükle veya sil" },
+	"default" : 						{ "message" : "Varsayılan" },
+	"default_change_impossible" : 		{ "message" : "Varsayılan ayarları değiştiremezsiniz! Başka bir isim seçin." },
+	"default_delete_impossible" : 		{ "message" : "Varsayılan ayarları silemezsiniz!" },
+	"confirm_overwrite" : 				{ "message" : "A configuration with that name already exists.\nDo you want to replace it?" },
+	"confirm_delete" : 					{ "message" : "Ayarları kesin olarak geri alınmaz şekilde silmek istediğinize emin misiniz?" },
+	"confirm_load" : 					{ "message" : "Do you really want to load this configuration now?\nIt will replace your current setup." },
+	"tooltip_save" : 					{ "message" : "Kaydet" },
+	"tooltip_load" : 					{ "message" : "Yükle" },
+	"tooltip_delete" : 					{ "message" : "Sil" },	
+	"look" : 							{ "message" : "Görünüm" },
+	"color" : 							{ "message" : "Kaydırma çubuklarının, superbarın ve kaydırma düğmelerinin rengi" },
+	"color_bg" : 						{ "message" : "Arkaplan çubuklarının rengi" },
+	"auto_coloring" :					{ "message" : "Color UI matching the page instead if possible" },
+	"size" : 							{ "message" : "Genişlik (ayrıca yatay çubukların yüksekliği) normal durumdaki" },
+	"hover_size" : 						{ "message" : "Genişlik (ayrıca yatay çubukların yüksekliği) fare ile üzerine gelindiğinde" },
+	"border_radius" : 					{ "message" : "Kenarın kıvrılma durumu" },
+	"gap" : 							{ "message" : "Pencerenin kenarına olan uzaklık" },
+	"opacity" : 						{ "message" : "Kaydırma çubuklarının saydamlığı" },
+	"border" : 							{ "message" : "Kenar" },
+	"border_width" : 					{ "message" : "Genişlik" },
+	"border_color" : 					{ "message" : "Renk" },
+	"border_blur" : 					{ "message" : "Bulanıklık" },
+	"vbar_at_left" : 					{ "message" : "Dikey kaydırma çubuğunu sağ yerine sol tarafta göster" },
+	"hbar_at_top" : 					{ "message" : "Yatay kaydırma çubuğunu sol yerine sağ tarafta göster" },
+	"behavior" : 						{ "message" : "Davranış" },
+	"show_when" : 						{ "message" : "Çubukların ne zaman görünmesini istiyorsunuz?" },
+	"only_over" : 						{ "message" : "Fare ile üzerine gelince" },
+	"normal" : 							{ "message" : "Üzerine gelince, kaydırırken ve konum veya boyutunu değiştirirken" },
+	"always" : 							{ "message" : "Her zaman" },
+	"show_bg_bars_when" : 				{ "message" : "Ve arkaplan çubukları?" },
+	"like_bars" : 						{ "message" : "Kaydırma çubukları gibi" },
+	"show_how_long" : 					{ "message" : "Kaydırma çubuklarının ne kadar süre görünür kalmasını istiyorsunuz?" },
+	"fullscreen_only" : 				{ "message" : "Çubukları sadece tam ekran modunda göster" },
+	"fullscreen_only_short" : 			{ "message" : "Sadece tam ekran modunda" },
+	"move_bars_during_scroll" : 		{ "message" : "Fare tekerleği veya klavye ile kaydırırken kaydırma çubuklarını animasyonla" },
+	"bg_special_ends" : 				{ "message" : "Arkaplan çubuklarının sonlarına tıklamak bir sayfa atlamak yerine sayfanın sonuna/başına gider." },
+	"container1" : 						{ "message" : "modern scroll'u şu mesafede tetikle" },
+	"container2" : 						{ "message" : "px (kenara)" },
+	"element_bars" :					{ "message" : "Scrollbars within the page" },
+	"style_element_bars" : 				{ "message" : "Style all scroll bars" },
+	"explanation_element_bars" : 		{ "message" : "Activate this to make modern scroll also style all scrollbars within the page, e.g. those of textareas." },
+	"autohide_element_bars" : 			{ "message" : "Autohide scrollbars within the page" },
+	"explanation_autohide_element_bars":{ "message" : "This unfortunately doesn't work properly because of rendering bugs. You can enable it, but scroll bars may not always show up correctly." },
+	"superbar" : 						{ "message" : "Superbar" },
+	"show_superbar" : 					{ "message" : "\"superbar\"ı göster" },
+	"show_superbar_minipage" : 			{ "message" : "superbarı kaydırırken web sitesinin mini-versiyonunu arkaplanda göster" },
+	"superbar_opacity" : 				{ "message" : "Üzerine gelince superbarın saydamlığı" },
+	"bookmarks" : 						{ "message" : "Bookmarks" },
+	"show_bookmarks" : 					{ "message" : "Show bookmarks within the page for scrolling to the specified locations" },
+	"no_bookmarks" : 					{ "message" : "Off" },
+	"bookmarks_only" : 					{ "message" : "Show bookmarks" },
+	"all_headings" : 					{ "message" : "Bookmarks and Headings" },
+	"bookmark_text_color" :				{ "message" : "Text color" },
+	"buttons" : 						{ "message" : "Kaydırma çubukları" },
+	"show_buttons" : 					{ "message" : "Sayfada en başa/en sona gitmek için düğmeleri göster" },
+	"button_width" : 					{ "message" : "Genişlik" },
+	"button_height" : 					{ "message" : "Yükseklik" },
+	"button_opacity" : 					{ "message" : "Opacity" },
+	"drag_buttons" : 					{ "message" : "Buradaki düğmeleri istediğiniz konuma sürükleyebilirsiniz. Bu konum tüm web siteleri için varsayılan olacaktır. Eğer bir sayfada bir öğenin üstünü kapatıyorsa, orada yerini değiştirebilirsiniz." },
+	"contextmenu" : 					{ "message" : "İçerik menüsü" },
+	"show_contextmenu_when" : 			{ "message" : "modern scroll'u gizlemek ne zaman içerik menüsünde seçenek istersiniz?" },
+	"never" : 							{ "message" : "Asla" },
+	"contextmenu_over_only" : 			{ "message" : "modern scroll arayüzünde sağ tıkladığımda" },
+	"custom_scroll_functions" : 		{ "message" : "Kaydırma fonksiyonları" },
+	"use_custom_functions" : 			{ "message" : "Kişiselleştirilmiş kaydırma fonksiyonlarını kullan" },
+	"use_custom_functions_keyboard" : 	{ "message" : "klayve için" },
+	"use_custom_functions_mouse" : 		{ "message" : "fare tekerleği için" },
+	"use_custom_functions_middle" :		{ "message" : "for mouse wheel clicks" },
+	"endMiddlescrollByTurningWheel" :	{ "message" : "End as well by turning the mouse wheel" },
+	"animate_scroll" : 					{ "message" : "Kaydırmayı animasyonla" },
+	"animate_up_to" : 					{ "message" : "şu uzunluğa kadar" },
+	"infinite" : 						{ "message" : "sınırsız" },
+	"page" : 							{ "message" : "sayfa" },
+	"pages" : 							{ "message" : "sayfalar" },
+	"keyscroll_velocity" : 				{ "message" : "Ok tuşlarıyla kaydırmanın sürati" },
+	"mousescroll_velocity" : 			{ "message" : "Fare tekerleğiyle kaydırma sürati and trackpad" },
+	"mousescroll_distance" : 			{ "message" : "Her fare orta tuşu yuvarlandığındaki kaydırma mesafesi" },
+	"middlescroll_velocity" : 			{ "message" : "Velocity of scrolling by mouse wheel clicking" },
+	"animatedscroll_velocity" : 		{ "message" : "Otomatik kaydırma sürati" },
+	"external_interface_headline" : 	{ "message" : "Harici arayüz" },
+	"external_interface" : 				{ "message" : "Harici erişim için bir arayüz oluştur" },
+	"footer" : 							{ "message" : "Bu eklentiyi kurduğunuz için teşekkürler. Geri bildirim ve yorumlar için benimle iletişime geçmekten çekinmeyin" },
+	"contextmenu_enable" :				{ "message" : "Enable on this page" },
+	"contextmenu_disable" :				{ "message" : "Disable on this page" },
+	"contextmenu_show" : 				{ "message" : "Show again" },
+	"contextmenu_hide" : 				{ "message" : "Hide temporarily" },
+	"contextmenu_customize" :			{ "message" : "Customize on this page" },
+	"contextmenu_customize_current_set":{ "message" : "Use current configuration" },
+	"contextmenu_new_set" :				{ "message" : "Create a new set…" },
+	"explanation_save_set" : 			{ "message" : "You can save your current configuration here.\nJust enter a name and click the save-button.\nIf you choose a name that already exists, this entry will be replaced." },
+	"explanation_move_bars_during_scroll" : { "message" : "Eğer performans sorunlarıyla karşılaştıysanız bu seçeneği pasifleştirin. <br> Kaydırma çubuklarının konumları kaydırma işlemi tamamlanınca güncellenecektir." },
+	"explanation_trigger_area" : 		{ "message" : "Çubukların erişebileceği alanı genişletir." },
+	"explanation_superbar" : 			{ "message" : "\"superbar\" yatay ve dikey kaydırma çubuklarının birleştirilmişidir. <br>Böylelikle, iki çubuk da ihtiyaç olduğunda görünür. Konumu dikey ve yatay çubuklarla ayarlanmıştır." },
+	"explanation_custom_functions" : 	{ "message" : "Standard scrolling experience is sometimes a bit jerky and slow. By activating these options the extension also takes over the corresponding scrolling, which should result in a noticeable performance boost." },
+	"explanation_animate_scroll" : 		{ "message" : "Eğer bu seçeneği seçtiyseniz, sayfa istenen konuma bir anda gitmeyecektir. Ama ayarlanabilir bir oranla otomatik olarak oraya kayacaktır. <br> Bu kaydırma çubuklarına, arkaplan çubuklarındaki tıklamalara ve klavye ile kaydırmaya uygulanacaktır. (eğer \"Kişiselleştirilmiş kaydırma fonksiyonlarını klavye için kullan\" aktif ise)" },
+	"explanation_external_interface" : 	{ "message" : "Bu seçeneği işaretlediğinizde; modern scroll size üçüncü taraf eklentilerin, web sayfalarının ve sizin kullanabileceğiniz bazı ek özellikler sunacaktır. Daha sonra örneğin size özel fare hareketleri oluşturabilirsiniz. <br><a href='https://christoph142.wordpress.com/2013/02/20/modern-scroll-documentation' target='_blank'>Daha fazla bilgi için bu belgeyi inceleyebilirsiniz.(EN)</a>" },
+	"report_issue" : 					{ "message" : "Report an issue"},
+	"disabled" :						{ "message" : "modern scroll has been disabled on $DOMAIN$", "placeholders" : {"domain" : { "content" : "$1", "example" : "example.org" }}},
+	"report_domain" :					{ "message" : "If there's an issue with the page, please report it so it can get fixed for everybody."},
+	"rate" :		 					{ "message" : "Rate modern scroll"},
+	"buymeacoffee" :					{ "message" : "Buy me some sushi"},
+	"ok" :								{ "message" : "OK"},
+	"cancel" :							{ "message" : "Cancel"},
+	"close" :							{ "message" : "Close"},
+	"thanks_for_installing" :			{ "message" : "Thanks for installing modern scroll! :)"},
+	"thanks_for_using" :				{ "message" : "Thanks for using modern scroll! 🙂"},
+    "have_fun" :						{ "message" : "Have fun using the extension.\nI'm gonna check in with you in a few weeks to see how you like it. 🍻"},
+	"like_it" :							{ "message" : "Hello again!\nIt's been a few weeks since you installed modern scroll.\nHow do you like it so far?"},
+	"great" :							{ "message" : "Very"},
+	"so_so" :							{ "message" : "So-so"},
+	"that_is_great" :					{ "message" : "Awesome!\nWould you mind supporting me in order to continue improving modern scroll? 🍻"},
+	"im_sorry_to_hear" :				{ "message" : "I'm sorry to hear you're not 100% convinced yet.\nIf there's anything you'd like to see improved, please let me know."},
+	"continued_support" :				{ "message" : "I'd really appreciate your continued support in order to keep improving the extension.\nIf you haven't done so yet, now's a great time to start! 🍻"}
 }
