@@ -1,474 +1,121 @@
 {
-    "by": {
-        "message": "par",
-        "description": ""
-    },
-    "saved_sets_headline": {
-        "message": "Configurations sauvegardées",
-        "description": ""
-    },
-    "save_set_as": {
-        "message": "Enregistrer la configuration actuelle sous...",
-        "description": ""
-    },
-    "new_set_name": {
-        "message": "Nom",
-        "description": ""
-    },
-    "load_or_delete_set": {
-        "message": "Charger ou supprimer",
-        "description": ""
-    },
-    "default": {
-        "message": "Défaut",
-        "description": ""
-    },
-    "default_change_impossible": {
-        "message": "Impossible de changer la configuration par défaut ! Merci de choisir un autre nom.",
-        "description": ""
-    },
-    "default_delete_impossible": {
-        "message": "Vous ne pouvez pas supprimer la configuration par défaut !",
-        "description": ""
-    },
-    "confirm_overwrite": {
-        "message": "Une sauvegarde avec ce nom existe déjà.\nSouhaitez-vous la remplacer ?",
-        "description": ""
-    },
-    "confirm_delete": {
-        "message": "Souhaitez-vous vraiment supprimer définitivement cette configuration ?",
-        "description": ""
-    },
-    "confirm_load": {
-        "message": "Souhaitez-vous charger cette configuration maintenant ?\nCelle-ci remplacera la configuration actuelle.",
-        "description": ""
-    },
-    "tooltip_save": {
-        "message": "Enregistrer",
-        "description": ""
-    },
-    "tooltip_load": {
-        "message": "Charger",
-        "description": ""
-    },
-    "tooltip_delete": {
-        "message": "Supprimer",
-        "description": ""
-    },
-    "look": {
-        "message": "Apparence",
-        "description": ""
-    },
-    "color": {
-        "message": "Couleur des barres de défilement, de la barre omnidirectionnelle et des boutons de défilement",
-        "description": ""
-    },
-    "color_bg": {
-        "message": "Couleur du fond des barres",
-        "description": ""
-    },
-    "auto_coloring": {
-        "message": "Color UI matching the page instead if possible",
-        "description": ""
-    },
-    "size": {
-        "message": "Largeur/Hauteur des barres de défilement à l’état normal",
-        "description": ""
-    },
-    "hover_size": {
-        "message": "Largeur/Hauteur des barre de défilement lors du survol du curseur de la souris",
-        "description": ""
-    },
-    "border_radius": {
-        "message": "Rayon de courbure de la bordure",
-        "description": ""
-    },
-    "gap": {
-        "message": "Distance par rapport au bord de la fenêtre",
-        "description": ""
-    },
-    "opacity": {
-        "message": "Opacité des barres de défilement",
-        "description": ""
-    },
-    "border": {
-        "message": "Bordure",
-        "description": ""
-    },
-    "border_width": {
-        "message": "Largeur",
-        "description": ""
-    },
-    "border_color": {
-        "message": "Couleur",
-        "description": ""
-    },
-    "border_blur": {
-        "message": "Flou",
-        "description": ""
-    },
-    "vbar_at_left": {
-        "message": "Afficher la barre de défilement vertical à gauche et non pas à droite",
-        "description": ""
-    },
-    "hbar_at_top": {
-        "message": "Afficher la barre de défilement horizontal en haut et non pas en bas",
-        "description": ""
-    },
-    "behavior": {
-        "message": "Comportement",
-        "description": ""
-    },
-    "show_when": {
-        "message": "Quand souhaitez-vous voir apparaitre les barres de défilement ?",
-        "description": ""
-    },
-    "only_over": {
-        "message": "Seulement lors du survol du curseur de la souris",
-        "description": ""
-    },
-    "normal": {
-        "message": "Au survol du curseur de la souris, durant le défilement et les changements de position ou de taille de la page",
-        "description": ""
-    },
-    "always": {
-        "message": "Toujours",
-        "description": ""
-    },
-    "show_bg_bars_when": {
-        "message": "Et le fond des barre de défilement ?",
-        "description": ""
-    },
-    "like_bars": {
-        "message": "Comme les barres de défilement",
-        "description": ""
-    },
-    "show_how_long": {
-        "message": "Combien de temps souhaitez-vous que les barres restent visibles ?",
-        "description": ""
-    },
-    "fullscreen_only": {
-        "message": "Afficher les barres uniquement en mode plein écran",
-        "description": ""
-    },
-    "fullscreen_only_short": {
-        "message": "Seulement en mode plein écran",
-        "description": ""
-    },
-    "move_bars_during_scroll": {
-        "message": "Animer les barres de défilement lors du défilement à la molette ou au clavier",
-        "description": ""
-    },
-    "bg_special_ends": {
-        "message": "Cliquer sur ​​les extrémités des barres de défilement permet de déplacer la page directement vers le haut ou le bas (et respectivement la gauche ou la droite) au lieu de la faire défiler page par page",
-        "description": ""
-    },
-    "container1": {
-        "message": "Déclencher modern scroll dans un rayon de",
-        "description": ""
-    },
-    "container2": {
-        "message": "pixels du bord",
-        "description": ""
-    },
-    "element_bars": {
-        "message": "Barre de défilement dans la page",
-        "description": ""
-    },
-    "style_element_bars": {
-        "message": "Restyler toutes les barres de défilement",
-        "description": ""
-    },
-    "explanation_element_bars": {
-        "message": "Activez cette option pour que modern scroll redessine aussi les barres de défilement à l’intérieur de la page, par exemple dans les zones de saisie.",
-        "description": ""
-    },
-    "autohide_element_bars": {
-        "message": "Masquer automatiquement les barres de défilement internes à la page.",
-        "description": ""
-    },
-    "explanation_autohide_element_bars": {
-        "message": "Vous pouvez activer cette option mais la barre de défilement peut parfois ne pas s’afficher correctement, à cause de bugs de rendu.",
-        "description": ""
-    },
-    "superbar": {
-        "message": "Barre omnidirectionnelle",
-        "description": ""
-    },
-    "show_superbar": {
-        "message": "Afficher la barre omnidirectionnelle",
-        "description": ""
-    },
-    "show_superbar_minipage": {
-        "message": "Afficher un aperçu du site web en arrière-plan lorsque vous faites glisser la barre omnidirectionnelle",
-        "description": ""
-    },
-    "superbar_opacity": {
-        "message": "Opacité de la barre omnidirectionnelle au survol du curseur de souris",
-        "description": ""
-    },
-    "bookmarks": {
-        "message": "Bookmarks",
-        "description": ""
-    },
-    "show_bookmarks": {
-        "message": "Show bookmarks within the page for scrolling to the specified locations",
-        "description": ""
-    },
-    "no_bookmarks": {
-        "message": "Off",
-        "description": ""
-    },
-    "bookmarks_only": {
-        "message": "Show bookmarks",
-        "description": ""
-    },
-    "all_headings": {
-        "message": "Bookmarks and Headings",
-        "description": ""
-    },
-    "buttons": {
-        "message": "Boutons de défilement",
-        "description": ""
-    },
-    "show_buttons": {
-        "message": "Affiche des boutons de défilement vers le haut/bas de la page",
-        "description": ""
-    },
-    "button_width": {
-        "message": "Largeur",
-        "description": ""
-    },
-    "button_height": {
-        "message": "Hauteur",
-        "description": ""
-    },
-    "button_opacity": {
-        "message": "Opacité",
-        "description": ""
-    },
-    "drag_buttons": {
-        "message": "Vous pouvez déplacer les boutons à votre guise, ici, depuis cette page d’options. Cette position deviendra celle par défaut pour tous les sites web. Si ces boutons recouvrent un élément sur ​​certaines pages, vous pourrez ponctuellement les déplacer ailleurs.",
-        "description": ""
-    },
-    "contextmenu": {
-        "message": "Menu contextuel",
-        "description": ""
-    },
-    "show_contextmenu_when": {
-        "message": "Quand souhaitez-vous afficher une option dans le menu contextuel pour cacher modern scroll ?",
-        "description": ""
-    },
-    "never": {
-        "message": "Jamais",
-        "description": ""
-    },
-    "contextmenu_over_only": {
-        "message": "Lors d’un clic-droit sur l’interface de modern scroll",
-        "description": ""
-    },
-    "custom_scroll_functions": {
-        "message": "Fonctions de défilement",
-        "description": ""
-    },
-    "use_custom_functions": {
-        "message": "Utiliser des fonctions de défilement personnalisées",
-        "description": ""
-    },
-    "use_custom_functions_keyboard": {
-        "message": "pour le clavier",
-        "description": ""
-    },
-    "use_custom_functions_mouse": {
-        "message": "pour la souris",
-        "description": ""
-    },
-    "use_custom_functions_middle": {
-        "message": "pour les clics sur la molette de la souris",
-        "description": ""
-    },
-    "endMiddlescrollByTurningWheel": {
-        "message": "Terminer aussi bien en tournant la molette de la souris",
-        "description": ""
-    },
-    "animate_scroll": {
-        "message": "Défilement animé",
-        "description": ""
-    },
-    "animate_up_to": {
-        "message": "jusqu’à une longueur de",
-        "description": ""
-    },
-    "infinite": {
-        "message": "infinie",
-        "description": ""
-    },
-    "page": {
-        "message": "page",
-        "description": ""
-    },
-    "pages": {
-        "message": "pages",
-        "description": ""
-    },
-    "keyscroll_velocity": {
-        "message": "Vitesse de défilement avec les flèches du clavier",
-        "description": ""
-    },
-    "mousescroll_velocity": {
-        "message": "Vitesse de défilement avec la molette de la souris et le pavé tactile",
-        "description": ""
-    },
-    "mousescroll_distance": {
-        "message": "Étendue du défilement à chaque rotation faite avec la molette de la souris",
-        "description": ""
-    },
-    "middlescroll_velocity": {
-        "message": "Vitesse de défilement en agissant sur la molette de la souris",
-        "description": ""
-    },
-    "animatedscroll_velocity": {
-        "message": "Vitesse du défilement animé",
-        "description": ""
-    },
-    "external_interface_headline": {
-        "message": "Interface externe",
-        "description": ""
-    },
-    "external_interface": {
-        "message": "Fournit une interface pour un accès externe",
-        "description": ""
-    },
-    "footer": {
-        "message": "Merci d’avoir installé cette extension. N’hésitez pas à me contacter pour me soumettre vos commentaires et me poser des questions.",
-        "description": ""
-    },
-    "contextmenu_show": {
-        "message": "Afficher la barre modern scroll",
-        "description": ""
-    },
-    "contextmenu_hide": {
-        "message": "Cacher modern scroll",
-        "description": ""
-    },
-    "explanation_save_set": {
-        "message": "Vous pouvez sauvegarder vos configurations ici.\nSaisissez un nom et cliquez le bouton Enregistrer.\nSi vous choisissez un nom déjà utilisé, la configuration sera remplacée.",
-        "description": ""
-    },
-    "explanation_move_bars_during_scroll": {
-        "message": "Désactivez cette option si vous rencontrez des problèmes de performance.<br>Les positions des barres de défilement seront mises à jour uniquement lorsque le défilement sera terminé.",
-        "description": ""
-    },
-    "explanation_trigger_area": {
-        "message": "Augmente la zone d’accès aux barres de défilement.",
-        "description": ""
-    },
-    "explanation_superbar": {
-        "message": "La barre omnidirectionnelle permet de combiner en une action le défilement horizontal et vertical.<br>Elle deviendra visible lorsque les deux barres devront être affichées.<br> Sa position est alignée avec les barres de défilement horizontal et vertical.",
-        "description": ""
-    },
-    "explanation_custom_functions": {
-        "message": "Le défilement standard est parfois un peu lent et saccadé. En activant cette option, l’extension remplace ce défilement, ce qui devrait apporter un gain de performance notable.",
-        "description": ""
-    },
-    "explanation_animate_scroll": {
-        "message": "Si vous sélectionnez cette option, la page ne se positionnera pas directement à la position désirée, mais y défilera automatiquement de façon fluide.<br>Cela s’applique aux boutons de défilement, aux clics sur le fond des barres ainsi qu’au défilement avec le clavier (si \"Utilise des fonctions de défilement personnalisées pour le clavier\" est activée).",
-        "description": ""
-    },
-    "explanation_external_interface": {
-        "message": "En cochant cette option, modern scroll fournira certaines de ses fonctionnalités à des extensions tierces, certains sites web ou à vous même. Vous pourrez alors, par exemple, créer des gestes de souris personnalisés.<br><a href='https://christoph142.wordpress.com/2013/02/20/modern-scroll-documentation' target='_blank'>Consultez la documentation pour en savoir plus à ce sujet.</a>",
-        "description": ""
-    },
-    "report_issue": {
-        "message": "Signaler un problème",
-        "description": ""
-    },
-    "rate": {
-        "message": "Noter modern scroll",
-        "description": ""
-    },
-    "twitter": {
-        "message": "Suivez-moi sur Twitter",
-        "description": ""
-    },
-    "get_more": {
-        "message": "En savoir plus sur modern scroll",
-        "description": ""
-    },
-    "ok": {
-        "message": "OK",
-        "description": ""
-    },
-    "cancel": {
-        "message": "Annuler",
-        "description": ""
-    },
-    "close": {
-        "message": "Fermer",
-        "description": ""
-    },
-    "token": {
-        "message": "Voici le code dont vous aurez besoin pour transférer la licence sur d’autres navigateurs : ",
-        "description": ""
-    },
-    "trial_expired": {
-        "message": "Votre période d’essai a expiré.\nJ’espère que vous avez apprécié modern scroll autant que moi.\nLe cas échéant, procurez vous une licence maintenant.",
-        "description": ""
-    },
-    "all_set": {
-        "message": "Vous avez une version complète ! :)",
-        "description": ""
-    },
-    "seven_days_trial": {
-        "message": "Vous pouvez tester modern scroll sans restriction durant sept jours.",
-        "description": ""
-    },
-    "thanks_for_installing": {
-        "message": "Merci d’avoir installé modern scroll :)",
-        "description": ""
-    },
-    "get_trial_license": {
-        "message": "Vous devez vous connecter avec votre compte Google et donner à modern scroll accès au Chrome Web Store, afin d’obtenir une licence (essai).",
-        "description": ""
-    },
-    "authorize": {
-        "message": "Se connecter et autoriser",
-        "description": ""
-    },
-    "transferred_trial_expired": {
-        "message": "La période d’essai de la licence transférée a expirée.\nJ’espère que vous avez apprécié modern scroll.\nLe cas échéant, prenez une licence aujourd’hui. Vous devrez transférer cette licence par Google à nouveau.",
-        "description": ""
-    },
-    "transfer_successful": {
-        "message": "Amuse-toi bien avec modern scroll.",
-        "description": ""
-    },
-    "get_license_in_chrome": {
-        "message": "installer modern scroll dans Chrome et obtenir une licence",
-        "description": ""
-    },
-    "open_url_in_chrome": {
-        "message": "ouvre chrome-extension://@@extension_id/options/options.html#show_token dans Chrome",
-        "description": ""
-    },
-    "copy_token": {
-        "message": "copier le code affiché",
-        "description": ""
-    },
-    "insert_here": {
-        "message": "insérez-le ici",
-        "description": ""
-    },
-    "transfer_instructions": {
-        "message": "Pour l’utiliser ici, vous devez transférer une licence depuis Chrome (ou une licence d’essai). Voici comment procéder : ",
-        "description": ""
-    },
-    "invalid_token": {
-        "message": "Le code que vous avez saisi est invalide ou a expiré",
-        "description": ""
-    },
-    "description": {
-        "message": "Une nouvelle expérience dans la gestion du défilement",
-        "description": ""
-    }
+	"description" :						{ "message" : "Une nouvelle expérience dans la gestion du défilement" },
+	"by" :								{ "message" : "par" },
+	"saved_sets_headline" :				{ "message" : "Configurations sauvegardées" },
+	"save_set_as" :						{ "message" : "Enregistrer la configuration actuelle sous..." },
+	"new_set_name" :					{ "message" : "Nom" },
+	"load_or_delete_set" : 				{ "message" : "Charger ou supprimer" },
+	"default" : 						{ "message" : "Défaut" },
+	"default_change_impossible" : 		{ "message" : "Impossible de changer la configuration par défaut ! Merci de choisir un autre nom." },
+	"default_delete_impossible" : 		{ "message" : "Vous ne pouvez pas supprimer la configuration par défaut !" },
+	"confirm_overwrite" : 				{ "message" : "Une sauvegarde avec ce nom existe déjà.\nSouhaitez-vous la remplacer ?" },
+	"confirm_delete" : 					{ "message" : "Souhaitez-vous vraiment supprimer définitivement cette configuration ?" },
+	"confirm_load" : 					{ "message" : "Souhaitez-vous charger cette configuration maintenant ?\nCelle-ci remplacera la configuration actuelle." },
+	"tooltip_save" : 					{ "message" : "Enregistrer" },
+	"tooltip_load" : 					{ "message" : "Charger" },
+	"tooltip_delete" : 					{ "message" : "Supprimer" },	
+	"look" : 							{ "message" : "Apparence" },
+	"color" : 							{ "message" : "Couleur des barres de défilement, de la barre omnidirectionnelle et des boutons de défilement" },
+	"color_bg" : 						{ "message" : "Couleur du fond des barres" },
+	"auto_coloring" :					{ "message" : "Color UI matching the page instead if possible" },
+	"size" : 							{ "message" : "Largeur/Hauteur des barres de défilement à l’état normal" },
+	"hover_size" : 						{ "message" : "Largeur/Hauteur des barre de défilement lors du survol du curseur de la souris" },
+	"border_radius" : 					{ "message" : "Rayon de courbure de la bordure" },
+	"gap" : 							{ "message" : "Distance par rapport au bord de la fenêtre" },
+	"opacity" : 						{ "message" : "Opacité des barres de défilement" },
+	"border" : 							{ "message" : "Bordure" },
+	"border_width" : 					{ "message" : "Largeur" },
+	"border_color" : 					{ "message" : "Couleur" },
+	"border_blur" : 					{ "message" : "Flou" },
+	"vbar_at_left" : 					{ "message" : "Afficher la barre de défilement vertical à gauche et non pas à droite" },
+	"hbar_at_top" : 					{ "message" : "Afficher la barre de défilement horizontal en haut et non pas en bas" },
+	"behavior" : 						{ "message" : "Comportement" },
+	"show_when" : 						{ "message" : "Quand souhaitez-vous voir apparaitre les barres de défilement ?" },
+	"only_over" : 						{ "message" : "Seulement lors du survol du curseur de la souris" },
+	"normal" : 							{ "message" : "Au survol du curseur de la souris, durant le défilement et les changements de position ou de taille de la page" },
+	"always" : 							{ "message" : "Toujours" },
+	"show_bg_bars_when" : 				{ "message" : "Et le fond des barre de défilement ?" },
+	"like_bars" : 						{ "message" : "Comme les barres de défilement" },
+	"show_how_long" : 					{ "message" : "Combien de temps souhaitez-vous que les barres restent visibles ?" },
+	"fullscreen_only" : 				{ "message" : "Afficher les barres uniquement en mode plein écran" },
+	"fullscreen_only_short" : 			{ "message" : "Seulement en mode plein écran" },
+	"move_bars_during_scroll" : 		{ "message" : "Animer les barres de défilement lors du défilement à la molette ou au clavier" },
+	"bg_special_ends" : 				{ "message" : "Cliquer sur ​​les extrémités des barres de défilement permet de déplacer la page directement vers le haut ou le bas (et respectivement la gauche ou la droite) au lieu de la faire défiler page par page" },
+	"container1" : 						{ "message" : "Déclencher modern scroll dans un rayon de" },
+	"container2" : 						{ "message" : "pixels du bord" },
+	"element_bars" :					{ "message" : "Barre de défilement dans la page" },
+	"style_element_bars" : 				{ "message" : "Restyler toutes les barres de défilement" },
+	"explanation_element_bars" : 		{ "message" : "Activez cette option pour que modern scroll redessine aussi les barres de défilement à l’intérieur de la page, par exemple dans les zones de saisie." },
+	"autohide_element_bars" : 			{ "message" : "Masquer automatiquement les barres de défilement internes à la page." },
+	"explanation_autohide_element_bars":{ "message" : "Vous pouvez activer cette option mais la barre de défilement peut parfois ne pas s’afficher correctement, à cause de bugs de rendu." },
+	"superbar" : 						{ "message" : "Barre omnidirectionnelle" },
+	"show_superbar" : 					{ "message" : "Afficher la barre omnidirectionnelle" },
+	"show_superbar_minipage" : 			{ "message" : "Afficher un aperçu du site web en arrière-plan lorsque vous faites glisser la barre omnidirectionnelle" },
+	"superbar_opacity" : 				{ "message" : "Opacité de la barre omnidirectionnelle au survol du curseur de souris" },
+	"bookmarks" : 						{ "message" : "Bookmarks" },
+	"show_bookmarks" : 					{ "message" : "Show bookmarks within the page for scrolling to the specified locations" },
+	"no_bookmarks" : 					{ "message" : "Off" },
+	"bookmarks_only" : 					{ "message" : "Show bookmarks" },
+	"all_headings" : 					{ "message" : "Bookmarks and Headings" },
+	"bookmark_text_color" :				{ "message" : "Couleur du texte" },
+	"buttons" : 						{ "message" : "Boutons de défilement" },
+	"show_buttons" : 					{ "message" : "Affiche des boutons de défilement vers le haut/bas de la page" },
+	"button_width" : 					{ "message" : "Largeur" },
+	"button_height" : 					{ "message" : "Hauteur" },
+	"button_opacity" : 					{ "message" : "Opacité" },
+	"drag_buttons" : 					{ "message" : "Vous pouvez déplacer les boutons à votre guise, ici, depuis cette page d’options. Cette position deviendra celle par défaut pour tous les sites web. Si ces boutons recouvrent un élément sur ​​certaines pages, vous pourrez ponctuellement les déplacer ailleurs." },
+	"contextmenu" : 					{ "message" : "Menu contextuel" },
+	"show_contextmenu_when" : 			{ "message" : "Quand souhaitez-vous afficher une option dans le menu contextuel pour cacher modern scroll ?" },
+	"never" : 							{ "message" : "Jamais" },
+	"contextmenu_over_only" : 			{ "message" : "Lors d’un clic-droit sur l’interface de modern scroll" },
+	"custom_scroll_functions" : 		{ "message" : "Fonctions de défilement" },
+	"use_custom_functions" : 			{ "message" : "Utiliser des fonctions de défilement personnalisées" },
+	"use_custom_functions_keyboard" : 	{ "message" : "pour le clavier" },
+	"use_custom_functions_mouse" : 		{ "message" : "pour la souris" },
+	"use_custom_functions_middle" :		{ "message" : "pour les clics sur la molette de la souris" },
+	"endMiddlescrollByTurningWheel" :	{ "message" : "Terminer aussi bien en tournant la molette de la souris" },
+	"animate_scroll" : 					{ "message" : "Défilement animé" },
+	"animate_up_to" : 					{ "message" : "jusqu’à une longueur de" },
+	"infinite" : 						{ "message" : "infinie" },
+	"page" : 							{ "message" : "page" },
+	"pages" : 							{ "message" : "pages" },
+	"keyscroll_velocity" : 				{ "message" : "Vitesse de défilement avec les flèches du clavier" },
+	"mousescroll_velocity" : 			{ "message" : "Vitesse de défilement avec la molette de la souris et le pavé tactile" },
+	"mousescroll_distance" : 			{ "message" : "Étendue du défilement à chaque rotation faite avec la molette de la souris" },
+	"middlescroll_velocity" : 			{ "message" : "Vitesse de défilement en agissant sur la molette de la souris" },
+	"animatedscroll_velocity" : 		{ "message" : "Vitesse du défilement animé" },
+	"external_interface_headline" : 	{ "message" : "Interface externe" },
+	"external_interface" : 				{ "message" : "Fournit une interface pour un accès externe" },
+	"footer" : 							{ "message" : "Merci d’avoir installé cette extension. N’hésitez pas à me contacter pour me soumettre vos commentaires et me poser des questions." },
+	"contextmenu_enable" :				{ "message" : "Activer sur cette page" },
+	"contextmenu_disable" :				{ "message" : "Désactiver sur cette page" },
+	"contextmenu_show" : 				{ "message" : "Montrer à nouveau" },
+	"contextmenu_hide" : 				{ "message" : "Cacher temporairement" },
+	"contextmenu_customize" :			{ "message" : "Personnaliser sur cette page" },
+	"contextmenu_customize_current_set":{ "message" : "Utiliser la configuration actuelle" },
+	"contextmenu_new_set" :				{ "message" : "Créer un nouvel ensemble..." },
+	"explanation_save_set" : 			{ "message" : "Vous pouvez sauvegarder vos configurations ici.\nSaisissez un nom et cliquez le bouton Enregistrer.\nSi vous choisissez un nom déjà utilisé, la configuration sera remplacée." },
+	"explanation_move_bars_during_scroll" : { "message" : "Désactivez cette option si vous rencontrez des problèmes de performance.<br>Les positions des barres de défilement seront mises à jour uniquement lorsque le défilement sera terminé." },
+	"explanation_trigger_area" : 		{ "message" : "Augmente la zone d’accès aux barres de défilement." },
+	"explanation_superbar" : 			{ "message" : "La barre omnidirectionnelle permet de combiner en une action le défilement horizontal et vertical.<br>Elle deviendra visible lorsque les deux barres devront être affichées.<br> Sa position est alignée avec les barres de défilement horizontal et vertical." },
+	"explanation_custom_functions" : 	{ "message" : "Le défilement standard est parfois un peu lent et saccadé. En activant cette option, l’extension remplace ce défilement, ce qui devrait apporter un gain de performance notable." },
+	"explanation_animate_scroll" : 		{ "message" : "Si vous sélectionnez cette option, la page ne se positionnera pas directement à la position désirée, mais y défilera automatiquement de façon fluide.<br>Cela s’applique aux boutons de défilement, aux clics sur le fond des barres ainsi qu’au défilement avec le clavier (si \"Utilise des fonctions de défilement personnalisées pour le clavier\" est activée)." },
+	"explanation_external_interface" : 	{ "message" : "En cochant cette option, modern scroll fournira certaines de ses fonctionnalités à des extensions tierces, certains sites web ou à vous même. Vous pourrez alors, par exemple, créer des gestes de souris personnalisés.<br><a href='https://christoph142.wordpress.com/2013/02/20/modern-scroll-documentation' target='_blank'>Consultez la documentation pour en savoir plus à ce sujet.</a>" },
+	"report_issue" : 					{ "message" : "Signaler un problème"},
+	"disabled" :						{ "message" : "modern scroll a été désactivé sur $DOMAIN$", "placeholders" : {"domain" : { "content" : "$1", "example" : "example.org" }}},
+	"report_domain" :					{ "message" : "If there's an issue with the page, please report it so it can get fixed for everybody."},
+	"rate" :		 					{ "message" : "Noter modern scroll"},
+	"buymeacoffee" :					{ "message" : "Achetez-moi des sushis"},
+	"ok" :								{ "message" : "OK"},
+	"cancel" :							{ "message" : "Annuler"},
+	"close" :							{ "message" : "Fermer"},
+	"thanks_for_installing" :			{ "message" : "Merci d’avoir installé modern scroll 🙂"},
+	"thanks_for_using" :				{ "message" : "Merci pour utiliser modern scroll! 🙂"},
+    "have_fun" :						{ "message" : "Have fun using the extension.\nI'm gonna check in with you in a few weeks to see how you like it. 🍻"},
+	"like_it" :							{ "message" : "Hello again!\nIt's been a few weeks since you installed modern scroll.\nHow do you like it so far?"},
+	"great" :							{ "message" : "Trop"},
+	"so_so" :							{ "message" : "Plus ou moins"},
+	"that_is_great" :					{ "message" : "Awesome!\nWould you mind supporting me in order to continue improving modern scroll? 🍻"},
+	"im_sorry_to_hear" :				{ "message" : "I'm sorry to hear you're not 100% convinced yet.\nIf there's anything you'd like to see improved, please let me know."},
+	"continued_support" :				{ "message" : "I'd really appreciate your continued support in order to keep improving the extension.\nIf you haven't done so yet, now's a great time to start! 🍻"}
 }
