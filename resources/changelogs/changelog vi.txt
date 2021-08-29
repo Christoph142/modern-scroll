@@ -1,0 +1,318 @@
+﻿
+v 4.1 backlog
+---------
+new: add own bookmarks (click at bar, save pos)
+new: separate dark mode / incognito profile for web pages
+upd: various translations (thx to all translators)
+
+v 4.1
+---------
+new: let browser determine and update scroll bar positions
+new: allow for pages' dynamical theme color changes
+fix: modern scroll doesn't show up at www.nidirect.gov.uk
+fix: Space bar scrolls and plays / pauses videos at the same time on YouTube
+fix: superbar not working
+fix: clicking the background bars sometimes scrolls by two pages at once
+fix: lots of console errors on various pages
+upd: async rewrite of the extension's core structure
+
+v 4.0
+---------
+new: per domain customization
+new: blacklisting domains
+new: support of new scrollbar CSS style spec
+new: options page available as popup
+new: color setting for bookmarks' text
+fix: bookmarks sometimes disappear while hovering
+fix: inadvertently triggering bookmarks after page load
+upd: context menus
+upd: several smaller adjustments of options page
+upd: Dutch translation (thx Heimen)
+
+v 3.5.6
+---------
+new: separate URLs for each extension store (Opera, Edge, Chrome)
+fix: welcome dialog shown every time default set gets loaded
+
+v 3.5.5
+---------
+fix: several smaller glitches in options page
+upd: Dutch translation (thx Heimen)
+upd: Chinese translation (thx xyu)
+upd: Portuguese translation (thx André)
+
+v 3.5.4
+---------
+upd: Smaller adjustments of the settings page
+upd: paid licensing removed - thanks for supporting me at https://www.buymeacoffee.com/Christoph142 instead! 🍻
+
+v 3.5.3
+---------
+fix: transferring the license from Chrome doesn't work reliably (thx to all reporters)
+fix: license wiped after loading some profiles (thx hyperboraeer)
+
+v 3.5.2
+---------
+new: dark mode for settings
+
+v 3.5.1
+---------
+fix: keys swallowed in custom input widgets
+
+v 3.5
+---------
+new: display bookmarks next to the vertical scroll bar
+upd: various translations (thx to all translators)
+
+v 3.4
+---------
+fix: can't drag scroll bars outside frames / browser window
+fix: console warnings about passive events
+upd: switched from mouse to newer pointer events API
+
+v 3.3.1
+---------
+fix: console errors when toggling fullscreen with buttons disabled
+fix: impossible to use modern scroll in Chromium Browser (thx Rus for reporting)
+
+v 3.3
+---------
+new: use page's theme color for all UI elements if applicable
+fix: UI always showing although set to fullscreen only
+fix: slider values not updated in options page
+
+v 3.2.1
+---------
+fix: modern scroll is unusable in latest Yandex.Browser
+upd: improved browser distinction mechanism
+
+v 3.2
+---------
+new: auto-color scroll bars matching webpage's theme
+upd: no more IAPs - one payment, full access. Yay!
+upd: various translations (thx to all translators)
+
+v 3.1
+---------
+new: better separation of extension from page by using Shadow DOM
+new: modernized responsive options page
+new: setting in full version for styling of scrollbars within pages
+fix: custom keyboard scrolling is not working after clicking certain elements
+fix: no scrollbars for certain combinations of overflow on html and body
+fix: standard scrollbars hidden in normal windows when modern scroll is set to fullscreen only
+upd: various translations (thx to all translators)
+
+v 3.0.6
+---------
+fix: pages with overflow:hidden (e.g. jsfiddle, Transifex) are scrollable (thx Maciej for reporting)
+fix: scroll bars get saved into PDFs and printed on paper
+fix: documentation link corrected
+upd: Russian translation (thx Mykhailo)
+
+v 3.0.5
+---------
+new: additional way of scrolling (press scroll wheel -> drag -> release wheel)
+new: make use of new zoom API
+
+v 3.0.4
+---------
+new: optionally end mouse wheel click scrolling by turning the wheel
+new: UI is (partially) independent of page zoom
+new: support for HTML5 fullscreen API
+fix: open links with mouse wheel clicks
+upd: French translation (thx Bozz65)
+
+v 3.0.3
+---------
+new: custom mouse wheel click scrolling
+upd: disable custom mouse scrolling by default
+
+v 3.0.2
+---------
+new: additional dimension checks for even better compatibility with all websites
+fix: incorrect bar sizes on pages using Disqus
+upd: Portuguese translation (thx André)
+
+v 3.0.1
+---------
+new: keeping the mouse down on background bars will scroll page to mouse position
+new: hide all scroll bars when elements are not hovered or focused
+new: Vietnamese translation (thx ppanhh)
+fix: bars' positions are incorrect during scrolling in Chrome 27+ & Opera
+
+v 3.0
+---------
+new: fully Chromium (Chrome & Opera 15) compatible
+new: hides default scroll bars automatically
+new: styling of page element's scroll bars (e.g. textareas)
+new: settings are synced across all of your devices
+new: live mini page behind superbar
+new: better default value handling and retrieval of saved configurations
+
+v 2.4.5
+---------
+fix: fast forward with space bar (thx André)
+upd: various translations (thx to all contributors)
+upd: links to new blog
+
+v 2.4.4
+---------
+new: visibility of superbar can be toggled via custom mouse gestures
+new: modern scroll also takes over scrolling by pressing the space bar (thx kapsi for reporting)
+fix: scrolling of pictures @ vk.com (thx Maxim for reporting)
+upd: various translations (thx to all translators)
+
+v 2.4.3
+---------
+fix: interface stays invisible when switching tabs during loading
+fix: bars have a white rectangular background @ www.testberichte.de
+
+v 2.4.2
+---------
+new: improved rendering
+fix: interface is invisible when another tab gets closed
+fix: restore cleanPages extension compatibility (thx QuHno)
+fix: flickering scroll bars during touchpad/mouse scrolling
+
+v 2.4.1
+---------
+new: border settings affect scroll buttons, too (thx Dimitri for reporting)
+fix: modern scroll doesn't work on some websites (thx André, jonastheroman & orhano for reporting)
+fix: scroll bar momentarily jumps to top/bottom during scrolling (thx Cryio, André & orhano for reporting)
+
+v 2.4
+---------
+new: adjustable time before hiding bars
+new: modern scroll is only active in current tab, not in all opened ones anymore
+new: explanation fields in options page show up to the top if they are below middle of the screen
+upd: Portuguese translation (thx André)
+upd: background bars are only visible when you hover them with your mouse now by default
+upd: restructuring and performance improvements
+
+v 2.3.1
+---------
+fix: ingdirect.fr (thx terdale for reporting)
+fix: Bootstrap's modal popups not appearing (thx Johnny for reporting; semi-fixed only)
+upd: Czech & Arabic translations (thx Ahoj1234 & Netmain)
+upd: minimal overall performance improvements
+
+v 2.3
+---------
+new: modern scroll can be used for custom mouse gestures (external interface)
+new: components are available independently
+new: Romanian translation (thx Cryio)
+fix: hiding the UI also disables the scrolling functions
+fix: page's dimensions aren't updated after long transitions/animations (thx aiwork & arkenighte for reporting)
+fix: lastpass.com (thx Netmain for reporting)
+fix: incompatibility with ExtJS framework (thx Alexander for reporting)
+fix: position of bars is slightly incorrect for very long pages
+fix: horizontal bar is misplaced if distance to the borders of the window is not 0
+fix: keyboard navigation in contenteditable sections (thx Henryk for reporting)
+
+v 2.2.1
+---------
+new: Norwegian translation (thx Daniel)
+new: Arabic translation (thx netmain)
+new: Czech translation (thx Ahoj1234)
+fix: fullscreen mode only use (thx aboutblank6 for reporting)
+fix: modern scroll blocks scrolling with the arrow keys when no interface is present (e.g. MyOpera Mail, Google Docs)
+upd: Polish translation (thx Piotr)
+
+v 2.2
+---------
+new: scrolling with mouse and trackpad is configurable
+new: all kinds of scrolling are even smoother
+fix: detection of scrollable elements (thx Ahoj1234 for reporting)
+fix: arrow keys in search-input fields (thx Cryio for reporting)
+fix: PgUp/PgDwn/Home/End keys in select fields (thx André for reporting)
+fix: milliyet.com.tr (thx Magruf for reporting)
+upd: Turkish translation (thx metude)
+
+v 2.1.3
+---------
+fix: horizontal mouse scrolling (thx kimmy8624 for reporting)
+fix: mouse scrolling over select elements (thx Vincent for your support)
+upd: animate scrolling by default
+
+v 2.1.2
+---------
+new: pressing Enter in configuration's name field in options page saves it
+fix: insanely fast mouse scrolling on Mac (thx Lauren & ayni for reporting)
+fix: options page in installations that were not updated from version 2.0
+
+v 2.1.1
+---------
+fix: keyboard shortcuts with command key ? (thx ayni for reporting)
+upd: Portuguese translation (thx André)
+
+v 2.1
+---------
+new: interface is present as soon as possible during site loading
+new: enhanced visibility setting of the background bars
+new: setting for maximum length of animations
+new: support for cleanPages extension
+new: trigger area doesn't prevent covered part of page from being clicked anymore
+fix: keyboard commands using Ctrl/Alt/Shift + PgUp/PgDwn/Home/End (thx zablociak for reporting)
+fix: Microsoft Bing, outlook.com, Facebook (thx André, netmain & ahoj1234 for reporting)
+fix: number input fields in options page may make themselves independent when clicking their arrows (thx Sally for reporting)
+fix: megalab.it (not excluded anymore)
+
+v 2.0
+---------
+new: modern scroll speeds up scrolling!
+new: configurations can be saved and restored
+new: horizontal bar shortened to prevent overlapping
+new: optionally animate scrolling
+new: additional explanations for some settings
+new: support for iframes
+fix: clicking a background bar may result in vertical and horizontal scrolling at the same time
+fix: various smaller bugs
+upd: improved overall performance
+
+v 1.3.1
+---------
+fix: bars cover the whole page (e.g. anidb.net; thx Luke for reporting)
+fix: buttons sometimes jump to the left border of the screen in options
+
+v 1.3
+---------
+new: optionally set an area to trigger hover mode for easier access
+new: bar moved inwards from the border (adjustable)
+new: transparency setting for scroll bars
+new: Portuguese translation (thx André)
+fix: mini page is incorrect on separately opened images
+fix: button position isn't saved anymore (thx ura & mubaidr for reporting)
+upd: animate scroll by mouse / keyboard by default
+upd: changed behavior and look of the superbar
+
+v 1.2.1
+---------
+fix: context menu entry doesn't show up anymore
+fix: interface gets inadvertently visible again after hiding it
+fix: various console errors
+upd: superbar is disabled by default
+
+v 1.2
+---------
+new: modern scroll can also be displayed in fullscreen mode only
+new: enhanced possibilities to adjust the interface (colors, transparency, border)
+new: interface gets updated when page content is expanded / contracted on click
+fix: area next to scroll bars isn't clickable (thx Aleksey for reporting)
+fix: background bars show up although they are disabled (thx laurenbacall for reporting)
+fix: local files are not supported (thx TerDale for reporting)
+fix: bars get visible every time new content is loaded even if the dimensions of the page do not change (thx Rizky for reporting)
+
+v 1.1
+---------
+new: top- and bottommost part of the background bar can be used to scroll to top / bottom
+new: scroll bars can be attached to the opposite side of the screen
+new: optional animation of bar during scrolling by mouse wheel / keyboard
+new: contextmenu entry only shows up if you right-click the modern scroll interface (adjustable)
+new: scroll button width and height adjustable
+fix: scrollbar position not updated, when superbar is dragged to top left corner (thx Daniel for reporting)
+fix: scrollbars don't have a border on some websites (e.g. iphoneforums.net)
+fix: options page doesn't show any text if no supported language is chosen in Opera (thx Piotr for reporting)
+
+v 1.0
+---------
+Initial release
