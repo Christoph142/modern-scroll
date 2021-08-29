@@ -1,4 +1,65 @@
-﻿v 3.5
+﻿
+v 4.1 backlog
+---------
+new: add own bookmarks (click at bar, save pos)
+new: separate dark mode / incognito profile for web pages
+mis à jour : plusieurs traductions (merci à tous les traducteurs)
+
+v 4.1
+---------
+new: let browser determine and update scroll bar positions
+new: allow for pages' dynamical theme color changes
+fix: modern scroll doesn't show up at www.nidirect.gov.uk
+fix: Space bar scrolls and plays / pauses videos at the same time on YouTube
+fix: superbar not working
+fix: clicking the background bars sometimes scrolls by two pages at once
+fix: lots of console errors on various pages
+upd: async rewrite of the extension's core structure
+
+v 4.0
+---------
+new: per domain customization
+new: blacklisting domains
+new: support of new scrollbar CSS style spec
+new: options page available as popup
+new: color setting for bookmarks' text
+fix: bookmarks sometimes disappear while hovering
+fix: inadvertently triggering bookmarks after page load
+upd: context menus
+upd: several smaller adjustments of options page
+upd: Dutch translation (thx Heimen)
+
+v 3.5.6
+---------
+new: separate URLs for each extension store (Opera, Edge, Chrome)
+fix: welcome dialog shown every time default set gets loaded
+
+v 3.5.5
+---------
+fix: several smaller glitches in options page
+upd: Dutch translation (thx Heimen)
+upd: Chinese translation (thx xyu)
+mis à jour : traduction portugaises (merci à André)
+
+v 3.5.4
+---------
+upd: Smaller adjustments of the settings page
+upd: paid licensing removed - thanks for supporting me at https://www.buymeacoffee.com/Christoph142 instead! 🍻
+
+v 3.5.3
+---------
+fix: transferring the license from Chrome doesn't work reliably (thx to all reporters)
+fix: license wiped after loading some profiles (thx hyperboraeer)
+
+v 3.5.2
+---------
+new: dark mode for settings
+
+v 3.5.1
+---------
+fix: keys swallowed in custom input widgets
+
+v 3.5
 ---------
 new: display bookmarks next to the vertical scroll bar
 mis à jour : plusieurs traductions (merci à tous les traducteurs)
