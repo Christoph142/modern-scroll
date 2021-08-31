@@ -1426,14 +1426,12 @@ function arrowkeyscroll(e)
 
 function otherkeyscroll(e)
 {
-	if(e.which > 32 && e.which < 37 && !modifierkey_pressed(e) && !target_is_input(e))
+	if(e.which > 34 && e.which < 37 && !modifierkey_pressed(e) && !target_is_input(e))
 	{
 		stopEvent(e);
 		
-		if		(e.which === 34)	scroll_PageDown();
-		else if	(e.which === 33)	scroll_PageUp();
-		else if	(e.which === 36) 	scroll_Pos1();
-		else					 	scroll_End();
+		if	(e.which === 36) 	scroll_Pos1();
+		else					scroll_End();
 	}
 	else if(e.which === 32 && !e.altKey && !e.metaKey && !e.ctrlKey && !target_is_input(e)) // 32 = space bar
 	{
