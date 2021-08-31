@@ -1,20 +1,20 @@
 ﻿
-v 4.1 backlog
+v 4.2 backlog
 ---------
 new: add own bookmarks (click at bar, save pos)
 new: separate dark mode / incognito profile for web pages
-atualizado: várias traduções (obg a todos os tradutores)
 
 v 4.1
 ---------
-new: let browser determine and update scroll bar positions
+new: let browser determine and update scroll bar positions if available
 new: allow for pages' dynamical theme color changes
-fix: modern scroll doesn't show up at www.nidirect.gov.uk
-fix: Space bar scrolls and plays / pauses videos at the same time on YouTube
+fix: modern scroll doesn't show up at www.nidirect.gov.uk (thx Eathan for reporting)
+fix: Space bar scrolls and plays / pauses videos at the same time on YouTube (thx to all reporters)
 fix: superbar not working
-fix: clicking the background bars sometimes scrolls by two pages at once
+fix: some elements do not scroll when custom scrolling functions for the mouse are enabled (thx Bela for reporting)
 fix: lots of console errors on various pages
-upd: async rewrite of the extension's core structure
+upd: future-proof rewrite of the extension's core structure
+atualizado: várias traduções (obg a todos os tradutores)
 
 v 4.0
 ---------
