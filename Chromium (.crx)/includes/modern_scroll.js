@@ -1553,16 +1553,14 @@ function middlebuttonscroll(e)
 function is_scrollable(element, direction) // direction: 0 = up, 1 = down, 2 = all
 {
 	if(!element.parentNode || element.tagName === "BODY") return false;
-	else if((window.getComputedStyle(element, null).overflow === "scroll" || window.getComputedStyle(element, null).overflow === "auto" || window.getComputedStyle(element, null).overflow === "" || element.tagName === "TEXTAREA") && element.offsetHeight < element.scrollHeight)
+	else if((["scroll", "auto"].includes(window.getComputedStyle(element).overflowY) || element.tagName === "TEXTAREA") && element.offsetHeight < element.scrollHeight)
 	{
-		let max_scrollTop = element.scrollHeight /*+ parseInt(window.getComputedStyle(element, null).borderTopWidth) + parseInt(window.getComputedStyle(element, null).borderBottomWidth)*/ - element.offsetHeight; //+(element.offsetWidth < element.scrollWidth?0:0)
+		let max_scrollTop = element.scrollHeight - element.offsetHeight;
 		if((direction === 0 && element.scrollTop > 0) || (direction === 1 && element.scrollTop < max_scrollTop) || direction === 2)
 			return true;
 		else return is_scrollable(element.parentNode, direction);
 	}
 	else if(element.tagName === "SELECT")					return true;
-	else if(element.className === "uiScrollableAreaBody")	return true; // Facebook's scrolling implementation
-	else if(element.parentNode.id === "layer_wrap")			return true; // vKontakte's scrolling implementation
 	else													return is_scrollable(element.parentNode, direction);
 }
 
