@@ -922,7 +922,7 @@ function reposition_bars()
 }
 
 let t; // timeout
-function scroll_bg_v(e)
+async function scroll_bg_v(e)
 {
 	e.preventDefault();			// prevent focus-loss in site
 	if(e.which !== 1) return;	// if it's not the left mouse button
@@ -932,15 +932,14 @@ function scroll_bg_v(e)
 	else if	((window.innerHeight-e.clientY) < 50 && w.bg_special_ends === "1")	scroll_End();
 	else // scroll one more page until mouse position is reached if mouse is kept pressed:
 	{
-		console.log("bg starting");
-		window.addEventListener("pointerup", () => {console.log("clearing", t); window.clearTimeout(t)}, {capture: true, passive: false, once: true});
+		window.addEventListener("pointerup", () => window.clearTimeout(t), {capture: true, passive: false, once: true});
 		scroll_bg_v_inner(e.clientY, vbar.offsetTop, Math.round(window.innerHeight/w.scroll_velocity));
 	}
 }
-function scroll_bg_v_inner(mouse, vbar_top, timeout)
+async function scroll_bg_v_inner(mouse, vbar_top, timeout)
 {
 	let vbar_height = vbar.offsetHeight;
-	console.log("bg scrolling inner", mouse, vbar_top, timeout);
+
 	if(mouse > vbar_top + vbar_height)
 	{
 		scroll_PageDown();
@@ -953,10 +952,9 @@ function scroll_bg_v_inner(mouse, vbar_top, timeout)
 	}
 	
 	t = window.setTimeout(scroll_bg_v_inner, timeout, mouse, vbar_top, timeout);
-	console.log("set timeout", t);
 }
 
-function scroll_bg_h(e){
+async function scroll_bg_h(e){
 	e.preventDefault();			// prevent focus-loss in site
 	if(e.which !== 1) return;	// if it's not the left mouse button
 	e.stopPropagation();		// prevent bubbling (e.g. prevent drag being triggered on separately opened images)
@@ -977,14 +975,14 @@ function scroll_bg_h(e){
 	else window.scrollBy(-window.innerWidth, 0);
 }
 
-function show_bars(){ show_bar("v"); show_bar("h"); }
-function hide_bars()
+async function show_bars(){ show_bar("v"); show_bar("h"); }
+async function hide_bars()
 {
 	if(ms_shadow.querySelector(".dragged")) return;
 	hide_bar("v"); hide_bar("h");
 }
 
-function show_bar(whichone)
+async function show_bar(whichone)
 {
 	window.clearTimeout(hide_timeout); hide_timeout = null;
 	if(w.show_when === "1") return;		// 1 = only on hover
@@ -997,7 +995,7 @@ function show_bar(whichone)
 	ms_shadow.getElementById("ms_"+whichone+"bar").style.opacity = w.opacity/100;
 }
 let hide_timeout;
-function hide_bar(whichone)
+async function hide_bar(whichone)
 {
 	hide_timeout = window.setTimeout(function(){ // set timeout to prevent bar from not showing up at all
 		if(!hide_timeout) return; // hide_bar got fired for v & h -> only h is cancelable -> check if show_bars() canceled hide_timeout
@@ -1046,7 +1044,7 @@ function add_buttons()
 	window.addEventListener("scroll", show_or_hide_buttons, false);
 }
 
-function handle_button(whichone, e)
+async function handle_button(whichone, e)
 {
 	e.preventDefault();			// prevent focus-loss in site
 	if(e.which !== 1) return;	// if it's not the left mouse button
@@ -1059,7 +1057,7 @@ function handle_button(whichone, e)
 	document.addEventListener("pointerup", handle_button_click, true);
 	document.addEventListener("pointermove", handle_button_drag, true);
 
-	function handle_button_click()
+	async function handle_button_click()
 	{
 		if(whichone === "up")	scroll_Pos1();
 		else					scroll_End();
@@ -1067,7 +1065,7 @@ function handle_button(whichone, e)
 		document.removeEventListener("pointerup", handle_button_click, true);
 	}
 
-	function handle_button_drag(e)
+	async function handle_button_drag(e)
 	{
 		let posx = e.clientX;
 		button.style.left = otherbutton.style.left = ((posx - x_start)<=-50? -50 : ((posx - x_start)>=window.innerWidth+50-button.offsetWidth?window.innerWidth+50-button.offsetWidth : (posx - x_start))) + "px";
@@ -1080,7 +1078,7 @@ function handle_button(whichone, e)
 		document.removeEventListener("pointerup", handle_button_click, true);
 		document.addEventListener("pointerup", handle_button_drag_end, false);
 	}
-	function handle_button_drag_end()
+	async function handle_button_drag_end()
 	{
 		document.removeEventListener("pointermove", handle_button_drag, true);
 		document.removeEventListener("pointerup", handle_button_drag_end, false);
@@ -1095,7 +1093,7 @@ function handle_button(whichone, e)
 }
 
 let button_timeout;
-function show_or_hide_buttons()
+async function show_or_hide_buttons()
 {
 	window.clearTimeout(button_timeout);
 	button_timeout = window.setTimeout(() => {
@@ -1111,7 +1109,7 @@ function show_or_hide_buttons()
 
 let last_delta = 0;
 let squeeze_timeout;
-function squeeze_bars(e)
+async function squeeze_bars(e)
 {
 	if (Math.abs(e.deltaX) > last_delta)
 	{
