@@ -45,7 +45,7 @@
 	"container2" : 						{ "message" : "px zum Rand triggern" },
 	"element_bars" :					{ "message" : "Bildlaufleisten innerhalb der Seite" },
 	"style_element_bars" : 				{ "message" : "alle Bildlaufleisten stylen" },
-	"explanation_element_bars" : 		{ "message" : "Aktiviere diese Option, damit modern scroll auch alle Bildlaufleisten innerhalb der Seite, z.B. die von Textboxen, stylt" },
+	"explanation_element_bars" : 		{ "message" : "Aktiviere diese Option, damit modern scroll auch alle Bildlaufleisten innerhalb der Seite, z.B. die von Textboxen, stylet" },
 	"autohide_element_bars" : 			{ "message" : "Bildlaufleisten innerhalb der Seite automatisch ausblenden" },
 	"explanation_autohide_element_bars":{ "message" : "Dieses Feature funktioniert leider aufgrund von Darstellungs-Fehlern nicht richtig. Du kannst es aktivieren, aber möglicherweise erscheinen Bildlaufleisten nicht immer korrekt." },
 	"superbar" : 						{ "message" : "Superbar" },
