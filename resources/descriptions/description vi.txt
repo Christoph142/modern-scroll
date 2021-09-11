@@ -6,12 +6,12 @@ modern scroll takes scrolling to a whole new level.
 What's so awesome about it?
 
 + scroll bars don't take up any space so the whole screen width can be used to display what a browser is made for: websites
-+ các đối tượng hoặc toàn bộ trang sẽ không chuyển dịch bởi các điểm ảnh khi nội dung thay đổi và thanh trượt trở nên (không)cần thiết
-+ thanh trượt cũng có thể được sử dụng trong chế độ toàn màn hình
-+ thanh trượt tự động ẩn khi không cần thiết
-+ thao tác và giao diện hoàn toàn có thể được tùy chỉnh
++ elements or whole pages don't shift by some pixels when content changes and bars become (un)necessary
++ scroll bars are usable in fullscreen mode as well
++ scroll bars automatically hide when they are not needed
++ behavior and appearance is fully customizable
 + can boost your scrolling performance
 + scrolling speed and behavior is adjustable
-+ thanh tác vụ độc đáo sẽ giúp bạn trượt theo chiều ngang lẫn chiều dọc vào bất cứ thời điểm nào
++ unique "superbar" which makes it possible to scroll horizontally and vertically at the same time
 + buttons for scrolling to top and bottom of the page
 + JavaScript interface for custom mouse gestures / bookmarklets
