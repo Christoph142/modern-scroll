@@ -109,7 +109,7 @@
 	"ok" :								{ "message" : "حسناً"},
 	"cancel" :							{ "message" : "الغاء"},
 	"close" :							{ "message" : "اغلاق"},
-	"thanks_for_installing" :			{ "message" : "Thanks for installing modern scroll! :)"},
+	"thanks_for_installing" :			{ "message" : "Thanks for installing modern scroll! 🙂"},
 	"thanks_for_using" :				{ "message" : "Thanks for using modern scroll! 🙂"},
     "have_fun" :						{ "message" : "Have fun using the extension.\nI'm gonna check in with you in a few weeks to see how you like it. 🍻"},
 	"like_it" :							{ "message" : "Hello again!\nIt's been a few weeks since you installed modern scroll.\nHow do you like it so far?"},
