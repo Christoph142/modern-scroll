@@ -59,6 +59,7 @@ async function load_prefs() {
 		show_when:				"2", // 1 = onmouseover only, 2 = normal, 3 = always
 		show_bg_bars_when:		"2", // 1 = never, 2 = onmouseover only, 3 = like bars
 		show_how_long:			"1000",
+		squeeze_bars: 			"0",
 		fullscreen_only:		"0",
 		bg_special_ends:		"1",
 		container:				"0",
@@ -190,6 +191,8 @@ function remove_ms()
 	
 	window.removeEventListener("scroll", show_or_hide_buttons, false);
 	window.removeEventListener("scroll", reposition_bars, false);
+
+	window.removeEventListener("overscroll", squeeze_bars, false);
 	
 	ms_shadow.removeEventListener("mouseover", show_bookmarks, false);
 	ms_shadow.removeEventListener("mouseout", hide_bookmarks, false);
@@ -446,7 +449,9 @@ function add_functionality_2_bars(){
 	}
 
 	window.addEventListener("scroll", reposition_bars, false);
-	window.addEventListener("wheel", squeeze_bars, { passive: false });
+	if (w.squeeze_bars === "1" && window.onoverscroll !== undefined) {
+		window.addEventListener("overscroll", squeeze_bars, false);		
+	}
 }
 
 function show_bookmarks()
@@ -1107,68 +1112,38 @@ async function show_or_hide_buttons()
 	}, 200);
 }
 
-let last_delta = 0;
-let squeeze_timeout;
 async function squeeze_bars(e)
 {
-	if (Math.abs(e.deltaX) > last_delta)
-	{
-		if (window.pageXOffset === 0 && e.deltaX < 0)
-		{
-			hbar.style.transformOrigin = "0 0";
-			hbar.animate({
-				transform: ["scaleX(1)", "scaleX("+(0.25+0.75/-e.deltaX)+")", "scaleX(1)"],
-				//opacity: [0.5, 1, 0.5],
-				easing: ["ease-out", "ease-in"]
-			}, 200);
-			last_delta = -e.deltaX;
-		}
-		else if (window.pageXOffset === window.scrollMaxX && e.deltaX > 0)
-		{
-			hbar.style.transformOrigin = "100% 100%";
-			hbar.animate({
-				transform: ["scaleX(1)", "scaleX("+(0.25+0.75/e.deltaX)+")", "scaleX(1)"],
-				//opacity: [0.5, 1, 0.5],
-				easing: ["ease-out", "ease-in"]
-			}, 200);
-			last_delta = e.deltaX;
-		}
-	}
-	if (e.deltaX !== 0) set_squeeze_timeout(hbar);
+	window.addEventListener("scroll", unsqueeze_bars, { once: true });
+	window.addEventListener("scrollend", unsqueeze_bars, { once: true });
 
-	if (Math.abs(e.deltaY) > last_delta)
+	if (e.deltaY !== 0)
 	{
-		if (window.pageYOffset === 0 && e.deltaY < 0)
-		{
-			vbar.style.transformOrigin = "0 0";
-			vbar.animate({
-				transform: ["scaleY(1)", "scaleY("+(0.25+0.75/-e.deltaY)+")", "scaleY(1)"],
-				//opacity: [0.5, 1, 0.5],
-				easing: ["ease-out", "ease-in"]
-			}, 200);
-			last_delta = -e.deltaY;
-		}
-		else if (window.pageYOffset === window.scrollMaxY && e.deltaY > 0)
-		{
-			vbar.style.transformOrigin = "100% 100%";
-			vbar.animate({
-				transform: ["scaleY(1)", "scaleY("+(0.25+0.75/e.deltaY)+")", "scaleY(1)"],
-				//opacity: [0.5, 1, 0.5],
-				easing: ["ease-out", "ease-in"]
-			}, 200);
-			last_delta = e.deltaY;
-		}
+		show_bar("v");
+		const factor = window.innerHeight / (window.innerHeight + Math.abs(e.deltaY));
+
+		vbar.style.transformOrigin = e.deltaY < 0 ? "0 0" : "100% 100%";
+		vbar.style.transform = "scaleY("+(0.25+0.75*factor)+")";
+		vbar.style.opacity = w.opacity / 100 + (1 - w.opacity / 100) * (1 - factor);
 	}
-	if (e.deltaY !== 0) set_squeeze_timeout(vbar);
+
+	if (e.deltaX !== 0)
+	{
+		show_bar("h");
+		const factor = window.innerWidth / (window.innerWidth + Math.abs(e.deltaX));
+
+		hbar.style.transformOrigin = e.deltaX < 0 ? "0 0" : "100% 100%";
+		vbar.style.transform = "scaleY("+(0.25+0.75*factor)+")";
+		hbar.style.opacity = w.opacity / 100 + (1 - w.opacity / 100) * (1 - factor);
+	}
 }
 
-function set_squeeze_timeout(bar)
+async function unsqueeze_bars()
 {
-	window.clearTimeout(squeeze_timeout);
-	squeeze_timeout = window.setTimeout(() => {
-		bar.style.transformOrigin = null;
-		last_delta = 0;
-	}, 500);
+	vbar.style.transform = hbar.style.transform = null;
+	vbar.style.transformOrigin = hbar.style.transformOrigin = null;
+	vbar.style.opacity = hbar.style.opacity = w.opacity / 100;
+	hide_bars();
 }
 
 // ######################################

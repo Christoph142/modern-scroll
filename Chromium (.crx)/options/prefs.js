@@ -88,6 +88,7 @@ async function restorePrefs() {
 		show_when:				"2", // 1 = onmouseover only, 2 = normal, 3 = always
 		show_bg_bars_when:		"2", // 1 = never, 2 = onmouseover only, 3 = like bars
 		show_how_long:			"1000",
+		squeeze_bars: 			"0",
 		fullscreen_only:		"0",
 		bg_special_ends:		"1",
 		container:				"0",
@@ -157,6 +158,7 @@ async function restorePrefs() {
 				else						input.value = prefs[input.id];
 			}
 			
+			if(window.onoverscroll === undefined)									document.querySelector("#squeeze_bars_container").style.display			= "none";
 			if(document.querySelector("#show_buttons").value !== "1")				document.querySelector("#button_container").style.height				= "auto";
 			if(!document.querySelector("#use_own_scroll_functions").checked)		document.querySelector("#keyscroll_velocity_container").style.display	= "none";
 			if(document.querySelector("#use_own_scroll_functions_mouse").checked)	document.querySelector("#mousescroll_container").style.display			= "inline";
