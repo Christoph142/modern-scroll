@@ -7,6 +7,7 @@ new: separate dark mode / incognito profile for web pages
 v 4.1.1
 ---------
 new: setting for squeezing the bars when overscrolling (if available)
+fix: some dialog buttons not working
 
 v 4.1
 ---------

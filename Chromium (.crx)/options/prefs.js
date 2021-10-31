@@ -135,9 +135,8 @@ async function restorePrefs() {
 			prefs = storage;
 			resolve();
 
-			let selects = document.querySelectorAll("select");
-			for(let select of selects){
-				if(!prefs[select.id]) continue;
+			document.querySelectorAll("select").forEach(select => {
+				if(!prefs[select.id]) return;
 				if(select.id === "saved_sets")
 				{
 					if(select.options.length === 1) // prevent attaching sets multiple times on update
@@ -146,17 +145,16 @@ async function restorePrefs() {
 							select.options[select.options.length] = new Option(option, option); // Option(name, value)
 						}
 					}
-					else continue;
+					else return;
 				}
 				else select.value = prefs[select.id];
-			}
+			});
 
-			let inputs = document.querySelectorAll("input");	
-			for(let input of inputs){
-				if(!prefs[input.id]) continue;
+			document.querySelectorAll("input").forEach(input => {
+				if(!prefs[input.id]) return;
 				if(input.type==="checkbox")	input.checked = (prefs[input.id] === "0" ? false : true);
 				else						input.value = prefs[input.id];
-			}
+			});
 			
 			if(window.onoverscroll === undefined)									document.querySelector("#squeeze_bars_container").style.display			= "none";
 			if(document.querySelector("#show_buttons").value !== "1")				document.querySelector("#button_container").style.height				= "auto";
@@ -167,13 +165,11 @@ async function restorePrefs() {
 			
 			document.querySelector("#border_radius").max = Math.round(Math.max(document.querySelector("#size").value, document.querySelector("#hover_size").value)/2);
 			
-			let sliders = document.querySelectorAll(".slider_values");
-			for(let slider of sliders) // display slider values:
-			{
+			document.querySelectorAll(".slider_values").forEach(slider => { // display slider values:
 				let which_value = slider.id.split(".")[1];
 				let raw_value = (prefs[which_value] ? prefs[which_value] : document.getElementById(which_value).value);
 				slider.textContent = (document.getElementById(which_value).dataset.defaultvalue ? Math.round(100*raw_value/document.getElementById(which_value).dataset.defaultvalue) : raw_value);
-			}	
+			});
 			
 			add_page_handling();
 		}
@@ -217,10 +213,7 @@ function add_page_handling()
 	// ##### info bubbles: #####
 	// #########################
 
-	let info_bubbles = document.querySelectorAll(".i");
-	
-	for(let info_bubble of info_bubbles) // position top/bottom:
-	{
+	document.querySelectorAll(".i").forEach(info_bubble => { // position top/bottom:
 		info_bubble.addEventListener("pointerover", function(){
 			window.clearTimeout(bubble_setback);
 			if(this.offsetTop>window.scrollY+window.innerHeight/2) this.lastChild.style.marginTop = (-this.lastChild.offsetHeight+8)+"px";
@@ -228,26 +221,28 @@ function add_page_handling()
 		info_bubble.addEventListener("pointerout", function(){
 			bubble_setback = window.setTimeout(function(){this.lastChild.style.marginTop= null;}.bind(this),500);
 		}, false);
-	}
+	});
 
 	// ################
 	// ### dialogs: ###
 	// ################
 
-	let dialog_close_buttons = document.querySelectorAll("dialog .close, dialog .hide_dialog");
-	for(let dcb of dialog_close_buttons) dcb.addEventListener("click", hideDialog, false);
+	document.querySelectorAll("dialog .close, dialog .hide_dialog").forEach(dialog_close_button =>
+		dialog_close_button.addEventListener("click", hideDialog, false)
+	);
 
 	document.querySelector("#confirm_overwrite_button").addEventListener("click", () => save_set(true), false);
 	document.querySelector("#confirm_delete_button").addEventListener("click", delete_set, false);
 	document.querySelector("#confirm_load_button").addEventListener("click", load_set, false);
+	document.querySelectorAll("#hello_again button").forEach(button =>
+		button.addEventListener("click", switchDialog, false)
+	);
 
 	// make sliders update during drag:
-	let sliders = document.querySelectorAll("input[type=range]");
-	for (let slider of sliders)
-	{
+	document.querySelectorAll("input[type=range]").forEach(slider => {
 		if (document.getElementById("storage." + slider.id))
 			slider.addEventListener("input", () => update_slider_value(slider), false);
-	}
+	});
 }
 
 let bubble_setback; // timeout for info bubbles
@@ -326,18 +321,15 @@ function load_set(){
 
 function localize()
 {
-	let strings = document.querySelectorAll("[data-i18n]");
-	for(let string of strings)
-	{
+	document.querySelectorAll("[data-i18n]").forEach(string => {
 		if (string.tagName === "IMG")	string.title	  = getString(string.dataset.i18n); // tooltips
 		else							string.innerHTML += getString(string.dataset.i18n); // innerHTML because of links and linebreaks
-	}
+	});
 
 	// insert extension id in Web Store URLs:
-	let webstorelinks = document.querySelectorAll("a[href*='@@extension_id']");
-	for (let link of webstorelinks) {
-		link.href = link.href.replace("@@extension_id", getString("@@extension_id"));
-	};
+	document.querySelectorAll("a[href*='@@extension_id']").forEach(link =>
+		link.href = link.href.replace("@@extension_id", getString("@@extension_id"))
+	);
 }
 function getString(string){					return chrome.i18n.getMessage(string).split("\n").join("<br>"); }
 function getString(string, substitutes){	return chrome.i18n.getMessage(string, substitutes).split("\n").join("<br>"); }
@@ -349,11 +341,9 @@ function showDialog(id)
 
 	if(document.querySelector(window.location.hash+"[open]")) return;
 	
-	let stringsWithSubstitutions = document.querySelectorAll(window.location.hash + " [data-substitutions]");
-	for (let string of stringsWithSubstitutions)
-	{
-		string.innerHTML = getString(string.dataset.i18n, substitutes);
-	}
+	document.querySelectorAll(window.location.hash + " [data-substitutions]").forEach(string =>
+		string.innerHTML = getString(string.dataset.i18n, substitutes)
+	);
 
 	document.querySelector(window.location.hash).showModal();
 	document.addEventListener("keydown", handleKeyboardEvents, false);
@@ -377,8 +367,9 @@ function hideDialog()
 	}, 200);
 }
 
-function switchDialog(id)
+function switchDialog(e)
 {
+	const id = e.target.getAttribute("data-i18n");
 	hideDialog();
 	window.setTimeout(() => showDialog(id), 300);
 }
