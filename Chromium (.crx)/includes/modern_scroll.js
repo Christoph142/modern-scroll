@@ -1133,7 +1133,7 @@ async function squeeze_bars(e)
 		const factor = window.innerWidth / (window.innerWidth + Math.abs(e.deltaX));
 
 		hbar.style.transformOrigin = e.deltaX < 0 ? "0 0" : "100% 100%";
-		vbar.style.transform = "scaleY("+(0.25+0.75*factor)+")";
+		hbar.style.transform = "scaleX("+(0.25+0.75*factor)+")";
 		hbar.style.opacity = w.opacity / 100 + (1 - w.opacity / 100) * (1 - factor);
 	}
 }
