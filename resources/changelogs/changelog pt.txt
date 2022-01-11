@@ -4,6 +4,13 @@ v 4.2 backlog
 new: add own bookmarks (click at bar, save pos)
 new: separate dark mode / incognito profile for web pages
 
+v 4.1.1
+---------
+new: setting for squeezing the bars when overscrolling (if available)
+fix: some dialog buttons not working
+fix: misformatted bookmarks for headings containing line breaks
+upd: reduce support dialog frequency
+
 v 4.1
 ---------
 new: let browser determine and update scroll bar positions if available
