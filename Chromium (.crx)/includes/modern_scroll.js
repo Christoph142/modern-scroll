@@ -280,6 +280,7 @@ function inject_css()
 		\n\
 		 .bookmarkIndicator { line-height:20px; height: 20px; color: var(--bookmark_text_color); position: absolute; "+(w.vbar_at_left==="1"?"left:":"right:")+(parseInt(w.hover_size)+7)+"px; padding: 3px 5px; display: block; text-decoration:none; }\n\
 		 .bookmarkIndicator > span { white-space: nowrap; max-width: 20em; overflow: hidden; text-overflow: ellipsis; display: block; }\n\
+		 .bookmarkIndicator br, .bookmarkIndicator br::after { content: ' / '; }\n\
 		 .bookmarkIndicator::before, .bookmarkIndicator::after { content: ''; position: absolute; border-style: solid; }\n\
 		 .bookmarkIndicator::before { "+(w.vbar_at_left==="1"?"right":"left")+":100%; top: 6px; border-top: 6px solid transparent; border-"+(w.vbar_at_left==="1"?"right":"left")+": 6px solid var(--border_color); border-bottom: 6px solid transparent; border-"+(w.vbar_at_left==="1"?"left":"right")+": none; }\n\
 		 .bookmarkIndicator::after { "+(w.vbar_at_left==="1"?"right":"left")+":calc(100% - "+w.border_width+"px); top: 6px; border-top: 6px solid transparent; border-"+(w.vbar_at_left==="1"?"right":"left")+": 6px solid var(--color); border-bottom: 6px solid transparent; border-"+(w.vbar_at_left==="1"?"left":"right")+": none; }\n\
