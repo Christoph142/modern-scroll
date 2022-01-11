@@ -4,6 +4,13 @@ v 4.2 backlog
 new: add own bookmarks (click at bar, save pos)
 new: separate dark mode / incognito profile for web pages
 
+v 4.1.1
+---------
+neu: Option für einen Kompressionseffekt der Scrollleisten beim Überscrollen (sofern verfügbar)
+fix: manche Dialog-Buttons funktionieren nicht
+fix: falsche Formattierung von Lesezeichen für Überschriften mit Zeilenumbrüchen
+upd: Häufigkeit des Support Dialoges herabgesetzt
+
 v 4.1
 ---------
 new: let browser determine and update scroll bar positions if available
