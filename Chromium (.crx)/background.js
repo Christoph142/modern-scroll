@@ -204,7 +204,6 @@ function get_domain(url) {
 
 //check dialogs on startup and show if appropriate
 chrome.storage.sync.get({last_dialog_time: 0, dialogs_shown: {}}, s => {
-	console.log("last_dialog_time: " + s.last_dialog_time);
 	if (s.last_dialog_time === 0) {
 		chrome.tabs.create({ url : "options/options.html#welcome" }); // First run -> Show welcome page
 	}
@@ -216,7 +215,7 @@ chrome.storage.sync.get({last_dialog_time: 0, dialogs_shown: {}}, s => {
 		if (Date.now() - first_dialog_time > 1000 * 60 * 60 * 24 * 30 && // 30 days after installation (once)
 			!Object.values(s.dialogs_shown).includes("#hello_again"))
 			chrome.tabs.create({ url : "options/options.html#hello_again" });
-		else if (Date.now() - s.last_dialog_time > 1000 * 60 * 60 * 24 * 7 * 6) // 6 weeks after last dialog (recurring)
+		else if (Date.now() - s.last_dialog_time > 1000 * 60 * 60 * 24 * 7 * 26) // 6 months after last dialog (recurring)
 			chrome.tabs.create({ url : "options/options.html#thanks_for_using" });
 	}
 });
