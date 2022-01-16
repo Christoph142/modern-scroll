@@ -13,14 +13,6 @@ let js_repositioning = !CSS.supports("animation-timeline: works"); // let browse
 (function check_if_tab_needs_bars()
 {
 	if(window.matchMedia("all and (view-mode: minimized)").matches) return; // stop if it's a speed dial
-	if(window.self !== window.top){ // only treat main & iframes
-		try{
-			if(window.self.frameElement && window.self.frameElement.tagName === "IFRAME"){
-				if(!document.URL.includes("//translate.google.")) window.self.frameElement.scrolling = "no";
-			}
-			else return;
-		}catch(e){ console.warn("Error thrown trying to access frame:", e); return; /* window.self.frameElement == protected variable */ }
-	}
 
 	(function check_if_tab_is_ready()
 	{
@@ -124,12 +116,12 @@ async function load_prefs() {
 
 async function add_ms()
 {
-	if(document.getElementById("modern_scroll")) return;
+	if(document.getElementById("modern_scroll") || !document.scrollingElement) return;
 
 	let ms_container = document.createElement("div");
 	ms_container.id = "modern_scroll";
-	ms_shadow = typeof ms_container.attachShadow == "function" ? ms_container.attachShadow({mode: "open"}) : ms_container.createShadowRoot();
-	try{ document.documentElement.appendChild(ms_container); }catch(e){ document.body?.appendChild(ms_container); }
+	ms_shadow = ms_container.attachShadow({mode: "open"});
+	document.scrollingElement.appendChild(ms_container);
 	
 	await load_prefs();
 

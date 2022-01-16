@@ -4,6 +4,10 @@ v 4.2 backlog
 new: add own bookmarks (click at bar, save pos)
 new: separate dark mode / incognito profile for web pages
 
+v 4.1.2
+---------
+fix: scroll isn't working on music.163.com (thx Sheng for reporting)
+
 v 4.1.1
 ---------
 new: setting for squeezing the bars when overscrolling (if available)
