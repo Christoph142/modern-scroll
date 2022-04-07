@@ -4,11 +4,11 @@
 	"homepage_url"				: "https://github.com/Christoph142/modern-scroll",
 	
 	"default_locale"			: "en",
-	"version"					: "4.1.2",
+	"version"					: "4.2",
 	"minimum_chrome_version"	: "73",
 	"icons"						: { "16": "images/contextmenu.png", "32": "images/contextmenu@2x.png", "64": "images/icon.png", "128": "images/icon@2x.png" },
 	
-	"browser_action" 			: { "default_popup" : "options/options.html" },
+	"action"		 			: { "default_popup" : "options/options.html" },
 	"content_scripts" :
 	[{
 		"matches"				: ["<all_urls>"],
@@ -17,12 +17,12 @@
 		"run_at"				: "document_start",
 		"all_frames"			: true
 	}],
-	"background"				: {"scripts": ["background.js"], "persistent": false },
+	"background"				: { "service_worker": "background.js" },
 	"options_page"				: "options/options.html",
-	"options_ui"				: { "page" : "options/options.html", "chrome_style" : false, "open_in_tab" : true },
+	"options_ui"				: { "page" : "options/options.html", "open_in_tab" : true },
 
-	"permissions"				: ["contextMenus", "storage"],
+	"permissions"				: [ "contextMenus", "storage" ],
 	
 	"offline_enabled"			: true,
-	"manifest_version"			: 2
+	"manifest_version"			: 3
 }

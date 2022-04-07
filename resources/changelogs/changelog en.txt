@@ -1,8 +1,12 @@
 ﻿
-v 4.2 backlog
+v 4.3 backlog
 ---------
 new: add own bookmarks (click at bar, save pos)
 new: separate dark mode / incognito profile for web pages
+
+v 4.2
+---------
+upd: migrate from mv2 to mv3
 
 v 4.1.2
 ---------
