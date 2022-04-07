@@ -52,6 +52,7 @@ async function load_prefs() {
 		show_bg_bars_when:		"2", // 1 = never, 2 = onmouseover only, 3 = like bars
 		show_how_long:			"1000",
 		squeeze_bars: 			"0",
+		overscroll_actions:		"0",
 		fullscreen_only:		"0",
 		bg_special_ends:		"1",
 		container:				"0",
@@ -181,10 +182,15 @@ function remove_ms()
 	window.removeEventListener("pointerdown", middlebuttonscroll, true);
 	window.removeEventListener("click", check_if_element_is_scrollable, false);
 	
-	window.removeEventListener("scroll", show_or_hide_buttons, false);
 	window.removeEventListener("scroll", reposition_bars, false);
+	window.removeEventListener("scroll", show_or_hide_buttons, false);
+	window.removeEventListener("scroll", remove_overscroll_handler, false);
+	window.removeEventListener("scrollend", add_or_remove_overscroll_handler, false);
 
 	window.removeEventListener("overscroll", squeeze_bars, false);
+	window.removeEventListener("overscroll", handle_vertical_overscroll, false);
+	window.removeEventListener("overscroll", handle_horizontal_overscroll, false);
+	window.removeEventListener("overscroll", handle_diagonal_overscroll, false);
 	
 	ms_shadow.removeEventListener("mouseover", show_bookmarks, false);
 	ms_shadow.removeEventListener("mouseout", hide_bookmarks, false);
@@ -262,6 +268,13 @@ function inject_css()
 		 #ms_upbutton{ top:-"+w.button_height+"px; }\n\
 		 #ms_downbutton{ bottom:-"+w.button_height+"px; }\n\
 		 #ms_upbutton.dragged_button, #ms_downbutton.dragged_button{ opacity:0.5; }\n\
+		 .action_button{ position: fixed; z-index: 2147483647; width: 3rem; height: 3rem; background: var(--color); border-radius: 100%; border: 1px solid var(--border_color); color: var(--bookmark_text_color); pointer-events: none; opacity: "+(w.opacity/100)+"; display: none; justify-content: center; align-items: center; vertical-align: middle; --overscroll-delta: -50px; }\n\
+		 .action_button.top{ display:flex; top: var(--overscroll-delta); left: calc(50vw - 1.5rem); }\n\
+		 .action_button.topright{ display:flex; top: var(--overscroll-delta); right: var(--overscroll-delta); }\n\
+		 .action_button.bottom{ display:flex; bottom: var(--overscroll-delta); left: calc(50vw - 1.5rem); }\n\
+		 .action_button.left{ display:flex; left: var(--overscroll-delta); top: calc(50vh - 1.5rem); }\n\
+		 .action_button.right{ display:flex; right: var(--overscroll-delta); top: calc(50vh - 1.5rem); }\n\
+		 .action_button.active{ transition: 0.2s; transform: scale(1.2); opacity: 1; box-shadow: 0 0 5px 0 var(--color); }\n\
 		\n\
 		 #ms_v_container:hover #ms_vbar_ui, #ms_v_container:hover #ms_vbar_bg_ui{ width:"+w.hover_size+"px; transition:width 0.1s; }\n\
 		 #ms_h_container:hover #ms_hbar_ui, #ms_h_container:hover #ms_hbar_bg_ui{ height:"+w.hover_size+"px; transition:height 0.1s; }\n\
@@ -374,8 +387,9 @@ function add_bars()
 		<div id='ms_v_container'>\n"+ // last in DOM gets displayed top
 			"<div id='ms_vbar_bg'><div id='ms_vbar_bg_ui'></div></div>\n\
 			<div id='ms_vbar'><div id='ms_vbar_ui'></div></div>\n\
-			<div id='ms_bookmarks' />\n\
-		</div>";
+			<div id='ms_bookmarks'></div>\n\
+		</div>\n\
+		<div class='action_button'>↻</div>\n";
 	
 	if (w.auto_coloring === "1")	bars_container.classList.add("pagetheme");
 	else							bars_container.classList.remove("pagetheme");
@@ -443,7 +457,12 @@ function add_functionality_2_bars(){
 
 	window.addEventListener("scroll", reposition_bars, false);
 	if (w.squeeze_bars === "1" && window.onoverscroll !== undefined) {
-		window.addEventListener("overscroll", squeeze_bars, false);		
+		window.addEventListener("overscroll", squeeze_bars, false);
+	}
+	if (w.overscroll_actions === "1" && window.onoverscroll !== undefined) {
+		add_or_remove_overscroll_handler();
+		window.addEventListener("scroll", remove_overscroll_handler, false);
+		window.addEventListener("scrollend", add_or_remove_overscroll_handler, false);
 	}
 }
 
@@ -1097,11 +1116,8 @@ async function show_or_hide_buttons()
 	button_timeout = window.setTimeout(() => {
 		if (!ms_shadow.getElementById("ms_upbutton")) return;
 
-		if(window.pageYOffset > 0)					ms_shadow.getElementById("ms_upbutton").style.display = "inline";
-		else										ms_shadow.getElementById("ms_upbutton").style.display = null;
-		
-		if(window.pageYOffset < window.scrollMaxY)	ms_shadow.getElementById("ms_downbutton").style.display = "inline";
-		else										ms_shadow.getElementById("ms_downbutton").style.display = null;
+		ms_shadow.getElementById("ms_upbutton").style.display = window.pageYOffset > 0 ? "inline" : null;		
+		ms_shadow.getElementById("ms_downbutton").style.display = window.pageYOffset < window.scrollMaxY ? "inline" : null;
 	}, 200);
 }
 
@@ -1137,6 +1153,173 @@ async function unsqueeze_bars()
 	vbar.style.transformOrigin = hbar.style.transformOrigin = null;
 	vbar.style.opacity = hbar.style.opacity = w.opacity / 100;
 	hide_bars();
+}
+
+let vertical_overscroll_handler = false;
+let horizontal_overscroll_handler = false;
+let diagonal_overscroll_handler = false;
+let overscroll_action = null;
+async function add_or_remove_overscroll_handler() {
+	if (window.pageYOffset < 10 || window.pageYOffset > window.scrollMaxY - 10) {
+		if (!vertical_overscroll_handler) {
+			window.addEventListener("overscroll", handle_vertical_overscroll, false);
+			vertical_overscroll_handler = true;
+		}
+	} else if (vertical_overscroll_handler) {
+		window.removeEventListener("overscroll", handle_vertical_overscroll, false);
+		vertical_overscroll_handler = false;
+	}
+	if (window.pageXOffset < 10 || window.pageXOffset > window.scrollMaxX - 10) {
+		if (!horizontal_overscroll_handler) {
+			window.addEventListener("overscroll", handle_horizontal_overscroll, false);
+			horizontal_overscroll_handler = true;
+		}
+	} else if (horizontal_overscroll_handler) {
+		window.removeEventListener("overscroll", handle_horizontal_overscroll, false);
+		horizontal_overscroll_handler = false;
+	}
+	if ((window.pageYOffset < 10 || window.pageYOffset > window.scrollMaxY - 10) &&
+		(window.pageXOffset < 10 || window.pageXOffset > window.scrollMaxX - 10)) {
+		if (!diagonal_overscroll_handler) {
+			window.addEventListener("overscroll", handle_diagonal_overscroll, false);
+			diagonal_overscroll_handler = true;
+		}
+	} else if (diagonal_overscroll_handler) {
+		window.removeEventListener("overscroll", handle_diagonal_overscroll, false);
+		diagonal_overscroll_handler = false;
+	}
+}
+
+async function remove_overscroll_handler() {
+	if (vertical_overscroll_handler) {
+		window.removeEventListener("overscroll", handle_vertical_overscroll, false);
+		vertical_overscroll_handler = false;
+	}
+	if (horizontal_overscroll_handler) {
+		window.removeEventListener("overscroll", handle_horizontal_overscroll, false);
+		horizontal_overscroll_handler = false;
+	}
+	if (diagonal_overscroll_handler) {
+		window.removeEventListener("overscroll", handle_diagonal_overscroll, false);
+		diagonal_overscroll_handler = false;
+	}
+}
+
+let previousOverscrollDelta = 0;
+async function handle_vertical_overscroll(e) {
+	window.addEventListener("scroll", abort_overscroll_action, { once: true });
+	window.addEventListener("scrollend", finish_overscroll_action, { once: true });
+
+	if (Math.abs(e.deltaY) < 10 || Math.abs(e.deltaX) > 9) return;
+console.log(e.deltaY, e.deltaX);
+	if (e.deltaY < 0) {
+		ms_shadow.querySelector(".action_button").className = "action_button top";
+		ms_shadow.querySelector(".action_button").innerText = "↻";
+		overscroll_action = "reload";
+	}
+	else {
+		ms_shadow.querySelector(".action_button").className = "action_button bottom";
+		ms_shadow.querySelector(".action_button").innerText = "⌂";
+		overscroll_action = "home";
+	}
+
+	const delta = Math.min(Math.abs(e.deltaY), 100) - 50;
+	ms_shadow.querySelector(".action_button").style.setProperty("--overscroll-delta", delta + "px");
+	console.log("delta", delta, delta === 50);
+	if (delta === 50) {
+		ms_shadow.querySelector(".action_button").classList.add("active");
+		console.log("active added", ms_shadow.querySelector(".action_button").classList);
+	}
+}
+
+async function handle_horizontal_overscroll(e) {
+	window.addEventListener("scroll", abort_overscroll_action, { once: true });
+	window.addEventListener("scrollend", finish_overscroll_action, { once: true });
+
+	if (Math.abs(e.deltaX) < 10 || Math.abs(e.deltaY) > 9) return;
+
+	if (e.deltaX < 0) {
+		ms_shadow.querySelector(".action_button").className = "action_button left";
+		ms_shadow.querySelector(".action_button").innerText = "🠬";
+		overscroll_action = "back";
+	}
+	else {
+		ms_shadow.querySelector(".action_button").className = "action_button right";
+		ms_shadow.querySelector(".action_button").innerText = "🠮";
+		overscroll_action = "toggle_ui";
+	}
+
+	const delta = Math.min(Math.abs(e.deltaX), 100) - 50;
+	ms_shadow.querySelector(".action_button").style.setProperty("--overscroll-delta", delta + "px");
+	console.log("delta", delta, delta === 50);
+	if (delta === 50) {
+		ms_shadow.querySelector(".action_button").classList.add("active");
+		console.log("active added", ms_shadow.querySelector(".action_button").classList);
+	}
+}
+
+async function handle_diagonal_overscroll(e) {
+	window.addEventListener("scroll", abort_overscroll_action, { once: true });
+	window.addEventListener("scrollend", finish_overscroll_action, { once: true });
+
+	if (Math.abs(e.deltaX) < 10 || Math.abs(e.deltaY) < 10) return;
+
+	if (e.deltaX < 0) {
+		ms_shadow.querySelector(".action_button").className = "action_button topright";
+		ms_shadow.querySelector(".action_button").innerText = "🠬";
+		overscroll_action = "back";
+	}
+	else {
+		ms_shadow.querySelector(".action_button").className = "action_button topright";
+		ms_shadow.querySelector(".action_button").innerText = "🠮";
+		overscroll_action = "toggle_ui";
+	}
+
+	const delta = Math.min((Math.abs(e.deltaX) + Math.abs(e.deltaY))/2, 100) - 50;
+	ms_shadow.querySelector(".action_button").style.setProperty("--overscroll-delta", delta + "px");
+	console.log("delta", delta, delta === 50);
+	if (delta === 50) {
+		ms_shadow.querySelector(".action_button").classList.add("active");
+		console.log("active added", ms_shadow.querySelector(".action_button").classList);
+	}
+}
+
+async function abort_overscroll_action()
+{
+	ms_shadow.querySelector(".action_button").className = "action_button";
+	window.removeEventListener("scrollend", finish_overscroll_action, { once: true });
+	overscroll_action = null;
+	console.log("abort!");
+}
+
+async function finish_overscroll_action()
+{
+	if (ms_shadow.querySelector(".action_button").style.getPropertyValue("--overscroll-delta") !== "50px")
+		return abort_overscroll_action();
+
+	ms_shadow.querySelector(".action_button").className = "action_button";
+	console.log("done! :)", overscroll_action);
+
+	switch (overscroll_action) {
+		case "reload":
+			history.go();
+			break;
+		case "back":
+			history.go(-1);
+			break;
+		case "forward":
+			history.go(1);
+			break;
+		case "home":
+			history.go(-history.length);
+			break;
+		case "page":
+			window.location.href = "https://github.com/Christoph142/modern-scroll";
+			break;
+		case "toggle_ui":
+			contextmenu_click();
+			break;
+	}
 }
 
 // ######################################

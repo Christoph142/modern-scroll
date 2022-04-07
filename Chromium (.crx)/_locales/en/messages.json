@@ -38,6 +38,7 @@
 	"like_bars" : 						{ "message" : "Like the scroll bars" },
 	"show_how_long" : 					{ "message" : "How long do you want the bars to stay visible?" },
 	"squeeze_bars" :	 				{ "message" : "Squeeze the bars when overscrolling" },
+	"overscroll_actions" : 				{ "message" : "Perform actions when overscrolling" },
 	"fullscreen_only" : 				{ "message" : "Show the bars in fullscreen mode only" },
 	"fullscreen_only_short" : 			{ "message" : "Only in fullscreen mode" },
 	"move_bars_during_scroll" : 		{ "message" : "Animate the scroll bars during scrolling with the mouse wheel / keyboard" },

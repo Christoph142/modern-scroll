@@ -6,6 +6,7 @@ new: separate dark mode / incognito profile for web pages
 
 v 4.2
 ---------
+new: overscroll actions
 upd: migrate from mv2 to mv3
 
 v 4.1.2
