@@ -37,6 +37,8 @@
 	"show_bg_bars_when" : 				{ "message" : "En de achtergrondbalken?" },
 	"like_bars" : 						{ "message" : "Zoals de scrollbalken" },
 	"show_how_long" : 					{ "message" : "Hoe lang wil je dat de balken zichtbaar blijven?" },
+	"squeeze_bars" :	 				{ "message" : "Schuifbalken verkleinen na te ver doorscrollen" },
+	"overscroll_actions" : 				{ "message" : "Acties uitvoeren na te ver doorscrollen" },
 	"fullscreen_only" : 				{ "message" : "Balken alleen tonen in volledigscherm-modus" },
 	"fullscreen_only_short" : 			{ "message" : "Alleen in volledigscherm-modus" },
 	"move_bars_during_scroll" : 		{ "message" : "Scrollbalken voorzien van effect tijdens het scrollen met het scrollwiel/toetsenbord." },
