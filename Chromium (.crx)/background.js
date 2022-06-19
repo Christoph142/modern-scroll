@@ -26,6 +26,7 @@ async function handleMessage(request, sender, sendResponse)
 	}
 	else if	(request.data === "show_contextmenu") 	show_contextmenu(request.string);
 	else if	(request.data === "hide_contextmenu") 	hide_contextmenu();
+	else if (request.data === "set_popup_url")		set_popup_url(request.string);
 }
 
 chrome.runtime.onMessage.addListener(handleMessage);
@@ -143,7 +144,7 @@ async function handle_contextmenu_click(info, tab) {
 			if (!custom_domains.hasOwnProperty(domain)) custom_domains[domain] = {};
 			custom_domains[domain]["set"] = false;
 			chrome.storage.sync.set( { "custom_domains" : custom_domains });
-			chrome.tabs.create({ url : "options/options.html#disabled?" + get_domain(info.pageUrl) });
+			chrome.tabs.create({ url : "options/options.html?domain=" + get_domain(info.pageUrl) + "#disabled" });
 		});
 	}
 	else if (info.menuItemId === "ms_contextmenu_bookmark_create")
@@ -219,3 +220,16 @@ chrome.storage.sync.get({last_dialog_time: 0, dialogs_shown: {}}, s => {
 			chrome.tabs.create({ url : "options/options.html#thanks_for_using" });
 	}
 });
+
+async function set_popup_url(pageUrl) {
+	if(!pageUrl) return;
+
+	if(pageUrl.startsWith("chrome-extension")) {
+		if (!pageUrl.includes("?domain=")) chrome.action.setPopup({ popup: "" });
+		return;
+	}
+
+	chrome.action.setPopup({
+		popup: "options/options.html?domain=" + get_domain(pageUrl)
+	});
+}

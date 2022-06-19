@@ -7,8 +7,9 @@ let prefs = null;
 async function populateOptions(){
 	localize();
 	await restorePrefs();
-	if (window.location.hash && document.querySelector(window.location.hash.split("?")[0]).tagName === "DIALOG")
-		showDialog(window.location.hash.split("?")[0]);
+	if (window.location.search) document.querySelector("#domain_specific").style.display = "flex";
+	if (window.location.hash && document.querySelector(window.location.hash).tagName === "DIALOG")
+		showDialog(window.location.hash);
 }
 
 function savePrefs(e) // save preferences:
@@ -324,7 +325,7 @@ function localize()
 {
 	document.querySelectorAll("[data-i18n]").forEach(string => {
 		if (string.tagName === "IMG")	string.title	  = getString(string.dataset.i18n); // tooltips
-		else							string.innerHTML += getString(string.dataset.i18n); // innerHTML because of links and linebreaks
+		else							string.innerHTML += getString(string.dataset.i18n, string.dataset.substitutions); // innerHTML because of links and linebreaks
 	});
 
 	// insert extension id in Web Store URLs:
@@ -332,20 +333,21 @@ function localize()
 		link.href = link.href.replace("@@extension_id", getString("@@extension_id"))
 	);
 }
-function getString(string){					return chrome.i18n.getMessage(string).split("\n").join("<br>"); }
-function getString(string, substitutes){	return chrome.i18n.getMessage(string, substitutes).split("\n").join("<br>"); }
+
+function getString(string, substitutions = "")
+{
+	let substitutes = [];
+	if (substitutions) {
+		const urlParams = new URLSearchParams(window.location.search);
+		substitutions.split(",").forEach(s => substitutes.push(urlParams.get(s)));
+	}
+	return chrome.i18n.getMessage(string, substitutes).split("\n").join("<br>");
+}
 
 function showDialog(id)
 {
-	let substitutes = window.location.hash.split("?")[1]?.split(",");
-	window.location.hash = id;
-
 	if(document.querySelector(window.location.hash+"[open]")) return;
 	
-	document.querySelectorAll(window.location.hash + " [data-substitutions]").forEach(string =>
-		string.innerHTML = getString(string.dataset.i18n, substitutes)
-	);
-
 	document.querySelector(window.location.hash).showModal();
 	document.addEventListener("keydown", handleKeyboardEvents, false);
 
