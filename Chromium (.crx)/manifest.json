@@ -21,7 +21,7 @@
 	"options_page"				: "options/options.html",
 	"options_ui"				: { "page" : "options/options.html", "open_in_tab" : true },
 
-	"permissions"				: [ "contextMenus", "storage" ],
+	"permissions"				: [ "activeTab", "contextMenus", "storage" ],
 	
 	"offline_enabled"			: true,
 	"manifest_version"			: 3

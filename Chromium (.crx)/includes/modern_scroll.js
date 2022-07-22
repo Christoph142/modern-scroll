@@ -129,8 +129,6 @@ async function add_ms()
 	chrome.storage.onChanged.addListener(update_prefs);
 	chrome.runtime.onMessage.addListener(handleRuntimeMessage);
 	chrome.runtime.sendMessage({ data: "get_zoom" });
-
-	chrome.runtime.sendMessage({ data: "set_popup_url", string: window.location.href });
 		
 	if(w === false) { // blacklisted page
 		if (document.querySelector("#ms_style"))

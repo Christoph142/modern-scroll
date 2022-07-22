@@ -219,16 +219,3 @@ chrome.storage.sync.get({last_dialog_time: 0, dialogs_shown: {}}, s => {
 			chrome.tabs.create({ url : "options/options.html#thanks_for_using" });
 	}
 });
-
-async function set_popup_url(pageUrl) {
-	if(!pageUrl) return;
-
-	if(pageUrl.startsWith("chrome-extension")) {
-		if (!pageUrl.includes("?domain=")) chrome.action.setPopup({ popup: "" });
-		return;
-	}
-
-	chrome.action.setPopup({
-		popup: "options/options.html?domain=" + get_domain(pageUrl)
-	});
-}

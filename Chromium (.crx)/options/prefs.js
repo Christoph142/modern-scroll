@@ -7,9 +7,17 @@ let prefs = null;
 async function populateOptions(){
 	localize();
 	await restorePrefs();
-	if (window.location.search) document.querySelector("#domain_specific").style.display = "flex";
 	if (window.location.hash && document.querySelector(window.location.hash).tagName === "DIALOG")
 		showDialog(window.location.hash);
+
+	chrome.tabs.query({ active: true }, tabs => {
+		const url = tabs?.[0]?.url;
+		if (!url?.startsWith("http")) return;
+
+		const domainElement = document.querySelector("#domain_specific");
+		domainElement.style.display = "flex";
+		domainElement.querySelector("a.button").innerText = chrome.i18n.getMessage("disable_on_domain", get_domain(url));
+	});
 }
 
 function savePrefs(e) // save preferences:
@@ -383,4 +391,8 @@ function handleKeyboardEvents(e)
 
 	if(document.querySelector("dialog[open]").querySelector(".close"))	hideDialog();
 	else {																e.preventDefault();	e.stopPropagation(); }
+}
+
+function get_domain(url) {
+	return url.split("?")[0].split("#")[0].split("/")[2];
 }
