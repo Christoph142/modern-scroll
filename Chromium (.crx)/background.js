@@ -33,6 +33,7 @@ chrome.runtime.onMessage.addListener(handleMessage);
 
 chrome.tabs.onZoomChange.addListener( zoomInfo =>
 	chrome.tabs.sendMessage(zoomInfo.tabId, { "zoomFactor" : zoomInfo.newZoomFactor })
+			   .catch(e => {/*ignore; happens when injected script doesn't listen, e.g. old script after update*/})
 );
 
 chrome.runtime.onInstalled.addListener(create_contextmenus);
@@ -210,8 +211,6 @@ chrome.storage.sync.get({last_dialog_time: 0, dialogs_shown: {}}, s => {
 	}
 	else {
 		const first_dialog_time = Object.keys(s.dialogs_shown)[0];
-		console.log("First dialog ever shown " + (Date.now() - first_dialog_time)/1000/60/60/24 + " days ago");
-		console.log("Last dialog has been shown " + (Date.now() - s.last_dialog_time)/1000/60/60/24 + " days ago");
 
 		if (Date.now() - first_dialog_time > 1000 * 60 * 60 * 24 * 30 && // 30 days after installation (once)
 			!Object.values(s.dialogs_shown).includes("#hello_again"))

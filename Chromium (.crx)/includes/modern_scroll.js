@@ -554,7 +554,7 @@ function contextmenu_click()
 	else																	hide_ui();
 }
 
-function handleRuntimeMessage(msg)
+function handleRuntimeMessage(msg, sender, sendResponse)
 {
 	if 		(msg.data === "ms_toggle_visibility") 			contextmenu_click();
 	else if (msg.zoomFactor)								scaleUI(1/msg.zoomFactor);
