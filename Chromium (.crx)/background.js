@@ -26,7 +26,6 @@ async function handleMessage(request, sender, sendResponse)
 	}
 	else if	(request.data === "show_contextmenu") 	show_contextmenu(request.string);
 	else if	(request.data === "hide_contextmenu") 	hide_contextmenu();
-	else if (request.data === "set_popup_url")		set_popup_url(request.string);
 }
 
 chrome.runtime.onMessage.addListener(handleMessage);
@@ -121,11 +120,7 @@ async function handle_contextmenu_click(info, tab) {
 	}
 	else if (info.menuItemId === "ms_contextmenu_enable" || info.menuItemId === "ms_contextmenu_customize_current_set")
 	{
-		chrome.storage.sync.get( { "custom_domains" : {} }, storage => {
-			let custom_domains = storage.custom_domains;
-			delete custom_domains[get_domain(info.pageUrl)]["set"];
-			chrome.storage.sync.set( { "custom_domains" : custom_domains });
-		});
+		enable_on_domain(get_domain(info.pageUrl));
 	}
 	else if (info.menuItemId.includes("ms_contextmenu_customize_set_"))
 	{
@@ -139,14 +134,7 @@ async function handle_contextmenu_click(info, tab) {
 	}
 	else if (info.menuItemId === "ms_contextmenu_disable")
 	{
-		chrome.storage.sync.get( { "custom_domains" : {} }, storage => {
-			let custom_domains = storage.custom_domains;
-			let domain = get_domain(info.pageUrl);
-			if (!custom_domains.hasOwnProperty(domain)) custom_domains[domain] = {};
-			custom_domains[domain]["set"] = false;
-			chrome.storage.sync.set( { "custom_domains" : custom_domains });
-			chrome.tabs.create({ url : "options/options.html?domain=" + get_domain(info.pageUrl) + "#disabled" });
-		});
+		disable_on_domain(get_domain(info.pageUrl));
 	}
 	else if (info.menuItemId === "ms_contextmenu_bookmark_create")
 	{
@@ -202,6 +190,24 @@ async function hide_contextmenu()
 
 function get_domain(url) {
 	return url.split("?")[0].split("#")[0].split("/")[2];
+}
+
+async function enable_on_domain(domain) {
+	chrome.storage.sync.get( { "custom_domains" : {} }, storage => {
+		let custom_domains = storage.custom_domains;
+		delete custom_domains[domain]["set"];
+		chrome.storage.sync.set({ "custom_domains" : custom_domains });
+	});
+}
+
+async function disable_on_domain(domain) {
+	chrome.storage.sync.get( { "custom_domains" : {} }, storage => {
+		let custom_domains = storage.custom_domains;
+		if (!custom_domains.hasOwnProperty(domain)) custom_domains[domain] = {};
+		custom_domains[domain]["set"] = false;
+		chrome.storage.sync.set({ "custom_domains" : custom_domains });
+		chrome.tabs.create({ url : "options/options.html?domain=" + domain + "#disabled" });
+	});
 }
 
 //check dialogs on startup and show if appropriate

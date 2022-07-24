@@ -14,9 +14,22 @@ async function populateOptions(){
 		const url = tabs?.[0]?.url;
 		if (!url?.startsWith("http")) return;
 
+		const domain = get_domain(url);
 		const domainElement = document.querySelector("#domain_specific");
 		domainElement.style.display = "flex";
-		domainElement.querySelector("a.button").innerText = chrome.i18n.getMessage("disable_on_domain", get_domain(url));
+		const domainSettings = prefs.custom_domains[domain];
+		const isEnbledOnDomain = domainSettings?.["set"] !== false
+
+		domainElement.querySelectorAll("a.button").forEach(button =>
+			button.innerText = chrome.i18n.getMessage(button.dataset.i18n, domain)
+		);
+		domainElement.querySelectorAll("a.button").forEach(button =>
+			button.addEventListener("click", () =>
+				button.dataset.i18n.startsWith("dis") ? disable_on_domain(domain) : enable_on_domain(domain),
+			false)
+		);
+		domainElement.querySelector("a.button[data-i18n="+ (isEnbledOnDomain ? "dis" : "en" ) + "able_on_domain]")
+					 .style.display = "inline";
 	});
 }
 
@@ -395,4 +408,32 @@ function handleKeyboardEvents(e)
 
 function get_domain(url) {
 	return url.split("?")[0].split("#")[0].split("/")[2];
+}
+
+async function enable_on_domain(domain) {
+	chrome.storage.sync.get( { "custom_domains" : {} }, storage => {
+		let custom_domains = storage.custom_domains;
+		delete prefs.custom_domains[domain]["set"];
+		delete custom_domains[domain]["set"];
+		chrome.storage.sync.set({ "custom_domains" : custom_domains });
+
+		document.querySelector("a.button[data-i18n=enable_on_domain]").style.display = null;
+		document.querySelector("a.button[data-i18n=disable_on_domain]").style.display = "inline";
+	});
+}
+
+async function disable_on_domain(domain) {
+	chrome.storage.sync.get( { "custom_domains" : {} }, storage => {
+		let custom_domains = storage.custom_domains;
+		if (!custom_domains.hasOwnProperty(domain)) custom_domains[domain] = {};
+		prefs.custom_domains[domain]["set"] = false;
+		custom_domains[domain]["set"] = false;
+		chrome.storage.sync.set({ "custom_domains" : custom_domains });
+
+		document.querySelector("a.button[data-i18n=enable_on_domain]").style.display = "inline";
+		document.querySelector("a.button[data-i18n=disable_on_domain]").style.display = null;
+
+		if (!window.location.href.includes("?domain="))
+			window.location.href += "?domain=" + domain + "#disabled";
+	});
 }

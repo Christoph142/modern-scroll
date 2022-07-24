@@ -104,6 +104,7 @@
 	"explanation_animate_scroll" : 		{ "message" : "If you select this option, the page will not instantly jump to the desired position anymore, but automatically scroll there with an adjustable rate.<br>This applies to the scroll buttons, clicks at the background bars as well as scrolling with the keyboard (if \"Use custom scrolling functions for the keyboard\" is activated)." },
 	"explanation_external_interface" : 	{ "message" : "By checking this option, modern scroll will provide some of its key features for usage by third-party-extensions, websites or you. You can then e.g. create custom mouse gestures.<br><a href='https://christoph142.wordpress.com/2013/02/20/modern-scroll-documentation' target='_blank'>Visit the documentation to learn more about it.</a>" },
 	"report_issue" : 					{ "message" : "Report an issue"},
+	"enable_on_domain" :				{ "message" : "Enable modern scroll on $DOMAIN$", "placeholders" : {"domain" : { "content" : "$1", "example" : "example.org" }}},
 	"disable_on_domain" :				{ "message" : "Disable modern scroll on $DOMAIN$", "placeholders" : {"domain" : { "content" : "$1", "example" : "example.org" }}},
 	"disabled" :						{ "message" : "modern scroll has been disabled on $DOMAIN$", "placeholders" : {"domain" : { "content" : "$1", "example" : "example.org" }}},
 	"report_domain" :					{ "message" : "If there's an issue with the page, please report it so it can get fixed for everybody."},

@@ -3,7 +3,7 @@ body			{ font:13px/24px "helvetica neue",arial,sans-serif; cursor:default; max-w
   				  background:#FFF; color:#1e3853; margin:15px auto; padding:0 50px; box-shadow:0 0 10px #98b0c9; direction: __MSG_@@bidi_dir__; }
 header			{ display:block; text-align:center; margin-bottom:2em; padding:3em 0 1em 0;
 				  border-bottom:0.2rem solid #1e3853; }
-#domain_specific{ display: none; }
+#domain_specific, #domain_specific a.button { display: none; }
 section 		{ display:block; padding:0; }
 fieldset		{ border:none; border-top:0.2rem solid #1e3853; background:#F5F5F5; border-radius:2px; padding:1px 20px 15px 20px; margin-bottom:2em; }
 footer			{ display:block; text-align:center; margin-top:1em; padding:1em 0 2em 0; border-top:1px solid #fff; }
