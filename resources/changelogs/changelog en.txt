@@ -3,10 +3,10 @@ v 4.3 backlog
 ---------
 new: add own bookmarks (click at bar, save pos)
 new: separate dark mode / incognito profile for web pages
+new: overscroll actions
 
 v 4.2
 ---------
-new: overscroll actions
 new: popup tailored to viewed page
 upd: migrate from mv2 to mv3
 
