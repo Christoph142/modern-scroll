@@ -426,10 +426,10 @@ async function disable_on_domain(domain) {
 	chrome.storage.sync.get( { "custom_domains" : {} }, storage => {
 		let custom_domains = storage.custom_domains;
 		if (!custom_domains.hasOwnProperty(domain)) custom_domains[domain] = {};
-		prefs.custom_domains[domain]["set"] = false;
 		custom_domains[domain]["set"] = false;
 		chrome.storage.sync.set({ "custom_domains" : custom_domains });
 
+		prefs.custom_domains[domain] = custom_domains[domain];
 		document.querySelector("a.button[data-i18n=enable_on_domain]").style.display = "inline";
 		document.querySelector("a.button[data-i18n=disable_on_domain]").style.display = null;
 
