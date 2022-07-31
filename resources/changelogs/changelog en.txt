@@ -9,6 +9,7 @@ v 4.2
 ---------
 new: popup tailored to viewed page
 upd: migrate from mv2 to mv3
+upd: use scrollbar color for controls in options
 
 v 4.1.2
 ---------

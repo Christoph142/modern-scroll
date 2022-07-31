@@ -45,6 +45,8 @@ function savePrefs(e) // save preferences:
 	if(e.target.type === "checkbox") save_new_value(e.target.id, e.target.checked?"1":"0");
 	else 							 save_new_value(e.target.id, e.target.value);
 	
+
+	if(e.target.id === "color") document.body.style.accentColor = e.target.value;
 	if(e.target.id === "border_color") save_new_value("border_color_rgba", "rgba("+parseInt(e.target.value.substring(1,3),16)+","+parseInt(e.target.value.substring(3,5),16)+","+parseInt(e.target.value.substring(5,7),16)+",0.7)");
 	
 	if(e.target.id === "size" || e.target.id === "hover_size"){
@@ -156,6 +158,7 @@ async function restorePrefs() {
 		custom_domains :				{}
 		}, storage => {
 			prefs = storage;
+			document.body.style.accentColor = prefs.color;
 			resolve();
 
 			document.querySelectorAll("select").forEach(select => {
