@@ -127,8 +127,6 @@ async function add_ms()
 	await load_prefs();
 
 	chrome.storage.onChanged.addListener(update_prefs);
-	chrome.runtime.onMessage.addListener(handleRuntimeMessage);
-	chrome.runtime.sendMessage({ data: "get_zoom" });
 		
 	if(w === false) { // blacklisted page
 		if (document.querySelector("#ms_style"))
@@ -136,6 +134,10 @@ async function add_ms()
 		chrome.runtime.sendMessage({data:"show_contextmenu", string:"enable"});
 		return;
 	}
+
+	chrome.runtime.onMessage.addListener(handleRuntimeMessage);
+	if (window.self === window.top)
+		chrome.runtime.sendMessage({ data: "get_zoom" });
 
 	inject_css();
 	
@@ -146,6 +148,8 @@ async function add_ms()
 	
 	add_external_interface();
 	add_dimension_checkers();
+
+	if (window.self !== window.top) return;
 	add_contextmenu();
 }
 
@@ -495,7 +499,7 @@ function add_dimension_checkers()
 	else // add listeners after page has finished loading to avoid slowdown of page loading
 	{
 		window.addEventListener("resize", check_dimensions, false);
-		if(document.URL.substr(0,19) !== "chrome-extension://") window.addEventListener("resize", adjust_ui_fullscreen_change, false);
+		if(!document.URL.startsWith("chrome-extension://")) window.addEventListener("resize", adjust_ui_fullscreen_change, false);
 		document.addEventListener("fullscreenchange", adjust_ui_fullscreen_change, false);
 		
 		if(document.body) {
@@ -518,7 +522,7 @@ function add_dimension_checkers()
 let dimension_check_timeout;
 function check_dimensions_after_click(e)
 {
-	if(e.target.id.substr(0,3) === "ms_") return;
+	if(e.target.id.startsWith("ms_")) return;
 	last_clicked_element_is_scrollable = is_scrollable(e.target, 2) ? true : false;
 	
 	window.clearTimeout(dimension_check_timeout);
@@ -1065,7 +1069,7 @@ async function handle_button(whichone, e)
 {
 	e.preventDefault();			// prevent focus-loss in site
 	if(e.which !== 1) return;	// if it's not the left mouse button
-	if(document.URL.substr(0,19) !== "chrome-extension://") e.stopPropagation(); // prevent bubbling (e.g. prevent drag being triggered on separately opened images); provide event in options page (to save dragged button position)
+	if(!document.URL.startsWith("chrome-extension://")) e.stopPropagation(); // prevent bubbling (e.g. prevent drag being triggered on separately opened images); provide event in options page (to save dragged button position)
 	
 	let button = ms_shadow.getElementById("ms_"+whichone+"button");
 	let otherbutton = ms_shadow.getElementById("ms_"+(whichone==="up"?"down":"up")+"button");
@@ -1104,7 +1108,7 @@ async function handle_button(whichone, e)
 		otherbutton.style.opacity = null;
 
 		// fire custom event for saving button position in options page:
-		if(document.URL.substr(0,19) === "chrome-extension://")
+		if(document.URL.startsWith("chrome-extension://"))
 			this.dispatchEvent(	new CustomEvent("msButtonPositionChange", {	detail : 100 * button.offsetLeft / window.innerWidth })	);
 	}
 }
