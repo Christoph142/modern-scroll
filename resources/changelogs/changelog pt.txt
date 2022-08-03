@@ -1,8 +1,23 @@
 ﻿
-v 4.2 backlog
+v 4.3 backlog
 ---------
 new: add own bookmarks (click at bar, save pos)
 new: separate dark mode / incognito profile for web pages
+new: overscroll actions
+
+v 4.2.1
+---------
+fix: replace / load / delete sets not working
+
+v 4.2
+---------
+new: popup tailored to viewed page
+upd: migrate from mv2 to mv3
+upd: use scrollbar color for controls in options
+
+v 4.1.2
+---------
+fix: scroll isn't working on music.163.com (thx Sheng for reporting)
 
 v 4.1.1
 ---------
