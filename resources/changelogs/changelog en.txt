@@ -8,6 +8,7 @@ new: overscroll actions
 v 4.2.1
 ---------
 fix: replace / load / delete sets not working
+upd: translations
 
 v 4.2
 ---------
