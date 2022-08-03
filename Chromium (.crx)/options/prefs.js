@@ -8,7 +8,7 @@ async function populateOptions(){
 	localize();
 	await restorePrefs();
 	if (window.location.hash && document.querySelector(window.location.hash).tagName === "DIALOG")
-		showDialog(window.location.hash);
+		showDialog(window.location.hash.substring(1));
 
 	chrome.tabs.query({ active: true }, tabs => {
 		const url = tabs?.[0]?.url;
@@ -370,9 +370,10 @@ function getString(string, substitutions = "")
 
 function showDialog(id)
 {
-	if(document.querySelector(window.location.hash+"[open]")) return;
+	if(document.querySelector("#"+id+"[open]")) return;
 	
-	document.querySelector(window.location.hash).showModal();
+	window.location.hash = id;
+	document.querySelector("#"+id).showModal();
 	document.addEventListener("keydown", handleKeyboardEvents, false);
 
 	let now = Date.now();

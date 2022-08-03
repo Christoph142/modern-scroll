@@ -5,6 +5,10 @@ new: add own bookmarks (click at bar, save pos)
 new: separate dark mode / incognito profile for web pages
 new: overscroll actions
 
+v 4.2.1
+---------
+fix: replace / load / delete sets not working
+
 v 4.2
 ---------
 new: popup tailored to viewed page
