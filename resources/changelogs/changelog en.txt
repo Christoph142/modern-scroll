@@ -5,6 +5,10 @@ new: add own bookmarks (click at bar, save pos)
 new: separate dark mode / incognito profile for web pages
 new: overscroll actions
 
+v 4.2.2
+---------
+fix: "Hello again" dialog says "hello again" every 5 minutes
+
 v 4.2.1
 ---------
 fix: replace / load / delete sets not working
