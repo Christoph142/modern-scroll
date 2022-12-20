@@ -304,18 +304,18 @@ function inject_css()
 		 }\n\
 		 #ms_vbar {\n\
 		    animation: 1s linear forwards scrolldown;\n\
-			animation-timeline: vertical-scroll-timeline;\n\
+			animation-timeline: scroll(vertical root);\n\
 		 }\n\
 		 @keyframes scrollright {\n\
 		    to { left: var(--max-left); }\n\
 		 }\n\
 		 #ms_hbar {\n\
 		    animation: 1s linear forwards scrollright;\n\
-			animation-timeline: horizontal-scroll-timeline;\n\
+			animation-timeline: scroll(horizontal root);\n\
 		 }\n\
 		 #ms_superbar {\n\
 		    animation: 1s linear forwards scrolldown, 1s linear forwards scrollright;\n\
-			animation-timeline: vertical-scroll-timeline, horizontal-scroll-timeline;\n\
+			animation-timeline: scroll(vertical root), scroll(horizontal root);\n\
 		 }\n\
 		 }\n\
 		\n\
@@ -344,12 +344,8 @@ function inject_css()
 	/* hide page's default bars and style all scrollbars within the page (optionally autohide when not hovered or focused): */
 	if(w.style_element_bars === "0" && w.fullscreen_only === "1") return;
 	
-	/* reset all properties on modern scroll and define scroll-timeline */
-	let global_ms_style = "#modern_scroll { all: initial !important; }\n\n\
-		@supports (animation-timeline: works) {\n\
-		@scroll-timeline vertical-scroll-timeline { orientation: vertical; time-range: 1s; }\n\
-		@scroll-timeline horizontal-scroll-timeline { orientation: horizontal; time-range: 1s; }\n\
-		}\n\n";
+	/* reset all properties on modern scroll */
+	let global_ms_style = "#modern_scroll { all: initial !important; }\n\n";
 
 	/* hide page's default scroll bars: */
 	if(w.fullscreen_only === "0") global_ms_style += "html, body { scrollbar-width: none !important; scroll-behavior: auto !important; }\n\
