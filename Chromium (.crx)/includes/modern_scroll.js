@@ -360,8 +360,13 @@ function inject_css()
 		"body *::-webkit-scrollbar{ width:"+w.size+"px; height:"+w.size+"px; }\n\
 		 body *::-webkit-scrollbar-button{ display:none; }\n\
 		 body *::-webkit-scrollbar-track { background:none; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px var(--border_color) !important; border-radius:"+w.border_radius+"px; }\n\
-		 body *::-webkit-scrollbar-thumb { background:var(--color); box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px var(--border_color) !important; border-radius:"+w.border_radius+"px; }\n\
-		 body *::-webkit-scrollbar-thumb:hover { background:var(--color); }";
+		 body *::-webkit-scrollbar-thumb { background:var(--color, "+w.color+"); box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px var(--border_color) !important; border-radius:"+w.border_radius+"px; }\n\
+		 body *::-webkit-scrollbar-thumb:hover { background:var(--color, "+w.color+"); }";
+
+		 const themecolor = document.querySelector("meta[name='theme-color']");
+		 if (themecolor) {
+		 	global_ms_style += "\n--color: "+themecolor.content+"\n";
+		 }
 	}
 
 	if(document.getElementById("ms_style")){ // switched tabs -> update style (settings may have changed)
