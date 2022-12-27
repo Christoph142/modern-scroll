@@ -49,7 +49,7 @@
 	"style_element_bars" : 				{ "message" : "Style all scroll bars" },
 	"explanation_element_bars" : 		{ "message" : "Activate this to make modern scroll also style all scrollbars within the page, e.g. those of textareas." },
 	"autohide_element_bars" : 			{ "message" : "Autohide scrollbars within the page" },
-	"explanation_autohide_element_bars":{ "message" : "This unfortunately doesn't work properly because of rendering bugs. You can enable it, but scroll bars may not always show up correctly." },
+	"explanation_autohide_element_bars":{ "message" : "If enabled scrollbars show up when the containing element is hovered or focused. The background bars will follow above settings." },
 	"superbar" : 						{ "message" : "Superbar" },
 	"show_superbar" : 					{ "message" : "Show the \"superbar\"" },
 	"show_superbar_minipage" : 			{ "message" : "Show a mini-version of the website in the background when dragging the superbar" },

@@ -229,31 +229,34 @@ function get_page_scrollbar_style()
 	} else {
 		pageColors = pageColorValue.split(" ");
 	}
-	if (pageColors.length !== 2) return "";
+	if (pageColors.length !== 2 || !chroma.valid(pageColors[0]) || !chroma.valid(pageColors[1])) return "";
 
 	return ":host .pagetheme {\n\
-		 --color: "+ pageColors[0] +";\n\
+		 --color: "+chroma(pageColors[0]).alpha(w.opacity/100).hex()+";\n\
+		 --hovercolor: "+chroma(pageColors[0]).alpha(Math.min(parseInt(w.opacity) + 20, 100)/100).hex()+";\n\
 		 --color_bg: "+ pageColors[1] +";\n\
 		 --border_color: "+ pageColors[0] +";\n\
-		 --bookmark_text_color: "+ pageColors[1] +";\n\
+		 --bookmark_text_color: "+ chroma(pageColors[1]).alpha(1).hex() +";\n\
 		 }\n";
 }
+
 function get_themecolor_style()
 {
 	const themecolor = document.querySelector("meta[name='theme-color']");
-	if (!themecolor) return "";
+	if (!themecolor || !chroma.valid(themecolor.content)) return "";
 
 	return ":host .pagetheme {\n\
-		 --color: "+themecolor.content+";\n\
+		 --color: "+chroma(themecolor.content).alpha(w.opacity/100).hex()+";\n\
+		 --hovercolor: "+chroma(themecolor.content).alpha(Math.min(parseInt(w.opacity) + 20, 100)/100).hex()+";\n\
 		 --color_bg: "+ themecolor.content +";\n\
 		 --border_color: "+ (is_white(themecolor.content) ? "rgb(0,0,0)" : w.border_color_rgba) +";\n\
 		 --bookmark_text_color: "+ (is_white(themecolor.content) ? "rgb(0,0,0)" : w.bookmark_text_color) +";\n\
 		 }\n";
 }
+
 function is_white(color)
 {
-	const c = color.toLowerCase().replaceAll(" ", "");
-	return ["#ffffffff", "#ffffff", "#ffff", "#fff", "white"].includes(c) || c.includes("(255,255,255") || c.includes("100%)");
+	return chroma.contrast(color, "white") < 1.2;
 }
 
 function inject_css()
@@ -369,18 +372,32 @@ function inject_css()
 	if(w.fullscreen_only === "0") global_ms_style += "html, body { scrollbar-width: none !important; scroll-behavior: auto !important; }\n\
 		html::-webkit-scrollbar, body::-webkit-scrollbar{ display:none !important; width:0 !important; height:0 !important; }\n";
 
-	if(w.style_element_bars === "1"){ global_ms_style +=
-		(w.autohide_element_bars === "1" ? "body *:not(:hover):not(:focus)::-webkit-scrollbar{ display:none !important; width:0 !important; height:0 !important; }\n" : "")+
-		"body *::-webkit-scrollbar{ width:"+w.size+"px; height:"+w.size+"px; }\n\
-		 body *::-webkit-scrollbar-button{ display:none; }\n\
-		 body *::-webkit-scrollbar-track { background:none; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px var(--border_color) !important; border-radius:"+w.border_radius+"px; }\n\
-		 body *::-webkit-scrollbar-thumb { background:var(--color, "+w.color+"); box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px var(--border_color) !important; border-radius:"+w.border_radius+"px; }\n\
-		 body *::-webkit-scrollbar-thumb:hover { background:var(--color, "+w.color+"); }";
-
+	if(w.style_element_bars === "1"){
 		 const themecolor = get_page_scrollbar_style() || get_themecolor_style();
 		 if (themecolor) {
 		 	global_ms_style += "\n"+themecolor+"\n";
 		 }
+
+		if (w.autohide_element_bars === "1") {
+			global_ms_style += "body *:not(:hover):not(:focus-within) { scrollbar-color: transparent transparent !important; }\n\
+								body *:not(:hover):not(:focus-within)::-webkit-scrollbar-track,\
+								body *:not(:hover):not(:focus-within)::-webkit-scrollbar-thumb {\n\
+									background: none !important;\
+									box-shadow: none !important;\n\
+								}\n";
+		}
+		
+		const color = chroma(w.color).alpha(parseInt(w.opacity)/100).hex();
+		const hovercolor = chroma(w.color).alpha(Math.min(parseInt(w.opacity) + 20, 100)/100).hex();
+
+		global_ms_style +=
+		"body *::-webkit-scrollbar{ all: initial; width:"+w.size+"px; height:"+w.size+"px; transition: width 1s, height 1s, background 1s; transition-delay: 0.5s; }\n\
+		 body *::-webkit-scrollbar:hover, body *::-webkit-scrollbar-track:hover, body *::-webkit-scrollbar-thumb:hover { width: "+w.hover_size+"px; height: "+w.hover_size+"px; }\n\
+		 body *::-webkit-scrollbar-button{ all: initial; display:none !important; }\n\
+		 "+ (w.show_bg_bars_when !== "1" ? "body *::-webkit-scrollbar-track"+(w.show_bg_bars_when === "2"? ":hover" : "")+", " : "") + "body *::-webkit-scrollbar-thumb {\n\
+		 	all: initial; background:var(--color, "+color+"); box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px var(--border_color, "+w.border_color_rgba+") !important; border-radius:"+w.border_radius+"px;\n\
+		 }\n\
+		 body *::-webkit-scrollbar-thumb:hover { all: initial; background:var(--hovercolor, "+hovercolor+"); border-radius:"+w.border_radius+"px; }";
 	}
 
 	if(document.getElementById("ms_style")){ // switched tabs -> update style (settings may have changed)
