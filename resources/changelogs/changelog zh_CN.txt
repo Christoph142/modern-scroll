@@ -1,4 +1,6 @@
-﻿v 3.5
+﻿See https://github.com/Christoph142/modern-scroll/releases for v4.0+ changelogs
+
+v 3.5
 ---------
 new: display bookmarks next to the vertical scroll bar
 upd: various translations (thx to all translators)
