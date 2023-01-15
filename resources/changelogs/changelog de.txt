@@ -1,4 +1,4 @@
-﻿Siehe https://github.com/Christoph142/modern-scroll/releases für v4.0+ Changelogs
+﻿Siehe https://github.com/Christoph142/modern-scroll/releases für v4.0+ Änderungen
 
 v 3.5.6
 ---------
