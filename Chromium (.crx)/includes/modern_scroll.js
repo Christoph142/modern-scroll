@@ -685,7 +685,7 @@ async function update_bookmarks()
 		let bookmarkTitle = document.createElement("span");
 		bookmarkIndicator.href = "#" + bookmark.id;
 		bookmarkIndicator.className = "bookmarkIndicator";
-		bookmarkIndicator.style.top = "calc(" + ((bounds.top + window.scrollY) / document.body.getBoundingClientRect().height * 100) + "vh - 10px)";
+		bookmarkIndicator.style.top = "calc(" + ((bounds.top + window.scrollY) / document.body.scrollHeight * 100) + "vh - 10px)";
 		bookmarkTitle.innerText = bookmark.innerText.replace("\n", "");
 		bookmarkIndicator.appendChild(bookmarkTitle);
 		ms_shadow.getElementById("ms_bookmarks").appendChild(bookmarkIndicator);
