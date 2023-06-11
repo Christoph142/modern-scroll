@@ -8,7 +8,7 @@ let vbar;					// \ pass by reference!
 let hbar;					// /
 let ms_shadow;				// shadow DOM root
 let isFullscreen = true;
-let js_repositioning = !CSS.supports("animation-timeline: works"); // let browser reposition bars automatically with CSS if available
+let js_repositioning = !CSS.supports("animation-timeline: scroll(root y)"); // let browser reposition bars automatically with CSS if available
 
 (function check_if_tab_needs_bars()
 {
@@ -298,24 +298,24 @@ function inject_css()
 		 #ms_v_container #ms_bookmarks{ opacity: 0; transition:opacity 0.5s "+w.show_how_long+"ms; }\n\
 		 #ms_v_container:hover #ms_bookmarks{ opacity: 1; transition: opacity 0.1s; }\n\
 		\n\
-		 @supports (animation-timeline: works) {\n\
+		 @supports (animation-timeline: scroll(root y)) {\n\
 		 @keyframes scrolldown {\n\
 		    to { top: var(--max-top); }\n\
 		 }\n\
 		 #ms_vbar {\n\
-		    animation: 1s linear forwards scrolldown;\n\
-			animation-timeline: scroll(vertical root);\n\
+		    animation: scrolldown linear;\n\
+			animation-timeline: scroll(root y);\n\
 		 }\n\
 		 @keyframes scrollright {\n\
 		    to { left: var(--max-left); }\n\
 		 }\n\
 		 #ms_hbar {\n\
-		    animation: 1s linear forwards scrollright;\n\
-			animation-timeline: scroll(horizontal root);\n\
+		    animation: scrollright linear;\n\
+			animation-timeline: scroll(root x);\n\
 		 }\n\
 		 #ms_superbar {\n\
-		    animation: 1s linear forwards scrolldown, 1s linear forwards scrollright;\n\
-			animation-timeline: scroll(vertical root), scroll(horizontal root);\n\
+		    animation: scrolldown linear, scrollright linear;\n\
+			animation-timeline: scroll(root y), scroll(root x);\n\
 		 }\n\
 		 }\n\
 		\n\
