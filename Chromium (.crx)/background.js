@@ -189,7 +189,7 @@ async function hide_contextmenu()
 }
 
 function get_domain(url) {
-	return url.split("?")[0].split("#")[0].split("/")[2];
+	return new URL(url).host;
 }
 
 async function enable_on_domain(domain) {

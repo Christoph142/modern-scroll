@@ -98,7 +98,7 @@ async function load_prefs() {
 		}, storage => {
 			w = storage;
 			
-			const domain = window.location.hostname;
+			const domain = window.location.host;
 			if (!w.custom_domains.hasOwnProperty(domain)) { resolve(); return; }
 
 			let domain_props = w.custom_domains[domain];
@@ -692,7 +692,7 @@ async function update_bookmarks()
 	});
 
 	// custom bookmarks
-	chrome.runtime.sendMessage({data : "bookmarks", domain : window.location.hostname}, (bookmarks) => {
+	chrome.runtime.sendMessage({data : "bookmarks", domain : window.location.host}, (bookmarks) => {
 		for (let bookmark of bookmarks) {
 			let bookmarkIndicator = document.createElement("div");
 			let bookmarkTitle = document.createElement("span");
