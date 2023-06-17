@@ -683,7 +683,7 @@ async function update_bookmarks()
 
 		let bookmarkIndicator = bookmark.hasAttribute("id") ? document.createElement("a") : document.createElement("div");
 		let bookmarkTitle = document.createElement("span");
-		bookmarkIndicator.href = "#" + bookmark.id;
+		bookmarkIndicator.href = new URL("#" + bookmark.id, location.href);
 		bookmarkIndicator.className = "bookmarkIndicator";
 		bookmarkIndicator.style.top = "calc(" + ((bounds.top + window.scrollY) / document.body.scrollHeight * 100) + "vh - 10px)";
 		bookmarkTitle.innerText = bookmark.innerText.replace("\n", "");
