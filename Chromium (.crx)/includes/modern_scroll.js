@@ -426,8 +426,8 @@ function add_functionality_2_bars(){
 			ms_shadow.getElementById("ms_vbar_bg_ui").style.width = w.hover_size+"px";
 			show_bar("v");
 			window.addEventListener("pointermove", restore_v_trigger_area, false);
-			function restore_v_trigger_area(){
-				if(window.innerWidth-e.clientX > w.container_size){
+			function restore_v_trigger_area(e){
+				if((w.vbar_at_left ? e.clientX : window.innerWidth - e.clientX) > w.container_size){
 					hide_bar("v");
 					ms_shadow.getElementById("ms_vbar_ui").style.width = null;
 					ms_shadow.getElementById("ms_vbar_bg_ui").style.width = null;
@@ -442,8 +442,8 @@ function add_functionality_2_bars(){
 			ms_shadow.getElementById("ms_hbar_bg_ui").style.height = w.hover_size+"px";
 			show_bar("h");
 			window.addEventListener("pointermove", restore_h_trigger_area, false);
-			function restore_h_trigger_area(){
-				if(window.innerHeight-e.clientY > w.container_size){
+			function restore_h_trigger_area(e){
+				if((w.hbar_at_top ? e.clientY : window.innerHeight - e.clientY) > w.container_size){
 					hide_bar("h");
 					ms_shadow.getElementById("ms_hbar_ui").style.height = null;
 					ms_shadow.getElementById("ms_hbar_bg_ui").style.height = null;
