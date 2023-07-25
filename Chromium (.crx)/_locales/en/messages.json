@@ -13,7 +13,7 @@
 	"confirm_load" : 					{ "message" : "Do you really want to load this configuration now?\nIt will replace your current setup." },
 	"tooltip_save" : 					{ "message" : "Save" },
 	"tooltip_load" : 					{ "message" : "Load" },
-	"tooltip_delete" : 					{ "message" : "Delete" },	
+	"tooltip_delete" : 					{ "message" : "Delete" },
 	"look" : 							{ "message" : "Look" },
 	"color" : 							{ "message" : "Color of the scroll bars, the superbar and the scroll buttons" },
 	"color_bg" : 						{ "message" : "Color of the background bars" },
