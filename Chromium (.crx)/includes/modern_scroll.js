@@ -287,14 +287,13 @@ function inject_css()
 		 #ms_v_container #ms_vbar:hover, #ms_h_container #ms_hbar:hover, #ms_upbutton:hover, #ms_downbutton:hover, #ms_v_container .bookmarkIndicator:hover{ opacity:"+((parseInt(w.opacity)+20)/100)+"; transition:opacity 0.1s 0s; }\n\
 		 #ms_superbar:hover{ opacity:"+w.superbar_opacity/100+"; transition:opacity 0.25s 0s; }\n\
 		\n\
-		 .bookmarkIndicator { line-height:20px; height: 20px; color: var(--bookmark_text_color); position: absolute; "+(w.vbar_at_left==="1"?"left:":"right:")+(parseInt(w.hover_size)+7)+"px; padding: 3px 5px; display: block; text-decoration:none; }\n\
+		 .bookmarkIndicator { line-height:20px; height: 20px; color: var(--bookmark_text_color); position: absolute; "+(w.vbar_at_left==="1"?"left:":"right:")+(parseInt(w.hover_size)+7)+"px; padding: 3px 5px; display: block; text-decoration:none; z-index: var(--z); cursor: pointer; }\n\
 		 .bookmarkIndicator > span { white-space: nowrap; max-width: 20em; overflow: hidden; text-overflow: ellipsis; display: block; }\n\
 		 .bookmarkIndicator br, .bookmarkIndicator br::after { content: ' / '; }\n\
 		 .bookmarkIndicator::before, .bookmarkIndicator::after { content: ''; position: absolute; border-style: solid; }\n\
 		 .bookmarkIndicator::before { "+(w.vbar_at_left==="1"?"right":"left")+":100%; top: 6px; border-top: 6px solid transparent; border-"+(w.vbar_at_left==="1"?"right":"left")+": 6px solid var(--border_color); border-bottom: 6px solid transparent; border-"+(w.vbar_at_left==="1"?"left":"right")+": none; }\n\
 		 .bookmarkIndicator::after { "+(w.vbar_at_left==="1"?"right":"left")+":calc(100% - "+w.border_width+"px); top: 6px; border-top: 6px solid transparent; border-"+(w.vbar_at_left==="1"?"right":"left")+": 6px solid var(--color); border-bottom: 6px solid transparent; border-"+(w.vbar_at_left==="1"?"left":"right")+": none; }\n\
-		 .bookmarkIndicator:hover { z-index: 1; }\n\
-		 .custom.bookmarkIndicator { cursor: pointer; }\n\
+		 .bookmarkIndicator:hover { z-index: 7; }\n\
 		 #ms_v_container #ms_bookmarks{ opacity: 0; transition:opacity 0.5s "+w.show_how_long+"ms; }\n\
 		 #ms_v_container:hover #ms_bookmarks{ opacity: 1; transition: opacity 0.1s; }\n\
 		\n\
@@ -681,12 +680,17 @@ async function update_bookmarks()
 		let bounds = bookmark.getBoundingClientRect();
 		if (bounds.height === 0 || bounds.width === 0) return;
 
-		let bookmarkIndicator = bookmark.hasAttribute("id") ? document.createElement("a") : document.createElement("div");
+		let bookmarkIndicator = document.createElement(bookmark.hasAttribute("id") ? "a" : "div");
 		let bookmarkTitle = document.createElement("span");
-		bookmarkIndicator.href = new URL("#" + bookmark.id, location.href);
+		if (bookmark.id) {
+			bookmarkIndicator.href = new URL("#" + bookmark.id, location.href);			
+		} else {
+			bookmarkIndicator.addEventListener("click", () => bookmark.scrollIntoView());
+		}
 		bookmarkIndicator.className = "bookmarkIndicator";
 		bookmarkIndicator.style.top = "calc(" + ((bounds.top + window.scrollY) / document.body.scrollHeight * 100) + "vh - 10px)";
-		bookmarkTitle.innerText = bookmark.innerText.replace("\n", "");
+		bookmarkIndicator.style.setProperty("--z", 7 - parseInt(bookmark.tagName[1]));
+		bookmarkTitle.innerText = bookmark.innerText.replace("\n", " ").replace("  ", " ").trim();
 		bookmarkIndicator.appendChild(bookmarkTitle);
 		ms_shadow.getElementById("ms_bookmarks").appendChild(bookmarkIndicator);
 	});
