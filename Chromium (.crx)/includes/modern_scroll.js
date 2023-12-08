@@ -219,6 +219,25 @@ function add_or_remove_ms(){
 	else 					add_ms();
 }
 
+function get_page_scrollbar_style()
+{
+	const pageColorValue = getComputedStyle(document.body).scrollbarColor;
+	if (!pageColorValue || pageColorValue === "auto") return "";
+	let pageColors = pageColorValue.split(") ");
+	if (pageColors.length === 2) {
+		pageColors[0] += ")";
+	} else {
+		pageColors = pageColorValue.split(" ");
+	}
+	if (pageColors.length !== 2) return "";
+
+	return ":host .pagetheme {\n\
+		 --color: "+ pageColors[0] +";\n\
+		 --color_bg: "+ pageColors[1] +";\n\
+		 --border_color: "+ pageColors[0] +";\n\
+		 --bookmark_text_color: "+ pageColors[1] +";\n\
+		 }\n";
+}
 function get_themecolor_style()
 {
 	const themecolor = document.querySelector("meta[name='theme-color']");
@@ -247,6 +266,7 @@ function inject_css()
 		 --bookmark_text_color: "+ w.bookmark_text_color +";\n\
 		 }\n\
 		 "+get_themecolor_style()+"\
+		 "+get_page_scrollbar_style()+"\
 		 :host, #ms_v_container, #ms_h_container, #ms_vbar_bg, #ms_hbar_bg, #ms_vbar, #ms_hbar, #ms_superbar, #ms_page_cover, #ms_upbutton, #ms_downbutton, #ms_middleclick_cursor{ position:fixed; z-index:2147483647; border:none; padding:0; margin:0; display:none; background:none; }\n\n"+
 		
 		/* set values (most general first - can be overwritten by following rules): */
