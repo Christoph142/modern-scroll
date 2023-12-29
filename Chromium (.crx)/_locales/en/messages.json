@@ -110,6 +110,7 @@
 	"report_domain" :					{ "message" : "If there's an issue with the page, please report it so it can get fixed for everybody."},
 	"rate" :		 					{ "message" : "Rate modern scroll"},
 	"buymeacoffee" :					{ "message" : "Buy me some sushi"},
+	"sponsor" :							{ "message" : "Sponsor"},
 	"ok" :								{ "message" : "OK"},
 	"cancel" :							{ "message" : "Cancel"},
 	"close" :							{ "message" : "Close"},

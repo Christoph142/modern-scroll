@@ -20,15 +20,15 @@ async function populateOptions(){
 		const domainSettings = prefs.custom_domains[domain];
 		const isEnbledOnDomain = domainSettings?.["set"] !== false
 
-		domainElement.querySelectorAll("a.button").forEach(button =>
+		domainElement.querySelectorAll("button").forEach(button =>
 			button.innerText = chrome.i18n.getMessage(button.dataset.i18n, domain)
 		);
-		domainElement.querySelectorAll("a.button").forEach(button =>
+		domainElement.querySelectorAll("button").forEach(button =>
 			button.addEventListener("click", () =>
 				button.dataset.i18n.startsWith("dis") ? disable_on_domain(domain) : enable_on_domain(domain),
 			false)
 		);
-		domainElement.querySelector("a.button[data-i18n="+ (isEnbledOnDomain ? "dis" : "en" ) + "able_on_domain]")
+		domainElement.querySelector("button[data-i18n="+ (isEnbledOnDomain ? "dis" : "en" ) + "able_on_domain]")
 					 .style.display = "inline";
 	});
 }
@@ -223,9 +223,9 @@ function add_page_handling()
 	// ##### settings profiles: #####
 	// ##############################
 
-	document.querySelector("#save_set_img").addEventListener("click", confirm_save_set, false);
-	document.querySelector("#delete_set_img").addEventListener("click", confirm_delete_set, false);
-	document.querySelector("#load_set_img").addEventListener("click", confirm_load_set, false);
+	document.querySelector("#save_set_button").addEventListener("click", confirm_save_set, false);
+	document.querySelector("#delete_set_button").addEventListener("click", confirm_delete_set, false);
+	document.querySelector("#load_set_button").addEventListener("click", confirm_load_set, false);
 	
 	document.querySelector("#save_set").addEventListener("keydown", () => { // Enter -> save configuration
 		if(window.event.which !== 13) return;
@@ -348,8 +348,8 @@ function load_set(){
 function localize()
 {
 	document.querySelectorAll("[data-i18n]").forEach(string => {
-		if (string.tagName === "IMG")	string.title	  = getString(string.dataset.i18n); // tooltips
-		else							string.innerHTML += getString(string.dataset.i18n, string.dataset.substitutions); // innerHTML because of links and linebreaks
+		if (string.dataset.i18n.startsWith("tooltip_"))	string.title = getString(string.dataset.i18n); // tooltips
+		else string.innerHTML += getString(string.dataset.i18n, string.dataset.substitutions); // innerHTML because of links and linebreaks
 	});
 
 	// insert extension id in Web Store URLs:
@@ -421,8 +421,8 @@ async function enable_on_domain(domain) {
 		delete custom_domains[domain]["set"];
 		chrome.storage.sync.set({ "custom_domains" : custom_domains });
 
-		document.querySelector("a.button[data-i18n=enable_on_domain]").style.display = null;
-		document.querySelector("a.button[data-i18n=disable_on_domain]").style.display = "inline";
+		document.querySelector("button[data-i18n=enable_on_domain]").style.display = null;
+		document.querySelector("button[data-i18n=disable_on_domain]").style.display = "inline";
 	});
 }
 
@@ -434,8 +434,8 @@ async function disable_on_domain(domain) {
 		chrome.storage.sync.set({ "custom_domains" : custom_domains });
 
 		prefs.custom_domains[domain] = custom_domains[domain];
-		document.querySelector("a.button[data-i18n=enable_on_domain]").style.display = "inline";
-		document.querySelector("a.button[data-i18n=disable_on_domain]").style.display = null;
+		document.querySelector("button[data-i18n=enable_on_domain]").style.display = "inline";
+		document.querySelector("button[data-i18n=disable_on_domain]").style.display = null;
 
 		if (!window.location.href.includes("?domain="))
 			window.location.href += "?domain=" + domain + "#disabled";
