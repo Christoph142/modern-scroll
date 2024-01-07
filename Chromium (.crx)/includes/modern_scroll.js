@@ -1239,7 +1239,7 @@ async function handle_vertical_overscroll(e) {
 	window.addEventListener("scrollend", finish_overscroll_action, { once: true });
 
 	if (Math.abs(e.deltaY) < 10 || Math.abs(e.deltaX) > 9) return;
-console.log(e.deltaY, e.deltaX);
+
 	if (e.deltaY < 0) {
 		ms_shadow.querySelector(".action_button").className = "action_button top";
 		ms_shadow.querySelector(".action_button").innerText = "↻";
@@ -1253,10 +1253,8 @@ console.log(e.deltaY, e.deltaX);
 
 	const delta = Math.min(Math.abs(e.deltaY), 100) - 50;
 	ms_shadow.querySelector(".action_button").style.setProperty("--overscroll-delta", delta + "px");
-	console.log("delta", delta, delta === 50);
 	if (delta === 50) {
 		ms_shadow.querySelector(".action_button").classList.add("active");
-		console.log("active added", ms_shadow.querySelector(".action_button").classList);
 	}
 }
 
@@ -1279,10 +1277,8 @@ async function handle_horizontal_overscroll(e) {
 
 	const delta = Math.min(Math.abs(e.deltaX), 100) - 50;
 	ms_shadow.querySelector(".action_button").style.setProperty("--overscroll-delta", delta + "px");
-	console.log("delta", delta, delta === 50);
 	if (delta === 50) {
 		ms_shadow.querySelector(".action_button").classList.add("active");
-		console.log("active added", ms_shadow.querySelector(".action_button").classList);
 	}
 }
 
@@ -1305,10 +1301,8 @@ async function handle_diagonal_overscroll(e) {
 
 	const delta = Math.min((Math.abs(e.deltaX) + Math.abs(e.deltaY))/2, 100) - 50;
 	ms_shadow.querySelector(".action_button").style.setProperty("--overscroll-delta", delta + "px");
-	console.log("delta", delta, delta === 50);
 	if (delta === 50) {
 		ms_shadow.querySelector(".action_button").classList.add("active");
-		console.log("active added", ms_shadow.querySelector(".action_button").classList);
 	}
 }
 
@@ -1317,7 +1311,6 @@ async function abort_overscroll_action()
 	ms_shadow.querySelector(".action_button").className = "action_button";
 	window.removeEventListener("scrollend", finish_overscroll_action, { once: true });
 	overscroll_action = null;
-	console.log("abort!");
 }
 
 async function finish_overscroll_action()
@@ -1326,7 +1319,6 @@ async function finish_overscroll_action()
 		return abort_overscroll_action();
 
 	ms_shadow.querySelector(".action_button").className = "action_button";
-	console.log("done! :)", overscroll_action);
 
 	switch (overscroll_action) {
 		case "reload":
