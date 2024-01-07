@@ -265,8 +265,7 @@ function inject_css()
 		 --border_color: "+ w.border_color_rgba +";\n\
 		 --bookmark_text_color: "+ w.bookmark_text_color +";\n\
 		 }\n\
-		 "+get_themecolor_style()+"\
-		 "+get_page_scrollbar_style()+"\
+		 "+(get_page_scrollbar_style() || get_themecolor_style())+"\
 		 :host, #ms_v_container, #ms_h_container, #ms_vbar_bg, #ms_hbar_bg, #ms_vbar, #ms_hbar, #ms_superbar, #ms_page_cover, #ms_upbutton, #ms_downbutton, #ms_middleclick_cursor{ position:fixed; z-index:2147483647; border:none; padding:0; margin:0; display:none; background:none; }\n\n"+
 		
 		/* set values (most general first - can be overwritten by following rules): */
@@ -378,9 +377,9 @@ function inject_css()
 		 body *::-webkit-scrollbar-thumb { background:var(--color, "+w.color+"); box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px var(--border_color) !important; border-radius:"+w.border_radius+"px; }\n\
 		 body *::-webkit-scrollbar-thumb:hover { background:var(--color, "+w.color+"); }";
 
-		 const themecolor = document.querySelector("meta[name='theme-color']");
+		 const themecolor = get_page_scrollbar_style() || get_themecolor_style();
 		 if (themecolor) {
-		 	global_ms_style += "\n--color: "+themecolor.content+"\n";
+		 	global_ms_style += "\n"+themecolor+"\n";
 		 }
 	}
 
