@@ -122,7 +122,7 @@ async function restorePrefs() {
 		contextmenu_show_when:	"2", // 1 = never, 2 = only over interface, 3 = always
 		
 		style_element_bars:		"1",
-		autohide_element_bars:	"0", // largely broken in Blink
+		autohide_element_bars:	"0",
 		
 		show_superbar:			"0",
 		show_superbar_minipage: "1",

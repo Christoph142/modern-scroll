@@ -61,7 +61,7 @@ async function load_prefs() {
 		contextmenu_show_when:	"2", // 1 = never, 2 = only over interface, 3 = always
 		
 		style_element_bars:		"1",
-		autohide_element_bars:	"0", // largely broken in Blink
+		autohide_element_bars:	"0",
 		
 		show_superbar:			"0",
 		show_superbar_minipage: "1",
@@ -1742,12 +1742,10 @@ function preventScrolling(e){ stopEvent(e); window.removeEventListener("keydown"
 function modifierkey_pressed(e){ return (e.ctrlKey || e.shiftKey || e.altKey || e.metaKey); }
 
 function target_is_input(e){
-	if( e.target.tagName === "TEXTAREA" || e.target.tagName === "SELECT" ||
-	   (e.target.tagName === "INPUT" && e.target.type !== "submit" && e.target.type !== "reset" && e.target.type !== "button" && e.target.type !== "image" && e.target.type !== "checkbox" && (e.target.type !== "range" || e.which === 37 || e.which === 39)) ||
-		e.target.contentEditable === "true" || e.target.contentEditable === "plaintext-only" || e.target.parentNode.contentEditable === "true" ||
-		e.target.shadowRoot !== null /* don't handle custom widgets */)
-		 return true;
-	else return false;
+	return (e.target.tagName === "TEXTAREA" || e.target.tagName === "SELECT" ||
+		   (e.target.tagName === "INPUT" && e.target.type !== "submit" && e.target.type !== "reset" && e.target.type !== "button" && e.target.type !== "image" && (e.target.type !== "checkbox" || e.which === 32) && (e.target.type !== "range" || e.which === 37 || e.which === 39)) ||
+			e.target.contentEditable === "true" || e.target.contentEditable === "plaintext-only" || e.target.parentNode.contentEditable === "true" ||
+			e.target.shadowRoot !== null /* don't handle custom widgets */);
 }
 
 function isLink(node){
