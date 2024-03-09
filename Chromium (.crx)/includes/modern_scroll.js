@@ -6,7 +6,7 @@ let timeout;				// scrolling animation
 let w = {};					// settings -> updated when tab gets activated
 let vbar;					// \ pass by reference!
 let hbar;					// /
-let ms_shadow;				// shadow DOM root
+let ms;						// shadow DOM root
 let isFullscreen = true;
 let js_repositioning = !CSS.supports("animation-timeline: scroll(root y)"); // let browser reposition bars automatically with CSS if available
 
@@ -121,7 +121,7 @@ async function add_ms()
 
 	let ms_container = document.createElement("div");
 	ms_container.id = "modern_scroll";
-	ms_shadow = ms_container.attachShadow({mode: "open"});
+	ms = ms_container.attachShadow({mode: "open"});
 	document.scrollingElement.appendChild(ms_container);
 	
 	await load_prefs();
@@ -196,8 +196,8 @@ function remove_ms()
 	window.removeEventListener("overscroll", handle_horizontal_overscroll, false);
 	window.removeEventListener("overscroll", handle_diagonal_overscroll, false);
 	
-	ms_shadow.removeEventListener("mouseover", show_bookmarks, false);
-	ms_shadow.removeEventListener("mouseout", hide_bookmarks, false);
+	ms.removeEventListener("mouseover", show_bookmarks, false);
+	ms.removeEventListener("mouseout", hide_bookmarks, false);
 	
 	window.clearTimeout(timeout);					timeout = null;
 	window.clearTimeout(hide_timeout);				hide_timeout = null;
@@ -351,12 +351,12 @@ function inject_css()
 		:host { --hbar-width: 30px; }\
 		";
 
-	if(ms_shadow.querySelector("style")) ms_shadow.querySelector("style").innerHTML = ms_style;
+	if(ms.querySelector("style")) ms.querySelector("style").innerHTML = ms_style;
 	else{
 		let style = document.createElement("style");
 		style.setAttribute("type","text/css");
 		style.innerHTML = ms_style;
-		ms_shadow.appendChild(style);
+		ms.appendChild(style);
 	}
 
 	/* hide page's default bars and style all scrollbars within the page (optionally autohide when not hovered or focused): */
@@ -417,65 +417,65 @@ function add_bars()
 	if (w.auto_coloring === "1")	bars_container.classList.add("pagetheme");
 	else							bars_container.classList.remove("pagetheme");
 
-	if(!ms_shadow.querySelector("#modern_scroll_bars")) ms_shadow.appendChild(bars_container);
+	if(!ms.querySelector("#modern_scroll_bars")) ms.appendChild(bars_container);
 	
-	vbar = ms_shadow.getElementById("ms_vbar");
-	hbar = ms_shadow.getElementById("ms_hbar");
+	vbar = ms.getElementById("ms_vbar");
+	hbar = ms.getElementById("ms_hbar");
 	
 	add_functionality_2_bars();
 }
 
 function add_functionality_2_bars(){
-	ms_shadow.getElementById("ms_vbar_bg").addEventListener("pointerdown", scroll_bg_v, true);
-	ms_shadow.getElementById("ms_hbar_bg").addEventListener("pointerdown", scroll_bg_h, true);
+	ms.getElementById("ms_vbar_bg").addEventListener("pointerdown", scroll_bg_v, true);
+	ms.getElementById("ms_hbar_bg").addEventListener("pointerdown", scroll_bg_h, true);
 	
-	ms_shadow.getElementById("ms_superbar").addEventListener("pointerdown", drag_super, true);
+	ms.getElementById("ms_superbar").addEventListener("pointerdown", drag_super, true);
 	vbar.addEventListener("pointerdown", drag_v, true);
 	hbar.addEventListener("pointerdown", drag_h, true);
 	
-	ms_shadow.getElementById("ms_h_container").addEventListener("wheel", mousescroll_x, { passive : false, capture : true });
-	ms_shadow.getElementById("ms_hbar_bg").addEventListener("wheel", mousescroll_x, { passive : false, capture : true });
+	ms.getElementById("ms_h_container").addEventListener("wheel", mousescroll_x, { passive : false, capture : true });
+	ms.getElementById("ms_hbar_bg").addEventListener("wheel", mousescroll_x, { passive : false, capture : true });
 	hbar.addEventListener("wheel", mousescroll_x, { passive : false, capture : true });
 	
 	if(w.container === "1"){
-		ms_shadow.getElementById("ms_v_container").addEventListener("pointerenter", function(e){
-			ms_shadow.getElementById("ms_v_container").style.width = "1px";
-			ms_shadow.getElementById("ms_vbar_ui").style.width = w.hover_size+"px";
-			ms_shadow.getElementById("ms_vbar_bg_ui").style.width = w.hover_size+"px";
+		ms.getElementById("ms_v_container").addEventListener("pointerenter", function(e){
+			ms.getElementById("ms_v_container").style.width = "1px";
+			ms.getElementById("ms_vbar_ui").style.width = w.hover_size+"px";
+			ms.getElementById("ms_vbar_bg_ui").style.width = w.hover_size+"px";
 			show_bar("v");
 			window.addEventListener("pointermove", restore_v_trigger_area, false);
 			function restore_v_trigger_area(e){
 				if((w.vbar_at_left ? e.clientX : window.innerWidth - e.clientX) > w.container_size){
 					hide_bar("v");
-					ms_shadow.getElementById("ms_vbar_ui").style.width = null;
-					ms_shadow.getElementById("ms_vbar_bg_ui").style.width = null;
-					ms_shadow.getElementById("ms_v_container").style.width = null;
+					ms.getElementById("ms_vbar_ui").style.width = null;
+					ms.getElementById("ms_vbar_bg_ui").style.width = null;
+					ms.getElementById("ms_v_container").style.width = null;
 					window.removeEventListener("pointermove", restore_v_trigger_area, false);
 				}
 			}
 		}, false);
-		ms_shadow.getElementById("ms_h_container").addEventListener("pointerenter", function(e){
-			ms_shadow.getElementById("ms_h_container").style.height = "1px";
-			ms_shadow.getElementById("ms_hbar_ui").style.height = w.hover_size+"px";
-			ms_shadow.getElementById("ms_hbar_bg_ui").style.height = w.hover_size+"px";
+		ms.getElementById("ms_h_container").addEventListener("pointerenter", function(e){
+			ms.getElementById("ms_h_container").style.height = "1px";
+			ms.getElementById("ms_hbar_ui").style.height = w.hover_size+"px";
+			ms.getElementById("ms_hbar_bg_ui").style.height = w.hover_size+"px";
 			show_bar("h");
 			window.addEventListener("pointermove", restore_h_trigger_area, false);
 			function restore_h_trigger_area(e){
 				if((w.hbar_at_top ? e.clientY : window.innerHeight - e.clientY) > w.container_size){
 					hide_bar("h");
-					ms_shadow.getElementById("ms_hbar_ui").style.height = null;
-					ms_shadow.getElementById("ms_hbar_bg_ui").style.height = null;
-					ms_shadow.getElementById("ms_h_container").style.height = null;
+					ms.getElementById("ms_hbar_ui").style.height = null;
+					ms.getElementById("ms_hbar_bg_ui").style.height = null;
+					ms.getElementById("ms_h_container").style.height = null;
 					window.removeEventListener("pointermove", restore_h_trigger_area, false);
 				}
 			}
 		}, false);
 	}
 
-	ms_shadow.getElementById("ms_bookmarks").style.display = "none";
+	ms.getElementById("ms_bookmarks").style.display = "none";
 	if (w.show_bookmarks !== "1") {
-		ms_shadow.addEventListener("mouseover", show_bookmarks, false);
-		ms_shadow.addEventListener("mouseout", hide_bookmarks, false);
+		ms.addEventListener("mouseover", show_bookmarks, false);
+		ms.addEventListener("mouseout", hide_bookmarks, false);
 	}
 
 	window.addEventListener("scroll", reposition_bars, false);
@@ -492,14 +492,14 @@ function add_functionality_2_bars(){
 function show_bookmarks()
 {
 	window.clearTimeout(bookmarks_timeout);
-	ms_shadow.getElementById("ms_bookmarks").style.display = null;
+	ms.getElementById("ms_bookmarks").style.display = null;
 }
 
 function hide_bookmarks()
 {
 	bookmarks_timeout = window.setTimeout(function() {
-		if (ms_shadow.getElementById("ms_bookmarks") !== null) // ms may have been removed via context menu
-			ms_shadow.getElementById("ms_bookmarks").style.display = "none";
+		if (ms.getElementById("ms_bookmarks") !== null) // ms may have been removed via context menu
+			ms.getElementById("ms_bookmarks").style.display = "none";
 	}, parseInt(w.show_how_long) + 200);
 }
 
@@ -594,7 +594,7 @@ function add_external_interface()
 		if(w.show_superbar === "1")
 		{
 			w.show_superbar = "0";
-			ms_shadow.querySelector("#ms_superbar").style.display = null;
+			ms.querySelector("#ms_superbar").style.display = null;
 		}
 		else
 		{
@@ -657,15 +657,15 @@ function set_new_scrollMax_values()
 }
 
 function scaleUI(factor){
-	ms_shadow.getElementById("ms_v_container").style.transform = "scale("+factor+",1)";
-	ms_shadow.getElementById("ms_h_container").style.transform = "scale(1,"+factor+")";
+	ms.getElementById("ms_v_container").style.transform = "scale("+factor+",1)";
+	ms.getElementById("ms_h_container").style.transform = "scale(1,"+factor+")";
 }
 
 function adjust_ui_new_size()
 {
 	resize_bars();
 	update_bookmarks();
-	if(ms_shadow.getElementById("modern_scroll_buttons")) show_or_hide_buttons();
+	if(ms.getElementById("modern_scroll_buttons")) show_or_hide_buttons();
 }
 function adjust_ui_fullscreen_change()
 {
@@ -673,8 +673,8 @@ function adjust_ui_fullscreen_change()
 	else if((window.innerWidth !== window.screen.width || window.innerHeight !== window.screen.height) && isFullscreen) isFullscreen = false;
 	else return;
 	
-	ms_shadow.getElementById("modern_scroll_bars").style.display = w.fullscreen_only === "1" && !isFullscreen ? "none" : null;
-	if(ms_shadow.getElementById("modern_scroll_buttons")) ms_shadow.getElementById("modern_scroll_buttons").style.display = w.show_buttons === "2" && !isFullscreen ? "none" : null;
+	ms.getElementById("modern_scroll_bars").style.display = w.fullscreen_only === "1" && !isFullscreen ? "none" : null;
+	if(ms.getElementById("modern_scroll_buttons")) ms.getElementById("modern_scroll_buttons").style.display = w.show_buttons === "2" && !isFullscreen ? "none" : null;
 }
 
 function resize_bars()
@@ -690,8 +690,8 @@ async function update_bookmarks()
 {
 	if (w.show_bookmarks === "1") return;
 
-	let bookmarks = ms_shadow.getElementById("ms_bookmarks");
-	ms_shadow.getElementById("ms_v_container").replaceChild(bookmarks.cloneNode(false), bookmarks); // remove all children
+	let bookmarks = ms.getElementById("ms_bookmarks");
+	ms.getElementById("ms_v_container").replaceChild(bookmarks.cloneNode(false), bookmarks); // remove all children
 	
 	// page's bookmarks
 	document.querySelectorAll(w.show_bookmarks === "2" ? "h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]" : "h1, h2, h3, h4, h5, h6").forEach(bookmark => {
@@ -711,7 +711,7 @@ async function update_bookmarks()
 		bookmarkIndicator.style.setProperty("--z", 7 - parseInt(bookmark.tagName[1]));
 		bookmarkTitle.innerText = bookmark.innerText.replace("\n", " ").replace("  ", " ").trim();
 		bookmarkIndicator.appendChild(bookmarkTitle);
-		ms_shadow.getElementById("ms_bookmarks").appendChild(bookmarkIndicator);
+		ms.getElementById("ms_bookmarks").appendChild(bookmarkIndicator);
 	});
 
 	// custom bookmarks
@@ -724,7 +724,7 @@ async function update_bookmarks()
 			bookmarkTitle.innerText = bookmark.text + " @ "+bookmark.pos+"%"; //TODO remove pos
 			bookmarkIndicator.appendChild(bookmarkTitle);
 			bookmarkIndicator.addEventListener("click", (e) => ms_scrollTo(0, bookmark.pos/100*document.body.getBoundingClientRect().height), false);
-			ms_shadow.getElementById("ms_bookmarks").appendChild(bookmarkIndicator);
+			ms.getElementById("ms_bookmarks").appendChild(bookmarkIndicator);
 		}
 	} );
 }
@@ -734,7 +734,7 @@ function resize_vbar()
 	if(window.scrollMaxY === 0) // don't display and stop if content fits into window:
 	{
 		if(vbar.style.display === "inline"){
-			ms_shadow.getElementById("ms_v_container").style.display = ms_shadow.getElementById("ms_vbar_bg").style.display = vbar.style.display = null;
+			ms.getElementById("ms_v_container").style.display = ms.getElementById("ms_vbar_bg").style.display = vbar.style.display = null;
 			window.removeEventListener("wheel", mousescroll_y, { passive : false, capture : false });
 		}
 		return;
@@ -743,14 +743,14 @@ function resize_vbar()
 	const vbar_new_height = Math.max(Math.round(window.innerHeight/(Math.max(document.documentElement.scrollHeight,document.body.scrollHeight)/window.innerHeight)), 30+2*w.gap);
 	
 	if(vbar.offsetHeight !== vbar_new_height){
-		ms_shadow.styleSheets[0].removeRule(ms_shadow.styleSheets[0].cssRules.length-2);
-		ms_shadow.styleSheets[0].addRule(":host", "--vbar-height: " + vbar_new_height + "px;", ms_shadow.styleSheets[0].cssRules.length-1);
+		ms.styleSheets[0].removeRule(ms.styleSheets[0].cssRules.length-2);
+		ms.styleSheets[0].addRule(":host", "--vbar-height: " + vbar_new_height + "px;", ms.styleSheets[0].cssRules.length-1);
 
 		show_bar("v");
 	}
 
 	if(vbar.style.display !== "inline"){
-		ms_shadow.getElementById("ms_v_container").style.display = ms_shadow.getElementById("ms_vbar_bg").style.display = vbar.style.display = "inline";
+		ms.getElementById("ms_v_container").style.display = ms.getElementById("ms_vbar_bg").style.display = vbar.style.display = "inline";
 		show_bar("v");
 		chrome.runtime.sendMessage({data:"reset_contextmenu"});
 		
@@ -763,21 +763,21 @@ function resize_hbar()
 	if(window.scrollMaxX === 0) // don't display and stop if content fits into window:
 	{
 		if(hbar.style.display === "inline")
-			ms_shadow.getElementById("ms_h_container").style.display = ms_shadow.getElementById("ms_hbar_bg").style.display = hbar.style.display = null;
+			ms.getElementById("ms_h_container").style.display = ms.getElementById("ms_hbar_bg").style.display = hbar.style.display = null;
 		return;
 	}
 
 	const hbar_new_width = Math.max(Math.round(window.innerWidth/(Math.max(document.documentElement.scrollWidth,document.body.scrollWidth)/window.innerWidth)), 30+2*w.gap);
 	
 	if(hbar.offsetWidth !== hbar_new_width){
-		ms_shadow.styleSheets[0].removeRule(ms_shadow.styleSheets[0].cssRules.length-1);
-		ms_shadow.styleSheets[0].addRule(":host", "--hbar-width: " + hbar_new_width + "px;");
+		ms.styleSheets[0].removeRule(ms.styleSheets[0].cssRules.length-1);
+		ms.styleSheets[0].addRule(":host", "--hbar-width: " + hbar_new_width + "px;");
 
 		show_bar("h");
 	}
 
 	if(hbar.style.display !== "inline"){
-		ms_shadow.getElementById("ms_h_container").style.display = ms_shadow.getElementById("ms_hbar_bg").style.display = hbar.style.display = "inline";
+		ms.getElementById("ms_h_container").style.display = ms.getElementById("ms_hbar_bg").style.display = hbar.style.display = "inline";
 		show_bar("h");
 		chrome.runtime.sendMessage({data:"reset_contextmenu"});
 	}
@@ -790,23 +790,23 @@ function resize_superbar()
 	if(vbar.style.display === "inline" && hbar.style.display === "inline")
 	{		
 		if(w.show_superbar_minipage === "0")
-			ms_shadow.getElementById("ms_superbar").style.transform = "scale("+(window.innerWidth/10)/parseInt(ms_shadow.getElementById("ms_superbar").style.width)+","+(window.innerHeight/10)/parseInt(ms_shadow.getElementById("ms_superbar").style.height)+")";
+			ms.getElementById("ms_superbar").style.transform = "scale("+(window.innerWidth/10)/parseInt(ms.getElementById("ms_superbar").style.width)+","+(window.innerHeight/10)/parseInt(ms.getElementById("ms_superbar").style.height)+")";
 		
-		ms_shadow.getElementById("ms_superbar").style.display = "inline";
+		ms.getElementById("ms_superbar").style.display = "inline";
 	}
-	else ms_shadow.getElementById("ms_superbar").style.display = null;
+	else ms.getElementById("ms_superbar").style.display = null;
 }
 
 function drag_mode(which_bar){
 	if(which_bar){
 		window.removeEventListener("scroll", reposition_bars, false);
-		ms_shadow.getElementById("ms_page_cover").style.display = "inline";
-		ms_shadow.getElementById("ms_"+which_bar).classList.add("dragged");
+		ms.getElementById("ms_page_cover").style.display = "inline";
+		ms.getElementById("ms_"+which_bar).classList.add("dragged");
 	}
 	else{
 		window.addEventListener("scroll", reposition_bars, false);
-		ms_shadow.getElementById("ms_page_cover").style.display = null;
-		ms_shadow.querySelector(".dragged").classList.remove("dragged");
+		ms.getElementById("ms_page_cover").style.display = null;
+		ms.querySelector(".dragged").classList.remove("dragged");
 	}
 }
 
@@ -879,7 +879,7 @@ function drag_super(e)
 	else show_bars();
 	
 	drag_mode("superbar");
-	const superbar = ms_shadow.getElementById("ms_superbar");
+	const superbar = ms.getElementById("ms_superbar");
 	superbar.setPointerCapture(e.pointerId);
 
 	const dragy = e.clientY - superbar.offsetTop;
@@ -921,7 +921,7 @@ function drag_super(e)
 			document.body.style.transformOrigin = null;
 			window.scroll(parseInt(superbar.style.left)/(window.innerWidth-superbar.offsetWidth)*window.scrollMaxX, parseInt(superbar.style.top)/(window.innerHeight-superbar.offsetHeight)*window.scrollMaxY);
 			superbar.style.animation = superbar.style.left = superbar.style.top = null;
-			ms_shadow.getElementById("ms_vbar_bg").style.display = ms_shadow.getElementById("ms_hbar_bg").style.display = "inline";
+			ms.getElementById("ms_vbar_bg").style.display = ms.getElementById("ms_hbar_bg").style.display = "inline";
 			vbar.style.display = hbar.style.display = "inline";
 		}
 		
@@ -953,12 +953,12 @@ function reposition_bars()
 		{
 			if (js_repositioning)
 			{
-				ms_shadow.getElementById("ms_superbar").style.top = vbar.style.top;
-				ms_shadow.getElementById("ms_superbar").style.left = hbar.style.left;
+				ms.getElementById("ms_superbar").style.top = vbar.style.top;
+				ms.getElementById("ms_superbar").style.left = hbar.style.left;
 			}
 		}
-		else if(ms_shadow.getElementById("ms_superbar").style.opacity !== "1") //if superbar doesn't get dragged (minipage only -> no bars)
-			window.setTimeout(function(){ ms_shadow.getElementById("ms_superbar").style.display = null; }, parseInt(w.show_how_long));
+		else if(ms.getElementById("ms_superbar").style.opacity !== "1") //if superbar doesn't get dragged (minipage only -> no bars)
+			window.setTimeout(function(){ ms.getElementById("ms_superbar").style.display = null; }, parseInt(w.show_how_long));
 	}
 	if(vbar_top_before !== vbar.offsetTop) 		{ show_bar("v"); vbar_top_before = vbar.offsetTop; }
 	if(hbar_left_before !== hbar.offsetLeft) 	{ show_bar("h"); hbar_left_before = hbar.offsetLeft; }
@@ -1023,7 +1023,7 @@ async function scroll_bg_h(e){
 async function show_bars(){ show_bar("v"); show_bar("h"); }
 async function hide_bars()
 {
-	if(ms_shadow.querySelector(".dragged")) return;
+	if(ms.querySelector(".dragged")) return;
 	hide_bar("v"); hide_bar("h");
 }
 
@@ -1032,28 +1032,28 @@ async function show_bar(whichone)
 	window.clearTimeout(hide_timeout); hide_timeout = null;
 	if(w.show_when === "1") return;		// 1 = only on hover
 	if(w.show_bg_bars_when === "3"){	// 3 = like scroll bars
-		ms_shadow.getElementById("ms_"+whichone+"bar_bg").style.transition = "opacity 0s 0s";
-		ms_shadow.getElementById("ms_"+whichone+"bar_bg").style.opacity = w.opacity/100;
+		ms.getElementById("ms_"+whichone+"bar_bg").style.transition = "opacity 0s 0s";
+		ms.getElementById("ms_"+whichone+"bar_bg").style.opacity = w.opacity/100;
 	}
-	if(ms_shadow.getElementById("ms_"+whichone+"_container").className === "dragged") return;
-	ms_shadow.getElementById("ms_"+whichone+"bar").style.transition = "opacity 0s 0s";
-	ms_shadow.getElementById("ms_"+whichone+"bar").style.opacity = w.opacity/100;
+	if(ms.getElementById("ms_"+whichone+"_container").className === "dragged") return;
+	ms.getElementById("ms_"+whichone+"bar").style.transition = "opacity 0s 0s";
+	ms.getElementById("ms_"+whichone+"bar").style.opacity = w.opacity/100;
 }
 let hide_timeout;
 async function hide_bar(whichone)
 {
 	hide_timeout = window.setTimeout(function(){ // set timeout to prevent bar from not showing up at all
 		if(!hide_timeout) return; // hide_bar got fired for v & h -> only h is cancelable -> check if show_bars() canceled hide_timeout
-		ms_shadow.getElementById("ms_"+whichone+"bar_bg").style.transition = ms_shadow.getElementById("ms_"+whichone+"bar").style.transition = null;
-		ms_shadow.getElementById("ms_"+whichone+"bar_bg").style.opacity = ms_shadow.getElementById("ms_"+whichone+"bar").style.opacity = null;
+		ms.getElementById("ms_"+whichone+"bar_bg").style.transition = ms.getElementById("ms_"+whichone+"bar").style.transition = null;
+		ms.getElementById("ms_"+whichone+"bar_bg").style.opacity = ms.getElementById("ms_"+whichone+"bar").style.opacity = null;
 	}, 0);
 }
 
 function show_minipage()
 {
-	ms_shadow.getElementById("ms_vbar_bg").style.display = ms_shadow.getElementById("ms_hbar_bg").style.display = vbar.style.display = hbar.style.display = null;
-	if(ms_shadow.getElementById("ms_upbutton"))
-		ms_shadow.getElementById("ms_upbutton").style.display = ms_shadow.getElementById("ms_downbutton").style.display = null;
+	ms.getElementById("ms_vbar_bg").style.display = ms.getElementById("ms_hbar_bg").style.display = vbar.style.display = hbar.style.display = null;
+	if(ms.getElementById("ms_upbutton"))
+		ms.getElementById("ms_upbutton").style.display = ms.getElementById("ms_downbutton").style.display = null;
 	
 	document.body.style.transformOrigin = "0% 0%";
 	document.body.style.transform = "scale("+(window.innerWidth/Math.max(document.documentElement.scrollWidth,window.innerWidth))+","+(window.innerHeight/Math.max(document.documentElement.scrollHeight,window.innerHeight))+")";
@@ -1084,7 +1084,7 @@ function add_buttons()
 	button_container.appendChild(upbutton);
 	button_container.appendChild(downbutton);
 	
-	if(!ms_shadow.querySelector("#modern_scroll_buttons")) ms_shadow.appendChild(button_container);
+	if(!ms.querySelector("#modern_scroll_buttons")) ms.appendChild(button_container);
 	
 	window.addEventListener("scroll", show_or_hide_buttons, false);
 }
@@ -1095,8 +1095,8 @@ async function handle_button(whichone, e)
 	if(e.which !== 1) return;	// if it's not the left mouse button
 	if(!document.URL.startsWith("chrome-extension://")) e.stopPropagation(); // prevent bubbling (e.g. prevent drag being triggered on separately opened images); provide event in options page (to save dragged button position)
 	
-	let button = ms_shadow.getElementById("ms_"+whichone+"button");
-	let otherbutton = ms_shadow.getElementById("ms_"+(whichone==="up"?"down":"up")+"button");
+	let button = ms.getElementById("ms_"+whichone+"button");
+	let otherbutton = ms.getElementById("ms_"+(whichone==="up"?"down":"up")+"button");
 	let x_start = e.clientX - Math.floor(button.style.left?parseInt(button.style.left):w.buttonposition/100*window.innerWidth);
 	
 	document.addEventListener("pointerup", handle_button_click, true);
@@ -1142,10 +1142,10 @@ async function show_or_hide_buttons()
 {
 	window.clearTimeout(button_timeout);
 	button_timeout = window.setTimeout(() => {
-		if (!ms_shadow.getElementById("ms_upbutton")) return;
+		if (!ms.getElementById("ms_upbutton")) return;
 
-		ms_shadow.getElementById("ms_upbutton").style.display = window.pageYOffset > 0 ? "inline" : null;		
-		ms_shadow.getElementById("ms_downbutton").style.display = window.pageYOffset < window.scrollMaxY ? "inline" : null;
+		ms.getElementById("ms_upbutton").style.display = window.pageYOffset > 0 ? "inline" : null;		
+		ms.getElementById("ms_downbutton").style.display = window.pageYOffset < window.scrollMaxY ? "inline" : null;
 	}, 200);
 }
 
@@ -1241,20 +1241,20 @@ async function handle_vertical_overscroll(e) {
 	if (Math.abs(e.deltaY) < 10 || Math.abs(e.deltaX) > 9) return;
 
 	if (e.deltaY < 0) {
-		ms_shadow.querySelector(".action_button").className = "action_button top";
-		ms_shadow.querySelector(".action_button").innerText = "↻";
+		ms.querySelector(".action_button").className = "action_button top";
+		ms.querySelector(".action_button").innerText = "↻";
 		overscroll_action = "reload";
 	}
 	else {
-		ms_shadow.querySelector(".action_button").className = "action_button bottom";
-		ms_shadow.querySelector(".action_button").innerText = "⌂";
+		ms.querySelector(".action_button").className = "action_button bottom";
+		ms.querySelector(".action_button").innerText = "⌂";
 		overscroll_action = "home";
 	}
 
 	const delta = Math.min(Math.abs(e.deltaY), 100) - 50;
-	ms_shadow.querySelector(".action_button").style.setProperty("--overscroll-delta", delta + "px");
+	ms.querySelector(".action_button").style.setProperty("--overscroll-delta", delta + "px");
 	if (delta === 50) {
-		ms_shadow.querySelector(".action_button").classList.add("active");
+		ms.querySelector(".action_button").classList.add("active");
 	}
 }
 
@@ -1265,20 +1265,20 @@ async function handle_horizontal_overscroll(e) {
 	if (Math.abs(e.deltaX) < 10 || Math.abs(e.deltaY) > 9) return;
 
 	if (e.deltaX < 0) {
-		ms_shadow.querySelector(".action_button").className = "action_button left";
-		ms_shadow.querySelector(".action_button").innerText = "🠬";
+		ms.querySelector(".action_button").className = "action_button left";
+		ms.querySelector(".action_button").innerText = "🠬";
 		overscroll_action = "back";
 	}
 	else {
-		ms_shadow.querySelector(".action_button").className = "action_button right";
-		ms_shadow.querySelector(".action_button").innerText = "🠮";
+		ms.querySelector(".action_button").className = "action_button right";
+		ms.querySelector(".action_button").innerText = "🠮";
 		overscroll_action = "toggle_ui";
 	}
 
 	const delta = Math.min(Math.abs(e.deltaX), 100) - 50;
-	ms_shadow.querySelector(".action_button").style.setProperty("--overscroll-delta", delta + "px");
+	ms.querySelector(".action_button").style.setProperty("--overscroll-delta", delta + "px");
 	if (delta === 50) {
-		ms_shadow.querySelector(".action_button").classList.add("active");
+		ms.querySelector(".action_button").classList.add("active");
 	}
 }
 
@@ -1289,36 +1289,36 @@ async function handle_diagonal_overscroll(e) {
 	if (Math.abs(e.deltaX) < 10 || Math.abs(e.deltaY) < 10) return;
 
 	if (e.deltaX < 0) {
-		ms_shadow.querySelector(".action_button").className = "action_button topright";
-		ms_shadow.querySelector(".action_button").innerText = "🠬";
+		ms.querySelector(".action_button").className = "action_button topright";
+		ms.querySelector(".action_button").innerText = "🠬";
 		overscroll_action = "back";
 	}
 	else {
-		ms_shadow.querySelector(".action_button").className = "action_button topright";
-		ms_shadow.querySelector(".action_button").innerText = "🠮";
+		ms.querySelector(".action_button").className = "action_button topright";
+		ms.querySelector(".action_button").innerText = "🠮";
 		overscroll_action = "toggle_ui";
 	}
 
 	const delta = Math.min((Math.abs(e.deltaX) + Math.abs(e.deltaY))/2, 100) - 50;
-	ms_shadow.querySelector(".action_button").style.setProperty("--overscroll-delta", delta + "px");
+	ms.querySelector(".action_button").style.setProperty("--overscroll-delta", delta + "px");
 	if (delta === 50) {
-		ms_shadow.querySelector(".action_button").classList.add("active");
+		ms.querySelector(".action_button").classList.add("active");
 	}
 }
 
 async function abort_overscroll_action()
 {
-	ms_shadow.querySelector(".action_button").className = "action_button";
+	ms.querySelector(".action_button").className = "action_button";
 	window.removeEventListener("scrollend", finish_overscroll_action, { once: true });
 	overscroll_action = null;
 }
 
 async function finish_overscroll_action()
 {
-	if (ms_shadow.querySelector(".action_button").style.getPropertyValue("--overscroll-delta") !== "50px")
+	if (ms.querySelector(".action_button").style.getPropertyValue("--overscroll-delta") !== "50px")
 		return abort_overscroll_action();
 
-	ms_shadow.querySelector(".action_button").className = "action_button";
+	ms.querySelector(".action_button").className = "action_button";
 
 	switch (overscroll_action) {
 		case "reload":
@@ -1533,7 +1533,7 @@ function arrowkeyscroll(e)
 		else if	(e.which === 39) scroll_timeout_id_x = window.requestAnimationFrame( function(){ arrowkeyscroll_right(Date.now()); } );
 		else					 scroll_timeout_id_x = window.requestAnimationFrame( function(){ arrowkeyscroll_left(Date.now()); } );
 
-		if(ms_shadow.getElementById("modern_scroll_bars"))
+		if(ms.getElementById("modern_scroll_bars"))
 		{
 			if(e.which === 40 || e.which === 38){
 				show_bar("v");
@@ -1555,7 +1555,7 @@ function arrowkeyscroll(e)
 		window.removeEventListener("scroll", element_finished_scrolling, false);
 		window.removeEventListener("keyup", arrowkeyscroll_end, false);
 		
-		if(!ms_shadow.getElementById("modern_scroll_bars")) return;
+		if(!ms.getElementById("modern_scroll_bars")) return;
 		
 		reposition_bars();
 		vbar.style.transition = null;
@@ -1647,11 +1647,11 @@ function middlebuttonscroll(e)
 	if(e.button !== 1 || isLink(e.target)) return; // only scroll wheel / middle button clicks
 	stopEvent(e);
 
-	ms_shadow.getElementById("ms_page_cover").style.cursor = "url(data:image/png;base64,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), crosshair";
-	ms_shadow.getElementById("ms_page_cover").style.display = "inline";
-	ms_shadow.getElementById("ms_middleclick_cursor").style.top = (e.y-27)+"px"; // 32 (half the size of the pic) - 5 (cursor dot target isn't middle)
-	ms_shadow.getElementById("ms_middleclick_cursor").style.left = (e.x-27)+"px";
-	ms_shadow.getElementById("ms_middleclick_cursor").style.display = "inline";
+	ms.getElementById("ms_page_cover").style.cursor = "url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAXCAYAAADgKtSgAAAACXBIWXMAAAsTAAALEwEAmpwYAAAKT2lDQ1BQaG90b3Nob3AgSUNDIHByb2ZpbGUAAHjanVNnVFPpFj333vRCS4iAlEtvUhUIIFJCi4AUkSYqIQkQSoghodkVUcERRUUEG8igiAOOjoCMFVEsDIoK2AfkIaKOg6OIisr74Xuja9a89+bN/rXXPues852zzwfACAyWSDNRNYAMqUIeEeCDx8TG4eQuQIEKJHAAEAizZCFz/SMBAPh+PDwrIsAHvgABeNMLCADATZvAMByH/w/qQplcAYCEAcB0kThLCIAUAEB6jkKmAEBGAYCdmCZTAKAEAGDLY2LjAFAtAGAnf+bTAICd+Jl7AQBblCEVAaCRACATZYhEAGg7AKzPVopFAFgwABRmS8Q5ANgtADBJV2ZIALC3AMDOEAuyAAgMADBRiIUpAAR7AGDIIyN4AISZABRG8lc88SuuEOcqAAB4mbI8uSQ5RYFbCC1xB1dXLh4ozkkXKxQ2YQJhmkAuwnmZGTKBNA/g88wAAKCRFRHgg/P9eM4Ors7ONo62Dl8t6r8G/yJiYuP+5c+rcEAAAOF0ftH+LC+zGoA7BoBt/qIl7gRoXgugdfeLZrIPQLUAoOnaV/Nw+H48PEWhkLnZ2eXk5NhKxEJbYcpXff5nwl/AV/1s+X48/Pf14L7iJIEyXYFHBPjgwsz0TKUcz5IJhGLc5o9H/LcL//wd0yLESWK5WCoU41EScY5EmozzMqUiiUKSKcUl0v9k4t8s+wM+3zUAsGo+AXuRLahdYwP2SycQWHTA4vcAAPK7b8HUKAgDgGiD4c93/+8//UegJQCAZkmScQAAXkQkLlTKsz/HCAAARKCBKrBBG/TBGCzABhzBBdzBC/xgNoRCJMTCQhBCCmSAHHJgKayCQiiGzbAdKmAv1EAdNMBRaIaTcA4uwlW4Dj1wD/phCJ7BKLyBCQRByAgTYSHaiAFiilgjjggXmYX4IcFIBBKLJCDJiBRRIkuRNUgxUopUIFVIHfI9cgI5h1xGupE7yAAygvyGvEcxlIGyUT3UDLVDuag3GoRGogvQZHQxmo8WoJvQcrQaPYw2oefQq2gP2o8+Q8cwwOgYBzPEbDAuxsNCsTgsCZNjy7EirAyrxhqwVqwDu4n1Y8+xdwQSgUXACTYEd0IgYR5BSFhMWE7YSKggHCQ0EdoJNwkDhFHCJyKTqEu0JroR+cQYYjIxh1hILCPWEo8TLxB7iEPENyQSiUMyJ7mQAkmxpFTSEtJG0m5SI+ksqZs0SBojk8naZGuyBzmULCAryIXkneTD5DPkG+Qh8lsKnWJAcaT4U+IoUspqShnlEOU05QZlmDJBVaOaUt2ooVQRNY9aQq2htlKvUYeoEzR1mjnNgxZJS6WtopXTGmgXaPdpr+h0uhHdlR5Ol9BX0svpR+iX6AP0dwwNhhWDx4hnKBmbGAcYZxl3GK+YTKYZ04sZx1QwNzHrmOeZD5lvVVgqtip8FZHKCpVKlSaVGyovVKmqpqreqgtV81XLVI+pXlN9rkZVM1PjqQnUlqtVqp1Q61MbU2epO6iHqmeob1Q/pH5Z/YkGWcNMw09DpFGgsV/jvMYgC2MZs3gsIWsNq4Z1gTXEJrHN2Xx2KruY/R27iz2qqaE5QzNKM1ezUvOUZj8H45hx+Jx0TgnnKKeX836K3hTvKeIpG6Y0TLkxZVxrqpaXllirSKtRq0frvTau7aedpr1Fu1n7gQ5Bx0onXCdHZ4/OBZ3nU9lT3acKpxZNPTr1ri6qa6UbobtEd79up+6Ynr5egJ5Mb6feeb3n+hx9L/1U/W36p/VHDFgGswwkBtsMzhg8xTVxbzwdL8fb8VFDXcNAQ6VhlWGX4YSRudE8o9VGjUYPjGnGXOMk423GbcajJgYmISZLTepN7ppSTbmmKaY7TDtMx83MzaLN1pk1mz0x1zLnm+eb15vft2BaeFostqi2uGVJsuRaplnutrxuhVo5WaVYVVpds0atna0l1rutu6cRp7lOk06rntZnw7Dxtsm2qbcZsOXYBtuutm22fWFnYhdnt8Wuw+6TvZN9un2N/T0HDYfZDqsdWh1+c7RyFDpWOt6azpzuP33F9JbpL2dYzxDP2DPjthPLKcRpnVOb00dnF2e5c4PziIuJS4LLLpc+Lpsbxt3IveRKdPVxXeF60vWdm7Obwu2o26/uNu5p7ofcn8w0nymeWTNz0MPIQ+BR5dE/C5+VMGvfrH5PQ0+BZ7XnIy9jL5FXrdewt6V3qvdh7xc+9j5yn+M+4zw33jLeWV/MN8C3yLfLT8Nvnl+F30N/I/9k/3r/0QCngCUBZwOJgUGBWwL7+Hp8Ib+OPzrbZfay2e1BjKC5QRVBj4KtguXBrSFoyOyQrSH355jOkc5pDoVQfujW0Adh5mGLw34MJ4WHhVeGP45wiFga0TGXNXfR3ENz30T6RJZE3ptnMU85ry1KNSo+qi5qPNo3ujS6P8YuZlnM1VidWElsSxw5LiquNm5svt/87fOH4p3iC+N7F5gvyF1weaHOwvSFpxapLhIsOpZATIhOOJTwQRAqqBaMJfITdyWOCnnCHcJnIi/RNtGI2ENcKh5O8kgqTXqS7JG8NXkkxTOlLOW5hCepkLxMDUzdmzqeFpp2IG0yPTq9MYOSkZBxQqohTZO2Z+pn5mZ2y6xlhbL+xW6Lty8elQfJa7OQrAVZLQq2QqboVFoo1yoHsmdlV2a/zYnKOZarnivN7cyzytuQN5zvn//tEsIS4ZK2pYZLVy0dWOa9rGo5sjxxedsK4xUFK4ZWBqw8uIq2Km3VT6vtV5eufr0mek1rgV7ByoLBtQFr6wtVCuWFfevc1+1dT1gvWd+1YfqGnRs+FYmKrhTbF5cVf9go3HjlG4dvyr+Z3JS0qavEuWTPZtJm6ebeLZ5bDpaql+aXDm4N2dq0Dd9WtO319kXbL5fNKNu7g7ZDuaO/PLi8ZafJzs07P1SkVPRU+lQ27tLdtWHX+G7R7ht7vPY07NXbW7z3/T7JvttVAVVN1WbVZftJ+7P3P66Jqun4lvttXa1ObXHtxwPSA/0HIw6217nU1R3SPVRSj9Yr60cOxx++/p3vdy0NNg1VjZzG4iNwRHnk6fcJ3/ceDTradox7rOEH0x92HWcdL2pCmvKaRptTmvtbYlu6T8w+0dbq3nr8R9sfD5w0PFl5SvNUyWna6YLTk2fyz4ydlZ19fi753GDborZ752PO32oPb++6EHTh0kX/i+c7vDvOXPK4dPKy2+UTV7hXmq86X23qdOo8/pPTT8e7nLuarrlca7nuer21e2b36RueN87d9L158Rb/1tWeOT3dvfN6b/fF9/XfFt1+cif9zsu72Xcn7q28T7xf9EDtQdlD3YfVP1v+3Njv3H9qwHeg89HcR/cGhYPP/pH1jw9DBY+Zj8uGDYbrnjg+OTniP3L96fynQ89kzyaeF/6i/suuFxYvfvjV69fO0ZjRoZfyl5O/bXyl/erA6xmv28bCxh6+yXgzMV70VvvtwXfcdx3vo98PT+R8IH8o/2j5sfVT0Kf7kxmTk/8EA5jz/GMzLdsAAAAgY0hSTQAAeiUAAICDAAD5/wAAgOkAAHUwAADqYAAAOpgAABdvkl/FRgAAAT1JREFUeNq01rFKw1AYxfGfQTqoIG1BHNTBwc0HUKjgLirUVcHNSd/AQXyBioOzrnYQ3AUL+gBuDi4uorQiKEInlxsobWpTkp71fucfOMn9TsY2N7el0ATmMIVvvOJ3kGl8wPkMtrCCeUziJ8AfcYP3YeHTOMEBCn1m9nGOCxzjq3sgSjBV8ILDf8CxCmHuJfj+hW/gHiXDqRR8G/3gy6jLpnrg9MBrKWKQIqZaN7yKdfloHTud8D35ajeGl5PedEZVUI6whGLO8CKWIswajWYjI1SEtxGx3yI84zNn8CeeIzTRyBneQDPO/DJn+FXnJarjLifwHa67d8sR2hnB7cDpWVxPYcdkUTVwEvf5LdbQGhLaCr7bQU3UwCLOUsTUDnOLSV9cvw79CtmdhoJexUL4C4gL+iEU9Ee/J/8NAFwkOeqbBxPWAAAAAElFTkSuQmCC), crosshair";
+	ms.getElementById("ms_page_cover").style.display = "inline";
+	ms.getElementById("ms_middleclick_cursor").style.top = (e.y-27)+"px"; // 32 (half the size of the pic) - 5 (cursor dot target isn't middle)
+	ms.getElementById("ms_middleclick_cursor").style.left = (e.x-27)+"px";
+	ms.getElementById("ms_middleclick_cursor").style.display = "inline";
 
 	let x = window.pageXOffset;
 	let x_start = e.x;
@@ -1691,9 +1691,9 @@ function middlebuttonscroll(e)
 
 		window.cancelAnimationFrame( scroll_timeout_id_middlebutton ); scroll_timeout_id_middlebutton = null;
 
-		ms_shadow.getElementById("ms_middleclick_cursor").style.display = null;
-		ms_shadow.getElementById("ms_page_cover").style.display = "none";
-		ms_shadow.getElementById("ms_page_cover").style.cursor = "default";
+		ms.getElementById("ms_middleclick_cursor").style.display = null;
+		ms.getElementById("ms_page_cover").style.display = "none";
+		ms.getElementById("ms_page_cover").style.cursor = "default";
 	}
 	window.addEventListener("pointermove", getmousepos, false);
 	function getmousepos(e)
@@ -1701,7 +1701,7 @@ function middlebuttonscroll(e)
 		x_delta = e.x - x_start;
 		y_delta = e.y - y_start;
 		let rad = -Math.atan2(x_delta, y_delta);
-		ms_shadow.getElementById("ms_middleclick_cursor").style.transform = "rotate("+rad+"rad)";
+		ms.getElementById("ms_middleclick_cursor").style.transform = "rotate("+rad+"rad)";
 	}
 	
 	scroll_timeout_id_middlebutton = window.requestAnimationFrame( function(){ middlebuttonscroll_inner( Date.now()-1 ); } );
