@@ -266,7 +266,7 @@ function inject_css()
 		 --bookmark_text_color: "+ w.bookmark_text_color +";\n\
 		 }\n\
 		 "+(get_page_scrollbar_style() || get_themecolor_style())+"\
-		 :host, #ms_v_container, #ms_h_container, #ms_vbar_bg, #ms_hbar_bg, #ms_vbar, #ms_hbar, #ms_superbar, #ms_page_cover, #ms_upbutton, #ms_downbutton, #ms_middleclick_cursor{ position:fixed; z-index:2147483647; border:none; padding:0; margin:0; display:none; background:none; }\n\n"+
+		 :host, #ms_v_container, #ms_h_container, #ms_vbar_bg, #ms_hbar_bg, #ms_vbar, #ms_hbar, #ms_superbar, #ms_page_cover, #ms_button_top, #ms_button_bottom, #ms_middleclick_cursor{ position:fixed; z-index:2147483647; border:none; padding:0; margin:0; display:none; background:none; }\n\n"+
 		
 		/* set values (most general first - can be overwritten by following rules): */
 		":host, #modern_scroll_bars, #modern_scroll_buttons{ display:inline; }\n\
@@ -275,7 +275,7 @@ function inject_css()
 		 #ms_vbar_bg, #ms_hbar_bg{ opacity:"+((w.show_when==="3" && w.show_bg_bars_when==="3")?(w.opacity/100):"0")+"; transition:opacity 0.5s "+w.show_how_long+"ms; }\n\
 		 #ms_vbar_bg{ top:"+w.gap+"px; bottom:"+w.gap+"px; height:calc(100% - 2*"+w.gap+"px); width:auto; "+(w.vbar_at_left==="1"?"left":"right")+":0px; "+(w.vbar_at_left==="0"?"left":"right")+":auto; }\n\
 		 #ms_hbar_bg{ "+(w.vbar_at_left==="0"?"left":"right")+":0px; "+(w.vbar_at_left==="1"?"left":"right")+":"+(parseInt(w.hover_size)+parseInt(w.gap))+"px; "+(w.vbar_at_left==="0"?"left":"right")+":"+w.gap+"px; width:calc(100% - "+(2*parseInt(w.gap)+parseInt(w.hover_size))+"px); height:auto; "+(w.hbar_at_top==="1"?"top":"bottom")+":0px; "+(w.hbar_at_top==="0"?"top":"bottom")+":auto; }\n\
-		 #ms_vbar_bg_ui, #ms_hbar_bg_ui{ background:var(--color_bg); box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px var(--border_color) !important; border-radius:"+w.border_radius+"px; }\n\
+		 #ms_vbar_bg_ui, #ms_hbar_bg_ui{ position: relative; background:var(--color_bg); box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px var(--border_color) !important; border-radius:"+w.border_radius+"px; }\n\
 		 #ms_vbar_bg_ui{ margin-"+(w.vbar_at_left==="1"?"left":"right")+":"+(w.gap)+"px; height:100%; width:"+w.size+"px; transition:width 0.25s; }\n\
 		 #ms_hbar_bg_ui{ margin-"+(w.hbar_at_top==="1"?"top":"bottom")+":"+(w.gap)+"px; width:100%; height:"+w.size+"px; transition:height 0.25s; }\n\
 		 #ms_vbar, #ms_hbar, .bookmarkIndicator{ opacity:"+((w.show_when==="3")?(w.opacity/100):"0")+"; transition:opacity 0.5s "+w.show_how_long+"ms; }\n\
@@ -287,10 +287,17 @@ function inject_css()
 		 #ms_superbar{ top:0; left:0; height:var(--vbar-height); width:var(--hbar-width); background:"+(w.show_superbar_minipage==="0"?"var(--color)":"rgba(0,0,0,0)")+"; opacity:"+((w.show_when==="3")?"0.5":"0")+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px var(--border_color) "+(w.show_superbar_minipage==="1"?", 0 0 200px 10px #999":"")+" !important; border-radius:"+w.border_radius+"px; transition:opacity 0.5s "+w.show_how_long+"ms; min-width:30px; min-height:30px; }\n\
 		 #ms_page_cover{ left:0px; top:0px; width:100%; height:100%; background:rgba(0,0,0,0); padding:0px; margin:0px; }\n\
 		\n\
-		 #ms_upbutton, #ms_downbutton{ height:"+w.button_height*2+"px; width:"+w.button_width+"px; left:"+w.buttonposition+"%; opacity:"+w.button_opacity/100+"; background:var(--color); border-radius:50px; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px var(--border_color); transition:opacity 0.5s; }\n\
-		 #ms_upbutton{ top:-"+w.button_height+"px; }\n\
-		 #ms_downbutton{ bottom:-"+w.button_height+"px; }\n\
-		 #ms_upbutton.dragged_button, #ms_downbutton.dragged_button{ opacity:0.5; }\n\
+		 button{ cursor: pointer; position: absolute; background: transparent; color:"+w.color+"; font-weight: bold; border: none; padding: 0;"+(w.show_buttons!=="1"?"":" display: none;")+" }\n\
+		 #ms_vbar_bg_ui > button { height:"+w.hover_size+"px; }\n\
+		 #ms_hbar_bg_ui > button { width:"+w.hover_size+"px; }\n\
+		 #ms_button_up{ top: 0; right: 0; left: 0; }\n\
+		 #ms_button_down{ bottom: 0; right: 0; left: 0; }\n\
+		 #ms_button_left{ left: 0; bottom: 0; top: 0; }\n\
+		 #ms_button_right{ right: 0; bottom: 0; top: 0; }\n\
+		 #ms_button_top, #ms_button_bottom{ height:"+w.button_height*2+"px; width:"+w.button_width+"px; left:"+w.buttonposition+"%; opacity:"+w.button_opacity/100+"; background:var(--color); border-radius:50px; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px var(--border_color); transition:opacity 0.5s; }\n\
+		 #ms_button_top{ top:-"+w.button_height+"px; }\n\
+		 #ms_button_bottom{ bottom:-"+w.button_height+"px; }\n\
+		 #ms_button_top.dragged_button, #ms_button_bottom.dragged_button{ opacity:0.5; }\n\
 		 .action_button{ position: fixed; z-index: 2147483647; width: 3rem; height: 3rem; background: var(--color); border-radius: 100%; border: 1px solid var(--border_color); color: var(--bookmark_text_color); pointer-events: none; opacity: "+(w.opacity/100)+"; display: none; justify-content: center; align-items: center; vertical-align: middle; --overscroll-delta: -50px; }\n\
 		 .action_button.top{ display:flex; top: var(--overscroll-delta); left: calc(50vw - 1.5rem); }\n\
 		 .action_button.topright{ display:flex; top: var(--overscroll-delta); right: var(--overscroll-delta); }\n\
@@ -303,7 +310,7 @@ function inject_css()
 		 #ms_h_container:hover #ms_hbar_ui, #ms_h_container:hover #ms_hbar_bg_ui{ height:"+w.hover_size+"px; transition:height 0.1s; }\n\
 		 #ms_v_container:hover #ms_vbar, #ms_h_container:hover #ms_hbar, #ms_v_container:hover .bookmarkIndicator{ opacity:"+(w.opacity/100)+"; transition:opacity 0.1s 0s; }\n\
 		 #ms_v_container:hover #ms_vbar_bg, #ms_h_container:hover #ms_hbar_bg{ opacity:"+(w.show_bg_bars_when==="1"?"0":(w.opacity/100))+"; transition:opacity 0.1s 0s; }\n\
-		 #ms_v_container #ms_vbar:hover, #ms_h_container #ms_hbar:hover, #ms_upbutton:hover, #ms_downbutton:hover, #ms_v_container .bookmarkIndicator:hover{ opacity:"+((parseInt(w.opacity)+20)/100)+"; transition:opacity 0.1s 0s; }\n\
+		 #ms_v_container #ms_vbar:hover, #ms_h_container #ms_hbar:hover, #ms_button_top:hover, #ms_button_bottom:hover, #ms_v_container .bookmarkIndicator:hover{ opacity:"+((parseInt(w.opacity)+20)/100)+"; transition:opacity 0.1s 0s; }\n\
 		 #ms_superbar:hover{ opacity:"+w.superbar_opacity/100+"; transition:opacity 0.25s 0s; }\n\
 		\n\
 		 .bookmarkIndicator { line-height:20px; height: 20px; color: var(--bookmark_text_color); position: absolute; "+(w.vbar_at_left==="1"?"left:":"right:")+(parseInt(w.hover_size)+7)+"px; padding: 3px 5px; display: block; text-decoration:none; z-index: var(--z); cursor: pointer; }\n\
@@ -404,11 +411,21 @@ function add_bars()
 		<div id='ms_middleclick_cursor'></div>\n\
 		<div id='ms_superbar'></div>\n\
 		<div id='ms_h_container'>\n\
-			<div id='ms_hbar_bg'><div id='ms_hbar_bg_ui'></div></div>\n\
+			<div id='ms_hbar_bg'>\n\
+				<div id='ms_hbar_bg_ui'>\n\
+					<button type='button' id='ms_button_left'>◀</button>\n\
+					<button type='button' id='ms_button_right'>▶</button>\n\
+				</div>\n\
+			</div>\n\
 			<div id='ms_hbar'><div id='ms_hbar_ui'></div></div>\n\
 		</div>\n\
 		<div id='ms_v_container'>\n"+ // last in DOM gets displayed top
-			"<div id='ms_vbar_bg'><div id='ms_vbar_bg_ui'></div></div>\n\
+			"<div id='ms_vbar_bg'>\n\
+				<div id='ms_vbar_bg_ui'>\n\
+					<button type='button' id='ms_button_up'>▲</button>\n\
+					<button type='button' id='ms_button_down'>▼</button>\n\
+				</div>\n\
+			</div>\n\
 			<div id='ms_vbar'><div id='ms_vbar_ui'></div></div>\n\
 			<div id='ms_bookmarks'></div>\n\
 		</div>\n\
@@ -426,8 +443,8 @@ function add_bars()
 }
 
 function add_functionality_2_bars(){
-	ms.getElementById("ms_vbar_bg").addEventListener("pointerdown", scroll_bg_v, true);
-	ms.getElementById("ms_hbar_bg").addEventListener("pointerdown", scroll_bg_h, true);
+	ms.getElementById("ms_vbar_bg").addEventListener("pointerdown", scroll_bg_v, false);
+	ms.getElementById("ms_hbar_bg").addEventListener("pointerdown", scroll_bg_h, false);
 	
 	ms.getElementById("ms_superbar").addEventListener("pointerdown", drag_super, true);
 	vbar.addEventListener("pointerdown", drag_v, true);
@@ -487,6 +504,15 @@ function add_functionality_2_bars(){
 		window.addEventListener("scroll", remove_overscroll_handler, false);
 		window.addEventListener("scrollend", add_or_remove_overscroll_handler, false);
 	}
+
+	ms.querySelectorAll("button").forEach(button => {
+		button.addEventListener("pointerdown", (e) => {
+			stopEvent(e);
+			window.addEventListener("pointerup", arrowkeyscroll_end, { once: true });
+			const key = { left: 37, up: 38, right: 39, down: 40 }[button.id.split("_")[2]];
+			arrowkeyscroll({ which: key, target: e.target, preventDefault: () => {}, stopPropagation: () => {} });
+		});
+	});
 }
 
 function show_bookmarks()
@@ -1052,8 +1078,8 @@ async function hide_bar(whichone)
 function show_minipage()
 {
 	ms.getElementById("ms_vbar_bg").style.display = ms.getElementById("ms_hbar_bg").style.display = vbar.style.display = hbar.style.display = null;
-	if(ms.getElementById("ms_upbutton"))
-		ms.getElementById("ms_upbutton").style.display = ms.getElementById("ms_downbutton").style.display = null;
+	if(ms.getElementById("ms_button_top"))
+		ms.getElementById("ms_button_top").style.display = ms.getElementById("ms_button_bottom").style.display = null;
 	
 	document.body.style.transformOrigin = "0% 0%";
 	document.body.style.transform = "scale("+(window.innerWidth/Math.max(document.documentElement.scrollWidth,window.innerWidth))+","+(window.innerHeight/Math.max(document.documentElement.scrollHeight,window.innerHeight))+")";
@@ -1070,15 +1096,15 @@ function add_buttons()
 {
 	if(w.show_buttons === "1") return;
 	
-	let upbutton = document.createElement("div");
-	upbutton.id = "ms_upbutton";
-	upbutton.addEventListener("pointerdown", function(e){ handle_button("up", e); }, true);
+	const upbutton = document.createElement("div");
+	upbutton.id = "ms_button_top";
+	upbutton.addEventListener("pointerdown", (e) => handle_button("top", e), true);
 
-	let downbutton = document.createElement("div");
-	downbutton.id = "ms_downbutton";
-	downbutton.addEventListener("pointerdown", function(e){ handle_button("down", e); }, true);
+	const downbutton = document.createElement("div");
+	downbutton.id = "ms_button_bottom";
+	downbutton.addEventListener("pointerdown", (e) => handle_button("bottom", e), true);
 	
-	let button_container = document.createElement("div");
+	const button_container = document.createElement("div");
 	button_container.id = "modern_scroll_buttons";
 	
 	button_container.appendChild(upbutton);
@@ -1095,8 +1121,8 @@ async function handle_button(whichone, e)
 	if(e.which !== 1) return;	// if it's not the left mouse button
 	if(!document.URL.startsWith("chrome-extension://")) e.stopPropagation(); // prevent bubbling (e.g. prevent drag being triggered on separately opened images); provide event in options page (to save dragged button position)
 	
-	let button = ms.getElementById("ms_"+whichone+"button");
-	let otherbutton = ms.getElementById("ms_"+(whichone==="up"?"down":"up")+"button");
+	let button = ms.getElementById("ms_button_"+whichone);
+	let otherbutton = ms.getElementById("ms_button_"+(whichone==="top"?"bottom":"top"));
 	let x_start = e.clientX - Math.floor(button.style.left?parseInt(button.style.left):w.buttonposition/100*window.innerWidth);
 	
 	document.addEventListener("pointerup", handle_button_click, true);
@@ -1104,7 +1130,7 @@ async function handle_button(whichone, e)
 
 	async function handle_button_click()
 	{
-		if(whichone === "up")	scroll_Pos1();
+		if(whichone === "top")	scroll_Pos1();
 		else					scroll_End();
 		document.removeEventListener("pointermove", handle_button_drag, true);
 		document.removeEventListener("pointerup", handle_button_click, true);
@@ -1142,10 +1168,10 @@ async function show_or_hide_buttons()
 {
 	window.clearTimeout(button_timeout);
 	button_timeout = window.setTimeout(() => {
-		if (!ms.getElementById("ms_upbutton")) return;
+		if (!ms.getElementById("ms_button_top")) return;
 
-		ms.getElementById("ms_upbutton").style.display = window.pageYOffset > 0 ? "inline" : null;		
-		ms.getElementById("ms_downbutton").style.display = window.pageYOffset < window.scrollMaxY ? "inline" : null;
+		ms.getElementById("ms_button_top").style.display = window.pageYOffset > 0 ? "inline" : null;		
+		ms.getElementById("ms_button_bottom").style.display = window.pageYOffset < window.scrollMaxY ? "inline" : null;
 	}, 200);
 }
 
@@ -1517,7 +1543,6 @@ let last_clicked_element_is_scrollable;
 function arrowkeyscroll(e)
 {
 	if(e.which < 37 || e.which > 40 || modifierkey_pressed(e) || target_is_input(e)) return;
-	
 	window.removeEventListener("keydown", arrowkeyscroll, false);
 	
 	if(scroll_timeout_id_x){ window.cancelAnimationFrame(scroll_timeout_id_x); scroll_timeout_id_x = null; }
@@ -1545,52 +1570,53 @@ function arrowkeyscroll(e)
 	}
 	
 	window.addEventListener("keyup", arrowkeyscroll_end, false);
-	function arrowkeyscroll_end()
-	{
-		if(scroll_timeout_id_x){ window.cancelAnimationFrame(scroll_timeout_id_x); scroll_timeout_id_x = null; }
-		window.cancelAnimationFrame(scroll_timeout_id_y); scroll_timeout_id_y = null;
-		
-		window.addEventListener("keydown", arrowkeyscroll, false);
-		window.removeEventListener("keydown", stopEvent, true);
-		window.removeEventListener("scroll", element_finished_scrolling, false);
-		window.removeEventListener("keyup", arrowkeyscroll_end, false);
-		
-		if(!ms.getElementById("modern_scroll_bars")) return;
-		
-		reposition_bars();
-		vbar.style.transition = null;
-		hbar.style.transition = null;
-		window.addEventListener("scroll", reposition_bars, false);
-	}
+}
+
+function arrowkeyscroll_end()
+{
+	if(scroll_timeout_id_x){ window.cancelAnimationFrame(scroll_timeout_id_x); scroll_timeout_id_x = null; }
+	window.cancelAnimationFrame(scroll_timeout_id_y); scroll_timeout_id_y = null;
 	
-	function arrowkeyscroll_down(lastTick)
-	{
-		let curTick = Date.now();
-		window.scrollBy(0, (curTick - lastTick)*w.keyscroll_velocity);
-		if (js_repositioning) vbar.style.top = (window.pageYOffset/window.scrollMaxY*(window.innerHeight-vbar.offsetHeight))+"px";
-		scroll_timeout_id_y = window.requestAnimationFrame( function(){ arrowkeyscroll_down(curTick); } );
-	}
-	function arrowkeyscroll_up(lastTick)
-	{
-		let curTick = Date.now();
-		window.scrollBy(0, (lastTick - curTick)*w.keyscroll_velocity);
-		if (js_repositioning) vbar.style.top = (window.pageYOffset/window.scrollMaxY*(window.innerHeight-vbar.offsetHeight))+"px";
-		scroll_timeout_id_y = window.requestAnimationFrame( function(){ arrowkeyscroll_up(curTick); } );
-	}
-	function arrowkeyscroll_right(lastTick)
-	{
-		let curTick = Date.now();
-		window.scrollBy((curTick - lastTick)*w.keyscroll_velocity, 0);
-		if (js_repositioning) hbar.style.left = window.pageXOffset/window.scrollMaxX*(window.innerWidth-w.hover_size-hbar.offsetWidth)+(w.vbar_at_left === "1" ? parseInt(w.hover_size) : 0)+"px";
-		scroll_timeout_id_x = window.requestAnimationFrame( function(){ arrowkeyscroll_right(curTick); } );
-	}
-	function arrowkeyscroll_left(lastTick)
-	{
-		let curTick = Date.now();
-		window.scrollBy((lastTick - curTick)*w.keyscroll_velocity, 0);
-		if (js_repositioning) hbar.style.left = window.pageXOffset/window.scrollMaxX*(window.innerWidth-w.hover_size-hbar.offsetWidth)+(w.vbar_at_left === "1" ? parseInt(w.hover_size) : 0)+"px";
-		scroll_timeout_id_x = window.requestAnimationFrame( function(){ arrowkeyscroll_left(curTick); } );
-	}
+	window.addEventListener("keydown", arrowkeyscroll, false);
+	window.removeEventListener("keydown", stopEvent, true);
+	window.removeEventListener("scroll", element_finished_scrolling, false);
+	window.removeEventListener("keyup", arrowkeyscroll_end, false);
+	
+	if(!ms.getElementById("modern_scroll_bars")) return;
+	
+	reposition_bars();
+	vbar.style.transition = null;
+	hbar.style.transition = null;
+	window.addEventListener("scroll", reposition_bars, false);
+}
+
+function arrowkeyscroll_down(lastTick)
+{
+	let curTick = Date.now();
+	window.scrollBy(0, (curTick - lastTick)*w.keyscroll_velocity);
+	if (js_repositioning) vbar.style.top = (window.pageYOffset/window.scrollMaxY*(window.innerHeight-vbar.offsetHeight))+"px";
+	scroll_timeout_id_y = window.requestAnimationFrame( function(){ arrowkeyscroll_down(curTick); } );
+}
+function arrowkeyscroll_up(lastTick)
+{
+	let curTick = Date.now();
+	window.scrollBy(0, (lastTick - curTick)*w.keyscroll_velocity);
+	if (js_repositioning) vbar.style.top = (window.pageYOffset/window.scrollMaxY*(window.innerHeight-vbar.offsetHeight))+"px";
+	scroll_timeout_id_y = window.requestAnimationFrame( function(){ arrowkeyscroll_up(curTick); } );
+}
+function arrowkeyscroll_right(lastTick)
+{
+	let curTick = Date.now();
+	window.scrollBy((curTick - lastTick)*w.keyscroll_velocity, 0);
+	if (js_repositioning) hbar.style.left = window.pageXOffset/window.scrollMaxX*(window.innerWidth-w.hover_size-hbar.offsetWidth)+(w.vbar_at_left === "1" ? parseInt(w.hover_size) : 0)+"px";
+	scroll_timeout_id_x = window.requestAnimationFrame( function(){ arrowkeyscroll_right(curTick); } );
+}
+function arrowkeyscroll_left(lastTick)
+{
+	let curTick = Date.now();
+	window.scrollBy((lastTick - curTick)*w.keyscroll_velocity, 0);
+	if (js_repositioning) hbar.style.left = window.pageXOffset/window.scrollMaxX*(window.innerWidth-w.hover_size-hbar.offsetWidth)+(w.vbar_at_left === "1" ? parseInt(w.hover_size) : 0)+"px";
+	scroll_timeout_id_x = window.requestAnimationFrame( function(){ arrowkeyscroll_left(curTick); } );
 }
 
 function otherkeyscroll(e)
