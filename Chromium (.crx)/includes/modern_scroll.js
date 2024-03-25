@@ -1516,7 +1516,7 @@ let last_clicked_element_is_scrollable;
 //let test = 0;
 function arrowkeyscroll(e)
 {
-	if(e.which < 37 || e.which > 40 || modifierkey_pressed(e) || target_is_input(e)) return;
+	if(e.defaultPrevented || e.which < 37 || e.which > 40 || modifierkey_pressed(e) || target_is_input(e)) return;
 	
 	window.removeEventListener("keydown", arrowkeyscroll, false);
 	
@@ -1595,17 +1595,17 @@ function arrowkeyscroll(e)
 
 function otherkeyscroll(e)
 {
-	if(e.which > 34 && e.which < 37 && !modifierkey_pressed(e) && !target_is_input(e))
+	if(e.defaultPrevented || target_is_input(e)) return;
+
+	if(e.which > 34 && e.which < 37 && !modifierkey_pressed(e))
 	{
 		stopEvent(e);
 		
 		if	(e.which === 36) 	scroll_Pos1();
 		else					scroll_End();
 	}
-	else if(e.which === 32 && !e.altKey && !e.metaKey && !e.ctrlKey && !target_is_input(e)) // 32 = space bar
+	else if(e.which === 32 && !e.altKey && !e.metaKey && !e.ctrlKey) // 32 = space bar
 	{
-		if(document.URL.includes("//www.youtube.com/watch")) return; // disable space on YouTube videos because it simultaneously plays / pauses the video (Issue #109)
-
 		stopEvent(e);
 		
 		if		(!e.shiftKey)		scroll_PageDown();
