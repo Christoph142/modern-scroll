@@ -1722,6 +1722,7 @@ function middlebuttonscroll(e)
 function is_scrollable(element, direction) // direction: 0 = up, 1 = down, 2 = all
 {
 	if(!element.parentNode || element.tagName === "BODY") return false;
+	else if (element.parentNode.tagName === "HTML") return true; // not inside of the body
 	else if((["scroll", "auto"].includes(window.getComputedStyle(element).overflowY) || element.tagName === "TEXTAREA") && element.offsetHeight < element.scrollHeight)
 	{
 		let max_scrollTop = element.scrollHeight - element.offsetHeight;
