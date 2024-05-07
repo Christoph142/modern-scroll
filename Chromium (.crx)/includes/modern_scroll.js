@@ -541,7 +541,7 @@ function add_dimension_checkers()
 let dimension_check_timeout;
 function check_dimensions_after_click(e)
 {
-	if(e.target.id.startsWith("ms_")) return;
+	if(e.target.id?.startsWith("ms_")) return;
 	last_clicked_element_is_scrollable = is_scrollable(e.target, 2) ? true : false;
 	
 	window.clearTimeout(dimension_check_timeout);
@@ -1745,7 +1745,7 @@ function modifierkey_pressed(e){ return (e.ctrlKey || e.shiftKey || e.altKey || 
 function target_is_input(e){
 	return (e.target.tagName === "TEXTAREA" || e.target.tagName === "SELECT" ||
 		   (e.target.tagName === "INPUT" && e.target.type !== "submit" && e.target.type !== "reset" && e.target.type !== "button" && e.target.type !== "image" && (e.target.type !== "checkbox" || e.which === 32) && (e.target.type !== "range" || e.which === 37 || e.which === 39)) ||
-			e.target.contentEditable === "true" || e.target.contentEditable === "plaintext-only" || e.target.parentNode.contentEditable === "true" ||
+			e.target.contentEditable === "true" || e.target.contentEditable === "plaintext-only" || e.target.parentNode?.contentEditable === "true" ||
 			e.target.shadowRoot !== null /* don't handle custom widgets */);
 }
 
