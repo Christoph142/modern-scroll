@@ -167,7 +167,7 @@ function remove_ms()
 	chrome.storage.onChanged.removeListener(update_prefs);
 	chrome.runtime.onMessage.removeListener(handleRuntimeMessage);
 
-	window.removeEventListener("resize", adjust_ui_fullscreen_change, false);
+	visualViewport.removeEventListener("resize", adjust_ui_fullscreen_change, false);
 	document.removeEventListener("fullscreenchange", adjust_ui_fullscreen_change, false);
 	document.removeEventListener("readystatechange", add_dimension_checkers, false);
 
@@ -177,7 +177,7 @@ function remove_ms()
 	document.body?.removeEventListener("transitionend", check_dimensions, false);
 	 	
 	window.removeEventListener("load", check_dimensions, false);
-	window.removeEventListener("resize", check_dimensions, false);
+	visualViewport.removeEventListener("resize", check_dimensions, false);
 	window.removeEventListener("pointerup", check_dimensions_after_click, false);
 	
 	window.removeEventListener("keydown", arrowkeyscroll, false);
@@ -186,15 +186,15 @@ function remove_ms()
 	window.removeEventListener("pointerdown", middlebuttonscroll, true);
 	window.removeEventListener("click", check_if_element_is_scrollable, false);
 	
-	window.removeEventListener("scroll", reposition_bars, false);
-	window.removeEventListener("scroll", show_or_hide_buttons, false);
-	window.removeEventListener("scroll", remove_overscroll_handler, false);
-	window.removeEventListener("scrollend", add_or_remove_overscroll_handler, false);
+	visualViewport.removeEventListener("scroll", reposition_bars, false);
+	visualViewport.removeEventListener("scroll", show_or_hide_buttons, false);
+	visualViewport.removeEventListener("scroll", remove_overscroll_handler, false);
+	visualViewport.removeEventListener("scrollend", add_or_remove_overscroll_handler, false);
 
-	window.removeEventListener("overscroll", squeeze_bars, false);
-	window.removeEventListener("overscroll", handle_vertical_overscroll, false);
-	window.removeEventListener("overscroll", handle_horizontal_overscroll, false);
-	window.removeEventListener("overscroll", handle_diagonal_overscroll, false);
+	visualViewport.removeEventListener("overscroll", squeeze_bars, false);
+	visualViewport.removeEventListener("overscroll", handle_vertical_overscroll, false);
+	visualViewport.removeEventListener("overscroll", handle_horizontal_overscroll, false);
+	visualViewport.removeEventListener("overscroll", handle_diagonal_overscroll, false);
 	
 	ms.removeEventListener("mouseover", show_bookmarks, false);
 	ms.removeEventListener("mouseout", hide_bookmarks, false);
@@ -478,14 +478,14 @@ function add_functionality_2_bars(){
 		ms.addEventListener("mouseout", hide_bookmarks, false);
 	}
 
-	window.addEventListener("scroll", reposition_bars, false);
+	visualViewport.addEventListener("scroll", reposition_bars, false);
 	if (w.squeeze_bars === "1" && window.onoverscroll !== undefined) {
-		window.addEventListener("overscroll", squeeze_bars, false);
+		visualViewport.addEventListener("overscroll", squeeze_bars, false);
 	}
 	if (w.overscroll_actions === "1" && window.onoverscroll !== undefined) {
 		add_or_remove_overscroll_handler();
-		window.addEventListener("scroll", remove_overscroll_handler, false);
-		window.addEventListener("scrollend", add_or_remove_overscroll_handler, false);
+		visualViewport.addEventListener("scroll", remove_overscroll_handler, false);
+		visualViewport.addEventListener("scrollend", add_or_remove_overscroll_handler, false);
 	}
 }
 
@@ -503,7 +503,7 @@ function hide_bookmarks()
 	}, parseInt(w.show_how_long) + 200);
 }
 
-let resize_observer = window.ResizeObserver ? new ResizeObserver(check_dimensions) : null;
+let resize_observer = ResizeObserver ? new ResizeObserver(check_dimensions) : null;
 let DOM_observer = new MutationObserver(check_dimensions);
 let height_observer = new MutationObserver(check_dimensions); // Disqus
 let theme_observer = new MutationObserver(inject_css);
@@ -517,8 +517,8 @@ function add_dimension_checkers()
 	}
 	else // add listeners after page has finished loading to avoid slowdown of page loading
 	{
-		window.addEventListener("resize", check_dimensions, false);
-		if(!document.URL.startsWith("chrome-extension://")) window.addEventListener("resize", adjust_ui_fullscreen_change, false);
+		visualViewport.addEventListener("resize", check_dimensions, false);
+		if(!document.URL.startsWith("chrome-extension://")) visualViewport.addEventListener("resize", adjust_ui_fullscreen_change, false);
 		document.addEventListener("fullscreenchange", adjust_ui_fullscreen_change, false);
 		
 		if(document.body) {
@@ -799,12 +799,12 @@ function resize_superbar()
 
 function drag_mode(which_bar){
 	if(which_bar){
-		window.removeEventListener("scroll", reposition_bars, false);
+		visualViewport.removeEventListener("scroll", reposition_bars, false);
 		ms.getElementById("ms_page_cover").style.display = "inline";
 		ms.getElementById("ms_"+which_bar).classList.add("dragged");
 	}
 	else{
-		window.addEventListener("scroll", reposition_bars, false);
+		visualViewport.addEventListener("scroll", reposition_bars, false);
 		ms.getElementById("ms_page_cover").style.display = null;
 		ms.querySelector(".dragged").classList.remove("dragged");
 	}
@@ -1086,7 +1086,7 @@ function add_buttons()
 	
 	if(!ms.querySelector("#modern_scroll_buttons")) ms.appendChild(button_container);
 	
-	window.addEventListener("scroll", show_or_hide_buttons, false);
+	visualViewport.addEventListener("scroll", show_or_hide_buttons, false);
 }
 
 async function handle_button(whichone, e)
@@ -1151,8 +1151,8 @@ async function show_or_hide_buttons()
 
 async function squeeze_bars(e)
 {
-	window.addEventListener("scroll", unsqueeze_bars, { once: true });
-	window.addEventListener("scrollend", unsqueeze_bars, { once: true });
+	visualViewport.addEventListener("scroll", unsqueeze_bars, { once: true });
+	visualViewport.addEventListener("scrollend", unsqueeze_bars, { once: true });
 
 	if (e.deltaY !== 0)
 	{
@@ -1190,53 +1190,53 @@ let overscroll_action = null;
 async function add_or_remove_overscroll_handler() {
 	if (window.pageYOffset < 10 || window.pageYOffset > window.scrollMaxY - 10) {
 		if (!vertical_overscroll_handler) {
-			window.addEventListener("overscroll", handle_vertical_overscroll, false);
+			visualViewport.addEventListener("overscroll", handle_vertical_overscroll, false);
 			vertical_overscroll_handler = true;
 		}
 	} else if (vertical_overscroll_handler) {
-		window.removeEventListener("overscroll", handle_vertical_overscroll, false);
+		visualViewport.removeEventListener("overscroll", handle_vertical_overscroll, false);
 		vertical_overscroll_handler = false;
 	}
 	if (window.pageXOffset < 10 || window.pageXOffset > window.scrollMaxX - 10) {
 		if (!horizontal_overscroll_handler) {
-			window.addEventListener("overscroll", handle_horizontal_overscroll, false);
+			visualViewport.addEventListener("overscroll", handle_horizontal_overscroll, false);
 			horizontal_overscroll_handler = true;
 		}
 	} else if (horizontal_overscroll_handler) {
-		window.removeEventListener("overscroll", handle_horizontal_overscroll, false);
+		visualViewport.removeEventListener("overscroll", handle_horizontal_overscroll, false);
 		horizontal_overscroll_handler = false;
 	}
 	if ((window.pageYOffset < 10 || window.pageYOffset > window.scrollMaxY - 10) &&
 		(window.pageXOffset < 10 || window.pageXOffset > window.scrollMaxX - 10)) {
 		if (!diagonal_overscroll_handler) {
-			window.addEventListener("overscroll", handle_diagonal_overscroll, false);
+			visualViewport.addEventListener("overscroll", handle_diagonal_overscroll, false);
 			diagonal_overscroll_handler = true;
 		}
 	} else if (diagonal_overscroll_handler) {
-		window.removeEventListener("overscroll", handle_diagonal_overscroll, false);
+		visualViewport.removeEventListener("overscroll", handle_diagonal_overscroll, false);
 		diagonal_overscroll_handler = false;
 	}
 }
 
 async function remove_overscroll_handler() {
 	if (vertical_overscroll_handler) {
-		window.removeEventListener("overscroll", handle_vertical_overscroll, false);
+		visualViewport.removeEventListener("overscroll", handle_vertical_overscroll, false);
 		vertical_overscroll_handler = false;
 	}
 	if (horizontal_overscroll_handler) {
-		window.removeEventListener("overscroll", handle_horizontal_overscroll, false);
+		visualViewport.removeEventListener("overscroll", handle_horizontal_overscroll, false);
 		horizontal_overscroll_handler = false;
 	}
 	if (diagonal_overscroll_handler) {
-		window.removeEventListener("overscroll", handle_diagonal_overscroll, false);
+		visualViewport.removeEventListener("overscroll", handle_diagonal_overscroll, false);
 		diagonal_overscroll_handler = false;
 	}
 }
 
 let previousOverscrollDelta = 0;
 async function handle_vertical_overscroll(e) {
-	window.addEventListener("scroll", abort_overscroll_action, { once: true });
-	window.addEventListener("scrollend", finish_overscroll_action, { once: true });
+	visualViewport.addEventListener("scroll", abort_overscroll_action, { once: true });
+	visualViewport.addEventListener("scrollend", finish_overscroll_action, { once: true });
 
 	if (Math.abs(e.deltaY) < 10 || Math.abs(e.deltaX) > 9) return;
 
@@ -1259,8 +1259,8 @@ async function handle_vertical_overscroll(e) {
 }
 
 async function handle_horizontal_overscroll(e) {
-	window.addEventListener("scroll", abort_overscroll_action, { once: true });
-	window.addEventListener("scrollend", finish_overscroll_action, { once: true });
+	visualViewport.addEventListener("scroll", abort_overscroll_action, { once: true });
+	visualViewport.addEventListener("scrollend", finish_overscroll_action, { once: true });
 
 	if (Math.abs(e.deltaX) < 10 || Math.abs(e.deltaY) > 9) return;
 
@@ -1283,8 +1283,8 @@ async function handle_horizontal_overscroll(e) {
 }
 
 async function handle_diagonal_overscroll(e) {
-	window.addEventListener("scroll", abort_overscroll_action, { once: true });
-	window.addEventListener("scrollend", finish_overscroll_action, { once: true });
+	visualViewport.addEventListener("scroll", abort_overscroll_action, { once: true });
+	visualViewport.addEventListener("scrollend", finish_overscroll_action, { once: true });
 
 	if (Math.abs(e.deltaX) < 10 || Math.abs(e.deltaY) < 10) return;
 
@@ -1309,7 +1309,7 @@ async function handle_diagonal_overscroll(e) {
 async function abort_overscroll_action()
 {
 	ms.querySelector(".action_button").className = "action_button";
-	window.removeEventListener("scrollend", finish_overscroll_action, { once: true });
+	visualViewport.removeEventListener("scrollend", finish_overscroll_action, { once: true });
 	overscroll_action = null;
 }
 
@@ -1428,7 +1428,7 @@ function ms_scrollBy_y(y)
 
 function ms_scroll_start_x()
 {
-	window.removeEventListener("scroll", reposition_bars, false);
+	visualViewport.removeEventListener("scroll", reposition_bars, false);
 	
 	show_bar("h");
 
@@ -1463,7 +1463,7 @@ function ms_scroll_start_x()
 
 function ms_scroll_start_y()
 {
-	window.removeEventListener("scroll", reposition_bars, false);
+	visualViewport.removeEventListener("scroll", reposition_bars, false);
 	
 	show_bar("v");
 	
@@ -1508,7 +1508,7 @@ function ms_scroll_end(direction)
 	
 	reposition_bars();
 	
-	window.addEventListener("scroll", reposition_bars, false);
+	visualViewport.addEventListener("scroll", reposition_bars, false);
 }
 
 let last_clicked_element_is_scrollable;
@@ -1523,10 +1523,10 @@ function arrowkeyscroll(e)
 	if(scroll_timeout_id_x){ window.cancelAnimationFrame(scroll_timeout_id_x); scroll_timeout_id_x = null; }
 	if(scroll_timeout_id_y){ window.cancelAnimationFrame(scroll_timeout_id_y); scroll_timeout_id_y = null; }
 	
-	if(last_clicked_element_is_scrollable) window.addEventListener("scroll", element_finished_scrolling, false);
+	if(last_clicked_element_is_scrollable) visualViewport.addEventListener("scroll", element_finished_scrolling, false);
 	else{
 		stopEvent(e);
-		window.removeEventListener("scroll", reposition_bars, false);
+		visualViewport.removeEventListener("scroll", reposition_bars, false);
 		
 		if		(e.which === 40) scroll_timeout_id_y = window.requestAnimationFrame( function(){ arrowkeyscroll_down(Date.now()); } );
 		else if	(e.which === 38) scroll_timeout_id_y = window.requestAnimationFrame( function(){ arrowkeyscroll_up(Date.now()); } );
@@ -1552,7 +1552,7 @@ function arrowkeyscroll(e)
 		
 		window.addEventListener("keydown", arrowkeyscroll, false);
 		window.removeEventListener("keydown", stopEvent, true);
-		window.removeEventListener("scroll", element_finished_scrolling, false);
+		visualViewport.removeEventListener("scroll", element_finished_scrolling, false);
 		window.removeEventListener("keyup", arrowkeyscroll_end, false);
 		
 		if(!ms.getElementById("modern_scroll_bars")) return;
@@ -1560,7 +1560,7 @@ function arrowkeyscroll(e)
 		reposition_bars();
 		vbar.style.transition = null;
 		hbar.style.transition = null;
-		window.addEventListener("scroll", reposition_bars, false);
+		visualViewport.addEventListener("scroll", reposition_bars, false);
 	}
 	
 	function arrowkeyscroll_down(lastTick)
@@ -1736,7 +1736,7 @@ function is_scrollable(element, direction) // direction: 0 = up, 1 = down, 2 = a
 
 function element_finished_scrolling(){
 	window.addEventListener("keydown", preventScrolling, false);
-	window.removeEventListener("scroll", element_finished_scrolling, false);
+	visualViewport.removeEventListener("scroll", element_finished_scrolling, false);
 }
 function preventScrolling(e){ stopEvent(e); window.removeEventListener("keydown", preventScrolling, false); }
 
