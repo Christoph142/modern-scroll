@@ -219,7 +219,10 @@ function add_or_remove_ms(){
 	else 					add_ms();
 }
 
-function get_page_scrollbar_style()
+function get_colors_from_page() {
+	return get_colors_from_page_scrollbar() || get_colors_from_page_themecolor();
+}
+function get_colors_from_page_scrollbar()
 {
 	const pageColorValue = getComputedStyle(document.body).scrollbarColor;
 	if (!pageColorValue || pageColorValue === "auto") return "";
@@ -231,25 +234,25 @@ function get_page_scrollbar_style()
 	}
 	if (pageColors.length !== 2) return "";
 
-	return ":host .pagetheme {\n\
-		 --color: "+ pageColors[0] +";\n\
-		 --color_bg: "+ pageColors[1] +";\n\
-		 --border_color: "+ pageColors[0] +";\n\
-		 --bookmark_text_color: "+ pageColors[1] +";\n\
-		 }\n";
+	return "--color: "+ pageColors[0] +";\n\
+		 	--color_bg: "+ pageColors[1] +";\n\
+		 	--border_color: "+ pageColors[0] +";\n\
+		 	--bookmark_text_color: "+ pageColors[1] +";\n";
 }
-function get_themecolor_style()
+function get_colors_from_page_themecolor()
 {
 	const themecolor = document.querySelector("meta[name='theme-color']");
 	if (!themecolor) return "";
 
-	return ":host .pagetheme {\n\
-		 --color: "+themecolor.content+";\n\
-		 --color_bg: "+ themecolor.content +";\n\
-		 --border_color: "+ (is_white(themecolor.content) ? "rgb(0,0,0)" : w.border_color_rgba) +";\n\
-		 --bookmark_text_color: "+ (is_white(themecolor.content) ? "rgb(0,0,0)" : w.bookmark_text_color) +";\n\
-		 }\n";
+	return "--color: "+themecolor.content+";\n\
+		 	--color_bg: "+ themecolor.content +";\n\
+		 	--border_color: "+ (is_white(themecolor.content) ? "rgb(0,0,0)" : w.border_color_rgba) +";\n\
+		 	--bookmark_text_color: "+ (is_white(themecolor.content) ? "rgb(0,0,0)" : w.bookmark_text_color) +";\n";
 }
+function get_internal_style(css_colors) {
+	return css_colors ? ":host .pagetheme {\n"+css_colors+"}\n" : "";
+}
+
 function is_white(color)
 {
 	const c = color.toLowerCase().replaceAll(" ", "");
@@ -265,7 +268,7 @@ function inject_css()
 		 --border_color: "+ w.border_color_rgba +";\n\
 		 --bookmark_text_color: "+ w.bookmark_text_color +";\n\
 		 }\n\
-		 "+(get_page_scrollbar_style() || get_themecolor_style())+"\
+		 "+get_internal_style(get_colors_from_page())+"\
 		 :host, #ms_v_container, #ms_h_container, #ms_vbar_bg, #ms_hbar_bg, #ms_vbar, #ms_hbar, #ms_superbar, #ms_page_cover, #ms_upbutton, #ms_downbutton, #ms_middleclick_cursor{ position:fixed; z-index:2147483647; border:none; padding:0; margin:0; display:none; background:none; }\n\n"+
 		
 		/* set values (most general first - can be overwritten by following rules): */
@@ -366,21 +369,32 @@ function inject_css()
 	let global_ms_style = "#modern_scroll { all: initial !important; }\n\n";
 
 	/* hide page's default scroll bars: */
-	if(w.fullscreen_only === "0") global_ms_style += "html, body { scrollbar-width: none !important; scroll-behavior: auto !important; }\n\
-		html::-webkit-scrollbar, body::-webkit-scrollbar{ display:none !important; width:0 !important; height:0 !important; }\n";
+	if(w.fullscreen_only === "0") global_ms_style += "html, body { scroll-behavior: auto !important; }\n" +
+		(CSS.supports("scrollbar-width: none") ?
+			"html, body { scrollbar-width: none !important; }\n" :
+			"html::-webkit-scrollbar, body::-webkit-scrollbar{ display:none !important; width:0 !important; height:0 !important; }\n");
 
-	if(w.style_element_bars === "1"){ global_ms_style +=
-		(w.autohide_element_bars === "1" ? "body *:not(:hover):not(:focus)::-webkit-scrollbar{ display:none !important; width:0 !important; height:0 !important; }\n" : "")+
-		"body *::-webkit-scrollbar{ width:"+w.size+"px; height:"+w.size+"px; }\n\
-		 body *::-webkit-scrollbar-button{ display:none; }\n\
-		 body *::-webkit-scrollbar-track { background:none; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px var(--border_color) !important; border-radius:"+w.border_radius+"px; }\n\
-		 body *::-webkit-scrollbar-thumb { background:var(--color, "+w.color+"); box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px var(--border_color) !important; border-radius:"+w.border_radius+"px; }\n\
-		 body *::-webkit-scrollbar-thumb:hover { background:var(--color, "+w.color+"); }";
+	if(w.style_element_bars === "1"){
+		if(w.auto_coloring === "1"){
+			const page_colors = get_colors_from_page();
+			if (page_colors) {
+			 	global_ms_style += "body {\n" + page_colors + "}\n";
+			}
+		}
 
-		 const themecolor = get_page_scrollbar_style() || get_themecolor_style();
-		 if (themecolor) {
-		 	global_ms_style += "\n"+themecolor+"\n";
-		 }
+		global_ms_style += CSS.supports("scrollbar-color: auto") ?
+			(w.autohide_element_bars === "1" ? "body *:not(:hover):not(:focus-within) { scrollbar-color: transparent transparent !important; }\n" : "")+
+			"body *{ scrollbar-color: var(--color, "+w.color+") var(--color_bg, "+w.color_bg+") !important; }\n\
+			 body *::-webkit-scrollbar-button{ display:none; }\n\
+			 body *::-webkit-scrollbar-track { background:none; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px var(--border_color) !important; border-radius:"+w.border_radius+"px; }\n\
+			 body *::-webkit-scrollbar-thumb { background:var(--color, "+w.color+"); box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px var(--border_color) !important; border-radius:"+w.border_radius+"px; }\n\
+			 body *::-webkit-scrollbar-thumb:hover { background:var(--color, "+w.color+"); }" :
+			(w.autohide_element_bars === "1" ? "body *:not(:hover):not(:focus-within)::-webkit-scrollbar{ display:none !important; width:0 !important; height:0 !important; }\n" : "")+
+			"body *::-webkit-scrollbar{ width:"+w.size+"px; height:"+w.size+"px; }\n\
+			 body *::-webkit-scrollbar-button{ display:none; }\n\
+			 body *::-webkit-scrollbar-track { background:none; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px var(--border_color) !important; border-radius:"+w.border_radius+"px; }\n\
+			 body *::-webkit-scrollbar-thumb { background:var(--color, "+w.color+"); box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px var(--border_color) !important; border-radius:"+w.border_radius+"px; }\n\
+			 body *::-webkit-scrollbar-thumb:hover { background:var(--color, "+w.color+"); }";
 	}
 
 	if(document.getElementById("ms_style")){ // switched tabs -> update style (settings may have changed)
