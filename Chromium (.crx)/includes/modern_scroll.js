@@ -1743,10 +1743,8 @@ function preventScrolling(e){ stopEvent(e); window.removeEventListener("keydown"
 function modifierkey_pressed(e){ return (e.ctrlKey || e.shiftKey || e.altKey || e.metaKey); }
 
 function target_is_input(e){
-	return (e.target.tagName === "TEXTAREA" || e.target.tagName === "SELECT" ||
+	return (["TEXTAREA", "SELECT", "IFRAME"].includes(e.target.tagName) ||
 		   (e.target.tagName === "INPUT" && e.target.type !== "submit" && e.target.type !== "reset" && e.target.type !== "button" && e.target.type !== "image" && (e.target.type !== "checkbox" || e.which === 32) && (e.target.type !== "range" || e.which === 37 || e.which === 39)) ||
-			e.target.contentEditable === "true" || e.target.contentEditable === "plaintext-only" || e.target.parentNode?.contentEditable === "true" ||
-			e.target.shadowRoot !== null /* don't handle custom widgets */);
 }
 
 function isLink(node){
