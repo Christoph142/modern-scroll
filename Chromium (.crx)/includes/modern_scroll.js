@@ -1745,6 +1745,7 @@ function modifierkey_pressed(e){ return (e.ctrlKey || e.shiftKey || e.altKey || 
 function target_is_input(e){
 	return (["TEXTAREA", "SELECT", "IFRAME"].includes(e.target.tagName) ||
 		   (e.target.tagName === "INPUT" && e.target.type !== "submit" && e.target.type !== "reset" && e.target.type !== "button" && e.target.type !== "image" && (e.target.type !== "checkbox" || e.which === 32) && (e.target.type !== "range" || e.which === 37 || e.which === 39)) ||
+			e.target.isContentEditable || e.target.parentNode?.isContentEditable || e.target.shadowRoot !== null /* don't handle custom widgets */);
 }
 
 function isLink(node){
