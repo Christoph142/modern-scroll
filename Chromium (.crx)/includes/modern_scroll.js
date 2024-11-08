@@ -1620,8 +1620,6 @@ function otherkeyscroll(e)
 	}
 	else if(e.which === 32 && !e.altKey && !e.metaKey && !e.ctrlKey) // 32 = space bar
 	{
-		stopEvent(e);
-		
 		if		(!e.shiftKey)		scroll_PageDown();
 		else						scroll_PageUp();
 	}
