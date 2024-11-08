@@ -94,7 +94,9 @@ async function load_prefs() {
 		last_dialog_time:				0,
 		dialogs_shown:					{}, // time : type
 		saved_sets : 					{},
-		custom_domains :				{}
+		custom_domains :				{
+			"sfgame.net": { "set": false }
+		}
 		}, storage => {
 			w = storage;
 			

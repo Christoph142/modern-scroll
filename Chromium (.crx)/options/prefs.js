@@ -155,7 +155,9 @@ async function restorePrefs() {
 		last_dialog_time:				0,
 		dialogs_shown:					{}, // time : type
 		saved_sets : 					{},
-		custom_domains :				{}
+		custom_domains :				{
+			"sfgame.net": { "set": false }
+		}
 		}, storage => {
 			prefs = storage;
 			document.body.style.accentColor = prefs.color;
@@ -416,7 +418,13 @@ function get_domain(url) {
 
 async function enable_on_domain(domain) {
 	chrome.storage.sync.get( { "custom_domains" : {} }, storage => {
-		let custom_domains = storage.custom_domains;
+		const custom_domains = storage.custom_domains;
+		if (!custom_domains[domain]) {
+			if (!window.location.href.includes("?domain="))
+				window.location.href += "?domain=" + domain + "#disabled";
+			return;
+		}
+
 		delete prefs.custom_domains[domain]["set"];
 		delete custom_domains[domain]["set"];
 		chrome.storage.sync.set({ "custom_domains" : custom_domains });
@@ -428,7 +436,7 @@ async function enable_on_domain(domain) {
 
 async function disable_on_domain(domain) {
 	chrome.storage.sync.get( { "custom_domains" : {} }, storage => {
-		let custom_domains = storage.custom_domains;
+		const custom_domains = storage.custom_domains;
 		if (!custom_domains.hasOwnProperty(domain)) custom_domains[domain] = {};
 		custom_domains[domain]["set"] = false;
 		chrome.storage.sync.set({ "custom_domains" : custom_domains });
