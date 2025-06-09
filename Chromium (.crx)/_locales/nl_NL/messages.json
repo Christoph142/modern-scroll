@@ -60,6 +60,7 @@
 	"bookmarks_only" : 					{ "message" : "Bladwijzers tonen" },
 	"all_headings" : 					{ "message" : "Bladwijzers en koppen" },
 	"bookmark_text_color" :				{ "message" : "Tekstkleur" },
+	"bookmark_text_size" :				{ "message" : "Tekstgrootte" },
 	"buttons" : 						{ "message" : "Scrollknoppen" },
 	"show_buttons" : 					{ "message" : "Knoppen tonen voor scrollen naar boven- en onderkant van pagina's" },
 	"button_width" : 					{ "message" : "Breedte" },
