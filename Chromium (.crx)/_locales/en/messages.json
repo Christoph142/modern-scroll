@@ -60,6 +60,7 @@
 	"bookmarks_only" : 					{ "message" : "Show bookmarks" },
 	"all_headings" : 					{ "message" : "Bookmarks and Headings" },
 	"bookmark_text_color" :				{ "message" : "Text color" },
+	"bookmark_text_size" :				{ "message" : "Text size" },
 	"buttons" : 						{ "message" : "Scroll buttons" },
 	"show_buttons" : 					{ "message" : "Show buttons for scrolling to the top/bottom of the page" },
 	"button_width" : 					{ "message" : "Width" },

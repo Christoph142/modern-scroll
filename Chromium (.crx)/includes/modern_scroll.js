@@ -68,6 +68,7 @@ async function load_prefs() {
 		superbar_opacity:		"70",
 
 		bookmark_text_color:	"#FFFFFF",
+		bookmark_text_size:		"16",
 		show_bookmarks:			"2", // 1 = none, 2 = bookmarks, 3 = all headings
 
 		show_buttons:			"1", // 1 = no, 2 = only fullscreen, 3 = yes
@@ -311,7 +312,7 @@ function inject_css()
 		 #ms_v_container #ms_vbar:hover, #ms_h_container #ms_hbar:hover, #ms_upbutton:hover, #ms_downbutton:hover, #ms_v_container .bookmarkIndicator:hover{ opacity:"+((parseInt(w.opacity)+20)/100)+"; transition:opacity 0.1s 0s; }\n\
 		 #ms_superbar:hover{ opacity:"+w.superbar_opacity/100+"; transition:opacity 0.25s 0s; }\n\
 		\n\
-		 .bookmarkIndicator { line-height:20px; height: 20px; color: var(--bookmark_text_color); position: absolute; "+(w.vbar_at_left==="1"?"left:":"right:")+(parseInt(w.hover_size)+7)+"px; padding: 3px 5px; display: block; text-decoration:none; z-index: var(--z); cursor: pointer; }\n\
+		 .bookmarkIndicator { line-height:20px; height: 20px; color: var(--bookmark_text_color); font-size: "+w.bookmark_text_size+"px; position: absolute; "+(w.vbar_at_left==="1"?"left:":"right:")+(parseInt(w.hover_size)+7)+"px; padding: 3px 5px; display: block; text-decoration:none; z-index: var(--z); cursor: pointer; }\n\
 		 .bookmarkIndicator > span { white-space: nowrap; max-width: 20em; overflow: hidden; text-overflow: ellipsis; display: block; }\n\
 		 .bookmarkIndicator br, .bookmarkIndicator br::after { content: ' / '; }\n\
 		 .bookmarkIndicator::before, .bookmarkIndicator::after { content: ''; position: absolute; border-style: solid; }\n\
