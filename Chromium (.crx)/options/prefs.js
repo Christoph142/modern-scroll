@@ -129,6 +129,7 @@ async function restorePrefs() {
 		superbar_opacity:		"70",
 
 		bookmark_text_color:	"#FFFFFF",
+		bookmark_text_size:		"16",
 		show_bookmarks:			"2", // 1 = none, 2 = bookmarks, 3 = all headings
 
 		show_buttons:			"1", // 1 = no, 2 = only fullscreen, 3 = yes

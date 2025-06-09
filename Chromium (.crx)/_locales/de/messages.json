@@ -60,6 +60,7 @@
 	"bookmarks_only" : 					{ "message" : "Lesezeichen anzeigen" },
 	"all_headings" : 					{ "message" : "Lesezeichen und Überschriften" },
 	"bookmark_text_color" :				{ "message" : "Text-Farbe" },
+	"bookmark_text_size" :				{ "message" : "Text-Größe" },
 	"buttons" : 						{ "message" : "Scroll-Buttons" },
 	"show_buttons" : 					{ "message" : "Scroll-Buttons zum Seiten-Anfang und -Ende anzeigen" },
 	"button_width" : 					{ "message" : "Breite" },
