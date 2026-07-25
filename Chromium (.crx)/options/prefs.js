@@ -231,6 +231,8 @@ function add_page_handling()
 	document.querySelector("#save_set_button").addEventListener("click", confirm_save_set, false);
 	document.querySelector("#delete_set_button").addEventListener("click", confirm_delete_set, false);
 	document.querySelector("#load_set_button").addEventListener("click", confirm_load_set, false);
+	document.querySelector("#import_button").addEventListener("click", confirm_import, false);
+	document.querySelector("#export_button").addEventListener("click", export_settings, false);
 	
 	document.querySelector("#save_set").addEventListener("keydown", () => { // Enter -> save configuration
 		if(window.event.which !== 13) return;
@@ -265,6 +267,8 @@ function add_page_handling()
 	document.querySelector("#confirm_overwrite_button").addEventListener("click", () => save_set(true), false);
 	document.querySelector("#confirm_delete_button").addEventListener("click", delete_set, false);
 	document.querySelector("#confirm_load_button").addEventListener("click", load_set, false);
+	document.querySelector("#confirm_import_button").addEventListener("click", select_settings_file, false);
+	document.querySelector("#settings_file").addEventListener("input", import_settings, false);
 	document.querySelectorAll("#hello_again button").forEach(button =>
 		button.addEventListener("click", switchDialog, false)
 	);
@@ -348,6 +352,29 @@ function load_set(){
 	}
 
 	restorePrefs();
+}
+
+function confirm_import(){ showDialog("confirm_import"); }
+function select_settings_file(){ document.querySelector("#settings_file").click(); }
+async function import_settings(event){
+	if (event.target.files.item(0)?.type !== "application/json") {
+  		console.error("import failed", event.target.files);
+		window.alert("Settings import failed");
+  		return;
+  	}
+  	const settings = JSON.parse(await event.target.files.item(0).text());
+  	browser.storage.sync.set(settings).then(() => {
+  		const select = document.querySelector("#saved_sets");
+  		while(select.options.length > 1) select.options.remove(select.options.length-1); //clear all but default option
+  		restorePrefs();
+  	});
+}
+function export_settings(){
+	const blob = new Blob([JSON.stringify(prefs)], { type: 'text/plain' });
+	const a = document.createElement('a');
+	a.setAttribute('download', "modern_scroll_settings_"+new Date().toISOString().split(".")[0].replaceAll(":", "-")+".json");
+	a.setAttribute('href', window.URL.createObjectURL(blob));
+	a.click();
 }
 
 function localize()

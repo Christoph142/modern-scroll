@@ -32,6 +32,9 @@
     </tr><tr>
     	<td><span data-i18n="load_or_delete_set"></span> <select id="saved_sets"><option value="Default" id="default" data-i18n="default"></option></select>:</td>
         <td><button id="delete_set_button" data-i18n="tooltip_delete">🗑</button>&nbsp;<button id="load_set_button" data-i18n="tooltip_load">🗘</button></td>
+    </tr><tr>
+        <td><span data-i18n="import_export"></span>:<div id="import_export_info" class="i" tabindex="0">i<div id="import_export_info_text" class="i_text"><span data-i18n="explanation_import_export"></span></div></div></td>
+        <td><button id="import_button" data-i18n="tooltip_import">◌⃔</button>&nbsp;<button id="export_button" data-i18n="tooltip_export">◌⃕</button></td>
     </tr></table>
     </fieldset>
     
@@ -348,6 +351,16 @@
     <div class="content_area" data-i18n="confirm_load"></div>
     <div class="action_area">
         <button id="confirm_load_button" class="hide_dialog" data-i18n="ok"></button>
+        <button class="hide_dialog" data-i18n="cancel"></button>
+    </div>
+</dialog>
+
+<dialog id="confirm_import">
+    <div class="close"></div>
+    <div class="content_area" data-i18n="confirm_import"></div>
+    <input type="file" accept=".json" name="settings_file" id="settings_file" hidden />
+    <div class="action_area">
+        <button id="confirm_import_button" class="hide_dialog" data-i18n="ok"></button>
         <button class="hide_dialog" data-i18n="cancel"></button>
     </div>
 </dialog>
