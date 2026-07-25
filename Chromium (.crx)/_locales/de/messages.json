@@ -18,7 +18,7 @@
 	"tooltip_import" : 					{ "message" : "Importieren" },
 	"confirm_import":					{ "message" : "Möchtest du wirklich gespeicherte Einstellungen aus einer Backup-Datei importieren?\nEs wird deine komplette aktuelle Konfiguration ersetzen."},
 	"tooltip_export" : 					{ "message" : "Exportieren" },
-	"explanation_import_export" : 		{ "message" : "Manuelles Laden und Speichern aller Einstellungen ist inbesondere nützlich, wenn du mehrere unterschiedliche Browser nutzt, wenn du nicht in einen Sync-Account eingeloggt bist oder wenn du beabsichtigst, die Einstellungswerte manuell zu bearbeiten.\nAndernfalls werden deine Einstellungen automatisch über Geräte hinweg synchronisiert." },
+	"explanation_import_export" : 		{ "message" : "Manuelles Laden und Speichern aller Einstellungen ist inbesondere nützlich, wenn du mehrere unterschiedliche Browser nutzt, wenn du nicht in einen Sync-Account eingeloggt bist oder wenn du beabsichtigst, die Werte in den Einstellungen manuell zu bearbeiten.\nAndernfalls werden deine Einstellungen automatisch über Geräte hinweg synchronisiert." },
 	"look" : 							{ "message" : "Aussehen" },
 	"color" : 							{ "message" : "Farbe der Bildlaufleisten, der Superbar und der Scroll-Buttons" },
 	"color_bg" : 						{ "message" : "Farbe der Hintergrundleisten" },
