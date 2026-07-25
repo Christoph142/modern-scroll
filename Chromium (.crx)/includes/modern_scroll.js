@@ -2,6 +2,8 @@
 
 "use strict";
 
+if (!globalThis.browser) globalThis.browser = chrome;
+
 let timeout;				// scrolling animation
 let w = {};					// settings -> updated when tab gets activated
 let vbar;					// \ pass by reference!
@@ -32,7 +34,7 @@ function initialize()
 
 async function load_prefs() {
 	return new Promise((resolve, reject) =>
-	chrome.storage.sync.get( {// default settings:
+	browser.storage.sync.get( {// default settings:
 		color:					"#000000",
 		color_bg:				"#999999",
 		auto_coloring:			"1",
@@ -129,18 +131,18 @@ async function add_ms()
 	
 	await load_prefs();
 
-	chrome.storage.onChanged.addListener(update_prefs);
+	browser.storage.onChanged.addListener(update_prefs);
 		
 	if(w === false) { // blacklisted page
 		if (document.querySelector("#ms_style"))
 			document.querySelector("head").removeChild(document.querySelector("#ms_style"));
-		chrome.runtime.sendMessage({data:"show_contextmenu", string:"enable"});
+		browser.runtime.sendMessage({data:"show_contextmenu", string:"enable"});
 		return;
 	}
 
-	chrome.runtime.onMessage.addListener(handleRuntimeMessage);
+	browser.runtime.onMessage.addListener(handleRuntimeMessage);
 	if (window.self === window.top)
-		chrome.runtime.sendMessage({ data: "get_zoom" });
+		browser.runtime.sendMessage({ data: "get_zoom" });
 
 	inject_css();
 	
@@ -167,8 +169,8 @@ function remove_ms()
 {
 	if(!document.getElementById("modern_scroll")) return;
 	
-	chrome.storage.onChanged.removeListener(update_prefs);
-	chrome.runtime.onMessage.removeListener(handleRuntimeMessage);
+	browser.storage.onChanged.removeListener(update_prefs);
+	browser.runtime.onMessage.removeListener(handleRuntimeMessage);
 
 	window.removeEventListener("resize", adjust_ui_fullscreen_change, false);
 	document.removeEventListener("fullscreenchange", adjust_ui_fullscreen_change, false);
@@ -535,7 +537,7 @@ function add_dimension_checkers()
 	else // add listeners after page has finished loading to avoid slowdown of page loading
 	{
 		window.addEventListener("resize", check_dimensions, false);
-		if(!document.URL.startsWith("chrome-extension://")) window.addEventListener("resize", adjust_ui_fullscreen_change, false);
+		if(!document.URL.includes("extension://")) window.addEventListener("resize", adjust_ui_fullscreen_change, false);
 		document.addEventListener("fullscreenchange", adjust_ui_fullscreen_change, false);
 		
 		if(document.body) {
@@ -584,7 +586,7 @@ function add_scrollingfunctions()
 function add_contextmenu()
 {	
 	if(w.contextmenu_show_when !== "1")	show_ui(); // if contextmenu is not set to "never show up":
-	else 								chrome.runtime.sendMessage({data:"hide_contextmenu"});
+	else 								browser.runtime.sendMessage({data:"hide_contextmenu"});
 }
 function contextmenu_click()
 {
@@ -640,12 +642,12 @@ function show_ui()
 function hide_ui()
 {
 	document.querySelector("#modern_scroll").style.setProperty("display", "none", "important");
-	if(w.contextmenu_show_when !== "1") chrome.runtime.sendMessage({data:"show_contextmenu", string:"show"});
+	if(w.contextmenu_show_when !== "1") browser.runtime.sendMessage({data:"show_contextmenu", string:"show"});
 	document.querySelector("#modern_scroll").removeEventListener("pointerover", send_contextmenu_show_msg_to_bg, false);
 	document.querySelector("#modern_scroll").removeEventListener("pointerout", send_contextmenu_hide_msg_to_bg, false);
 }
-function send_contextmenu_show_msg_to_bg(){ chrome.runtime.sendMessage({data:"show_contextmenu", string:"hide"}); }
-function send_contextmenu_hide_msg_to_bg(){ chrome.runtime.sendMessage({data:"hide_contextmenu"}); }
+function send_contextmenu_show_msg_to_bg(){ browser.runtime.sendMessage({data:"show_contextmenu", string:"hide"}); }
+function send_contextmenu_hide_msg_to_bg(){ browser.runtime.sendMessage({data:"hide_contextmenu"}); }
 
 function check_if_element_is_scrollable(e){ last_clicked_element_is_scrollable = is_scrollable(e.target, 2) ? true : false; }
 
@@ -732,7 +734,7 @@ async function update_bookmarks()
 	});
 
 	// custom bookmarks
-	chrome.runtime.sendMessage({data : "bookmarks", domain : window.location.host}, (bookmarks) => {
+	browser.runtime.sendMessage({data : "bookmarks", domain : window.location.host}, bookmarks => {
 		for (let bookmark of bookmarks) {
 			let bookmarkIndicator = document.createElement("div");
 			let bookmarkTitle = document.createElement("span");
@@ -769,7 +771,7 @@ function resize_vbar()
 	if(vbar.style.display !== "inline"){
 		ms.getElementById("ms_v_container").style.display = ms.getElementById("ms_vbar_bg").style.display = vbar.style.display = "inline";
 		show_bar("v");
-		chrome.runtime.sendMessage({data:"reset_contextmenu"});
+		browser.runtime.sendMessage({data:"reset_contextmenu"});
 		
 		if(window.self.frameElement || w.use_own_scroll_functions_mouse === "1") window.addEventListener("wheel", mousescroll_y, { passive : false, capture : false });
 	}
@@ -796,7 +798,7 @@ function resize_hbar()
 	if(hbar.style.display !== "inline"){
 		ms.getElementById("ms_h_container").style.display = ms.getElementById("ms_hbar_bg").style.display = hbar.style.display = "inline";
 		show_bar("h");
-		chrome.runtime.sendMessage({data:"reset_contextmenu"});
+		browser.runtime.sendMessage({data:"reset_contextmenu"});
 	}
 }
 
@@ -1110,7 +1112,7 @@ async function handle_button(whichone, e)
 {
 	e.preventDefault();			// prevent focus-loss in site
 	if(e.which !== 1) return;	// if it's not the left mouse button
-	if(!document.URL.startsWith("chrome-extension://")) e.stopPropagation(); // prevent bubbling (e.g. prevent drag being triggered on separately opened images); provide event in options page (to save dragged button position)
+	if(!document.URL.includes("extension://")) e.stopPropagation(); // prevent bubbling (e.g. prevent drag being triggered on separately opened images); provide event in options page (to save dragged button position)
 	
 	let button = ms.getElementById("ms_"+whichone+"button");
 	let otherbutton = ms.getElementById("ms_"+(whichone==="up"?"down":"up")+"button");
@@ -1149,7 +1151,7 @@ async function handle_button(whichone, e)
 		otherbutton.style.opacity = null;
 
 		// fire custom event for saving button position in options page:
-		if(document.URL.startsWith("chrome-extension://"))
+		if(document.URL.includes("extension://"))
 			this.dispatchEvent(	new CustomEvent("msButtonPositionChange", {	detail : 100 * button.offsetLeft / window.innerWidth })	);
 	}
 }

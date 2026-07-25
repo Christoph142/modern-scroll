@@ -2,9 +2,10 @@
 	"name"						: "modern scroll",
 	"description"				: "__MSG_description__",
 	"homepage_url"				: "https://github.com/Christoph142/modern-scroll",
+	"browser_specific_settings"	: { "gecko": { "id": "@modern-scroll"} },
 	
 	"default_locale"			: "en",
-	"version"					: "4.3.1",
+	"version"					: "4.4",
 	"minimum_chrome_version"	: "100",
 	"icons"						: { "16": "images/contextmenu.png", "32": "images/contextmenu@2x.png", "64": "images/icon.png", "128": "images/icon@2x.png" },
 	
@@ -17,7 +18,7 @@
 		"run_at"				: "document_start",
 		"all_frames"			: true
 	}],
-	"background"				: { "service_worker": "background.js" },
+	"background"				: { "service_worker": "background.js", "scripts": ["background.js"], "preferred_environment": ["service_worker"] },
 	"options_page"				: "options/options.html",
 	"options_ui"				: { "page" : "options/options.html", "open_in_tab" : true },
 

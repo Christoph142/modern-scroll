@@ -1,3 +1,5 @@
+if (!globalThis.browser) globalThis.browser = chrome;
+
 window.addEventListener("DOMContentLoaded", populateOptions, false);
 window.addEventListener("msButtonPositionChange", saveButtonPosition, true);
 window.addEventListener("change", savePrefs, false);
@@ -10,7 +12,7 @@ async function populateOptions(){
 	if (window.location.hash && document.querySelector(window.location.hash).tagName === "DIALOG")
 		showDialog(window.location.hash.substring(1));
 
-	chrome.tabs.query({ active: true }, tabs => {
+	browser.tabs.query({ active: true }, tabs => {
 		const url = tabs?.[0]?.url;
 		if (!url?.startsWith("http")) return;
 
@@ -21,7 +23,7 @@ async function populateOptions(){
 		const isEnbledOnDomain = domainSettings?.["set"] !== false
 
 		domainElement.querySelectorAll("button").forEach(button =>
-			button.innerText = chrome.i18n.getMessage(button.dataset.i18n, domain)
+			button.innerText = browser.i18n.getMessage(button.dataset.i18n, domain)
 		);
 		domainElement.querySelectorAll("button").forEach(button =>
 			button.addEventListener("click", () =>
@@ -86,14 +88,14 @@ async function save_new_value(key, value)
 	let saveobject = {};
 	saveobject[key] = value;
 	prefs[key] = value;
-	chrome.storage.sync.set(saveobject);
+	browser.storage.sync.set(saveobject);
 }
 
 function saveButtonPosition(e){ save_new_value("buttonposition", e.detail); }
 
 async function restorePrefs() {
 	return new Promise((resolve, reject) =>
-	chrome.storage.sync.get({// default settings:
+	browser.storage.sync.get({// default settings:
 		color:					"#000000",
 		color_bg:				"#999999",
 		auto_coloring:			"1",
@@ -300,7 +302,7 @@ function save_set(overwrite){
 		prefs.saved_sets[document.querySelector("#save_set").textContent][setting] = prefs[setting];
 	}
 	
-	chrome.storage.sync.set({ "saved_sets" : prefs.saved_sets });
+	browser.storage.sync.set({ "saved_sets" : prefs.saved_sets });
 	
 	if(!overwrite) { // don't add a new option if one gets overwritten
 		let set_name = document.querySelector("#save_set").textContent;
@@ -322,7 +324,7 @@ function delete_set(){
 	let set_name = document.querySelector("#saved_sets").value;
 
 	delete prefs.saved_sets[set_name];
-	chrome.storage.sync.set({ "saved_sets": prefs.saved_sets });
+	browser.storage.sync.set({ "saved_sets": prefs.saved_sets });
 
 	for(let option in document.querySelector("#saved_sets").options){
 		if(document.querySelector("#saved_sets").options[option].value === set_name)
@@ -338,11 +340,11 @@ function load_set(){
 	if(document.querySelector("#saved_sets").value === "Default")
 	{
 		let prefsToBeDeleted = Object.keys(prefs).filter(pref => !["saved_sets", "custom_domains", "last_dialog_time", "dialogs_shown"].includes(pref));
-		chrome.storage.sync.remove( prefsToBeDeleted );
+		browser.storage.sync.remove( prefsToBeDeleted );
 	}
 	else
 	{
-		chrome.storage.sync.set(prefs.saved_sets[document.querySelector("#saved_sets").value]);
+		browser.storage.sync.set(prefs.saved_sets[document.querySelector("#saved_sets").value]);
 	}
 
 	restorePrefs();
@@ -368,7 +370,7 @@ function getString(string, substitutions = "")
 		const urlParams = new URLSearchParams(window.location.search);
 		substitutions.split(",").forEach(s => substitutes.push(urlParams.get(s)));
 	}
-	return chrome.i18n.getMessage(string, substitutes).split("\n").join("<br>");
+	return browser.i18n.getMessage(string, substitutes).split("\n").join("<br>");
 }
 
 function showDialog(id)
@@ -418,7 +420,7 @@ function get_domain(url) {
 }
 
 async function enable_on_domain(domain) {
-	chrome.storage.sync.get( { "custom_domains" : {} }, storage => {
+	browser.storage.sync.get( { "custom_domains" : {} }, storage => {
 		const custom_domains = storage.custom_domains;
 		if (!custom_domains[domain]) {
 			if (!window.location.href.includes("?domain="))
@@ -428,7 +430,7 @@ async function enable_on_domain(domain) {
 
 		delete prefs.custom_domains[domain]["set"];
 		delete custom_domains[domain]["set"];
-		chrome.storage.sync.set({ "custom_domains" : custom_domains });
+		browser.storage.sync.set({ "custom_domains" : custom_domains });
 
 		document.querySelector("button[data-i18n=enable_on_domain]").style.display = null;
 		document.querySelector("button[data-i18n=disable_on_domain]").style.display = "inline";
@@ -436,11 +438,11 @@ async function enable_on_domain(domain) {
 }
 
 async function disable_on_domain(domain) {
-	chrome.storage.sync.get( { "custom_domains" : {} }, storage => {
+	browser.storage.sync.get( { "custom_domains" : {} }, storage => {
 		const custom_domains = storage.custom_domains;
 		if (!custom_domains.hasOwnProperty(domain)) custom_domains[domain] = {};
 		custom_domains[domain]["set"] = false;
-		chrome.storage.sync.set({ "custom_domains" : custom_domains });
+		browser.storage.sync.set({ "custom_domains" : custom_domains });
 
 		prefs.custom_domains[domain] = custom_domains[domain];
 		document.querySelector("button[data-i18n=enable_on_domain]").style.display = "inline";
