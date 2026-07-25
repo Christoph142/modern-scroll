@@ -1,4 +1,4 @@
-modern scroll is an extension for Opera and Chromium-based browsers that takes scrolling to a whole new level.
+modern scroll is a browser extension that takes scrolling to a whole new level.
 
 What's so awesome about it?
 
