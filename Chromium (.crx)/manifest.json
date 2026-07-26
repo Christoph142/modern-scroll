@@ -2,7 +2,7 @@
 	"name"						: "modern scroll",
 	"description"				: "__MSG_description__",
 	"homepage_url"				: "https://github.com/Christoph142/modern-scroll",
-	"browser_specific_settings"	: { "gecko": { "id": "@modern-scroll"} },
+	"browser_specific_settings"	: { "gecko": { "id": "modern-scroll@christoph142", "data_collection_permissions": { "required": ["none"] } } },
 	
 	"default_locale"			: "en",
 	"version"					: "4.4",
