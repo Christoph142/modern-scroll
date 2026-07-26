@@ -1,5 +1,35 @@
 ﻿See https://github.com/Christoph142/modern-scroll/releases for v4.0+ changelogs
 
+v 3.5.6
+---------
+new: separate URLs for each extension store (Opera, Edge, Chrome)
+fix: welcome dialog shown every time default set gets loaded
+
+v 3.5.5
+---------
+fix: several smaller glitches in options page
+upd: Dutch translation (thx Heimen)
+upd: Chinese translation (thx xyu)
+增加葡萄牙语的翻译（感谢André）
+
+v 3.5.4
+---------
+upd: Smaller adjustments of the settings page
+upd: paid licensing removed - thanks for supporting me at https://www.buymeacoffee.com/Christoph142 instead! 🍻
+
+v 3.5.3
+---------
+fix: transferring the license from Chrome doesn't work reliably (thx to all reporters)
+fix: license wiped after loading some profiles (thx hyperboraeer)
+
+v 3.5.2
+---------
+new: dark mode for settings
+
+v 3.5.1
+---------
+fix: keys swallowed in custom input widgets
+
 v 3.5
 ---------
 new: display bookmarks next to the vertical scroll bar
