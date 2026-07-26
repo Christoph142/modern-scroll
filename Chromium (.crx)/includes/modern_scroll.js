@@ -733,8 +733,8 @@ async function update_bookmarks()
 		ms.getElementById("ms_bookmarks").appendChild(bookmarkIndicator);
 	});
 
-	// custom bookmarks
-	browser.runtime.sendMessage({data : "bookmarks", domain : window.location.host}, bookmarks => {
+	//TODO custom bookmarks
+	/*browser.runtime.sendMessage({data : "bookmarks", domain : window.location.host}, bookmarks => {
 		for (let bookmark of bookmarks) {
 			let bookmarkIndicator = document.createElement("div");
 			let bookmarkTitle = document.createElement("span");
@@ -745,7 +745,7 @@ async function update_bookmarks()
 			bookmarkIndicator.addEventListener("click", (e) => ms_scrollTo(0, bookmark.pos/100*document.body.getBoundingClientRect().height), false);
 			ms.getElementById("ms_bookmarks").appendChild(bookmarkIndicator);
 		}
-	} );
+	} );*/
 }
 
 function resize_vbar()
