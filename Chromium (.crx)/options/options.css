@@ -20,9 +20,9 @@ button, .button	{
 		&::before { font-size: 1.5em; vertical-align: bottom; padding-right:.3em; }
 		&:not(:hover):not(:focus-within)::before { opacity: 0.3; }
 	}
-	&.translate::before { content: "🗪" }
-	&.bug::before { content: "🗲" }
-	&.rate::before { content: "★" }
+	&.translate::before { content: "🗪"; }
+	&.bug::before { content: "🗲"; }
+	&.rate::before { content: "★"; }
 	&.buymeacoffee	{
 		padding: 1em; font-weight: normal; border-width:2px; border-radius:.5em; margin:2px;
 		&::before { content: "🍣"; }
