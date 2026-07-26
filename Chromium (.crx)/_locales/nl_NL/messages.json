@@ -18,7 +18,7 @@
 	"tooltip_import" : 					{ "message" : "Importeren" },
 	"confirm_import":					{ "message" : "Weet je zeker dat je de instellingen wilt terugzetten vanuit een reservekopiebestand?\nLet op: alle huidige instellingen worden vervangen."},
 	"tooltip_export" : 					{ "message" : "Exporteren" },
-	"explanation_import_export" : 		{ "message" : "Het handmatig laden en opslaan van alle instellingen is vooral handig als je meerdere browsers gebruikt ofg niet ingelogd bent op een synchronisatieaccount.\nAnders worden instellingen automatisch gesyschroniseerd." },
+	"explanation_import_export" : 		{ "message" : "Het handmatig laden en opslaan van alle instellingen is vooral handig als je meerdere browsers gebruikt ofg niet ingelogd bent op een synchronisatieaccount.\nNormaliter worden instellingen automatisch gesyschroniseerd." },
 	"look" : 							{ "message" : "Uiterlijk" },
 	"color" : 							{ "message" : "Kleur van de scrollbalken, de superbalk en de scrollknoppen" },
 	"color_bg" : 						{ "message" : "Kleur van de achtergrondbalken" },
