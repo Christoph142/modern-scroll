@@ -24,6 +24,5 @@
 
 	"permissions"				: [ "activeTab", "contextMenus", "storage" ],
 	
-	"offline_enabled"			: true,
 	"manifest_version"			: 3
 }

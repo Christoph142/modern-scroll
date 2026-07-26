@@ -657,7 +657,8 @@ function check_dimensions()
 	
 	set_new_scrollMax_values();
 	
-	if(scrollMaxX_old !== window.scrollMaxX || scrollMaxY_old !== window.scrollMaxY) adjust_ui_new_size();
+	//Firefox sometimes provides window.scrollMaxX/Y values on its own
+	adjust_ui_new_size();
 }
 function set_new_scrollMax_values()
 {
