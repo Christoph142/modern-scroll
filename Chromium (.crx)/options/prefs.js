@@ -187,7 +187,7 @@ async function restorePrefs() {
 				else						input.value = prefs[input.id];
 			});
 			
-			if(window.onoverscroll === undefined)									document.querySelector("#overscroll_container").style.display			= "none";
+			if(!"momentum" in new WheelEvent({}))									document.querySelector("#overscroll_action_setting").style.display		= "none";
 			if(document.querySelector("#show_buttons").value !== "1")				document.querySelector("#button_container").style.height				= "auto";
 			if(!document.querySelector("#use_own_scroll_functions").checked)		document.querySelector("#keyscroll_velocity_container").style.display	= "none";
 			if(document.querySelector("#use_own_scroll_functions_mouse").checked)	document.querySelector("#mousescroll_container").style.display			= "inline";

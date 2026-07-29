@@ -196,10 +196,9 @@ function remove_ms()
 	window.removeEventListener("scroll", remove_overscroll_handler, false);
 	window.removeEventListener("scrollend", add_or_remove_overscroll_handler, false);
 
-	window.removeEventListener("overscroll", squeeze_bars, false);
-	window.removeEventListener("overscroll", handle_vertical_overscroll, false);
-	window.removeEventListener("overscroll", handle_horizontal_overscroll, false);
-	window.removeEventListener("overscroll", handle_diagonal_overscroll, false);
+	window.removeEventListener("wheel", squeeze_bars, false);
+	window.removeEventListener("wheel", handle_vertical_overscroll, false);
+	window.removeEventListener("wheel", handle_horizontal_overscroll, false);
 	
 	ms.removeEventListener("mouseover", show_bookmarks, false);
 	ms.removeEventListener("mouseout", hide_bookmarks, false);
@@ -498,10 +497,10 @@ function add_functionality_2_bars(){
 	}
 
 	window.addEventListener("scroll", reposition_bars, false);
-	if (w.squeeze_bars === "1" && window.onoverscroll !== undefined) {
-		window.addEventListener("overscroll", squeeze_bars, false);
+	if (w.squeeze_bars === "1" && false /*TODO enable in 4.5*/) {
+		window.addEventListener("wheel", squeeze_bars, false);
 	}
-	if (w.overscroll_actions === "1" && window.onoverscroll !== undefined) {
+	if (w.overscroll_actions === "1" && "momentum" in new WheelEvent({}) && false /*TODO enable in 4.5*/) {
 		add_or_remove_overscroll_handler();
 		window.addEventListener("scroll", remove_overscroll_handler, false);
 		window.addEventListener("scrollend", add_or_remove_overscroll_handler, false);
@@ -1173,178 +1172,156 @@ async function show_or_hide_buttons()
 	}, 200);
 }
 
+let squeeze_timeout = 0;
+let squeeze_distance = 0;
 async function squeeze_bars(e)
 {
+	window.clearTimeout(squeeze_timeout);
 	window.addEventListener("scroll", unsqueeze_bars, { once: true });
-	window.addEventListener("scrollend", unsqueeze_bars, { once: true });
 
 	if (e.deltaY !== 0)
 	{
+		squeeze_distance += e.deltaY;
 		show_bar("v");
-		const factor = window.innerHeight / (window.innerHeight + Math.abs(e.deltaY));
+		const factor = window.innerHeight / (window.innerHeight + Math.abs(squeeze_distance));
 
-		vbar.style.transformOrigin = e.deltaY < 0 ? "0 0" : "100% 100%";
+		vbar.style.transformOrigin = squeeze_distance < 0 ? "0 0" : "100% 100%";
 		vbar.style.transform = "scaleY("+(0.25+0.75*factor)+")";
 		vbar.style.opacity = w.opacity / 100 + (1 - w.opacity / 100) * (1 - factor);
 	}
 
 	if (e.deltaX !== 0)
 	{
+		squeeze_distance += e.deltaX;
 		show_bar("h");
-		const factor = window.innerWidth / (window.innerWidth + Math.abs(e.deltaX));
+		const factor = window.innerWidth / (window.innerWidth + Math.abs(squeeze_distance));
 
-		hbar.style.transformOrigin = e.deltaX < 0 ? "0 0" : "100% 100%";
+		hbar.style.transformOrigin = squeeze_distance < 0 ? "0 0" : "100% 100%";
 		hbar.style.transform = "scaleX("+(0.25+0.75*factor)+")";
 		hbar.style.opacity = w.opacity / 100 + (1 - w.opacity / 100) * (1 - factor);
 	}
+
+	squeeze_timeout = window.setTimeout(unsqueeze_bars, 100);
 }
 
 async function unsqueeze_bars()
 {
-	vbar.style.transform = hbar.style.transform = null;
-	vbar.style.transformOrigin = hbar.style.transformOrigin = null;
+	squeeze_distance = 0;
+	vbar.style.transitionDuration = "1000ms !important";
+	vbar.style.transform = hbar.style.transform = "scale(1,1)";
+	vbar.style.transformOrigin = hbar.style.transformOrigin = "0 0";
 	vbar.style.opacity = hbar.style.opacity = w.opacity / 100;
 	hide_bars();
 }
 
+let overscroll_distance = 0;
 let vertical_overscroll_handler = false;
 let horizontal_overscroll_handler = false;
-let diagonal_overscroll_handler = false;
 let overscroll_action = null;
+let overscroll_timeout = 0;
 async function add_or_remove_overscroll_handler() {
 	if (window.pageYOffset < 10 || window.pageYOffset > window.scrollMaxY - 10) {
 		if (!vertical_overscroll_handler) {
-			window.addEventListener("overscroll", handle_vertical_overscroll, false);
+			window.addEventListener("wheel", handle_vertical_overscroll, false);
 			vertical_overscroll_handler = true;
 		}
 	} else if (vertical_overscroll_handler) {
-		window.removeEventListener("overscroll", handle_vertical_overscroll, false);
+		window.removeEventListener("wheel", handle_vertical_overscroll, false);
 		vertical_overscroll_handler = false;
 	}
 	if (window.pageXOffset < 10 || window.pageXOffset > window.scrollMaxX - 10) {
 		if (!horizontal_overscroll_handler) {
-			window.addEventListener("overscroll", handle_horizontal_overscroll, false);
+			window.addEventListener("wheel", handle_horizontal_overscroll, false);
 			horizontal_overscroll_handler = true;
 		}
 	} else if (horizontal_overscroll_handler) {
-		window.removeEventListener("overscroll", handle_horizontal_overscroll, false);
+		window.removeEventListener("wheel", handle_horizontal_overscroll, false);
 		horizontal_overscroll_handler = false;
-	}
-	if ((window.pageYOffset < 10 || window.pageYOffset > window.scrollMaxY - 10) &&
-		(window.pageXOffset < 10 || window.pageXOffset > window.scrollMaxX - 10)) {
-		if (!diagonal_overscroll_handler) {
-			window.addEventListener("overscroll", handle_diagonal_overscroll, false);
-			diagonal_overscroll_handler = true;
-		}
-	} else if (diagonal_overscroll_handler) {
-		window.removeEventListener("overscroll", handle_diagonal_overscroll, false);
-		diagonal_overscroll_handler = false;
 	}
 }
 
 async function remove_overscroll_handler() {
 	if (vertical_overscroll_handler) {
-		window.removeEventListener("overscroll", handle_vertical_overscroll, false);
+		window.removeEventListener("wheel", handle_vertical_overscroll, false);
 		vertical_overscroll_handler = false;
 	}
 	if (horizontal_overscroll_handler) {
-		window.removeEventListener("overscroll", handle_horizontal_overscroll, false);
+		window.removeEventListener("wheel", handle_horizontal_overscroll, false);
 		horizontal_overscroll_handler = false;
-	}
-	if (diagonal_overscroll_handler) {
-		window.removeEventListener("overscroll", handle_diagonal_overscroll, false);
-		diagonal_overscroll_handler = false;
 	}
 }
 
-let previousOverscrollDelta = 0;
 async function handle_vertical_overscroll(e) {
-	window.addEventListener("scroll", abort_overscroll_action, { once: true });
-	window.addEventListener("scrollend", finish_overscroll_action, { once: true });
+	if(overscroll_timeout) window.clearTimeout(overscroll_timeout);
+	if(e.momentum) return reset_overscroll(); // inertia instead of deliberate manual interaction
+	if (!e.deltaY) return;
 
-	if (Math.abs(e.deltaY) < 10 || Math.abs(e.deltaX) > 9) return;
-
-	if (e.deltaY < 0) {
-		ms.querySelector(".action_button").className = "action_button top";
-		ms.querySelector(".action_button").innerText = "↻";
-		overscroll_action = "reload";
+	if (overscroll_distance === 0) {
+		window.addEventListener("scroll", reset_overscroll, { once: true });
+		if (e.deltaY < 0) {
+			ms.querySelector(".action_button").className = "action_button top";
+			ms.querySelector(".action_button").innerText = "↻";
+			overscroll_action = "reload";
+		}
+		else {
+			ms.querySelector(".action_button").className = "action_button bottom";
+			ms.querySelector(".action_button").innerText = "⌂";
+			overscroll_action = "home";
+		}
 	}
-	else {
-		ms.querySelector(".action_button").className = "action_button bottom";
-		ms.querySelector(".action_button").innerText = "⌂";
-		overscroll_action = "home";
-	}
-
-	const delta = Math.min(Math.abs(e.deltaY), 100) - 50;
-	ms.querySelector(".action_button").style.setProperty("--overscroll-delta", delta + "px");
-	if (delta === 50) {
+	
+	let new_delta = overscroll_distance + Math.sign(e.deltaY) * Math.min(Math.abs(e.deltaY), 10)
+	overscroll_distance = Math.sign(new_delta) * Math.min(Math.abs(new_delta), 50);
+	ms.querySelector(".action_button").style.setProperty("--overscroll-delta", Math.abs(overscroll_distance) + "px");
+	if (Math.abs(overscroll_distance) === 50) {
 		ms.querySelector(".action_button").classList.add("active");
+		overscroll_timeout = setTimeout(finish_overscroll_action, 1000);
 	}
 }
 
 async function handle_horizontal_overscroll(e) {
-	window.addEventListener("scroll", abort_overscroll_action, { once: true });
-	window.addEventListener("scrollend", finish_overscroll_action, { once: true });
+	if(overscroll_timeout) window.clearTimeout(overscroll_timeout);
+	if(e.momentum) return reset_overscroll(); // inertia instead of deliberate manual interaction
+	if (!e.deltaX) return;
 
-	if (Math.abs(e.deltaX) < 10 || Math.abs(e.deltaY) > 9) return;
-
-	if (e.deltaX < 0) {
-		ms.querySelector(".action_button").className = "action_button left";
-		ms.querySelector(".action_button").innerText = "🠬";
-		overscroll_action = "back";
+	if (overscroll_distance === 0) {
+		window.addEventListener("scroll", reset_overscroll, { once: true });
+		if (e.deltaX < 0) {
+			ms.querySelector(".action_button").className = "action_button left";
+			ms.querySelector(".action_button").innerText = "🠬";
+			overscroll_action = "back";
+		}
+		else {
+			ms.querySelector(".action_button").className = "action_button right";
+			ms.querySelector(".action_button").innerText = "🠮";
+			overscroll_action = "toggle_ui";
+		}
 	}
-	else {
-		ms.querySelector(".action_button").className = "action_button right";
-		ms.querySelector(".action_button").innerText = "🠮";
-		overscroll_action = "toggle_ui";
-	}
 
-	const delta = Math.min(Math.abs(e.deltaX), 100) - 50;
-	ms.querySelector(".action_button").style.setProperty("--overscroll-delta", delta + "px");
-	if (delta === 50) {
+	let new_delta = overscroll_distance + Math.sign(e.deltaX) * Math.min(Math.abs(e.deltaX), 10)
+	overscroll_distance = Math.sign(new_delta) * Math.min(Math.abs(new_delta), 50);
+	ms.querySelector(".action_button").style.setProperty("--overscroll-delta", Math.abs(overscroll_distance) + "px");
+	if (Math.abs(overscroll_distance) === 50) {
 		ms.querySelector(".action_button").classList.add("active");
+		overscroll_timeout = setTimeout(finish_overscroll_action, 1000);
 	}
 }
 
-async function handle_diagonal_overscroll(e) {
-	window.addEventListener("scroll", abort_overscroll_action, { once: true });
-	window.addEventListener("scrollend", finish_overscroll_action, { once: true });
-
-	if (Math.abs(e.deltaX) < 10 || Math.abs(e.deltaY) < 10) return;
-
-	if (e.deltaX < 0) {
-		ms.querySelector(".action_button").className = "action_button topright";
-		ms.querySelector(".action_button").innerText = "🠬";
-		overscroll_action = "back";
-	}
-	else {
-		ms.querySelector(".action_button").className = "action_button topright";
-		ms.querySelector(".action_button").innerText = "🠮";
-		overscroll_action = "toggle_ui";
-	}
-
-	const delta = Math.min((Math.abs(e.deltaX) + Math.abs(e.deltaY))/2, 100) - 50;
-	ms.querySelector(".action_button").style.setProperty("--overscroll-delta", delta + "px");
-	if (delta === 50) {
-		ms.querySelector(".action_button").classList.add("active");
-	}
-}
-
-async function abort_overscroll_action()
+async function reset_overscroll()
 {
 	ms.querySelector(".action_button").className = "action_button";
-	window.removeEventListener("scrollend", finish_overscroll_action, { once: true });
 	overscroll_action = null;
+	overscroll_distance = 0;
+	window.clearTimeout(overscroll_timeout);
 }
 
 async function finish_overscroll_action()
 {
-	if (ms.querySelector(".action_button").style.getPropertyValue("--overscroll-delta") !== "50px")
-		return abort_overscroll_action();
+	const action = overscroll_action;
+	reset_overscroll();
+	if (ms.querySelector(".action_button").style.getPropertyValue("--overscroll-delta") !== "50px") return;
 
-	ms.querySelector(".action_button").className = "action_button";
-
-	switch (overscroll_action) {
+	switch (action) {
 		case "reload":
 			history.go();
 			break;
