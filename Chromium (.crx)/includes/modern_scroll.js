@@ -1091,11 +1091,11 @@ function add_buttons()
 	
 	let upbutton = document.createElement("div");
 	upbutton.id = "ms_upbutton";
-	upbutton.addEventListener("pointerdown", function(e){ handle_button("up", e); }, true);
+	upbutton.addEventListener("pointerdown", (e) => handle_button("up", e), true);
 
 	let downbutton = document.createElement("div");
 	downbutton.id = "ms_downbutton";
-	downbutton.addEventListener("pointerdown", function(e){ handle_button("down", e); }, true);
+	downbutton.addEventListener("pointerdown", (e) => handle_button("down", e), true);
 	
 	let button_container = document.createElement("div");
 	button_container.id = "modern_scroll_buttons";
@@ -1121,10 +1121,15 @@ async function handle_button(whichone, e)
 	document.addEventListener("pointerup", handle_button_click, true);
 	document.addEventListener("pointermove", handle_button_drag, true);
 
+	async function reloadPage() { location.reload(); } // can't use function directly, because this needs to be bound to location
 	async function handle_button_click()
 	{
-		if(whichone === "up")	scroll_Pos1();
-		else					scroll_End();
+		if(whichone === "up") {
+			scroll_Pos1();
+			button.addEventListener("pointerdown", reloadPage, true); // double click
+			window.setTimeout(() => button.removeEventListener("pointerdown", reloadPage, true), 300);
+		}
+		else scroll_End();
 		document.removeEventListener("pointermove", handle_button_drag, true);
 		document.removeEventListener("pointerup", handle_button_click, true);
 	}
