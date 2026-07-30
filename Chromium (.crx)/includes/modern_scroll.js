@@ -761,7 +761,9 @@ function resize_vbar()
 	const vbar_new_height = Math.max(Math.round(window.innerHeight/(Math.max(document.documentElement.scrollHeight,document.body.scrollHeight)/window.innerHeight)), 30+2*w.gap);
 	
 	if(vbar.offsetHeight !== vbar_new_height){
-		if(ms.styleSheets[0].cssRules.length) ms.styleSheets[0].removeRule(ms.styleSheets[0].cssRules.length-2);
+		if(!ms.styleSheets[0].cssRules.length) return; // externally removed CSS rules -> needs to be replaced entirely
+
+		ms.styleSheets[0].removeRule(ms.styleSheets[0].cssRules.length-2);
 		ms.styleSheets[0].addRule(":host", "--vbar-height: " + vbar_new_height + "px;", ms.styleSheets[0].cssRules.length-1);
 
 		show_bar("v");
