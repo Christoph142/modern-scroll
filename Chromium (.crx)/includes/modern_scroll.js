@@ -1519,7 +1519,7 @@ let last_clicked_element_is_scrollable;
 //let test = 0;
 function arrowkeyscroll(e)
 {
-	if(e.defaultPrevented || e.which < 37 || e.which > 40 || modifierkey_pressed(e) || target_is_input(e)) return;
+	if(e.defaultPrevented || e.which < 37 || e.which > 40 || modifierkey_pressed(e) || target_is_input(e.target, e.which)) return;
 	
 	window.removeEventListener("keydown", arrowkeyscroll, false);
 	
@@ -1598,7 +1598,7 @@ function arrowkeyscroll(e)
 
 function otherkeyscroll(e)
 {
-	if(e.defaultPrevented || target_is_input(e)) return;
+	if(e.defaultPrevented || target_is_input(e.target, e.which)) return;
 
 	if(e.which > 34 && e.which < 37 && !modifierkey_pressed(e))
 	{
@@ -1747,8 +1747,11 @@ function modifierkey_pressed(e){ return (e.ctrlKey || e.shiftKey || e.altKey || 
 
 function target_is_input(e){
 	return (["TEXTAREA", "SELECT", "IFRAME"].includes(e.target.tagName) ||
-		   (e.target.tagName === "INPUT" && e.target.type !== "submit" && e.target.type !== "reset" && e.target.type !== "button" && e.target.type !== "image" && (e.target.type !== "checkbox" || e.which === 32) && (e.target.type !== "range" || e.which === 37 || e.which === 39)) ||
-			e.target.isContentEditable || e.target.parentNode?.isContentEditable || e.target.shadowRoot !== null /* don't handle custom widgets */);
+function target_is_input(node, key){
+	if (!node) return false;
+	return (["TEXTAREA", "SELECT", "IFRAME"].includes(node.tagName) ||
+		   (node.tagName === "INPUT" && node.type !== "submit" && node.type !== "reset" && node.type !== "button" && node.type !== "image" && (node.type !== "checkbox" || key === 32) && (node.type !== "range" || key === 37 || key === 39)) ||
+			node.isContentEditable || node.editContext || node.shadowRoot !== null /* custom widgets */ || target_is_input(node.parentNode, key) );
 }
 
 function isLink(node){
