@@ -1745,8 +1745,6 @@ function preventScrolling(e){ stopEvent(e); window.removeEventListener("keydown"
 
 function modifierkey_pressed(e){ return (e.ctrlKey || e.shiftKey || e.altKey || e.metaKey); }
 
-function target_is_input(e){
-	return (["TEXTAREA", "SELECT", "IFRAME"].includes(e.target.tagName) ||
 function target_is_input(node, key){
 	if (!node) return false;
 	return (["TEXTAREA", "SELECT", "IFRAME"].includes(node.tagName) ||
