@@ -5,7 +5,7 @@
 	"browser_specific_settings"	: { "gecko": { "id": "modern-scroll@christoph142", "data_collection_permissions": { "required": ["none"] } } },
 	
 	"default_locale"			: "en",
-	"version"					: "4.4",
+	"version"					: "4.5",
 	"minimum_chrome_version"	: "120",
 	"icons"						: { "16": "images/contextmenu.png", "32": "images/contextmenu@2x.png", "64": "images/icon.png", "128": "images/icon@2x.png" },
 	

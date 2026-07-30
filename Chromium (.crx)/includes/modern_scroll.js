@@ -497,10 +497,10 @@ function add_functionality_2_bars(){
 	}
 
 	window.addEventListener("scroll", reposition_bars, false);
-	if (w.squeeze_bars === "1" && false /*TODO enable in 4.5*/) {
+	if (w.squeeze_bars === "1") {
 		window.addEventListener("wheel", squeeze_bars, false);
 	}
-	if (w.overscroll_actions === "1" && "momentum" in new WheelEvent({}) && false /*TODO enable in 4.5*/) {
+	if (w.overscroll_actions === "1" && "momentum" in new WheelEvent({}) && false /*TODO enable in 5.0*/) {
 		add_or_remove_overscroll_handler();
 		window.addEventListener("scroll", remove_overscroll_handler, false);
 		window.addEventListener("scrollend", add_or_remove_overscroll_handler, false);
