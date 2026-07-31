@@ -1,3 +1,5 @@
+![modern scroll](/Chromium%20(.crx)/images/icon.png)
+
 modern scroll is a browser extension that takes scrolling to a whole new level.
 
 [<img src="https://developer.chrome.com/static/docs/webstore/branding/image/206x58-chrome-web-043497a3d766e.png" height="58">](https://chromewebstore.google.com/detail/modern-scroll/ejonaglbdpcfkgbcnidjlnjogfdgbofp) 
