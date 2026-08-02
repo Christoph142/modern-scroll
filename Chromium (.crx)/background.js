@@ -1,3 +1,6 @@
+// remove when Chrome min version is 148 and switch to Promises
+// see https://developer.chrome.com/docs/extensions/develop/concepts/browser-namespace
+// and https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Build_a_cross_browser_extension
 if (!globalThis.browser) globalThis.browser = chrome;
 
 browser.storage.onChanged.addListener((changes, area) => {

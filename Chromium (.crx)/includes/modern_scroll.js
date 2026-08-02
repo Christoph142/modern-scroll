@@ -373,11 +373,8 @@ function inject_css()
 	let global_ms_style = "#modern_scroll { all: initial !important; }\n\n";
 
 	/* hide page's default scroll bars: */
-	if(w.fullscreen_only === "0") global_ms_style += "html, body { scroll-behavior: auto !important; }\n" +
-		(CSS.supports("scrollbar-width: none") ?
-			"html, body { scrollbar-width: none !important; }\n" :
-			"html::-webkit-scrollbar, body::-webkit-scrollbar{ display:none !important; width:0 !important; height:0 !important; }\n");
-
+	if(w.fullscreen_only === "0") global_ms_style += "html, body { scroll-behavior: auto !important; scrollbar-width: none !important; }\n";
+	
 	if(w.style_element_bars === "1"){
 		if(w.auto_coloring === "1"){
 			const page_colors = get_colors_from_page();
@@ -385,20 +382,24 @@ function inject_css()
 			 	global_ms_style += "body {\n" + page_colors + "}\n";
 			}
 		}
-
-		global_ms_style += CSS.supports("scrollbar-color: auto") ?
-			(w.autohide_element_bars === "1" ? "body *:not(:hover):not(:focus-within) { scrollbar-color: transparent transparent !important; }\n" : "")+
-			"body *{ scrollbar-color: var(--color, "+w.color+") var(--color_bg, "+w.color_bg+") !important; }\n\
-			 body *::-webkit-scrollbar-button{ display:none; }\n\
-			 body *::-webkit-scrollbar-track { background:none; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px var(--border_color) !important; border-radius:"+w.border_radius+"px; }\n\
-			 body *::-webkit-scrollbar-thumb { background:var(--color, "+w.color+"); box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px var(--border_color) !important; border-radius:"+w.border_radius+"px; }\n\
-			 body *::-webkit-scrollbar-thumb:hover { background:var(--color, "+w.color+"); }" :
-			(w.autohide_element_bars === "1" ? "body *:not(:hover):not(:focus-within)::-webkit-scrollbar{ display:none !important; width:0 !important; height:0 !important; }\n" : "")+
-			"body *::-webkit-scrollbar{ width:"+w.size+"px; height:"+w.size+"px; }\n\
-			 body *::-webkit-scrollbar-button{ display:none; }\n\
-			 body *::-webkit-scrollbar-track { background:none; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px var(--border_color) !important; border-radius:"+w.border_radius+"px; }\n\
-			 body *::-webkit-scrollbar-thumb { background:var(--color, "+w.color+"); box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px var(--border_color) !important; border-radius:"+w.border_radius+"px; }\n\
-			 body *::-webkit-scrollbar-thumb:hover { background:var(--color, "+w.color+"); }";
+		if (CSS.supports("selector(::-webkit-scrollbar)")) { // prefer more granular preceding webkit implementation over standard spec
+			global_ms_style += 
+				"body * { scrollbar-width: unset !important; }\n" + // browser prefers standard if specified -> unset
+				(w.autohide_element_bars === "1" ? "body *:not(:hover):not(:focus-within)::-webkit-scrollbar{ display:none !important; width:0 !important; height:0 !important; }\n" : "")+
+				"body *::-webkit-scrollbar{ width:"+w.size+"px; height:"+w.size+"px; }\n\
+				 body *::-webkit-scrollbar-button{ display:none; }\n\
+				 body *::-webkit-scrollbar-track { background:"+((w.show_bg_bars_when==="3")?w.color_bg:"none")+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px var(--border_color) !important; border-radius:"+w.border_radius+"px; }\n\
+				 body *::-webkit-scrollbar-thumb { background:var(--color, "+w.color+"); box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px var(--border_color) !important; border-radius:"+w.border_radius+"px; }\n\
+				 body *::-webkit-scrollbar-thumb:hover { background:var(--color, "+w.color+"); }\n\
+				 body *::-webkit-scrollbar:hover{\n\
+				 	width:"+w.hover_size+"px; height:"+w.hover_size+"px;\n\
+				 	"+(w.show_bg_bars_when === 2 ? "*::-webkit-scrollbar-track { background: "+w.color_bg+"; }\n" : "")+"\
+				 }\n";
+		}
+		else {
+			global_ms_style += (w.autohide_element_bars === "1" ? "body *:not(:hover):not(:focus-within) { scrollbar-color: transparent transparent !important; }\n" : "")+
+			"body *{ scrollbar-color: var(--color, "+w.color+") var(--color_bg, "+w.color_bg+") !important; scrollbar-width: "+(parseInt(w.size) < 8 ? "thin" : "auto")+" !important; }\n";
+		}
 	}
 
 	if(document.getElementById("ms_style")){ // switched tabs -> update style (settings may have changed)
