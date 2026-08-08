@@ -49,7 +49,7 @@ function savePrefs(e) // save preferences:
 	
 
 	if(e.target.id === "color") document.body.style.accentColor = e.target.value;
-	if(e.target.id === "border_color") save_new_value("border_color_rgba", "rgba("+parseInt(e.target.value.substring(1,3),16)+","+parseInt(e.target.value.substring(3,5),16)+","+parseInt(e.target.value.substring(5,7),16)+",0.7)");
+	if(e.target.id === "border_color") save_new_value("border_color", e.target.value);
 	
 	if(e.target.id === "size" || e.target.id === "hover_size"){
 		document.querySelector("#border_radius").max = Math.round(Math.max(document.querySelector("#size").value, document.querySelector("#hover_size").value)/2);
@@ -107,7 +107,6 @@ async function restorePrefs() {
 		border_width:			"1",
 		border_blur:			"0",
 		border_color:			"#FFFFFF",
-		border_color_rgba:		"rgba(255,255,255,0.5)",
 		vbar_at_left:			"0",
 		hbar_at_top:			"0",
 

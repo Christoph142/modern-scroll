@@ -46,7 +46,6 @@ async function load_prefs() {
 		border_width:			"1",
 		border_blur:			"0",
 		border_color:			"#FFFFFF",
-		border_color_rgba:		"rgba(255,255,255,0.5)",
 		vbar_at_left:			"0",
 		hbar_at_top:			"0",
 
@@ -250,7 +249,7 @@ function get_colors_from_page_themecolor()
 
 	return "--color: "+themecolor.content+";\n\
 		 	--color_bg: "+ themecolor.content +";\n\
-		 	--border_color: "+ (is_white(themecolor.content) ? "rgb(0,0,0)" : w.border_color_rgba) +";\n\
+		 	--border_color: "+ (is_white(themecolor.content) ? "rgb(0,0,0)" : w.border_color) +";\n\
 		 	--bookmark_text_color: "+ (is_white(themecolor.content) ? "rgb(0,0,0)" : w.bookmark_text_color) +";\n";
 }
 function get_internal_style(css_colors) {
@@ -263,13 +262,15 @@ function is_white(color)
 	return ["#ffffffff", "#ffffff", "#ffff", "#fff", "white"].includes(c) || c.includes("(255,255,255") || c.includes("100%)");
 }
 
+const opacity_to_hex = () => Math.round(w.opacity/100*255).toString(16).padStart(2, '0');
+
 function inject_css()
 {
 	let ms_style = 
 		":host { all: initial;\n\
 		 --color: "+ w.color +";\n\
 		 --color_bg: "+ w.color_bg +";\n\
-		 --border_color: "+ w.border_color_rgba +";\n\
+		 --border_color: "+ w.border_color +";\n\
 		 --bookmark_text_color: "+ w.bookmark_text_color +";\n\
 		 }\n\
 		 "+get_internal_style(get_colors_from_page())+"\
@@ -384,22 +385,23 @@ function inject_css()
 		}
 		if (CSS.supports("selector(::-webkit-scrollbar)")) { // prefer more granular preceding webkit implementation over standard spec
 			global_ms_style += 
-				"body * { scrollbar-width: unset !important; }\n" + // browser prefers standard if specified -> unset
-				(w.autohide_element_bars === "1" ? "body *:not(:hover):not(:focus-within)::-webkit-scrollbar{ display:none !important; width:0 !important; height:0 !important; }\n" : "")+
-				"body *::-webkit-scrollbar{ width:"+w.size+"px; height:"+w.size+"px; }\n\
-				 body *::-webkit-scrollbar-button{ display:none; }\n\
-				 body *::-webkit-scrollbar-track { background:"+((w.show_bg_bars_when==="3")?w.color_bg:"none")+"; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px var(--border_color) !important; border-radius:"+w.border_radius+"px; }\n\
-				 body *::-webkit-scrollbar-thumb { background:var(--color, "+w.color+"); box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px var(--border_color) !important; border-radius:"+w.border_radius+"px; }\n\
-				 body *::-webkit-scrollbar-thumb:hover { background:var(--color, "+w.color+"); }\n\
-				 body *::-webkit-scrollbar:hover{\n\
-				 	width:"+w.hover_size+"px; height:"+w.hover_size+"px;\n\
-				 	"+(w.show_bg_bars_when === 2 ? "*::-webkit-scrollbar-track { background: "+w.color_bg+"; }\n" : "")+"\
+				"body * { scrollbar-color: unset !important; scrollbar-width: unset !important; }\n" + // browser prefers standard if specified -> unset
+				"body * { &::-webkit-scrollbar, &::-webkit-scrollbar-thumb, &::-webkit-scrollbar-track, &::-webkit-scrollbar-corner { all: unset !important; } }\n" + // reset any potential site-specific styling
+				"body * { &::-webkit-scrollbar-button, ::-webkit-scrollbar-corner { display:none !important; } }\n\
+				 body *::-webkit-scrollbar{ width:"+w.size+"px; height:"+w.size+"px; }\n\
+				 body *::-webkit-scrollbar-track { background:"+((w.show_bg_bars_when==="3" && (w.show_when==="3" || w.autohide_element_bars === "0"))?"var(--color_bg, "+w.color_bg+opacity_to_hex()+")":"#00000000")+" !important; border-radius:"+w.border_radius+"px !important; }\n\
+				 body *::-webkit-scrollbar-thumb { background:var(--color, "+w.color+opacity_to_hex()+") !important; box-shadow:inset 0 0 "+w.border_blur+"px "+w.border_width+"px var(--border_color) !important; border-radius:"+w.border_radius+"px !important; }\n\
+				 body *::-webkit-scrollbar-thumb:hover { background:var(--color, "+w.color+") !important; }\n\
+				 body *::-webkit-scrollbar:hover, body *::-webkit-scrollbar-track:hover{\n\
+				 	width:"+w.hover_size+"px !important; height:"+w.hover_size+"px !important;\n" +
+				 	((w.show_bg_bars_when==="2" || (w.show_bg_bars_when==="3" && w.show_when==="2")) && w.autohide_element_bars === "1" ? "background: "+w.color_bg+" !important; border-radius:"+w.border_radius+"px !important;\n" : "")+"\
 				 }\n";
 		}
 		else {
-			global_ms_style += (w.autohide_element_bars === "1" ? "body *:not(:hover):not(:focus-within) { scrollbar-color: transparent transparent !important; }\n" : "")+
-			"body *{ scrollbar-color: var(--color, "+w.color+") var(--color_bg, "+w.color_bg+") !important; scrollbar-width: "+(parseInt(w.size) < 8 ? "thin" : "auto")+" !important; }\n";
+			"body *{ scrollbar-color: var(--color, "+w.color+") var(--color_bg, "+w.color_bg+") !important; scrollbar-width: "+(parseInt(w.size) < 7 ? "thin" : "auto")+" !important; }\n";
 		}
+
+		if(w.autohide_element_bars === "1") global_ms_style += "body *:not(:hover):not(:focus-within) { scrollbar-color: transparent transparent !important; }\n";
 	}
 
 	if(document.getElementById("ms_style")){ // switched tabs -> update style (settings may have changed)
