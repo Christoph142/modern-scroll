@@ -829,7 +829,7 @@ function drag_mode(which_bar){
 	else{
 		window.addEventListener("scroll", reposition_bars, false);
 		ms.getElementById("ms_page_cover").style.display = null;
-		ms.querySelector(".dragged").classList.remove("dragged");
+		ms.querySelector(".dragged")?.classList.remove("dragged");
 	}
 }
 
